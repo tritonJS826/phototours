@@ -1,9 +1,9 @@
-import ButtonHello from './components/ButtonHello/ButtonHello'
+import {HelloButton} from "src/components/ButtonHello/ButtonHello";
 
-export default function App(){
-  return(
+export function App() {
+  return (
     <div>
-    <ButtonHello />
+      <HelloButton />
     </div>
-  )
+  );
 }

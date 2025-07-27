@@ -1,5 +1,5 @@
-export default function MainLayout (){
-    return (
-        <div></div>
-    )
+export function MainLayout () {
+  return (
+    <div />
+  );
 }

@@ -15,14 +15,14 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "src/*": ["pt-web/src/*"]
+      "src/*": ["./src/*"]
     }
   },
   "include": [
-    "pt-web/src",
-    "pt-web/vite.config.ts",
+    "src",
+    "vite.config.ts",
     "**/*.ts",
     "**/*.tsx",
     "**/*.d.ts"

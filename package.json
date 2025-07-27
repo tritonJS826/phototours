@@ -16,6 +16,7 @@
     "prepare": "husky",
     "swag": "pnpm --stream --recursive --workspace-concurrency 100 swag",
     "start": "pnpm  --stream --recursive --workspace-concurrency 100 start",
+    "build": "pnpm  --stream --recursive --workspace-concurrency 100 build",
     "serve": "pnpm --stream --recursive --workspace-concurrency 100 serve",
     "install:all": "pnpm --stream --recursive --workspace-concurrency 100 installAll"
   },
@@ -29,7 +30,7 @@
   },
   "engines": {
     "node": "22.5.1",
-    "pnpm": "8.15.2"
+    "pnpm": "9.8.0"
   },
-  "packageManager": "pnpm@8.15.2"
+  "packageManager": "pnpm@9.8.0"
 }

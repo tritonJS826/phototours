@@ -22,12 +22,6 @@ services:
       - "9876:3000"
     env_file:
       - ./grafana/.env
-    depends_on:
-      - postgres-general
-      - postgres-chat
-      - postgres-storage
-      - postgres-mail
-      - postgres-survey
     networks:
       - app-network
 
@@ -45,12 +39,6 @@ services:
 
 volumes:
   postgres-general:
-  postgres-chat:
-  postgres-storage:
-  postgres-survey:
-  postgres-notification:
-  postgres-mail:
-  postgres-training:
 
 
 networks:

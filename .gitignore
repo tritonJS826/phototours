@@ -13,6 +13,8 @@ node_modules/
 # Production build
 dist/
 dist-ssr/
+build/
+
 
 # Local env files
 .env
