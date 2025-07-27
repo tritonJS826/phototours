@@ -1,69 +1,159 @@
-# React + TypeScript + Vite
+# Photo Tours – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the **frontend** part of the Photo Tours project, built with **React + TypeScript + Vite**.  
+It is located in the `pt-web/` directory, so backend can be added later as a separate service.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📂 Project structure
 
-## Expanding the ESLint configuration
+At the root of the repo:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+/ (root)
+  pt-web/      → React + TS + Vite frontend
+  (future)     → backend folder
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Inside `pt-web/`:
+
+```
+src/             → main source code
+public/          → static assets
+vite.config.ts   → Vite configuration
+tsconfig.json    → TypeScript configuration
+eslint.config.js → ESLint configuration
+```
+
+---
+
+## 🛠 Requirements
+
+- **Node.js >= 18.x**
+- **pnpm >= 8.x** (we use pnpm as the package manager)
+
+Install `pnpm` globally if you don’t have it yet:
+
+```bash
+npm install -g pnpm
+```
+
+Check versions:
+
+```bash
+node -v
+pnpm -v
+```
+
+---
+
+## 🚀 Setup & Development
+
+Go to the frontend folder:
+
+```bash
+cd pt-web
+```
+
+Install dependencies:
+
+```bash
+pnpm install
+```
+
+Run dev server:
+
+```bash
+pnpm dev
+```
+
+Build for production:
+
+```bash
+pnpm build
+```
+
+Type-check the project:
+
+```bash
+pnpm type-check
+```
+
+Lint the code:
+
+```bash
+pnpm lint
+```
+
+---
+
+## ✅ Tech Stack
+
+- [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/) → dev server + build
+- [SCSS Modules](https://sass-lang.com/) for styling
+- [ESLint](https://eslint.org/) for code quality
+
+---
+
+## 📏 ESLint & TypeScript
+
+The project uses a strict ESLint setup with TypeScript integration.  
+For type-aware rules, we recommend enabling **type-checked configs**.
+
+Example:
 
 ```js
 // eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+import tseslint from 'typescript-eslint';
 
 export default tseslint.config([
-  globalIgnores(['dist']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
+      ...tseslint.configs.recommendedTypeChecked,
+      // or stricter:
+      // ...tseslint.configs.strictTypeChecked,
+      // optional stylistic rules:
+      // ...tseslint.configs.stylisticTypeChecked,
     ],
     languageOptions: {
       parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        project: ['./tsconfig.json'],
         tsconfigRootDir: import.meta.dirname,
       },
-      // other options...
     },
   },
-])
+]);
 ```
+
+You can also enhance React-specific linting with:
+
+```bash
+pnpm add -D eslint-plugin-react-x eslint-plugin-react-dom
+```
+
+Then extend:
+
+```js
+import reactX from 'eslint-plugin-react-x';
+import reactDom from 'eslint-plugin-react-dom';
+
+export default tseslint.config([
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      reactX.configs['recommended-typescript'],
+      reactDom.configs.recommended,
+    ],
+  },
+]);
+```
+
+---
+
+## 📌 Notes
+
+- **Frontend lives inside `pt-web/`, do not install deps in root.**
+- Use **pnpm** only (not npm or yarn) to keep `pnpm-lock.yaml` consistent.
+- Backend will be added later as a separate service.
