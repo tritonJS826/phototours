@@ -3,13 +3,13 @@ services:
     build:
       context: .
       dockerfile: ./postgres/postgres-general.Dockerfile
-    container_name: postgres-general
+    container_name: postgres-pt-general
     ports:
       - "5432:5432"
     volumes:
       - postgres-general:/var/lib/postgresql/data
     env_file:
-      - ./mw-server/.env
+      - ./pt-general/.env
     networks:
       - app-network
 
@@ -17,7 +17,7 @@ services:
     build:
       context: .
       dockerfile: ./grafana/Dockerfile
-    container_name: grafana
+    container_name: pt-grafana
     ports:
       - "9876:3000"
     env_file:
@@ -27,7 +27,7 @@ services:
 
   nginx:
     image: nginx:1.24.0-alpine
-    container_name: nginx
+    container_name: gateway
     ports:
       - "5173:80"
     volumes:

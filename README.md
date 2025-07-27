@@ -29,8 +29,8 @@ eslint.config.js → ESLint configuration
 
 ## 🛠 Requirements
 
-- **Node.js >= 18.x**
-- **pnpm >= 8.x** (we use pnpm as the package manager)
+- **Node.js 22.5.1**
+- **pnpm 9.8.0** (we use pnpm as the package manager)
 
 Install `pnpm` globally if you don’t have it yet:
 
@@ -49,111 +49,27 @@ pnpm -v
 
 ## 🚀 Setup & Development
 
-Go to the frontend folder:
 
-```bash
-cd pt-web
-```
-
-Install dependencies:
+1. Install dependencies:
 
 ```bash
 pnpm install
 ```
 
-Run dev server:
+2. Create .env file inside all modules with variables from .env.local.example (run "useEnvs.sh" script for such purpose)
+
+`./useEnvs.sh local`
+
+3. Run databases and nginx in containers (check local.nginx.conf for right addresses):
+
+`docker-compose -f local.docker-compose.yml up`
+
+grafana will be available by [link](http://localhost:5173/grafana/login) locally
+
+4. Run dev server:
 
 ```bash
-pnpm dev
+pnpm start
 ```
 
-Build for production:
-
-```bash
-pnpm build
-```
-
-Type-check the project:
-
-```bash
-pnpm type-check
-```
-
-Lint the code:
-
-```bash
-pnpm lint
-```
-
----
-
-## ✅ Tech Stack
-
-- [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
-- [Vite](https://vitejs.dev/) → dev server + build
-- [SCSS Modules](https://sass-lang.com/) for styling
-- [ESLint](https://eslint.org/) for code quality
-
----
-
-## 📏 ESLint & TypeScript
-
-The project uses a strict ESLint setup with TypeScript integration.  
-For type-aware rules, we recommend enabling **type-checked configs**.
-
-Example:
-
-```js
-// eslint.config.js
-import tseslint from 'typescript-eslint';
-
-export default tseslint.config([
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      ...tseslint.configs.recommendedTypeChecked,
-      // or stricter:
-      // ...tseslint.configs.strictTypeChecked,
-      // optional stylistic rules:
-      // ...tseslint.configs.stylisticTypeChecked,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-    },
-  },
-]);
-```
-
-You can also enhance React-specific linting with:
-
-```bash
-pnpm add -D eslint-plugin-react-x eslint-plugin-react-dom
-```
-
-Then extend:
-
-```js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
-
-export default tseslint.config([
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      reactX.configs['recommended-typescript'],
-      reactDom.configs.recommended,
-    ],
-  },
-]);
-```
-
----
-
-## 📌 Notes
-
-- **Frontend lives inside `pt-web/`, do not install deps in root.**
-- Use **pnpm** only (not npm or yarn) to keep `pnpm-lock.yaml` consistent.
-- Backend will be added later as a separate service.
+pt-webapp will be available by[link](http://localhost:5173) locally
