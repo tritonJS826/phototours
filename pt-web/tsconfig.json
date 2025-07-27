@@ -20,6 +20,12 @@
       "src/*": ["pt-web/src/*"]
     }
   },
-  "include": ["pt-web/src", "pt-web/vite.config.ts", "**/*.ts"],
-  "exclude": ["node_modules", "public"]
+  "include": [
+    "pt-web/src",
+    "pt-web/vite.config.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.d.ts"
+  ],
+  "exclude": ["node_modules", "public", "dist"]
 }
