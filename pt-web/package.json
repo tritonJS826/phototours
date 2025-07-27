@@ -1,7 +1,7 @@
 {
-  "name": "phototours",
+  "name": "pw-web",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "start": "vite",
@@ -24,6 +24,7 @@
     "@typescript-eslint/eslint-plugin": "^8.38.0",
     "@typescript-eslint/parser": "^8.38.0",
     "@vitejs/plugin-react-swc": "^3.10.2",
+    "envalid": "^8.1.0",
     "eslint": "^9.32.0",
     "eslint-plugin-jsdoc": "^51.4.1",
     "eslint-plugin-react": "^7.37.5",
@@ -32,9 +33,42 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-vitest": "^0.5.4",
     "globals": "^16.3.0",
+    "husky": "9.0.11",
     "sass": "^1.89.2",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.38.0",
-    "vite": "^7.0.4"
-  }
+    "vite": "^7.0.4",
+    "vite-plugin-eslint": "^1.8.1",
+    "vite-plugin-pwa": "^1.0.2",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "pnpm run lint-fix"
+    ],
+    "**/*.{scss,module.scss}": [
+      "pnpm run format --",
+      "pnpm run stylelint-fix"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "extends": "../tsconfig.json",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "packageManager": "pnpm@9.8.0"
 }
