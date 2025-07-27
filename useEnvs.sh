@@ -3,6 +3,8 @@
 # Define your services
 services=(
   "pt-web"
+  "pt-general"
+  "grafana"
 )
 
 # Define the environment file templates
