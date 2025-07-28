@@ -12,7 +12,7 @@ At the root of the repo:
 ```
 / (root)
   pt-web/      → React + TS + Vite frontend
-  pt-general/     → backend folder
+  pt-general/  → backend folder
 ```
 
 Inside `pt-web/`:
