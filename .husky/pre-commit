@@ -2,6 +2,7 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 WEBAPP="pt-web/"
+GENERAL="pt-general/"
 
 # generateSwaggerDocs () {
 #   pnpm swag
@@ -31,6 +32,18 @@ runWebappIfChanged () {
         "pnpm web:build-storybook" \
         "pnpm web:build" \
         "pnpm web:cypress:component:run"
+  fi
+}
+
+runGeneralIfChanged () {
+  if git diff --name-only --cached | grep "$GENERAL"
+  then
+    echo "general changed. checking..."
+    pnpm general:lint-staged
+    pnpm concurrently \
+        "pnpm general:type-check" \
+        "pnpm general:test" \
+        "pnpm general:build"
   fi
 }
 
