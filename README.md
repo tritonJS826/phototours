@@ -66,6 +66,10 @@ pnpm install
 
 grafana will be available by [link](http://localhost:5173/grafana/login) locally
 
+5. Run database migration to have appropriate tables in the db
+
+`pnpm run general:prisma:migrate`
+
 4. Run dev server:
 
 ```bash
