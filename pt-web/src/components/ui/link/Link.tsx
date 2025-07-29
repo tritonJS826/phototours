@@ -34,7 +34,7 @@ const Link: React.FC<Props> = ({
       <a
         href={href}
         target={target}
-        rel={rel || (target === "_blank" ? "noopener noreferrer" : undefined)}
+        rel={rel ?? (target === "_blank" ? "noopener noreferrer" : undefined)}
         className={`${styles.link} ${className}`}
       >
         {children}
