@@ -1,0 +1,28 @@
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app = express();
+const PORT = process.env.DOCS_PORT || 8080;
+
+// Serve static files from docs/api directory
+app.use(express.static(path.join(__dirname, '../../docs/api')));
+
+// Redirect root to documentation
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../docs/api/index.html'));
+});
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', message: 'Documentation server is running' });
+});
+
+app.listen(PORT, () => {
+  console.log(`📚 Documentation server running at http://localhost:${PORT}`);
+  console.log(`📖 Open http://localhost:${PORT} in your browser`);
+  console.log(`🏥 Health check: http://localhost:${PORT}/health`);
+}); 

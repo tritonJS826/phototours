@@ -12,7 +12,9 @@
     "lint-fix": "eslint . --fix",
     "prisma:migrate": "prisma migrate dev",
     "prisma:generate": "prisma generate",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "docs:generate": "node scripts/generate-docs.js",
+    "docs:serve": "node scripts/serve-docs.js"
   },
   "keywords": [],
   "author": "",
