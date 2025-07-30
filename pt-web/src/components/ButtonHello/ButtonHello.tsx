@@ -1,6 +1,6 @@
 import styles from "src/components/ButtonHello/ButtonHello.module.scss";
 
-export function HelloButton() {
+export function ButtonHello() {
 
   const handleClick = () => alert("Hello!");
 
