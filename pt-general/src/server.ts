@@ -3,11 +3,13 @@ import {prisma} from 'src/db/prisma';
 import express, {Express, Request, Response} from 'express';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
+import cors from 'cors';
 
 const CODE_500 = 500;
 
 const app: Express = express();
 app.use(express.json());
+app.use(cors());
 const port = env.SERVER_PORT;
 
 // Swagger configuration
@@ -62,7 +64,7 @@ app.get('/', (req: Request, res: Response) => {
  * @swagger
  * /users:
  *   post:
- *     summary: Create a new user
+ *     summary: Create a new user for ZOHO integration
  *     tags: [Users]
  *     requestBody:
  *       required: true
@@ -71,16 +73,27 @@ app.get('/', (req: Request, res: Response) => {
  *           schema:
  *             type: object
  *             required:
+ *               - firstName
+ *               - lastName
  *               - email
- *               - name
+ *               - phone
  *             properties:
+ *               firstName:
+ *                 type: string
+ *                 description: User's first name
+ *               lastName:
+ *                 type: string
+ *                 description: User's last name
  *               email:
  *                 type: string
  *                 format: email
  *                 description: User's email address
- *               name:
+ *               phone:
  *                 type: string
- *                 description: User's full name
+ *                 description: User's phone number
+ *               company:
+ *                 type: string
+ *                 description: User's company name (optional)
  *     responses:
  *       200:
  *         description: User created successfully
@@ -91,31 +104,74 @@ app.get('/', (req: Request, res: Response) => {
  *               properties:
  *                 id:
  *                   type: integer
+ *                 firstName:
+ *                   type: string
+ *                 lastName:
+ *                   type: string
  *                 email:
  *                   type: string
- *                 name:
+ *                 phone:
+ *                   type: string
+ *                 company:
+ *                   type: string
+ *                 password:
  *                   type: string
  *                 role:
  *                   type: string
  *                 createdAt:
  *                   type: string
  *                   format: date-time
+ *       400:
+ *         description: Missing required fields
  *       500:
  *         description: Server error
  */
 app.post('/users', async (req: Request, res: Response) => {
   try {
-    const {email, name} = req.body;
+    const {firstName, lastName, email, phone, company} = req.body;
+    
+    // Validate required fields
+    if (!firstName || !lastName || !email || !phone) {
+      return res.status(400).json({
+        error: 'Missing required fields: firstName, lastName, email, phone'
+      });
+    }
+
+    // Generate random password
+    const generatePassword = () => {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let password = '';
+      for (let i = 0; i < 8; i++) {
+        password += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return password;
+    };
+
+    const generatedPassword = generatePassword();
+
     const user = await prisma.user.create({
       data: {
         email,
-        name,
-        password: 'test',
+        name: `${firstName} ${lastName}`, // Store full name in 'name' field
+        password: generatedPassword,
       },
     });
-    res.json(user);
+
+    // Return user with ZOHO-compatible structure and generated password
+    res.json({
+      id: user.id,
+      firstName,
+      lastName,
+      email: user.email,
+      phone,
+      company: company || null,
+      password: generatedPassword, // Return password to user
+      role: user.role,
+      createdAt: user.createdAt
+    });
   } catch (error) {
-    res.status(CODE_500).json({error});
+    console.error('Error creating user:', error);
+    res.status(CODE_500).json({error: 'Failed to create user'});
   }
 });
 

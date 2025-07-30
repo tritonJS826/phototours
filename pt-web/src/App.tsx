@@ -1,4 +1,5 @@
 import {HelloButton} from "src/components/ButtonHello/ButtonHello";
+import {CreateUserButton} from "src/components/CreateUserButton/CreateUserButton";
 import {Link} from "src/components/ui/link/Link";
 
 export function App() {
@@ -8,6 +9,7 @@ export function App() {
       <Link href="https://www.google.com">
         Go to google
       </Link>
+      <CreateUserButton />
     </div>
   );
 }
