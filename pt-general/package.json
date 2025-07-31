@@ -14,7 +14,8 @@
     "prisma:generate": "prisma generate",
     "type-check": "tsc --noEmit",
     "docs:generate": "node scripts/generate-docs.js",
-    "docs:serve": "node scripts/serve-docs.js"
+    "docs:serve": "node scripts/serve-docs.js",
+    "reset": "node --loader ts-node/esm --experimental-specifier-resolution=node -r tsconfig-paths/register ./src/scripts/reset.ts"
   },
   "keywords": [],
   "author": "",
