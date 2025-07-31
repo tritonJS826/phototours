@@ -1,7 +1,16 @@
+@use "./mixins" as mixin;
+@use "./variables" as vars;
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, sans-serif;
+  background-color: #fff;
+  color: #111;
 }
 
 a {
@@ -12,4 +21,15 @@ a {
 button {
   cursor: pointer;
   font: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
