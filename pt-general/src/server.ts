@@ -1,10 +1,9 @@
 import {env} from 'src/config/env';
-import {prisma} from 'src/db/prisma';
+import {tourRoutes} from 'src/routes/tourRoutes';
+import {userRoutes} from 'src/routes/userRoutes';
 import express, {Express, Request, Response} from 'express';
-import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
-
-const CODE_500 = 500;
+import swaggerUi from 'swagger-ui-express';
 
 const app: Express = express();
 app.use(express.json());
@@ -20,8 +19,8 @@ const swaggerOptions = {
       description: 'Backend API for Photo Tours application.',
       license: {
         name: 'MIT',
-        url: 'https://opensource.org/licenses/MIT'
-      }
+        url: 'https://opensource.org/licenses/MIT',
+      },
     },
     servers: [
       {
@@ -103,27 +102,23 @@ app.get('/', (req: Request, res: Response) => {
  *       500:
  *         description: Server error
  */
-app.post('/users', async (req: Request, res: Response) => {
-  try {
-    const {email, name} = req.body;
-    const user = await prisma.user.create({
-      data: {
-        email,
-        name,
-        password: 'test',
-      },
-    });
-    res.json(user);
-  } catch (error) {
-    res.status(CODE_500).json({error});
-  }
+
+app.use((req, res, next) => {
+  next();
 });
+
+app.use('/api/tours', tourRoutes);
+app.use('/api/users', userRoutes);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`[server]: Server is running at http://localhost:${port}`);
+  // eslint-disable-next-line no-console
   console.log(`[swagger]: API documentation available at http://localhost:${port}/api-docs`);
-  console.log(`[api]: Available endpoints:`);
-  console.log(`   GET  / - Health check`);
-  console.log(`   POST /users - Create user`);
+  // eslint-disable-next-line no-console
+  console.log('[api]: Available endpoints:');
+  // eslint-disable-next-line no-console
+  console.log('   GET  / - Health check');
+  // eslint-disable-next-line no-console
+  console.log('   POST /users - Create user');
 });
