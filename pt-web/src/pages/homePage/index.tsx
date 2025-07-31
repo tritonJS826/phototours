@@ -1,9 +1,18 @@
-import {ButtonHello} from "src/components/ButtonHello/ButtonHello";
+import {Container} from "src/components/Container/Container";
+import {Header} from "src/components/Header/Header";
+import styles from "src/pages/homePage/HomePage.module.scss";
 
 export function HomePage() {
   return (
-    <div>
-      <ButtonHello />
-    </div>
+    <>
+      <Header />
+      <Container>
+        <div className={styles.content}>
+          <h1>
+            Главная страница
+          </h1>
+        </div>
+      </Container>
+    </>
   );
 }
