@@ -1,12 +1,11 @@
-import {ReactNode} from "react";
+import {PropsWithChildren} from "react";
 import styles from "src/components/Container/Container.module.scss";
 
 interface ContainerProps {
-  children: ReactNode;
   className?: string;
 }
 
-export function Container({children, className = ""}: ContainerProps) {
+export function Container({children, className = ""}: PropsWithChildren<ContainerProps>) {
   return (
     <div className={`${styles.container} ${className}`}>
       {children}
