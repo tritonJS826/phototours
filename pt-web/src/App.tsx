@@ -1,9 +1,14 @@
-import {HelloButton} from "src/components/ButtonHello/ButtonHello";
-
-export function App() {
+const App = () => {
   return (
-    <div>
-      <HelloButton />
+    <div className="App">
+      <h1>
+        PhotoTours App
+      </h1>
+      <p>
+        Добро пожаловать в приложение PhotoTours!
+      </p>
     </div>
   );
-}
+};
+
+export {App};

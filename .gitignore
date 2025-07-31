@@ -17,9 +17,9 @@ build/
 
 
 # Local env files
-.env
-.env.local
-.env.*.local
+# .env
+# .env.local
+# .env.*.local
 
 # Vite cache
 .vite/

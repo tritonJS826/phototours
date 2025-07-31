@@ -21,6 +21,15 @@ export default defineConfig(() => {
       outDir: "build",
       cache: true,
     },
+    server: {
+      proxy: {
+        "/general": {
+          target: "http://localhost:8000",
+          changeOrigin: true,
+          rewrite: (pathName: string) => pathName.replace(/^\/general/, ""),
+        },
+      },
+    },
     resolve: {alias: {"src": path.resolve(__dirname, "./src")}},
     plugins: [
       react(),

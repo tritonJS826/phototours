@@ -1,0 +1,11 @@
+# Database Configuration
+DATABASE_URL="postgresql://postgres:password@localhost:5432/phototours"
+SERVER_PORT=3000
+ENV_TYPE=dev
+WEBAPP_DOMAIN=localhost:5174
+
+# JWT Secret (для аутентификации)
+JWT_SECRET="your-super-secret-jwt-key-change-this-in-production"
+
+# CORS Configuration
+CORS_ORIGIN="http://localhost:5173" 

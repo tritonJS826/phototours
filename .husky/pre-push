@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Setup PATH for WSL environment
+export PATH="/mnt/c/Program Files/nodejs:$PATH"
+export PATH="/mnt/c/Users/Danil/AppData/Roaming/npm:$PATH"
+
 SCRIPT_NAME="Pre-push Hook"
 
 #!/usr/bin/env sh

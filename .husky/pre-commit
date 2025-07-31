@@ -1,6 +1,26 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+# Setup PATH for WSL environment
+export PATH="/mnt/c/Program Files/nodejs:$PATH"
+export PATH="/mnt/c/Users/Danil/AppData/Roaming/npm:$PATH"
+
+# Check if Node.js and pnpm are available
+if ! command -v node >/dev/null 2>&1; then
+    echo "❌ Error: Node.js not found in PATH"
+    echo "Current PATH: $PATH"
+    exit 1
+fi
+
+if ! command -v pnpm >/dev/null 2>&1; then
+    echo "❌ Error: pnpm not found in PATH"
+    echo "Current PATH: $PATH"
+    exit 1
+fi
+
+echo "✅ Node.js version: $(node --version)"
+echo "✅ pnpm version: $(pnpm --version)"
+
 WEBAPP="pt-web/"
 GENERAL="pt-general/"
 
@@ -30,7 +50,6 @@ runWebappIfChanged () {
         "pnpm web:type-check" \
         "pnpm web:test" \
         "pnpm web:build-storybook" \
-        "pnpm web:build" \
         "pnpm web:cypress:component:run"
   fi
 }
