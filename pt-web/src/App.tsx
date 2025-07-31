@@ -1,12 +1,10 @@
+// eslint-disable-next-line no-restricted-imports
+import {Homepage} from "./pages/Homepage/Homepage";
+
 const App = () => {
   return (
     <div className="App">
-      <h1>
-        PhotoTours App
-      </h1>
-      <p>
-        Добро пожаловать в приложение PhotoTours!
-      </p>
+      <Homepage />
     </div>
   );
 };

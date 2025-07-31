@@ -54,6 +54,8 @@ export const Registration: React.FC = () => {
         body: JSON.stringify({
           name: `${formData.firstName} ${formData.lastName}`,
           email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
         }),
       });
 

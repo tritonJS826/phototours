@@ -32,7 +32,9 @@ app.get('/test', (req: Request, res: Response) => {
 
 app.post('/users', async (req: Request, res: Response) => {
   try {
-    const {email, name} = req.body;
+    const {email, name, phone, company} = req.body;
+    
+    // Создаем пользователя в базе данных
     const user = await prisma.user.create({
       data: {
         email,
@@ -40,9 +42,35 @@ app.post('/users', async (req: Request, res: Response) => {
         password: 'test',
       },
     });
-    res.json(user);
+
+    // Создаем лид в Zoho CRM
+    try {
+      const zohoService = createZohoService();
+      const leadData = {
+        First_Name: name.split(' ')[0] || name,
+        Last_Name: name.split(' ').slice(1).join(' ') || '',
+        Email: email,
+        Phone: phone || '',
+        Company: company || '',
+        Lead_Source: 'PhotoTours Website Registration',
+        Description: `Новый пользователь зарегистрировался через форму на сайте. Email: ${email}`
+      };
+      
+      const leadResult = await zohoService.createLead(leadData);
+      console.log('✅ Lead created in Zoho CRM:', leadResult);
+    } catch (zohoError) {
+      console.error('❌ Error creating lead in Zoho:', zohoError);
+      // Не прерываем регистрацию, если Zoho недоступен
+    }
+
+    res.json({ 
+      success: true, 
+      user,
+      message: 'User registered successfully'
+    });
   } catch (error) {
-    res.status(CODE_500).json({error});
+    console.error('❌ Error registering user:', error);
+    res.status(CODE_500).json({error: 'Failed to register user'});
   }
 });
 
