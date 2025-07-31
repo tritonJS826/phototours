@@ -23,17 +23,11 @@ This folder contains automatically generated API documentation for the Photo Tou
    # Then open http://localhost:8080
    ```
 
-### Generating Documentation
+### Generating swagger documentation
 
 ```bash
-# Generate fresh documentation
 pnpm docs:generate
 ```
-
-This will:
-- Parse JSDoc comments from `pt-general/src/server.ts`
-- Generate `openapi.json` specification
-- Create `index.html` with Swagger UI
 
 ## API Endpoints
 
