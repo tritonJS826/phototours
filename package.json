@@ -21,8 +21,6 @@
     "general:lint-staged": "pnpm --filter pt-general lint-staged",
     "general:prisma:migrate": "pnpm --filter pt-general prisma:migrate",
     "general:prisma:generate": "pnpm --filter pt-general prisma:generate",
-    "docs:generate": "pnpm --filter pt-general docs:generate",
-    "docs:serve": "pnpm --filter pt-general docs:serve",
     "swag": "pnpm --stream --recursive --workspace-concurrency 100 swag",
     "start": "pnpm  --stream --recursive --workspace-concurrency 100 start",
     "build": "pnpm  --stream --recursive --workspace-concurrency 100 build",
