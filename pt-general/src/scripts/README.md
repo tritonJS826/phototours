@@ -22,8 +22,8 @@ Adds available/unavailable tour dates
 
    - cd pt-general
 
-   - pnpm run reset
+   - pnpm run db:reset
 
 3. This script has already been added to package.json in the pt-general folder.:
 
-   - "reset": "node --loader ts-node/esm --experimental-specifier-resolution=node -r tsconfig-paths/register ./src/scripts/reset.ts"
+   - "db:reset": "node --loader ts-node/esm --experimental-specifier-resolution=node -r tsconfig-paths/register ./src/scripts/reset.ts"
