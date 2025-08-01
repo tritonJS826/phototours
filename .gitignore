@@ -50,3 +50,5 @@ build/
 
 # Sass cache (if any)
 .sass-cache/
+*storybook.log
+storybook-static
