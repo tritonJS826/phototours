@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-restricted-imports
-import {DifficultyLevel, PrismaClient, Role} from '../generated/prisma';
+import {DifficultyLevel, PrismaClient, Role} from 'src/generated/prisma';
 /* eslint-disable no-console */
 
 const prisma = new PrismaClient();
