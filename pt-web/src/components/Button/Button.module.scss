@@ -1,0 +1,45 @@
+@use "sass:color";
+@import "src/styles/variables";
+
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  border: none;
+  font-weight: bold;
+
+  &.primary {
+    background-color: $color-accent;
+    color: #fff;
+
+    &:hover {
+      background-color: color.adjust($color-accent, $lightness: -10%);
+    }
+  }
+
+  &.secondary {
+    background-color: $color-dark-blue;
+    color: #fff;
+
+    &:hover {
+      background-color: color.adjust($color-dark-blue, $lightness: 10%);
+    }
+  }
+
+  &.link {
+    background-color: transparent;
+    color: $color-accent;
+    padding: 0;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

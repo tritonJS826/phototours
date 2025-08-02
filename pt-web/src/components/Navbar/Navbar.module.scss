@@ -1,0 +1,83 @@
+@use "sass:color";
+@import "src/styles/variables";
+
+.navbar {
+  background-color: $color-dark-blue;
+  color: $color-text-light;
+  padding: 1rem 0;
+
+  .navbarContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (width <= 768px) {
+      flex-wrap: wrap;
+    }
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .menu {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+
+    @media (width <= 768px) {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      text-align: center;
+      background-color: color.adjust($color-dark-blue, $lightness: -5%);
+      padding: 1rem 0;
+
+      &.menuOpen {
+        display: flex;
+      }
+    }
+
+    li a {
+      color: $color-text-light;
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $color-accent;
+      }
+    }
+  }
+
+  .contactButton {
+    @media (width <= 768px) {
+      display: none;
+    }
+  }
+
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    @media (width <= 768px) {
+      display: block;
+      margin-left: auto;
+    }
+
+    span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+      margin: 5px 0;
+    }
+  }
+}
