@@ -1,3 +1,57 @@
-@forward "./variables";
-@forward "./mixins";
-@forward "./globals";
+@import "variables";
+@import "mixins";
+@import "globals";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f8f9fa;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+// Улучшенные стили для форм
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+// Анимации для кнопок
+button {
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+// Улучшенные стили для изображений
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Стили для скроллбара
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

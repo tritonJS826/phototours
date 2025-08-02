@@ -1,18 +1,18 @@
 import {Route, Routes} from "react-router-dom";
 import {Link} from "src/components/ui/link/Link";
-import {HomePage} from "src/pages/homePage";
+import {Homepage} from "src/pages/Homepage/Homepage";
 import {NotFound} from "src/pages/notFound";
 
-export function App() {
+const App = () => {
   return (
-    <div>
+    <div className="App">
       <Link href="https://www.google.com">
         Go to google
       </Link>
       <Routes>
         <Route
           path="/"
-          element={<HomePage />}
+          element={<Homepage />}
         />
         <Route
           path="*"
@@ -21,4 +21,6 @@ export function App() {
       </Routes>
     </div>
   );
-}
+};
+
+export {App};
