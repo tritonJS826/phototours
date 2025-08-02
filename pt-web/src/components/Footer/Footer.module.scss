@@ -1,0 +1,52 @@
+@use "sass:color";
+@import "src/styles/variables";
+
+.footer {
+  background-color: $color-dark-blue;
+  color: $color-text-light;
+
+  // Убираем padding отсюда, чтобы он был внутри контейнера
+}
+
+.footerContent {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 3rem 0; // Добавляем вертикальные отступы здесь
+
+  @media (width <= 768px) {
+    flex-direction: column;
+  }
+}
+
+.column {
+  flex: 1;
+
+  h4 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: $color-accent;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li a {
+      color: $color-text-light;
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $color-accent;
+      }
+    }
+  }
+}
+
+.copyright {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid color.adjust($color-dark-blue, $lightness: 10%);
+}

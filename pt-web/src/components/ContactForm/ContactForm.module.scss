@@ -1,0 +1,44 @@
+@use "sass:color";
+@import "src/styles/variables";
+
+.form {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+
+  h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: $color-text-dark;
+  }
+
+  .formGroup {
+    margin-bottom: 1.5rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      color: $color-text-dark;
+
+      &:focus {
+        outline: 2px solid $color-accent;
+        border-color: $color-accent;
+      }
+    }
+  }
+
+  .submitButton {
+    width: 100%;
+  }
+}

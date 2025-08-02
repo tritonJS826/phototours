@@ -1,0 +1,14 @@
+@import "src/styles/variables";
+
+.section {
+  padding: 4rem 0;
+  background-color: $color-background-light;
+
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: $color-text-dark;
+  }
+}
