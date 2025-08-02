@@ -67,31 +67,33 @@ export function Header() {
         </nav>
 
         <div className={styles.topbar__right}>
-          <div className={styles.topbar__search_wrapper}>
-            <input
-              type="text"
-              className={styles.topbar__search}
-              placeholder="Search..."
-            />
-            <Search
-              size={18}
-              className={styles.topbar__search_icon}
-            />
+          <div className={styles.topbar__item__search}>
+            <div className={styles.search}>
+              <input
+                type="text"
+                className={styles.search__input}
+                placeholder="Search..."
+              />
+              <Search
+                size={22}
+                className={styles.search__icon}
+              />
+            </div>
           </div>
 
-          <div className={styles.topbar__locale_switcher}>
+          <div className={styles.topbar__item__language}>
             <div
-              className={styles.topbar__dropdown_wrapper}
+              className={styles.dropdown}
               ref={langRef}
             >
               <button
-                className={styles.topbar__btn}
+                className={styles.dropdown__btn}
                 onClick={() => setIsLangOpen((prev) => !prev)}
               >
                 ENG
               </button>
               {isLangOpen && (
-                <ul className={styles.topbar__dropdown}>
+                <ul className={styles.dropdown__menu}>
                   <li>
                     English
                   </li>
@@ -101,19 +103,21 @@ export function Header() {
                 </ul>
               )}
             </div>
+          </div>
 
+          <div className={styles.topbar__item__currency}>
             <div
-              className={styles.topbar__dropdown_wrapper}
+              className={styles.dropdown}
               ref={currencyRef}
             >
               <button
-                className={styles.topbar__btn}
+                className={styles.dropdown__btn}
                 onClick={() => setIsCurrencyOpen((prev) => !prev)}
               >
                 USD
               </button>
               {isCurrencyOpen && (
-                <ul className={styles.topbar__dropdown}>
+                <ul className={styles.dropdown__menu}>
                   <li>
                     USD
                   </li>
@@ -125,21 +129,25 @@ export function Header() {
             </div>
           </div>
 
-          <div className={styles.topbar__user_actions}>
+          <div className={styles.topbar__cart}>
             <Link
               to="/cart"
-              className={styles.topbar__btn}
+              className={styles.iconBtn}
             >
-              <ShoppingCart size={18} />
+              <ShoppingCart size={22} />
             </Link>
+          </div>
+          `
+          <div className={styles.topbar__profile}>
             <Link
               to="/profile"
-              className={styles.topbar__btn}
+              className={styles.iconBtn}
             >
-              <CircleUser size={18} />
+              <CircleUser size={22} />
             </Link>
           </div>
         </div>
+
       </div>
     </header>
   );
