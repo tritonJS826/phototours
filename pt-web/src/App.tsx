@@ -1,4 +1,5 @@
 import {Route, Routes} from "react-router-dom";
+import {Footer} from "src/components/Footer/Footer";
 import {Header} from "src/components/Header/Header";
 import {AboutUs} from "src/pages/aboutUs";
 import {AdminPage} from "src/pages/adminPage";
@@ -59,6 +60,7 @@ export function App() {
           element={<NotFound />}
         />
       </Routes>
+      <Footer />
     </div>
   );
 }
