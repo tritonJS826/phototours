@@ -230,26 +230,6 @@ export const addTourVideos = async (req: Request, res: Response) => {
     res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({error: 'Failed to add video'});
   }
 };
-// Export const addTourVideos = async (req: Request, res: Response) => {
-//   try {
-//     const {id} = req.params;
-
-//     if (!req.file) {
-//       return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'No video file uploaded'});
-//     }
-
-//     const updatedTour = await prisma.tour.update({
-//       where: {id: Number(id)},
-//       data: {videos: {create: videos.map((url: string) => ({url}))}},
-//     });
-
-//     res.json(updatedTour);
-//   } catch {
-//     res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({error: 'Failed to add videos'});
-//   }
-// };
-
-// PATCH /api/tours/:id/materials
 
 type MaterialData = {
   title: string;
