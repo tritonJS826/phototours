@@ -98,3 +98,30 @@ ZOHO_REFRESH_TOKEN=your_refresh_token
 - When users register, leads are automatically created in Zoho CRM
 - All user data is transferred to the CRM system
 
+
+
+
+### Cloudinary Integration
+
+### 1. Installation of Required Packages
+
+Install Cloudinary SDK and multer storage adapter:
+
+```bash
+pnpm add cloudinary multer-storage-cloudinary
+
+
+## 2. Environment Variable Configuration
+
+Add the following variables to your `.env` file:
+
+```env
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
+## 6. Application Behavior
+
+- Media files (photos, videos, avatars) are uploaded to Cloudinary  
+- Public URLs are returned and stored via Prisma  
+- Cloudinary handles optimized delivery and transformation 
