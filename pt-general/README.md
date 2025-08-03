@@ -99,29 +99,18 @@ ZOHO_REFRESH_TOKEN=your_refresh_token
 - All user data is transferred to the CRM system
 
 
+## Cloudinary Integration
 
+This project uses [Cloudinary](https://cloudinary.com/) for storing and managing media files such as photos, videos, and avatars.
 
-### Cloudinary Integration
+### Overview
 
-### 1. Installation of Required Packages
+- Media files are uploaded via middleware using `multer-storage-cloudinary`.
+- Uploaded file URLs are saved in the database for efficient retrieval.
+- Cloudinary handles image/video optimization and delivery.
+- Upload folder path is configurable via environment variables.
 
-Install Cloudinary SDK and multer storage adapter:
+### Setup
 
-```bash
-pnpm add cloudinary multer-storage-cloudinary
+Please refer to the official [Cloudinary documentation](https://cloudinary.com/documentation) for detailed setup instructions.
 
-
-## 2. Environment Variable Configuration
-
-Add the following variables to your `.env` file:
-
-```env
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-
-## 6. Application Behavior
-
-- Media files (photos, videos, avatars) are uploaded to Cloudinary  
-- Public URLs are returned and stored via Prisma  
-- Cloudinary handles optimized delivery and transformation 

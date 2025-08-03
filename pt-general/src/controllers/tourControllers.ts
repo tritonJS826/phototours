@@ -186,17 +186,14 @@ export const addTourDates = async (req: Request, res: Response) => {
 export const addTourPhotos = async (req: Request, res: Response) => {
   try {
 
-    const {id} = req.params;
-    const file = req.file;
-
-    if (!file) {
+    if (!req.file) {
       return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'No file uploaded'});
     }
 
     const photo = await prisma.photo.create({
       data: {
-        tourId: Number(id),
-        url: file.path,
+        tourId: Number(req.params.id),
+        url: req.file.path,
       },
     });
 
@@ -209,7 +206,6 @@ export const addTourPhotos = async (req: Request, res: Response) => {
 // PATCH /api/tours/:id/videos
 export const addTourVideos = async (req: Request, res: Response) => {
   try {
-    const {id} = req.params;
 
     if (!req.file) {
       return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'No video file uploaded'});
@@ -218,7 +214,7 @@ export const addTourVideos = async (req: Request, res: Response) => {
     const videoUrl = req.file.path;
 
     const updatedTour = await prisma.tour.update({
-      where: {id: Number(id)},
+      where: {id: Number(req.params.id)},
       data: {videos: {create: {url: videoUrl}}},
     });
 
