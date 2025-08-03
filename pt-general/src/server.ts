@@ -1,9 +1,10 @@
 import {env} from 'src/config/env';
 import {tourRoutes} from 'src/routes/tourRoutes';
 import {userRoutes} from 'src/routes/userRoutes';
+import {authRoutes} from 'src/routes/authRoutes';
 import express, {Express, Request, Response} from 'express';
 import { createZohoService } from './services/zohoService';
-import { prisma } from './db/prisma';
+import { prisma, checkDatabaseConnection } from './db/prisma';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
@@ -43,8 +44,17 @@ const swaggerOptions = {
         description: 'Development server',
       },
     ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
   },
-  apis: ['./src/server.ts'], // Path to the API docs
+  apis: ['./src/server.ts', './src/controllers/*.ts'], // Path to the API docs
 };
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
@@ -72,10 +82,6 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
 });
 
-// Тестовый endpoint для проверки
-app.get('/test', (req: Request, res: Response) => {
-  res.json({ message: 'Test endpoint works!' });
-});
 
 /**
  * @swagger
@@ -123,49 +129,7 @@ app.get('/test', (req: Request, res: Response) => {
  *         description: Server error
  */
 
-app.post('/users', async (req: Request, res: Response) => {
-  try {
-    const {email, name, phone, company} = req.body;
-    
-    // Создаем пользователя в базе данных
-    const user = await prisma.user.create({
-      data: {
-        email,
-        name,
-        password: 'test',
-      },
-    });
-
-    // Создаем лид в Zoho CRM
-    try {
-      const zohoService = createZohoService();
-      const leadData = {
-        First_Name: name.split(' ')[0] || name,
-        Last_Name: name.split(' ').slice(1).join(' ') || '',
-        Email: email,
-        Phone: phone || '',
-        Company: company || '',
-        Lead_Source: 'PhotoTours Website Registration',
-        Description: `Новый пользователь зарегистрировался через форму на сайте. Email: ${email}`
-      };
-      
-      const leadResult = await zohoService.createLead(leadData);
-      console.log('✅ Lead created in Zoho CRM:', leadResult);
-    } catch (zohoError) {
-      console.error('❌ Error creating lead in Zoho:', zohoError);
-      // Не прерываем регистрацию, если Zoho недоступен
-    }
-
-    res.json({ 
-      success: true, 
-      user,
-      message: 'User registered successfully'
-    });
-  } catch (error) {
-    console.error('❌ Error registering user:', error);
-    res.status(CODE_500).json({error: 'Failed to register user'});
-  }
-});
+// Удаляем старую логику регистрации - теперь используется /auth/register
 
 // Zoho OAuth endpoints
 app.get('/auth/zoho', (req: Request, res: Response) => {
@@ -295,10 +259,11 @@ app.use((req, res, next) => {
 
 app.use('/api/tours', tourRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/auth', authRoutes);
   
   
 
-app.listen(port, () => {
+app.listen(port, async () => {
   // eslint-disable-next-line no-console
   console.log(`[server]: Server is running at http://localhost:${port}`);
   // eslint-disable-next-line no-console
@@ -309,4 +274,7 @@ app.listen(port, () => {
   console.log('   GET  / - Health check');
   // eslint-disable-next-line no-console
   console.log('   POST /users - Create user');
+  
+  // Проверка подключения к базе данных
+  await checkDatabaseConnection();
 });

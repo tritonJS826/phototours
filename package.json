@@ -4,7 +4,6 @@
   "description": "",
   "private": true,
   "scripts": {
-    "dev": "pnpm --filter pt-web run dev",
     "web:start": "pnpm --filter pt-web run start",
     "web:build": "pnpm --filter pt-web build",
     "web:install": "pnpm --filter pt-web install",
