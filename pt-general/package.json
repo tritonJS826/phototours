@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --noEmit",
     "start": "vite-node --watch src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 0",
     "lint-check": "eslint .",
@@ -14,12 +14,18 @@
     "prisma:generate": "prisma generate",
     "type-check": "tsc --noEmit",
     "docs:generate": "node scripts/generate-docs.js",
-    "docs:serve": "node scripts/serve-docs.js"
+
+    "docs:serve": "node scripts/serve-docs.js",
+    "db:reset": "vite-node src/scripts/reset.ts"
+
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+
+    "axios": "1.11.0",
+
     "cors": "^2.8.5",
     "dotenv": "17.2.1",
     "envalid": "8.1.0",
@@ -31,7 +37,10 @@
     "@eslint/js": "9.32.0",
     "@prisma/client": "6.12.0",
     "@stylistic/eslint-plugin": "5.2.2",
+
     "@types/cors": "^2.8.19",
+    "@types/dotenv": "^6.1.1",
+
     "@types/express": "5.0.3",
     "@types/node": "22.12.0",
     "@types/swagger-jsdoc": "^6.0.4",
