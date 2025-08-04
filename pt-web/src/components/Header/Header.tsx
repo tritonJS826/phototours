@@ -1,11 +1,12 @@
 import {Container} from "src/components/Container/Container";
+import {Navbar} from "src/components/Navbar/Navbar";
 
 export function Header() {
   return (
-    <Container>
-      <p>
-        Остальной контент
-      </p>
-    </Container>
+    <header>
+      <Container>
+        <Navbar />
+      </Container>
+    </header>
   );
 }

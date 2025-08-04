@@ -1,4 +1,6 @@
+
 import { env } from "../config/env";
+
 export interface ZohoConfig {
   clientId: string;
   clientSecret: string;
@@ -22,6 +24,7 @@ export class ZohoService {
   constructor(config: ZohoConfig) {
     this.config = config;
 
+
     this.refreshToken = env.ZOHO_REFRESH_TOKEN;
   }
 
@@ -33,22 +36,26 @@ export class ZohoService {
       scope: "ZohoCRM.modules.ALL,ZohoCRM.settings.ALL,ZohoCRM.org.READ",
       access_type: "offline",
       prompt: "consent",
+
     });
 
     return `https://accounts.zoho.eu/oauth/v2/auth?${params.toString()}`;
   }
+
 
   async exchangeCodeForTokens(code: string): Promise<ZohoTokenResponse> {
     const response = await fetch("https://accounts.zoho.eu/oauth/v2/token", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
+
       },
       body: new URLSearchParams({
         code,
         client_id: this.config.clientId,
         client_secret: this.config.clientSecret,
         redirect_uri: this.config.redirectUri,
+
         grant_type: "authorization_code",
       }),
     });
@@ -57,6 +64,7 @@ export class ZohoService {
       throw new Error(
         `Failed to exchange code for tokens: ${response.statusText}`
       );
+
     }
 
     const data: ZohoTokenResponse = await response.json();
@@ -75,13 +83,16 @@ export class ZohoService {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
+
       },
       body: new URLSearchParams({
         refresh_token: this.refreshToken,
         client_id: this.config.clientId,
         client_secret: this.config.clientSecret,
+
         grant_type: "refresh_token",
       }),
+
     });
 
     if (!response.ok) {
@@ -191,10 +202,12 @@ export class ZohoService {
     return this.accessToken;
   }
 
+
   setTokens(accessToken: string, refreshToken: string): void {
     this.accessToken = accessToken;
     this.refreshToken = refreshToken;
   }
+
 
   saveRefreshToken(refreshToken: string): void {
     this.refreshToken = refreshToken;
@@ -202,10 +215,13 @@ export class ZohoService {
   }
 }
 
+
 export function createZohoService(): ZohoService {
   return new ZohoService({
     clientId: env.ZOHO_CLIENT_ID,
     clientSecret: env.ZOHO_CLIENT_SECRET,
+
     redirectUri: env.ZOHO_REDIRECT_URI,
   });
 }
+

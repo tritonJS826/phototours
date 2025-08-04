@@ -4,7 +4,9 @@ import {userRoutes} from 'src/routes/userRoutes';
 import {authRoutes} from 'src/routes/authRoutes';
 import express, {Express, Request, Response} from 'express';
 import { createZohoService } from './services/zohoService';
+
 import { prisma, checkDatabaseConnection } from './db/prisma';
+
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
@@ -83,6 +85,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 
+
 /**
  * @swagger
  * /users:
@@ -129,7 +132,6 @@ app.get('/', (req: Request, res: Response) => {
  *         description: Server error
  */
 
-// Удаляем старую логику регистрации - теперь используется /auth/register
 
 // Zoho OAuth endpoints
 app.get('/auth/zoho', (req: Request, res: Response) => {
@@ -259,7 +261,9 @@ app.use((req, res, next) => {
 
 app.use('/api/tours', tourRoutes);
 app.use('/api/users', userRoutes);
+
 app.use('/api/auth', authRoutes);
+
   
   
 
