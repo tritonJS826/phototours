@@ -53,5 +53,21 @@
     "vite": "7.0.6",
     "vite-node": "3.2.4",
     "vite-tsconfig-paths": "5.1.4"
-  }
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "pnpm run lint-fix"
+    ],
+    "**/*.{scss,module.scss}": [
+      "pnpm run format",
+      "pnpm run stylelint-fix"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "extends": "../tsconfig.json"
 }
