@@ -1,4 +1,4 @@
-# Quick Start
+<!-- # Quick Start
 # Running the Application
 
 1. Install dependencies
@@ -30,7 +30,7 @@ pnpm dev
 ```bash
 cd pt-general  
 pnpm dev
-```
+``` -->
 
 # Photo Tours – Frontend
 
