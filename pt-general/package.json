@@ -10,6 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 0",
     "lint-check": "eslint .",
     "lint-fix": "eslint . --fix",
+    "lint-staged": "lint-staged",
     "prisma:migrate": "prisma migrate dev",
     "prisma:generate": "prisma generate",
     "type-check": "tsc --noEmit",
@@ -27,7 +28,8 @@
     "envalid": "8.1.0",
     "express": "5.1.0",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1"
+    "swagger-ui-express": "^5.0.1",
+    "lint-staged": "15.2.2"
   },
   "devDependencies": {
     "@eslint/js": "9.32.0",
@@ -57,17 +59,6 @@
   "lint-staged": {
     "**/*.{ts,tsx}": [
       "pnpm run lint-fix"
-    ],
-    "**/*.{scss,module.scss}": [
-      "pnpm run format",
-      "pnpm run stylelint-fix"
     ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "extends": "../tsconfig.json"
+  }
 }
