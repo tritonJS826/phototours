@@ -1,153 +1,188 @@
+// Header.tsx
 import {useEffect, useRef, useState} from "react";
 import {Link} from "react-router-dom";
 import {CircleUser, Search, ShoppingCart} from "lucide-react";
 import logo from "src/assets/icons/logo.png";
+import {PATHS} from "src/constants/routes";
+import {handleClickOutside} from "src/utils/useOutsideClick";
 import styles from "src/components/Header/Header.module.scss";
+
+const LANGUAGES = ["English", "Deutsch"];
+const CURRENCIES = ["USD", "EUR"];
 
 export function Header() {
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
+  const [selectedLang, setSelectedLang] = useState("ENG");
+  const [selectedCurrency, setSelectedCurrency] = useState("USD");
 
   const langRef = useRef<HTMLDivElement>(null);
   const currencyRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Node;
+    const listener = handleClickOutside(
+      [langRef, currencyRef],
+      [() => setIsLangOpen(false), () => setIsCurrencyOpen(false)],
+    );
 
-      if (langRef.current && !langRef.current.contains(target)) {
-        setIsLangOpen(false);
-      }
+    document.addEventListener("mousedown", listener);
 
-      if (currencyRef.current && !currencyRef.current.contains(target)) {
-        setIsCurrencyOpen(false);
-      }
+    return () => {
+      document.removeEventListener("mousedown", listener);
     };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const renderDropdown = (
+    isOpen: boolean,
+    items: string[],
+    onSelect: (value: string) => void,
+  ) =>
+    isOpen && (
+      <ul
+        className={styles.dropdownMenu}
+        role="listbox"
+      >
+        {items.map((item) => (
+          <li
+            key={item}
+            className={styles.dropdownOption}
+            role="option"
+            tabIndex={0}
+            onClick={() => onSelect(item)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                onSelect(item);
+              }
+            }}
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+    );
 
   return (
     <header className={styles.header}>
-      <div className={styles.header__container}>
-        <div className={styles.header__logo}>
-          <Link to="/">
+      <div className={styles.headerContainer}>
+        <div className={styles.headerLogo}>
+          <Link
+            to="/"
+            aria-label="Homepage"
+          >
             <img
               src={logo}
-              alt="logo"
+              alt="Photo Tour Logo"
+              className={styles.icon}
             />
           </Link>
         </div>
 
-        <nav className={styles.header__nav}>
-          <ul className={styles.nav__menu}>
-            <li className={styles.nav__item}>
-              <Link to="/tours">
+        <nav
+          className={styles.headerNav}
+          aria-label="Main Navigation"
+        >
+          <ul className={styles.navMenu}>
+            <li className={styles.navItem}>
+              <Link to={PATHS.TOURS}>
                 Book Photo Tours
               </Link>
             </li>
-            <li className={styles.nav__item}>
-              <Link to="/articles">
+            <li className={styles.navItem}>
+              <Link to={PATHS.ARTICLES}>
                 Explore Articles
               </Link>
             </li>
-            <li className={styles.nav__item}>
-              <Link to="/about">
+            <li className={styles.navItem}>
+              <Link to={PATHS.ABOUT}>
                 About Us
               </Link>
             </li>
-            <li className={styles.nav__item}>
-              <Link to="/contact">
+            <li className={styles.navItem}>
+              <Link to={PATHS.CONTACT}>
                 Contact Us
               </Link>
             </li>
           </ul>
         </nav>
 
-        <div className={styles.topbar__right}>
-          <div className={styles.topbar__item__search}>
-            <div className={styles.search}>
-              <input
-                type="text"
-                className={styles.search__input}
-                placeholder="Search..."
-              />
+        <div className={styles.topbarRight}>
+          <div className={styles.searchContainer}>
+            <div className={styles.searchWrapper}>
               <Search
-                size={22}
-                className={styles.search__icon}
+                className={styles.searchIcon}
+                onClick={() => searchInputRef.current?.focus()}
+              />
+              <input
+                ref={searchInputRef}
+                type="text"
+                id="search-input"
+                className={styles.searchInput}
+                placeholder="Search..."
+                aria-label="Search"
               />
             </div>
           </div>
 
-          <div className={styles.topbar__item__language}>
+          <div className={styles.topbarItemLanguage}>
             <div
               className={styles.dropdown}
               ref={langRef}
             >
               <button
-                className={styles.dropdown__btn}
+                className={styles.dropdownBtn}
+                aria-haspopup="listbox"
+                aria-expanded={isLangOpen}
                 onClick={() => setIsLangOpen((prev) => !prev)}
               >
-                ENG
+                {selectedLang}
               </button>
-              {isLangOpen && (
-                <ul className={styles.dropdown__menu}>
-                  <li>
-                    English
-                  </li>
-                  <li>
-                    Deutsch
-                  </li>
-                </ul>
-              )}
+              {renderDropdown(isLangOpen, LANGUAGES, (val) => {
+                setSelectedLang(val.toUpperCase());
+                setIsLangOpen(false);
+              })}
             </div>
           </div>
 
-          <div className={styles.topbar__item__currency}>
+          <div className={styles.topbarItemCurrency}>
             <div
               className={styles.dropdown}
               ref={currencyRef}
             >
               <button
-                className={styles.dropdown__btn}
+                className={styles.dropdownBtn}
+                aria-haspopup="listbox"
+                aria-expanded={isCurrencyOpen}
                 onClick={() => setIsCurrencyOpen((prev) => !prev)}
               >
-                USD
+                {selectedCurrency}
               </button>
-              {isCurrencyOpen && (
-                <ul className={styles.dropdown__menu}>
-                  <li>
-                    USD
-                  </li>
-                  <li>
-                    EUR
-                  </li>
-                </ul>
-              )}
+              {renderDropdown(isCurrencyOpen, CURRENCIES, (val) => {
+                setSelectedCurrency(val);
+                setIsCurrencyOpen(false);
+              })}
             </div>
           </div>
 
-          <div className={styles.topbar__cart}>
+          <div className={styles.topbarCart}>
             <Link
               to="/cart"
               className={styles.iconBtn}
+              aria-label="Cart"
             >
-              <ShoppingCart size={22} />
+              <ShoppingCart className="icon" />
             </Link>
           </div>
-          `
-          <div className={styles.topbar__profile}>
+          <div className={styles.topbarProfile}>
             <Link
               to="/profile"
               className={styles.iconBtn}
+              aria-label="Profile"
             >
-              <CircleUser size={22} />
+              <CircleUser className="icon" />
             </Link>
           </div>
         </div>
-
       </div>
     </header>
   );

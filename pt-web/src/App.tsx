@@ -1,6 +1,7 @@
 import {Route, Routes} from "react-router-dom";
 import {Footer} from "src/components/Footer/Footer";
 import {Header} from "src/components/Header/Header";
+import {PATHS} from "src/constants/routes";
 import {AboutUs} from "src/pages/aboutUs";
 import {AdminPage} from "src/pages/adminPage";
 import {BookTours} from "src/pages/bookTours";
@@ -18,45 +19,43 @@ export function App() {
       <Header />
       <Routes>
         <Route
-          path="/"
+          path={PATHS.HOME}
           element={<HomePage />}
         />
         <Route
-          path="/about"
+          path={PATHS.ABOUT}
           element={<AboutUs />}
         />
         <Route
-          path="/admin"
+          path={PATHS.ADMIN}
           element={<AdminPage />}
         />
         <Route
-          path="/tours"
+          path={PATHS.TOURS}
           element={<BookTours />}
         />
         <Route
-          path="/cart"
+          path={PATHS.TOUR_DETAILS}
+          element={<TourPage />}
+        />
+        <Route
+          path={PATHS.CART}
           element={<Cart />}
         />
         <Route
-          path="/contact"
+          path={PATHS.CONTACT}
           element={<ContactUs />}
         />
         <Route
-          path="/articles"
+          path={PATHS.ARTICLES}
           element={<ExploreArticles />}
         />
         <Route
-          path="/profile"
+          path={PATHS.PROFILE}
           element={<Profile />}
         />
         <Route
-          path="/tours/:id"
-          element={<TourPage />}
-        />
-        {" "}
-        {/*страница для конкретного тура */}
-        <Route
-          path="*"
+          path={PATHS.NOT_FOUND}
           element={<NotFound />}
         />
       </Routes>
