@@ -27,7 +27,6 @@ This folder contains automatically generated API documentation for the Photo Tou
 ### Generating swagger documentation
 
 ```bash
-# Generate fresh documentation
 pnpm docs:generate
 ```
 
