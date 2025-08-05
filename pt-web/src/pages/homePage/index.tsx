@@ -10,9 +10,6 @@ export function HomePage() {
 
   // Demo: Test the hook on component mount
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log("HomePage mounted - testing useUsers hook");
-
     const testUserData = {
       firstName: "Demo",
       lastName: "User",
@@ -22,14 +19,9 @@ export function HomePage() {
 
     const testHook = async () => {
       try {
-        // eslint-disable-next-line no-console
-        console.log("HomePage - creating test user...");
-        const newUser = await createUser(testUserData);
-        // eslint-disable-next-line no-console
-        console.log("HomePage - user created successfully:", newUser);
-      } catch (err) {
-        // eslint-disable-next-line no-console
-        console.error("HomePage - failed to create user:", err);
+        await createUser(testUserData);
+      } catch {
+        // Error is handled by the hook
       }
     };
 
