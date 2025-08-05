@@ -19,15 +19,10 @@ export const useUsers = () => {
 
     try {
       const newUser = await UserService.createUser(userData);
-      // eslint-disable-next-line no-console
-      console.log("User created successfully:", newUser);
-
       return newUser;
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : "Failed to create user";
       setError(errorMessage);
-      // eslint-disable-next-line no-console
-      console.error("Error creating user:", errorMessage);
       throw err;
     } finally {
       setLoading(false);
