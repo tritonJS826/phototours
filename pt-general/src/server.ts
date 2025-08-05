@@ -80,19 +80,11 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 
-app.get('/test', (req: Request, res: Response) => {
-  res.json({ message: 'Test endpoint works!' });
-});
-
-
 /**
  * @swagger
  * /users:
  *   post:
-
  *     summary: Create a new user for ZOHO integration
-
- * 
  *     tags: [Users]
  *     requestBody:
  *       required: true
@@ -101,7 +93,6 @@ app.get('/test', (req: Request, res: Response) => {
  *           schema:
  *             type: object
  *             required:
-
  *               - firstName
  *               - lastName
  *               - email
@@ -113,19 +104,13 @@ app.get('/test', (req: Request, res: Response) => {
  *               lastName:
  *                 type: string
  *                 description: User's last name
-
  *               email:
  *                 type: string
  *                 format: email
  *                 description: User's email address
-
  *               phone:
  *                 type: string
  *                 description: User's phone number
- *               company:
- *                 type: string
- *                 description: User's company name (optional)
-
  *     responses:
  *       200:
  *         description: User created successfully
@@ -136,7 +121,6 @@ app.get('/test', (req: Request, res: Response) => {
  *               properties:
  *                 id:
  *                   type: integer
-
  *                 firstName:
  *                   type: string
  *                 lastName:
@@ -145,18 +129,13 @@ app.get('/test', (req: Request, res: Response) => {
  *                   type: string
  *                 phone:
  *                   type: string
- *                 company:
- *                   type: string
  *                 password:
-
- 
  *                   type: string
  *                 role:
  *                   type: string
  *                 createdAt:
  *                   type: string
  *                   format: date-time
-
  *       400:
  *         description: Missing required fields
  *       500:
@@ -164,7 +143,7 @@ app.get('/test', (req: Request, res: Response) => {
  */
 app.post('/users', async (req: Request, res: Response) => {
   try {
-    const {firstName, lastName, email, phone, company} = req.body;
+    const {firstName, lastName, email, phone} = req.body;
     
     // Validate required fields
     if (!firstName || !lastName || !email || !phone) {
@@ -200,7 +179,6 @@ app.post('/users', async (req: Request, res: Response) => {
       lastName,
       email: user.email,
       phone,
-      company: company || null,
       password: generatedPassword,
       role: user.role,
       createdAt: user.createdAt

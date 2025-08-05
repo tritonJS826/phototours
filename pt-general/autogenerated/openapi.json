@@ -40,9 +40,7 @@
     },
     "/users": {
       "post": {
-
         "summary": "Create a new user for ZOHO integration",
-
         "tags": [
           "Users"
         ],
@@ -53,7 +51,6 @@
               "schema": {
                 "type": "object",
                 "required": [
-
                   "firstName",
                   "lastName",
                   "email",
@@ -68,21 +65,14 @@
                     "type": "string",
                     "description": "User's last name"
                   },
-
                   "email": {
                     "type": "string",
                     "format": "email",
                     "description": "User's email address"
                   },
-
                   "phone": {
                     "type": "string",
                     "description": "User's phone number"
-                  },
-                  "company": {
-                    "type": "string",
-                    "description": "User's company name (optional)"
-
                   }
                 }
               }
@@ -100,7 +90,6 @@
                     "id": {
                       "type": "integer"
                     },
-
                     "firstName": {
                       "type": "string"
                     },
@@ -113,11 +102,7 @@
                     "phone": {
                       "type": "string"
                     },
-                    "company": {
-                      "type": "string"
-                    },
                     "password": {
-
                       "type": "string"
                     },
                     "role": {
@@ -132,11 +117,9 @@
               }
             }
           },
-
           "400": {
             "description": "Missing required fields"
           },
-
           "500": {
             "description": "Server error"
           }

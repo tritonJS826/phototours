@@ -6,7 +6,6 @@ export interface CreateUserRequest {
   lastName: string;
   email: string;
   phone: string;
-  company?: string;
 }
 
 export interface User {
@@ -15,7 +14,6 @@ export interface User {
   lastName: string;
   email: string;
   phone: string;
-  company?: string;
   password: string; // Generated password
   role: string;
   createdAt: string;
