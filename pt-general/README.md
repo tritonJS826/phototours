@@ -98,3 +98,19 @@ ZOHO_REFRESH_TOKEN=your_refresh_token
 - When users register, leads are automatically created in Zoho CRM
 - All user data is transferred to the CRM system
 
+
+## Cloudinary Integration
+
+This project uses [Cloudinary](https://cloudinary.com/) for storing and managing media files such as photos, videos, and avatars.
+
+### Overview
+
+- Media files are uploaded via middleware using `multer-storage-cloudinary`.
+- Uploaded file URLs are saved in the database for efficient retrieval.
+- Cloudinary handles image/video optimization and delivery.
+- Upload folder path is configurable via environment variables.
+
+### Setup
+
+Please refer to the official [Cloudinary documentation](https://cloudinary.com/documentation) for detailed setup instructions.
+
