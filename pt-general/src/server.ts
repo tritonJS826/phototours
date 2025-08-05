@@ -1,20 +1,21 @@
+import cors from 'cors';
+import express, {Express, Request, Response} from 'express';
+import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
+
 import {env} from 'src/config/env';
 import {prisma} from 'src/db/prisma';
 import {tourRoutes} from 'src/routes/tourRoutes';
 import {userRoutes} from 'src/routes/userRoutes';
 import {createZohoService} from 'src/services/zohoService';
-import express, {Express, Request, Response} from 'express';
-import swaggerJsdoc from 'swagger-jsdoc';
-import swaggerUi from 'swagger-ui-express';
-
-const CODE_500 = 500;
 
 const app: Express = express();
 app.use(express.json());
+app.use(cors());
 const port = env.SERVER_PORT;
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:5174');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   if (req.method === 'OPTIONS') {
@@ -72,16 +73,11 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
 });
 
-// Тестовый endpoint для проверки
-app.get('/test', (req: Request, res: Response) => {
-  res.json({message: 'Test endpoint works!'});
-});
-
 /**
  * @swagger
  * /users:
  *   post:
- *     summary: Create a new user
+ *     summary: Create a new user for ZOHO integration
  *     tags: [Users]
  *     requestBody:
  *       required: true
@@ -90,16 +86,24 @@ app.get('/test', (req: Request, res: Response) => {
  *           schema:
  *             type: object
  *             required:
+ *               - firstName
+ *               - lastName
  *               - email
- *               - name
+ *               - phone
  *             properties:
+ *               firstName:
+ *                 type: string
+ *                 description: User's first name
+ *               lastName:
+ *                 type: string
+ *                 description: User's last name
  *               email:
  *                 type: string
  *                 format: email
  *                 description: User's email address
- *               name:
+ *               phone:
  *                 type: string
- *                 description: User's full name
+ *                 description: User's phone number
  *     responses:
  *       200:
  *         description: User created successfully
@@ -110,29 +114,54 @@ app.get('/test', (req: Request, res: Response) => {
  *               properties:
  *                 id:
  *                   type: integer
+ *                 firstName:
+ *                   type: string
+ *                 lastName:
+ *                   type: string
  *                 email:
  *                   type: string
- *                 name:
+ *                 phone:
+ *                   type: string
+ *                 password:
  *                   type: string
  *                 role:
  *                   type: string
  *                 createdAt:
  *                   type: string
  *                   format: date-time
+ *       400:
+ *         description: Missing required fields
  *       500:
  *         description: Server error
  */
-
 app.post('/users', async (req: Request, res: Response) => {
   try {
-    const {email, name, phone, company} = req.body;
+    const {firstName, lastName, email, phone} = req.body;
+    
+    // Validate required fields
+    if (!firstName || !lastName || !email || !phone) {
+      return res.status(400).json({
+        error: 'Missing required fields: firstName, lastName, email, phone'
+      });
+    }
 
-    // Создаем пользователя в базе данных
+    // Generate random password
+    const generatePassword = () => {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let password = '';
+      for (let i = 0; i < 8; i++) {
+        password += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return password;
+    };
+
+    const generatedPassword = generatePassword();
+
     const user = await prisma.user.create({
       data: {
         email,
-        name,
-        password: 'test',
+        name: `${firstName} ${lastName}`,
+        password: generatedPassword,
       },
     });
 
@@ -140,11 +169,10 @@ app.post('/users', async (req: Request, res: Response) => {
     try {
       const zohoService = createZohoService();
       const leadData = {
-        First_Name: name.split(' ')[0] || name,
-        Last_Name: name.split(' ').slice(1).join(' ') || '',
+        First_Name: firstName,
+        Last_Name: lastName,
         Email: email,
         Phone: phone || '',
-        Company: company || '',
         Lead_Source: 'PhotoTours Website Registration',
         Description: `Новый пользователь зарегистрировался через форму на сайте. Email: ${email}`,
       };
@@ -156,14 +184,20 @@ app.post('/users', async (req: Request, res: Response) => {
       // Не прерываем регистрацию, если Zoho недоступен
     }
 
+    // Return user with ZOHO-compatible structure
     res.json({
-      success: true,
-      user,
-      message: 'User registered successfully',
+      id: user.id,
+      firstName,
+      lastName,
+      email: user.email,
+      phone,
+      password: generatedPassword,
+      role: user.role,
+      createdAt: user.createdAt
     });
   } catch (error) {
-    console.error('❌ Error registering user:', error);
-    res.status(CODE_500).json({error: 'Failed to register user'});
+    console.error('Error creating user:', error);
+    res.status(500).json({error: 'Failed to create user'});
   }
 });
 
@@ -211,7 +245,6 @@ app.get('/auth/zoho/callback', async (req: Request, res: Response) => {
   }
 });
 
-// Тестовый endpoint для обмена кода на токены
 app.post('/auth/zoho/exchange', async (req: Request, res: Response) => {
   try {
     const {code} = req.body;
@@ -222,13 +255,13 @@ app.post('/auth/zoho/exchange', async (req: Request, res: Response) => {
 
     const zohoService = createZohoService();
     const tokens = await zohoService.exchangeCodeForTokens(code);
-
+    
     // Сохраняем refresh token для будущего использования
     if (tokens.refresh_token) {
       zohoService.saveRefreshToken(tokens.refresh_token);
     }
 
-    console.log('�� Full Zoho response:', JSON.stringify(tokens, null, 2));
+    console.log('✅ Full Zoho response:', JSON.stringify(tokens, null, 2));
     console.log('✅ Zoho tokens received:', {
       access_token: tokens.access_token ? tokens.access_token.substring(0, 20) + '...' : 'undefined',
       refresh_token: tokens.refresh_token ? tokens.refresh_token.substring(0, 20) + '...' : 'undefined',
@@ -294,12 +327,12 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/tours', tourRoutes);
-app.use('/api/users',
-  userRoutes);
+app.use('/api/users', userRoutes);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`[server]: Server is running at http://localhost:${port}`);
+
   // eslint-disable-next-line no-console
   console.log(`[swagger]: API documentation available at http://localhost:${port}/api-docs`);
   // eslint-disable-next-line no-console
