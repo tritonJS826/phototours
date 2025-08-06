@@ -1,4 +1,5 @@
-import axios from "axios";
+import {API_ROUTES} from "src/config/apiRoutes";
+import {env} from "src/utils/env/env";
 
 // Types for user data
 export interface CreateUserRequest {
@@ -19,15 +20,6 @@ export interface User {
   createdAt: string;
 }
 
-// API base URL from environment
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
-
-// Create axios instance with base configuration
-const apiClient = axios.create({
-  baseURL: API_BASE_URL,
-  headers: {"Content-Type": "application/json"},
-});
-
 /**
  * User service for handling user-related API operations
  */
@@ -39,13 +31,20 @@ export class UserService {
    * @returns Promise with created user data
    */
   public static async createUser(userData: CreateUserRequest): Promise<User> {
-    try {
-      const response = await apiClient.post<User>("/users", userData);
+    const response = await fetch(`${env.API_BASE_PATH}${API_ROUTES.USERS.CREATE}`, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(userData),
+    });
 
-      return response.data;
-    } catch {
-      throw new Error("Failed to create user");
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(
+        `Failed to create user: ${response.status} ${response.statusText}. ${errorData.message || ""}`,
+      );
     }
+
+    return response.json();
   }
 
   /**
@@ -53,13 +52,16 @@ export class UserService {
    * @returns Promise with array of users
    */
   public static async getUsers(): Promise<User[]> {
-    try {
-      const response = await apiClient.get<User[]>("/users");
+    const response = await fetch(`${env.API_BASE_PATH}${API_ROUTES.USERS.GET_ALL}`);
 
-      return response.data;
-    } catch {
-      throw new Error("Failed to fetch users");
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(
+        `Failed to fetch users: ${response.status} ${response.statusText}. ${errorData.message || ""}`,
+      );
     }
+
+    return response.json();
   }
 
 }
