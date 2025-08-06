@@ -1,6 +1,6 @@
 import {Container} from "src/components/Container/Container";
 
-export function Profil() {
+export function Profile() {
   return (
     <Container>
       <p>

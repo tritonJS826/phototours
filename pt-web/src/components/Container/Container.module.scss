@@ -1,7 +1,9 @@
+@use "../../styles/mixins" as mixin;
+@use "../../styles/variables" as vars;
+
 .container {
-  max-width: 1320px;
+  max-width: vars.$container-width;
   margin: 0 auto;
-  padding: 0 16px;
   width: 100%;
 
   @media (width <= 1024px) {
