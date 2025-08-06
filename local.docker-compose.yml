@@ -1,45 +1,21 @@
 services:
   postgres-general:
-    build:
-      context: .
-      dockerfile: ./postgres/postgres-general.Dockerfile
+    image: postgres:16.2-alpine
     container_name: postgres-pt-general
+    environment:
+      POSTGRES_DB: phototours
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
     volumes:
       - postgres-general:/var/lib/postgresql/data
-      - ./postgres/postgres-general.init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
-    environment:
-      POSTGRES_DB: mastersway_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres123
-      POSTGRES_HOST_AUTH_METHOD: trust
+      - ./postgres/postgres-general.init.sql:/docker-entrypoint-initdb.d/01-init.sql
+   
     networks:
       - app-network
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d mastersway_db"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
-  pt-general:
-    build:
-      context: ./pt-general
-      dockerfile: Dockerfile
-    container_name: pt-general
-    ports:
-      - "8000:3000"
-    environment:
-      DATABASE_URL: postgresql://postgres:postgres123@postgres-general:5432/mastersway_db
-      NODE_ENV: development
-    networks:
-      - app-network
-    depends_on:
-      postgres-general:
-        condition: service_healthy
-    volumes:
-      - ./pt-general:/app
-      - /app/node_modules
+
 
   grafana:
     build:
@@ -48,13 +24,9 @@ services:
     container_name: pt-grafana
     ports:
       - "9876:3000"
-    environment:
-      GF_SECURITY_ADMIN_PASSWORD: admin
-      GF_SECURITY_ADMIN_USER: admin
-      GF_USERS_ALLOW_SIGN_UP: "false"
-      GF_SERVER_HTTP_PORT: 3000
-      GF_SERVER_ROOT_URL: http://localhost:9876
-      GF_LOG_LEVEL: info
+    env_file:
+      - ./grafana/.env
+   
     networks:
       - app-network
 

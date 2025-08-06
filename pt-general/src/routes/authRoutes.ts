@@ -1,22 +1,20 @@
-import { Router } from 'express';
-import { 
-  register, 
-  login, 
-  getMe, 
-  updateProfile, 
+import {
+  login,
+  register,
+  getMe,
+  updateProfile,
   changePassword,
-  authMiddleware 
-} from '../controllers/authControllers';
+} from 'src/controllers/authControllers';
+import {authMiddleware} from 'src/middleware/authMiddleware';
+import {Router} from 'express';
 
-const router = Router();
+export const authRoutes = Router();
 
-// Публичные роуты (не требуют авторизации)
-router.post('/register', register);
-router.post('/login', login);
+// Public authentication routes
+authRoutes.post('/login', login);
+authRoutes.post('/register', register);
 
-// Защищенные роуты (требуют авторизации)
-router.get('/me', authMiddleware, getMe);
-router.put('/profile', authMiddleware, updateProfile);
-router.post('/change-password', authMiddleware, changePassword);
-
-export { router as authRoutes }; 
+// Protected user profile routes (require authentication)
+authRoutes.get('/me', authMiddleware, getMe);
+authRoutes.put('/profile', authMiddleware, updateProfile);
+authRoutes.post('/change-password', authMiddleware, changePassword); 

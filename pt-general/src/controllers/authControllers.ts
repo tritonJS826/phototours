@@ -1,5 +1,6 @@
-import { Request, Response } from 'express';
-import { AuthService, authMiddleware, roleMiddleware } from '../services/authService';
+import { Request, Response } from "express";
+import { AuthService } from "src/services/authService";
+import { AuthenticatedRequest } from "src/middleware/authMiddleware";
 
 const authService = new AuthService();
 
@@ -73,27 +74,27 @@ export const register = async (req: Request, res: Response) => {
   try {
     const { email, name, password, phone, company } = req.body;
 
-    // Валидация данных
+    // Validate data
     if (!email || !name || !password) {
       return res.status(400).json({
         success: false,
-        message: 'Email, имя и пароль обязательны'
+        message: "Email, name and password are required",
       });
     }
 
     if (password.length < 6) {
       return res.status(400).json({
         success: false,
-        message: 'Пароль должен содержать минимум 6 символов'
+        message: "Password must contain at least 6 characters",
       });
     }
 
-    // Проверка формата email
+    // Check email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({
         success: false,
-        message: 'Неверный формат email'
+        message: "Invalid email format",
       });
     }
 
@@ -102,20 +103,20 @@ export const register = async (req: Request, res: Response) => {
       name,
       password,
       phone,
-      company
+      company,
     });
 
     if (!result.success) {
-      const statusCode = result.message.includes('уже существует') ? 409 : 400;
+      const statusCode = result.message.includes("already exists") ? 409 : 400;
       return res.status(statusCode).json(result);
     }
 
     res.status(201).json(result);
   } catch (error) {
-    console.error('❌ Error in register controller:', error);
+    console.error("Error in register controller:", error);
     res.status(500).json({
       success: false,
-      message: 'Внутренняя ошибка сервера'
+      message: "Internal server error",
     });
   }
 };
@@ -179,11 +180,11 @@ export const login = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
 
-    // Валидация данных
+    // Validate data
     if (!email || !password) {
       return res.status(400).json({
         success: false,
-        message: 'Email и пароль обязательны'
+        message: "Email and password are required",
       });
     }
 
@@ -195,10 +196,10 @@ export const login = async (req: Request, res: Response) => {
 
     res.json(result);
   } catch (error) {
-    console.error('❌ Error in login controller:', error);
+    console.error("Error in login controller:", error);
     res.status(500).json({
       success: false,
-      message: 'Внутренняя ошибка сервера'
+      message: "Внутренняя ошибка сервера",
     });
   }
 };
@@ -239,18 +240,18 @@ export const login = async (req: Request, res: Response) => {
  *       500:
  *         description: Внутренняя ошибка сервера
  */
-export const getMe = async (req: Request, res: Response) => {
+export const getMe = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const token = req.headers.authorization?.substring(7);
+    const userId = req.userId;
     
-    if (!token) {
+    if (!userId) {
       return res.status(401).json({
         success: false,
-        message: 'Токен не предоставлен'
+        message: "User not authenticated",
       });
     }
 
-    const result = await authService.validateToken(token);
+    const result = await authService.validateToken(req.headers.authorization?.substring(7) || '');
 
     if (!result.success) {
       return res.status(401).json(result);
@@ -258,10 +259,10 @@ export const getMe = async (req: Request, res: Response) => {
 
     res.json(result);
   } catch (error) {
-    console.error('❌ Error in getMe controller:', error);
+    console.error("Error in getMe controller:", error);
     res.status(500).json({
       success: false,
-      message: 'Внутренняя ошибка сервера'
+      message: "Internal server error",
     });
   }
 };
@@ -298,15 +299,23 @@ export const getMe = async (req: Request, res: Response) => {
  *       500:
  *         description: Внутренняя ошибка сервера
  */
-export const updateProfile = async (req: Request, res: Response) => {
+export const updateProfile = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = (req as any).userId;
+    const userId = req.userId;
+    
+    if (!userId) {
+      return res.status(401).json({
+        success: false,
+        message: "User not authenticated",
+      });
+    }
+    
     const { name, bio, profilePicUrl } = req.body;
 
     const result = await authService.updateProfile(userId, {
       name,
       bio,
-      profilePicUrl
+      profilePicUrl,
     });
 
     if (!result.success) {
@@ -315,10 +324,10 @@ export const updateProfile = async (req: Request, res: Response) => {
 
     res.json(result);
   } catch (error) {
-    console.error('❌ Error in updateProfile controller:', error);
+    console.error("Error in updateProfile controller:", error);
     res.status(500).json({
       success: false,
-      message: 'Внутренняя ошибка сервера'
+      message: "Internal server error",
     });
   }
 };
@@ -358,27 +367,44 @@ export const updateProfile = async (req: Request, res: Response) => {
  *       500:
  *         description: Внутренняя ошибка сервера
  */
-export const changePassword = async (req: Request, res: Response) => {
+export const changePassword = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = (req as any).userId;
-    const { currentPassword, newPassword } = req.body;
-
-    // Валидация данных
-    if (!currentPassword || !newPassword) {
+    const userId = req.userId;
+    
+    if (!userId) {
+      return res.status(401).json({
+        success: false,
+        message: "User not authenticated",
+      });
+    }
+    
+    if (!req.body.currentPassword) {
       return res.status(400).json({
         success: false,
-        message: 'Текущий и новый пароль обязательны'
+        message: "Current password is required",
       });
     }
 
-    if (newPassword.length < 6) {
+    // Validate new password
+    if (!req.body.newPassword) {
       return res.status(400).json({
         success: false,
-        message: 'Новый пароль должен содержать минимум 6 символов'
+        message: "New password is required",
       });
     }
 
-    const result = await authService.changePassword(userId, currentPassword, newPassword);
+    if (req.body.currentPassword === req.body.newPassword) {
+      return res.status(400).json({
+        success: false,
+        message: "New password must be different from current password",
+      });
+    }
+
+    const result = await authService.changePassword(
+      userId,
+      req.body.currentPassword,
+      req.body.newPassword
+    );
 
     if (!result.success) {
       return res.status(400).json(result);
@@ -386,13 +412,10 @@ export const changePassword = async (req: Request, res: Response) => {
 
     res.json(result);
   } catch (error) {
-    console.error('❌ Error in changePassword controller:', error);
+    console.error("Error in changePassword controller:", error);
     res.status(500).json({
       success: false,
-      message: 'Внутренняя ошибка сервера'
+      message: "Internal server error",
     });
   }
 };
-
-// Экспортируем middleware для использования в роутах
-export { authMiddleware, roleMiddleware }; 

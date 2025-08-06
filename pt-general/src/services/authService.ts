@@ -1,8 +1,8 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { prisma } from '../db/prisma';
-import { createZohoService } from './zohoService';
-import { env } from '../config/env';
+import { prisma } from 'src/db/prisma';
+import { createZohoService } from 'src/services/zohoService';
+import { env } from 'src/config/env';
 
 export interface RegisterData {
   email: string;
@@ -48,7 +48,7 @@ export class AuthService {
       if (existingUser) {
         return {
           success: false,
-          message: 'Пользователь с таким email уже существует'
+          message: 'User with this email already exists'
         };
       }
 
@@ -97,14 +97,14 @@ export class AuthService {
           profilePicUrl: user.profilePicUrl || undefined,
         },
         token,
-        message: 'Пользователь успешно зарегистрирован'
+        message: 'User registered successfully'
       };
 
     } catch (error) {
       console.error('❌ Error registering user:', error);
       return {
         success: false,
-        message: 'Ошибка при регистрации пользователя'
+        message: 'Error registering user'
       };
     }
   }
@@ -122,21 +122,21 @@ export class AuthService {
       if (!user) {
         return {
           success: false,
-          message: 'Неверный email или пароль'
+          message: 'Invalid email or password'
         };
       }
 
-      // Проверяем пароль
+      // Check password
       const isPasswordValid = await bcrypt.compare(data.password, user.password);
 
       if (!isPasswordValid) {
         return {
           success: false,
-          message: 'Неверный email или пароль'
+          message: 'Invalid email or password'
         };
       }
 
-      // Генерируем JWT токен
+      // Generate JWT token
       const token = this.generateToken(user.id);
 
       return {
@@ -149,14 +149,14 @@ export class AuthService {
           profilePicUrl: user.profilePicUrl || undefined,
         },
         token,
-        message: 'Успешная авторизация'
+        message: 'Login successful'
       };
 
     } catch (error) {
-      console.error('❌ Error logging in user:', error);
+      console.error('Error logging in user:', error);
       return {
         success: false,
-        message: 'Ошибка при авторизации'
+        message: 'Error during authentication'
       };
     }
   }
@@ -175,7 +175,7 @@ export class AuthService {
       if (!user) {
         return {
           success: false,
-          message: 'Пользователь не найден'
+          message: 'User not found'
         };
       }
 
@@ -188,14 +188,14 @@ export class AuthService {
           role: user.role,
           profilePicUrl: user.profilePicUrl || undefined,
         },
-        message: 'Токен валиден'
+        message: 'Token is valid'
       };
 
     } catch (error) {
-      console.error('❌ Error validating token:', error);
+      console.error('Error validating token:', error);
       return {
         success: false,
-        message: 'Недействительный токен'
+        message: 'Invalid token'
       };
     }
   }
@@ -224,14 +224,14 @@ export class AuthService {
           role: user.role,
           profilePicUrl: user.profilePicUrl || undefined,
         },
-        message: 'Профиль успешно обновлен'
+        message: 'Profile updated successfully'
       };
 
     } catch (error) {
-      console.error('❌ Error updating profile:', error);
+      console.error('Error updating profile:', error);
       return {
         success: false,
-        message: 'Ошибка при обновлении профиля'
+        message: 'Error updating profile'
       };
     }
   }
@@ -249,24 +249,24 @@ export class AuthService {
       if (!user) {
         return {
           success: false,
-          message: 'Пользователь не найден'
+          message: 'User not found'
         };
       }
 
-      // Проверяем текущий пароль
+      // Check current password
       const isCurrentPasswordValid = await bcrypt.compare(currentPassword, user.password);
 
       if (!isCurrentPasswordValid) {
         return {
           success: false,
-          message: 'Неверный текущий пароль'
+          message: 'Invalid current password'
         };
       }
 
-      // Хешируем новый пароль
+      // Hash new password
       const hashedNewPassword = await bcrypt.hash(newPassword, this.SALT_ROUNDS);
 
-      // Обновляем пароль
+      // Update password
       await prisma.user.update({
         where: { id: userId },
         data: {
@@ -277,14 +277,14 @@ export class AuthService {
 
       return {
         success: true,
-        message: 'Пароль успешно изменен'
+        message: 'Password changed successfully'
       };
 
     } catch (error) {
-      console.error('❌ Error changing password:', error);
+      console.error('Error changing password:', error);
       return {
         success: false,
-        message: 'Ошибка при смене пароля'
+        message: 'Error changing password'
       };
     }
   }
@@ -301,56 +301,4 @@ export class AuthService {
   }
 }
 
-/**
- * Middleware для проверки авторизации
- */
-export function authMiddleware(req: any, res: any, next: any) {
-  const authHeader = req.headers.authorization;
-  
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return res.status(401).json({
-      success: false,
-      message: 'Токен авторизации не предоставлен'
-    });
-  }
-
-  const token = authHeader.substring(7); // Убираем 'Bearer '
-  
-  try {
-    const decoded = jwt.verify(token, env.JWT_SECRET) as { userId: number };
-    req.userId = decoded.userId;
-    next();
-  } catch (error) {
-    return res.status(401).json({
-      success: false,
-      message: 'Недействительный токен'
-    });
-  }
-}
-
-/**
- * Middleware для проверки роли
- */
-export function roleMiddleware(allowedRoles: string[]) {
-  return async (req: any, res: any, next: any) => {
-    try {
-      const user = await prisma.user.findUnique({
-        where: { id: req.userId }
-      });
-
-      if (!user || !allowedRoles.includes(user.role)) {
-        return res.status(403).json({
-          success: false,
-          message: 'Недостаточно прав для выполнения операции'
-        });
-      }
-
-      next();
-    } catch (error) {
-      return res.status(500).json({
-        success: false,
-        message: 'Ошибка при проверке прав доступа'
-      });
-    }
-  };
-} 
+ 
