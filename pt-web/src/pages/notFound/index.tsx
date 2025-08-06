@@ -1,19 +1,25 @@
-import {Container} from "src/components/Container/Container";
+import {Button} from "src/components/Button/Button";
+import styles from "src/pages/notFound/notFound.module.scss";
 
 export function NotFound() {
   return (
-    <Container>
-      <div>
-        <h1>
-          404 - Page Not Found
-        </h1>
-        <p>
-          The page you are looking for does not exist.
-        </p>
-        <a href="/">
-          Go back to Home
-        </a>
+    <div className={styles.pageWrapper}>
+      <div className={styles.content}>
+        <div className={styles.notFoundContent}>
+          <h1 className={styles.title}>
+            404
+          </h1>
+          <h2 className={styles.subtitle}>
+            Oops!
+          </h2>
+          <p className={styles.description}>
+            This page wandered off somewhere...
+          </p>
+          <Button href="/">
+            Home Page
+          </Button>
+        </div>
       </div>
-    </Container>
+    </div>
   );
 }
