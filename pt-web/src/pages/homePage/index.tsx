@@ -18,11 +18,7 @@ export function HomePage() {
     };
 
     const testHook = async () => {
-      try {
-        await createUser(testUserData);
-      } catch {
-        // Error is handled by the hook
-      }
+      await createUser(testUserData);
     };
 
     testHook();
