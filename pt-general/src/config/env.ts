@@ -9,6 +9,7 @@ export const env = cleanEnv(process.env, {
   ENV_TYPE: str({choices: ['dev', 'prod']}),
   WEBAPP_DOMAIN: str(),
 
+
   // JWT Configuration
   JWT_SECRET: str(),
   JWT_EXPIRES_IN: str({ default: '7d' }),
@@ -18,4 +19,5 @@ export const env = cleanEnv(process.env, {
   ZOHO_CLIENT_SECRET: str(),
   ZOHO_REDIRECT_URI: str(),
   ZOHO_REFRESH_TOKEN: str(),
+
 });

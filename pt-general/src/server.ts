@@ -3,8 +3,8 @@ import {tourRoutes} from 'src/routes/tourRoutes';
 import {userRoutes} from 'src/routes/userRoutes';
 import {authRoutes} from 'src/routes/authRoutes';
 import express, {Express, Request, Response} from 'express';
-import { createZohoService } from 'src/services/zohoService';
-import { prisma, checkDatabaseConnection } from 'src/db/prisma';
+import { createZohoService } from './services/zohoService';
+import { prisma, checkDatabaseConnection } from './db/prisma';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 

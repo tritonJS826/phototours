@@ -79,4 +79,3 @@ pnpm start
 
 pt-webapp will be available by[link](http://localhost:5173) locally
 
-

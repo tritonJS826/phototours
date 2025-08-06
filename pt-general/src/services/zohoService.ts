@@ -1,4 +1,4 @@
-import { env } from "src/config/env";
+import { env } from "../config/env";
 export interface ZohoConfig {
   clientId: string;
   clientSecret: string;
