@@ -24,7 +24,6 @@ tourRoutes.get('/:id', getTourById);
 tourRoutes.post('/', authMiddleware, roleMiddleware(['GUIDE']), createTour);
 tourRoutes.put('/:id', authMiddleware, roleMiddleware(['GUIDE']), updateTour);
 tourRoutes.delete('/:id', authMiddleware, roleMiddleware(['GUIDE']), deleteTour);
-
 tourRoutes.patch('/:id/categories', authMiddleware, roleMiddleware(['GUIDE']), updateTourCategories);
 tourRoutes.patch('/:id/tags', authMiddleware, roleMiddleware(['GUIDE']), updateTourTags);
 tourRoutes.patch('/:id/dates', authMiddleware, roleMiddleware(['GUIDE']), addTourDates);
