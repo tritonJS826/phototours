@@ -49,7 +49,7 @@ export function ContactForm() {
       </div>
       <Button
         type="submit" // Теперь этот пропс работает корректно
-        variant="primary"
+        variant="green"
         className={styles.submitButton}
       >
         Отправить

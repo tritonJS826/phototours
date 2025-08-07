@@ -199,6 +199,7 @@ export default [
   {
     files: ["**/*.stories.tsx"],
     rules: {
+      "no-restricted-imports": "off",
       "no-restricted-exports": [
         "error",
         { restrictDefaultExports: { direct: false } },

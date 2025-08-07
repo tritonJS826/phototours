@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Button} from "src/components/Button/Button";
+import {Link} from "react-router-dom";
 import styles from "src/components/Navbar/Navbar.module.scss";
 
 export function Navbar() {
@@ -44,13 +44,12 @@ export function Navbar() {
             </a>
           </li>
         </ul>
-        <Button
-          href="/contact"
-          variant="secondary"
+        <Link
+          to="/contact"
           className={styles.contactButton}
         >
           Связаться с нами
-        </Button>
+        </Link>
       </div>
     </nav>
   );

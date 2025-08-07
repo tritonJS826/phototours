@@ -27,8 +27,7 @@ export function TourCard({image, title, location, price}: TourCardProps) {
           {price}
         </span>
         <Button
-          href="#"
-          variant="primary"
+          variant="green"
           className={styles.button}
         >
           Узнать подробнее

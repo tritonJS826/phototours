@@ -1,45 +1,74 @@
-@use "sass:color";
-@import "src/styles/variables";
-
-.button {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  text-align: center;
-  text-decoration: none;
+.Button {
   cursor: pointer;
-  border-radius: 5px;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+  color: var(--color-black);
+  border-radius: var(--button-radius);
+  background: none;
+  font: var(--font-s);
   border: none;
-  font-weight: bold;
 
-  &.primary {
-    background-color: $color-accent;
-    color: #fff;
+  &.size_bigGreen {
+    width: 430px;
+    height: 60px;
+  }
+
+  &.size_smallGreen {
+    width: 290px;
+    height: 40px;
+  }
+
+  &.outline {
+    width: 247px;
+    height: 60px;
+    border: 1px solid var(--color-black);
+    color: var(--color-black);
+    background: none;
 
     &:hover {
-      background-color: color.adjust($color-accent, $lightness: -10%);
+      background: var(--color-black);
+      color: var(--color-white);
     }
   }
 
-  &.secondary {
-    background-color: $color-dark-blue;
-    color: #fff;
+  &.green {
+    background: var(--color-green);
+    color: var(--color-black);
+    border: none;
 
     &:hover {
-      background-color: color.adjust($color-dark-blue, $lightness: 10%);
+      color: var(--color-white);
     }
   }
 
-  &.link {
-    background-color: transparent;
-    color: $color-accent;
+  &.grey {
+    width: 230px;
+    height: 40px;
+    background: var(--color-grey);
+    color: var(--color-black);
+    border: none;
+
+    &:hover {
+      color: var(--color-white);
+    }
+  }
+
+  &.size_s {
+    font-size: var(--font-m);
+  }
+
+  &.size_m {
+    font-size: var(--font-m);
+  }
+
+  &.size_l {
+    font-size: var(--font-l);
+  }
+
+  &.square {
+    width: 60px;
+    height: 60px;
     padding: 0;
-
-    &:hover {
-      text-decoration: underline;
-    }
+    border-radius: 50%;
+    font-size: var(--font-l);
+    line-height: var(--font-line-l);
   }
 }
