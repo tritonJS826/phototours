@@ -8,6 +8,7 @@ export const env = cleanEnv(process.env, {
   SERVER_PORT: port(),
   ENV_TYPE: str({choices: ['dev', 'prod']}),
   WEBAPP_DOMAIN: str(),
+  ORIGIN_PORT: port(),
 
   // Zoho API Configuration
   ZOHO_CLIENT_ID: str(),
