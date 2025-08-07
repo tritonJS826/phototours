@@ -2,7 +2,7 @@
 @import "src/styles/variables";
 
 .form {
-  background-color: #fff;
+  background-color: var(--color-white);
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
@@ -10,7 +10,7 @@
   h2 {
     text-align: center;
     margin-bottom: 2rem;
-    color: $color-text-dark;
+    color: var(--color-black);
   }
 
   .formGroup {
@@ -26,14 +26,14 @@
     textarea {
       width: 100%;
       padding: 0.75rem;
-      border: 1px solid #ccc;
+      border: 1px solid var(--color-grey);
       border-radius: 4px;
       font-size: 1rem;
-      color: $color-text-dark;
+      color: var(--color-black);
 
       &:focus {
-        outline: 2px solid $color-accent;
-        border-color: $color-accent;
+        outline: 2px solid var(--color-green);
+        border-color: var(--color-black);
       }
     }
   }

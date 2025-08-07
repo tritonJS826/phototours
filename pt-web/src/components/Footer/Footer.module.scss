@@ -1,2 +1,49 @@
-@use "../../styles/mixins" as mixin;
-@use "../../styles/variables" as vars;
+@use "sass:color";
+@use "src/styles/variables";
+
+.footer {
+  background-color: var(--color-green);
+  color: var(--color-black);
+}
+
+.footerContent {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 3rem 0;
+
+  @media (width <= 768px) {
+    flex-direction: column;
+  }
+}
+
+.column {
+  flex: 1;
+
+  h4 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--color-black);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li a {
+      color: var(--color-green);
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: var(--color-green);
+      }
+    }
+  }
+}
+
+.copyright {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+}

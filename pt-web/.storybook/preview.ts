@@ -1,3 +1,6 @@
+// eslint-disable-next-line simple-import-sort/imports
+import "../src/styles/reset.scss";
+import "../src/styles/globals.scss";
 import type {Preview} from "@storybook/react-vite";
 
 const preview: Preview = {

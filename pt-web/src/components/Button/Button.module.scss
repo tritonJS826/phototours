@@ -34,9 +34,8 @@
   &.link {
     background-color: transparent;
     padding: 0;
-
-    &:hover {
-      text-decoration: underline;
-    }
+    border-radius: 50%;
+    font-size: var(--font-l);
+    line-height: var(--font-line-l);
   }
 }

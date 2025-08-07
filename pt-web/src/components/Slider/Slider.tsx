@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Button} from "src/components/Button/Button";
+import {Link} from "react-router-dom";
 import {Container} from "src/components/Container/Container";
 import styles from "src/components/Slider/Slider.module.scss";
 
@@ -54,12 +54,9 @@ export function Slider() {
         <p>
           {slides[currentSlide].subtitle}
         </p>
-        <Button
-          href="/tours"
-          variant="primary"
-        >
+        <Link to="/tours">
           {slides[currentSlide].buttonText}
-        </Button>
+        </Link>
       </Container>
       <button
         className={styles.prevButton}
