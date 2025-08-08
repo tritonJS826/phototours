@@ -1,7 +1,5 @@
 import {useEffect} from "react";
 import {Container} from "src/components/Container/Container";
-import {Footer} from "src/components/Footer/Footer";
-import {Header} from "src/components/Header/Header";
 import {useUsers} from "src/hooks/useUsers";
 import styles from "src/pages/homePage/HomePage.module.scss";
 
@@ -25,27 +23,23 @@ export function HomePage() {
   }, []); // Убрал createUser из зависимостей
 
   return (
-    <>
-      <Header />
-      <Container>
-        <div className={styles.content}>
-          <h1>
-            Главная страница
-          </h1>
-          {loading && (
-            <p>
-              Loading...
-            </p>
-          )}
-          {error && (
-            <p style={{color: "red"}}>
-              Error:
-              {error}
-            </p>
-          )}
-        </div>
-      </Container>
-      <Footer />
-    </>
+    <Container>
+      <div className={styles.content}>
+        <h1>
+          Главная страница
+        </h1>
+        {loading && (
+          <p>
+            Loading...
+          </p>
+        )}
+        {error && (
+          <p style={{color: "red"}}>
+            Error:
+            {error}
+          </p>
+        )}
+      </div>
+    </Container>
   );
 }
