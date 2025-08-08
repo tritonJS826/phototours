@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import { AuthService } from "src/services/authService";
-import { AuthenticatedRequest } from "src/middleware/authMiddleware";
+import {AuthenticatedRequest} from 'src/middleware/authMiddleware';
+import {AuthService} from 'src/services/authService';
+import {Request, Response} from 'express';
 
 const authService = new AuthService();
 
@@ -18,20 +18,23 @@ const authService = new AuthService();
  *             type: object
  *             required:
  *               - email
- *               - name
+ *               - firstName
  *               - password
  *             properties:
  *               email:
  *                 type: string
  *                 format: email
- *                 description: Email пользователя
- *               name:
+ *                 description: User email
+ *               firstName:
  *                 type: string
- *                 description: Имя пользователя
+ *                 description: User first name
+ *               lastName:
+ *                 type: string
+ *                 description: User last name (optional)
  *               password:
  *                 type: string
  *                 minLength: 6
- *                 description: Пароль (минимум 6 символов)
+ *                 description: Password (minimum 6 characters)
  *               phone:
  *                 type: string
  *                 description: Номер телефона (опционально)
@@ -72,20 +75,20 @@ const authService = new AuthService();
  */
 export const register = async (req: Request, res: Response) => {
   try {
-    const { email, name, password, phone, company } = req.body;
+    const {email, firstName, lastName, password, phone, company} = req.body;
 
     // Validate data
-    if (!email || !name || !password) {
+    if (!email || !firstName || !password) {
       return res.status(400).json({
         success: false,
-        message: "Email, name and password are required",
+        message: 'Email, firstName and password are required',
       });
     }
 
     if (password.length < 6) {
       return res.status(400).json({
         success: false,
-        message: "Password must contain at least 6 characters",
+        message: 'Password must contain at least 6 characters',
       });
     }
 
@@ -94,29 +97,31 @@ export const register = async (req: Request, res: Response) => {
     if (!emailRegex.test(email)) {
       return res.status(400).json({
         success: false,
-        message: "Invalid email format",
+        message: 'Invalid email format',
       });
     }
 
     const result = await authService.register({
       email,
-      name,
+      firstName,
+      lastName,
       password,
       phone,
       company,
     });
 
     if (!result.success) {
-      const statusCode = result.message.includes("already exists") ? 409 : 400;
+      const statusCode = result.message.includes('already exists') ? 409 : 400;
+
       return res.status(statusCode).json(result);
     }
 
     res.status(201).json(result);
   } catch (error) {
-    console.error("Error in register controller:", error);
+    console.error('Error in register controller:', error);
     res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: 'Internal server error',
     });
   }
 };
@@ -178,17 +183,17 @@ export const register = async (req: Request, res: Response) => {
  */
 export const login = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body;
+    const {email, password} = req.body;
 
     // Validate data
     if (!email || !password) {
       return res.status(400).json({
         success: false,
-        message: "Email and password are required",
+        message: 'Email and password are required',
       });
     }
 
-    const result = await authService.login({ email, password });
+    const result = await authService.login({email, password});
 
     if (!result.success) {
       return res.status(401).json(result);
@@ -196,10 +201,10 @@ export const login = async (req: Request, res: Response) => {
 
     res.json(result);
   } catch (error) {
-    console.error("Error in login controller:", error);
+    console.error('Error in login controller:', error);
     res.status(500).json({
       success: false,
-      message: "Внутренняя ошибка сервера",
+      message: 'Внутренняя ошибка сервера',
     });
   }
 };
@@ -243,11 +248,11 @@ export const login = async (req: Request, res: Response) => {
 export const getMe = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = req.userId;
-    
+
     if (!userId) {
       return res.status(401).json({
         success: false,
-        message: "User not authenticated",
+        message: 'User not authenticated',
       });
     }
 
@@ -259,10 +264,10 @@ export const getMe = async (req: AuthenticatedRequest, res: Response) => {
 
     res.json(result);
   } catch (error) {
-    console.error("Error in getMe controller:", error);
+    console.error('Error in getMe controller:', error);
     res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: 'Internal server error',
     });
   }
 };
@@ -302,18 +307,19 @@ export const getMe = async (req: AuthenticatedRequest, res: Response) => {
 export const updateProfile = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = req.userId;
-    
+
     if (!userId) {
       return res.status(401).json({
         success: false,
-        message: "User not authenticated",
+        message: 'User not authenticated',
       });
     }
-    
-    const { name, bio, profilePicUrl } = req.body;
+
+    const {firstName, lastName, bio, profilePicUrl} = req.body;
 
     const result = await authService.updateProfile(userId, {
-      name,
+      firstName,
+      lastName,
       bio,
       profilePicUrl,
     });
@@ -324,10 +330,10 @@ export const updateProfile = async (req: AuthenticatedRequest, res: Response) =>
 
     res.json(result);
   } catch (error) {
-    console.error("Error in updateProfile controller:", error);
+    console.error('Error in updateProfile controller:', error);
     res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: 'Internal server error',
     });
   }
 };
@@ -370,18 +376,18 @@ export const updateProfile = async (req: AuthenticatedRequest, res: Response) =>
 export const changePassword = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = req.userId;
-    
+
     if (!userId) {
       return res.status(401).json({
         success: false,
-        message: "User not authenticated",
+        message: 'User not authenticated',
       });
     }
-    
+
     if (!req.body.currentPassword) {
       return res.status(400).json({
         success: false,
-        message: "Current password is required",
+        message: 'Current password is required',
       });
     }
 
@@ -389,21 +395,21 @@ export const changePassword = async (req: AuthenticatedRequest, res: Response) =
     if (!req.body.newPassword) {
       return res.status(400).json({
         success: false,
-        message: "New password is required",
+        message: 'New password is required',
       });
     }
 
     if (req.body.currentPassword === req.body.newPassword) {
       return res.status(400).json({
         success: false,
-        message: "New password must be different from current password",
+        message: 'New password must be different from current password',
       });
     }
 
     const result = await authService.changePassword(
       userId,
       req.body.currentPassword,
-      req.body.newPassword
+      req.body.newPassword,
     );
 
     if (!result.success) {
@@ -412,10 +418,10 @@ export const changePassword = async (req: AuthenticatedRequest, res: Response) =
 
     res.json(result);
   } catch (error) {
-    console.error("Error in changePassword controller:", error);
+    console.error('Error in changePassword controller:', error);
     res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: 'Internal server error',
     });
   }
 };

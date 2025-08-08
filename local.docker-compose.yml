@@ -11,11 +11,10 @@ services:
     volumes:
       - postgres-general:/var/lib/postgresql/data
       - ./postgres/postgres-general.init.sql:/docker-entrypoint-initdb.d/01-init.sql
-   
+    env_file:
+      - ./pt-general/.env
     networks:
       - app-network
-
-
 
   grafana:
     build:
@@ -26,7 +25,6 @@ services:
       - "9876:3000"
     env_file:
       - ./grafana/.env
-   
     networks:
       - app-network
 

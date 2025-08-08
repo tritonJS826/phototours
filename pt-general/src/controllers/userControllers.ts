@@ -8,10 +8,10 @@ const HTTP_STATUS_BAD_REQUEST = 400;
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const {email, name, role, password} = req.body;
+    const {email, firstName, lastName, role, password} = req.body;
 
-    if (!email || !name || !password) {
-      return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'Email and name are required'});
+    if (!email || !firstName || !password) {
+      return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'Email, firstName and password are required'});
     }
 
     // Проверяем, если передали роль, чтобы она была валидной
@@ -21,7 +21,8 @@ export const createUser = async (req: Request, res: Response) => {
     const user = await prisma.user.create({
       data: {
         email,
-        name,
+        firstName,
+        lastName,
         password,
         role: role || undefined,
       },

@@ -3,4 +3,4 @@ export {
   roleMiddleware,
   ownerOrGuideMiddleware,
   AuthenticatedRequest,
-} from 'src/middleware/authMiddleware'; 
+} from 'src/middleware/authMiddleware';

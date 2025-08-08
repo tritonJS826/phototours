@@ -1,35 +1,39 @@
-import {Request, Response, NextFunction} from 'express';
-import jwt from 'jsonwebtoken';
 import {env} from 'src/config/env';
+import {NextFunction, Request, Response} from 'express';
+import jwt from 'jsonwebtoken';
 
 export interface AuthenticatedRequest extends Request {
   userId?: number;
   userRole?: string;
+  headers: Request['headers'];
+  body: Request['body'];
+  params: Request['params'];
 }
 
 /**
- * Middleware для проверки JWT токена
- * Добавляет userId и userRole в объект запроса
+ * JWT token verification middleware
+ * Adds userId and userRole to the request object
  */
 export const authMiddleware = async (
   req: AuthenticatedRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     const authHeader = req.headers.authorization;
-    
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+
+    if (!authHeader?.startsWith('Bearer ')) {
       return res.status(401).json({
         success: false,
         message: 'Access token not provided',
       });
     }
-
-    const token = authHeader.substring(7); // Remove 'Bearer ' prefix
+    // Remove 'Bearer ' prefix
+    const token = authHeader.substring(7); 
 
     if (!env.JWT_SECRET) {
       console.error('JWT_SECRET not configured in environment variables');
+
       return res.status(500).json({
         success: false,
         message: 'Server configuration error',
@@ -37,21 +41,21 @@ export const authMiddleware = async (
     }
 
     const decoded = jwt.verify(token, env.JWT_SECRET) as any;
-    
+
     req.userId = decoded.userId;
     req.userRole = decoded.role;
-    
+
     next();
   } catch (error) {
     console.error('Error in authMiddleware:', error);
-    
+
     if (error instanceof jwt.JsonWebTokenError) {
       return res.status(401).json({
         success: false,
         message: 'Invalid token',
       });
     }
-    
+
     if (error instanceof jwt.TokenExpiredError) {
       return res.status(401).json({
         success: false,
@@ -67,8 +71,8 @@ export const authMiddleware = async (
 };
 
 /**
- * Middleware для проверки роли пользователя
- * @param allowedRoles - массив разрешенных ролей
+ * User role verification middleware
+ * @param allowedRoles - array of allowed roles
  */
 export const roleMiddleware = (allowedRoles: string[]) => {
   return (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
@@ -91,12 +95,12 @@ export const roleMiddleware = (allowedRoles: string[]) => {
 };
 
 /**
- * Middleware для проверки, что пользователь является владельцем ресурса или имеет роль GUIDE
+ * Middleware to verify that the user is either the resource owner or has GUIDE role
  */
 export const ownerOrGuideMiddleware = async (
   req: AuthenticatedRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     if (!req.userId) {
@@ -113,7 +117,7 @@ export const ownerOrGuideMiddleware = async (
 
     // Check if user is the resource owner
     const resourceUserId = parseInt(req.params.userId || req.body.userId);
-    
+
     if (req.userId === resourceUserId) {
       return next();
     }
@@ -124,9 +128,10 @@ export const ownerOrGuideMiddleware = async (
     });
   } catch (error) {
     console.error('Error in ownerOrGuideMiddleware:', error);
+
     return res.status(500).json({
       success: false,
       message: 'Internal server error',
     });
   }
-}; 
+};

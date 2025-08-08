@@ -1,4 +1,4 @@
-import { env } from "../config/env";
+import {env} from 'src/config/env';
 export interface ZohoConfig {
   clientId: string;
   clientSecret: string;
@@ -15,8 +15,11 @@ export interface ZohoTokenResponse {
 }
 
 export class ZohoService {
+
   private config: ZohoConfig;
+
   private accessToken: string | null = null;
+
   private refreshToken: string | null = null;
 
   constructor(config: ZohoConfig) {
@@ -25,36 +28,34 @@ export class ZohoService {
     this.refreshToken = env.ZOHO_REFRESH_TOKEN;
   }
 
-  getAuthUrl(): string {
+  public getAuthUrl(): string {
     const params = new URLSearchParams({
       client_id: this.config.clientId,
-      response_type: "code",
+      response_type: 'code',
       redirect_uri: this.config.redirectUri,
-      scope: "ZohoCRM.modules.ALL,ZohoCRM.settings.ALL,ZohoCRM.org.READ",
-      access_type: "offline",
-      prompt: "consent",
+      scope: 'ZohoCRM.modules.ALL,ZohoCRM.settings.ALL,ZohoCRM.org.READ',
+      access_type: 'offline',
+      prompt: 'consent',
     });
 
     return `https://accounts.zoho.eu/oauth/v2/auth?${params.toString()}`;
   }
 
-  async exchangeCodeForTokens(code: string): Promise<ZohoTokenResponse> {
-    const response = await fetch("https://accounts.zoho.eu/oauth/v2/token", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
+  public async exchangeCodeForTokens(code: string): Promise<ZohoTokenResponse> {
+    const response = await fetch('https://accounts.zoho.eu/oauth/v2/token', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: new URLSearchParams({
         code,
         client_id: this.config.clientId,
         client_secret: this.config.clientSecret,
         redirect_uri: this.config.redirectUri,
-        grant_type: "authorization_code",
+        grant_type: 'authorization_code',
       }),
     });
     if (!response.ok) {
       throw new Error(
-        `Failed to exchange code for tokens: ${response.statusText}`
+        `Failed to exchange code for tokens: ${response.statusText}`,
       );
     }
 
@@ -65,21 +66,19 @@ export class ZohoService {
     return data;
   }
 
-  async refreshAccessToken(): Promise<string> {
+  public async refreshAccessToken(): Promise<string> {
     if (!this.refreshToken) {
-      throw new Error("No refresh token available");
+      throw new Error('No refresh token available');
     }
 
-    const response = await fetch("https://accounts.zoho.eu/oauth/v2/token", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
+    const response = await fetch('https://accounts.zoho.eu/oauth/v2/token', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: new URLSearchParams({
         refresh_token: this.refreshToken,
         client_id: this.config.clientId,
         client_secret: this.config.clientSecret,
-        grant_type: "refresh_token",
+        grant_type: 'refresh_token',
       }),
     });
 
@@ -93,107 +92,116 @@ export class ZohoService {
     return data.access_token;
   }
 
-  async getOrganizationInfo(): Promise<any> {
+  public async getOrganizationInfo(): Promise<any> {
     const token = await this.getValidAccessToken();
 
     console.log(
-      " Making request to Zoho API with token:",
-      token.substring(0, 20) + "..."
+      ' Making request to Zoho API with token:',
+      token.substring(0, 20) + '...',
     );
 
-    const response = await fetch("https://www.zohoapis.eu/crm/v3/org", {
+    const response = await fetch('https://www.zohoapis.eu/crm/v3/org', {
       headers: {
         Authorization: `Zoho-oauthtoken ${token}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
     console.log(
-      "Zoho API response status:",
+      'Zoho API response status:',
       response.status,
-      response.statusText
+      response.statusText,
     );
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error("Zoho API error response:", errorText);
+      console.error('Zoho API error response:', errorText);
       throw new Error(
-        `Failed to get organization info: ${response.status} ${response.statusText} - ${errorText}`
+        `Failed to get organization info: ${response.status} ${response.statusText} - ${errorText}`,
       );
     }
 
     const data = await response.json();
-    console.log(" Zoho API response:", JSON.stringify(data, null, 2));
+    console.log(' Zoho API response:', JSON.stringify(data, null, 2));
+
     return data;
   }
 
-  async createLead(leadData: any): Promise<any> {
+  public async createLead(leadData: any): Promise<any> {
     const token = await this.getValidAccessToken();
 
-    console.log(
-      "Creating lead with data:",
-      JSON.stringify(leadData, null, 2)
-    );
-    console.log("Using token:", token.substring(0, 20) + "...");
+    console.log('Creating lead with data:', JSON.stringify(leadData, null, 2));
+    console.log('Using token:', token.substring(0, 20) + '...');
 
     let requestBody;
     if (leadData.data && Array.isArray(leadData.data)) {
       requestBody = leadData;
     } else {
-      requestBody = {
-        data: [leadData],
-      };
+      requestBody = {data: [leadData]};
     }
 
-    console.log("Sending to Zoho API:", JSON.stringify(requestBody, null, 2));
+    console.log('Sending to Zoho API:', JSON.stringify(requestBody, null, 2));
 
-    const response = await fetch("https://www.zohoapis.eu/crm/v3/Leads", {
-      method: "POST",
+    const response = await fetch('https://www.zohoapis.eu/crm/v3/Leads', {
+      method: 'POST',
       headers: {
         Authorization: `Zoho-oauthtoken ${token}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(requestBody),
     });
     console.log(
-      "Zoho API response status:",
+      'Zoho API response status:',
       response.status,
-      response.statusText
+      response.statusText,
     );
     if (!response.ok) {
       const errorText = await response.text();
-      console.error(" Zoho API error response:", errorText);
+      console.error(' Zoho API error response:', errorText);
       throw new Error(
-        `Failed to create lead: ${response.status} ${response.statusText} - ${errorText}`
+        `Failed to create lead: ${response.status} ${response.statusText} - ${errorText}`,
       );
     }
 
     const data = await response.json();
-    console.log(" Zoho API response:", JSON.stringify(data, null, 2));
+    console.log('Zoho API response:', JSON.stringify(data, null, 2));
+
     return data;
+  }
+
+  public setTokens(accessToken: string, refreshToken: string): void {
+    this.accessToken = accessToken;
+    this.refreshToken = refreshToken;
+  }
+
+  public saveRefreshToken(refreshToken: string): void {
+    this.refreshToken = refreshToken;
+    console.log('Refresh token saved for future use');
   }
 
   private async getValidAccessToken(): Promise<string> {
     if (!this.accessToken) {
       if (this.refreshToken) {
-        console.log(" Refreshing access token...");
+        console.log(' Refreshing access token...');
+
         return await this.refreshAccessToken();
       }
-      throw new Error("No access token available. Please authenticate first.");
+      throw new Error('No access token available. Please authenticate first.');
     }
 
     return this.accessToken;
   }
 
-  setTokens(accessToken: string, refreshToken: string): void {
+  public setTokens(accessToken: string, refreshToken: string): void {
     this.accessToken = accessToken;
     this.refreshToken = refreshToken;
   }
 
-  saveRefreshToken(refreshToken: string): void {
+  public saveRefreshToken(refreshToken: string): void {
     this.refreshToken = refreshToken;
-    console.log("Refresh token saved for future use");
+    console.log('Refresh token saved for future use');
   }
+
 }
 
 export function createZohoService(): ZohoService {

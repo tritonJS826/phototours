@@ -1,10 +1,10 @@
 import {env} from 'src/config/env';
+import {authRoutes} from 'src/routes/authRoutes';
 import {tourRoutes} from 'src/routes/tourRoutes';
 import {userRoutes} from 'src/routes/userRoutes';
-import {authRoutes} from 'src/routes/authRoutes';
+import {checkDatabaseConnection, prisma} from './db/prisma';
+import {createZohoService} from './services/zohoService';
 import express, {Express, Request, Response} from 'express';
-import { createZohoService } from './services/zohoService';
-import { prisma, checkDatabaseConnection } from './db/prisma';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
@@ -82,7 +82,6 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
 });
 
-
 /**
  * @swagger
  * /users:
@@ -136,80 +135,80 @@ app.get('/auth/zoho', (req: Request, res: Response) => {
   try {
     const zohoService = createZohoService();
     const authUrl = zohoService.getAuthUrl();
-    res.json({ authUrl });
+    res.json({authUrl});
   } catch (error) {
     console.error('Error generating auth URL:', error);
-    res.status(500).json({ error: 'Failed to generate auth URL' });
+    res.status(500).json({error: 'Failed to generate auth URL'});
   }
 });
 
 app.get('/auth/zoho/callback', async (req: Request, res: Response) => {
   try {
-    const { code } = req.query;
-    
+    const {code} = req.query;
+
     if (!code || typeof code !== 'string') {
-      return res.status(400).json({ error: 'Authorization code is required' });
+      return res.status(400).json({error: 'Authorization code is required'});
     }
 
     const zohoService = createZohoService();
     const tokens = await zohoService.exchangeCodeForTokens(code);
-    
+
     // В реальном приложении здесь нужно сохранить токены в БД
     console.log('✅ Zoho tokens received:', {
       access_token: tokens.access_token.substring(0, 20) + '...',
-      refresh_token: tokens.refresh_token.substring(0, 20) + '...'
+      refresh_token: tokens.refresh_token.substring(0, 20) + '...',
     });
 
-    res.json({ 
-      success: true, 
+    res.json({
+      success: true,
       message: 'Zoho authentication successful',
       tokens: {
         access_token: tokens.access_token,
         refresh_token: tokens.refresh_token,
-        expires_in: tokens.expires_in
-      }
+        expires_in: tokens.expires_in,
+      },
     });
   } catch (error) {
     console.error('Error exchanging code for tokens:', error);
-    res.status(500).json({ error: 'Failed to authenticate with Zoho' });
+    res.status(500).json({error: 'Failed to authenticate with Zoho'});
   }
 });
 
 // Тестовый endpoint для обмена кода на токены
 app.post('/auth/zoho/exchange', async (req: Request, res: Response) => {
   try {
-    const { code } = req.body;
-    
+    const {code} = req.body;
+
     if (!code) {
-      return res.status(400).json({ error: 'Authorization code is required' });
+      return res.status(400).json({error: 'Authorization code is required'});
     }
 
     const zohoService = createZohoService();
     const tokens = await zohoService.exchangeCodeForTokens(code);
-    
+
     // Сохраняем refresh token для будущего использования
     if (tokens.refresh_token) {
       zohoService.saveRefreshToken(tokens.refresh_token);
     }
-    
+
     console.log('�� Full Zoho response:', JSON.stringify(tokens, null, 2));
     console.log('✅ Zoho tokens received:', {
       access_token: tokens.access_token ? tokens.access_token.substring(0, 20) + '...' : 'undefined',
-      refresh_token: tokens.refresh_token ? tokens.refresh_token.substring(0, 20) + '...' : 'undefined'
+      refresh_token: tokens.refresh_token ? tokens.refresh_token.substring(0, 20) + '...' : 'undefined',
     });
 
-    res.json({ 
-      success: true, 
+    res.json({
+      success: true,
       message: 'Zoho authentication successful',
       tokens: {
         access_token: tokens.access_token,
         refresh_token: tokens.refresh_token,
-        expires_in: tokens.expires_in
-      }
+        expires_in: tokens.expires_in,
+      },
     });
   } catch (error) {
     console.error('Error exchanging code for tokens:', error);
-    res.status(500).json({ error: 'Failed to authenticate with Zoho' });
+    res.status(500).json({error: 'Failed to authenticate with Zoho'});
   }
 });
 
@@ -220,7 +219,7 @@ app.get('/api/zoho/org', async (req: Request, res: Response) => {
     res.json(orgInfo);
   } catch (error) {
     console.error('Error getting organization info:', error);
-    res.status(500).json({ error: 'Failed to get organization info' });
+    res.status(500).json({error: 'Failed to get organization info'});
   }
 });
 
@@ -228,16 +227,16 @@ app.get('/api/zoho/test', async (req: Request, res: Response) => {
   try {
     const zohoService = createZohoService();
     const testLead = {
-      Last_Name: "Test Lead",
-      Email: "test@example.com",
-      Phone: "+1234567890",
-      Company: "Test Company"
+      Last_Name: 'Test Lead',
+      Email: 'test@example.com',
+      Phone: '+1234567890',
+      Company: 'Test Company',
     };
     const result = await zohoService.createLead(testLead);
     res.json(result);
   } catch (error) {
     console.error('Error creating test lead:', error);
-    res.status(500).json({ error: 'Failed to create test lead' });
+    res.status(500).json({error: 'Failed to create test lead'});
   }
 });
 
@@ -249,7 +248,7 @@ app.post('/api/zoho/leads', async (req: Request, res: Response) => {
     res.json(result);
   } catch (error) {
     console.error('Error creating lead:', error);
-    res.status(500).json({ error: 'Failed to create lead' });
+    res.status(500).json({error: 'Failed to create lead'});
   }
 });
 
@@ -260,8 +259,6 @@ app.use((req, res, next) => {
 app.use('/api/tours', tourRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
-  
-  
 
 app.listen(port, async () => {
   // eslint-disable-next-line no-console
@@ -274,7 +271,7 @@ app.listen(port, async () => {
   console.log('   GET  / - Health check');
   // eslint-disable-next-line no-console
   console.log('   POST /users - Create user');
-  
+
   // Проверка подключения к базе данных
   await checkDatabaseConnection();
 });

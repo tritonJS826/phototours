@@ -1,12 +1,13 @@
+import {env} from 'src/config/env';
+import {prisma} from 'src/db/prisma';
+import {createZohoService} from 'src/services/zohoService';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { prisma } from 'src/db/prisma';
-import { createZohoService } from 'src/services/zohoService';
-import { env } from 'src/config/env';
 
 export interface RegisterData {
   email: string;
-  name: string;
+  firstName: string;
+  lastName?: string;
   password: string;
   phone?: string;
   company?: string;
@@ -31,8 +32,11 @@ export interface AuthResponse {
 }
 
 export class AuthService {
-  private readonly SALT_ROUNDS = 12;
+
+  private readonly SALT_ROUNDS = Number(env.BCRYPT_SALT_ROUNDS);
+
   private readonly JWT_SECRET = env.JWT_SECRET;
+
   private readonly JWT_EXPIRES_IN = env.JWT_EXPIRES_IN || '7d';
 
   /**
@@ -41,14 +45,12 @@ export class AuthService {
   async register(data: RegisterData): Promise<AuthResponse> {
     try {
       // Проверяем, существует ли пользователь с таким email
-      const existingUser = await prisma.user.findUnique({
-        where: { email: data.email }
-      });
+      const existingUser = await prisma.user.findUnique({where: {email: data.email}});
 
       if (existingUser) {
         return {
           success: false,
-          message: 'User with this email already exists'
+          message: 'User with this email already exists',
         };
       }
 
@@ -59,7 +61,8 @@ export class AuthService {
       const user = await prisma.user.create({
         data: {
           email: data.email,
-          name: data.name,
+          firstName: data.firstName,
+          lastName: data.lastName,
           password: hashedPassword, // Сохраняем только хешированный пароль
         },
       });
@@ -68,15 +71,15 @@ export class AuthService {
       try {
         const zohoService = createZohoService();
         const leadData = {
-          First_Name: data.name.split(' ')[0] || data.name,
-          Last_Name: data.name.split(' ').slice(1).join(' ') || '',
+          First_Name: data.firstName,
+          Last_Name: data.lastName || '',
           Email: data.email,
           Phone: data.phone || '',
           Company: data.company || '',
           Lead_Source: 'PhotoTours Website Registration',
-          Description: `Новый пользователь зарегистрировался через форму на сайте. Email: ${data.email}`
+          Description: `New user registered through website form. Email: ${data.email}`,
         };
-        
+
         const leadResult = await zohoService.createLead(leadData);
         console.log('✅ Lead created in Zoho CRM:', leadResult);
       } catch (zohoError) {
@@ -92,19 +95,20 @@ export class AuthService {
         user: {
           id: user.id,
           email: user.email,
-          name: user.name,
+          name: `${user.firstName} ${user.lastName || ''}`.trim(),
           role: user.role,
           profilePicUrl: user.profilePicUrl || undefined,
         },
         token,
-        message: 'User registered successfully'
+        message: 'User registered successfully',
       };
 
     } catch (error) {
       console.error('❌ Error registering user:', error);
+
       return {
         success: false,
-        message: 'Error registering user'
+        message: 'Error registering user',
       };
     }
   }
@@ -115,14 +119,12 @@ export class AuthService {
   async login(data: LoginData): Promise<AuthResponse> {
     try {
       // Ищем пользователя по email
-      const user = await prisma.user.findUnique({
-        where: { email: data.email }
-      });
+      const user = await prisma.user.findUnique({where: {email: data.email}});
 
       if (!user) {
         return {
           success: false,
-          message: 'Invalid email or password'
+          message: 'Invalid email or password',
         };
       }
 
@@ -132,7 +134,7 @@ export class AuthService {
       if (!isPasswordValid) {
         return {
           success: false,
-          message: 'Invalid email or password'
+          message: 'Invalid email or password',
         };
       }
 
@@ -144,19 +146,20 @@ export class AuthService {
         user: {
           id: user.id,
           email: user.email,
-          name: user.name,
+          name: user.name || `${user.firstName || ''} ${user.lastName || ''}`.trim(),
           role: user.role,
           profilePicUrl: user.profilePicUrl || undefined,
         },
         token,
-        message: 'Login successful'
+        message: 'Login successful',
       };
 
     } catch (error) {
       console.error('Error logging in user:', error);
+
       return {
         success: false,
-        message: 'Error during authentication'
+        message: 'Error during authentication',
       };
     }
   }
@@ -167,15 +170,13 @@ export class AuthService {
   async validateToken(token: string): Promise<AuthResponse> {
     try {
       const decoded = jwt.verify(token, this.JWT_SECRET) as { userId: number };
-      
-      const user = await prisma.user.findUnique({
-        where: { id: decoded.userId }
-      });
+
+      const user = await prisma.user.findUnique({where: {id: decoded.userId}});
 
       if (!user) {
         return {
           success: false,
-          message: 'User not found'
+          message: 'User not found',
         };
       }
 
@@ -184,35 +185,37 @@ export class AuthService {
         user: {
           id: user.id,
           email: user.email,
-          name: user.name,
+          name: user.name || `${user.firstName || ''} ${user.lastName || ''}`.trim(),
           role: user.role,
           profilePicUrl: user.profilePicUrl || undefined,
         },
-        message: 'Token is valid'
+        message: 'Token is valid',
       };
 
     } catch (error) {
       console.error('Error validating token:', error);
+
       return {
         success: false,
-        message: 'Invalid token'
+        message: 'Invalid token',
       };
     }
   }
 
   /**
-   * Обновление профиля пользователя
+   * Update user profile
    */
-  async updateProfile(userId: number, data: Partial<{ name: string; bio: string; profilePicUrl: string }>): Promise<AuthResponse> {
+  async updateProfile(userId: number, data: Partial<{ firstName: string; lastName?: string; bio: string; profilePicUrl: string }>): Promise<AuthResponse> {
     try {
       const user = await prisma.user.update({
-        where: { id: userId },
+        where: {id: userId},
         data: {
-          name: data.name,
+          firstName: data.firstName,
+          lastName: data.lastName,
           bio: data.bio,
           profilePicUrl: data.profilePicUrl,
-          updatedAt: new Date()
-        }
+          updatedAt: new Date(),
+        },
       });
 
       return {
@@ -220,18 +223,19 @@ export class AuthService {
         user: {
           id: user.id,
           email: user.email,
-          name: user.name,
+          name: `${user.firstName} ${user.lastName || ''}`.trim(),
           role: user.role,
           profilePicUrl: user.profilePicUrl || undefined,
         },
-        message: 'Profile updated successfully'
+        message: 'Profile updated successfully',
       };
 
     } catch (error) {
       console.error('Error updating profile:', error);
+
       return {
         success: false,
-        message: 'Error updating profile'
+        message: 'Error updating profile',
       };
     }
   }
@@ -242,14 +246,12 @@ export class AuthService {
   async changePassword(userId: number, currentPassword: string, newPassword: string): Promise<AuthResponse> {
     try {
       // Получаем пользователя
-      const user = await prisma.user.findUnique({
-        where: { id: userId }
-      });
+      const user = await prisma.user.findUnique({where: {id: userId}});
 
       if (!user) {
         return {
           success: false,
-          message: 'User not found'
+          message: 'User not found',
         };
       }
 
@@ -259,7 +261,7 @@ export class AuthService {
       if (!isCurrentPasswordValid) {
         return {
           success: false,
-          message: 'Invalid current password'
+          message: 'Invalid current password',
         };
       }
 
@@ -268,23 +270,24 @@ export class AuthService {
 
       // Update password
       await prisma.user.update({
-        where: { id: userId },
+        where: {id: userId},
         data: {
           password: hashedNewPassword,
-          updatedAt: new Date()
-        }
+          updatedAt: new Date(),
+        },
       });
 
       return {
         success: true,
-        message: 'Password changed successfully'
+        message: 'Password changed successfully',
       };
 
     } catch (error) {
       console.error('Error changing password:', error);
+
       return {
         success: false,
-        message: 'Error changing password'
+        message: 'Error changing password',
       };
     }
   }
@@ -293,12 +296,11 @@ export class AuthService {
    * Генерация JWT токена
    */
   private generateToken(userId: number): string {
-    return jwt.sign(
-      { userId },
-      this.JWT_SECRET,
-      { expiresIn: this.JWT_EXPIRES_IN }
-    );
+    if (!this.JWT_SECRET) {
+      throw new Error('JWT_SECRET not configured');
+    }
+    return jwt.sign({userId}, this.JWT_SECRET, {expiresIn: '7d'});
   }
+
 }
 
- 

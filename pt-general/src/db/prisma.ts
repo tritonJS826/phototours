@@ -1,13 +1,9 @@
-import { PrismaClient } from 'src/generated/prisma';
+import {PrismaClient} from 'src/generated/prisma';
 
 // Создание экземпляра Prisma с настройками для разработки
 export const prisma = new PrismaClient({
   log: process.env.NODE_ENV === 'development' ? ['query', 'info', 'warn', 'error'] : ['error'],
-  datasources: {
-    db: {
-      url: process.env.DATABASE_URL,
-    },
-  },
+  datasources: {db: {url: process.env.DATABASE_URL}},
 });
 
 // Функция для проверки подключения к базе данных
@@ -15,9 +11,11 @@ export async function checkDatabaseConnection() {
   try {
     await prisma.$connect();
     console.log('✅ Database connection established successfully');
+
     return true;
   } catch (error) {
     console.error('❌ Database connection failed:', error);
+
     return false;
   }
 }

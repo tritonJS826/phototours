@@ -46,7 +46,8 @@ async function seedDatabase() {
     prisma.user.create({
       data: {
         email: 'client1@example.com',
-        name: 'Client One',
+        firstName: 'Client',
+        lastName: 'One',
         password: 'hashedpassword',
         role: Role.CLIENT,
       },
@@ -54,7 +55,8 @@ async function seedDatabase() {
     prisma.user.create({
       data: {
         email: 'client2@example.com',
-        name: 'Client Two',
+        firstName: 'Client',
+        lastName: 'Two',
         password: 'hashedpassword',
         role: Role.CLIENT,
       },
@@ -64,7 +66,8 @@ async function seedDatabase() {
   const guideUser = await prisma.user.create({
     data: {
       email: 'guide@example.com',
-      name: 'Guide Person',
+      firstName: 'Guide',
+      lastName: 'Person',
       password: 'hashedpassword',
       role: Role.GUIDE,
     },
@@ -73,7 +76,8 @@ async function seedDatabase() {
   const guideUser2 = await prisma.user.create({
     data: {
       email: 'secondguide@example.com',
-      name: 'Second Guide',
+      firstName: 'Second',
+      lastName: 'Guide',
       password: 'hashedpassword2', // Лучше сгенерировать хеш настоящего пароля
       role: Role.GUIDE,
     },
