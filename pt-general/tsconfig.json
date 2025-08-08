@@ -1,17 +1,32 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "target": "esNext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "src/*": ["src/*"]
-    },
-    "esModuleInterop": true,
-    "moduleDetection": "force",
-    "strict": true,
-    "skipLibCheck": true
+      "src/*": ["./src/*"]
+    }
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "src/generated"]
+  "include": [
+    "src",
+    "vite.config.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.d.ts",
+    ".storybook"
+  ],
+  "exclude": ["node_modules", "public", "dist"]
 }
