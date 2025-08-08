@@ -19,6 +19,7 @@ export const useUsers = () => {
 
     try {
       const newUser = await UserService.createUser(userData);
+
       return newUser;
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : "Failed to create user";
