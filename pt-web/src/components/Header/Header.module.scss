@@ -1,2 +1,204 @@
 @use "../../styles/mixins" as mixin;
 @use "../../styles/variables" as vars;
+
+.header {
+  background-color: white;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  color: vars.$header-footer-color;
+  font-weight: 100;
+
+  .headerContainer {
+    max-width: 1620px;
+    height: 60px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .headerLogo {
+    img {
+      height: 45px;
+      width: 180px;
+    }
+  }
+}
+
+.navMenu {
+  display: flex;
+  gap: 20px;
+
+  .navItem {
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: black;
+    }
+  }
+}
+
+.topbarRight {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.headerDivider {
+  margin-left: 5px;
+  width: 1px;
+  height: 24px;
+  background-color: #999;
+}
+
+.searchContainer {
+  position: relative;
+}
+
+.searchWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchInput {
+  width: 38px;
+  height: 31px;
+  padding-left: 38px;
+  border: none;
+  border-radius: 17px;
+  font-size: 16px;
+  color: transparent;
+  transition:
+    width 0.3s ease,
+    padding 0.3s ease,
+    color 0.3s ease;
+  cursor: pointer;
+
+  &::placeholder {
+    color: transparent;
+    transition: color 0.3s ease;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.searchWrapper:hover .searchInput,
+.searchWrapper:focus-within .searchInput {
+  width: 300px;
+  color: #000;
+  border: 2px solid black;
+
+  &::placeholder {
+    color: #999;
+  }
+}
+
+.searchIcon {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #333;
+  width: 24px;
+  height: 24px;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+
+  .dropdownBtnLanguage {
+    background: inherit;
+    border: 2px solid black;
+    border-radius: 17px;
+    padding: 4px 12px;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:hover {
+      background: black;
+      color: white;
+      transition: background-color 0.5s ease;
+    }
+  }
+
+  .dropdownBtnCurrency {
+    background: black;
+    color: white;
+    border: 2px solid black;
+    border-radius: 17px;
+    padding: 4px 12px;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:hover {
+      color: black;
+      background: white;
+      transition: background-color 0.5s ease;
+    }
+  }
+
+  .dropdownMenu {
+    position: absolute;
+    color: #333;
+    top: 135%;
+    left: 0;
+    margin-top: 4px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    list-style: none;
+    padding: 6px 0;
+    min-width: 80px;
+    z-index: 10;
+
+    .dropdownOption {
+      padding: 6px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      white-space: nowrap;
+
+      &:hover {
+        color: #000;
+      }
+    }
+  }
+}
+
+.iconBtn {
+  cursor: pointer;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 35px;
+
+  &:hover {
+    width: 42px;
+    height: 35px;
+    background-color: black;
+    color: white;
+    border-radius: 17px;
+    transition: opacity 0.3s ease;
+    transition: background-color 0.5s ease;
+  }
+
+  svg {
+    display: block;
+  }
+}
+
+.icon {
+  width: 27px;
+  height: 27px;
+}

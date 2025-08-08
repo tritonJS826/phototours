@@ -1,31 +1,21 @@
 services:
   postgres-general:
-    build:
-      context: .
-      dockerfile: ./postgres/postgres-general.Dockerfile
+    image: postgres:16.2-alpine
     container_name: postgres-pt-general
+    environment:
+      POSTGRES_DB: phototours
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
     volumes:
       - postgres-general:/var/lib/postgresql/data
-    env_file:
-      - ./pt-general/.env
+      - ./postgres/postgres-general.init.sql:/docker-entrypoint-initdb.d/01-init.sql
+   
     networks:
       - app-network
 
-  # pt-general:
-  #   build:
-  #     context: ./pt-general
-  #     dockerfile: Dockerfile
-  #   container_name: pt-general
-  #   ports:
-  #     - "8000:3000"
-  #   env_file:
-  #     - ./pt-general/.env
-  #   networks:
-  #     - app-network
-  #   depends_on:
-  #     - postgres-general
+
 
   grafana:
     build:
@@ -36,6 +26,7 @@ services:
       - "9876:3000"
     env_file:
       - ./grafana/.env
+   
     networks:
       - app-network
 
@@ -53,7 +44,6 @@ services:
 
 volumes:
   postgres-general:
-
 
 networks:
   app-network:

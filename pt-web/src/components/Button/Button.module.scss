@@ -1,0 +1,42 @@
+@use "sass:color";
+@use "src/styles/variables" as var;
+
+.button {
+  display: inline-block;
+  padding: var.$btn-padding;
+  font-size: var.$btn-font-size;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: var.$btn-border-radius;
+  transition: var.$btn-transition-bg;
+  border: var.$btn-border;
+  font-weight: bold;
+
+  &.primary {
+    background: var.$btn-primary-bg;
+    color: var.$btn-primary-color;
+
+    &:hover {
+      background-color: var.$btn-primary-hover-bg;
+    }
+  }
+
+  &.secondary {
+    background: var.$btn-secondary-bg;
+    color: var.$btn-secondary-color;
+
+    &:hover {
+      background-color: var.$btn-secondary-hover-bg;
+    }
+  }
+
+  &.link {
+    background-color: transparent;
+    padding: 0;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

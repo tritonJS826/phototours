@@ -1,0 +1,45 @@
+@use "sass:color";
+@import "src/styles/variables";
+
+.search {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  max-width: 400px;
+  margin: 0 auto;
+
+  .input {
+    border: none;
+    padding: 0.75rem;
+    font-size: 1rem;
+    flex-grow: 1;
+    color: $color-text-dark;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px $color-accent;
+    }
+
+    &::placeholder {
+      color: #999;
+    }
+  }
+
+  .button {
+    background-color: $color-accent;
+    border: none;
+    padding: 0 1rem;
+    cursor: pointer;
+    color: #fff;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: color.adjust($color-accent, $lightness: -10%);
+    }
+
+    .icon {
+      fill: #fff;
+    }
+  }
+}
