@@ -205,14 +205,29 @@ export const addTourDates = async (req: Request, res: Response) => {
 export const addTourPhotos = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
+    
+    // Если загружается файл через multer
+    if (req.file) {
+      const photo = await prisma.photo.create({
+        data: {
+          tourId: Number(id),
+          url: req.file.path,
+        },
+      });
+      return res.status(HTTP_STATUS_CREATED).json({message: 'Photo uploaded', photo});
+    }
+    
+    // Если передается массив URL в JSON
     const { photos } = req.body;
-
-    const updatedTour = await prisma.tour.update({
-      where: { id: Number(id) },
-      data: { photos: { create: photos.map((url: string) => ({ url })) } },
-    });
-
-    res.json(updatedTour);
+    if (photos && Array.isArray(photos)) {
+      const updatedTour = await prisma.tour.update({
+        where: { id: Number(id) },
+        data: { photos: { create: photos.map((url: string) => ({ url })) } },
+      });
+      return res.json({message: 'Photos added successfully', tour: updatedTour});
+    }
+    
+    return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'No photos provided or file uploaded'});
   } catch {
     res
       .status(HTTP_STATUS_INTERNAL_SERVER_ERROR)
@@ -224,22 +239,35 @@ export const addTourPhotos = async (req: Request, res: Response) => {
 export const addTourVideos = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
+    
+    // Если загружается файл через multer
+    if (req.file) {
+      const videoUrl = req.file.path;
+      const updatedTour = await prisma.tour.update({
+        where: {id: Number(id)},
+        data: {videos: {create: {url: videoUrl}}},
+      });
+      return res.json({
+        message: 'Video uploaded and added successfully',
+        tour: updatedTour,
+      });
+    }
+    
+    // Если передается массив URL в JSON
     const { videos } = req.body;
-
-    const updatedTour = await prisma.tour.update({
-      where: { id: Number(id) },
-      data: { videos: { create: videos.map((url: string) => ({ url })) } },
-    });
-
-    res.json(updatedTour);
+    if (videos && Array.isArray(videos)) {
+      const updatedTour = await prisma.tour.update({
+        where: { id: Number(id) },
+        data: { videos: { create: videos.map((url: string) => ({ url })) } },
+      });
+      return res.json({message: 'Videos added successfully', tour: updatedTour});
+    }
+    
+    return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'No videos provided or file uploaded'});
   } catch {
-    res
-      .status(HTTP_STATUS_INTERNAL_SERVER_ERROR)
-      .json({ error: "Failed to add videos" });
+    res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({error: 'Failed to add videos'});
   }
 };
-
-// PATCH /api/tours/:id/materials
 
 type MaterialData = {
   title: string;

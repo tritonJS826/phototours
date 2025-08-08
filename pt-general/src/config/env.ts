@@ -8,16 +8,21 @@ export const env = cleanEnv(process.env, {
   SERVER_PORT: port(),
   ENV_TYPE: str({choices: ['dev', 'prod']}),
   WEBAPP_DOMAIN: str(),
-
+  ORIGIN_PORT: port(),
 
   // JWT Configuration
   JWT_SECRET: str(),
   JWT_EXPIRES_IN: str({ default: '7d' }),
 
-  // Zoho API Configuration (опционально)
+  // Zoho API Configuration
   ZOHO_CLIENT_ID: str(),
   ZOHO_CLIENT_SECRET: str(),
   ZOHO_REDIRECT_URI: str(),
   ZOHO_REFRESH_TOKEN: str(),
 
+  // Cloudinary Configuration
+  CLOUDINARY_CLOUD_NAME: str(),
+  CLOUDINARY_API_KEY: str(),
+  CLOUDINARY_API_SECRET: str(),
+  CLOUDINARY_UPLOAD_FOLDER: str(),
 });
