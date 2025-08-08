@@ -77,35 +77,37 @@ export function Header() {
           </Link>
         </div>
 
-        <nav
-          className={styles.headerNav}
-          aria-label="Main Navigation"
-        >
-          <ul className={styles.navMenu}>
-            <li className={styles.navItem}>
-              <Link to={PATHS.TOURS}>
-                Book Photo Tours
-              </Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to={PATHS.ARTICLES}>
-                Explore Articles
-              </Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to={PATHS.ABOUT}>
-                About Us
-              </Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to={PATHS.CONTACT}>
-                Contact Us
-              </Link>
-            </li>
-          </ul>
-        </nav>
-
         <div className={styles.topbarRight}>
+          <nav
+            className={styles.headerNav}
+            aria-label="Main Navigation"
+          >
+            <ul className={styles.navMenu}>
+              <li className={styles.navItem}>
+                <Link to={PATHS.TOURS}>
+                  Book Photo Tours
+                </Link>
+              </li>
+              <li className={styles.navItem}>
+                <Link to={PATHS.ARTICLES}>
+                  Explore Articles
+                </Link>
+              </li>
+              <li className={styles.navItem}>
+                <Link to={PATHS.ABOUT}>
+                  About Us
+                </Link>
+              </li>
+              <li className={styles.navItem}>
+                <Link to={PATHS.CONTACT}>
+                  Contact Us
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
+          <div className={styles.headerDivider} />
+
           <div className={styles.searchContainer}>
             <div className={styles.searchWrapper}>
               <Search
@@ -123,13 +125,13 @@ export function Header() {
             </div>
           </div>
 
-          <div className={styles.topbarItemLanguage}>
+          <div className={styles.topbarItem}>
             <div
               className={styles.dropdown}
               ref={langRef}
             >
               <button
-                className={styles.dropdownBtn}
+                className={styles.dropdownBtnLanguage}
                 aria-haspopup="listbox"
                 aria-expanded={isLangOpen}
                 onClick={() => setIsLangOpen((prev) => !prev)}
@@ -143,13 +145,13 @@ export function Header() {
             </div>
           </div>
 
-          <div className={styles.topbarItemCurrency}>
+          <div className={styles.topbarItem}>
             <div
               className={styles.dropdown}
               ref={currencyRef}
             >
               <button
-                className={styles.dropdownBtn}
+                className={styles.dropdownBtnCurrency}
                 aria-haspopup="listbox"
                 aria-expanded={isCurrencyOpen}
                 onClick={() => setIsCurrencyOpen((prev) => !prev)}
