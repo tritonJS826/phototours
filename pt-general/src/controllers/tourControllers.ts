@@ -54,13 +54,25 @@ export const createTour = async (req: Request, res: Response) => {
     } = req.body;
 
     // Проверка обязательных полей
-    if (!title || !description || !region || !difficulty || !price || !guideId || !program) {
-      return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'Missing required fields'});
+    if (
+      !title ||
+      !description ||
+      !region ||
+      !difficulty ||
+      !price ||
+      !guideId ||
+      !program
+    ) {
+      return res
+        .status(HTTP_STATUS_BAD_REQUEST)
+        .json({error: 'Missing required fields'});
     }
 
     // Проверка на допустимые значения enum
     if (!Object.values(DifficultyLevel).includes(difficulty)) {
-      return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'Invalid difficulty level'});
+      return res
+        .status(HTTP_STATUS_BAD_REQUEST)
+        .json({error: 'Invalid difficulty level'});
     }
     const newTour = await prisma.tour.create({
       data: {
@@ -112,7 +124,6 @@ export const deleteTour = async (req: Request, res: Response) => {
   }
 };
 
-// PATCH /api/tours/:id/categories
 export const updateTourCategories = async (req: Request, res: Response) => {
   try {
     const {id} = req.params;
@@ -130,7 +141,9 @@ export const updateTourCategories = async (req: Request, res: Response) => {
 
     res.json(updatedTour);
   } catch {
-    res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({error: 'Failed to update categories'});
+    res
+      .status(HTTP_STATUS_INTERNAL_SERVER_ERROR)
+      .json({error: 'Failed to update categories'});
   }
 };
 
@@ -154,7 +167,9 @@ export const updateTourTags = async (req: Request, res: Response) => {
 
     res.json(updatedTour);
   } catch {
-    res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({error: 'Failed to update tags'});
+    res
+      .status(HTTP_STATUS_INTERNAL_SERVER_ERROR)
+      .json({error: 'Failed to update tags'});
   }
 };
 
@@ -165,7 +180,9 @@ export const addTourDates = async (req: Request, res: Response) => {
     const {dates} = req.body;
 
     if (!Array.isArray(dates)) {
-      return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'Invalid dates array'});
+      return res
+        .status(HTTP_STATUS_BAD_REQUEST)
+        .json({error: 'Invalid dates array'});
     }
 
     const dateEntries = dates.map((d) => ({date: new Date(d.date)}));
@@ -178,66 +195,91 @@ export const addTourDates = async (req: Request, res: Response) => {
 
     res.json(updatedTour);
   } catch {
-    res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({error: 'Failed to add dates'});
+    res
+      .status(HTTP_STATUS_INTERNAL_SERVER_ERROR)
+      .json({error: 'Failed to add dates'});
   }
 };
 
 // PATCH /api/tours/:id/photos
 export const addTourPhotos = async (req: Request, res: Response) => {
   try {
+    const {id} = req.params;
+    if (req.file) {
+      const photo = await prisma.photo.create({
+        data: {
+          tourId: Number(id),
+          url: req.file.path,
+        },
+      });
 
-    if (!req.file) {
-      return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'No file uploaded'});
+      return res.json(photo);
+    }
+    const {photos} = req.body;
+    if (photos && Array.isArray(photos)) {
+      const updatedTour = await prisma.tour.update({
+        where: {id: Number(id)},
+        data: {photos: {create: photos.map((url: string) => ({url}))}},
+      });
+
+      return res.json(updatedTour);
     }
 
-    const photo = await prisma.photo.create({
-      data: {
-        tourId: Number(req.params.id),
-        url: req.file.path,
-      },
-    });
-
-    res.status(HTTP_STATUS_CREATED).json({message: 'Photo uploaded', photo});
-  } catch {
-    res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({error: 'Failed to add photos'});
+    return res
+      .status(HTTP_STATUS_BAD_REQUEST)
+      .json({error: 'No photos provided'});
+  } catch (error) {
+    console.error('Error adding photos:', error);
+    res.status(500).json({error: 'Failed to add photos'});
   }
 };
-
 // PATCH /api/tours/:id/videos
 export const addTourVideos = async (req: Request, res: Response) => {
   try {
+    const {id} = req.params;
+    if (req.file) {
+      const videoUrl = req.file.path;
+      const updatedTour = await prisma.tour.update({
+        where: {id: Number(id)},
+        data: {videos: {create: {url: videoUrl}}},
+      });
 
-    if (!req.file) {
-      return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'No video file uploaded'});
+      return res.json({
+        message: 'Video uploaded and added successfully',
+        tour: updatedTour,
+      });
+    }
+    const {videos} = req.body;
+    if (videos && Array.isArray(videos)) {
+      const updatedTour = await prisma.tour.update({
+        where: {id: Number(id)},
+        data: {videos: {create: videos.map((url: string) => ({url}))}},
+      });
+
+      return res.json({
+        message: 'Videos added successfully',
+        tour: updatedTour,
+      });
     }
 
-    const videoUrl = req.file.path;
-
-    const updatedTour = await prisma.tour.update({
-      where: {id: Number(req.params.id)},
-      data: {videos: {create: {url: videoUrl}}},
-    });
-
-    res.json({
-      message: 'Video uploaded and added successfully',
-      tour: updatedTour,
-    });
+    return res
+      .status(HTTP_STATUS_BAD_REQUEST)
+      .json({error: 'No videos provided'});
   } catch {
-    res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({error: 'Failed to add video'});
+    res
+      .status(HTTP_STATUS_INTERNAL_SERVER_ERROR)
+      .json({error: 'Failed to add videos'});
   }
 };
-
 type MaterialData = {
   title: string;
   url: string;
   type: string;
 };
-
 export const addTourMaterials = async (req: Request, res: Response) => {
   try {
     const {id} = req.params;
     const {materials} = req.body;
-
     const updatedTour = await prisma.tour.update({
       where: {id: Number(id)},
       data: {
@@ -251,11 +293,10 @@ export const addTourMaterials = async (req: Request, res: Response) => {
       },
       include: {materials: true},
     });
-
     res.json(updatedTour);
   } catch {
-
-    res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({error: 'Failed to add materials'});
+    res
+      .status(HTTP_STATUS_INTERNAL_SERVER_ERROR)
+      .json({error: 'Failed to add materials'});
   }
 };
-

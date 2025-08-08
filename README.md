@@ -1,3 +1,4 @@
+
 # Photo Tours – Frontend
 
 This is the **frontend** part of the Photo Tours project, built with **React + TypeScript + Vite**.  
@@ -78,36 +79,3 @@ pnpm start
 
 pt-webapp will be available by[link](http://localhost:5173) locally
 
-# Quick Start
-# Running the Application
-
-1. Install dependencies
-```bash
-pnpm install
-```
-2. Start web application
-```bash
-pnpm start
-```
-or
-```bash
-pnpm dev
-```
-3. Start backend
-```bash
-pnpm general:start
-```
-Development
-
-For development, navigate to the corresponding subproject:
-
-1. Web application
-```bash
-cd pt-web
-pnpm dev
-```
-2. Backend
-```bash
-cd pt-general  
-pnpm dev
-```

@@ -17,7 +17,9 @@ datasource db {
 model User {
   id            Int      @id @default(autoincrement())
   email         String   @unique
-  name          String?
+  firstName     String
+  lastName      String?
+  name          String?  // @deprecated - use firstName and lastName instead
   password      String
   role          Role     @default(CLIENT)
   profilePicUrl String?
