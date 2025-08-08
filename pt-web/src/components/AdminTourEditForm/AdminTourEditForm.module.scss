@@ -1,0 +1,41 @@
+.form {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 10%);
+
+  label {
+    margin-top: 1rem;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  input,
+  select,
+  textarea {
+    margin-top: 0.3rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgb(0 123 255 / 50%);
+    }
+  }
+}
+
+.materialsFieldset {
+  margin-top: 1.5rem;
+}

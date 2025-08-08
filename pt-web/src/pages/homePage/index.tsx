@@ -1,7 +1,9 @@
 import {useEffect} from "react";
+import {Button} from "src/components/Button/Button";
 import {Container} from "src/components/Container/Container";
 import {Footer} from "src/components/Footer/Footer";
 import {Header} from "src/components/Header/Header";
+import {PATHS} from "src/constants/routes";
 import {useUsers} from "src/hooks/useUsers";
 import styles from "src/pages/homePage/HomePage.module.scss";
 
@@ -25,6 +27,7 @@ export function HomePage() {
   }, []); // Убрал createUser из зависимостей
 
   return (
+
     <>
       <Header />
       <Container>
@@ -44,8 +47,15 @@ export function HomePage() {
             </p>
           )}
         </div>
+        <Button href={PATHS.ADMIN_CREATE_TOUR}>
+          Create Tour
+        </Button>
+        <Button href={PATHS.ADMIN_EDIT_TOUR}>
+          Edit Tour
+        </Button>
       </Container>
       <Footer />
     </>
+
   );
 }
