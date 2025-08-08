@@ -11,20 +11,24 @@ import {
   updateTourCategories,
   updateTourTags,
 } from 'src/controllers/tourControllers';
+import {authMiddleware, roleMiddleware} from 'src/middleware/authMiddleware';
 import {upload} from 'src/middleware/upload';
 import {Router} from 'express';
 
 export const tourRoutes = Router();
 
+// Public routes (no authentication required)
 tourRoutes.get('/', getAllTours);
 tourRoutes.get('/:id', getTourById);
-tourRoutes.post('/', createTour);
-tourRoutes.put('/:id', updateTour);
-tourRoutes.delete('/:id', deleteTour);
 
-tourRoutes.patch('/:id/categories', updateTourCategories);
-tourRoutes.patch('/:id/tags', updateTourTags);
-tourRoutes.patch('/:id/dates', addTourDates);
-tourRoutes.patch('/:id/photos', upload.single('file'), addTourPhotos);
-tourRoutes.patch('/:id/videos', upload.single('file'), addTourVideos);
-tourRoutes.patch('/:id/materials', addTourMaterials);
+// Protected routes (require authentication and GUIDE role)
+tourRoutes.post('/', authMiddleware, roleMiddleware(['GUIDE']), createTour);
+tourRoutes.put('/:id', authMiddleware, roleMiddleware(['GUIDE']), updateTour);
+tourRoutes.delete('/:id', authMiddleware, roleMiddleware(['GUIDE']), deleteTour);
+
+tourRoutes.patch('/:id/categories', authMiddleware, roleMiddleware(['GUIDE']), updateTourCategories);
+tourRoutes.patch('/:id/tags', authMiddleware, roleMiddleware(['GUIDE']), updateTourTags);
+tourRoutes.patch('/:id/dates', authMiddleware, roleMiddleware(['GUIDE']), addTourDates);
+tourRoutes.patch('/:id/photos', authMiddleware, roleMiddleware(['GUIDE']), upload.single('file'), addTourPhotos);
+tourRoutes.patch('/:id/videos', authMiddleware, roleMiddleware(['GUIDE']), upload.single('file'), addTourVideos);
+tourRoutes.patch('/:id/materials', authMiddleware, roleMiddleware(['GUIDE']), addTourMaterials);
