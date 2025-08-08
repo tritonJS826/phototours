@@ -2,9 +2,9 @@ import {env} from 'src/config/env';
 import {authRoutes} from 'src/routes/authRoutes';
 import {tourRoutes} from 'src/routes/tourRoutes';
 import {userRoutes} from 'src/routes/userRoutes';
-import {checkDatabaseConnection, prisma} from './db/prisma';
-import {createZohoService} from './services/zohoService';
 import express, {Express, Request, Response} from 'express';
+import { createZohoService } from 'src/services/zohoService';
+import { prisma, checkDatabaseConnection } from 'src/db/prisma';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
@@ -15,7 +15,7 @@ app.use(express.json());
 const port = env.SERVER_PORT;
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+  res.header('Access-Control-Allow-Origin', `http://${env.WEBAPP_DOMAIN}:5174`);
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   if (req.method === 'OPTIONS') {
@@ -128,7 +128,7 @@ app.get('/', (req: Request, res: Response) => {
  *         description: Server error
  */
 
-// Удаляем старую логику регистрации - теперь используется /auth/register
+
 
 // Zoho OAuth endpoints
 app.get('/auth/zoho', (req: Request, res: Response) => {

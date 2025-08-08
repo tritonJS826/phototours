@@ -1,7 +1,18 @@
-// Цвета и шрифты
-// Цвета из вашего дизайна (приблизительные значения)
-$color-dark-blue: #2c3e50;
-$color-accent: #f39c12;
-$color-text-light: #ecf0f1;
-$color-text-dark: #34495e;
-$color-background-light: #f5f5f5;
+// ====== Colors ======
+$header-footer-color: #616161;
+$btn-primary-bg: #f5f5f5;
+$btn-primary-color: #333;
+$btn-primary-hover-bg: #e0e0e0;
+$btn-secondary-bg: #dcdcdc;
+$btn-secondary-color: #000;
+$btn-secondary-hover-bg: #c0c0c0;
+
+// ====== Sizes and Spacing ======
+$container-width: 1620px;
+$btn-padding: 0.75rem 1.5rem;
+$btn-font-size: 1rem;
+$btn-border-radius: 5px;
+
+// ====== Borders and Transitions ======
+$btn-border: 1px solid #ccc;
+$btn-transition-bg: background-color 0.3s ease;

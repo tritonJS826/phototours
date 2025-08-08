@@ -54,3 +54,4 @@ preventUncommitedChanges
 
 # integration and module tests
 runWebappIfChanged
+runGeneralIfChanged

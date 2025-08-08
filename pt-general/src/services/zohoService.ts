@@ -1,4 +1,5 @@
 import {env} from 'src/config/env';
+
 export interface ZohoConfig {
   clientId: string;
   clientSecret: string;
@@ -37,7 +38,6 @@ export class ZohoService {
       access_type: 'offline',
       prompt: 'consent',
     });
-
     return `https://accounts.zoho.eu/oauth/v2/auth?${params.toString()}`;
   }
 
@@ -68,17 +68,19 @@ export class ZohoService {
 
   public async refreshAccessToken(): Promise<string> {
     if (!this.refreshToken) {
-      throw new Error('No refresh token available');
+      throw new Error("No refresh token available");
     }
 
-    const response = await fetch('https://accounts.zoho.eu/oauth/v2/token', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    const response = await fetch("https://accounts.zoho.eu/oauth/v2/token", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
       body: new URLSearchParams({
         refresh_token: this.refreshToken,
         client_id: this.config.clientId,
         client_secret: this.config.clientSecret,
-        grant_type: 'refresh_token',
+        grant_type: "refresh_token",
       }),
     });
 
@@ -122,7 +124,7 @@ export class ZohoService {
     }
 
     const data = await response.json();
-    console.log(' Zoho API response:', JSON.stringify(data, null, 2));
+    console.log(" Zoho API response:", JSON.stringify(data, null, 2));
 
     return data;
   }
@@ -132,6 +134,7 @@ export class ZohoService {
 
     console.log('Creating lead with data:', JSON.stringify(leadData, null, 2));
     console.log('Using token:', token.substring(0, 20) + '...');
+
 
     let requestBody;
     if (leadData.data && Array.isArray(leadData.data)) {
@@ -164,7 +167,7 @@ export class ZohoService {
     }
 
     const data = await response.json();
-    console.log('Zoho API response:', JSON.stringify(data, null, 2));
+    console.log("Zoho API response:", JSON.stringify(data, null, 2));
 
     return data;
   }
@@ -176,7 +179,7 @@ export class ZohoService {
 
   public saveRefreshToken(refreshToken: string): void {
     this.refreshToken = refreshToken;
-    console.log('Refresh token saved for future use');
+    console.log("Refresh token saved for future use");
   }
 
   private async getValidAccessToken(): Promise<string> {
@@ -189,19 +192,8 @@ export class ZohoService {
       throw new Error('No access token available. Please authenticate first.');
     }
 
-    return this.accessToken;
-  }
-
-  public setTokens(accessToken: string, refreshToken: string): void {
-    this.accessToken = accessToken;
-    this.refreshToken = refreshToken;
-  }
-
-  public saveRefreshToken(refreshToken: string): void {
-    this.refreshToken = refreshToken;
-    console.log('Refresh token saved for future use');
-  }
-
+return this.accessToken;
+}
 }
 
 export function createZohoService(): ZohoService {
