@@ -5,9 +5,11 @@ dotenv.config();
 
 export const env = cleanEnv(process.env, {
   DATABASE_URL: url(),
+
   SERVER_PORT: port({default: 8000}),
   ENV_TYPE: str({choices: ['dev', 'prod'], default: 'dev'}),
   WEBAPP_DOMAIN: str({default: 'localhost'}),
+
 
   // JWT Configuration
   JWT_SECRET: str(),
