@@ -91,8 +91,6 @@ export const register = async (req: Request, res: Response) => {
         message: 'Password must contain at least 6 characters',
       });
     }
-
-    // Check email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({
