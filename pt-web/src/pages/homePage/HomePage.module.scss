@@ -1,2 +1,11 @@
 @use "../../styles/mixins" as mixin;
 @use "../../styles/variables" as vars;
+
+.homePage {
+  width: 100%;
+  height: 900px;
+  background-image: url("src/pages/homePage/assets/wide-hero.avif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
