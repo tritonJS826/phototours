@@ -8,19 +8,19 @@ import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
 const CODE_500 = 500;
-const CODE_400 = 200;
+const CODE_400 = 400;
+const CODE_204 = 204;
 
 const app: Express = express();
 app.use(express.json());
 const port = env.SERVER_PORT;
 
 app.use((req, res, next) => {
-
   res.header('Access-Control-Allow-Origin', `http://${env.WEBAPP_DOMAIN}:${env.ORIGIN_PORT}`);
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   if (req.method === 'OPTIONS') {
-    res.sendStatus(CODE_400);
+    res.sendStatus(CODE_204);
   } else {
     next();
   }
@@ -293,8 +293,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/api/tours', tourRoutes);
-app.use('/api/users',
+app.use('/general/tours', tourRoutes);
+app.use('/general/users',
   userRoutes);
 
 app.listen(port, () => {

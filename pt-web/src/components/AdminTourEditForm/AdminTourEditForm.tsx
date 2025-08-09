@@ -64,7 +64,7 @@ export const AdminTourEdit = () => {
 
     const fetchTour = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/tours/${id}`);
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}`);
         if (!res.ok) {
           throw new Error(`Failed to fetch tour with id ${id}`);
         }
@@ -147,7 +147,7 @@ export const AdminTourEdit = () => {
     materialFormData.append("type", formData.materials[index].type);
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/tours/${id}/materials`, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/materials`, {
         method: "PATCH",
         body: materialFormData,
       });
@@ -172,7 +172,7 @@ export const AdminTourEdit = () => {
 
     try {
       // Update main tour info
-      const resUpdate = await fetch(`${import.meta.env.VITE_API_URL}/tours/${id}`, {
+      const resUpdate = await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}`, {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
@@ -193,7 +193,7 @@ export const AdminTourEdit = () => {
       // Tags
       const tags = formData.tags.split(",").map(t => t.trim()).filter(Boolean);
       if (tags.length) {
-        await fetch(`${import.meta.env.VITE_API_URL}/tours/${id}/tags`, {
+        await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/tags`, {
           method: "PATCH",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify({tags}),
@@ -203,7 +203,7 @@ export const AdminTourEdit = () => {
       // Dates
       const dates = formData.dates.split(",").map(d => d.trim()).filter(Boolean);
       if (dates.length) {
-        await fetch(`${import.meta.env.VITE_API_URL}/tours/${id}/dates`, {
+        await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/dates`, {
           method: "PATCH",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify({dates}),
@@ -216,7 +216,7 @@ export const AdminTourEdit = () => {
           const photoForm = new FormData();
           photoForm.append("file", file);
 
-          return fetch(`${import.meta.env.VITE_API_URL}/tours/${id}/photos`, {
+          return fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/photos`, {
             method: "PATCH",
             body: photoForm,
           });
@@ -229,7 +229,7 @@ export const AdminTourEdit = () => {
           const videoForm = new FormData();
           videoForm.append("file", file);
 
-          return fetch(`${import.meta.env.VITE_API_URL}/tours/${id}/videos`, {
+          return fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/videos`, {
             method: "PATCH",
             body: videoForm,
           });

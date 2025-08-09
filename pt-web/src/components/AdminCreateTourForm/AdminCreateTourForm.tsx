@@ -28,7 +28,7 @@ export const AdminCreateTourForm = () => {
     setError("");
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/tours`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({

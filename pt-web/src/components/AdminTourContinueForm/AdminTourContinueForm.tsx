@@ -45,7 +45,7 @@ export const AdminTourContinueForm = () => {
         .filter(Boolean);
 
       if (tags.length) {
-        await fetch(`${import.meta.env.VITE_API_URL}/tours/${id}/tags`, {
+        await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/tags`, {
           method: "PATCH",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify({tags}),
@@ -60,7 +60,7 @@ export const AdminTourContinueForm = () => {
         .map(date => ({date}));
 
       if (dates.length) {
-        await fetch(`${import.meta.env.VITE_API_URL}/tours/${id}/dates`, {
+        await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/dates`, {
           method: "PATCH",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify({dates}),
@@ -73,7 +73,7 @@ export const AdminTourContinueForm = () => {
           const form = new FormData();
           form.append("file", file);
 
-          return fetch(`${import.meta.env.VITE_API_URL}/tours/${id}/photos`, {
+          return fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/photos`, {
             method: "PATCH",
             body: form,
           });
@@ -86,7 +86,7 @@ export const AdminTourContinueForm = () => {
           const form = new FormData();
           form.append("file", file);
 
-          return fetch(`${import.meta.env.VITE_API_URL}/tours/${id}/videos`, {
+          return fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/videos`, {
             method: "PATCH",
             body: form,
           });
