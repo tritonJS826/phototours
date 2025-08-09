@@ -1,0 +1,22 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: pt-web/Dockerfile
+    ports:
+      - "5173:80"
+    restart: always
+    depends_on: [backend]
+    networks: [appnet]
+
+  backend:
+    build:
+      context: .
+      dockerfile: pt-general/Dockerfile
+    ports:
+      - "8000:8000"
+    restart: always
+    networks: [appnet]
+
+networks:
+  appnet:
