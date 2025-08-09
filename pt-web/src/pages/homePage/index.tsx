@@ -1,37 +1,45 @@
-import {useEffect} from "react";
+
+// Import {useEffect} from "react";
 import {Button} from "src/components/Button/Button";
 import {Container} from "src/components/Container/Container";
 import {Footer} from "src/components/Footer/Footer";
 import {Header} from "src/components/Header/Header";
+// Import {useEffect} from "react";
+import {HeroSection} from "src/components/HeroSection/HeroSection";
 import {PATHS} from "src/constants/routes";
-import {useUsers} from "src/hooks/useUsers";
+// Import {useUsers} from "src/hooks/useUsers";
+// Import {useUsers} from "src/hooks/useUsers";
 import styles from "src/pages/homePage/HomePage.module.scss";
 
 export function HomePage() {
-  const {createUser, loading, error} = useUsers();
+  // Const {createUser, loading, error} = useUsers();
 
-  // Demo: Test the hook on component mount
-  useEffect(() => {
-    const testUserData = {
-      firstName: "Demo",
-      lastName: "User",
-      email: `demo.user.${Date.now()}@example.com`,
-      phone: "+1234567890",
-    };
+  // // Demo: Test the hook on component mount
+  // useEffect(() => {
+  //   const testUserData = {
+  //     firstName: "Demo",
+  //     lastName: "User",
+  //     email: `demo.user.${Date.now()}@example.com`,
+  //     phone: "+1234567890",
+  //   };
 
-    const testHook = async () => {
-      await createUser(testUserData);
-    };
+  //   const testHook = async () => {
+  //     await createUser(testUserData);
+  //   };
 
-    testHook();
-  }, []); // Убрал createUser из зависимостей
+  //   testHook();
+  // }, []); // Убрал createUser из зависимостей
 
   return (
 
     <>
       <Header />
       <Container>
-        <div className={styles.content}>
+        <div className={styles.homePage}>
+          <HeroSection />
+        </div>
+
+        {/* <div className={styles.content}>
           <h1>
             Главная страница
           </h1>
@@ -46,7 +54,7 @@ export function HomePage() {
               {error}
             </p>
           )}
-        </div>
+        </div> */}
         <Button href={PATHS.ADMIN_CREATE_TOUR}>
           Create Tour
         </Button>
