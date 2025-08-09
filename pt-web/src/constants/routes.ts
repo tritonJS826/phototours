@@ -9,4 +9,7 @@ export const PATHS = {
   ARTICLES: "/articles",
   PROFILE: "/profile",
   NOT_FOUND: "*",
+  ADMIN_CREATE_TOUR: "/admin/tours",
+  ADMIN_EDIT_TOUR: "/admin/tours/:id",
+  ADMIN_TOUR_CONTINUE: "/admin/tour/:id/continue",
 };

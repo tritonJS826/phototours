@@ -27,4 +27,4 @@ tourRoutes.patch('/:id/tags', updateTourTags);
 tourRoutes.patch('/:id/dates', addTourDates);
 tourRoutes.patch('/:id/photos', upload.single('file'), addTourPhotos);
 tourRoutes.patch('/:id/videos', upload.single('file'), addTourVideos);
-tourRoutes.patch('/:id/materials', addTourMaterials);
+tourRoutes.patch('/:id/materials', upload.single('file'), addTourMaterials);

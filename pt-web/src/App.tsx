@@ -1,4 +1,7 @@
 import {Route, Routes} from "react-router-dom";
+import {AdminCreateTourForm} from "src/components/AdminCreateTourForm/AdminCreateTourForm";
+import {AdminTourContinueForm} from "src/components/AdminTourContinueForm/AdminTourContinueForm";
+import {AdminTourEdit} from "src/components/AdminTourEditForm/AdminTourEditForm";
 import {Footer} from "src/components/Footer/Footer";
 import {Header} from "src/components/Header/Header";
 import {PATHS} from "src/constants/routes";
@@ -57,6 +60,18 @@ export function App() {
         <Route
           path={PATHS.NOT_FOUND}
           element={<NotFound />}
+        />
+        <Route
+          path={PATHS.ADMIN_CREATE_TOUR}
+          element={<AdminCreateTourForm />}
+        />
+        <Route
+          path={PATHS.ADMIN_EDIT_TOUR}
+          element={<AdminTourEdit />}
+        />
+        <Route
+          path={PATHS.ADMIN_TOUR_CONTINUE}
+          element={<AdminTourContinueForm />}
         />
       </Routes>
       <Footer />
