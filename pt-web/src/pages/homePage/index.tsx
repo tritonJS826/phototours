@@ -55,6 +55,8 @@ export function HomePage() {
             </p>
           )}
         </div> */}
+
+        // These two buttons are a temporary solution, implemented just for demonstration purposes.
         <Button href={PATHS.ADMIN_CREATE_TOUR}>
           Create Tour
         </Button>
