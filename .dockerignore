@@ -1,0 +1,22 @@
+# Node
+node_modules
+**/node_modules
+npm-debug.log
+*.log
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Git & IDE
+.git
+.gitignore
+.vscode
+.idea
+.DS_Store
+
+# Artifacts
+dist
+build
+coverage
