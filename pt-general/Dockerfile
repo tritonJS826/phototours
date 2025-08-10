@@ -4,20 +4,19 @@ WORKDIR /app
 RUN corepack enable && corepack prepare pnpm@9.8.0 --activate
 
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
-COPY pt-web/package.json pt-web/package.json
 COPY pt-general/package.json pt-general/package.json
 
 RUN pnpm install --filter pt-general --frozen-lockfile
 
-COPY . .
+COPY pt-general ./pt-general
 
 ENV NODE_ENV=production
 ENV PORT=8000
+
 EXPOSE 8000
 
 RUN pnpm --filter pt-general prisma:generate
 
 RUN pnpm --filter pt-general build
-
 
 CMD ["pnpm", "--filter", "pt-general", "start"]

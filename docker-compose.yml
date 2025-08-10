@@ -1,22 +1,80 @@
+networks:
+  appnet:
+    driver: bridge
+
+volumes:
+  postgres-general-data:
+  grafana-data:
+
 services:
-  frontend:
+  postgres-general:
     build:
       context: .
-      dockerfile: pt-web/Dockerfile
-    ports:
-      - "5173:80"
-    restart: always
-    depends_on: [backend]
+      dockerfile: postgres/postgres-general.Dockerfile
+    container_name: postgres-general
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: masterway_db
+    volumes:
+      - postgres-general-data:/var/lib/postgresql/data
+    expose:
+      - "5432"
     networks: [appnet]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
 
-  backend:
+  pt-general:
     build:
       context: .
       dockerfile: pt-general/Dockerfile
+    container_name: pt-general
+    restart: unless-stopped
+    depends_on:
+      postgres-general:
+        condition: service_healthy
+    env_file:
+      - ./pt-general/.env
+   #expose:
+    #  - "8000"
     ports:
-      - "8000:8000"
-    restart: always
+      - "127.0.0.1:8000:8000"
     networks: [appnet]
 
-networks:
-  appnet:
+  pt-web:
+    build:
+      context: .
+      dockerfile: ./pt-web/Dockerfile
+    container_name: pt-web
+    restart: unless-stopped
+    depends_on:
+      pt-general:
+        condition: service_started
+   #expose:
+    #  - "1574"
+    ports:
+      - "127.0.0.1:1574:1574"
+    networks: [appnet]
+
+  grafana:
+    build:
+      context: ./grafana
+      dockerfile: Dockerfile
+    container_name: grafana
+    restart: unless-stopped
+    user: "472"
+   # . Если надо временно посмотреть — раскомментируй и используй SSH-туннель.
+    # ports:
+    #   - "127.0.0.1:3000:3000"
+
+    env_file:
+      - ./grafana/.env
+    environment:
+      GF_SERVER_HTTP_ADDR: 127.0.0.1
+    volumes:
+      - grafana-data:/var/lib/grafana
+    networks: [appnet]
