@@ -4,13 +4,15 @@ import {AdminTourContinueForm} from "src/components/AdminTourContinueForm/AdminT
 import {AdminTourEdit} from "src/components/AdminTourEditForm/AdminTourEditForm";
 import {Footer} from "src/components/Footer/Footer";
 import {Header} from "src/components/Header/Header";
+import {ScrollToTop} from "src/components/ScrollToTop/ScrollToTop";
 import {PATHS} from "src/constants/routes";
 import {AboutUs} from "src/pages/aboutUs";
 import {AdminPage} from "src/pages/adminPage";
 import {BookTours} from "src/pages/bookTours";
 import {Cart} from "src/pages/cart";
 import {ContactUs} from "src/pages/contactUs";
-import {ExploreArticles} from "src/pages/exploreArticles";
+import {ArticlePage} from "src/pages/exploreArticles/ArticlePage";
+import {ExploreArticles} from "src/pages/exploreArticles/ExploreArticles";
 import {HomePage} from "src/pages/homePage";
 import {NotFound} from "src/pages/notFound";
 import {Profile} from "src/pages/profile";
@@ -18,8 +20,10 @@ import {TourPage} from "src/pages/tourPage";
 
 export function App() {
   return (
-    <div>
+    <>
       <Header />
+      <ScrollToTop />
+      {" "}
       <Routes>
         <Route
           path={PATHS.HOME}
@@ -54,6 +58,10 @@ export function App() {
           element={<ExploreArticles />}
         />
         <Route
+          path={PATHS.ARTICLES_SLUG}
+          element={<ArticlePage />}
+        />
+        <Route
           path={PATHS.PROFILE}
           element={<Profile />}
         />
@@ -75,6 +83,6 @@ export function App() {
         />
       </Routes>
       <Footer />
-    </div>
+    </>
   );
 }

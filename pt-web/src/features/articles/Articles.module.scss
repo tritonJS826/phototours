@@ -1,0 +1,94 @@
+@use "../../styles/mixins" as mixin;
+@use "../../styles/variables" as vars;
+
+.card {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-top: 40px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 8%);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgb(0 0 0 / 12%);
+  }
+
+  .cardLink {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+  }
+
+  .cardImg {
+    margin: 20px 0 20px 20px;
+    display: block;
+    height: auto;
+    border-bottom: 1px solid #eee;
+    border-radius: 16px;
+  }
+
+  .cardTitle {
+    font-size: 42px;
+    font-weight: 600;
+    padding: 15px 20px 5px;
+  }
+
+  .cardExcerpt {
+    font-size: 20px;
+    line-height: 1.5;
+    padding: 0 20px 20px;
+    color: #555;
+  }
+
+  button {
+    margin: 20px;
+    padding: 10px 50px;
+    font-size: 18px;
+    border-radius: 20px;
+    background-color: transparent;
+    border: 2px solid currentcolor;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #84c489;
+      color: #fff;
+    }
+  }
+}
+
+.full {
+  width: 100%;
+  padding-top: 60px;
+
+  .fullPict {
+    display: flex;
+    justify-content: center;
+
+    .fullImg {
+      border-radius: 16px;
+    }
+  }
+
+  .fullText {
+    padding: 60px 0;
+
+    .fullTitle {
+      padding-bottom: 20px;
+      font-size: 42px;
+      text-align: center;
+    }
+
+    .fullBody {
+      font-size: 20px;
+    }
+  }
+}
