@@ -2,24 +2,31 @@
 FROM node:22.7.0-alpine AS build
 WORKDIR /app
 
+# pnpm
 RUN corepack enable && corepack prepare pnpm@9.8.0 --activate
 
+# workspace deps (корневые)
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
+# пакет фронта
 COPY pt-web/package.json pt-web/package.json
 
+# ставим зависимости только pt-web (workspace aware)
 RUN pnpm install --filter pt-web --frozen-lockfile
 
+# исходники pt-web
 COPY pt-web ./pt-web
 
-RUN pnpm --filter pt-web build  # создаст pt-web/build
+# сборка фронта (Vite создаст pt-web/build)
+RUN pnpm --filter pt-web build
 
 # ---------- runtime ----------
-FROM nginx:alpine AS runner
+FROM nginx:1.27-alpine AS runner
 
-COPY pt-web/nginx.conf /etc/nginx/conf.d/default.conf
-
+# кладем собранную статику в стандартную папку nginx
 COPY --from=build /app/pt-web/build/ /usr/share/nginx/html/
 
-EXPOSE 1574
+# конфиг: только статика + SPA
+COPY pt-web/nginx.conf /etc/nginx/conf.d/default.conf
 
-CMD ["nginx", "-g", "daemon off;", "-c", "/etc/nginx/nginx.conf"]
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
