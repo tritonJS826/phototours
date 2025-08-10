@@ -6,11 +6,11 @@ RUN corepack enable && corepack prepare pnpm@9.8.0 --activate
 
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
 COPY pt-web/package.json pt-web/package.json
-COPY pt-general/package.json pt-general/package.json
 
 RUN pnpm install --filter pt-web --frozen-lockfile
 
-COPY . .
+COPY pt-web ./pt-web
+
 RUN pnpm --filter pt-web build  # создаст pt-web/build
 
 # ---------- runtime ----------
@@ -20,6 +20,6 @@ COPY pt-web/nginx.conf /etc/nginx/conf.d/default.conf
 
 COPY --from=build /app/pt-web/build/ /usr/share/nginx/html/
 
-EXPOSE 80
+EXPOSE 1574
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;", "-c", "/etc/nginx/nginx.conf"]
