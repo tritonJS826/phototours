@@ -4,11 +4,11 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "start": "vite --host 0.0.0.0 --port 5174 ",
-    "dev": "vite --host 0.0.0.0 --port 5174",
+    "start": "vite --host --port 5175",
+    "dev": "vite",
     "build": "vite build",
     "type-check": "tsc --noEmit",
-    "serve": "pnpm build && vite preview --port 5174 --host 0.0.0.0",
+    "serve": "pnpm build && vite preview --port 5175 --host 0.0.0.0",
     "lint-check": "eslint .",
     "lint-fix": "eslint . --fix",
     "lint-staged": "lint-staged",
@@ -20,6 +20,7 @@
   "dependencies": {
     "framer-motion": "12.23.12",
     "lucide-react": "0.536.0",
+    "qrcode.react": "4.2.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-icons": "5.5.0",

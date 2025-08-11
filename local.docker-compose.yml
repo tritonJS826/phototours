@@ -6,21 +6,12 @@ services:
     container_name: postgres-pt-general
     ports:
       - "5432:5432"
-    # we should use .env file
-    # environment:
-    #   POSTGRES_USER: root
-    #   POSTGRES_PASSWORD: secret
-    #   POSTGRES_DB: phototours_db
     volumes:
       - postgres-general:/var/lib/postgresql/data
+    env_file:
+      - ./pt-general/.env
     networks:
       - app-network
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U root -d phototours_db -h localhost"]
-      interval: 5s
-      timeout: 3s
-      retries: 20
-    restart: unless-stopped
 
   # pt-general:
   #   build:
@@ -36,20 +27,15 @@ services:
   #   depends_on:
   #     - postgres-general
 
-  pt-web:
+  grafana:
     build:
       context: .
-      # lets use only one dockerfile for all environments
-      # dockerfile: pt-web/Dockerfile.local
-    container_name: pt-web
-    # we should use .env file
-    # environment:
-    #   - VITE_API_BASE=/api/general 
-    # we must not use volumes for this service
-    # volumes:
-    #   - ./pt-web:/app/pt-web
-    expose:
-      - "5174"
+      dockerfile: ./grafana/Dockerfile
+    container_name: pt-grafana
+    ports:
+      - "9876:3000"
+    env_file:
+      - ./grafana/.env
     networks:
       - app-network
 
@@ -62,32 +48,13 @@ services:
       - ./gateway/local.nginx.conf:/etc/nginx/nginx.conf:ro
     networks:
       - app-network
-    # restart: unless-stopped
-    depends_on:
-      - pt-general
-
-  grafana:
-    image: grafana/grafana:10.4.2
-    container_name: pt-grafana
-#    ports:
-#      - "3000:3000"
-    volumes:
-      - grafana-data:/var/lib/grafana
-      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
-#    environment:
-#      - GF_SERVER_ROOT_URL=/grafana
-#      - GF_SERVER_SERVE_FROM_SUB_PATH=true
-#      - GF_SECURITY_ADMIN_USER=admin
-#      - GF_SECURITY_ADMIN_PASSWORD=admin
-    networks:
-      - app-network
-    # restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
 volumes:
   postgres-general:
-  grafana-data:
+
 
 networks:
   app-network:
     driver: bridge
-
