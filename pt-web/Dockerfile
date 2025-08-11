@@ -38,7 +38,7 @@ WORKDIR /app
 RUN apk add --no-cache bash
 COPY pt-web/package.json .
 COPY pt-web/pnpm-lock.yaml .
-RUN npm i -g pnpm@8.15.2
+RUN npm i -g pnpm@9.8.0
 RUN pnpm install --frozen-lockfile
 COPY pt-web .
 RUN pnpm run build
