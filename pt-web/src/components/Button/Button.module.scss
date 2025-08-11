@@ -3,7 +3,7 @@
 
 .button {
   display: inline-block;
-  padding: var.$btn-padding;
+  padding: var(--padding-m);
   font-size: var.$btn-font-size;
   text-align: center;
   text-decoration: none;
