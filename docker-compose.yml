@@ -40,7 +40,7 @@ services:
     env_file:
       - ./pt-general/.env
     ports:
-      - "127.0.0.1:8000:8000"
+      - "8000:8000"
     networks: [appnet]
 
   pt-web:
