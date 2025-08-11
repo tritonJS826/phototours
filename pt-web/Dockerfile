@@ -28,5 +28,5 @@ COPY --from=build /app/pt-web/build/ /usr/share/nginx/html/
 # конфиг: только статика + SPA
 COPY pt-web/nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 5174
+EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
