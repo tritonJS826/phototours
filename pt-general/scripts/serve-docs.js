@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import process from 'process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,7 +23,7 @@ app.get('/health', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`📚 Documentation server running at http://localhost:${PORT}`);
-  console.log(`📖 Open http://localhost:${PORT} in your browser`);
-  console.log(`🏥 Health check: http://localhost:${PORT}/health`);
+  // console.log(`📚 Documentation server running at http://localhost:${PORT}`);
+  // console.log(`📖 Open http://localhost:${PORT} in your browser`);
+  // console.log(`🏥 Health check: http://localhost:${PORT}/health`);
 }); 

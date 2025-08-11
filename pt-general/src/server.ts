@@ -8,6 +8,8 @@ import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
 const CODE_500 = 500;
+const CODE_400 = 400;
+const CODE_204 = 204;
 
 const app: Express = express();
 app.use(express.json());
@@ -18,7 +20,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   if (req.method === 'OPTIONS') {
-    res.sendStatus(200);
+    res.sendStatus(CODE_204);
   } else {
     next();
   }
@@ -137,11 +139,12 @@ app.post('/users', async (req: Request, res: Response) => {
     });
 
     // Создаем лид в Zoho CRM
+    const NAME_SLICE_INDEX = 1;
     try {
       const zohoService = createZohoService();
       const leadData = {
         First_Name: name.split(' ')[0] || name,
-        Last_Name: name.split(' ').slice(1).join(' ') || '',
+        Last_Name: name.split(' ').slice(NAME_SLICE_INDEX).join(' ') || '',
         Email: email,
         Phone: phone || '',
         Company: company || '',
@@ -150,9 +153,9 @@ app.post('/users', async (req: Request, res: Response) => {
       };
 
       const leadResult = await zohoService.createLead(leadData);
-      console.log('✅ Lead created in Zoho CRM:', leadResult);
-    } catch (zohoError) {
-      console.error('❌ Error creating lead in Zoho:', zohoError);
+      res.json({message: 'Lead created in Zoho CRM', leadResult});
+    } catch {
+      res.status(CODE_500).json({error: 'Error creating lead in Zoho'});
       // Не прерываем регистрацию, если Zoho недоступен
     }
 
@@ -161,8 +164,8 @@ app.post('/users', async (req: Request, res: Response) => {
       user,
       message: 'User registered successfully',
     });
-  } catch (error) {
-    console.error('❌ Error registering user:', error);
+  } catch {
+
     res.status(CODE_500).json({error: 'Failed to register user'});
   }
 });
@@ -173,9 +176,8 @@ app.get('/auth/zoho', (req: Request, res: Response) => {
     const zohoService = createZohoService();
     const authUrl = zohoService.getAuthUrl();
     res.json({authUrl});
-  } catch (error) {
-    console.error('Error generating auth URL:', error);
-    res.status(500).json({error: 'Failed to generate auth URL'});
+  } catch {
+    res.status(CODE_500).json({error: 'Failed to generate auth URL'});
   }
 });
 
@@ -184,17 +186,17 @@ app.get('/auth/zoho/callback', async (req: Request, res: Response) => {
     const {code} = req.query;
 
     if (!code || typeof code !== 'string') {
-      return res.status(400).json({error: 'Authorization code is required'});
+      return res.status(CODE_400).json({error: 'Authorization code is required'});
     }
 
     const zohoService = createZohoService();
     const tokens = await zohoService.exchangeCodeForTokens(code);
 
     // В реальном приложении здесь нужно сохранить токены в БД
-    console.log('✅ Zoho tokens received:', {
-      access_token: tokens.access_token.substring(0, 20) + '...',
-      refresh_token: tokens.refresh_token.substring(0, 20) + '...',
-    });
+    // console.log('✅ Zoho tokens received:', {
+    //   access_token: tokens.access_token.substring(0, 20) + '...',
+    //   refresh_token: tokens.refresh_token.substring(0, 20) + '...',
+    // });
 
     res.json({
       success: true,
@@ -205,9 +207,9 @@ app.get('/auth/zoho/callback', async (req: Request, res: Response) => {
         expires_in: tokens.expires_in,
       },
     });
-  } catch (error) {
-    console.error('Error exchanging code for tokens:', error);
-    res.status(500).json({error: 'Failed to authenticate with Zoho'});
+  } catch {
+
+    res.status(CODE_500).json({error: 'Failed to authenticate with Zoho'});
   }
 });
 
@@ -217,7 +219,7 @@ app.post('/auth/zoho/exchange', async (req: Request, res: Response) => {
     const {code} = req.body;
 
     if (!code) {
-      return res.status(400).json({error: 'Authorization code is required'});
+      return res.status(CODE_400).json({error: 'Authorization code is required'});
     }
 
     const zohoService = createZohoService();
@@ -228,11 +230,11 @@ app.post('/auth/zoho/exchange', async (req: Request, res: Response) => {
       zohoService.saveRefreshToken(tokens.refresh_token);
     }
 
-    console.log('�� Full Zoho response:', JSON.stringify(tokens, null, 2));
-    console.log('✅ Zoho tokens received:', {
-      access_token: tokens.access_token ? tokens.access_token.substring(0, 20) + '...' : 'undefined',
-      refresh_token: tokens.refresh_token ? tokens.refresh_token.substring(0, 20) + '...' : 'undefined',
-    });
+    // Console.log('�� Full Zoho response:', JSON.stringify(tokens, null, 2));
+    // console.log('✅ Zoho tokens received:', {
+    //   access_token: tokens.access_token ? tokens.access_token.substring(0, 20) + '...' : 'undefined',
+    //   refresh_token: tokens.refresh_token ? tokens.refresh_token.substring(0, 20) + '...' : 'undefined',
+    // });
 
     res.json({
       success: true,
@@ -243,9 +245,8 @@ app.post('/auth/zoho/exchange', async (req: Request, res: Response) => {
         expires_in: tokens.expires_in,
       },
     });
-  } catch (error) {
-    console.error('Error exchanging code for tokens:', error);
-    res.status(500).json({error: 'Failed to authenticate with Zoho'});
+  } catch {
+    res.status(CODE_500).json({error: 'Failed to authenticate with Zoho'});
   }
 });
 
@@ -254,9 +255,8 @@ app.get('/api/zoho/org', async (req: Request, res: Response) => {
     const zohoService = createZohoService();
     const orgInfo = await zohoService.getOrganizationInfo();
     res.json(orgInfo);
-  } catch (error) {
-    console.error('Error getting organization info:', error);
-    res.status(500).json({error: 'Failed to get organization info'});
+  } catch {
+    res.status(CODE_500).json({error: 'Failed to get organization info'});
   }
 });
 
@@ -271,9 +271,9 @@ app.get('/api/zoho/test', async (req: Request, res: Response) => {
     };
     const result = await zohoService.createLead(testLead);
     res.json(result);
-  } catch (error) {
-    console.error('Error creating test lead:', error);
-    res.status(500).json({error: 'Failed to create test lead'});
+  } catch {
+
+    res.status(CODE_500).json({error: 'Failed to create test lead'});
   }
 });
 
@@ -283,9 +283,9 @@ app.post('/api/zoho/leads', async (req: Request, res: Response) => {
     const zohoService = createZohoService();
     const result = await zohoService.createLead(leadData);
     res.json(result);
-  } catch (error) {
-    console.error('Error creating lead:', error);
-    res.status(500).json({error: 'Failed to create lead'});
+  } catch {
+
+    res.status(CODE_500).json({error: 'Failed to create lead'});
   }
 });
 
@@ -293,8 +293,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/api/tours', tourRoutes);
-app.use('/api/users',
+app.use('/general/tours', tourRoutes);
+app.use('/general/users',
   userRoutes);
 
 app.listen(port, () => {

@@ -7,6 +7,10 @@ export const PATHS = {
   CART: "/cart",
   CONTACT: "/contact",
   ARTICLES: "/articles",
+  ARTICLES_SLUG: "/articles/:slug",
   PROFILE: "/profile",
   NOT_FOUND: "*",
+  ADMIN_CREATE_TOUR: "/admin/tours",
+  ADMIN_EDIT_TOUR: "/admin/tours/:id",
+  ADMIN_TOUR_CONTINUE: "/admin/tour/:id/continue",
 };
