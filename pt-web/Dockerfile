@@ -36,11 +36,11 @@
 FROM node:22.5.1-alpine AS build
 WORKDIR /app
 RUN apk add --no-cache bash
-COPY pt-webapp/package.json .
-COPY pt-webapp/pnpm-lock.yaml .
+COPY pt-web/package.json .
+COPY pt-web/pnpm-lock.yaml .
 RUN npm i -g pnpm@8.15.2
 RUN pnpm install --frozen-lockfile
-COPY pt-webapp .
+COPY pt-web .
 RUN pnpm run build
 
 # Stage 2: production
