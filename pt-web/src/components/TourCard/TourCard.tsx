@@ -30,7 +30,7 @@ export function TourCard({image, title, location, price}: TourCardProps) {
           variant="green"
           className={styles.button}
         >
-          Узнать подробнее
+          See more
         </Button>
       </div>
     </div>

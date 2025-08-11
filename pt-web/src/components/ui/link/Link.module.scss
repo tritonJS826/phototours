@@ -1,11 +1,10 @@
 .link {
-  color: #07f;
+  color: var(--color-green);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s;
 
   &:hover {
-    color: #005fcc;
     text-decoration: underline;
   }
 }

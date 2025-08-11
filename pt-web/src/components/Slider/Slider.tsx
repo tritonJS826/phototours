@@ -10,22 +10,21 @@ interface Slide {
   buttonText: string;
 }
 
-// Константы для логики слайдера
 const FIRST_SLIDE_INDEX = 0;
 const SLIDE_STEP = 1;
 
 const slides: Slide[] = [
   {
     image: "https://via.placeholder.com/1200x600?text=Tour+1",
-    title: "Туры по всему миру",
-    subtitle: "Откройте для себя новые направления с нами!",
-    buttonText: "Посмотреть все туры",
+    title: "Worldwide Tours",
+    subtitle: "Discover new destinations with us!",
+    buttonText: "View all tours",
   },
   {
     image: "https://via.placeholder.com/1200x600?text=Tour+2",
-    title: "Новые направления",
-    subtitle: "Исследуйте неизведанные уголки планеты!",
-    buttonText: "Узнать больше",
+    title: "New Destinations",
+    subtitle: "Explore the hidden corners of the world!",
+    buttonText: "Learn more",
   },
 ];
 
@@ -33,11 +32,15 @@ export function Slider() {
   const [currentSlide, setCurrentSlide] = useState(FIRST_SLIDE_INDEX);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === slides.length - SLIDE_STEP ? FIRST_SLIDE_INDEX : prev + SLIDE_STEP));
+    setCurrentSlide((prev) =>
+      prev === slides.length - SLIDE_STEP ? FIRST_SLIDE_INDEX : prev + SLIDE_STEP,
+    );
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === FIRST_SLIDE_INDEX ? slides.length - SLIDE_STEP : prev - SLIDE_STEP));
+    setCurrentSlide((prev) =>
+      prev === FIRST_SLIDE_INDEX ? slides.length - SLIDE_STEP : prev - SLIDE_STEP,
+    );
   };
 
   return (

@@ -29,7 +29,7 @@ export function BlogCard({image, title, date, excerpt}: BlogCardProps) {
           href="#"
           className={styles.readMore}
         >
-          Читать далее
+          Read more
         </a>
       </div>
     </div>

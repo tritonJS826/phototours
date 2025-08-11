@@ -1,5 +1,5 @@
 import {ButtonHTMLAttributes, memo, ReactNode} from "react";
-import {classNames} from "src/utils/classNames";
+import clsx from "clsx";
 // eslint-disable-next-line no-restricted-imports
 import cls from "./Button.module.scss";
 
@@ -9,8 +9,8 @@ import cls from "./Button.module.scss";
 export type ButtonVariant = "green" | "outline" | "grey";
 
 /**
- * Size options only for green buttons
- * If not green, leave blockSize undefined
+ * Size options only for green buttons.
+ * If not green, leave blockSize undefined.
  */
 export type ButtonBlockSize = "bigGreen" | "smallGreen" | undefined;
 
@@ -19,7 +19,6 @@ export type ButtonBlockSize = "bigGreen" | "smallGreen" | undefined;
  * - `variant`: visual style of the button
  * - `blockSize`: size for green variant only
  * - `square`: square shape (optional)
- * - `disabled`: disables the button (optional)
  * - `children`: button content
  */
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -45,16 +44,16 @@ export const Button = memo((props: ButtonProps) => {
     ...otherProps
   } = props;
 
-  const mods: Record<string, boolean> = {
-    [cls[variant]]: true,
-    [cls[`size_${blockSize}`]]: !!blockSize && variant === "green",
-    [cls.square]: square,
-  };
-
   return (
     <button
       type="button"
-      className={classNames(cls.Button, mods, className ? [className] : [])}
+      className={clsx(
+        cls.Button,
+        cls[variant],
+        blockSize && variant === "green" && cls[`size_${blockSize}`],
+        square && cls.square,
+        className,
+      )}
       {...otherProps}
     >
       {children}
