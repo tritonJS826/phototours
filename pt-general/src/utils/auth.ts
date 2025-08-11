@@ -9,9 +9,7 @@ export interface JWTPayload {
 }
 
 export const hashPassword = async (password: string): Promise<string> => {
-  const saltRounds = 12;
-
-  return bcrypt.hash(password, saltRounds);
+  return bcrypt.hash(password, env.SALT_ROUNDS);
 };
 
 export const comparePassword = async (password: string, hashedPassword: string): Promise<boolean> => {

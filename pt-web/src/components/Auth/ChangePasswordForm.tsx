@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import {useAuth} from "../../hooks/useAuth";
-import {ChangePasswordData} from "../../types/auth";
-import styles from "./Auth.module.scss";
+import {useAuth} from "src/hooks/useAuth";
+import {ChangePasswordData} from "src/types/auth";
+import styles from "src/components/Auth/Auth.module.scss";
 
 interface ChangePasswordFormProps {
   onSuccess?: () => void;

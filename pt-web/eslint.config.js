@@ -91,7 +91,7 @@ export default [
         },
       ],
       "no-duplicate-imports": "error",
-      "no-restricted-imports": "off",
+      "no-restricted-imports": ["error", { patterns: [".*"] }],
 
       // Exports
       "no-restricted-exports": [

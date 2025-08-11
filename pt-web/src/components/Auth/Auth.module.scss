@@ -1,11 +1,17 @@
 .modalOverlay {
   position: fixed;
   inset: 0;
-  background-color: rgb(0 0 0 / 50%);
+  background: linear-gradient(
+    135deg,
+    rgb(0 0 0 / 60%) 0%,
+    rgb(0 0 0 / 40%) 100%
+  );
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  backdrop-filter: blur(8px);
+  animation: fade-in 0.3s ease-out;
 }
 
 .modalContent {
@@ -14,9 +20,34 @@
   width: 90%;
   max-height: 90vh;
   overflow-y: auto;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  border-radius: 20px;
+  box-shadow: 0 25px 50px rgb(0 0 0 / 15%);
+  border: 1px solid rgb(0 0 0 / 5%);
+  animation: slide-in 0.3s ease-out;
+  transform-origin: center;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .authContainer {
@@ -56,17 +87,33 @@
 
 .closeButton {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 1px solid rgb(0 0 0 / 10%);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   font-size: 1.5rem;
   cursor: pointer;
-  color: #666;
+  color: #6c757d;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
 
   &:hover {
-    color: #333;
+    color: #dc3545;
+    background: linear-gradient(135deg, #fff5f5 0%, #ffe6e6 100%);
+    border-color: #dc3545;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgb(220 53 69 / 20%);
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 }
 
@@ -213,68 +260,149 @@
   }
 
   .profileContainer {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 2rem;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 3rem;
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgb(0 0 0 / 8%);
+    border: 1px solid rgb(0 0 0 / 5%);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #007bff, #0056b3, #28a745);
+    }
 
     h2 {
       text-align: center;
-      margin-bottom: 2rem;
-      color: #333;
-      font-size: 1.5rem;
+      margin-bottom: 3rem;
+      color: #2c3e50;
+      font-size: 2.5rem;
+      font-weight: 700;
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, #007bff, #0056b3);
+        border-radius: 2px;
+      }
     }
 
     .profileInfo {
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgb(0 0 0 / 5%);
+      border: 1px solid rgb(0 0 0 / 3%);
 
       .profileField {
         display: flex;
-        margin-bottom: 1rem;
-        padding: 0.75rem;
-        border-bottom: 1px solid #eee;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding: 1rem 1.5rem;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+        border: 1px solid rgb(0 0 0 / 5%);
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgb(0 0 0 / 8%);
+          border-color: #007bff;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
 
         label {
           font-weight: 600;
-          color: #555;
-          min-width: 150px;
-          margin-right: 1rem;
+          color: #495057;
+          min-width: 180px;
+          margin-right: 1.5rem;
+          font-size: 0.95rem;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
         }
 
         span {
-          color: #333;
+          color: #2c3e50;
           flex: 1;
+          font-size: 1.1rem;
+          font-weight: 500;
         }
       }
     }
 
     .profileActions {
       display: flex;
-      gap: 1rem;
+      gap: 1.5rem;
       justify-content: center;
+      flex-wrap: wrap;
 
       .actionButton {
-        padding: 0.75rem 1.5rem;
+        padding: 1rem 2rem;
         border: none;
-        border-radius: 4px;
+        border-radius: 12px;
         font-size: 1rem;
-        font-weight: 500;
+        font-weight: 600;
         cursor: pointer;
-        transition: background-color 0.2s;
-        background-color: #007bff;
+        transition: all 0.3s ease;
+        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
         color: white;
+        box-shadow: 0 8px 20px rgb(0 123 255 / 30%);
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgb(255 255 255 / 20%),
+            transparent
+          );
+          transition: left 0.5s;
+        }
 
         &:hover {
-          background-color: #0056b3;
+          transform: translateY(-3px);
+          box-shadow: 0 12px 30px rgb(0 123 255 / 40%);
+
+          &::before {
+            left: 100%;
+          }
+        }
+
+        &:active {
+          transform: translateY(-1px);
         }
 
         &.logoutButton {
-          background-color: #dc3545;
+          background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+          box-shadow: 0 8px 20px rgb(220 53 69 / 30%);
 
           &:hover {
-            background-color: #c82333;
+            box-shadow: 0 12px 30px rgb(220 53 69 / 40%);
           }
         }
       }

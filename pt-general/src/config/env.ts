@@ -12,7 +12,10 @@ export const env = cleanEnv(process.env, {
 
   // JWT Configuration
   JWT_SECRET: str(),
-  JWT_EXPIRES_IN: str({default: '7d'}),
+  JWT_EXPIRES_IN: str(),
+  
+  // Password Configuration
+  SALT_ROUNDS: port({default: 12}),
 
   // Zoho API Configuration
   ZOHO_CLIENT_ID: str(),

@@ -1,6 +1,6 @@
 import {useCallback, useEffect, useState} from "react";
-import {authService} from "../services/authService.js";
-import {AuthState, ChangePasswordData, LoginData, RegisterData} from "../types/auth.js";
+import {authService} from "src/services/authService";
+import {AuthState, ChangePasswordData, LoginData, RegisterData} from "src/types/auth";
 
 export const useAuth = () => {
   const [authState, setAuthState] = useState<AuthState>({

@@ -1,9 +1,9 @@
 import {prisma} from 'src/db/prisma.js';
 import {AuthRequest} from 'src/middleware/auth.js';
+import {createZohoService} from 'src/services/zohoService.js';
 import {comparePassword, generateToken, hashPassword} from 'src/utils/auth.js';
 import {logger} from 'src/utils/logger.js';
 import {Request, Response} from 'express';
-import {createZohoService} from 'src/services/zohoService.js';
 
 // HTTP Status Codes
 const HTTP_STATUS_BAD_REQUEST = 400;

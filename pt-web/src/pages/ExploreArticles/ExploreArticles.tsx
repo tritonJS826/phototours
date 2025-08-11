@@ -11,7 +11,8 @@ export function ExploreArticles() {
             <ArticleCard
               key={a.id}
               a={a}
-            />))}
+            />
+          ))}
         </div>
       </Container>
     </main>

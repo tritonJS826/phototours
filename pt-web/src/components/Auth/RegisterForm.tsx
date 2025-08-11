@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import {useAuth} from "../../hooks/useAuth.js";
-import {RegisterData} from "../../types/auth.js";
-import styles from "./Auth.module.scss";
+import {useAuth} from "src/hooks/useAuth";
+import {RegisterData} from "src/types/auth";
+import styles from "src/components/Auth/Auth.module.scss";
 
 interface RegisterFormProps {
   onSuccess?: () => void;
@@ -17,6 +17,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
   hideSwitch = false,
 }) => {
   const {register, isLoading} = useAuth();
+  const SUCCESS_DELAY = 1500;
   const [formData, setFormData] = useState<RegisterData>({
     firstName: "",
     lastName: "",
@@ -25,20 +26,35 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
     phone: "",
   });
   const [error, setError] = useState<string>("");
+  const [success, setSuccess] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = e.target;
     setFormData(prev => ({...prev, [name]: value}));
-    setError(""); // Clear error when field changes
+    // Clear error when field changes
+    setError("");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setSuccess("");
 
     try {
       await register(formData);
-      onSuccess?.();
+      setSuccess("Registration successful! Please log in.");
+
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        phone: "",
+      });
+
+      setTimeout(() => {
+        onSuccess?.();
+      }, SUCCESS_DELAY);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Registration error");
     }
@@ -53,6 +69,9 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
       )}
       {error && <div className={styles.error}>
         {error}
+      </div>}
+      {success && <div className={styles.success}>
+        {success}
       </div>}
 
       <form onSubmit={handleSubmit}>

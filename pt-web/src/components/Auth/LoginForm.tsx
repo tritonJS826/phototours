@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import {useAuth} from "../../hooks/useAuth.js";
-import {LoginData} from "../../types/auth.js";
-import styles from "./Auth.module.scss";
+import {useAuth} from "src/hooks/useAuth";
+import {LoginData} from "src/types/auth";
+import styles from "src/components/Auth/Auth.module.scss";
 
 interface LoginFormProps {
   onSuccess?: () => void;

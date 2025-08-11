@@ -55,9 +55,9 @@ export function Header() {
   const handleAuthSuccess = () => {
     setIsAuthModalOpen(false);
 
-    // Простое решение - перезагружаем страницу
+    // Перенаправляем на профиль пользователя
     setTimeout(() => {
-      window.location.reload();
+      navigate(PATHS.PROFILE);
     }, REFRESH_DELAY);
   };
 
@@ -230,9 +230,9 @@ export function Header() {
                       className={styles.profileMenuItem}
                       onClick={() => {
                         logout();
-                        // Простое решение - перезагружаем страницу
+                        // Перенаправляем на главную страницу
                         setTimeout(() => {
-                          window.location.reload();
+                          navigate(PATHS.HOME);
                         }, REFRESH_DELAY);
                       }}
                     >

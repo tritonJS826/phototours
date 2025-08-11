@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import {useAuth} from "../../hooks/useAuth.js";
-import {ChangePasswordForm} from "./ChangePasswordForm.js";
-import styles from "./Auth.module.scss";
+import {ChangePasswordForm} from "src/components/Auth/ChangePasswordForm";
+import {useAuth} from "src/hooks/useAuth";
+import styles from "src/components/Auth/UserProfile.module.scss";
 
 export const UserProfile: React.FC = () => {
   const {user, logout} = useAuth();

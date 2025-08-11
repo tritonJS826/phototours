@@ -1,7 +1,7 @@
 import {useState} from "react";
-import {LoginForm} from "./LoginForm";
-import {RegisterForm} from "./RegisterForm";
-import styles from "./Auth.module.scss";
+import {LoginForm} from "src/components/Auth/LoginForm";
+import {RegisterForm} from "src/components/Auth/RegisterForm";
+import styles from "src/components/Auth/Auth.module.scss";
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -18,8 +18,14 @@ export function AuthModal({isOpen, onClose, initialMode = "login", onSuccess}: A
   }
 
   const handleSuccess = () => {
-    onSuccess?.();
-    onClose();
+    if (mode === "register") {
+      // После успешной регистрации переключаемся на форму входа
+      setMode("login");
+    } else {
+      // После успешного входа закрываем модальное окно и вызываем onSuccess
+      onSuccess?.();
+      onClose();
+    }
   };
 
   const switchMode = () => {
@@ -58,6 +64,7 @@ export function AuthModal({isOpen, onClose, initialMode = "login", onSuccess}: A
             : (
               <RegisterForm
                 onSuccess={handleSuccess}
+                onSwitchToLogin={() => setMode("login")}
                 hideTitle
                 hideSwitch
               />
