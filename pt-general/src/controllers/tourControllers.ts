@@ -111,7 +111,7 @@ export const deleteTour = async (req: Request, res: Response) => {
 // PATCH /api/tours/:id/categories
 export const updateTourCategories = async (req: Request, res: Response) => {
   try {
-    const {categories} = req.body;
+    const categories = req.body.categories;
     const updatedTour = await prisma.tour.update({
       where: {id: Number(req.params.id)},
       data: {
@@ -131,7 +131,7 @@ export const updateTourCategories = async (req: Request, res: Response) => {
 // PATCH /api/tours/:id/tags
 export const updateTourTags = async (req: Request, res: Response) => {
   try {
-    const {tags} = req.body;
+    const tags = req.body.tags;
     if (!Array.isArray(tags)) {
       return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'Tags must be an array of strings'});
     }
@@ -228,8 +228,9 @@ export const addTourVideos = async (req: Request, res: Response) => {
 
 export const addTourMaterials = async (req: Request, res: Response) => {
   try {
-    const {id} = req.params;
-    const {title, type} = req.body;
+    const id = req.params.id;
+    const title = req.body.title;
+    const type = req.body.type;
     const file = req.file;
     if (!file) {
       return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'File is required'});

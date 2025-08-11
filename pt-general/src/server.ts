@@ -1,8 +1,10 @@
 import {env} from 'src/config/env';
 import {prisma} from 'src/db/prisma';
+import {authRoutes} from 'src/routes/authRoutes';
 import {tourRoutes} from 'src/routes/tourRoutes';
 import {userRoutes} from 'src/routes/userRoutes';
 import {createZohoService} from 'src/services/zohoService';
+import {logger} from 'src/utils/logger.js';
 import express, {Express, Request, Response} from 'express';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
@@ -10,6 +12,7 @@ import swaggerUi from 'swagger-ui-express';
 const CODE_500 = 500;
 const CODE_400 = 400;
 const CODE_204 = 204;
+const NAME_SLICE_INDEX = 1;
 
 const app: Express = express();
 app.use(express.json());
@@ -45,8 +48,17 @@ const swaggerOptions = {
         description: 'Development server',
       },
     ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
   },
-  apis: ['./src/server.ts'], // Path to the API docs
+  apis: ['./src/server.ts', './src/routes/*.ts'], // Path to the API docs
 };
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
@@ -68,13 +80,13 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
  *           text/plain:
  *             schema:
  *               type: string
- *               example: "Express + TypeScript Server"
+ *               example: 'Express + TypeScript Server'
  */
 app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
 });
 
-// Тестовый endpoint для проверки
+// Test endpoint for verification
 app.get('/test', (req: Request, res: Response) => {
   res.json({message: 'Test endpoint works!'});
 });
@@ -127,19 +139,22 @@ app.get('/test', (req: Request, res: Response) => {
 
 app.post('/users', async (req: Request, res: Response) => {
   try {
-    const {email, name, phone, company} = req.body;
+    const email = req.body.email;
+    const name = req.body.name;
+    const phone = req.body.phone;
+    const company = req.body.company;
 
-    // Создаем пользователя в базе данных
+    // Create user in database
     const user = await prisma.user.create({
       data: {
         email,
-        name,
+        firstName: name.split(' ')[0] || name,
+        lastName: name.split(' ').slice(NAME_SLICE_INDEX).join(' ') || '',
         password: 'test',
       },
     });
 
-    // Создаем лид в Zoho CRM
-    const NAME_SLICE_INDEX = 1;
+    // Create lead in Zoho CRM
     try {
       const zohoService = createZohoService();
       const leadData = {
@@ -149,14 +164,14 @@ app.post('/users', async (req: Request, res: Response) => {
         Phone: phone || '',
         Company: company || '',
         Lead_Source: 'PhotoTours Website Registration',
-        Description: `Новый пользователь зарегистрировался через форму на сайте. Email: ${email}`,
+        Description: `New user registered through website form. Email: ${email}`,
       };
 
       const leadResult = await zohoService.createLead(leadData);
       res.json({message: 'Lead created in Zoho CRM', leadResult});
     } catch {
       res.status(CODE_500).json({error: 'Error creating lead in Zoho'});
-      // Не прерываем регистрацию, если Zoho недоступен
+      // Don't interrupt registration if Zoho is unavailable
     }
 
     res.json({
@@ -183,7 +198,7 @@ app.get('/auth/zoho', (req: Request, res: Response) => {
 
 app.get('/auth/zoho/callback', async (req: Request, res: Response) => {
   try {
-    const {code} = req.query;
+    const code = req.query.code;
 
     if (!code || typeof code !== 'string') {
       return res.status(CODE_400).json({error: 'Authorization code is required'});
@@ -192,7 +207,7 @@ app.get('/auth/zoho/callback', async (req: Request, res: Response) => {
     const zohoService = createZohoService();
     const tokens = await zohoService.exchangeCodeForTokens(code);
 
-    // В реальном приложении здесь нужно сохранить токены в БД
+    // In a real application, tokens should be saved to database here
     // console.log('✅ Zoho tokens received:', {
     //   access_token: tokens.access_token.substring(0, 20) + '...',
     //   refresh_token: tokens.refresh_token.substring(0, 20) + '...',
@@ -213,10 +228,10 @@ app.get('/auth/zoho/callback', async (req: Request, res: Response) => {
   }
 });
 
-// Тестовый endpoint для обмена кода на токены
+// Test endpoint for exchanging code for tokens
 app.post('/auth/zoho/exchange', async (req: Request, res: Response) => {
   try {
-    const {code} = req.body;
+    const code = req.body.code;
 
     if (!code) {
       return res.status(CODE_400).json({error: 'Authorization code is required'});
@@ -225,7 +240,7 @@ app.post('/auth/zoho/exchange', async (req: Request, res: Response) => {
     const zohoService = createZohoService();
     const tokens = await zohoService.exchangeCodeForTokens(code);
 
-    // Сохраняем refresh token для будущего использования
+    // Save refresh token for future use
     if (tokens.refresh_token) {
       zohoService.saveRefreshToken(tokens.refresh_token);
     }
@@ -294,18 +309,13 @@ app.use((req, res, next) => {
 });
 
 app.use('/general/tours', tourRoutes);
-app.use('/general/users',
-  userRoutes);
+app.use('/general/users', userRoutes);
+app.use('/general/auth', authRoutes);
 
 app.listen(port, () => {
-  // eslint-disable-next-line no-console
-  console.log(`[server]: Server is running at http://localhost:${port}`);
-  // eslint-disable-next-line no-console
-  console.log(`[swagger]: API documentation available at http://localhost:${port}/api-docs`);
-  // eslint-disable-next-line no-console
-  console.log('[api]: Available endpoints:');
-  // eslint-disable-next-line no-console
-  console.log('   GET  / - Health check');
-  // eslint-disable-next-line no-console
-  console.log('   POST /users - Create user');
+  logger.info(`Server is running at http://localhost:${port}`);
+  logger.info(`API documentation available at http://localhost:${port}/api-docs`);
+  logger.info('Available endpoints:');
+  logger.info('   GET  / - Health check');
+  logger.info('   POST /users - Create user');
 });

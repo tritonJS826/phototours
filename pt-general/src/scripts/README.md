@@ -1,4 +1,4 @@
-📦 Database Seeder  
+📦 Database Seeder
 
 1. reset.ts
 
@@ -26,5 +26,4 @@ Adds available/unavailable tour dates
 
 3. This script has already been added to package.json in the pt-general folder.:
 
-   - "db:reset": "vite-node src/scripts/reset.ts"
-
+   - 'db:reset': 'vite-node src/scripts/reset.ts'
