@@ -1,5 +1,5 @@
 import {DifficultyLevel, PrismaClient, Role} from 'src/generated/prisma';
-/* eslint-disable no-console */
+import {logger} from 'src/utils/logger.js';
 
 const prisma = new PrismaClient();
 
@@ -22,7 +22,7 @@ async function clearDatabase() {
 }
 
 async function seedDatabase() {
-  console.log('🌱 Seeding database...');
+  logger.info('Seeding database...');
 
   await clearDatabase();
 
@@ -74,7 +74,7 @@ async function seedDatabase() {
     data: {
       email: 'secondguide@example.com',
       name: 'Second Guide',
-      password: 'hashedpassword2', // Лучше сгенерировать хеш настоящего пароля
+      password: 'hashedpassword2', // Better to generate hash of real password
       role: Role.GUIDE,
     },
   });
@@ -138,14 +138,14 @@ async function seedDatabase() {
     },
   });
 
-  console.log('✅ Database has been seeded.');
+  logger.info('Database has been seeded.');
   await prisma.$disconnect();
 }
 
 const EXIT_ERROR_CODE = 1;
 
 seedDatabase().catch(e => {
-  console.error(e);
+  logger.error('Error during database reset:', e);
   prisma.$disconnect();
   process.exit(EXIT_ERROR_CODE);
 });

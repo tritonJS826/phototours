@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-restricted-imports
 import {envSchema} from "./src/utils/env/envSchema";
 import react from "@vitejs/plugin-react-swc";
 import {cleanEnv} from "envalid";
