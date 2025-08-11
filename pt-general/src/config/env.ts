@@ -13,7 +13,7 @@ export const env = cleanEnv(process.env, {
   // JWT Configuration
   JWT_SECRET: str(),
   JWT_EXPIRES_IN: str(),
-  
+
   // Password Configuration
   SALT_ROUNDS: port({default: 12}),
 
