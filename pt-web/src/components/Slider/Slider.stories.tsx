@@ -1,6 +1,6 @@
 import {MemoryRouter} from "react-router-dom";
-import {Slider} from "./Slider";
 import type {Meta, StoryObj} from "@storybook/react-vite";
+import {Slider} from "src/components/Slider/Slider";
 
 const meta: Meta<typeof Slider> = {
   title: "shared/Slider",

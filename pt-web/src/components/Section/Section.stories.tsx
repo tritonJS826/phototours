@@ -1,5 +1,5 @@
-import {Section} from "./Section";
 import type {Meta, StoryObj} from "@storybook/react-vite";
+import {Section} from "src/components/Section/Section";
 
 const meta: Meta<typeof Section> = {
   title: "shared/Section",

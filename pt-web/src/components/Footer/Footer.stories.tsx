@@ -1,6 +1,6 @@
 import {MemoryRouter} from "react-router-dom";
-import {Footer} from "./Footer";
 import type {Meta, StoryObj} from "@storybook/react-vite";
+import {Footer} from "src/components/Footer/Footer";
 
 const meta: Meta<typeof Footer> = {
   title: "Components/Footer",

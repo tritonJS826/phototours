@@ -1,6 +1,6 @@
 import {MemoryRouter} from "react-router-dom";
-import {Header} from "./Header";
 import type {Meta, StoryObj} from "@storybook/react-vite";
+import {Header} from "src/components/Header/Header";
 
 const meta: Meta<typeof Header> = {
   title: "shared/Header",

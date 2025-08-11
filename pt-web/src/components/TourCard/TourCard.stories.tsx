@@ -1,5 +1,5 @@
-import {TourCard} from "./TourCard";
 import type {Meta, StoryObj} from "@storybook/react-vite";
+import {TourCard} from "src/components/TourCard/TourCard";
 
 const meta: Meta<typeof TourCard> = {
   title: "shared/TourCard",

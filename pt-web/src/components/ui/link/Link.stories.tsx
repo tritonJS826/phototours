@@ -1,6 +1,6 @@
 import {MemoryRouter} from "react-router-dom";
-import {Link} from "./Link";
 import type {Meta, StoryObj} from "@storybook/react-vite";
+import {Link} from "src/components/ui/link/Link";
 
 const meta: Meta<typeof Link> = {
   title: "shared/Link",

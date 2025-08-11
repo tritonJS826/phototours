@@ -1,5 +1,5 @@
-import {Icon} from "./Icon";
 import type {Meta, StoryObj} from "@storybook/react-vite";
+import {Icon} from "src/components/Icon/Icon";
 
 const meta: Meta<typeof Icon> = {
   title: "shared/Icon",
