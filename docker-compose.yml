@@ -16,7 +16,7 @@ services:
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: secret
-      POSTGRES_DB: masterway_db
+      POSTGRES_DB: phototours
     volumes:
       - postgres-general-data:/var/lib/postgresql/data
     expose:
