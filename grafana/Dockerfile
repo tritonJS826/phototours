@@ -13,7 +13,7 @@ COPY dashboards/general/ /var/lib/grafana/dashboards/general/
 COPY dashboards/databases/ /var/lib/grafana/dashboards/databases/
 COPY grafana.ini /etc/grafana/grafana.ini
 
-# COPY provisioning/ /etc/grafana/provisioning/
+COPY provisioning/ /etc/grafana/provisioning/
 
 # Set permissions
 USER root
