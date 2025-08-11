@@ -38,6 +38,11 @@ services:
       - ./pt-general/.env
     ports:
       - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   pt-web:
     build:
@@ -48,7 +53,7 @@ services:
     network_mode: host
     depends_on:
       pt-general:
-        condition: service_started
+        condition: service_healthy
     ports:
       - "5174:80"
 
@@ -58,14 +63,16 @@ services:
     restart: unless-stopped
     network_mode: host
     depends_on:
-      - pt-web
-      - pt-general
+      pt-web:
+        condition: service_started
+      pt-general:
+        condition: service_healthy
     # монтируем наш ЕДИНЫЙ файл конфига для gateway
     volumes:
       - ./gateway/nginx.conf:/etc/nginx/nginx.conf:ro
     # основная точка входа локально
     ports:
-      - "5173:80"
+      - "5173:5174"
 
   grafana:
     build:
