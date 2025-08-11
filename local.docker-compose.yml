@@ -26,6 +26,7 @@ services:
   #     - app-network
   #   depends_on:
   #     - postgres-general
+
   grafana:
     build:
       context: .
@@ -42,7 +43,7 @@ services:
     image: nginx:1.24.0-alpine
     container_name: gateway
     ports:
-      - "5173:80"
+      - "5174:80"
     volumes:
       - ./gateway/local.nginx.conf:/etc/nginx/nginx.conf:ro
     networks:
