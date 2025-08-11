@@ -19,7 +19,7 @@ export function HeroSection() {
           </h1>
           <p className={styles.heroDescription}>
             <span>
-              As Iceland's leading photo tour operator, we offer expert tours/
+              As Iceland's leading photo tour operator, we offer expert tours
             </span>
             <span>
               to help you capture breathtaking images at the best spots-guaranteed

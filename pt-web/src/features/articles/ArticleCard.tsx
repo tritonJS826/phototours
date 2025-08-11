@@ -2,9 +2,15 @@ import {Link} from "react-router-dom";
 import type {Article} from "src/features/articles/articles.data";
 import styles from "src/features/articles/Articles.module.scss";
 
-export function ArticleCard({a}: { a: Article }) {
+export function ArticleCard({
+  a,
+  className = "",
+}: {
+  a: Article;
+  className?: string;
+}) {
   return (
-    <article>
+    <article className={`${styles.cardWrapper} ${className}`}>
       <Link
         to={`/articles/${a.slug}`}
         className={styles.cardLink}

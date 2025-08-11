@@ -7,10 +7,11 @@ export function ExploreArticles() {
     <main>
       <Container>
         <div className="grid">
-          {articles.map(a => (<ArticleCard
-            key={a.id}
-            a={a}
-          />))}
+          {articles.map(a => (
+            <ArticleCard
+              key={a.id}
+              a={a}
+            />))}
         </div>
       </Container>
     </main>
