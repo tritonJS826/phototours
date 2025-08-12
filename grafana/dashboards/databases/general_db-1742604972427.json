@@ -125,7 +125,7 @@
           ]
         }
       ],
-      "title": "Mastersway_db_status",
+      "title": "phototours_db_status",
       "type": "stat"
     },
     {
@@ -512,7 +512,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT pg_database_size('mastersway_db');\n",
+          "rawSql": "SELECT pg_database_size('phototours_db');\n",
           "refId": "A",
           "select": [
             [
@@ -1084,7 +1084,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Mastersway_db",
+  "title": "phototours_db",
   "uid": "xG3K39pHz",
   "version": 5,
   "weekStart": ""

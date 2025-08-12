@@ -1,2 +1,2 @@
-\c mastersway_db
+\c phototours_db
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";

@@ -1,5 +1,5 @@
 import {DifficultyLevel, PrismaClient, Role} from 'src/generated/prisma';
-/* eslint-disable no-console */
+import {logger} from 'src/utils/logger.js';
 
 const prisma = new PrismaClient();
 
@@ -22,7 +22,7 @@ async function clearDatabase() {
 }
 
 async function seedDatabase() {
-  console.log('🌱 Seeding database...');
+  logger.info('Seeding database...');
 
   await clearDatabase();
 
@@ -46,7 +46,8 @@ async function seedDatabase() {
     prisma.user.create({
       data: {
         email: 'client1@example.com',
-        name: 'Client One',
+        firstName: 'Client One',
+        lastName: 'Client One lastName',
         password: 'hashedpassword',
         role: Role.CLIENT,
       },
@@ -54,7 +55,8 @@ async function seedDatabase() {
     prisma.user.create({
       data: {
         email: 'client2@example.com',
-        name: 'Client Two',
+        firstName: 'Client Two',
+        lastName: 'Client two last Name',
         password: 'hashedpassword',
         role: Role.CLIENT,
       },
@@ -64,7 +66,8 @@ async function seedDatabase() {
   const guideUser = await prisma.user.create({
     data: {
       email: 'guide@example.com',
-      name: 'Guide Person',
+      firstName: 'Guide Person',
+      lastName: 'Guide Person last name',
       password: 'hashedpassword',
       role: Role.GUIDE,
     },
@@ -73,8 +76,9 @@ async function seedDatabase() {
   const guideUser2 = await prisma.user.create({
     data: {
       email: 'secondguide@example.com',
-      name: 'Second Guide',
-      password: 'hashedpassword2', // Лучше сгенерировать хеш настоящего пароля
+      firstName: 'Second Guide',
+      lastName: 'Second Guide last name',
+      password: 'hashedpassword2',
       role: Role.GUIDE,
     },
   });
@@ -138,14 +142,14 @@ async function seedDatabase() {
     },
   });
 
-  console.log('✅ Database has been seeded.');
+  logger.info('Database has been seeded.');
   await prisma.$disconnect();
 }
 
 const EXIT_ERROR_CODE = 1;
 
 seedDatabase().catch(e => {
-  console.error(e);
+  logger.error('Error during database reset:', e);
   prisma.$disconnect();
   process.exit(EXIT_ERROR_CODE);
 });

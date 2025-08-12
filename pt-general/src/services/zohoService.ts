@@ -24,12 +24,12 @@ export class ZohoService {
 
   constructor(config: ZohoConfig) {
     this.config = config;
-    // Инициализируем refresh token из переменных окружения
+    // Initialize refresh token from environment variables
     this.refreshToken = env.ZOHO_REFRESH_TOKEN || null;
   }
 
   /**
-   * Генерирует URL для OAuth авторизации
+   * Generates URL for OAuth authorization
    */
   public getAuthUrl(): string {
     const params = new URLSearchParams({
@@ -45,7 +45,7 @@ export class ZohoService {
   }
 
   /**
-   * Обменивает код авторизации на токены
+   * Exchanges authorization code for tokens
    */
   public async exchangeCodeForTokens(code: string): Promise<ZohoTokenResponse> {
     const response = await fetch('https://accounts.zoho.eu/oauth/v2/token', {
@@ -72,7 +72,7 @@ export class ZohoService {
   }
 
   /**
-   * Обновляет access token используя refresh token
+   * Refreshes access token using refresh token
    */
   public async refreshAccessToken(): Promise<string> {
     if (!this.refreshToken) {
@@ -101,7 +101,7 @@ export class ZohoService {
   }
 
   /**
-   * Получает информацию об организации
+   * Gets organization information
    */
   public async getOrganizationInfo(): Promise<unknown> {
     const token = await this.getValidAccessToken();
@@ -130,7 +130,7 @@ export class ZohoService {
   }
 
   /**
-   * Создает лид в Zoho CRM
+   * Creates a lead in Zoho CRM
    */
   public async createLead(leadData: Record<string, unknown>): Promise<unknown> {
     const token = await this.getValidAccessToken();
@@ -138,13 +138,13 @@ export class ZohoService {
     // Console.log('🔍 Creating lead with data:', JSON.stringify(leadData, null, 2));
     // console.log('🔑 Using token:', token.substring(0, 20) + '...');
 
-    // Проверяем структуру данных
+    // Check data structure
     let requestBody;
     if (leadData.data && Array.isArray(leadData.data)) {
-      // Если данные уже в формате {data: [...]}
+      // If data is already in {data: [...]} format
       requestBody = leadData;
     } else {
-      // Если данные пришли как объект лида
+      // If data came as a lead object
       requestBody = {data: [leadData]};
     }
 
@@ -175,7 +175,7 @@ export class ZohoService {
   }
 
   /**
-   * Устанавливает токены (для сохранения в БД)
+   * Sets tokens (for saving to database)
    */
   public setTokens(accessToken: string, refreshToken: string): void {
     this.accessToken = accessToken;
@@ -183,20 +183,20 @@ export class ZohoService {
   }
 
   /**
-   * Сохраняет refresh token (для постоянного хранения)
+   * Saves refresh token (for persistent storage)
    */
   public saveRefreshToken(refreshToken: string): void {
     this.refreshToken = refreshToken;
     // Console.log('💾 Refresh token saved for future use');
-    // В реальном приложении здесь нужно сохранить в БД или файл
+    // In a real application, this should be saved to database or file
   }
 
   /**
-   * Получает валидный access token (обновляет если нужно)
+   * Gets a valid access token (refreshes if needed)
    */
   private async getValidAccessToken(): Promise<string> {
     if (!this.accessToken) {
-      // Если нет access token, попробуем обновить через refresh token
+      // If no access token, try to refresh using refresh token
       if (this.refreshToken) {
         // Console.log('🔄 Refreshing access token...');
 
@@ -205,15 +205,15 @@ export class ZohoService {
       throw new Error('No access token available. Please authenticate first.');
     }
 
-    // В реальном приложении здесь должна быть проверка срока действия токена
-    // Пока просто возвращаем текущий токен
+    // In a real application, there should be token expiration check here
+    // For now, just return the current token
     return this.accessToken;
   }
 
 }
 
 /**
- * Создает экземпляр ZohoService с конфигурацией из переменных окружения
+ * Creates a ZohoService instance with configuration from environment variables
  */
 export function createZohoService(): ZohoService {
   return new ZohoService({

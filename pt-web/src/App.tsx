@@ -4,6 +4,7 @@ import {AdminTourContinueForm} from "src/components/AdminTourContinueForm/AdminT
 import {AdminTourEdit} from "src/components/AdminTourEditForm/AdminTourEditForm";
 import {Footer} from "src/components/Footer/Footer";
 import {Header} from "src/components/Header/Header";
+import {ProtectedRoute} from "src/components/ProtectedRoute/ProtectedRoute";
 import {ScrollToTop} from "src/components/ScrollToTop/ScrollToTop";
 import {PATHS} from "src/constants/routes";
 import {AboutUs} from "src/pages/aboutUs/AboutUsPage";
@@ -63,7 +64,11 @@ export function App() {
         />
         <Route
           path={PATHS.PROFILE}
-          element={<Profile />}
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
         />
         <Route
           path={PATHS.NOT_FOUND}
