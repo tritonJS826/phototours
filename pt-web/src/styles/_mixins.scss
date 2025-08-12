@@ -39,7 +39,7 @@
     transform var.$transition-normal;
 }
 
-/* Hover scale */
+// /* Hover scale */
 @mixin hover-scale($scale: 1.05) {
   transition: transform var.$transition-normal;
 

@@ -94,7 +94,8 @@ img {
   box-shadow: var.$shadow-light;
   cursor: pointer;
 
-  @include mix.hover-scale;
+  // Не применять к тегу ннапрямую. Сработал на всех страницах
+  // @include mix.hover-scale;
 }
 
 .whyBook {
