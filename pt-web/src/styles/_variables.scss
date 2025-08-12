@@ -6,6 +6,16 @@ $btn-primary-hover-bg: #e0e0e0;
 $btn-secondary-bg: #dcdcdc;
 $btn-secondary-color: #000;
 $btn-secondary-hover-bg: #c0c0c0;
+$color-primary: #07c;
+$color-primary-hover: #005fa3;
+$color-dark: #222;
+$color-medium: #444;
+$color-light: #555;
+$color-bg-light: #f9f9f9;
+$color-bg-white: #fff;
+$color-card-bg: #fafafa;
+$color-border: #ccc;
+$color-success: #2a7a2a;
 
 // ====== Sizes and Spacing ======
 $container-width: 1620px;
@@ -13,6 +23,30 @@ $btn-padding: 0.75rem 1.5rem;
 $btn-font-size: 1rem;
 $btn-border-radius: 5px;
 
+// ====== Font sizes ======
+$font-size-hero-title: 4rem;
+$font-size-hero-subtitle: 2rem;
+$font-size-section-title: 3rem;
+$font-size-section-text: 2rem;
+$font-size-card-title: 1.25rem;
+$font-size-card-text: 1rem;
+
 // ====== Borders and Transitions ======
 $btn-border: 1px solid #ccc;
 $btn-transition-bg: background-color 0.3s ease;
+
+// ===== Padding and Margins ======
+$padding-section: 4rem 1rem;
+$padding-container: 3rem 1rem;
+$padding-button: 0.85rem 1.5rem;
+$padding-input: 0.75rem 1rem;
+
+// ====== Radius and Shadows ======
+$radius-small: 6px;
+$radius-medium: 8px;
+$radius-large: 12px;
+$shadow-light: 0 4px 10px rgb(0 0 0 / 10%);
+$shadow-medium: 0 4px 15px rgb(0 0 0 / 10%);
+$shadow-hover: 0 5px 15px rgb(0 0 0 / 20%);
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;

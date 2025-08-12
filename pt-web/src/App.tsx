@@ -6,7 +6,7 @@ import {Footer} from "src/components/Footer/Footer";
 import {Header} from "src/components/Header/Header";
 import {ScrollToTop} from "src/components/ScrollToTop/ScrollToTop";
 import {PATHS} from "src/constants/routes";
-import {AboutUs} from "src/pages/aboutUs";
+import {AboutUs} from "src/pages/aboutUs/AboutUsPage";
 import {AdminPage} from "src/pages/adminPage";
 import {BookTours} from "src/pages/bookTours";
 import {Cart} from "src/pages/cart";
@@ -14,7 +14,7 @@ import {ContactUs} from "src/pages/contactUs";
 import {ArticlePage} from "src/pages/exploreArticles/ArticlePage";
 import {ExploreArticles} from "src/pages/exploreArticles/ExploreArticles";
 import {HomePage} from "src/pages/homePage";
-import {NotFound} from "src/pages/notFound";
+import {NotFound} from "src/pages/notFound/notFound";
 import {Profile} from "src/pages/profile";
 import {TourPage} from "src/pages/tourPage";
 
