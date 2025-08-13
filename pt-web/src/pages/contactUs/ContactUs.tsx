@@ -27,7 +27,7 @@ export const ContactUs = memo(function ContactUs() {
             <h1 id="contact-title">
               {CONTACT_US_CONTENT.title}
             </h1>
-            <p>
+            <p className={styles.headerSubtitle}>
               {CONTACT_US_CONTENT.subtitle}
             </p>
           </header>

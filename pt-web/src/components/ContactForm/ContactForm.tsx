@@ -161,10 +161,14 @@ export function ContactForm() {
         key={id}
         className={styles.formGroup}
       >
-        <label htmlFor={id}>
+        <label
+          htmlFor={id}
+          className={styles.formLabel}
+        >
           {label}
         </label>
         <input
+          className={styles.formInput}
           type={type}
           id={id}
           name={id}
@@ -196,10 +200,14 @@ export function ContactForm() {
         {renderedFormFields}
 
         <div className={styles.formGroup}>
-          <label htmlFor="message">
+          <label
+            htmlFor="message"
+            className={styles.formLabel}
+          >
             Message
           </label>
           <textarea
+            className={styles.formTextarea}
             id="message"
             name="message"
             value={formData.message}

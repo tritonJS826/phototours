@@ -90,7 +90,7 @@ export const ContactInfo = memo(function ContactInfo() {
             className={styles.icon}
             aria-hidden="true"
           />
-          <span>
+          <span className={styles.contactText}>
             {item.text}
           </span>
         </a>

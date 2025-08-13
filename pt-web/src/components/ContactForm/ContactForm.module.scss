@@ -12,7 +12,7 @@
     flex-direction: column;
     gap: vars.$gap-md;
 
-    label {
+    .formLabel {
       color: vars.$btn-primary-bg;
       font-size: vars.$font-size-md;
       font-weight: 500;
@@ -20,15 +20,15 @@
     }
 
     // Textarea specific styles
-    textarea {
+    .formTextarea {
       resize: vertical;
       min-height: 120px;
       line-height: 1.5;
     }
 
     // Common styles for input and textarea
-    input,
-    textarea {
+    .formInput,
+    .formTextarea {
       padding: vars.$spacing-md;
       background-color: vars.$contact-bg-medium;
       border: 1px solid vars.$contact-border;
@@ -130,12 +130,12 @@
     .formGroup {
       gap: vars.$gap-sm;
 
-      label {
+      .formLabel {
         font-size: vars.$font-size-sm;
       }
 
-      input,
-      textarea {
+      .formInput,
+      .formTextarea {
         padding: vars.$spacing-sm;
         font-size: vars.$font-size-sm;
 
@@ -144,7 +144,7 @@
         }
       }
 
-      textarea {
+      .formTextarea {
         min-height: 100px;
       }
     }
@@ -159,8 +159,8 @@
 // ====== ACCESSIBILITY ======
 @media (prefers-reduced-motion: reduce) {
   .contactForm {
-    input,
-    textarea {
+    .formInput,
+    .formTextarea {
       transition: none;
     }
 
@@ -177,8 +177,8 @@
 // High contrast mode support
 @media (prefers-contrast: high) {
   .contactForm {
-    input,
-    textarea {
+    .formInput,
+    .formTextarea {
       border-width: 2px;
       
       &:focus,
