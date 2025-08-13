@@ -11,7 +11,7 @@ import {AboutUs} from "src/pages/aboutUs";
 import {AdminPage} from "src/pages/adminPage";
 import {BookTours} from "src/pages/bookTours";
 import {Cart} from "src/pages/cart";
-import {ContactUs} from "src/pages/contactUs";
+import {ContactUs} from "src/pages/contactUs/ContactUs";
 import {ArticlePage} from "src/pages/ExploreArticles/ArticlePage";
 import {ExploreArticles} from "src/pages/ExploreArticles/ExploreArticles";
 import {HomePage} from "src/pages/homePage";
