@@ -1,0 +1,240 @@
+@use "../../styles/variables" as vars;
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: vars.$gap-xxxxl;
+  width: 100%;
+
+  .contactDetails {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$gap-xl;
+
+    .contactItem {
+      display: flex;
+      align-items: center;
+      gap: vars.$gap-md;
+      color: vars.$btn-primary-bg;
+
+      .icon {
+        width: 20px;
+        height: 20px;
+        color: vars.$contact-btn-bg;
+        flex-shrink: 0;
+        transition: vars.$transition-color;
+      }
+
+      .contactLink {
+        display: flex;
+        align-items: center;
+        gap: vars.$gap-md;
+        padding: vars.$spacing-md;
+        background-color: vars.$contact-bg-medium;
+        border-radius: vars.$contact-btn-border-radius;
+        text-decoration: none;
+        color: vars.$btn-primary-hover-bg;
+        transition: vars.$transition-bg, vars.$transition-transform, vars.$transition-color;
+        outline: none;
+
+        // Focus states for accessibility
+        &:focus,
+        &:focus-visible {
+          outline: 2px solid vars.$contact-btn-bg;
+          outline-offset: 2px;
+          background-color: vars.$contact-btn-bg-transparent-10;
+        }
+
+        // Hover state
+        &:hover {
+          background-color: vars.$contact-btn-bg-transparent-10;
+          transform: translateX(5px);
+          
+          .icon {
+            color: vars.$contact-btn-hover-bg;
+          }
+        }
+
+        // Active state
+        &:active {
+          transform: translateX(3px);
+        }
+
+        // Disabled state
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+          pointer-events: none;
+        }
+      }
+
+      span {
+        font-size: vars.$font-size-md;
+        line-height: 1.4;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .socialMedia {
+    h3 {
+      color: vars.$btn-primary-bg;
+      font-size: vars.$font-size-xl;
+      font-weight: 600;
+      margin-bottom: vars.$gap-xl;
+      margin-top: 0;
+    }
+
+    .socialIcons {
+      display: flex;
+      gap: vars.$gap-xl;
+      flex-wrap: wrap;
+
+      .socialLink {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: vars.$contact-bg-medium;
+        color: vars.$btn-primary-bg;
+        text-decoration: none;
+        transition: vars.$transition-bg, vars.$transition-transform, vars.$transition-color;
+        outline: none;
+
+        // Focus states for accessibility
+        &:focus,
+        &:focus-visible {
+          outline: 2px solid vars.$contact-btn-bg;
+          outline-offset: 2px;
+          background-color: vars.$contact-btn-bg-transparent-10;
+        }
+
+        // Hover state
+        &:hover {
+          background-color: vars.$contact-btn-bg;
+          color: vars.$btn-primary-bg;
+          transform: translateY(-2px);
+        }
+
+        // Active state
+        &:active {
+          transform: translateY(-1px);
+        }
+
+        // Disabled state
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+          pointer-events: none;
+        }
+
+        .socialIcon {
+          width: 20px;
+          height: 20px;
+          transition: vars.$transition-color;
+        }
+      }
+    }
+  }
+}
+
+// ====== RESPONSIVE DESIGN ======
+@media (max-width: vars.$breakpoint-mobile) {
+  .contactInfo {
+    gap: vars.$gap-xxxl;
+
+    .contactDetails {
+      gap: vars.$gap-md;
+
+      .contactItem {
+        .contactLink {
+          padding: vars.$spacing-sm;
+          
+          &:hover {
+            transform: translateX(3px);
+          }
+        }
+      }
+    }
+
+    .socialMedia {
+      h3 {
+        font-size: vars.$font-size-lg;
+        margin-bottom: vars.$gap-md;
+      }
+
+      .socialIcons {
+        gap: vars.$gap-md;
+
+        .socialLink {
+          width: 36px;
+          height: 36px;
+
+          .socialIcon {
+            width: 18px;
+            height: 18px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ====== ACCESSIBILITY ======
+@media (prefers-reduced-motion: reduce) {
+  .contactInfo {
+    .contactLink {
+      transition: none;
+      
+      &:hover {
+        transform: none;
+      }
+      
+      &:active {
+        transform: none;
+      }
+    }
+
+    .socialLink {
+      transition: none;
+      
+      &:hover {
+        transform: none;
+      }
+      
+      &:active {
+        transform: none;
+      }
+    }
+
+    .icon,
+    .socialIcon {
+      transition: none;
+    }
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .contactInfo {
+    .contactLink {
+      border: 1px solid vars.$contact-btn-bg;
+      
+      &:focus,
+      &:focus-visible {
+        border-width: 2px;
+      }
+    }
+
+    .socialLink {
+      border: 1px solid vars.$contact-btn-bg;
+      
+      &:focus,
+      &:focus-visible {
+        border-width: 2px;
+      }
+    }
+  }
+}

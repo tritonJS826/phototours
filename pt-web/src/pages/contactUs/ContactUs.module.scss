@@ -1,0 +1,83 @@
+@use "../../styles/mixins" as mixin;
+@use "../../styles/variables" as vars;
+
+.contactUs {
+  min-height: 100vh;
+  background-image: url('./assets/wide.avif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgb(0 0 0 / 20%);
+
+    @include mixin.flex-center;
+
+    padding: vars.$gap-xxxxl vars.$gap-xl;
+  }
+
+  .container {
+    max-width: vars.$container-width;
+    width: 100%;
+    background-color: vars.$contact-bg-dark;
+    border-radius: vars.$border-radius-lg;
+    padding: vars.$spacing-xxxxl;
+    box-shadow: vars.$shadow-very-heavy;
+
+    .header {
+      text-align: center;
+      margin-bottom: vars.$spacing-xxxxl;
+
+      h1 {
+        color: vars.$btn-primary-bg;
+        font-size: vars.$font-size-xxxl;
+        font-weight: 700;
+        margin-bottom: vars.$gap-xl;
+        margin-top: 0;
+      }
+
+      p {
+        color: vars.$contact-text-light;
+        font-size: vars.$font-size-xl;
+        line-height: 1.5;
+      }
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: vars.$gap-xxxxxl;
+      align-items: start;
+
+      @media (max-width: vars.$breakpoint-mobile) {
+        grid-template-columns: 1fr;
+        gap: vars.$gap-xxxxl;
+      }
+    }
+  }
+}
+
+// ====== ACCESSIBILITY ======
+@media (prefers-reduced-motion: reduce) {
+  .contactUs {
+    .container {
+      box-shadow: none;
+    }
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .contactUs {
+    .overlay {
+      background-color: rgb(0 0 0 / 40%);
+    }
+
+    .container {
+      border: 2px solid vars.$btn-primary-bg;
+    }
+  }
+}

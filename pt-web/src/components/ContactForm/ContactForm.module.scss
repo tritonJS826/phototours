@@ -1,44 +1,203 @@
-@use "sass:color";
-@import "src/styles/variables";
+@use "../../styles/variables" as vars;
 
-.form {
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
-
-  h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: $color-text-dark;
-  }
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: vars.$gap-xxxl;
+  width: calc(100% - 10px);
+  margin: 0 auto;
 
   .formGroup {
-    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: vars.$gap-md;
 
     label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: bold;
+      color: vars.$btn-primary-bg;
+      font-size: vars.$font-size-md;
+      font-weight: 500;
+      cursor: pointer;
     }
 
+    // Textarea specific styles
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+      line-height: 1.5;
+    }
+
+    // Common styles for input and textarea
     input,
     textarea {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
-      color: $color-text-dark;
+      padding: vars.$spacing-md;
+      background-color: vars.$contact-bg-medium;
+      border: 1px solid vars.$contact-border;
+      border-radius: vars.$contact-btn-border-radius;
+      color: vars.$btn-primary-hover-bg;
+      font-size: vars.$font-size-md;
+      font-family: Poppins, sans-serif;
+      transition: vars.$transition-border, vars.$transition-bg, vars.$transition-color;
 
-      &:focus {
-        outline: 2px solid $color-accent;
-        border-color: $color-accent;
+      // Placeholder styles for all browsers
+      &::placeholder {
+        color: vars.$contact-placeholder-color;
+        font-size: vars.$font-size-md;
+        font-family: Poppins, sans-serif;
+      }
+
+      // Focus states
+      &:focus,
+      &:focus-visible {
+        outline: none;
+        border-color: vars.$contact-btn-bg;
+        background-color: vars.$contact-btn-bg-transparent-10;
+      }
+
+      // Filled state
+      &:not(:placeholder-shown),
+      &:valid {
+        background-color: vars.$contact-btn-bg-transparent-15;
+        border-color: vars.$contact-btn-bg-transparent-30;
+      }
+
+      // Disabled state
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        background-color: vars.$contact-bg-medium;
+        border-color: vars.$contact-border;
+      }
+
+      // Autofill styles
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus {
+        -webkit-text-fill-color: vars.$btn-primary-hover-bg;
+        box-shadow: 0 0 0 1000px vars.$contact-bg-medium inset;
+        transition: background-color 5000s ease-in-out 0s;
+      }
+
+      // Invalid state
+      &:invalid:not(:placeholder-shown) {
+        border-color: #dc3545;
+        
+        &::placeholder {
+          color: vars.$contact-text-light;
+        }
       }
     }
   }
 
   .submitButton {
+    padding: vars.$btn-padding;
+    background-color: vars.$contact-btn-bg;
+    color: vars.$btn-primary-bg;
+    border: none;
+    border-radius: vars.$contact-btn-border-radius;
+    font-size: vars.$btn-font-size;
+    font-weight: 600;
+    cursor: pointer;
+    transition: vars.$transition-bg, transform vars.$transition-fast;
+
+    &:focus,
+    &:focus-visible {
+      outline: 2px solid vars.$contact-btn-bg;
+      outline-offset: 2px;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      background-color: vars.$contact-btn-bg;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: vars.$contact-btn-hover-bg;
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+  }
+}
+
+// ====== RESPONSIVE DESIGN ======
+@media (max-width: vars.$breakpoint-mobile) {
+  .contactForm {
+    gap: vars.$gap-xxl;
     width: 100%;
+
+    .formGroup {
+      gap: vars.$gap-sm;
+
+      label {
+        font-size: vars.$font-size-sm;
+      }
+
+      input,
+      textarea {
+        padding: vars.$spacing-sm;
+        font-size: vars.$font-size-sm;
+
+        &::placeholder {
+          font-size: vars.$font-size-sm;
+        }
+      }
+
+      textarea {
+        min-height: 100px;
+      }
+    }
+
+    .submitButton {
+      padding: vars.$spacing-sm vars.$spacing-xl;
+      font-size: vars.$font-size-sm;
+    }
+  }
+}
+
+// ====== ACCESSIBILITY ======
+@media (prefers-reduced-motion: reduce) {
+  .contactForm {
+    input,
+    textarea {
+      transition: none;
+    }
+
+    .submitButton {
+      transition: none;
+      
+      &:active:not(:disabled) {
+        transform: none;
+      }
+    }
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .contactForm {
+    input,
+    textarea {
+      border-width: 2px;
+      
+      &:focus,
+      &:focus-visible {
+        border-width: 3px;
+      }
+      
+      &:invalid:not(:placeholder-shown) {
+        border-width: 3px;
+      }
+    }
+
+    .submitButton {
+      border: 2px solid vars.$contact-btn-bg;
+      
+      &:focus,
+      &:focus-visible {
+        border-width: 3px;
+      }
+    }
   }
 }
