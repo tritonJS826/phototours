@@ -1,5 +1,74 @@
+@use "src/styles/variables" as var;
+
+/* Layout */
 @mixin flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Text */
+@mixin text-center {
+  text-align: center;
+}
+
+/* Grid */
+@mixin responsive-grid($minWidth: 200px, $gap: 10px) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($minWidth, 1fr));
+  gap: $gap;
+}
+
+/* Card */
+@mixin card(
+  $bg: var.$color-card-bg,
+  $radius: var.$radius-large,
+  $shadow: var.$shadow-medium
+) {
+  background: $bg;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  transition:
+    box-shadow var.$transition-normal,
+    transform var.$transition-normal;
+}
+
+// /* Hover scale */
+@mixin hover-scale($scale: 1.05) {
+  transition: transform var.$transition-normal;
+
+  &:hover {
+    transform: scale($scale);
+  }
+}
+
+/* Button */
+@mixin button(
+  $bg: var.$color-primary,
+  $color: #fff,
+  $bg-hover: var.$color-primary-hover,
+  $radius: var.$radius-medium,
+  $padding: var.$padding-button
+) {
+  background-color: $bg;
+  color: $color;
+  padding: $padding;
+  border: none;
+  border-radius: $radius;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition:
+    background-color var.$transition-normal,
+    transform var.$transition-fast;
+
+  &:hover {
+    background-color: $bg-hover;
+  }
 }
