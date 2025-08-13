@@ -19,6 +19,7 @@ import {NotFound} from "src/pages/notFound/notFound";
 import {Profile} from "src/pages/profile/Profile";
 import {TourPage} from "src/pages/tourPage/TourPage";
 
+
 export function App() {
   return (
     <>

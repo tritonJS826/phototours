@@ -19,7 +19,7 @@ app.use(express.json());
 const port = env.SERVER_PORT;
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', `http://${env.WEBAPP_DOMAIN}:${env.ORIGIN_PORT}`);
+  res.header('Access-Control-Allow-Origin', `http://localhost:5174`);
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   if (req.method === 'OPTIONS') {
@@ -301,6 +301,30 @@ app.post('/api/zoho/leads', async (req: Request, res: Response) => {
   } catch {
 
     res.status(CODE_500).json({error: 'Failed to create lead'});
+  }
+});
+
+// Contact form endpoint
+app.post('/contact', async (req: Request, res: Response) => {
+  try {
+    const { name, email, message } = req.body;
+
+    // Validate required fields
+    if (!name || !email || !message) {
+      return res.status(CODE_400).json({ error: 'Name, email and message are required' });
+    }
+
+    // TODO: Save to database
+    console.log('Contact form submitted:', { name, email, message });
+
+    // For now, just return success
+    res.json({
+      success: true,
+      message: 'Message received successfully'
+    });
+  } catch (error) {
+    console.error('Error processing contact form:', error);
+    res.status(CODE_500).json({ error: 'Failed to process contact form' });
   }
 });
 
