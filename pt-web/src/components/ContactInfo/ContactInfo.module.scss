@@ -34,7 +34,8 @@
         border-radius: vars.$contact-btn-border-radius;
         text-decoration: none;
         color: vars.$btn-primary-hover-bg;
-        transition: vars.$transition-bg, vars.$transition-transform, vars.$transition-color;
+        transition: vars.$transition-bg, vars.$transition-transform,
+          vars.$transition-color;
         outline: none;
 
         // Focus states for accessibility
@@ -49,7 +50,7 @@
         &:hover {
           background-color: vars.$contact-btn-bg-transparent-10;
           transform: translateX(5px);
-          
+
           .icon {
             color: vars.$contact-btn-hover-bg;
           }
@@ -100,7 +101,8 @@
         background-color: vars.$contact-bg-medium;
         color: vars.$btn-primary-bg;
         text-decoration: none;
-        transition: vars.$transition-bg, vars.$transition-transform, vars.$transition-color;
+        transition: vars.$transition-bg, vars.$transition-transform,
+          vars.$transition-color;
         outline: none;
 
         // Focus states for accessibility
@@ -151,7 +153,7 @@
       .contactItem {
         .contactLink {
           padding: vars.$spacing-sm;
-          
+
           &:hover {
             transform: translateX(3px);
           }
@@ -187,11 +189,11 @@
   .contactInfo {
     .contactLink {
       transition: none;
-      
+
       &:hover {
         transform: none;
       }
-      
+
       &:active {
         transform: none;
       }
@@ -199,11 +201,11 @@
 
     .socialLink {
       transition: none;
-      
+
       &:hover {
         transform: none;
       }
-      
+
       &:active {
         transform: none;
       }
@@ -221,7 +223,7 @@
   .contactInfo {
     .contactLink {
       border: 1px solid vars.$contact-btn-bg;
-      
+
       &:focus,
       &:focus-visible {
         border-width: 2px;
@@ -230,7 +232,7 @@
 
     .socialLink {
       border: 1px solid vars.$contact-btn-bg;
-      
+
       &:focus,
       &:focus-visible {
         border-width: 2px;

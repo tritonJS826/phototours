@@ -9,7 +9,6 @@ import {ScrollToTop} from "src/components/ScrollToTop/ScrollToTop";
 import {PATHS} from "src/constants/routes";
 import {AboutUs} from "src/pages/aboutUs/AboutUsPage";
 import {AdminPage} from "src/pages/adminPage/AdminPage";
-import {BookTours} from "src/pages/bookTours/BookTours";
 import {Cart} from "src/pages/cart/Cart";
 import {ContactUs} from "src/pages/contactUs/ContactUs";
 import {ArticlePage} from "src/pages/exploreArticles/ArticlePage";
@@ -17,8 +16,8 @@ import {ExploreArticles} from "src/pages/exploreArticles/ExploreArticles";
 import {HomePage} from "src/pages/homePage/HomePage";
 import {NotFound} from "src/pages/notFound/notFound";
 import {Profile} from "src/pages/profile/Profile";
-import {TourPage} from "src/pages/tourPage/TourPage";
-
+import {TourDetailsPage} from "src/pages/tourDetails/TourDetails";
+import {ToursPage} from "src/pages/toursPage/ToursPage";
 
 export function App() {
   return (
@@ -41,11 +40,11 @@ export function App() {
         />
         <Route
           path={PATHS.TOURS}
-          element={<BookTours />}
+          element={<ToursPage />}
         />
         <Route
           path={PATHS.TOUR_DETAILS}
-          element={<TourPage />}
+          element={<TourDetailsPage />}
         />
         <Route
           path={PATHS.CART}
