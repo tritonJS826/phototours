@@ -27,17 +27,17 @@ services:
   #   depends_on:
   #     - postgres-general
 
-  grafana:
-    build:
-      context: .
-      dockerfile: ./grafana/Dockerfile
-    container_name: pt-grafana
-    ports:
-      - "9876:3000"
-    env_file:
-      - ./grafana/.env
-    networks:
-      - app-network
+  # grafana:
+  #   build:
+  #     context: .
+  #     dockerfile: ./grafana/Dockerfile
+  #   container_name: pt-grafana
+  #   ports:
+  #     - "9876:3000"
+  #   env_file:
+  #     - ./grafana/.env
+  #   networks:
+  #     - app-network
 
   nginx:
     image: nginx:1.24.0-alpine
@@ -58,3 +58,5 @@ volumes:
 networks:
   app-network:
     driver: bridge
+
+
