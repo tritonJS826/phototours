@@ -36,7 +36,8 @@
       color: vars.$btn-primary-hover-bg;
       font-size: vars.$font-size-md;
       font-family: Poppins, sans-serif;
-      transition: vars.$transition-border, vars.$transition-bg, vars.$transition-color;
+      transition: vars.$transition-border, vars.$transition-bg,
+        vars.$transition-color;
 
       // Placeholder styles for all browsers
       &::placeholder {
@@ -80,7 +81,7 @@
       // Invalid state
       &:invalid:not(:placeholder-shown) {
         border-color: #dc3545;
-        
+
         &::placeholder {
           color: vars.$contact-text-light;
         }
@@ -97,7 +98,9 @@
     font-size: vars.$btn-font-size;
     font-weight: 600;
     cursor: pointer;
-    transition: vars.$transition-bg, transform vars.$transition-fast;
+    transition:
+      vars.$transition-bg,
+      transform vars.$transition-fast;
 
     &:focus,
     &:focus-visible {
@@ -166,7 +169,7 @@
 
     .submitButton {
       transition: none;
-      
+
       &:active:not(:disabled) {
         transform: none;
       }
@@ -180,12 +183,12 @@
     .formInput,
     .formTextarea {
       border-width: 2px;
-      
+
       &:focus,
       &:focus-visible {
         border-width: 3px;
       }
-      
+
       &:invalid:not(:placeholder-shown) {
         border-width: 3px;
       }
@@ -193,7 +196,7 @@
 
     .submitButton {
       border: 2px solid vars.$contact-btn-bg;
-      
+
       &:focus,
       &:focus-visible {
         border-width: 3px;

@@ -1,0 +1,16 @@
+.wrap {
+  display: grid;
+  gap: 24px;
+  padding: 24px;
+
+  .sectionTitle {
+    font-size: 38px;
+    margin: 10px 0 30px;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 16px;
+}

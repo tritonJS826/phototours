@@ -135,14 +135,14 @@
 @media (prefers-reduced-motion: reduce) {
   .notification {
     animation: none;
-    
+
     .closeButton {
       transition: none;
-      
+
       &:hover {
         transform: none;
       }
-      
+
       &:active {
         transform: none;
       }
@@ -154,12 +154,12 @@
 @media (prefers-contrast: high) {
   .notification {
     border-width: 2px;
-    
+
     &.success {
       background-color: rgb(146 192 127 / 100%);
       border-color: rgb(146 192 127 / 100%);
     }
-    
+
     &.error {
       background-color: rgb(220 53 69 / 100%);
       border-color: rgb(220 53 69 / 100%);
