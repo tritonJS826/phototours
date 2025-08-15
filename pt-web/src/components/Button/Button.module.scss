@@ -2,6 +2,7 @@
 @use "src/styles/variables" as var;
 
 .button {
+  width: 170px;
   display: inline-block;
   padding: var.$btn-padding;
   font-size: var.$btn-font-size;
@@ -10,15 +11,15 @@
   cursor: pointer;
   border-radius: var.$btn-border-radius;
   transition: var.$btn-transition-bg;
-  border: var.$btn-border;
+  border: none;
   font-weight: bold;
 
   &.primary {
-    background: var.$btn-primary-bg;
-    color: var.$btn-primary-color;
+    background: var.$color-primary;
+    color: var.$color-bg-white;
 
     &:hover {
-      background-color: var.$btn-primary-hover-bg;
+      background-color: var.$color-primary-hover;
     }
   }
 

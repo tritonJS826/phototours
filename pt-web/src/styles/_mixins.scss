@@ -40,8 +40,8 @@
 }
 
 // /* Hover scale */
-@mixin hover-scale($scale: 1.05) {
-  transition: transform var.$transition-normal;
+@mixin hover-scale($scale: 1.02) {
+  transition: transform var.$transition-fast;
 
   &:hover {
     transform: scale($scale);
