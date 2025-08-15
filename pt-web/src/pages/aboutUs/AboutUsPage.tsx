@@ -309,6 +309,7 @@ export function AboutUs() {
                 {amazingDestinations
                   .map(({src, alt}) => (
                     <img
+                      className={styles.imageAmazingDestinations}
                       key={alt}
                       src={src}
                       alt={alt}
