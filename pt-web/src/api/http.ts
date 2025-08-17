@@ -1,16 +1,26 @@
-const BASE = import.meta.env.VITE_API_BASE_URL ?? "";
+const RAW_BASE = (import.meta.env.VITE_API_BASE_URL ?? "").trim().replace(/\/+$/, "");
+const BASE = RAW_BASE
+  ? `${RAW_BASE}${/\/general$/i.test(RAW_BASE) ? "" : "/general"}`
+  : "/general";
+
 export const USE_MOCK = (import.meta.env.VITE_USE_MOCK ?? "0") === "1";
 
 const ABSOLUTE_RE = /^https?:\/\//i;
 const HTTP_NO_CONTENT = 204;
+
 const FILES_BASE = BASE.replace(/\/general(?:\/)?$/i, "");
 
 function buildUrl(base: string, path: string): string {
-  return `${base}${path.startsWith("/") ? "" : "/"}${path}`;
+  const cleanBase = base.replace(/\/+$/, "");
+  const cleanPath = path.startsWith("/") ? path : `/${path}`;
+
+  return `${cleanBase}${cleanPath}`;
 }
 
 export async function fetchData<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${BASE}${path}`, {
+  const url = buildUrl(BASE, path);
+
+  const res = await fetch(url, {
     headers: {"Content-Type": "application/json", ...(init?.headers ?? {})},
     ...init,
   });
