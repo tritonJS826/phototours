@@ -1,77 +1,81 @@
-import {type HTMLAttributes} from "react";
 import {Link} from "react-router-dom";
+import clsx from "clsx";
+import {PATHS} from "src/constants/routes";
 import type {TourView} from "src/types/tour";
 import styles from "src/components/Tour/Tour.module.scss";
 
-const PREVIEW_CHARS = 120;
-
-export interface TourCardProps extends HTMLAttributes<HTMLElement> {
+interface TourCartProps {
   tour: TourView;
+  className?: string;
 }
 
-export function TourCard({tour, className}: TourCardProps) {
-  const fullDesc = tour.description ?? "";
-  const shortDesc =
-    fullDesc.length > PREVIEW_CHARS
-      ? `${fullDesc.slice(0, PREVIEW_CHARS)}...`
-      : fullDesc;
-
-  const href = `/tours/${tour.slug ?? tour.id}`;
-  const cls = [styles.card, className].filter(Boolean).join(" ");
+export function TourCard({tour, className}: TourCartProps) {
+  const cover = tour.coverUrl || tour.photos?.[0] || "";
+  const priceText = Number(tour.price || 0).toLocaleString();
 
   return (
-    <article className={cls}>
-      <div className={styles.media}>
-        {tour.photos?.[0]
-          ? (
-            <img
-              src={tour.photos[0]}
-              alt={tour.title}
-              className={styles.cover}
-              loading="lazy"
-            />
-          )
-          : (
-            <div
-              className={styles.coverPlaceholder}
-              aria-hidden="true"
-            />
-          )}
-        <span className={styles.quick}>
-          Quick view
-        </span>
-      </div>
+    <article className={clsx(styles.card, className)}>
+      <Link
+        to={`${PATHS.TOURS}/${tour.id}`}
+        className={styles.link}
+        aria-label={tour.title}
+      >
+        <div className={styles.media}>
+          {cover
+            ? (
+              <img
+                className={styles.image}
+                src={cover}
+                alt={tour.title}
+                loading="lazy"
+              />
+            )
+            : (
+              <div
+                className={styles.placeholder}
+                aria-hidden="true"
+              />
+            )}
+        </div>
 
-      <div className={styles.body}>
-        <h3 className={styles.title}>
-          {tour.title}
-        </h3>
-        <p className={styles.meta}>
-          {tour.durationDays ? `${tour.durationDays} days` : ""}
-        </p>
-        <p title={fullDesc}>
-          {shortDesc}
-        </p>
-      </div>
+        <div className={styles.body}>
+          <h3 className={styles.title}>
+            {tour.title}
+          </h3>
+          <p className={styles.desc}>
+            {tour.description}
+          </p>
 
-      <div className={styles.footer}>
-        <span className={styles.price}>
-          From
-          {" "}
-          <strong>
-            {Number(tour.price).toLocaleString("en-US")}
-          </strong>
-          {" "}
-          USD
-        </span>
-        <Link
-          to={href}
-          className={styles.more}
-          aria-label={`See more about ${tour.title}`}
-        >
-          See More
-        </Link>
-      </div>
+          <div className={styles.meta}>
+            {tour.durationDays
+              ? <span>
+                {tour.durationDays}
+                {" "}
+                days
+              </span>
+              : null}
+            {tour.difficulty
+              ? <span>
+                {tour.difficulty}
+              </span>
+              : null}
+          </div>
+
+          <div className={styles.footer}>
+            <div className={styles.price}>
+              <span className={styles.priceValue}>
+                {priceText}
+              </span>
+              <span className={styles.priceCurrency}>
+                USD
+              </span>
+            </div>
+            <span className={styles.cta}>
+              See More
+            </span>
+          </div>
+        </div>
+      </Link>
     </article>
   );
 }
