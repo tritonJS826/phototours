@@ -2,7 +2,7 @@
 @use "../../styles/variables" as vars;
 
 .header {
-  background-color: white;
+  background-color: #ffffff;
   border-bottom: 1px solid #e0e0e0;
   position: sticky;
   top: 0;
@@ -18,12 +18,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0 16px;
   }
 
   .headerLogo {
     img {
       height: 45px;
       width: 180px;
+      display: block;
     }
   }
 }
@@ -37,8 +39,13 @@
     cursor: pointer;
     transition: color 0.2s ease;
 
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
     &:hover {
-      color: black;
+      color: #000000;
     }
   }
 }
@@ -53,7 +60,7 @@
   margin-left: 5px;
   width: 1px;
   height: 24px;
-  background-color: #999;
+  background-color: #999999;
 }
 
 .searchContainer {
@@ -74,10 +81,7 @@
   border-radius: 17px;
   font-size: 16px;
   color: transparent;
-  transition:
-    width 0.3s ease,
-    padding 0.3s ease,
-    color 0.3s ease;
+  transition: width 0.3s ease, padding 0.3s ease, color 0.3s ease;
   cursor: pointer;
 
   &::placeholder {
@@ -93,11 +97,11 @@
 .searchWrapper:hover .searchInput,
 .searchWrapper:focus-within .searchInput {
   width: 300px;
-  color: #000;
-  border: 2px solid black;
+  color: #000000;
+  border: 2px solid #000000;
 
   &::placeholder {
-    color: #999;
+    color: #999999;
   }
 }
 
@@ -106,7 +110,7 @@
   left: 8px;
   top: 50%;
   transform: translateY(-50%);
-  color: #333;
+  color: #333333;
   width: 24px;
   height: 24px;
   transition: opacity 0.3s ease;
@@ -118,43 +122,43 @@
 
   .dropdownBtnLanguage {
     background: inherit;
-    border: 2px solid black;
+    border: 2px solid #000000;
     border-radius: 17px;
     padding: 4px 12px;
     font-weight: 500;
     cursor: pointer;
 
     &:hover {
-      background: black;
-      color: white;
+      background: #000000;
+      color: #ffffff;
       transition: background-color 0.5s ease;
     }
   }
 
   .dropdownBtnCurrency {
-    background: black;
-    color: white;
-    border: 2px solid black;
+    background: #000000;
+    color: #ffffff;
+    border: 2px solid #000000;
     border-radius: 17px;
     padding: 4px 12px;
     font-weight: 500;
     cursor: pointer;
 
     &:hover {
-      color: black;
-      background: white;
+      color: #000000;
+      background: #ffffff;
       transition: background-color 0.5s ease;
     }
   }
 
   .dropdownMenu {
     position: absolute;
-    color: #333;
+    color: #333333;
     top: 135%;
     left: 0;
     margin-top: 4px;
-    background: white;
-    border: 1px solid #ccc;
+    background: #ffffff;
+    border: 1px solid #cccccc;
     border-radius: 8px;
     list-style: none;
     padding: 6px 0;
@@ -168,7 +172,7 @@
       white-space: nowrap;
 
       &:hover {
-        color: #000;
+        color: #000000;
       }
     }
   }
@@ -176,20 +180,19 @@
 
 .iconBtn {
   cursor: pointer;
-  color: #333;
+  color: #333333;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 42px;
   height: 35px;
+  background: transparent;
+  border: none;
 
   &:hover {
-    width: 42px;
-    height: 35px;
-    background-color: black;
-    color: white;
+    background-color: #000000;
+    color: #ffffff;
     border-radius: 17px;
-    transition: opacity 0.3s ease;
     transition: background-color 0.5s ease;
   }
 
@@ -208,8 +211,8 @@
   top: 100%;
   right: 0;
   margin-top: 8px;
-  background: white;
-  border: 1px solid #ccc;
+  background: #ffffff;
+  border: 1px solid #cccccc;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
   min-width: 120px;
@@ -223,7 +226,7 @@
     border-bottom: 1px solid #e9ecef;
     font-size: 14px;
     font-weight: 600;
-    color: #333;
+    color: #333333;
     border-radius: 8px 8px 0 0;
   }
 
@@ -235,13 +238,13 @@
     text-align: left;
     font-size: 14px;
     cursor: pointer;
-    color: #333;
+    color: #333333;
     text-decoration: none;
     display: block;
 
     &:hover {
       background-color: #f5f5f5;
-      color: #000;
+      color: #000000;
     }
 
     &:last-child {
@@ -255,5 +258,38 @@
 
   &:hover .profileMenu {
     display: block;
+  }
+}
+
+@media (width <= 1024px) {
+  .navMenu {
+    gap: 12px;
+
+    .navItem {
+      font-size: 14px;
+    }
+  }
+
+  .searchWrapper:hover .searchInput,
+  .searchWrapper:focus-within .searchInput {
+    width: 220px;
+  }
+}
+
+@media (width <= 640px) {
+  .header {
+    .headerContainer {
+      height: 56px;
+      padding: 0 12px;
+    }
+  }
+
+  .navMenu {
+    display: none;
+  }
+
+  .searchWrapper:hover .searchInput,
+  .searchWrapper:focus-within .searchInput {
+    width: 160px;
   }
 }
