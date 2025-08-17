@@ -10,6 +10,7 @@ import styles from "src/components/Header/Header.module.scss";
 
 const LANGUAGES = ["English", "Deutsch"];
 const CURRENCIES = ["USD", "EUR"];
+const REFRESH_DELAY = 100;
 
 export function Header() {
   const [isLangOpen, setIsLangOpen] = useState(false);
@@ -21,7 +22,6 @@ export function Header() {
 
   const {user, isAuthenticated, logout} = useAuth();
 
-  const REFRESH_DELAY = 100;
   const navigate = useNavigate();
   const langRef = useRef<HTMLDivElement>(null);
   const currencyRef = useRef<HTMLDivElement>(null);
@@ -32,21 +32,18 @@ export function Header() {
       [langRef, currencyRef],
       [() => setIsLangOpen(false), () => setIsCurrencyOpen(false)],
     );
-
     document.addEventListener("mousedown", listener);
 
     return () => {
       document.removeEventListener("mousedown", listener);
     };
-  }, []); // Возвращаем пустые зависимости
+  }, []);
 
   const handleProfileClick = (e: React.MouseEvent) => {
     e.preventDefault();
     if (isAuthenticated) {
-      // Если пользователь авторизован, переходим в профиль
       navigate(PATHS.PROFILE);
     } else {
-      // Если не авторизован, показываем модальное окно входа
       setAuthMode("login");
       setIsAuthModalOpen(true);
     }
@@ -54,11 +51,7 @@ export function Header() {
 
   const handleAuthSuccess = () => {
     setIsAuthModalOpen(false);
-
-    // Перенаправляем на профиль пользователя
-    setTimeout(() => {
-      navigate(PATHS.PROFILE);
-    }, REFRESH_DELAY);
+    setTimeout(() => navigate(PATHS.PROFILE), REFRESH_DELAY);
   };
 
   const renderDropdown = (
@@ -163,7 +156,7 @@ export function Header() {
                 className={styles.dropdownBtnLanguage}
                 aria-haspopup="listbox"
                 aria-expanded={isLangOpen}
-                onClick={() => setIsLangOpen((prev) => !prev)}
+                onClick={() => setIsLangOpen((p) => !p)}
               >
                 {selectedLang}
               </button>
@@ -183,7 +176,7 @@ export function Header() {
                 className={styles.dropdownBtnCurrency}
                 aria-haspopup="listbox"
                 aria-expanded={isCurrencyOpen}
-                onClick={() => setIsCurrencyOpen((prev) => !prev)}
+                onClick={() => setIsCurrencyOpen((p) => !p)}
               >
                 {selectedCurrency}
               </button>
@@ -203,6 +196,7 @@ export function Header() {
               <ShoppingCart className="icon" />
             </Link>
           </div>
+
           <div className={styles.topbarProfile}>
             {isAuthenticated
               ? (
@@ -230,10 +224,7 @@ export function Header() {
                       className={styles.profileMenuItem}
                       onClick={() => {
                         logout();
-                        // Перенаправляем на главную страницу
-                        setTimeout(() => {
-                          navigate(PATHS.HOME);
-                        }, REFRESH_DELAY);
+                        setTimeout(() => navigate(PATHS.HOME), REFRESH_DELAY);
                       }}
                     >
                       Logout
