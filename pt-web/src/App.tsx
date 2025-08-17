@@ -12,11 +12,15 @@ import {AdminPage} from "src/pages/adminPage/AdminPage";
 import {BookTours} from "src/pages/bookTours/BookTours";
 import {Cart} from "src/pages/cart/Cart";
 import {ContactUs} from "src/pages/contactUs/ContactUs";
-import {ArticlePage} from "src/pages/exploreArticles/ArticlePage";
-import {ExploreArticles} from "src/pages/exploreArticles/ExploreArticles";
+import {Dashboard} from "src/pages/dashboard/Dashboard";
+import {ArticlePage} from "src/pages/ExploreArticles/ArticlePage";
+import {ExploreArticles} from "src/pages/ExploreArticles/ExploreArticles";
 import {HomePage} from "src/pages/homePage/HomePage";
 import {NotFound} from "src/pages/notFound/notFound";
+import {Notifications} from "src/pages/notifications/Notifications";
+import {EditProfile} from "src/pages/profile/EditProfile";
 import {Profile} from "src/pages/profile/Profile";
+import {PublicProfile} from "src/pages/profile/PublicProfile";
 import {TourPage} from "src/pages/tourPage/TourPage";
 
 export function App() {
@@ -67,6 +71,34 @@ export function App() {
           element={
             <ProtectedRoute>
               <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile/edit"
+          element={
+            <ProtectedRoute>
+              <EditProfile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile/:id"
+          element={<PublicProfile />}
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/notifications"
+          element={
+            <ProtectedRoute>
+              <Notifications />
             </ProtectedRoute>
           }
         />
