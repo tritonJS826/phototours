@@ -1,11 +1,10 @@
-import React, {useState} from "react";
-import {ChangePasswordForm} from "src/components/Auth/ChangePasswordForm";
+import React from "react";
+import {Link} from "react-router-dom";
 import {useAuth} from "src/hooks/useAuth";
 import styles from "src/components/Auth/UserProfile.module.scss";
 
 export const UserProfile: React.FC = () => {
-  const {user, logout} = useAuth();
-  const [showChangePassword, setShowChangePassword] = useState(false);
+  const {user} = useAuth();
 
   if (!user) {
     return (
@@ -15,13 +14,7 @@ export const UserProfile: React.FC = () => {
     );
   }
 
-  const handleLogout = () => {
-    logout();
-  };
-
-  const handlePasswordChangeSuccess = () => {
-    setShowChangePassword(false);
-  };
+  const isAdmin = user.role === "ADMIN";
 
   return (
     <div className={styles.profileContainer}>
@@ -30,6 +23,25 @@ export const UserProfile: React.FC = () => {
       </h2>
 
       <div className={styles.profileInfo}>
+        <div className={styles.avatarSection}>
+          <div className={styles.avatarContainer}>
+            {user.profilePicUrl
+              ? (
+                <img
+                  src={user.profilePicUrl}
+                  alt={`${user.firstName} ${user.lastName}`}
+                  className={styles.avatar}
+                />
+              )
+              : (
+                <div className={styles.avatarPlaceholder}>
+                  {user.firstName.charAt(0)}
+                  {user.lastName.charAt(0)}
+                </div>
+              )}
+          </div>
+        </div>
+
         <div className={styles.profileField}>
           <label>
             First Name:
@@ -48,34 +60,38 @@ export const UserProfile: React.FC = () => {
           </span>
         </div>
 
-        <div className={styles.profileField}>
-          <label>
-            Email:
-          </label>
-          <span>
-            {user.email}
-          </span>
-        </div>
+        {isAdmin && (
+          <>
+            <div className={styles.profileField}>
+              <label>
+                Email:
+              </label>
+              <span>
+                {user.email}
+              </span>
+            </div>
 
-        {user.phone && (
-          <div className={styles.profileField}>
-            <label>
-              Phone:
-            </label>
-            <span>
-              {user.phone}
-            </span>
-          </div>
+            {user.phone && (
+              <div className={styles.profileField}>
+                <label>
+                  Phone:
+                </label>
+                <span>
+                  {user.phone}
+                </span>
+              </div>
+            )}
+
+            <div className={styles.profileField}>
+              <label>
+                Role:
+              </label>
+              <span>
+                {user.role}
+              </span>
+            </div>
+          </>
         )}
-
-        <div className={styles.profileField}>
-          <label>
-            Role:
-          </label>
-          <span>
-            {user.role}
-          </span>
-        </div>
 
         <div className={styles.profileField}>
           <label>
@@ -88,45 +104,13 @@ export const UserProfile: React.FC = () => {
       </div>
 
       <div className={styles.profileActions}>
-        <button
-          type="button"
-          onClick={() => setShowChangePassword(true)}
-          className={styles.actionButton}
+        <Link
+          to="/profile/edit"
+          className={styles.editButton}
         >
-          Change Password
-        </button>
-
-        <button
-          type="button"
-          onClick={handleLogout}
-          className={`${styles.actionButton} ${styles.logoutButton}`}
-        >
-          Logout
-        </button>
+          Edit Profile
+        </Link>
       </div>
-
-      {showChangePassword && (
-        <div
-          className={styles.modalOverlay}
-          onClick={() => setShowChangePassword(false)}
-        >
-          <div
-            className={styles.modalContent}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className={styles.closeButton}
-              onClick={() => setShowChangePassword(false)}
-            >
-              ×
-            </button>
-            <ChangePasswordForm
-              onSuccess={handlePasswordChangeSuccess}
-              onCancel={() => setShowChangePassword(false)}
-            />
-          </div>
-        </div>
-      )}
     </div>
   );
 };

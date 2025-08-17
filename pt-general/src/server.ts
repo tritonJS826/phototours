@@ -19,7 +19,7 @@ app.use(express.json());
 const port = env.SERVER_PORT;
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', `http://localhost:5174`);
+  res.header('Access-Control-Allow-Origin', 'http://localhost:5174');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   if (req.method === 'OPTIONS') {
@@ -265,11 +265,14 @@ app.post('/auth/zoho/exchange', async (req: Request, res: Response) => {
   }
 });
 
-app.get('/api/zoho/org', async (req: Request, res: Response) => {
+app.get('/api/zoho/org', (req: Request, res: Response) => {
   try {
     const zohoService = createZohoService();
-    const orgInfo = await zohoService.getOrganizationInfo();
-    res.json(orgInfo);
+    zohoService.getOrganizationInfo().then(orgInfo => {
+      res.json(orgInfo);
+    }).catch(() => {
+      res.status(CODE_500).json({error: 'Failed to get organization info'});
+    });
   } catch {
     res.status(CODE_500).json({error: 'Failed to get organization info'});
   }
@@ -305,26 +308,26 @@ app.post('/api/zoho/leads', async (req: Request, res: Response) => {
 });
 
 // Contact form endpoint
-app.post('/contact', async (req: Request, res: Response) => {
+app.post('/contact', (req: Request, res: Response) => {
   try {
-    const { name, email, message } = req.body;
+    const {name, email, message} = req.body;
 
     // Validate required fields
     if (!name || !email || !message) {
-      return res.status(CODE_400).json({ error: 'Name, email and message are required' });
+      return res.status(CODE_400).json({error: 'Name, email and message are required'});
     }
 
     // TODO: Save to database
-    console.log('Contact form submitted:', { name, email, message });
+    logger.info('Contact form submitted:', {name, email, message});
 
     // For now, just return success
     res.json({
       success: true,
-      message: 'Message received successfully'
+      message: 'Message received successfully',
     });
   } catch (error) {
-    console.error('Error processing contact form:', error);
-    res.status(CODE_500).json({ error: 'Failed to process contact form' });
+    logger.error('Error processing contact form:', error);
+    res.status(CODE_500).json({error: 'Failed to process contact form'});
   }
 });
 

@@ -19,10 +19,8 @@ export function AuthModal({isOpen, onClose, initialMode = "login", onSuccess}: A
 
   const handleSuccess = () => {
     if (mode === "register") {
-      // После успешной регистрации переключаемся на форму входа
       setMode("login");
     } else {
-      // После успешного входа закрываем модальное окно и вызываем onSuccess
       onSuccess?.();
       onClose();
     }

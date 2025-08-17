@@ -223,3 +223,72 @@ export const getProfile = async (req: AuthRequest, res: Response) => {
     res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({error: 'Get profile error'});
   }
 };
+
+export const updateProfile = async (req: AuthRequest, res: Response) => {
+  try {
+    const userId = req.user?.userId;
+
+    if (!userId) {
+      return res.status(HTTP_STATUS_UNAUTHORIZED).json({error: 'Authentication required'});
+    }
+
+    const {firstName, lastName, bio} = req.body;
+    const avatarFile = req.file;
+
+    // Проверяем обязательные поля
+    if (!firstName || !lastName) {
+      return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'firstName and lastName are required'});
+    }
+
+    // Подготавливаем данные для обновления
+    const updateData: {
+      firstName: string;
+      lastName: string;
+      bio: string | null;
+      profilePicUrl?: string;
+    } = {
+      firstName,
+      lastName,
+      bio: bio || null,
+    };
+
+    // Если загружен аватар, обрабатываем его
+    if (avatarFile) {
+      try {
+        // Получаем URL загруженного файла из Cloudinary
+        // Multer с CloudinaryStorage автоматически загружает файл и добавляет его URL в req.file
+        updateData.profilePicUrl = (avatarFile as { path: string }).path;
+        logger.info(`Avatar uploaded successfully: ${updateData.profilePicUrl}`);
+      } catch (uploadError) {
+        logger.error('Avatar upload error:', uploadError);
+
+        return res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({error: 'Failed to upload avatar'});
+      }
+    }
+
+    // Обновляем пользователя
+    const updatedUser = await prisma.user.update({
+      where: {id: userId},
+      data: updateData,
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        email: true,
+        phone: true,
+        role: true,
+        profilePicUrl: true,
+        bio: true,
+        createdAt: true,
+      },
+    });
+
+    res.json({
+      message: 'Profile updated successfully',
+      user: updatedUser,
+    });
+  } catch (error) {
+    logger.error('Update profile error:', error);
+    res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({error: 'Update profile error'});
+  }
+};

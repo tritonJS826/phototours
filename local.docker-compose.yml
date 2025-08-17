@@ -13,19 +13,19 @@ services:
     networks:
       - app-network
 
-  # pt-general:
-  #   build:
-  #     context: ./pt-general
-  #     dockerfile: Dockerfile
-  #   container_name: pt-general
-  #   ports:
-  #     - "8000:3000"
-  #   env_file:
-  #     - ./pt-general/.env
-  #   networks:
-  #     - app-network
-  #   depends_on:
-  #     - postgres-general
+  pt-general:
+    build:
+      context: ./pt-general
+      dockerfile: Dockerfile
+    container_name: pt-general
+    ports:
+      - "8000:3000"
+    env_file:
+      - ./pt-general/.env
+    networks:
+      - app-network
+    depends_on:
+      - postgres-general
 
   grafana:
     build:
