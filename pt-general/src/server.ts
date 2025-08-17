@@ -312,21 +312,15 @@ app.post('/contact', (req: Request, res: Response) => {
   try {
     const {name, email, message} = req.body;
 
-    // Validate required fields
     if (!name || !email || !message) {
       return res.status(CODE_400).json({error: 'Name, email and message are required'});
     }
 
-    // TODO: Save to database
-    logger.info('Contact form submitted:', {name, email, message});
-
-    // For now, just return success
     res.json({
       success: true,
       message: 'Message received successfully',
     });
-  } catch (error) {
-    logger.error('Error processing contact form:', error);
+  } catch {
     res.status(CODE_500).json({error: 'Failed to process contact form'});
   }
 });

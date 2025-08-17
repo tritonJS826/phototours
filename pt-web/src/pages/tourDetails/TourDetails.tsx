@@ -23,6 +23,7 @@ export function TourDetailsPage() {
     if (!id) {
       return;
     }
+
     (async () => {
       try {
         const t = await getTour(id);
@@ -42,6 +43,7 @@ export function TourDetailsPage() {
       </section>
     );
   }
+
   if (!tour) {
     return (
       <section className={styles.wrap}>
