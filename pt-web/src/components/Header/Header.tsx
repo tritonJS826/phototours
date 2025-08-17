@@ -1,3 +1,4 @@
+// Src/components/Header/Header.tsx
 import {useEffect, useRef, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {CircleUser, Search, ShoppingCart} from "lucide-react";
