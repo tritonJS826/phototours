@@ -1,8 +1,9 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {Button} from "src/components/Button/Button";
 import styles from "src/components/AdminTourEditForm/AdminTourEditForm.module.scss";
 
+// Types
 type DifficultyLevel = "BEGINNER" | "EXPERIENCED" | "PRO";
 
 export enum MaterialType {
@@ -14,9 +15,11 @@ export enum MaterialType {
 
 interface TourMaterial {
   id?: number;
+  file?: File;
+  url?: string;
   title: string;
-  url: string;
   type: MaterialType;
+  isNew?: boolean;
 }
 
 interface TourData {
@@ -34,9 +37,20 @@ interface TourData {
   videos: File[];
 }
 
+type Guide = {
+  id: number;
+  experience: string;
+  user: {
+    id: number;
+    firstName: string;
+    lastName: string;
+  };
+};
+
 export const AdminTourEdit = () => {
   const {id} = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [formData, setFormData] = useState<TourData>({
     title: "",
@@ -56,6 +70,25 @@ export const AdminTourEdit = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
+  const [guides, setGuides] = useState([]);
+
+  const REMOVE_COUNT = 1;
+
+  useEffect(() => {
+    const fetchGuides = async () => {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/guides`);
+        if (!res.ok) {
+          throw new Error("Failed to load guides");
+        }
+        const data = await res.json();
+        setGuides(data);
+      } catch {
+        setError("Error loading guides");
+      }
+    };
+    fetchGuides();
+  }, []);
 
   useEffect(() => {
     if (!id) {
@@ -66,7 +99,7 @@ export const AdminTourEdit = () => {
       try {
         const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}`);
         if (!res.ok) {
-          throw new Error(`Failed to fetch tour with id ${id}`);
+          throw new Error(`Failed to fetch tour with ID ${id}`);
         }
 
         const data = await res.json();
@@ -80,19 +113,29 @@ export const AdminTourEdit = () => {
           program: data.program?.text || "",
           guideId: data.guideId || "",
           tags: Array.isArray(data.tags)
-            ? data.tags.map((t: { name?: string } | string) => typeof t === "string" ? t : t.name || "").join(", ")
+            ? data.tags.map((t: { name?: string } | string) =>
+              typeof t === "string" ? t : t.name || "",
+            ).join(", ")
             : "",
           dates: Array.isArray(data.dates)
             ? data.dates.map((d: { date?: string }) =>
               typeof d === "string" ? d : d.date?.split("T")[0],
             ).join(", ")
             : "",
-          materials: Array.isArray(data.materials) ? data.materials : [],
+          materials: Array.isArray(data.materials)
+            ? data.materials.map((m: { id?: number; url?: string; title?: string; type?: MaterialType }) => ({
+              id: m.id,
+              url: m.url,
+              title: m.title,
+              type: m.type,
+              isNew: false,
+            }))
+            : [],
           photos: [],
           videos: [],
         });
-      } catch (err: unknown) {
-        setError(err instanceof Error ? err.message : `Failed to load tour with id ${id}`);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to fetch tour");
       } finally {
         setLoading(false);
       }
@@ -101,68 +144,134 @@ export const AdminTourEdit = () => {
     fetchTour();
   }, [id]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  // Form handling
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+  ) => {
     const {name, value} = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: name === "price" || name === "guideId" ? (value === "" ? "" : Number(value)) : value,
-    }));
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {name, files} = e.target;
-    if (!files) {
-      return;
-    }
-    setFormData(prev => ({
-      ...prev,
-      [name]: [...(prev[name as "photos" | "videos"]), ...Array.from(files)],
+      [name]: name === "price" || name === "guideId"
+        ? (value === "" ? "" : Number(value))
+        : value,
     }));
   };
 
   const handleMaterialChange = (index: number, field: keyof TourMaterial, value: string) => {
-    const newMaterials = [...formData.materials];
-    newMaterials[index] = {...newMaterials[index], [field]: value};
-    setFormData(prev => ({...prev, materials: newMaterials}));
+    setFormData(prev => {
+      const newMaterials = [...prev.materials];
+      newMaterials[index] = {...newMaterials[index], [field]: value};
+
+      return {...prev, materials: newMaterials};
+    });
+  };
+
+  // File upload
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
+    const files = Array.from(e.target.files);
+    const {name} = e.target;
+
+    setFormData(prev => ({
+      ...prev,
+      [name]: [...prev[name as "photos" | "videos"], ...files],
+    }));
+  };
+
+  const handleMaterialFileChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+    if (!e.target.files?.[0]) {
+      return;
+    }
+    const file = e.target.files[0];
+
+    setFormData(prev => {
+      const newMaterials = [...prev.materials];
+      newMaterials[index] = {...newMaterials[index], file};
+
+      return {...prev, materials: newMaterials};
+    });
+  };
+
+  // Drag and drop
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    const files = Array.from(e.dataTransfer.files);
+
+    setFormData(prev => ({
+      ...prev,
+      photos: [...prev.photos, ...files.filter(f => f.type.startsWith("image/"))],
+      videos: [...prev.videos, ...files.filter(f => f.type.startsWith("video/"))],
+    }));
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
   };
 
   const addMaterial = () => {
     setFormData(prev => ({
       ...prev,
-      materials: [...prev.materials, {title: "", url: "", type: MaterialType.PDF}],
+      materials: [
+        ...prev.materials,
+        {title: "", type: MaterialType.PDF, isNew: true},
+      ],
     }));
   };
 
-  const removeMaterial = (index: number) => {
-    setFormData(prev => ({
-      ...prev,
-      materials: prev.materials.filter((_, i) => i !== index),
-    }));
+  const removeMaterial = async (index: number) => {
+    const material = formData.materials[index];
+
+    if (material.id) {
+      try {
+        await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/tours/materials/${material.id}`,
+          {method: "DELETE"},
+        );
+      } catch {
+        setError("Failed to remove material");
+
+        return;
+      }
+    }
+
+    setFormData(prev => {
+      const newMaterials = [...prev.materials];
+      newMaterials.splice(index, REMOVE_COUNT);
+
+      return {...prev, materials: newMaterials};
+    });
   };
 
-  const handleMaterialFileUpload = async (file: File, index: number) => {
-    const materialFormData = new FormData();
-    materialFormData.append("file", file);
-    materialFormData.append("title", formData.materials[index].title);
-    materialFormData.append("type", formData.materials[index].type);
+  const uploadMaterials = async () => {
+    const uploadPromises = formData.materials
+      .filter(m => m.isNew && m.file)
+      .map(async (material) => {
+        if (!material.file) {
+          throw new Error(`File "${material.title}" is required`);
+        }
+        const materialFormData = new FormData();
+        materialFormData.append("file", material.file);
+        materialFormData.append("title", material.title);
+        materialFormData.append("type", material.type);
 
-    try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/materials`, {
-        method: "PATCH",
-        body: materialFormData,
+        const res = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/tours/${id}/materials`,
+          {
+            method: "PATCH",
+            body: materialFormData,
+          },
+        );
+
+        if (!res.ok) {
+          throw new Error("Failed to upload material");
+        }
+
+        return res.json();
       });
 
-      if (!res.ok) {
-        throw new Error("Upload failed");
-      }
-
-      const result = await res.json();
-      const updated = [...formData.materials];
-      updated[index].url = result.url;
-      setFormData(prev => ({...prev, materials: updated}));
-    } catch {
-      setError("Failed to upload material");
-    }
+    return Promise.all(uploadPromises);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -171,8 +280,8 @@ export const AdminTourEdit = () => {
     setSubmitting(true);
 
     try {
-      // Update main tour info
-      const resUpdate = await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}`, {
+
+      await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}`, {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
@@ -186,11 +295,6 @@ export const AdminTourEdit = () => {
         }),
       });
 
-      if (!resUpdate.ok) {
-        throw new Error("Failed to update tour");
-      }
-
-      // Tags
       const tags = formData.tags.split(",").map(t => t.trim()).filter(Boolean);
       if (tags.length) {
         await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/tags`, {
@@ -200,7 +304,6 @@ export const AdminTourEdit = () => {
         });
       }
 
-      // Dates
       const dates = formData.dates.split(",").map(d => d.trim()).filter(Boolean);
       if (dates.length) {
         await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/dates`, {
@@ -210,35 +313,35 @@ export const AdminTourEdit = () => {
         });
       }
 
-      // Photos
       await Promise.all(
         formData.photos.map(file => {
-          const photoForm = new FormData();
-          photoForm.append("file", file);
+          const form = new FormData();
+          form.append("file", file);
 
           return fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/photos`, {
             method: "PATCH",
-            body: photoForm,
+            body: form,
           });
         }),
       );
 
-      // Videos
       await Promise.all(
         formData.videos.map(file => {
-          const videoForm = new FormData();
-          videoForm.append("file", file);
+          const form = new FormData();
+          form.append("file", file);
 
           return fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/videos`, {
             method: "PATCH",
-            body: videoForm,
+            body: form,
           });
         }),
       );
 
-      navigate("/");
-    } catch (err: unknown) {
-      setError(err instanceof Error ? err.message || "Failed to save tour data" : "An unknown error occurred");
+      await uploadMaterials();
+
+      navigate("/admin");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to save tour data");
     } finally {
       setSubmitting(false);
     }
@@ -258,44 +361,48 @@ export const AdminTourEdit = () => {
       onSubmit={handleSubmit}
     >
       <h2>
-        Edit Tour #
+        Edit tour #
         {id}
       </h2>
 
-      <label>
+      <label className={styles.label}>
         Title
       </label>
       <input
+        className={styles.inputSelectText}
         name="title"
         value={formData.title}
         onChange={handleChange}
         required
       />
 
-      <label>
+      <label className={styles.label}>
         Description
       </label>
       <textarea
+        className={styles.inputSelectText}
         name="description"
         value={formData.description}
         onChange={handleChange}
         required
       />
 
-      <label>
+      <label className={styles.label}>
         Region
       </label>
       <input
+        className={styles.inputSelectText}
         name="region"
         value={formData.region}
         onChange={handleChange}
         required
       />
 
-      <label>
+      <label className={styles.label}>
         Difficulty
       </label>
       <select
+        className={styles.inputSelectText}
         name="difficulty"
         value={formData.difficulty}
         onChange={handleChange}
@@ -311,10 +418,11 @@ export const AdminTourEdit = () => {
         </option>
       </select>
 
-      <label>
+      <label className={styles.label}>
         Price
       </label>
       <input
+        className={styles.inputSelectText}
         type="number"
         name="price"
         value={formData.price}
@@ -324,40 +432,55 @@ export const AdminTourEdit = () => {
         step={0.01}
       />
 
-      <label>
+      <label className={styles.label}>
         Program
       </label>
       <textarea
+        className={styles.inputSelectText}
         name="program"
         value={formData.program}
         onChange={handleChange}
         rows={6}
       />
 
-      <label>
+      <label className={styles.label}>
         Guide
+        <select
+          className={styles.inputSelectText}
+          name="guideId"
+          value={formData.guideId}
+          onChange={handleChange}
+          required
+        >
+          {guides.map((guide: Guide) => (
+            <option
+              key={guide.id}
+              value={guide.user.id}
+            >
+              {guide.user.firstName}
+              {" "}
+              {guide.user.lastName}
+              {" "}
+            </option>
+          ))}
+        </select>
       </label>
-      <input
-        type="number"
-        name="guideId"
-        value={formData.guideId}
-        onChange={handleChange}
-        required
-      />
 
-      <label>
+      <label className={styles.label}>
         Tags (comma-separated)
       </label>
       <input
+        className={styles.inputSelectText}
         name="tags"
         value={formData.tags}
         onChange={handleChange}
       />
 
-      <label>
+      <label className={styles.label}>
         Dates (comma-separated, e.g. "2025-10-01, 2025-10-15")
       </label>
       <input
+        className={styles.inputSelectText}
         name="dates"
         value={formData.dates}
         onChange={handleChange}
@@ -367,119 +490,183 @@ export const AdminTourEdit = () => {
         <legend>
           Materials
         </legend>
-        {formData.materials.map((mat, idx) => (
+        {formData.materials.map((material, index) => (
           <div
-            key={idx}
-            className={styles.materialItem}
+            key={index}
+            className={styles.materialCard}
           >
             <input
               type="text"
               placeholder="Title"
-              value={mat.title}
-              onChange={e => handleMaterialChange(idx, "title", e.target.value)}
+              value={material.title}
+              onChange={(e) => handleMaterialChange(index, "title", e.target.value)}
+              className={styles.inputText}
               required
             />
+
             <select
-              value={mat.type}
-              onChange={e => handleMaterialChange(idx, "type", e.target.value)}
+              value={material.type}
+              onChange={(e) => handleMaterialChange(index, "type", e.target.value)}
+              className={styles.inputSelect}
               required
             >
-              <option value={MaterialType.PDF}>
-                PDF
-              </option>
-              <option value={MaterialType.VIDEO}>
-                Video
-              </option>
-              <option value={MaterialType.ROUTE}>
-                Route
-              </option>
-              <option value={MaterialType.TIPS}>
-                Tips
-              </option>
+              {Object.values(MaterialType).map((type) => (
+                <option
+                  key={type}
+                  value={type}
+                >
+                  {type}
+                </option>
+              ))}
             </select>
-            <input
-              type="file"
-              accept="*/*"
-              onChange={e => {
-                if (e.target.files?.[0]) {
-                  handleMaterialFileUpload(e.target.files[0], idx);
-                }
-              }}
-            />
-            {mat.url && (
-              <a
-                href={mat.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.materialLink}
-              >
-                View file
-              </a>
-            )}
-            <Button
+
+            <label className={styles.fileUpload}>
+              {material.file?.name || material.url || "Upload File"}
+              <input
+                type="file"
+                accept="*/*"
+                onChange={(e) => handleMaterialFileChange(e, index)}
+                style={{display: "none"}}
+              />
+            </label>
+
+            <button
               type="button"
-              onClick={() => removeMaterial(idx)}
+              onClick={() => removeMaterial(index)}
               className={styles.removeButton}
             >
-              Remove
-            </Button>
+              Delete
+            </button>
           </div>
         ))}
-        <Button
+
+        <button
           type="button"
           onClick={addMaterial}
           className={styles.addButton}
         >
-          Add
-        </Button>
+          Edd Material
+        </button>
       </fieldset>
 
-      <label>
+      <label className={styles.label}>
         Photos
       </label>
-      <input
-        type="file"
-        name="photos"
-        accept="image/*"
-        multiple
-        onChange={handleFileChange}
-      />
-      {formData.photos.length > 0 && (
-        <ul>
-          {formData.photos.map((file, idx) => (<li key={idx}>
-            {file.name}
-          </li>))}
-        </ul>
-      )}
+      <div
+        className={styles.dropZone}
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+        onClick={() => fileInputRef.current?.click()}
+      >
+        <p className={styles.dropZoneText}>
+          Drag & drop images here, or click to select
+        </p>
+        <input
+          type="file"
+          ref={fileInputRef}
+          name="photos"
+          accept="image/*"
+          multiple
+          onChange={handleFileChange}
+          className={styles.hiddenFileInput}
+        />
+      </div>
+      <div className={styles.fileUploadPreview}>
+        {formData.photos.map((file, index) => (
+          <div
+            key={index}
+            className={styles.fileUploadItem}
+          >
+            <img
+              src={URL.createObjectURL(file)}
+              alt={file.name}
+              className={styles.fileUploadItemImage}
+            />
+            <button
+              type="button"
+              className={styles.fileUploadItemRemove}
+              onClick={() => {
+                setFormData(prev => {
+                  const newPhotos = [...prev.photos];
+                  newPhotos.splice(index, REMOVE_COUNT);
 
-      <label>
+                  return {...prev, photos: newPhotos};
+                });
+              }}
+            >
+              ×
+            </button>
+          </div>
+        ))}
+      </div>
+
+      <label className={styles.label}>
         Videos
       </label>
-      <input
-        type="file"
-        name="videos"
-        accept="video/*"
-        multiple
-        onChange={handleFileChange}
-      />
-      {formData.videos.length > 0 && (
-        <ul>
-          {formData.videos.map((file, idx) => (<li key={idx}>
+      <div
+        className={styles.dropZone}
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+        onClick={() => fileInputRef.current?.click()}
+      >
+        <p className={styles.dropZoneText}>
+          Drag & drop videos here, or click to select
+        </p>
+        <input
+          type="file"
+          name="videos"
+          accept="video/*"
+          multiple
+          onChange={handleFileChange}
+          className={styles.hiddenFileInput}
+        />
+      </div>
+      <div className={styles.fileList}>
+        {formData.videos.map((file, index) => (
+          <div
+            key={index}
+            className={styles.fileListItem}
+          >
             {file.name}
-          </li>))}
-        </ul>
-      )}
+            <button
+              type="button"
+              className={styles.fileListItemRemove}
+              onClick={() => {
+                setFormData(prev => {
+                  const newVideos = [...prev.videos];
+                  newVideos.splice(index);
+
+                  return {...prev, videos: newVideos};
+                });
+              }}
+            >
+              ×
+            </button>
+          </div>
+        ))}
+      </div>
 
       {error && <p className={styles.error}>
         {error}
       </p>}
 
-      <Button
-        type="submit"
-        disabled={submitting}
-      >
-        {submitting ? "Saving..." : "Save Changes"}
-      </Button>
+      <div className={styles.buttonContainer}>
+        <Button
+          className={styles.btn}
+          type="submit"
+          disabled={submitting}
+        >
+          {submitting ? "Saving..." : "Save Changes"}
+        </Button>
+        <Button
+          className={styles.btn}
+          type="button"
+          onClick={() => navigate("/admin")}
+          disabled={submitting}
+        >
+          Cancel
+        </Button>
+      </div>
     </form>
   );
 };

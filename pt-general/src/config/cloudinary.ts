@@ -14,6 +14,10 @@ const storage = new CloudinaryStorage({
     return {
       folder: env.CLOUDINARY_UPLOAD_FOLDER,
       resource_type: 'auto',
+      transformation: [
+        {width: 1920, height: 1080, crop: 'limit'},
+        {quality: 'auto:good'},
+      ],
       public_id: file.originalname.split('.')[0],
     };
   },
