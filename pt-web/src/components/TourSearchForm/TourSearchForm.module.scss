@@ -6,149 +6,179 @@
   z-index: 2;
   width: 100%;
   margin-top: 250px;
+  padding-bottom: 30px;
+}
 
-  form {
-    width: 100%;
-  }
+.iconsBar {
+  display: none;
+  gap: 18px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 0;
+}
+
+.iconWhite {
+  width: 22px;
+  height: 22px;
+  color: #fff;
 }
 
 .form {
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 26px 24px;
   align-items: end;
+}
 
-  @media (width <= 1024px) {
+.field {
+  width: 100%;
+}
+
+.field label {
+  display: block;
+  margin: 0 0 10px;
+  font-size: 18px;
+  line-height: 1.2;
+  color: #fff;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgb(0 0 0 / 35%);
+}
+
+.inputWrap {
+  position: relative;
+  width: 100%;
+}
+
+.iconBlack {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  color: #111;
+}
+
+.input {
+  width: 100%;
+  height: 56px;
+  padding: 0 20px 0 48px;
+  border-radius: 28px;
+  background: #fff;
+  border: 1px solid rgb(0 0 0 / 15%);
+  box-shadow: 0 1px 0 rgb(0 0 0 / 8%) inset, 0 2px 8px rgb(0 0 0 / 8%);
+  color: #222;
+  font-size: 16px;
+}
+
+.input::placeholder {
+  color: #7a7a7a;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #9ecf9f;
+  box-shadow: 0 0 0 3px rgb(126 183 126 / 35%), 0 2px 8px rgb(0 0 0 / 8%);
+}
+
+.dateGroup {
+  display: grid;
+  grid-template-columns: 1fr 14px 1fr;
+  align-items: center;
+  height: 56px;
+  background: #fff;
+  border: 1px solid rgb(0 0 0 / 15%);
+  border-radius: 28px;
+  box-shadow: 0 1px 0 rgb(0 0 0 / 8%) inset, 0 2px 8px rgb(0 0 0 / 8%);
+  padding: 0 6px;
+}
+
+.inputDateLeft {
+  border-radius: 28px 0 0 28px;
+  border: 0;
+  height: 54px;
+  box-shadow: none;
+  background: transparent;
+}
+
+.inputDateRight {
+  border-radius: 0 28px 28px 0;
+  border: 0;
+  height: 54px;
+  padding-left: 20px;
+  box-shadow: none;
+  background: transparent;
+}
+
+.dateDivider {
+  height: 30px;
+  width: 1px;
+  background: rgb(0 0 0 / 15%);
+  border-radius: 1px;
+  justify-self: center;
+}
+
+.formBtn {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+  position: relative;
+  z-index: 3;
+}
+
+.btnSearch {
+  min-width: 535px;
+  height: 55px;
+  padding: 10px 50px;
+  font-size: 18px;
+  border-radius: 9999px;
+  background-color: #84c489;
+  color: #102010;
+  border: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 6px 16px rgb(0 0 0 / 18%);
+}
+
+.btnSearch:hover {
+  background-color: #76b77b;
+  color: #fff;
+}
+
+.btnSearch:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 18%);
+}
+
+@media (width <= 1024px) {
+  .form {
     grid-template-columns: 1fr;
     gap: 18px;
   }
 
-  label {
-    display: block;
-    margin: 0 0 10px;
-    font-size: 18px;
-    line-height: 1.2;
-    color: #fff;
-    font-weight: 500;
-  }
-
-  &LocationInput,
-  &DateInput,
-  &TravInput {
-    padding: 0 22px;
-  }
-
-  &Location,
-  &Date,
-  &Trav {
-    width: 100%;
-  }
-
-  .formLocationInput,
-  .formTravInput {
-    width: 100%;
-    height: 56px;
-    padding: 0 20px;
-    border-radius: 28px;
-    background: #fff;
-    border: 1px solid rgb(0 0 0 / 15%);
-    box-shadow:
-      0 1px 0 rgb(0 0 0 / 8%) inset,
-      0 2px 8px rgb(0 0 0 / 8%);
-    color: #222;
-    font-size: 16px;
-
-    &::placeholder {
-      color: #7a7a7a;
-    }
-
-    &:focus {
-      outline: none;
-      border-color: #9ecf9f;
-      box-shadow:
-        0 0 0 3px rgb(126 183 126 / 35%),
-        0 2px 8px rgb(0 0 0 / 8%);
-    }
-  }
-
-  .formDateInputFirst {
-    width: 65%;
-    height: 56px;
-    padding: 0 20px;
-    border-radius: 28px 0 0 28px;
-    background: #fff;
-    border: 1px solid rgb(0 0 0 / 15%);
-    box-shadow:
-      0 1px 0 rgb(0 0 0 / 8%) inset,
-      0 2px 8px rgb(0 0 0 / 8%);
-    color: #222;
-    font-size: 16px;
-
-    &::placeholder {
-      color: #7a7a7a;
-    }
-
-    &:focus {
-      outline: none;
-      border-color: #9ecf9f;
-      box-shadow:
-        0 0 0 3px rgb(126 183 126 / 35%),
-        0 2px 8px rgb(0 0 0 / 8%);
-    }
-  }
-
-  .formDateInputSecond {
-    width: 35%;
-    height: 56px;
-    padding: 0 20px;
-    border-radius: 0 28px 28px 0;
-    background: #fff;
-    border: 1px solid rgb(0 0 0 / 15%);
-    box-shadow:
-      0 1px 0 rgb(0 0 0 / 8%) inset,
-      0 2px 8px rgb(0 0 0 / 8%);
-    color: #222;
-    font-size: 16px;
-
-    &::placeholder {
-      color: #7a7a7a;
-    }
-
-    &:focus {
-      outline: none;
-      border-color: #9ecf9f;
-      box-shadow:
-        0 0 0 3px rgb(126 183 126 / 35%),
-        0 2px 8px rgb(0 0 0 / 8%);
-    }
+  .formBtn {
+    transform: translateY(22px);
   }
 }
 
-.formBtn {
-  margin-top: 35px;
-  display: flex;
-  justify-content: center;
+@media (width <= 640px) {
+  .iconsBar {
+    display: flex;
+  }
 
-  .formBtnSub {
-    min-width: 300px;
-    height: 55px;
-    padding: 0 28px;
-    border: 0;
-    border-radius: 9999px;
-    background: #84c489;
-    color: #102010;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 6px 16px rgb(0 0 0 / 18%);
+  .form {
+    display: none;
+  }
 
-    &:hover {
-      background: #76b77b;
-    }
+  .iconWhite {
+    width: 26px;
+    height: 26px;
+  }
 
-    &:active {
-      transform: translateY(1px);
-      box-shadow: 0 4px 12px rgb(0 0 0 / 18%);
-    }
+  .formBtn {
+    transform: none;
+    margin-top: 18px;
   }
 }
