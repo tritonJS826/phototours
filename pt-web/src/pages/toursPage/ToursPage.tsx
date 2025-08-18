@@ -1,28 +1,65 @@
-import {AsyncSection} from "src/components/AsyncSection/AsyncSection";
-import {Page} from "src/components/Page/Page";
+import {useEffect, useState} from "react";
+import {listTours} from "src/api/tours";
+import {Container} from "src/components/Container/Container";
 import {TourCard} from "src/components/Tour/Tour";
-import {useTours} from "src/hooks/useTours";
+import type {TourView} from "src/types/tour";
 import styles from "src/pages/toursPage/ToursPage.module.scss";
 
 export function ToursPage() {
-  const {data, loading, error, reload} = useTours();
+  const [items, setItems] = useState<TourView[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [err, setErr] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      try {
+        setLoading(true);
+        const data = await listTours();
+        setItems(data);
+      } catch (e) {
+        const message =
+          e instanceof Error ? e.message : "Failed to load tours";
+        setErr(message);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className={styles.wrap}>
+        Loading…
+      </section>
+    );
+  }
+
+  if (err) {
+    return (
+      <section className={styles.wrap}>
+        Error:
+        {" "}
+        {err}
+      </section>
+    );
+  }
 
   return (
-    <Page title="All Tours">
-      <AsyncSection
-        loading={loading}
-        error={error}
-        onRetry={reload}
-      >
+    <section className={styles.wrap}>
+      <Container>
+        <h1 className={styles.sectionTitle}>
+          All Tours
+        </h1>
+
         <div className={styles.grid}>
-          {(data ?? []).map((tour) => (
+          {items.map((tour) => (
             <TourCard
               key={tour.id}
               tour={tour}
             />
           ))}
         </div>
-      </AsyncSection>
-    </Page>
+      </Container>
+    </section>
   );
 }

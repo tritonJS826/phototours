@@ -68,8 +68,7 @@ $breakpoint-mobile: 768px;
 // ====== TRANSITIONS AND ANIMATIONS ======
 
 $btn-transition-bg: background-color 0.3s ease;
-$transition-fast: 0.2s ease;
-$transition-normal: 0.3s ease;
+$transition-fast: 0.1s ease;
 
 // Common transition combinations
 $transition-bg: background-color 0.3s ease;
@@ -154,15 +153,14 @@ $btn-transition-bg: background-color 0.3s ease;
 
 // ====== PADDINGS AND MARGINS ======
 
+// ===== Padding and Margins ======
+
 $padding-section: 64px 16px;
 $padding-container: 48px 16px;
-$padding-button: 14px 24px;
+$padding-button: 13.6px 24px;
 $padding-input: 12px 16px;
-$margin-top-large: 32px;
-$margin-top-medium: 24px;
-$margin-top-small: 16px;
 
-// ====== RADIUS ======
+// ====== Radius and Shadows ======
 
 $radius-small: 6px;
 $radius-medium: 8px;
