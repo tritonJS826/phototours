@@ -1,9 +1,17 @@
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {getTour} from "src/api/tours";
 import {Container} from "src/components/Container/Container";
+import {Select} from "src/components/Select/Select";
 import type {TourView} from "src/types/tour";
 import styles from "src/pages/tourDetails/TourDetails.module.scss";
+
+function splitToParagraphs(text: string) {
+  return text
+    .split(/\n{2,}/g)
+    .map(s => s.trim())
+    .filter(Boolean);
+}
 
 export function TourDetailsPage() {
   const {id} = useParams<{ id: string }>();
@@ -43,23 +51,26 @@ export function TourDetailsPage() {
   }
 
   const cover = tour.coverUrl || tour.photos[0];
+  const paragraphs = useMemo(() => splitToParagraphs(tour.description || ""), [tour.description]);
+  const priceText = Number(tour.price).toLocaleString();
 
   return (
     <section className={styles.wrap}>
       <Container>
-        <h1>
+        <h1 className={styles.title}>
           {tour.title}
         </h1>
-        {cover &&
-        <img
-          className={styles.hero}
-          src={cover}
-          alt={tour.title}
-        />
-        }
+
+        {cover && (
+          <img
+            className={styles.hero}
+            src={cover}
+            alt={tour.title}
+          />
+        )}
 
         <div className={styles.grid}>
-          <div>
+          <div className={styles.main}>
             <div className={styles.meta}>
               {tour.region && <div>
                 <b>
@@ -101,30 +112,44 @@ export function TourDetailsPage() {
             </div>
 
             <div className={styles.section}>
-              <h3>
+              <h3 className={styles.sectionTitle}>
                 Description
               </h3>
-              <p>
-                {tour.description}
-              </p>
+              {paragraphs.length
+                ? (
+                  paragraphs.map((p, i) => (
+                    <p
+                      key={i}
+                      className={styles.paragraph}
+                    >
+                      {p}
+                    </p>
+                  ))
+                )
+                : (
+                  <p className={styles.paragraph}>
+                    {tour.description}
+                  </p>
+                )}
             </div>
 
             {!!tour.dailyItinerary?.length && (
               <div className={styles.section}>
-                <h3>
+                <h3 className={styles.sectionTitle}>
                   Daily itinerary
                 </h3>
                 {tour.dailyItinerary.map(d => (
                   <div
                     key={d.day}
-                    style={{marginBottom: 16}}
+                    className={styles.day}
                   >
-                    <h4>
+                    <h4 className={styles.dayTitle}>
                       Day
+                      {" "}
                       {d.day}
                       {d.title ? ` — ${d.title}` : ""}
                     </h4>
-                    <p>
+                    <p className={styles.paragraph}>
                       {d.description}
                     </p>
                   </div>
@@ -134,7 +159,7 @@ export function TourDetailsPage() {
 
             {!!tour.activities?.length && (
               <div className={styles.section}>
-                <h3>
+                <h3 className={styles.sectionTitle}>
                   Activities
                 </h3>
                 <ul className={styles.bullets}>
@@ -147,7 +172,7 @@ export function TourDetailsPage() {
 
             {!!tour.included?.length && (
               <div className={styles.section}>
-                <h3>
+                <h3 className={styles.sectionTitle}>
                   Included
                 </h3>
                 <ul className={styles.bullets}>
@@ -160,28 +185,25 @@ export function TourDetailsPage() {
           </div>
 
           <aside className={styles.sidebar}>
-            <div style={{fontWeight: 700, fontSize: "1.25rem"}}>
-              {tour.price.toLocaleString("en-US")}
-              {" "}
-              USD
+            <div className={styles.priceBox}>
+              <span className={styles.priceValue}>
+                {priceText}
+              </span>
+              <span className={styles.priceCurrency}>
+                USD
+              </span>
             </div>
+
             {!!tour.dates.length && (
-              <>
-                <label style={{display: "block", marginTop: 12}}>
-                  Select date
-                </label>
-                <select style={{width: "100%"}}>
-                  {tour.dates.map((d) => (
-                    <option
-                      key={d}
-                      value={d}
-                    >
-                      {d}
-                    </option>))}
-                </select>
-              </>
+              <Select
+                label="Select date"
+                placeholder="Choose a date"
+                options={tour.dates.map((d) => ({value: d, label: d}))}
+                className={styles.selectBox}
+              />
             )}
-            <button style={{marginTop: 12, width: "100%"}}>
+
+            <button className={styles.cta}>
               Continue Now
             </button>
           </aside>

@@ -1,0 +1,27 @@
+.selectWrap {
+  display: grid;
+  gap: 8px;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  outline: none;
+}
+
+.select:focus {
+  border-color: #0a7ee2;
+  box-shadow: 0 0 0 3px rgb(10 126 226 / 12%);
+}
+
+.error {
+  color: #c62828;
+  font-size: 14px;
+}

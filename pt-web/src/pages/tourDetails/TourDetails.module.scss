@@ -5,17 +5,27 @@
   margin: 0 auto;
 }
 
+.title {
+  margin: 0 0 12px;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.25;
+  color: #222;
+}
+
 .hero {
   width: 60%;
   max-height: 520px;
   object-fit: cover;
   border-radius: 16px;
+  display: block;
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1.3fr 0.7fr;
   gap: 24px;
+  align-items: start;
 }
 
 .sidebar {
@@ -23,20 +33,139 @@
   border-radius: 12px;
   padding: 16px;
   height: fit-content;
+  background: #fff;
+}
+
+.price {
+  font-weight: 700;
+  font-size: 20px;
+  color: #222;
+}
+
+.dateLabel {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #444;
+}
+
+.dateSelect {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+  outline: none;
+}
+
+.ctaButton {
+  margin-top: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #3a7a3a;
+  border-radius: 10px;
+  background: #92c07f;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+
+  &:hover {
+    background: #7ba86a;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
 }
 
 .meta {
-  opacity: 0.75;
+  opacity: 0.8;
   display: grid;
   gap: 6px;
+  color: #444;
+  font-size: 14px;
 }
 
 .section {
   border-top: 1px solid #eee;
   padding-top: 16px;
+  margin-top: 16px;
+}
+
+.sectionTitle {
+  margin: 0 0 10px;
+  font-size: 18px;
+  color: #222;
+}
+
+.paragraph {
+  margin: 0 0 12px;
+  line-height: 1.55;
+  color: #333;
+}
+
+.itineraryItem {
+  margin-bottom: 16px;
+}
+
+.itineraryTitle {
+  margin: 0 0 6px;
+  font-size: 16px;
+  color: #222;
 }
 
 .bullets {
   margin: 0;
   padding-left: 18px;
+  color: #333;
+
+  li {
+    margin-bottom: 6px;
+  }
+}
+
+/* Адаптив */
+@media (width <= 1024px) {
+  .hero {
+    width: 100%;
+  }
+}
+
+@media (width <= 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+}
+
+@media (width <= 480px) {
+  .wrap {
+    padding: 16px;
+  }
+
+  .hero {
+    border-radius: 12px;
+    max-height: 360px;
+  }
+
+  .price {
+    font-size: 18px;
+  }
+
+  .sectionTitle {
+    font-size: 16px;
+  }
 }

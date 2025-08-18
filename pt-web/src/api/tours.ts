@@ -1,14 +1,14 @@
-import {fileUrl, http, USE_MOCK} from "src/api/http";
+import {fetchData, fileUrl, USE_MOCK} from "src/api/http";
 import {mockTours} from "src/api/tours.mock";
 import type {TourView} from "src/types/tour";
 
 const ZERO_PRICE = 0 as const;
 const FIRST_INDEX = 0 as const;
-const DEFAULT_LANGUAGES: ReadonlyArray<string> = ["English"] as const;
+const DEFAULT_LANGUAGES = Object.freeze(["English"]);
 
-type TourBackend = {
-  id: number; // Обязательный: уникальный ID тура
-  slug?: string; // Опционально: SEO-дружественный идентификатор, альтернатива ID в URL
+type TourDTO = {
+  id: number;
+  slug?: string;
   title: string;
   description: string;
   difficulty?: string;
@@ -18,19 +18,19 @@ type TourBackend = {
   startLocation?: string;
   endLocation?: string;
   availableMonths?: string[];
-  coverUrl?: string; // Желательно: URL главного фото тура (если нет — берётся первый элемент из photos)
+  coverUrl?: string;
   photos?: Array<string | { url: string }>;
   videos?: Array<string | { url: string }>;
   included?: string[];
   activities?: string[];
   dates?: Array<string | { date: string }>;
   dailyItinerary?: unknown;
-  guide?: { id: number; name?: string }; // Опционально: данные о гиде
-  tags?: Array<string | { name: string }>; // Опционально: теги для фильтрации
-  categories?: Array<string | { name: string }>; // Опционально: категории тура для фильтрации
+  guide?: { id: number; name?: string };
+  tags?: Array<string | { name: string }>;
+  categories?: Array<string | { name: string }>;
 };
 
-function mapToView(t: TourBackend): TourView {
+function mapTourToView(t: TourDTO): TourView {
   const photos = (t.photos ?? []).map((p) =>
     fileUrl(typeof p === "string" ? p : p.url),
   );
@@ -83,9 +83,9 @@ export async function listTours(): Promise<TourView[]> {
     return mockTours;
   }
 
-  const raw = await http<TourBackend[]>("/tours");
+  const raw = await fetchData<TourDTO[]>("/tours");
 
-  return (raw ?? []).map(mapToView);
+  return (raw ?? []).map(mapTourToView);
 }
 
 export async function getTour(idOrSlug: string): Promise<TourView> {
@@ -100,7 +100,7 @@ export async function getTour(idOrSlug: string): Promise<TourView> {
     return found;
   }
 
-  const raw = await http<TourBackend>(`/tours/${idOrSlug}`);
+  const raw = await fetchData<TourDTO>(`/tours/${idOrSlug}`);
 
-  return mapToView(raw);
+  return mapTourToView(raw);
 }
