@@ -23,6 +23,7 @@ export function TourDetailsPage() {
     if (!id) {
       return;
     }
+
     (async () => {
       try {
         const t = await getTour(id);
@@ -42,6 +43,7 @@ export function TourDetailsPage() {
       </section>
     );
   }
+
   if (!tour) {
     return (
       <section className={styles.wrap}>
@@ -50,9 +52,12 @@ export function TourDetailsPage() {
     );
   }
 
-  const cover = tour.coverUrl || tour.photos[0];
-  const paragraphs = useMemo(() => splitToParagraphs(tour.description || ""), [tour.description]);
-  const priceText = Number(tour.price).toLocaleString();
+  const cover = tour.coverUrl || tour.photos?.[0];
+  const paragraphs = useMemo(
+    () => splitToParagraphs(tour.description || ""),
+    [tour.description],
+  );
+  const priceText = Number(tour.price || 0).toLocaleString();
 
   return (
     <section className={styles.wrap}>
@@ -72,43 +77,44 @@ export function TourDetailsPage() {
         <div className={styles.grid}>
           <div className={styles.main}>
             <div className={styles.meta}>
-              {tour.region && <div>
-                <b>
-                  Region:
-                </b>
-                {" "}
-                {tour.region}
-              </div>}
-              {tour.durationDays && <div>
-                <b>
-                  Duration:
-                </b>
-                {" "}
-                {tour.durationDays}
-                {" "}
-                days
-              </div>}
-              {tour.difficulty && <div>
-                <b>
-                  Difficulty:
-                </b>
-                {" "}
-                {tour.difficulty}
-              </div>}
-              {tour.startLocation && <div>
-                <b>
-                  Start:
-                </b>
-                {" "}
-                {tour.startLocation}
-              </div>}
-              {tour.endLocation && <div>
-                <b>
-                  End:
-                </b>
-                {" "}
-                {tour.endLocation}
-              </div>}
+              {tour.durationDays && (
+                <div>
+                  <b>
+                    Duration:
+                  </b>
+                  {" "}
+                  {tour.durationDays}
+                  {" "}
+                  days
+                </div>
+              )}
+              {tour.difficulty && (
+                <div>
+                  <b>
+                    Difficulty:
+                  </b>
+                  {" "}
+                  {tour.difficulty}
+                </div>
+              )}
+              {tour.startLocation && (
+                <div>
+                  <b>
+                    Start:
+                  </b>
+                  {" "}
+                  {tour.startLocation}
+                </div>
+              )}
+              {tour.endLocation && (
+                <div>
+                  <b>
+                    End:
+                  </b>
+                  {" "}
+                  {tour.endLocation}
+                </div>
+              )}
             </div>
 
             <div className={styles.section}>
@@ -163,9 +169,11 @@ export function TourDetailsPage() {
                   Activities
                 </h3>
                 <ul className={styles.bullets}>
-                  {tour.activities.map((a, i) => (<li key={i}>
-                    {a}
-                  </li>))}
+                  {tour.activities.map((a, i) => (
+                    <li key={i}>
+                      {a}
+                    </li>
+                  ))}
                 </ul>
               </div>
             )}
@@ -176,9 +184,11 @@ export function TourDetailsPage() {
                   Included
                 </h3>
                 <ul className={styles.bullets}>
-                  {tour.included.map((a, i) => (<li key={i}>
-                    {a}
-                  </li>))}
+                  {tour.included.map((a, i) => (
+                    <li key={i}>
+                      {a}
+                    </li>
+                  ))}
                 </ul>
               </div>
             )}
@@ -194,11 +204,11 @@ export function TourDetailsPage() {
               </span>
             </div>
 
-            {!!tour.dates.length && (
+            {!!tour.dates?.length && (
               <Select
                 label="Select date"
                 placeholder="Choose a date"
-                options={tour.dates.map((d) => ({value: d, label: d}))}
+                options={tour.dates.map(d => ({value: d, label: d}))}
                 className={styles.selectBox}
               />
             )}

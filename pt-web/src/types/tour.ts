@@ -12,23 +12,28 @@ export interface TourView {
   slug?: string;
   title: string;
   description: string;
-  region?: string;
-  difficulty?: Difficulty;
   price: number;
-  languages?: string[];
-  durationDays?: number;
+
   startLocation?: string;
   endLocation?: string;
+  durationDays?: number;
+  languages?: string[];
+  difficulty?: Difficulty;
+  minAge?: number | null;
   availableMonths?: string[];
+
   coverUrl?: string;
   photos: string[];
   videos?: string[];
+
   included?: string[];
   activities?: string[];
-  dates: string[]; // "YYYY-MM-DD"
+
+  dates: string[];
   dailyItinerary?: TourDay[];
+
   guide?: { id: number; name?: string };
+
   tags?: string[];
   categories?: string[];
 }
-

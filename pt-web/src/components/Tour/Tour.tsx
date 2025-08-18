@@ -47,8 +47,7 @@ export function TourCard({tour, className}: TourCardProps) {
           {tour.title}
         </h3>
         <p className={styles.meta}>
-          {tour.region ?? ""}
-          {tour.durationDays ? ` · ${tour.durationDays} days` : ""}
+          {tour.durationDays ? `${tour.durationDays} days` : ""}
         </p>
         <p title={fullDesc}>
           {shortDesc}
