@@ -84,8 +84,7 @@ $active-cart-border: 1px solid #9cbef4;
 $dashed-border: 1px dashed #999;
 $border-radius-md: 8px;
 $border-radius-lg: 10px;
-$contact-btn-border-radius: 25px; // Moved here for logical grouping
-$contact-btn-border-radius: 25px; // Moved here for logical grouping
+$contact-btn-border-radius: 25px;
 
 // Common shadow values
 $shadow-light: 0 4px 10px rgb(0 0 0 / 10%);
@@ -127,8 +126,8 @@ $font-size-card-text: 16px;
 
 // ====== BUTTON SPECIFIC ======
 
-$btn-padding: 0.75rem 1.5rem;
-$btn-font-size: 1rem;
+$btn-padding: 12px 24px;
+$btn-font-size: 16px;
 $btn-border-radius: 5px;
 
 // ====== FONT WEIGHTS ======
