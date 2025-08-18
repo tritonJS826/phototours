@@ -67,7 +67,9 @@
   border-radius: 28px;
   background: #fff;
   border: 1px solid rgb(0 0 0 / 15%);
-  box-shadow: 0 1px 0 rgb(0 0 0 / 8%) inset, 0 2px 8px rgb(0 0 0 / 8%);
+  box-shadow:
+    0 1px 0 rgb(0 0 0 / 8%) inset,
+    0 2px 8px rgb(0 0 0 / 8%);
   color: #222;
   font-size: 16px;
 }
@@ -79,7 +81,9 @@
 .input:focus {
   outline: none;
   border-color: #9ecf9f;
-  box-shadow: 0 0 0 3px rgb(126 183 126 / 35%), 0 2px 8px rgb(0 0 0 / 8%);
+  box-shadow:
+    0 0 0 3px rgb(126 183 126 / 35%),
+    0 2px 8px rgb(0 0 0 / 8%);
 }
 
 .dateGroup {
@@ -90,7 +94,9 @@
   background: #fff;
   border: 1px solid rgb(0 0 0 / 15%);
   border-radius: 28px;
-  box-shadow: 0 1px 0 rgb(0 0 0 / 8%) inset, 0 2px 8px rgb(0 0 0 / 8%);
+  box-shadow:
+    0 1px 0 rgb(0 0 0 / 8%) inset,
+    0 2px 8px rgb(0 0 0 / 8%);
   padding: 0 6px;
 }
 
