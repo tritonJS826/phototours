@@ -14,8 +14,7 @@ interface ToursSectionProps {
 
 const DEFAULT_LIMIT = 6;
 
-export function ToursSection(props: ToursSectionProps) {
-  const {title, subtitle, limit, className = ""} = props;
+export function ToursSection({title, subtitle, limit, className = ""}: ToursSectionProps) {
   const {data, loading, error, reload} = useTours();
 
   if (loading) {
@@ -39,6 +38,7 @@ export function ToursSection(props: ToursSectionProps) {
               Failed to load tours
             </div>
             <button
+              type="button"
               className={styles.retry}
               onClick={reload}
             >
@@ -53,10 +53,32 @@ export function ToursSection(props: ToursSectionProps) {
   const take = typeof limit === "number" ? limit : DEFAULT_LIMIT;
   const tours = (data ?? []).slice(0, take);
 
+  if (!tours.length) {
+    return (
+      <Container>
+        <section className={`${styles.wrap} ${className}`}>
+          <header className={styles.header}>
+            <div className={styles.titles}>
+              <h2 className={styles.title}>
+                {title}
+              </h2>
+              {subtitle && <p className={styles.subtitle}>
+                {subtitle}
+              </p>}
+            </div>
+          </header>
+          <div className={styles.state}>
+            No tours yet.
+          </div>
+        </section>
+      </Container>
+    );
+  }
+
   return (
     <Container>
       <section className={`${styles.wrap} ${className}`}>
-        <div className={styles.header}>
+        <header className={styles.header}>
           <div className={styles.titles}>
             <h2 className={styles.title}>
               {title}
@@ -71,10 +93,10 @@ export function ToursSection(props: ToursSectionProps) {
           >
             See all travel plans
           </Link>
-        </div>
+        </header>
 
         <div className={styles.grid}>
-          {tours.map(t => (
+          {tours.map((t) => (
             <TourCard
               key={t.id}
               tour={t}
