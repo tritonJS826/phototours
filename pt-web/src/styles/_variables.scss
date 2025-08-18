@@ -67,7 +67,8 @@ $breakpoint-mobile: 768px;
 
 // ====== TRANSITIONS AND ANIMATIONS ======
 
-$btn-transition-bg: background-color 0.3s ease;
+$btn-transition-bg: background-color 0.3s ease; // For existing Button component
+
 $transition-fast: 0.1s ease;
 
 // Common transition combinations
@@ -83,7 +84,7 @@ $active-cart-border: 1px solid #9cbef4;
 $dashed-border: 1px dashed #999;
 $border-radius-md: 8px;
 $border-radius-lg: 10px;
-$contact-btn-border-radius: 25px;
+$contact-btn-border-radius: 25px; // Moved here for logical grouping
 
 // Common shadow values
 $shadow-light: 0 4px 10px rgb(0 0 0 / 10%);
@@ -125,8 +126,8 @@ $font-size-card-text: 16px;
 
 // ====== BUTTON SPECIFIC ======
 
-$btn-padding: 12px 24px;
-$btn-font-size: 16px;
+$btn-padding: 0.75rem 1.5rem;
+$btn-font-size: 1rem;
 $btn-border-radius: 5px;
 
 // ====== FONT WEIGHTS ======
@@ -155,10 +156,13 @@ $btn-transition-bg: background-color 0.3s ease;
 
 // ===== Padding and Margins ======
 
-$padding-section: 64px 16px;
-$padding-container: 48px 16px;
-$padding-button: 13.6px 24px;
-$padding-input: 12px 16px;
+$padding-section: 4rem 1rem;
+$padding-container: 3rem 1rem;
+$padding-button: 0.85rem 1.5rem;
+$padding-input: 7px 12px;
+$margin-top-large: 2rem;
+$margin-top-medium: 1.5rem;
+$margin-top-small: 1rem;
 
 // ====== Radius and Shadows ======
 
