@@ -85,6 +85,7 @@ $dashed-border: 1px dashed #999;
 $border-radius-md: 8px;
 $border-radius-lg: 10px;
 $contact-btn-border-radius: 25px; // Moved here for logical grouping
+$contact-btn-border-radius: 25px; // Moved here for logical grouping
 
 // Common shadow values
 $shadow-light: 0 4px 10px rgb(0 0 0 / 10%);
@@ -126,8 +127,8 @@ $font-size-card-text: 16px;
 
 // ====== BUTTON SPECIFIC ======
 
-$btn-padding: 12px 24px;
-$btn-font-size: 16px;
+$btn-padding: 0.75rem 1.5rem;
+$btn-font-size: 1rem;
 $btn-border-radius: 5px;
 
 // ====== FONT WEIGHTS ======
@@ -139,6 +140,18 @@ $font-weight-minimal: 200;
 // ====== Z-INDEX LAYERS ======
 
 $z-index-notification: 1000;
+
+// ====== Borders and Transitions ======
+$btn-border: 1px solid #ccc;
+$active-cart-border: 1px solid #9cbef4;
+$dashed-border: 1px dashed #999;
+$btn-transition-bg: background-color 0.3s ease;
+
+// ====== Borders and Transitions ======
+$btn-border: 1px solid #ccc;
+$active-cart-border: 1px solid #9cbef4;
+$dashed-border: 1px dashed #999;
+$btn-transition-bg: background-color 0.3s ease;
 
 // ====== PADDINGS AND MARGINS ======
 
@@ -155,3 +168,9 @@ $margin-top-small: 16px;
 $radius-small: 6px;
 $radius-medium: 8px;
 $radius-large: 12px;
+$shadow-light: 0 4px 10px rgb(0 0 0 / 10%);
+$shadow-medium: 0 4px 15px rgb(0 0 0 / 10%);
+$shadow-hover: 0 5px 15px rgb(0 0 0 / 20%);
+$shadow-input-focus: 0 0 5px rgb(0 123 255 / 50%);
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
