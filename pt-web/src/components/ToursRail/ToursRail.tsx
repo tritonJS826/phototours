@@ -18,40 +18,52 @@ export function ToursRail({title, subtitle, limit}: ToursRailProps) {
 
   if (loading) {
     return (
-      <div className={styles.state}>
-        Loading…
-      </div>
+      <Container>
+        <section className={styles.stateWrap}>
+          <div className={styles.state}>
+            Loading…
+          </div>
+        </section>
+      </Container>
     );
   }
 
   if (error) {
     return (
-      <div className={styles.state}>
-        <div>
-          Failed to load tours
-        </div>
-        <button
-          className={styles.retry}
-          onClick={reload}
-        >
-          Retry
-        </button>
-      </div>
+      <Container>
+        <section className={styles.stateWrap}>
+          <div className={styles.state}>
+            <div className={styles.stateText}>
+              Failed to load tours
+            </div>
+            <button
+              className={styles.retry}
+              onClick={reload}
+            >
+              Retry
+            </button>
+          </div>
+        </section>
+      </Container>
     );
   }
 
   const take = typeof limit === "number" ? limit : DEFAULT_TOURS_LIMIT;
   const tours = (data ?? []).slice(0, take);
+  if (tours.length === 0) {
+    return null;
+  }
 
   return (
     <Container>
       <section className={styles.wrap}>
         <div className={styles.header}>
-          <div className={styles.headings}>
+          <div className={styles.titles}>
             <h2 className={styles.title}>
               {title}
             </h2>
-            {subtitle && <p className={styles.subtitle}>
+            {subtitle &&
+            <p className={styles.subtitle}>
               {subtitle}
             </p>}
           </div>

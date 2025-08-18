@@ -13,6 +13,8 @@ function splitToParagraphs(text: string) {
     .filter(Boolean);
 }
 
+const PHOTO_INDEX_OFFSET = 1;
+
 export function TourDetailsPage() {
   const {id} = useParams<{ id: string }>();
   const nav = useNavigate();
@@ -23,7 +25,6 @@ export function TourDetailsPage() {
     if (!id) {
       return;
     }
-
     (async () => {
       try {
         const t = await getTour(id);
@@ -53,10 +54,7 @@ export function TourDetailsPage() {
   }
 
   const cover = tour.coverUrl || tour.photos?.[0];
-  const paragraphs = useMemo(
-    () => splitToParagraphs(tour.description || ""),
-    [tour.description],
-  );
+  const paragraphs = useMemo(() => splitToParagraphs(tour.description || ""), [tour.description]);
   const priceText = Number(tour.price || 0).toLocaleString();
 
   return (
@@ -190,6 +188,28 @@ export function TourDetailsPage() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            )}
+
+            {tour.photos && tour.photos.length > 0 && (
+              <div className={styles.gallery}>
+                {tour.photos.map((photo: string | {url: string}, i: number) => {
+                  const index = i + PHOTO_INDEX_OFFSET;
+                  const src = typeof photo === "string" ? photo : photo?.url || "";
+                  if (!src) {
+                    return null;
+                  }
+
+                  return (
+                    <img
+                      key={`${tour.id}-photo-${index}`}
+                      className={styles.image}
+                      src={src}
+                      alt={`${tour.title ?? "Tour"} ${index}`}
+                      loading="lazy"
+                    />
+                  );
+                })}
               </div>
             )}
           </div>

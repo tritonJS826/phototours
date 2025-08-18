@@ -1,31 +1,87 @@
+import {Link} from "react-router-dom";
 import {Container} from "src/components/Container/Container";
 import {TourCard} from "src/components/Tour/Tour";
-import type {TourView} from "src/types/tour";
+import {PATHS} from "src/constants/routes";
+import {useTours} from "src/hooks/useTours";
 import styles from "src/components/ToursSection/ToursSection.module.scss";
 
 interface ToursSectionProps {
   title: string;
-  tours: TourView[];
-  cardClassName?: string;
+  subtitle?: string;
+  limit?: number;
+  className?: string;
 }
 
-export function ToursSection({title, tours, cardClassName}: ToursSectionProps) {
-  return (
-    <section className={styles.section}>
+const DEFAULT_LIMIT = 6;
+
+export function ToursSection(props: ToursSectionProps) {
+  const {title, subtitle, limit, className = ""} = props;
+  const {data, loading, error, reload} = useTours();
+
+  if (loading) {
+    return (
       <Container>
-        <h2 className={styles.sectionTitle}>
-          {title}
-        </h2>
-        <div className={styles.row}>
-          {tours.map((tour) => (
+        <section className={`${styles.wrap} ${className}`}>
+          <div className={styles.state}>
+            Loading…
+          </div>
+        </section>
+      </Container>
+    );
+  }
+
+  if (error) {
+    return (
+      <Container>
+        <section className={`${styles.wrap} ${className}`}>
+          <div className={styles.state}>
+            <div>
+              Failed to load tours
+            </div>
+            <button
+              className={styles.retry}
+              onClick={reload}
+            >
+              Retry
+            </button>
+          </div>
+        </section>
+      </Container>
+    );
+  }
+
+  const take = typeof limit === "number" ? limit : DEFAULT_LIMIT;
+  const tours = (data ?? []).slice(0, take);
+
+  return (
+    <Container>
+      <section className={`${styles.wrap} ${className}`}>
+        <div className={styles.header}>
+          <div className={styles.titles}>
+            <h2 className={styles.title}>
+              {title}
+            </h2>
+            {subtitle && <p className={styles.subtitle}>
+              {subtitle}
+            </p>}
+          </div>
+          <Link
+            to={PATHS.TOURS}
+            className={styles.link}
+          >
+            See all travel plans
+          </Link>
+        </div>
+
+        <div className={styles.grid}>
+          {tours.map(t => (
             <TourCard
-              key={tour.id}
-              tour={tour}
-              className={cardClassName}
+              key={t.id}
+              tour={t}
             />
           ))}
         </div>
-      </Container>
-    </section>
+      </section>
+    </Container>
   );
 }

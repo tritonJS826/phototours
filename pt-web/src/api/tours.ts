@@ -1,7 +1,8 @@
 import {fetchData, fileUrl} from "src/api/http";
 import type {TourView} from "src/types/tour";
 
-const FIRST_INDEX = 0 as const;
+const API = "/tours";
+const FIRST = 0 as const;
 
 type TourDTO = {
   id: number;
@@ -14,42 +15,50 @@ type TourDTO = {
   endLocation?: string;
   durationDays?: number;
   languages?: string[];
-  difficulty?: "BEGINNER" | "EXPERIENCED" | "PRO";
+  difficulty?: "BEGINNER" | "EXPERIENCED" | "PRO" | "EASY";
   minAge?: number | null;
   availableMonths?: string[];
 
   coverUrl?: string;
-  photos?: Array<string | { url: string }>;
-  videos?: Array<string | { url: string }>;
+  photos?: Array<string | {url: string}>;
+  videos?: Array<string | {url: string}>;
 
   included?: string[];
   activities?: string[];
 
-  dates?: Array<string | { date: string; isAvailable?: boolean }>;
+  dates?: Array<string | {date: string; isAvailable?: boolean}>;
 
   program?: {
-    days?: Array<{ day: number; title?: string; description: string; photos?: string[] }>;
+    days?: Array<{day: number; title?: string; description: string; photos?: string[]}>;
     included?: string[];
     activities?: string[];
   };
 
-  guide?: { id: number; name?: string };
-  tags?: Array<string | { name: string }>;
-  categories?: Array<string | { name: string }>;
+  guide?: {id: number; name?: string};
+  tags?: Array<string | {name: string}>;
+  categories?: Array<string | {name: string}>;
 };
 
 function mapTourToView(t: TourDTO): TourView {
-  const photos = (t.photos ?? []).map(p => fileUrl(typeof p === "string" ? p : p.url));
-  const videos = (t.videos ?? []).map(v => (typeof v === "string" ? v : v.url));
+  const photos = (t.photos ?? []).map(p =>
+    fileUrl(typeof p === "string" ? p : p.url),
+  );
+  const videos = (t.videos ?? []).map(v =>
+    typeof v === "string" ? v : v.url,
+  );
 
   const dates = (t.dates ?? [])
     .map(d => (typeof d === "string" ? d : d.date ?? ""))
-    .map(d => d.split("T")[FIRST_INDEX] ?? d)
+    .map(d => d.split("T")[FIRST] ?? d)
     .filter(Boolean);
 
-  const tags = (t.tags ?? []).map(x => (typeof x === "string" ? x : x.name));
-  const categories = (t.categories ?? []).map(x => (typeof x === "string" ? x : x.name));
-  const coverUrl = t.coverUrl ? fileUrl(t.coverUrl) : photos[FIRST_INDEX];
+  const tags = (t.tags ?? []).map(x =>
+    typeof x === "string" ? x : x.name,
+  );
+  const categories = (t.categories ?? []).map(x =>
+    typeof x === "string" ? x : x.name,
+  );
+  const coverUrl = t.coverUrl ? fileUrl(t.coverUrl) : photos[FIRST];
 
   const dailyItinerary =
     t.program?.days?.map(d => ({
@@ -73,7 +82,7 @@ function mapTourToView(t: TourDTO): TourView {
     endLocation: t.endLocation,
     durationDays: t.durationDays,
     languages: t.languages,
-    difficulty: t.difficulty,
+    difficulty: t.difficulty as TourView["difficulty"],
     minAge: t.minAge ?? null,
     availableMonths: t.availableMonths ?? [],
 
@@ -95,22 +104,13 @@ function mapTourToView(t: TourDTO): TourView {
 }
 
 export async function listTours(): Promise<TourView[]> {
-  if (USE_MOCK) {
-    return mockTours;
-  } const raw = await fetchData<TourDTO[]>("/tours");
+  const raw = await fetchData<TourDTO[]>(API);
 
   return (raw ?? []).map(mapTourToView);
 }
 
 export async function getTour(idOrSlug: string): Promise<TourView> {
-  if (USE_MOCK) {
-    const found = mockTours.find(x => String(x.id) === idOrSlug || x.slug === idOrSlug);
-    if (!found) {
-      throw new Error("Tour not found");
-    }
-
-    return found;
-  } const raw = await fetchData<TourDTO>(`/tours/${idOrSlug}`);
+  const raw = await fetchData<TourDTO>(`${API}/${idOrSlug}`);
 
   return mapTourToView(raw);
 }

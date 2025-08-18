@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
 import {listTours} from "src/api/tours";
 import type {TourView} from "src/types/tour";
 
@@ -10,19 +10,30 @@ type State = {
 
 export function useTours() {
   const [state, setState] = useState<State>({data: null, loading: true, error: null});
+  const mounted = useRef(true);
 
   const load = useCallback(async () => {
     setState(s => ({...s, loading: true, error: null}));
     try {
       const data = await listTours();
-      setState({data, loading: false, error: null});
+      if (mounted.current) {
+        setState({data, loading: false, error: null});
+      }
     } catch (e) {
-      setState({data: null, loading: false, error: e instanceof Error ? e.message : String(e)});
+      const msg = e instanceof Error ? e.message : String(e);
+      if (mounted.current) {
+        setState({data: null, loading: false, error: msg});
+      }
     }
   }, []);
 
   useEffect(() => {
+    mounted.current = true;
     void load();
+
+    return () => {
+      mounted.current = false;
+    };
   }, [load]);
 
   return {
