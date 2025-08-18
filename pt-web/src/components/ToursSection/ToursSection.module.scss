@@ -1,2 +1,48 @@
-@use "../../styles/mixins" as mixin;
-@use "../../styles/variables" as vars;
+@use "src/styles/variables" as var;
+
+.section {
+  padding: 48px 0 32px;
+}
+
+.sectionTitle {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 24px;
+  color: var.$color-dark;
+  text-align: left;
+}
+
+.sectionSubtitle {
+  font-size: 16px;
+  color: var.$color-medium;
+  margin: -8px 0 24px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+@media (width <= 1200px) {
+  .row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width <= 768px) {
+  .section {
+    padding: 32px 0 24px;
+  }
+
+  .sectionTitle {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

@@ -11,12 +11,11 @@ interface ToursSectionProps {
 
 export function ToursSection({title, tours, cardClassName}: ToursSectionProps) {
   return (
-    <section>
+    <section className={styles.section}>
       <Container>
         <h2 className={styles.sectionTitle}>
           {title}
         </h2>
-
         <div className={styles.row}>
           {tours.map((tour) => (
             <TourCard
