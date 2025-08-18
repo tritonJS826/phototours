@@ -9,26 +9,25 @@ import {ScrollToTop} from "src/components/ScrollToTop/ScrollToTop";
 import {PATHS} from "src/constants/routes";
 import {AboutUs} from "src/pages/aboutUs/AboutUsPage";
 import {AdminPage} from "src/pages/adminPage/AdminPage";
-import {BookTours} from "src/pages/bookTours/BookTours";
 import {Cart} from "src/pages/cart/Cart";
 import {ContactUs} from "src/pages/contactUs/ContactUs";
 import {Dashboard} from "src/pages/dashboard/Dashboard";
-import {ArticlePage} from "src/pages/ExploreArticles/ArticlePage";
-import {ExploreArticles} from "src/pages/ExploreArticles/ExploreArticles";
+import {ArticlePage} from "src/pages/exploreArticles/ArticlePage";
+import {ExploreArticles} from "src/pages/exploreArticles/ExploreArticles";
 import {HomePage} from "src/pages/homePage/HomePage";
 import {NotFound} from "src/pages/notFound/notFound";
 import {Notifications} from "src/pages/notifications/Notifications";
 import {EditProfile} from "src/pages/profile/EditProfile";
 import {Profile} from "src/pages/profile/Profile";
 import {PublicProfile} from "src/pages/profile/PublicProfile";
-import {TourPage} from "src/pages/tourPage/TourPage";
+import {TourDetailsPage} from "src/pages/tourDetails/TourDetails";
+import {ToursPage} from "src/pages/toursPage/ToursPage";
 
 export function App() {
   return (
     <>
       <Header />
       <ScrollToTop />
-      {" "}
       <Routes>
         <Route
           path={PATHS.HOME}
@@ -44,11 +43,11 @@ export function App() {
         />
         <Route
           path={PATHS.TOURS}
-          element={<BookTours />}
+          element={<ToursPage />}
         />
         <Route
           path={PATHS.TOUR_DETAILS}
-          element={<TourPage />}
+          element={<TourDetailsPage />}
         />
         <Route
           path={PATHS.CART}
@@ -75,7 +74,7 @@ export function App() {
           }
         />
         <Route
-          path="/profile/edit"
+          path={PATHS.PROFILE_EDIT}
           element={
             <ProtectedRoute>
               <EditProfile />
@@ -83,11 +82,11 @@ export function App() {
           }
         />
         <Route
-          path="/profile/:id"
+          path={PATHS.PROFILE_ID}
           element={<PublicProfile />}
         />
         <Route
-          path="/dashboard"
+          path={PATHS.DASHBOARD}
           element={
             <ProtectedRoute>
               <Dashboard />
@@ -95,7 +94,7 @@ export function App() {
           }
         />
         <Route
-          path="/notifications"
+          path={PATHS.NOTIFICATIONS}
           element={
             <ProtectedRoute>
               <Notifications />

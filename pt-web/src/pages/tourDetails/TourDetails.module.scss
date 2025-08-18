@@ -1,0 +1,42 @@
+.wrap {
+  display: grid;
+  gap: 20px;
+  padding: 24px;
+  margin: 0 auto;
+}
+
+.hero {
+  width: 60%;
+  max-height: 520px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 24px;
+}
+
+.sidebar {
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 16px;
+  height: fit-content;
+}
+
+.meta {
+  opacity: 0.75;
+  display: grid;
+  gap: 6px;
+}
+
+.section {
+  border-top: 1px solid #eee;
+  padding-top: 16px;
+}
+
+.bullets {
+  margin: 0;
+  padding-left: 18px;
+}
