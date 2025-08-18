@@ -329,6 +329,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
+      "value": "/Users/air/Projects/phototours/pt-general/src/generated/prisma",
       "value": "/Users/valentingerner/Documents/Praktikum_FT/phototours_pr/phototours/pt-general/src/generated/prisma",
       "fromEnvVar": null
     },
@@ -339,10 +340,12 @@ const config = {
       {
         "fromEnvVar": null,
         "value": "darwin-arm64",
+        "value": "darwin-arm64",
         "native": true
       }
     ],
     "previewFeatures": [],
+    "sourceFilePath": "/Users/air/Projects/phototours/pt-general/prisma/schema.prisma",
     "sourceFilePath": "/Users/valentingerner/Documents/Praktikum_FT/phototours_pr/phototours/pt-general/prisma/schema.prisma",
     "isCustomOutput": true
   },
@@ -357,6 +360,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {

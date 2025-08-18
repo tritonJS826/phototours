@@ -328,7 +328,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/valentingerner/Documents/Praktikum_FT/phototours_pr/phototours/pt-general/src/generated/prisma",
+      "value": "/Users/air/Projects/phototours/pt-general/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -342,7 +342,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/valentingerner/Documents/Praktikum_FT/phototours_pr/phototours/pt-general/prisma/schema.prisma",
+    "sourceFilePath": "/Users/air/Projects/phototours/pt-general/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -356,6 +356,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {

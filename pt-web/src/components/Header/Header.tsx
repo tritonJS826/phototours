@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import {Bell, CircleUser, LogOut, Search, ShoppingCart, User} from "lucide-react";
+import {CircleUser, Search, ShoppingCart} from "lucide-react";
 import logo from "src/assets/icons/logo.png";
 import {AuthModal} from "src/components/Auth";
 import {PATHS} from "src/constants/routes";
@@ -15,7 +15,6 @@ const REFRESH_DELAY = 100;
 export function Header() {
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
-  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [selectedLang, setSelectedLang] = useState("ENG");
   const [selectedCurrency, setSelectedCurrency] = useState("USD");
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
@@ -32,7 +31,7 @@ export function Header() {
   useEffect(() => {
     const listener = handleClickOutside(
       [langRef, currencyRef, profileDropdownRef],
-      [() => setIsLangOpen(false), () => setIsCurrencyOpen(false), () => setIsProfileDropdownOpen(false)],
+      [() => setIsLangOpen(false), () => setIsCurrencyOpen(false), () => undefined],
     );
     document.addEventListener("mousedown", listener);
 
@@ -44,7 +43,6 @@ export function Header() {
   const handleProfileClick = (e: React.MouseEvent) => {
     e.preventDefault();
     if (isAuthenticated) {
-      // Если пользователь авторизован, переходим в профиль
       navigate(PATHS.PROFILE);
     } else {
       setAuthMode("login");
@@ -55,7 +53,6 @@ export function Header() {
   const handleAuthSuccess = () => {
     setIsAuthModalOpen(false);
 
-    // Перенаправляем на профиль пользователя
     setTimeout(() => {
       navigate(PATHS.PROFILE);
     }, REFRESH_DELAY);
@@ -95,7 +92,7 @@ export function Header() {
       <div className={styles.headerContainer}>
         <div className={styles.headerLogo}>
           <Link
-            to="/"
+            to={PATHS.HOME}
             aria-label="Homepage"
           >
             <img
@@ -196,7 +193,7 @@ export function Header() {
 
           <div className={styles.topbarCart}>
             <Link
-              to="/cart"
+              to={PATHS.CART}
               className={styles.iconBtn}
               aria-label="Cart"
             >
@@ -217,7 +214,7 @@ export function Header() {
                     aria-label="Profile"
                   >
                     <CircleUser className="icon" />
-                  </Link>
+                  </button>
                   <div className={styles.profileMenu}>
                     <div className={styles.profileUserInfo}>
                       {user?.firstName}
@@ -225,7 +222,7 @@ export function Header() {
                       {user?.lastName}
                     </div>
                     <Link
-                      to="/profile"
+                      to={PATHS.PROFILE}
                       className={styles.profileMenuItem}
                     >
                       Profile
@@ -234,7 +231,6 @@ export function Header() {
                       className={styles.profileMenuItem}
                       onClick={() => {
                         logout();
-                        // Перенаправляем на главную страницу
                         setTimeout(() => {
                           navigate(PATHS.HOME);
                         }, REFRESH_DELAY);

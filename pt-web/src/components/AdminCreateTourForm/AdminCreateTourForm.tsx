@@ -172,7 +172,7 @@ export const AdminCreateTourForm = () => {
           {guides.map((guide: Guide) => (
             <option
               key={guide.id}
-              value={guide.user.id}
+              value={guide.id}
             >
               {guide.user.firstName}
               {" "}
