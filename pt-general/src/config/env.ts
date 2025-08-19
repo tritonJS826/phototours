@@ -29,4 +29,6 @@ export const env = cleanEnv(process.env, {
   CLOUDINARY_API_SECRET: str(),
   CLOUDINARY_UPLOAD_FOLDER: str(),
 
+  CORS_ORIGIN: str(),
+
 });
