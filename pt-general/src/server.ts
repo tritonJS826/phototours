@@ -19,7 +19,7 @@ app.use(express.json());
 const port = env.SERVER_PORT;
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:5174');
+  res.header('Access-Control-Allow-Origin', env.CORS_ORIGIN);
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   if (req.method === 'OPTIONS') {
