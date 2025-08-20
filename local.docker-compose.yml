@@ -22,6 +22,7 @@ services:
       retries: 20
     restart: unless-stopped
 
+<<<<<<< HEAD
   # pt-general:
   #   build:
   #     context: ./pt-general
@@ -37,6 +38,22 @@ services:
   #     - postgres-general
 
   pt-web:
+=======
+  pt-general:
+    build:
+      context: ./pt-general
+      dockerfile: Dockerfile
+    container_name: pt-general
+    ports:
+      - "8000:3000"
+    env_file:
+      - ./pt-general/.env
+    networks:
+      - app-network
+    depends_on:
+      - postgres-general
+  grafana:
+>>>>>>> cb36cf2 (feat: #34 dashboard and profile)
     build:
       context: .
       # lets use only one dockerfile for all environments

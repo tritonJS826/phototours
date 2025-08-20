@@ -374,7 +374,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/air/phototours/pt-general/src/generated/prisma",
+      "value": "/mnt/d/main_1999_08_25/phototours/pt-general/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
