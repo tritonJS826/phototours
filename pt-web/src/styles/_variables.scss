@@ -1,13 +1,12 @@
 // ====== GLOBAL COLORS ======
-
 $header-footer-color: #616161;
 $btn-primary-bg: #f5f5f5;
 $btn-primary-color: #333;
 $btn-primary-hover-bg: #e0e0e0;
-$btn-secondary-bg: #dcdcdc;
-$btn-secondary-color: #000;
-$btn-secondary-hover-bg: #c0c0c0;
-$color-primary: #07c;
+$btn-secondary-bg: #dc3a3a;
+$btn-secondary-color: #fcf9f9;
+$btn-secondary-hover-bg: #b72424;
+$color-primary: #007bff;
 $color-primary-hover: #005fa3;
 $color-dark: #222;
 $color-medium: #444;
@@ -32,9 +31,9 @@ $contact-text-light: #ccc;
 $contact-placeholder-color: #7b7f86;
 $contact-error-color: #dc3545; // Error color for forms
 $contact-error-dark: #c82333; // Darker shade for borders
-$contact-error-transparent-10: rgb(
-  220 53 69 / 10%
-); // Transparent for backgrounds
+$contact-error-transparent-10: rgb(220 53 69 / 10%); 
+
+// Transparent for backgrounds
 $contact-error-transparent-20: rgb(220 53 69 / 20%); // Transparent for borders
 
 // Common border widths
@@ -57,7 +56,7 @@ $contact-btn-bg-transparent-30: rgb(146 192 127 / 30%);
 
 // ====== SIZES AND SPACING ======
 
-$container-width: 1366px;
+$container-width: 1620px;
 
 // Icon sizes
 $icon-size-small: 20px;
@@ -72,7 +71,8 @@ $spacing-xxl: 24px;
 $spacing-xxxxl: 48px;
 
 // Common gap values (flexbox, grid)
-$gap-sm: 6px;
+$gap-sm: 6.4px;
+
 $gap-md: 8px;
 $gap-lg: 12px;
 $gap-xl: 16px;
@@ -90,8 +90,8 @@ $breakpoint-mobile: 768px;
 $btn-transition-bg: background-color 0.3s ease; // For existing Button component
 
 // Common transition combinations
-$transition-fast: 0.1s ease;
 $transition-normal: 0.3s ease;
+$transition-fast: 0.2s ease;
 $transition-bg: background-color 0.3s ease;
 $transition-color: color 0.3s ease;
 $transition-border: border-color 0.3s ease;
@@ -101,19 +101,25 @@ $transition-transform: transform 0.3s ease;
 
 // Border styles
 $btn-border: $border-width-thin solid $color-border;
+$active-cart-border: 1px solid #9cbef4;
+$dashed-border: 1px dashed #999;
+$border-radius-md: 8px;
+$border-radius-lg: 10px;
+$contact-btn-border-radius: 25px; // Moved here for logical grouping
 
 // Common shadow values
 $shadow-light: 0 4px 10px rgb(0 0 0 / 10%);
-$shadow-medium: 0 4px 8px rgb(0 0 0 / 15%);
+$shadow-medium: 0 4px 15px rgb(0 0 0 / 10%);
 $shadow-hover: 0 5px 15px rgb(0 0 0 / 20%);
+$shadow-input-focus: 0 0 5px rgb(0 123 255 / 50%);
 $shadow-very-heavy: 0 10px 30px rgb(0 0 0 / 50%);
 
 // ====== FONT SIZES ======
 
-$font-size-xs: 14px;
-$font-size-sm: 15px;
+$font-size-xs: 13.6px;
+$font-size-sm: 15.2px;
 $font-size-md: 16px;
-$font-size-lg: 18px;
+$font-size-lg: 17.6px;
 $font-size-xl: 20px;
 $font-size-xxxl: 48px;
 $font-size-hero-title: 64px;
@@ -123,18 +129,47 @@ $font-size-section-text: 32px;
 $font-size-card-title: 20px;
 $font-size-card-text: 16px;
 
+// ====== Sizes and Spacing ======
+$container-width: 1620px;
+$btn-padding: 12px 12px;
+$btn-font-size: 16px;
+$btn-border-radius: 8px;
+$font-weight-bold: 500;
+$font-weight-normal: 400;
+$font-weight-light: 300;
+$font-weight-minimal: 200;
+$font-size-hero-title: 64px;
+$font-size-hero-subtitle: 32px;
+$font-size-section-title: 48px;
+$font-size-section-text: 32px;
+$font-size-card-title: 24px;
+$font-size-card-text: 16px;
+
 // ====== BUTTON SPECIFIC ======
 
 $btn-padding: 12px 24px;
 $btn-font-size: 16px;
 $btn-border-radius: 5px;
 
+// ====== FONT WEIGHTS ======
+$font-weight-bold: 500;
+$font-weight-normal: 400;
+$font-weight-light: 300;
+$font-weight-minimal: 200;
+
 // ====== Z-INDEX LAYERS ======
 
 $z-index-notification: 1000;
 
-// ====== PADDING AND MARGINS ======
+// ====== Borders and Transitions ======
+$btn-border: 1px solid #ccc;
+$active-cart-border: 1px solid #9cbef4;
+$dashed-border: 1px dashed #999;
+$btn-transition-bg: background-color 0.3s ease;
 
+// ====== PADDINGS AND MARGINS ======
+
+// ===== Padding and Margins ======
 $padding-section: 64px 16px;
 $padding-container: 48px 16px;
 $padding-button: 14px 24px;
@@ -151,6 +186,11 @@ $logo-width: 180px;
 $logo-height: 90px;
 $logo-mobile-width: 140px;
 $logo-mobile-height: 70px;
+
+$margin-top-large: 32px;
+$margin-top-medium: 24px;
+$margin-top-small: 16px;
+
 
 // ====== RADIUS VALUES ======
 $radius-small: 6px;

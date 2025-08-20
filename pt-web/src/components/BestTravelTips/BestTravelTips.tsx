@@ -3,56 +3,49 @@ import {Container} from "src/components/Container/Container";
 import type {Article} from "src/features/articles/articles.data";
 import styles from "src/components/BestTravelTips/BestTravelTips.module.scss";
 
-export function BestTravelTips({a}: { a: Article }) {
+interface BestTravelTipsProps {
+  items: Article[];
+  title: string;
+  subtitle: string;
+}
+
+const FIRST_INDEX = 0 as const;
+const DEFAULT_FEATURED_COUNT = 1;
+const DEFAULT_GRID_COLUMNS = 3;
+
+export function BestTravelTips({items, title, subtitle}: BestTravelTipsProps) {
+  if (!items?.length) {
+    return null;
+  }
+
+  const featured = items.slice(FIRST_INDEX, DEFAULT_FEATURED_COUNT);
+  const compactStart = DEFAULT_FEATURED_COUNT;
+  const compactEnd = DEFAULT_FEATURED_COUNT + DEFAULT_GRID_COLUMNS;
+  const compact = items.slice(compactStart, compactEnd);
+
   return (
     <Container>
-      <div>
-        <div className={styles.cardBest}>
-          <h2 className={styles.cardBestTitle}>
-            Best travel tips for Iceland
+      <section className={styles.showcase}>
+        <header className={styles.showcaseHeader}>
+          <h2 className={styles.showcaseTitle}>
+            {title}
           </h2>
-          <p className={styles.cardBestText}>
-            Find all your essential pnotography
-            tips and information
+          <p className={styles.showcaseSubtitle}>
+            {subtitle}
           </p>
-        </div>
-        <div>
-          <Link
-            to={`/articles/${a.slug}`}
-            className={styles.cardLink}
-            aria-label={a.title}
-          >
-            <div className={styles.cardFull}>
-              <div className={styles.cardPict}>
-                <img
-                  src={a.cover}
-                  alt={a.alt}
-                  className={styles.cardImg}
-                  loading="lazy"
-                />
-              </div>
-              <div className={styles.cardText}>
-                <h3 className={styles.cardTitle}>
-                  {a.title}
-                </h3>
-                <p className={styles.cardExcerpt}>
-                  {a.excerpt}
-                </p>
-                <button className={styles.cardBtn}>
-                  Read More
-                </button>
-              </div>
-            </div>
-          </Link>
-        </div>
-        <div className={styles.cardBestie}>
-          <div>
-            <Link
-              to={`/articles/${a.slug}`}
-              className={styles.cardLink}
-              aria-label={a.title}
+        </header>
+
+        <div className={styles.showcaseGrid}>
+          {featured.map(a => (
+            <article
+              key={a.id}
+              className={`${styles.card} ${styles.featured}`}
             >
-              <div className={styles.card}>
+              <Link
+                to={`/articles/${a.slug}`}
+                className={styles.cardLink}
+                aria-label={a.title}
+              >
                 <div className={styles.cardPict}>
                   <img
                     src={a.cover}
@@ -72,16 +65,20 @@ export function BestTravelTips({a}: { a: Article }) {
                     Read More
                   </button>
                 </div>
-              </div>
-            </Link>
-          </div>
-          <div>
-            <Link
-              to={`/articles/${a.slug}`}
-              className={styles.cardLink}
-              aria-label={a.title}
+              </Link>
+            </article>
+          ))}
+
+          {compact.map(a => (
+            <article
+              key={a.id}
+              className={`${styles.card} ${styles.compact}`}
             >
-              <div className={styles.card}>
+              <Link
+                to={`/articles/${a.slug}`}
+                className={styles.cardLink}
+                aria-label={a.title}
+              >
                 <div className={styles.cardPict}>
                   <img
                     src={a.cover}
@@ -101,40 +98,11 @@ export function BestTravelTips({a}: { a: Article }) {
                     Read More
                   </button>
                 </div>
-              </div>
-            </Link>
-          </div>
-          <div>
-            <Link
-              to={`/articles/${a.slug}`}
-              className={styles.cardLink}
-              aria-label={a.title}
-            >
-              <div className={styles.card}>
-                <div className={styles.cardPict}>
-                  <img
-                    src={a.cover}
-                    alt={a.alt}
-                    className={styles.cardImg}
-                    loading="lazy"
-                  />
-                </div>
-                <div className={styles.cardText}>
-                  <h3 className={styles.cardTitle}>
-                    {a.title}
-                  </h3>
-                  <p className={styles.cardExcerpt}>
-                    {a.excerpt}
-                  </p>
-                  <button className={styles.cardBtn}>
-                    Read More
-                  </button>
-                </div>
-              </div>
-            </Link>
-          </div>
+              </Link>
+            </article>
+          ))}
         </div>
-      </div>
+      </section>
     </Container>
   );
 }

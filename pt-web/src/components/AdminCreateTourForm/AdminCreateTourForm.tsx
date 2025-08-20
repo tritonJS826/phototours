@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Button} from "src/components/Button/Button";
 import styles from "src/components/AdminCreateTourForm/AdminCreateTourForm.module.scss";
@@ -13,10 +13,37 @@ const initialFormData = {
   guideId: "",
 };
 
+type Guide = {
+  id: number;
+  experience: string;
+  user: {
+    id: number;
+    firstName: string;
+    lastName: string;
+  };
+};
+
 export const AdminCreateTourForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({...initialFormData});
   const [error, setError] = useState("");
+  const [guides, setGuides] = useState([]);
+
+  useEffect(() => {
+    const fetchGuides = async () => {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/guides`);
+        if (!res.ok) {
+          throw new Error("Failed to load guides");
+        }
+        const data = await res.json();
+        setGuides(data);
+      } catch {
+        setError("Error loading guides");
+      }
+    };
+    fetchGuides();
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const {name, value} = e.target;
@@ -86,13 +113,13 @@ export const AdminCreateTourForm = () => {
         },
         {label: "Price", name: "price", type: "number", required: true},
         {label: "Program", name: "program", textarea: true},
-        {label: "Guide ID", name: "guideId", type: "number", required: true},
       ].map(({label, name, type, textarea, select, options, required}) => (
         <label key={name}>
           {label}
           {select
             ? (
               <select
+                className={styles.selectTextInput}
                 name={name}
                 value={(formData as Record<string, string>)[name]}
                 onChange={handleChange}
@@ -110,6 +137,7 @@ export const AdminCreateTourForm = () => {
             : textarea
               ? (
                 <textarea
+                  className={styles.selectTextInput}
                   name={name}
                   value={(formData as Record<string, string>)[name]}
                   onChange={handleChange}
@@ -118,6 +146,7 @@ export const AdminCreateTourForm = () => {
               )
               : (
                 <input
+                  className={styles.selectTextInput}
                   type={type}
                   name={name}
                   value={(formData as Record<string, string>)[name]}
@@ -128,11 +157,40 @@ export const AdminCreateTourForm = () => {
         </label>
       ))}
 
+      <label>
+        Guide
+        <select
+          className={styles.selectTextInput}
+          name="guideId"
+          value={formData.guideId}
+          onChange={handleChange}
+          required
+        >
+          <option value="">
+            -- Select Guide --
+          </option>
+          {guides.map((guide: Guide) => (
+            <option
+              key={guide.id}
+              value={guide.id}
+            >
+              {guide.user.firstName}
+              {" "}
+              {guide.user.lastName}
+              {" "}
+            </option>
+          ))}
+        </select>
+      </label>
+
       {error && <p className={styles.error}>
         {error}
       </p>}
 
-      <Button type="submit">
+      <Button
+        className={styles.button}
+        type="submit"
+      >
         Create Tour and Continue
       </Button>
     </form>

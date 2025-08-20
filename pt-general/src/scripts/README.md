@@ -2,21 +2,16 @@
 
 1. reset.ts
 
-This script seeds the PostgreSQL database with initial demo data using Prisma.
+This script seeds the PostgreSQL database with initial demo data using Prisma and @faker-js/faker for generating random content.
 
-What it does:
+What it does: 
 
-Creates default categories and tags
+- Creates 5 categories and 5 tags
+- Adds 20 users, including 5 guides
+- Creates 20 tours, each linked to a random guide, category, and tag
+- Generates 40 tour dates (some available, some unavailable)
+- Tour titles and descriptions are randomized for more realistic demo data
 
-Adds two users with the GUIDE role
-
-Adds two guides linked to those users
-
-Creates two tours (each linked to a guide)
-
-Connects each tour to one category and one tag
-
-Adds available/unavailable tour dates
 
 2. Run the script with the appropriate loader:
 

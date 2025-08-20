@@ -1,103 +1,186 @@
-@use "../../styles/mixins" as mixin;
-@use "../../styles/variables" as vars;
+@use "src/styles/variables" as vars;
 
-.cardBest {
-  &Title {
+.showcase {
+  padding: 32px 0 20px;
+}
+
+.showcaseHeader {
+  margin-bottom: 16px;
+}
+
+.showcaseTitle {
+  font-size: 38px;
+  font-weight: 800;
+  margin: 10px 0 8px;
+}
+
+.showcaseSubtitle {
+  font-size: 20px;
+  color: #666;
+}
+
+.showcaseGrid {
+  display: grid;
+  grid-template-areas:
+    "featured featured featured"
+    "c1 c2 c3";
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: vars.$color-bg-white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+  overflow: hidden;
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
+  height: 100%;
+
+  &:hover {
+    box-shadow: 0 5px 15px rgb(0 0 0 / 20%);
+    transform: translateY(-2px);
+  }
+}
+
+.cardLink {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.cardPict {
+  position: relative;
+  width: 100%;
+  background: vars.$color-bg-light;
+  overflow: hidden;
+}
+
+.cardTitle {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: vars.$color-dark;
+  line-height: 1.3;
+  overflow: hidden;
+}
+
+.featured {
+  grid-area: featured;
+
+  .cardTitle {
     font-size: 42px;
   }
 
-  &Text {
-    font-size: 20px;
-    color: #555;
+  .cardPict {
+    aspect-ratio: 16 / 9;
   }
 }
 
-.cardFull {
-  position: relative;
+.compact {
+  height: 100%;
+}
+
+.compact .cardPict {
+  aspect-ratio: 4 / 3;
+}
+
+.compact[data-pos="1"] {
+  grid-area: c1;
+}
+
+.compact[data-pos="2"] {
+  grid-area: c2;
+}
+
+.compact[data-pos="3"] {
+  grid-area: c3;
+}
+
+.cardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cardText {
+  padding: 16px 16px 20px;
   display: flex;
-  flex-direction: row;
-  gap: 20px;
-  margin: 40px 0;
-  border-radius: 12px;
-
-  .cardLink {
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: inherit;
-    height: 100%;
-  }
-
-  .cardImg {
-    display: block;
-    width: 1040px;
-    height: 600px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .cardTitle {
-    font-size: 36px;
-    font-weight: 600;
-    padding: 15px 20px 5px;
-  }
-
-  .cardExcerpt {
-    font-size: 20px;
-    line-height: 1.5;
-    padding: 0 20px 20px;
-    color: #555;
-    text-align: justify;
-  }
+  flex-direction: column;
+  gap: 8px;
 }
 
-.cardBestie {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
-  margin: 20px 0;
-  border-radius: 10px;
+.cardExcerpt {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+  text-align: justify;
+  max-height: calc(1.5em * 3);
+  overflow: hidden;
+}
 
-  .cardLink {
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: inherit;
-    height: 100%;
-  }
-
-  .cardImg {
-    display: block;
-    width: 500px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .cardTitle {
-    font-size: 36px;
-    font-weight: 600;
-    padding: 15px 0;
-  }
-
-  .cardExcerpt {
-    text-align: justify;
-    width: 500px;
-    font-size: 20px;
-    line-height: 1.5;
-    padding: 20px 0;
-    color: #555;
-  }
+.featured .cardExcerpt {
+  max-height: calc(1.5em * 4);
 }
 
 .cardBtn {
-  padding: 10px 70px;
-  font-size: 18px;
+  margin-top: 16px;
+  padding: 10px 50px;
+  font-size: 16px;
   border-radius: 20px;
   background-color: transparent;
   border: 2px solid currentcolor;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+  align-self: flex-start;
 
   &:hover {
     background-color: #84c489;
     color: #fff;
+  }
+}
+
+@media (width <= 1024px) {
+  .showcaseGrid {
+    grid-template-areas:
+      "featured featured"
+      "c1 c2"
+      "c3 c3";
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .featured .cardTitle {
+    font-size: 32px;
+  }
+}
+
+@media (width <= 640px) {
+  .showcaseGrid {
+    grid-template-areas:
+      "featured"
+      "c1"
+      "c2"
+      "c3";
+    grid-template-columns: 1fr;
+  }
+
+  .showcaseTitle {
+    font-size: 28px;
+  }
+
+  .showcaseSubtitle {
+    font-size: 16px;
+  }
+
+  .cardTitle {
+    font-size: 20px;
   }
 }

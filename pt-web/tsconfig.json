@@ -10,7 +10,7 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
@@ -23,11 +23,12 @@
   "include": [
     "src",
     "vite.config.ts",
+    "global.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "**/*.d.ts",
     ".storybook",
-    "src/features/articles",
+    "src/features/articles"
   ],
   "exclude": ["node_modules", "public", "dist"]
 }

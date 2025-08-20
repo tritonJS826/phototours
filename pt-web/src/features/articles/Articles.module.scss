@@ -1,91 +1,227 @@
-@use "../../styles/mixins" as mixin;
-@use "../../styles/variables" as vars;
+@use "src/styles/variables" as vars;
+
+.showcase {
+  padding: 32px 0 20px;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.showcaseHeader {
+  margin-bottom: 16px;
+}
+
+.showcaseTitle {
+  font-size: 38px;
+  font-weight: 800;
+  margin: 10px 0 8px;
+}
+
+.showcaseSubtitle {
+  font-size: 20px;
+  color: #666;
+}
+
+.showcaseGrid {
+  display: grid;
+  grid-template-areas:
+    "featured featured featured"
+    "c1 c2 c3";
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
 
 .card {
   display: flex;
-  flex-direction: row;
-  gap: 20px;
-  margin-top: 40px;
+  flex-direction: column;
+  background: vars.$color-bg-white;
   border-radius: 12px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
   overflow: hidden;
-  background-color: #fff;
-  box-shadow: 0 4px 12px rgb(0 0 0 / 8%);
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
+  height: 100%;
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 16px rgb(0 0 0 / 12%);
+    box-shadow: 0 5px 15px rgb(0 0 0 / 20%);
+    transform: translateY(-2px);
   }
+}
 
-  .cardLink {
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: inherit;
-    height: 100%;
-  }
+.cardTitle {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: vars.$color-dark;
+  line-height: 1.3;
+  max-height: calc(1.3em * 2);
+  overflow: hidden;
+}
 
-  .cardImg {
-    margin: 20px 0 20px 20px;
-    display: block;
-    height: auto;
-    border-bottom: 1px solid #eee;
+.cardPict {
+  position: relative;
+  width: 100%;
+  background: vars.$color-bg-light;
+  overflow: hidden;
+}
+
+.featured {
+  grid-area: featured;
+
+  .cardPict {
+    aspect-ratio: 16 / 9;
   }
 
   .cardTitle {
     font-size: 42px;
-    font-weight: 600;
-    padding: 15px 20px 5px;
   }
+}
 
-  .cardExcerpt {
-    font-size: 20px;
-    line-height: 1.5;
-    padding: 0 20px 20px;
-    color: #555;
-    text-align: justify;
+.cardLink {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.compact {
+  height: 100%;
+}
+
+.compact .cardPict {
+  aspect-ratio: 4 / 3;
+}
+
+.compact:nth-of-type(1) {
+  grid-area: c1;
+}
+
+.compact:nth-of-type(2) {
+  grid-area: c2;
+}
+
+.compact:nth-of-type(3) {
+  grid-area: c3;
+}
+
+.cardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cardText {
+  padding: 16px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cardExcerpt {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+  text-align: justify;
+  max-height: calc(1.5em * 3);
+  overflow: hidden;
+}
+
+.featured .cardExcerpt {
+  max-height: calc(1.5em * 4);
+}
+
+.cardBtn {
+  margin-top: 16px;
+  padding: 10px 50px;
+  font-size: 16px;
+  border-radius: 20px;
+  background-color: transparent;
+  border: 2px solid currentcolor;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+  align-self: flex-start;
+
+  &:hover {
+    background-color: #84c489;
+    color: #fff;
   }
+}
 
-  button {
-    margin: 20px;
-    padding: 10px 50px;
-    font-size: 18px;
-    border-radius: 20px;
-    background-color: transparent;
-    border: 2px solid currentcolor;
-    cursor: pointer;
-    transition: all 0.2s ease;
-
-    &:hover {
-      background-color: #84c489;
-      color: #fff;
-    }
-  }
+.cardLink:focus-visible,
+.cardBtn:focus-visible {
+  outline: 2px solid #84c489;
+  outline-offset: 2px;
 }
 
 .full {
   width: 100%;
-  padding-top: 60px;
+  padding-top: 40px;
+}
 
-  .fullPict {
-    display: flex;
-    justify-content: center;
+.fullPict {
+  display: flex;
+  justify-content: center;
+}
+
+.fullImg {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.fullText {
+  padding: 40px 0;
+}
+
+.fullTitle {
+  padding-bottom: 16px;
+  font-size: 42px;
+  text-align: center;
+}
+
+.fullBody {
+  font-size: 18px;
+  text-align: justify;
+}
+
+@media (width <= 1024px) {
+  .showcaseGrid {
+    grid-template-areas:
+      "featured featured"
+      "c1 c2"
+      "c3 c3";
+    grid-template-columns: 1fr 1fr;
   }
 
-  .fullText {
-    padding: 60px 0;
+  .featured .cardTitle {
+    font-size: 32px;
+  }
+}
 
-    .fullTitle {
-      padding-bottom: 20px;
-      font-size: 42px;
-      text-align: center;
-    }
+@media (width <= 640px) {
+  .showcaseGrid {
+    grid-template-areas:
+      "featured"
+      "c1"
+      "c2"
+      "c3";
+    grid-template-columns: 1fr;
+  }
 
-    .fullBody {
-      font-size: 20px;
-      text-align: justify;
-    }
+  .showcaseTitle {
+    font-size: 28px;
+  }
+
+  .showcaseSubtitle {
+    font-size: 16px;
+  }
+
+  .cardTitle {
+    font-size: 20px;
   }
 }

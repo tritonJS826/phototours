@@ -1,5 +1,6 @@
-import {changePassword, getProfile, login, register} from 'src/controllers/authControllers.js';
+import {changePassword, getProfile, login, register, updateProfile} from 'src/controllers/authControllers.js';
 import {authenticateToken} from 'src/middleware/auth.js';
+import {upload} from 'src/middleware/upload.js';
 import {Router} from 'express';
 
 const router = Router();
@@ -159,5 +160,52 @@ router.post('/change-password', authenticateToken, changePassword);
  *         description: User not authorized
  */
 router.get('/profile', authenticateToken, getProfile);
+
+/**
+ * @swagger
+ * /auth/profile:
+ *   put:
+ *     summary: Update user profile
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               firstName:
+ *                 type: string
+ *                 description: User first name
+ *               lastName:
+ *                 type: string
+ *                 description: User last name
+ *               bio:
+ *                 type: string
+ *                 description: User bio
+ *               avatar:
+ *                 type: string
+ *                 format: binary
+ *                 description: Profile picture
+ *     responses:
+ *       200:
+ *         description: Profile updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 user:
+ *                   type: object
+ *       400:
+ *         description: Invalid data
+ *       401:
+ *         description: User not authorized
+ */
+router.put('/profile', authenticateToken, upload.single('avatar'), updateProfile);
 
 export {router as authRoutes};

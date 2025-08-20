@@ -1,10 +1,12 @@
 import {prisma} from 'src/db/prisma';
 import {Role} from 'src/generated/prisma';
+import {logger} from 'src/utils/logger';
 import {Request, Response} from 'express';
 
 const HTTP_STATUS_CREATED = 201;
 const HTTP_STATUS_INTERNAL_SERVER_ERROR = 500;
 const HTTP_STATUS_BAD_REQUEST = 400;
+const HTTP_STATUS_NOT_FOUND = 404;
 const NAME_SPLIT_INDEX = 1;
 
 export const createUser = async (req: Request, res: Response) => {
@@ -34,6 +36,38 @@ export const createUser = async (req: Request, res: Response) => {
 
     return res.status(HTTP_STATUS_CREATED).json(user);
   } catch {
+    return res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({error: 'Internal server error'});
+  }
+};
+
+export const getPublicProfile = async (req: Request, res: Response) => {
+  try {
+    const userId = parseInt(req.params.id);
+
+    if (isNaN(userId)) {
+      return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'Invalid user ID'});
+    }
+
+    const user = await prisma.user.findUnique({
+      where: {id: userId},
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        profilePicUrl: true,
+        createdAt: true,
+        bio: true,
+      },
+    });
+
+    if (!user) {
+      return res.status(HTTP_STATUS_NOT_FOUND).json({error: 'User not found'});
+    }
+
+    return res.json(user);
+  } catch (error) {
+    logger.error('Error fetching public profile:', error);
+
     return res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({error: 'Internal server error'});
   }
 };

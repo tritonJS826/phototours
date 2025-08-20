@@ -1,18 +1,37 @@
+@use "src/styles/variables" as var;
+@use "src/styles/mixins" as mix;
+
 .form {
   max-width: 600px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  border-radius: var.$radius-medium;
   gap: 1rem;
-  box-shadow: 0 4px 16px rgb(0 0 0 / 8%);
+  box-shadow: var.$shadow-light;
   padding: 1.5rem;
+  background-color: var.$color-bg-light;
 }
 
-input,
-textarea,
-select {
+.selectTextInput {
+  width: 100%;
   padding: 0.5rem;
   font-size: 1rem;
+  border: var.$btn-border;
+  border-radius: var.$radius-small;
+
+  &:focus {
+    outline: none;
+    border-color: var.$color-primary;
+    box-shadow: var.$shadow-input-focus;
+  }
+}
+
+.button {
+  font-size: var.$font-size-card-text;
+  width: 100%;
+  border: none;
+  cursor: pointer;
 }
 
 .error {

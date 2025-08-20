@@ -1,0 +1,22 @@
+.center {
+  display: grid;
+  place-items: center;
+  min-height: 160px;
+  gap: 12px;
+}
+
+.errorBox {
+  padding: 12px 16px;
+  border: 1px solid #f2c7c7;
+  background: #fee;
+  color: #7a1f1f;
+  border-radius: 8px;
+}
+
+.retry {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #f5f5f5;
+  cursor: pointer;
+}

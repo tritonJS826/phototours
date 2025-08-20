@@ -1,5 +1,4 @@
 import {API_ROUTES} from "src/config/apiRoutes";
-import {env} from "src/utils/env/env";
 
 // Types for user data
 export interface CreateUserRequest {
@@ -20,6 +19,15 @@ export interface User {
   createdAt: string;
 }
 
+export interface PublicUserProfile {
+  id: number;
+  firstName: string;
+  lastName: string;
+  profilePicUrl: string | null;
+  createdAt: string;
+  bio?: string;
+}
+
 /**
  * User service for handling user-related API operations
  */
@@ -31,7 +39,8 @@ export class UserService {
    * @returns Promise with created user data
    */
   public static async createUser(userData: CreateUserRequest): Promise<User> {
-    const response = await fetch(`${env.API_BASE_PATH}${API_ROUTES.USERS.CREATE}`, {
+    const baseUrl = process.env.VITE_API_BASE_URL || "http://localhost:8000";
+    const response = await fetch(`${baseUrl}/general${API_ROUTES.USERS.CREATE}`, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(userData),
@@ -52,7 +61,8 @@ export class UserService {
    * @returns Promise with array of users
    */
   public static async getUsers(): Promise<User[]> {
-    const response = await fetch(`${env.API_BASE_PATH}${API_ROUTES.USERS.GET_ALL}`);
+    const baseUrl = process.env.VITE_API_BASE_URL || "http://localhost:8000";
+    const response = await fetch(`${baseUrl}/general${API_ROUTES.USERS.GET_ALL}`);
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
@@ -64,4 +74,21 @@ export class UserService {
     return response.json();
   }
 
+  public static async getPublicProfile(userId: number): Promise<PublicUserProfile> {
+    const baseUrl = process.env.VITE_API_BASE_URL || "http://localhost:8000";
+    const response = await fetch(`${baseUrl}/general/users/${userId}/public`, {
+      method: "GET",
+      headers: {"Content-Type": "application/json"},
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch user profile");
+    }
+
+    return response.json();
+  }
+
 }
+
+// Export an instance for convenience
+export const userService = UserService;
