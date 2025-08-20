@@ -1,0 +1,358 @@
+.bankAccountsContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem 0;
+}
+
+.bankAccountsContent {
+  background: rgb(255 255 255 / 95%);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgb(0 0 0 / 10%);
+  backdrop-filter: blur(10px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  gap: 1rem;
+
+  @media (width <= 768px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.headerLeft {
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin: 0 0 0.5rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: #718096;
+    margin: 0;
+  }
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgb(238 90 36 / 30%);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgb(238 90 36 / 40%);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.accountsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.accountCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgb(0 0 0 / 8%);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgb(0 0 0 / 12%);
+  }
+
+  @media (width <= 768px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+}
+
+.accountInfo {
+  flex: 1;
+}
+
+.accountHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin: 0;
+  }
+}
+
+.defaultBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #1a202c;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.bankName {
+  font-size: 1rem;
+  color: #718096;
+  margin: 0 0 0.75rem;
+}
+
+.accountDetails {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  @media (width <= 480px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+.accountType {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.accountNumber {
+  font-family: "Courier New", monospace;
+  font-weight: 600;
+  color: #4a5568;
+  font-size: 0.9rem;
+}
+
+.accountActions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+
+  @media (width <= 768px) {
+    justify-content: flex-end;
+  }
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: #f7fafc;
+  color: #4a5568;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #e2e8f0;
+    color: #1a202c;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.emptyState {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #718096;
+
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: #718096;
+  font-size: 1.1rem;
+}
+
+// Modal styles
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgb(0 0 0 / 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgb(0 0 0 / 20%);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin: 0;
+  }
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: #718096;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #f7fafc;
+    color: #1a202c;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-weight: 600;
+    color: #1a202c;
+    font-size: 0.9rem;
+  }
+
+  input,
+  select {
+    padding: 0.75rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgb(102 126 234 / 10%);
+    }
+  }
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+  }
+}
+
+.formActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  @media (width <= 480px) {
+    flex-direction: column;
+  }
+}
+
+.cancelButton {
+  flex: 1;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  background: white;
+  color: #4a5568;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: #cbd5e0;
+    background: #f7fafc;
+  }
+}
+
+.saveButton {
+  flex: 1;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgb(102 126 234 / 30%);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}

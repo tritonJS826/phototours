@@ -1,10 +1,19 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {useAuth} from "src/hooks/useAuth";
 import styles from "src/components/Auth/UserProfile.module.scss";
 
 export const UserProfile: React.FC = () => {
   const {user} = useAuth();
+  const [imageKey, setImageKey] = useState(0);
+
+  const IMAGE_KEY_INCREMENT = 1;
+
+  useEffect(() => {
+    if (user?.profilePicUrl) {
+      setImageKey(prev => prev + IMAGE_KEY_INCREMENT);
+    }
+  }, [user?.profilePicUrl]);
 
   if (!user) {
     return (
@@ -28,7 +37,8 @@ export const UserProfile: React.FC = () => {
             {user.profilePicUrl
               ? (
                 <img
-                  src={user.profilePicUrl}
+                  key={imageKey}
+                  src={`${user.profilePicUrl}?t=${imageKey}`}
                   alt={`${user.firstName} ${user.lastName}`}
                   className={styles.avatar}
                 />

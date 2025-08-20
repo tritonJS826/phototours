@@ -1,10 +1,11 @@
 import React, {useEffect, useRef, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import {CircleUser, Search, ShoppingCart} from "lucide-react";
+import {Bell, CircleUser, LogOut, Search, ShoppingCart, User} from "lucide-react";
 import logo from "src/assets/icons/logo.png";
 import {AuthModal} from "src/components/Auth";
 import {PATHS} from "src/constants/routes";
 import {useAuth} from "src/hooks/useAuth";
+import {getProfileImageUrl} from "src/utils/profileImage";
 import {handleClickOutside} from "src/utils/useOutsideClick";
 import styles from "src/components/Header/Header.module.scss";
 
@@ -15,12 +16,13 @@ const REFRESH_DELAY = 100;
 export function Header() {
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [selectedLang, setSelectedLang] = useState("ENG");
   const [selectedCurrency, setSelectedCurrency] = useState("USD");
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState<"login" | "register">("login");
 
-  const {user, isAuthenticated, logout} = useAuth();
+  const {user, isAuthenticated, logout, refreshFromStorage} = useAuth();
 
   const navigate = useNavigate();
   const langRef = useRef<HTMLDivElement>(null);
@@ -29,9 +31,19 @@ export function Header() {
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    if (isAuthenticated && isAuthModalOpen) {
+      setIsAuthModalOpen(false);
+    }
+  }, [isAuthenticated, isAuthModalOpen, user]);
+
+  useEffect(() => {
+    refreshFromStorage();
+  }, [refreshFromStorage]);
+
+  useEffect(() => {
     const listener = handleClickOutside(
       [langRef, currencyRef, profileDropdownRef],
-      [() => setIsLangOpen(false), () => setIsCurrencyOpen(false), () => undefined],
+      [() => setIsLangOpen(false), () => setIsCurrencyOpen(false), () => setIsProfileDropdownOpen(false)],
     );
     document.addEventListener("mousedown", listener);
 
@@ -43,7 +55,7 @@ export function Header() {
   const handleProfileClick = (e: React.MouseEvent) => {
     e.preventDefault();
     if (isAuthenticated) {
-      navigate(PATHS.PROFILE);
+      setIsProfileDropdownOpen(!isProfileDropdownOpen);
     } else {
       setAuthMode("login");
       setIsAuthModalOpen(true);
@@ -51,10 +63,10 @@ export function Header() {
   };
 
   const handleAuthSuccess = () => {
-    setIsAuthModalOpen(false);
+    refreshFromStorage();
 
     setTimeout(() => {
-      navigate(PATHS.PROFILE);
+      navigate(PATHS.DASHBOARD);
     }, REFRESH_DELAY);
   };
 
@@ -213,32 +225,66 @@ export function Header() {
                     onClick={handleProfileClick}
                     aria-label="Profile"
                   >
-                    <CircleUser className="icon" />
+                    <img
+                      src={getProfileImageUrl(user?.profilePicUrl)}
+                      alt={`${user?.firstName} ${user?.lastName}`}
+                      className={styles.avatarImage}
+                    />
                   </button>
-                  <div className={styles.profileMenu}>
-                    <div className={styles.profileUserInfo}>
-                      {user?.firstName}
-                      {" "}
-                      {user?.lastName}
+                  {isProfileDropdownOpen && (
+                    <div className={styles.profileMenu}>
+                      <div className={styles.profileHeader}>
+                        <div className={styles.profileUserInfo}>
+                          {user?.firstName}
+                          {" "}
+                          {user?.lastName}
+                        </div>
+                        <button
+                          className={styles.closeButton}
+                          onClick={() => setIsProfileDropdownOpen(false)}
+                        >
+                          ×
+                        </button>
+                      </div>
+                      <div className={styles.profileActions}>
+                        <Link
+                          to={PATHS.DASHBOARD}
+                          className={styles.profileAction}
+                          onClick={() => setIsProfileDropdownOpen(false)}
+                        >
+                          <User className="icon" />
+                          <span>
+                            Dashboard
+                          </span>
+                        </Link>
+                        <Link
+                          to="/notifications"
+                          className={styles.profileAction}
+                          onClick={() => setIsProfileDropdownOpen(false)}
+                        >
+                          <Bell className="icon" />
+                          <span>
+                            Notifications
+                          </span>
+                        </Link>
+                      </div>
+                      <button
+                        className={styles.logoutButton}
+                        onClick={() => {
+                          logout();
+                          setIsProfileDropdownOpen(false);
+                          setTimeout(() => {
+                            navigate(PATHS.HOME);
+                          }, REFRESH_DELAY);
+                        }}
+                      >
+                        <LogOut className="icon" />
+                        <span>
+                          Logout
+                        </span>
+                      </button>
                     </div>
-                    <Link
-                      to={PATHS.PROFILE}
-                      className={styles.profileMenuItem}
-                    >
-                      Profile
-                    </Link>
-                    <button
-                      className={styles.profileMenuItem}
-                      onClick={() => {
-                        logout();
-                        setTimeout(() => {
-                          navigate(PATHS.HOME);
-                        }, REFRESH_DELAY);
-                      }}
-                    >
-                      Logout
-                    </button>
-                  </div>
+                  )}
                 </div>
               )
               : (

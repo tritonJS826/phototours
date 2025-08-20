@@ -14,7 +14,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("/profile.jpg");
+  background-color: #5196f0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -53,6 +53,7 @@
   .sectionActions {
     display: flex;
     gap: 16px;
+    align-items: center;
   }
 }
 
@@ -185,6 +186,119 @@
   }
 }
 
+.bankAccountsList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
+
+  /* Стилизация скроллбара */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgb(165 200 226 / 10%);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #a5c8e2;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+
+  &:hover {
+    background: rgb(255 107 107 / 20%);
+    color: #ff6b6b;
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+.bankAccountInfo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background: rgb(255 255 255 / 5%);
+  border-radius: 12px;
+  border: 1px solid rgb(165 200 226 / 20%);
+}
+
+.accountRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgb(165 200 226 / 10%);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  label {
+    font-weight: 600;
+    color: #a5c8e2;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  span {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .accountType {
+    background: rgb(249 168 37 / 20%);
+    color: #f9a825;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .maskedNumber {
+    font-family: "Courier New", monospace;
+    letter-spacing: 2px;
+  }
+
+  @media (width <= 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
 .bookingsSection {
   background: rgb(28 76 138 / 90%);
   border-radius: 15px;
@@ -194,8 +308,36 @@
 }
 
 .bookingsList {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 16px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
+
+  /* Стили для скроллбара */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgb(28 76 138 / 30%);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgb(165 200 226 / 50%);
+    border-radius: 4px;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: rgb(165 200 226 / 70%);
+    }
+  }
+
+  /* Для Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgb(165 200 226 / 50%) rgb(28 76 138 / 30%);
 }
 
 .bookingCard {
@@ -207,6 +349,7 @@
   border-radius: 10px;
   border: 1px solid #e9ecef;
   transition: all 0.3s ease;
+  position: relative;
 
   &:hover {
     transform: translateY(-2px);
@@ -236,22 +379,56 @@
 }
 
 .bookingStatus {
-  .status {
+  .statusDropdown {
+    position: relative;
+  }
+
+  .statusButton {
     padding: 8px 16px;
     border-radius: 20px;
     font-size: 13px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 100px;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgb(0 0 0 / 20%);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
 
     &.confirmed {
       background: #d4edda;
       color: #155724;
+
+      &:hover {
+        background: #c3e6cb;
+      }
     }
 
     &.pending {
       background: #fff3cd;
       color: #856404;
+
+      &:hover {
+        background: #ffeaa7;
+      }
+    }
+
+    &.cancelled {
+      background: #f8d7da;
+      color: #721c24;
+
+      &:hover {
+        background: #f5c6cb;
+      }
     }
   }
 }

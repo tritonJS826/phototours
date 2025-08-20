@@ -64,7 +64,7 @@ export class ZohoService {
       throw new Error(`Failed to exchange code for tokens: ${response.statusText}`);
     }
 
-    const data: ZohoTokenResponse = await response.json();
+    const data = await response.json() as ZohoTokenResponse;
     this.accessToken = data.access_token;
     this.refreshToken = data.refresh_token;
 
@@ -94,7 +94,7 @@ export class ZohoService {
       throw new Error(`Failed to refresh token: ${response.statusText}`);
     }
 
-    const data = await response.json();
+    const data = await response.json() as ZohoTokenResponse;
     this.accessToken = data.access_token;
 
     return data.access_token;

@@ -1,5 +1,6 @@
 import React, {useRef, useState} from "react";
 import {useAuth} from "src/hooks/useAuth";
+import {getProfileImageUrl} from "src/utils/profileImage";
 import styles from "src/components/Auth/EditProfileForm.module.scss";
 
 interface EditProfileData {
@@ -20,7 +21,7 @@ export const EditProfileForm: React.FC = () => {
     bio: user?.bio || "",
   });
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
-  const [avatarPreview, setAvatarPreview] = useState<string | null>(user?.profilePicUrl || null);
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(user?.profilePicUrl || getProfileImageUrl());
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -98,8 +99,12 @@ export const EditProfileForm: React.FC = () => {
         throw new Error(errorData.error || "Failed to update profile");
       }
 
-      await response.json();
+      const updatedUser = await response.json();
       setSuccess("Profile updated successfully!");
+
+      const currentUser = JSON.parse(localStorage.getItem("user") || "{}");
+      const updatedUserData = {...currentUser, ...updatedUser.user};
+      localStorage.setItem("user", JSON.stringify(updatedUserData));
 
       await refreshProfile();
 
@@ -142,20 +147,11 @@ export const EditProfileForm: React.FC = () => {
             className={styles.avatarContainer}
             onClick={handleAvatarClick}
           >
-            {avatarPreview
-              ? (
-                <img
-                  src={avatarPreview}
-                  alt="Profile preview"
-                  className={styles.avatarPreview}
-                />
-              )
-              : (
-                <div className={styles.avatarPlaceholder}>
-                  {user.firstName.charAt(0)}
-                  {user.lastName.charAt(0)}
-                </div>
-              )}
+            <img
+              src={avatarPreview || getProfileImageUrl()}
+              alt="Profile preview"
+              className={styles.avatarPreview}
+            />
             <div className={styles.avatarOverlay}>
               <span>
                 Click to change

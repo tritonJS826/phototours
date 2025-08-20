@@ -50,6 +50,11 @@ export const useAuth = () => {
   const login = useCallback(async (data: LoginData) => {
     try {
       setAuthState(prev => ({...prev, isLoading: true}));
+
+      // Очищаем старые данные из localStorage перед логином
+      localStorage.removeItem("notifications");
+      localStorage.removeItem("bankAccounts");
+
       const response = await authService.login(data);
 
       authService.setAuthData(response.token, response.user);

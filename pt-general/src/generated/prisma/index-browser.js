@@ -260,6 +260,31 @@ exports.Prisma.UserProcessedPhotoScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.NotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  message: 'message',
+  type: 'type',
+  category: 'category',
+  isRead: 'isRead',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BankAccountScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  accountHolder: 'accountHolder',
+  bankName: 'bankName',
+  accountType: 'accountType',
+  accountNumber: 'accountNumber',
+  routingNumber: 'routingNumber',
+  isDefault: 'isDefault',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -328,6 +353,25 @@ exports.ProcessingStatus = exports.$Enums.ProcessingStatus = {
   FAILED: 'FAILED'
 };
 
+exports.NotificationType = exports.$Enums.NotificationType = {
+  INFO: 'INFO',
+  SUCCESS: 'SUCCESS',
+  WARNING: 'WARNING',
+  ERROR: 'ERROR'
+};
+
+exports.NotificationCategory = exports.$Enums.NotificationCategory = {
+  TOUR: 'TOUR',
+  PAYMENT: 'PAYMENT',
+  SYSTEM: 'SYSTEM',
+  PROMO: 'PROMO'
+};
+
+exports.BankAccountType = exports.$Enums.BankAccountType = {
+  CHECKING: 'CHECKING',
+  SAVINGS: 'SAVINGS'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   Guide: 'Guide',
@@ -343,7 +387,9 @@ exports.Prisma.ModelName = {
   PromoCode: 'PromoCode',
   TourMaterial: 'TourMaterial',
   PhotoDiary: 'PhotoDiary',
-  UserProcessedPhoto: 'UserProcessedPhoto'
+  UserProcessedPhoto: 'UserProcessedPhoto',
+  Notification: 'Notification',
+  BankAccount: 'BankAccount'
 };
 
 /**
