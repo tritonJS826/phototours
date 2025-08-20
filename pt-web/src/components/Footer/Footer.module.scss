@@ -1,2 +1,188 @@
 @use "../../styles/mixins" as mixin;
 @use "../../styles/variables" as vars;
+
+// ====== FOOTER COMPONENT ======
+.footer {
+  background-color: vars.$color-bg-light;
+  color: vars.$btn-primary-color;
+  margin-top: auto;
+
+  // Main Footer Section
+  .mainSection {
+    padding: vars.$spacing-xxxxl 0;
+    border-bottom: none;
+    box-shadow: inset 0 -0.5px 0 rgba(vars.$color-border, 0.9);
+
+    .mainContent {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      gap: vars.$gap-xxxxxl;
+
+      @media (max-width: vars.$breakpoint-mobile) {
+        grid-template-columns: 1fr;
+        gap: vars.$gap-xxxxl;
+      }
+
+      // Logo column with proper alignment
+      .logoColumn {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        .logo {
+          margin-top: 0;
+          margin-bottom: vars.$gap-xl;
+        }
+      }
+
+      // Common column title styles
+      .columnTitle {
+        font-size: vars.$font-size-lg;
+        font-weight: 700;
+        color: vars.$btn-primary-color;
+        margin-bottom: vars.$gap-xl;
+        margin-top: 0;
+        line-height: 1.3;
+      }
+
+      // Footer links column
+      .footerColumn {
+        .footerLinks {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: vars.$gap-md;
+
+          .footerLink {
+            color: vars.$color-medium;
+            text-decoration: none;
+            font-size: vars.$font-size-md;
+            font-weight: 400;
+            transition: vars.$transition-color;
+            display: inline-block;
+            line-height: 1.4;
+
+            &:hover {
+              color: vars.$contact-btn-bg;
+            }
+
+            &:focus-visible {
+              outline: vars.$border-width-medium solid vars.$contact-btn-bg;
+              outline-offset: vars.$border-width-medium;
+            }
+          }
+        }
+      }
+
+      .subscribeColumn {
+        .subscribeForm {
+          // Ensure inner form container remains transparent to avoid double glass effect
+          .newsletterForm {
+            padding: 0;
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+            backdrop-filter: none;
+            border-radius: 0;
+          }
+        }
+      }
+    }
+  }
+
+  // Copyright Section
+  .copyrightSection {
+    padding: vars.$spacing-xl 0;
+    border-top: none;
+    box-shadow: inset 0 0.5px 0 rgba(vars.$color-border, 0.8);
+
+    .copyrightContent {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: vars.$gap-xl;
+
+      @media (max-width: vars.$breakpoint-mobile) {
+        flex-direction: column;
+        gap: vars.$gap-lg;
+        text-align: center;
+      }
+
+      .copyrightText {
+        color: vars.$color-light;
+        font-size: vars.$font-size-sm;
+        font-weight: 400;
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      .socialIcons {
+        display: flex;
+        gap: vars.$gap-sm;
+
+        .socialIcon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: vars.$icon-size-large;
+          height: vars.$icon-size-large;
+          background-color: transparent;
+          color: vars.$color-medium;
+          text-decoration: none;
+          transition: vars.$transition-color, vars.$transition-transform;
+
+          &:hover {
+            color: vars.$contact-btn-bg;
+            transform: translateY(vars.$transform-lift);
+          }
+
+          &:focus-visible {
+            outline: vars.$border-width-medium solid vars.$contact-btn-bg;
+            outline-offset: vars.$border-width-medium;
+          }
+
+          .icon {
+            width: vars.$icon-size-small;
+            height: vars.$icon-size-small;
+            transition: vars.$transition-color;
+            stroke-width: 1.4;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ====== ACCESSIBILITY ======
+@media (prefers-reduced-motion: reduce) {
+  .footer {
+    .mainSection,
+    .copyrightSection {
+      .socialIcon {
+        transition: none;
+
+        &:hover {
+          transform: none;
+        }
+      }
+    }
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .footer {
+    .mainSection {
+      border-bottom: vars.$border-width-medium solid vars.$color-border;
+      box-shadow: none;
+    }
+
+    .copyrightSection {
+      border-top: vars.$border-width-medium solid vars.$color-border;
+      box-shadow: none;
+    }
+  }
+}

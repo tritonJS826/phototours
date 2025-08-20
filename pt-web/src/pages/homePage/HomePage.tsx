@@ -37,8 +37,10 @@ export function HomePage() {
 
   return (
     <div className={styles.homePage}>
-      <HeroSection />
-      <TourSearchForm />
+      <div className={styles.heroSectionBg}>
+        <HeroSection />
+        <TourSearchForm />
+      </div>
       <PopularWorkshops />
 
       {tours.length > 0 && (
@@ -56,3 +58,4 @@ export function HomePage() {
     </div>
   );
 }
+
