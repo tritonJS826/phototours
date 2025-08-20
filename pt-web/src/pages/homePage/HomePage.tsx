@@ -8,10 +8,13 @@ import styles from "src/pages/homePage/HomePage.module.scss";
 export function HomePage() {
   return (
     <div className={styles.homePage}>
-      <HeroSection />
-      <TourSearchForm />
+      <div className={styles.heroSectionBg}>
+        <HeroSection />
+        <TourSearchForm />
+      </div>
       <PopularWorkshops />
       <BestTravelTips a={articles[0]} />
     </div>
   );
 }
+

@@ -19,76 +19,76 @@ import {NotFound} from "src/pages/notFound/notFound";
 import {Profile} from "src/pages/profile/Profile";
 import {TourPage} from "src/pages/tourPage/TourPage";
 
-
 export function App() {
   return (
-    <>
+    <div className="app">
       <Header />
       <ScrollToTop />
-      {" "}
-      <Routes>
-        <Route
-          path={PATHS.HOME}
-          element={<HomePage />}
-        />
-        <Route
-          path={PATHS.ABOUT}
-          element={<AboutUs />}
-        />
-        <Route
-          path={PATHS.ADMIN}
-          element={<AdminPage />}
-        />
-        <Route
-          path={PATHS.TOURS}
-          element={<BookTours />}
-        />
-        <Route
-          path={PATHS.TOUR_DETAILS}
-          element={<TourPage />}
-        />
-        <Route
-          path={PATHS.CART}
-          element={<Cart />}
-        />
-        <Route
-          path={PATHS.CONTACT}
-          element={<ContactUs />}
-        />
-        <Route
-          path={PATHS.ARTICLES}
-          element={<ExploreArticles />}
-        />
-        <Route
-          path={PATHS.ARTICLES_SLUG}
-          element={<ArticlePage />}
-        />
-        <Route
-          path={PATHS.PROFILE}
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={PATHS.NOT_FOUND}
-          element={<NotFound />}
-        />
-        <Route
-          path={PATHS.ADMIN_CREATE_TOUR}
-          element={<AdminCreateTourForm />}
-        />
-        <Route
-          path={PATHS.ADMIN_EDIT_TOUR}
-          element={<AdminTourEdit />}
-        />
-        <Route
-          path={PATHS.ADMIN_TOUR_CONTINUE}
-          element={<AdminTourContinueForm />}
-        />
-      </Routes>
+      <main className="main-content">
+        <Routes>
+          <Route
+            path={PATHS.HOME}
+            element={<HomePage />}
+          />
+          <Route
+            path={PATHS.ABOUT}
+            element={<AboutUs />}
+          />
+          <Route
+            path={PATHS.ADMIN}
+            element={<AdminPage />}
+          />
+          <Route
+            path={PATHS.TOURS}
+            element={<BookTours />}
+          />
+          <Route
+            path={PATHS.TOUR_DETAILS}
+            element={<TourPage />}
+          />
+          <Route
+            path={PATHS.CART}
+            element={<Cart />}
+          />
+          <Route
+            path={PATHS.CONTACT}
+            element={<ContactUs />}
+          />
+          <Route
+            path={PATHS.ARTICLES}
+            element={<ExploreArticles />}
+          />
+          <Route
+            path={PATHS.ARTICLES_SLUG}
+            element={<ArticlePage />}
+          />
+          <Route
+            path={PATHS.PROFILE}
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={PATHS.NOT_FOUND}
+            element={<NotFound />}
+          />
+          <Route
+            path={PATHS.ADMIN_CREATE_TOUR}
+            element={<AdminCreateTourForm />}
+          />
+          <Route
+            path={PATHS.ADMIN_EDIT_TOUR}
+            element={<AdminTourEdit />}
+          />
+          <Route
+            path={PATHS.ADMIN_TOUR_CONTINUE}
+            element={<AdminTourContinueForm />}
+          />
+        </Routes>
+      </main>
       <Footer />
-    </>
+    </div>
   );
 }

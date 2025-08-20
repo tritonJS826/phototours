@@ -21,26 +21,36 @@ $color-success: #2a7a2a;
 // ====== CONTACT US COLORS ======
 
 // Background colors
-
 $contact-bg-dark: rgb(58 58 58 / 90%);
 $contact-bg-medium: #2f2f2f;
 
 // Border colors
-
 $contact-border: #555;
 
 // Text colors
-
 $contact-text-light: #ccc;
 $contact-placeholder-color: #7b7f86;
+$contact-error-color: #dc3545; // Error color for forms
+$contact-error-dark: #c82333; // Darker shade for borders
+$contact-error-transparent-10: rgb(
+  220 53 69 / 10%
+); // Transparent for backgrounds
+$contact-error-transparent-20: rgb(220 53 69 / 20%); // Transparent for borders
+
+// Common border widths
+$border-width-thin: 1px;
+$border-width-medium: 2px;
+$border-width-thick: 3px;
+$border-width-hairline: 0.5px;
+
+// Transform values
+$transform-lift: -2px;
 
 // Button colors
-
 $contact-btn-bg: #92c07f;
 $contact-btn-hover-bg: #7ba86a;
 
 // Transparent green shades for hover effects
-
 $contact-btn-bg-transparent-10: rgb(146 192 127 / 10%);
 $contact-btn-bg-transparent-15: rgb(146 192 127 / 15%);
 $contact-btn-bg-transparent-30: rgb(146 192 127 / 30%);
@@ -49,35 +59,27 @@ $contact-btn-bg-transparent-30: rgb(146 192 127 / 30%);
 
 $container-width: 1366px;
 
+// Icon sizes
+$icon-size-small: 20px;
+$icon-size-medium: 24px;
+$icon-size-large: 36px;
+
 // Common spacing values (padding, margin)
-
-$spacing-sm: 0.5rem; // 8px
-
-$spacing-md: 0.75rem; // 12px
-
-$spacing-xl: 1.25rem; // 20px
-
-$spacing-xxl: 1.5rem; // 24px
-
-$spacing-xxxxl: 3rem; // 48px
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-xl: 20px;
+$spacing-xxl: 24px;
+$spacing-xxxxl: 48px;
 
 // Common gap values (flexbox, grid)
-
-$gap-sm: 0.4rem; // 6.4px
-
-$gap-md: 0.5rem; // 8px
-
-$gap-lg: 0.75rem; // 12px
-
-$gap-xl: 1rem; // 16px
-
-$gap-xxl: 1.25rem; // 20px
-
-$gap-xxxl: 1.5rem; // 24px
-
-$gap-xxxxl: 2rem; // 32px
-
-$gap-xxxxxl: 3rem; // 48px
+$gap-sm: 6px;
+$gap-md: 8px;
+$gap-lg: 12px;
+$gap-xl: 16px;
+$gap-xxl: 20px;
+$gap-xxxl: 24px;
+$gap-xxxxl: 32px;
+$gap-xxxxxl: 48px;
 
 // ====== BREAKPOINTS ======
 
@@ -87,10 +89,9 @@ $breakpoint-mobile: 768px;
 
 $btn-transition-bg: background-color 0.3s ease; // For existing Button component
 
-$transition-fast: 0.1s ease;
-
 // Common transition combinations
-
+$transition-fast: 0.1s ease;
+$transition-normal: 0.3s ease;
 $transition-bg: background-color 0.3s ease;
 $transition-color: color 0.3s ease;
 $transition-border: border-color 0.3s ease;
@@ -98,56 +99,68 @@ $transition-transform: transform 0.3s ease;
 
 // ====== BORDERS AND SHADOWS ======
 
-$btn-border: 1px solid #ccc;
-$border-radius-md: 8px;
-$border-radius-lg: 10px;
-$contact-btn-border-radius: 25px; // Moved here for logical grouping
+// Border styles
+$btn-border: $border-width-thin solid $color-border;
 
 // Common shadow values
-
+$shadow-light: 0 4px 10px rgb(0 0 0 / 10%);
 $shadow-medium: 0 4px 8px rgb(0 0 0 / 15%);
+$shadow-hover: 0 5px 15px rgb(0 0 0 / 20%);
 $shadow-very-heavy: 0 10px 30px rgb(0 0 0 / 50%);
 
 // ====== FONT SIZES ======
 
-$font-size-xs: 0.85rem; // 13.6px
-
-$font-size-sm: 0.95rem; // 15.2px
-
-$font-size-md: 1rem; // 16px
-
-$font-size-lg: 1.1rem; // 17.6px
-
-$font-size-xl: 1.25rem; // 20px
-
-$font-size-xxxl: 3rem; // 48px
-
-$font-size-hero-title: 4rem;
-$font-size-hero-subtitle: 2rem;
-$font-size-section-title: 3rem;
-$font-size-section-text: 2rem;
-$font-size-card-title: 1.25rem;
-$font-size-card-text: 1rem;
+$font-size-xs: 14px;
+$font-size-sm: 15px;
+$font-size-md: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-xxxl: 48px;
+$font-size-hero-title: 64px;
+$font-size-hero-subtitle: 32px;
+$font-size-section-title: 48px;
+$font-size-section-text: 32px;
+$font-size-card-title: 20px;
+$font-size-card-text: 16px;
 
 // ====== BUTTON SPECIFIC ======
 
-$btn-padding: 0.75rem 1.5rem;
-$btn-font-size: 1rem;
+$btn-padding: 12px 24px;
+$btn-font-size: 16px;
 $btn-border-radius: 5px;
 
 // ====== Z-INDEX LAYERS ======
 
 $z-index-notification: 1000;
 
-// ===== Padding and Margins ======
+// ====== PADDING AND MARGINS ======
 
-$padding-section: 4rem 1rem;
-$padding-container: 3rem 1rem;
-$padding-button: 0.85rem 1.5rem;
-$padding-input: 0.75rem 1rem;
+$padding-section: 64px 16px;
+$padding-container: 48px 16px;
+$padding-button: 14px 24px;
+$padding-input: 12px 16px;
+
+// Form specific values
+$form-width-offset: 10px;
+$textarea-min-height: 120px;
+$textarea-mobile-min-height: 100px;
+$autofill-box-shadow: 1000px;
+
+// Logo sizes
+$logo-width: 180px;
+$logo-height: 90px;
+$logo-mobile-width: 140px;
+$logo-mobile-height: 70px;
+
+// ====== RADIUS VALUES ======
+$radius-small: 6px;
+$radius-medium: 8px;
+$radius-large: 12px;
+$border-radius-md: 8px;
+$border-radius-lg: 10px;
+$contact-btn-border-radius: 25px;
 
 // ====== Radius and Shadows ======
-
 $radius-small: 6px;
 $radius-medium: 8px;
 $radius-large: 12px;
@@ -156,4 +169,3 @@ $shadow-medium: 0 4px 15px rgb(0 0 0 / 10%);
 $shadow-hover: 0 5px 15px rgb(0 0 0 / 20%);
 $transition-fast: 0.2s ease;
 $transition-normal: 0.3s ease;
-
