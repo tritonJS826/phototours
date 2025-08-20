@@ -10,6 +10,11 @@
 body {
   font-family: Poppins, sans-serif;
   background-color: #fff;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
 }
 
 a {
@@ -25,4 +30,15 @@ button {
 ul,
 ol {
   list-style: none;
+}
+
+// App layout styles
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
 }

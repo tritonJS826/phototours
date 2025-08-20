@@ -25,100 +25,102 @@ import {ToursPage} from "src/pages/toursPage/ToursPage";
 
 export function App() {
   return (
-    <>
+    <div className="app">
       <Header />
       <ScrollToTop />
-      <Routes>
-        <Route
-          path={PATHS.HOME}
-          element={<HomePage />}
-        />
-        <Route
-          path={PATHS.ABOUT}
-          element={<AboutUs />}
-        />
-        <Route
-          path={PATHS.ADMIN}
-          element={<AdminPage />}
-        />
-        <Route
-          path={PATHS.TOURS}
-          element={<ToursPage />}
-        />
-        <Route
-          path={PATHS.TOUR_DETAILS}
-          element={<TourDetailsPage />}
-        />
-        <Route
-          path={PATHS.CART}
-          element={<Cart />}
-        />
-        <Route
-          path={PATHS.CONTACT}
-          element={<ContactUs />}
-        />
-        <Route
-          path={PATHS.ARTICLES}
-          element={<ExploreArticles />}
-        />
-        <Route
-          path={PATHS.ARTICLES_SLUG}
-          element={<ArticlePage />}
-        />
-        <Route
-          path={PATHS.PROFILE}
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={PATHS.PROFILE_EDIT}
-          element={
-            <ProtectedRoute>
-              <EditProfile />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={PATHS.PROFILE_ID}
-          element={<PublicProfile />}
-        />
-        <Route
-          path={PATHS.DASHBOARD}
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={PATHS.NOTIFICATIONS}
-          element={
-            <ProtectedRoute>
-              <Notifications />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={PATHS.NOT_FOUND}
-          element={<NotFound />}
-        />
-        <Route
-          path={PATHS.ADMIN_CREATE_TOUR}
-          element={<AdminCreateTourForm />}
-        />
-        <Route
-          path={PATHS.ADMIN_EDIT_TOUR}
-          element={<AdminTourEdit />}
-        />
-        <Route
-          path={PATHS.ADMIN_TOUR_CONTINUE}
-          element={<AdminTourContinueForm />}
-        />
-      </Routes>
+      <main className="main-content">
+        <Routes>
+          <Route
+            path={PATHS.HOME}
+            element={<HomePage />}
+          />
+          <Route
+            path={PATHS.ABOUT}
+            element={<AboutUs />}
+          />
+          <Route
+            path={PATHS.ADMIN}
+            element={<AdminPage />}
+          />
+          <Route
+            path={PATHS.TOURS}
+            element={<ToursPage />}
+          />
+          <Route
+            path={PATHS.TOUR_DETAILS}
+            element={<TourDetailsPage />}
+          />
+          <Route
+            path={PATHS.CART}
+            element={<Cart />}
+          />
+          <Route
+            path={PATHS.CONTACT}
+            element={<ContactUs />}
+          />
+          <Route
+            path={PATHS.ARTICLES}
+            element={<ExploreArticles />}
+          />
+          <Route
+            path={PATHS.ARTICLES_SLUG}
+            element={<ArticlePage />}
+          />
+          <Route
+            path={PATHS.PROFILE}
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={PATHS.PROFILE_EDIT}
+            element={
+              <ProtectedRoute>
+                <EditProfile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={PATHS.PROFILE_ID}
+            element={<PublicProfile />}
+          />
+          <Route
+            path={PATHS.DASHBOARD}
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={PATHS.NOTIFICATIONS}
+            element={
+              <ProtectedRoute>
+                <Notifications />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={PATHS.NOT_FOUND}
+            element={<NotFound />}
+          />
+          <Route
+            path={PATHS.ADMIN_CREATE_TOUR}
+            element={<AdminCreateTourForm />}
+          />
+          <Route
+            path={PATHS.ADMIN_EDIT_TOUR}
+            element={<AdminTourEdit />}
+          />
+          <Route
+            path={PATHS.ADMIN_TOUR_CONTINUE}
+            element={<AdminTourContinueForm />}
+          />
+        </Routes>
+      </main>
       <Footer />
-    </>
+    </div>
   );
 }

@@ -1,0 +1,221 @@
+@use "src/styles/variables" as var;
+@use "src/styles/mixins" as mix;
+
+.container {
+  background: var.$color-bg-light;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.containerSection {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.formSection {
+  flex: 0.4;
+  background: var.$color-bg-white;
+  border-radius: var.$radius-medium;
+  padding: 20px;
+  box-shadow: var.$shadow-medium;
+}
+
+.sectionTitle {
+  font-size: var.$font-size-lg;
+  font-weight: var.$font-weight-extra-bold;
+  margin-bottom: 20px;
+  color: var.$color-dark;
+}
+
+.titlePage {
+  text-align: center;
+  font-size: 22px;
+  font-weight: var.$font-weight-extra-bold;
+  color: var.$color-dark;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.benefits {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 24px;
+  color: var.$color-success;
+  font-size: var.$font-size-xs;
+  font-weight: var.$font-weight-normal;
+}
+
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.icon {
+  font-size: var.$font-size-md;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.input {
+  padding: 10px;
+  border: var.$btn-border;
+  border-radius: var.$radius-medium;
+  font-size: var.$font-size-xs;
+}
+
+.input :focus {
+  outline: none;
+  border-color: var.$color-primary;
+  box-shadow: var.$shadow-input-focus;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var.$font-size-xs;
+  margin: 10px 0;
+}
+
+.paymentMethods {
+  display: flex;
+  gap: 12px;
+  margin: 14px 0;
+}
+
+.cardLogos {
+  display: flex;
+  gap: 12px;
+  margin: 10px 0 16px;
+
+  .cartLogoImg {
+    height: 24px;
+  }
+}
+
+.payBtn {
+  border: 1px solid #ccc;
+  background: #f7f7f7;
+  padding: 8px 14px;
+  border-radius: var.$radius-medium;
+  cursor: pointer;
+}
+
+.active {
+  border-color: var.$contact-btn-bg;
+  background: #e6f7eb;
+}
+
+.cartSection {
+  flex: 1;
+  background: #fff;
+  border-radius: var.$radius-medium;
+  padding: 20px;
+  box-shadow: var.$shadow-medium;
+}
+
+.cartHeader {
+  font-size: var.$font-size-lg;
+  font-weight: var.$font-weight-extra-bold;
+  margin-bottom: 20px;
+  color: var.$color-dark;
+}
+
+.tourCard {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: var.$radius-medium;
+  background: #fafafa;
+  border: 1px solid #eee;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgb(0 0 0 / 8%);
+  }
+}
+
+.image {
+  width: 30%;
+  height: 30%;
+  border-radius: var.$radius-medium;
+  object-fit: cover;
+}
+
+.info {
+  flex: 2;
+}
+
+.title {
+  font-size: var.$font-size-md;
+  font-weight: var.$font-weight-extra-bold;
+  margin: 0 0 12px;
+  cursor: pointer;
+}
+
+.location {
+  font-size: var.$font-size-xs;
+  font-weight: var.$font-weight-bold;
+  color: var.$color-light;
+  margin: 0 0 12px;
+}
+
+.date {
+  font-weight: var.$font-weight-bold;
+  font-size: var.$font-size-xs;
+  color: var.$header-footer-color;
+  margin: 0 0 12px;
+}
+
+.badge {
+  display: inline-block;
+  font-size: var.$font-size-xs;
+  font-weight: var.$font-weight-bold;
+  color: var.$badge-color;
+  background: var.$badge-background;
+  padding: 2px 6px;
+  border-radius: var.$radius-small;
+  cursor: pointer;
+  letter-spacing: 0.2px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total {
+  font-weight: 700;
+  color: var.$color-dark;
+  font-size: var.$font-size-md;
+}
+
+.button {
+  background: var.$color-success;
+  color: var.$color-bg-white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: var.$radius-medium;
+  font-size: var.$font-size-xs;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.button:hover {
+  background: var.$contact-btn-hover-bg;
+}

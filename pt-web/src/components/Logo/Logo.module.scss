@@ -1,0 +1,60 @@
+@use "../../styles/variables" as vars;
+
+.logo {
+  display: flex;
+  align-items: flex-start;
+  gap: vars.$gap-md;
+  color: vars.$btn-primary-color;
+  padding-top: 0;
+  background: transparent;
+  margin-top: calc(-1 * vars.$gap-xxl);
+
+  .logoIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: transparent;
+
+    .logoImage {
+      width: vars.$logo-width;
+      height: vars.$logo-height;
+      object-fit: contain;
+      background: transparent;
+    }
+  }
+
+  .logoText {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$gap-sm;
+
+    .tagline {
+      font-size: vars.$font-size-sm;
+      font-weight: 400;
+      margin: 0;
+      line-height: 1.4;
+      color: vars.$color-medium;
+    }
+  }
+}
+
+// ====== RESPONSIVE DESIGN ======
+@media (max-width: vars.$breakpoint-mobile) {
+  .logo {
+    gap: vars.$gap-sm;
+
+    .logoIcon {
+      .logoImage {
+        width: vars.$logo-mobile-width;
+        height: vars.$logo-mobile-height;
+      }
+    }
+
+    .logoText {
+      .tagline {
+        font-size: vars.$font-size-xs;
+      }
+    }
+  }
+}

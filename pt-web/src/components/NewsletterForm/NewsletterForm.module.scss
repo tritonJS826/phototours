@@ -1,0 +1,209 @@
+@use "../../styles/variables" as vars;
+@use "sass:color";
+
+.newsletterForm {
+  display: flex;
+  flex-direction: column;
+  gap: vars.$gap-md;
+  width: 100%;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+
+  .inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$gap-sm;
+    width: 100%;
+  }
+
+  .inputWrapper {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+
+    .emailIcon {
+      position: absolute;
+      left: vars.$gap-md;
+      width: vars.$font-size-lg;
+      height: vars.$font-size-lg;
+      color: vars.$contact-placeholder-color;
+      pointer-events: none;
+      z-index: 1;
+      transition: vars.$transition-color;
+    }
+
+    // Focus state: make icon and placeholder lighter
+    &:focus-within {
+      .emailIcon {
+        color: color.adjust(vars.$contact-placeholder-color, $lightness: 12%);
+      }
+    }
+
+    .emailInput {
+      width: 100%;
+      padding: vars.$spacing-md;
+      padding-left: calc(vars.$gap-md * 2 + vars.$font-size-lg);
+      background-color: vars.$color-bg-white;
+      border: vars.$border-width-medium solid vars.$color-border;
+      border-radius: vars.$contact-btn-border-radius;
+      color: vars.$btn-primary-color;
+      font-size: vars.$font-size-md;
+      transition: vars.$transition-border, vars.$transition-bg,
+        vars.$transition-color;
+      outline: none;
+
+      // Placeholder styles for all browsers
+      &::placeholder {
+        color: vars.$contact-placeholder-color;
+        font-size: vars.$font-size-md;
+      }
+
+      // Focus states
+      &:focus-visible {
+        outline: none;
+        border: vars.$border-width-medium solid vars.$contact-btn-bg;
+        background-color: vars.$color-bg-white;
+
+        &::placeholder {
+          color: color.adjust(vars.$contact-placeholder-color, $lightness: 12%);
+        }
+      }
+
+      // Filled state
+      &:not(:placeholder-shown),
+      &:valid {
+        background-color: vars.$color-bg-white;
+        border: vars.$border-width-medium solid vars.$color-border;
+      }
+
+      // Disabled state
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        background-color: vars.$color-bg-white;
+        border: vars.$border-width-medium solid vars.$color-border;
+      }
+
+      // Autofill styles
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus {
+        -webkit-text-fill-color: vars.$btn-primary-color;
+        box-shadow: 0 0 0 vars.$autofill-box-shadow vars.$color-bg-white inset;
+        transition: background-color 5000s ease-in-out 0s;
+      }
+
+      // Invalid state
+      &:invalid:not(:placeholder-shown) {
+        border: vars.$border-width-thin solid vars.$contact-error-color;
+
+        &::placeholder {
+          color: vars.$contact-placeholder-color;
+        }
+      }
+    }
+  }
+
+  .subscribeButton {
+    padding: vars.$btn-padding;
+    background-color: vars.$contact-btn-bg;
+    color: vars.$color-bg-white;
+    border: none;
+    border-radius: vars.$contact-btn-border-radius;
+    font-size: vars.$btn-font-size;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      vars.$transition-bg,
+      transform vars.$transition-fast;
+
+    &:focus-visible {
+      outline: vars.$border-width-medium solid vars.$contact-btn-bg;
+      outline-offset: vars.$border-width-medium;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      background-color: vars.$contact-btn-bg;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: vars.$contact-btn-hover-bg;
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(vars.$border-width-thin);
+    }
+  }
+
+  .message {
+    font-size: vars.$font-size-sm;
+    margin: 0;
+    padding: vars.$gap-sm;
+    border-radius: vars.$border-radius-md;
+    text-align: center;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  .errorMessage {
+    color: vars.$contact-error-color;
+    background-color: vars.$contact-error-transparent-10;
+    border: vars.$border-width-thin solid vars.$contact-error-transparent-20;
+  }
+
+  .successMessage {
+    color: vars.$color-success;
+  }
+}
+
+// ====== ACCESSIBILITY ======
+@media (prefers-reduced-motion: reduce) {
+  .newsletterForm {
+    .subscribeButton {
+      transition: none;
+
+      &:hover:not(:disabled) {
+        transform: none;
+      }
+
+      &:active:not(:disabled) {
+        transform: none;
+      }
+    }
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .newsletterForm {
+    .emailInput {
+      border-width: vars.$border-width-medium;
+
+      &:focus-visible {
+        border-width: vars.$border-width-thick;
+      }
+
+      &:invalid:not(:placeholder-shown) {
+        border-width: vars.$border-width-thick;
+      }
+    }
+
+    .subscribeButton {
+      border: vars.$border-width-medium solid vars.$contact-btn-bg;
+
+      &:focus-visible {
+        border-width: vars.$border-width-thick;
+      }
+    }
+  }
+}

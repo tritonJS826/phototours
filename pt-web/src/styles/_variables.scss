@@ -1,5 +1,4 @@
 // ====== GLOBAL COLORS ======
-
 $header-footer-color: #616161;
 $btn-primary-bg: #f5f5f5;
 $btn-primary-color: #333;
@@ -17,6 +16,8 @@ $color-bg-white: #fff;
 $color-card-bg: #fafafa;
 $color-border: #ccc;
 $color-success: #2a7a2a;
+$badge-color: #d9534f;
+$badge-background: #f9d6d5;
 
 // ====== CONTACT US COLORS ======
 
@@ -30,6 +31,21 @@ $contact-border: #555;
 // Text colors
 $contact-text-light: #ccc;
 $contact-placeholder-color: #7b7f86;
+$contact-error-color: #dc3545; // Error color for forms
+$contact-error-dark: #c82333; // Darker shade for borders
+$contact-error-transparent-10: rgb(220 53 69 / 10%); 
+
+// Transparent for backgrounds
+$contact-error-transparent-20: rgb(220 53 69 / 20%); // Transparent for borders
+
+// Common border widths
+$border-width-thin: 1px;
+$border-width-medium: 2px;
+$border-width-thick: 3px;
+$border-width-hairline: 0.5px;
+
+// Transform values
+$transform-lift: -2px;
 
 // Button colors
 $contact-btn-bg: #92c07f;
@@ -44,6 +60,11 @@ $contact-btn-bg-transparent-30: rgb(146 192 127 / 30%);
 
 $container-width: 1620px;
 
+// Icon sizes
+$icon-size-small: 20px;
+$icon-size-medium: 24px;
+$icon-size-large: 36px;
+
 // Common spacing values (padding, margin)
 $spacing-sm: 8px;
 $spacing-md: 12px;
@@ -53,6 +74,7 @@ $spacing-xxxxl: 48px;
 
 // Common gap values (flexbox, grid)
 $gap-sm: 6.4px;
+
 $gap-md: 8px;
 $gap-lg: 12px;
 $gap-xl: 16px;
@@ -67,11 +89,11 @@ $breakpoint-mobile: 768px;
 
 // ====== TRANSITIONS AND ANIMATIONS ======
 
-$btn-transition-bg: background-color 0.3s ease;
-$transition-fast: 0.2s ease;
-$transition-normal: 0.3s ease;
+$btn-transition-bg: background-color 0.3s ease; // For existing Button component
 
 // Common transition combinations
+$transition-normal: 0.3s ease;
+$transition-fast: 0.2s ease;
 $transition-bg: background-color 0.3s ease;
 $transition-color: color 0.3s ease;
 $transition-border: border-color 0.3s ease;
@@ -79,7 +101,8 @@ $transition-transform: transform 0.3s ease;
 
 // ====== BORDERS AND SHADOWS ======
 
-$btn-border: 1px solid #ccc;
+// Border styles
+$btn-border: $border-width-thin solid $color-border;
 $active-cart-border: 1px solid #9cbef4;
 $dashed-border: 1px dashed #999;
 $border-radius-md: 8px;
@@ -126,11 +149,12 @@ $font-size-card-text: 16px;
 
 // ====== BUTTON SPECIFIC ======
 
-$btn-padding: 0.75rem 1.5rem;
-$btn-font-size: 1rem;
+$btn-padding: 12px 24px;
+$btn-font-size: 16px;
 $btn-border-radius: 5px;
 
 // ====== FONT WEIGHTS ======
+$font-weight-extra-bold: 700;
 $font-weight-bold: 500;
 $font-weight-normal: 400;
 $font-weight-light: 300;
@@ -146,29 +170,45 @@ $active-cart-border: 1px solid #9cbef4;
 $dashed-border: 1px dashed #999;
 $btn-transition-bg: background-color 0.3s ease;
 
-// ====== Borders and Transitions ======
-$btn-border: 1px solid #ccc;
-$active-cart-border: 1px solid #9cbef4;
-$dashed-border: 1px dashed #999;
-$btn-transition-bg: background-color 0.3s ease;
-
 // ====== PADDINGS AND MARGINS ======
 
 // ===== Padding and Margins ======
-
 $padding-section: 64px 16px;
 $padding-container: 48px 16px;
 $padding-button: 14px 24px;
 $padding-input: 12px 16px;
+
+// Form specific values
+$form-width-offset: 10px;
+$textarea-min-height: 120px;
+$textarea-mobile-min-height: 100px;
+$autofill-box-shadow: 1000px;
+
+// Logo sizes
+$logo-width: 180px;
+$logo-height: 90px;
+$logo-mobile-width: 140px;
+$logo-mobile-height: 70px;
+
 $margin-top-large: 32px;
 $margin-top-medium: 24px;
 $margin-top-small: 16px;
 
-// ====== RADIUS ======
 
+// ====== RADIUS VALUES ======
 $radius-small: 6px;
 $radius-medium: 8px;
 $radius-large: 12px;
+
+$border-radius-md: 8px;
+$border-radius-lg: 10px;
+$contact-btn-border-radius: 25px;
+
+// ====== Radius and Shadows ======
+$radius-small: 6px;
+$radius-medium: 8px;
+$radius-large: 12px;
+
 $shadow-light: 0 4px 10px rgb(0 0 0 / 10%);
 $shadow-medium: 0 4px 15px rgb(0 0 0 / 10%);
 $shadow-hover: 0 5px 15px rgb(0 0 0 / 20%);
