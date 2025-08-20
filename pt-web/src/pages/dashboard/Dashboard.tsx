@@ -1,35 +1,176 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import {Edit, Eye, MessageSquare, Plus} from "lucide-react";
+import {Edit, Eye, MessageSquare, Plus, X} from "lucide-react";
+import {BankAccountData, BankAccountModal} from "src/components/BankAccountModal/BankAccountModal";
+import {BookingData, BookTourModal} from "src/components/BookTourModal/BookTourModal";
+import {useNotifications} from "src/contexts/NotificationContext";
 import {useAuth} from "src/hooks/useAuth";
+import {getProfileImageUrl} from "src/utils/profileImage";
 import styles from "src/pages/dashboard/Dashboard.module.scss";
+
+// Constants
+const ACCOUNT_NUMBER_MASK_LENGTH = 4;
+const UNREAD_COUNT_DECREMENT = 1;
+const FIRST_CHAR_INDEX = 0;
+const SLICE_START_INDEX = 1;
+const STATUS_CYCLE_INCREMENT = 1;
+const STATUS_CYCLE_MODULO = 3;
 
 interface Booking {
   id: number;
   tourTitle: string;
   date: string;
-  status: string;
+  status: "Confirmed" | "Pending" | "Cancelled";
   price: number;
 }
 
 export function Dashboard() {
   const {user} = useAuth();
-  const [bookings] = useState<Booking[]>([
-    {
-      id: 1,
-      tourTitle: "Golden Circle Photo Tour",
-      date: "2025-01-15",
-      status: "Confirmed",
-      price: 299,
-    },
-    {
-      id: 2,
-      tourTitle: "Northern Lights Adventure",
-      date: "2025-02-20",
+  const {addNotification} = useNotifications();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isBookTourModalOpen, setIsBookTourModalOpen] = useState(false);
+  const [bankAccounts, setBankAccounts] = useState<BankAccountData[]>(() => {
+    const savedAccounts = localStorage.getItem("bankAccounts");
+
+    return savedAccounts ? JSON.parse(savedAccounts) : [];
+  });
+  const [bookings, setBookings] = useState<Booking[]>(() => {
+    const savedBookings = localStorage.getItem("bookings");
+
+    return savedBookings
+      ? JSON.parse(savedBookings)
+      : [
+        {
+          id: 1,
+          tourTitle: "Golden Circle Photo Tour",
+          date: "2025-01-15",
+          status: "Confirmed",
+          price: 299,
+        },
+        {
+          id: 2,
+          tourTitle: "Northern Lights Adventure",
+          date: "2025-02-20",
+          status: "Pending",
+          price: 399,
+        },
+        {
+          id: 3,
+          tourTitle: "South Coast Adventure",
+          date: "2025-03-10",
+          status: "Pending",
+          price: 349,
+        },
+        {
+          id: 4,
+          tourTitle: "Reykjavik City Tour",
+          date: "2025-04-05",
+          status: "Cancelled",
+          price: 199,
+        },
+        {
+          id: 5,
+          tourTitle: "Blue Lagoon Experience",
+          date: "2025-05-12",
+          status: "Confirmed",
+          price: 449,
+        },
+        {
+          id: 6,
+          tourTitle: "Glacier Hiking Tour",
+          date: "2025-06-18",
+          status: "Pending",
+          price: 599,
+        },
+      ];
+  });
+
+  const handleAddAccount = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleSaveAccount = (accountData: BankAccountData) => {
+    const updatedAccounts = [...bankAccounts, accountData];
+    setBankAccounts(updatedAccounts);
+    localStorage.setItem("bankAccounts", JSON.stringify(updatedAccounts));
+
+    const accountEnding = accountData.accountNumber.slice(-ACCOUNT_NUMBER_MASK_LENGTH);
+    addNotification({
+      title: "Bank Account Added",
+      message: `Successfully added ${accountData.bankName} account ending in ${accountEnding}`,
+      type: "SUCCESS",
+      category: "PAYMENT",
+      actionUrl: "/dashboard",
+      actionText: "View Details",
+    });
+  };
+
+  const handleRemoveAccount = (index: number) => {
+    const accountToRemove = bankAccounts[index];
+    const updatedAccounts = bankAccounts.filter((_, i) => i !== index);
+    setBankAccounts(updatedAccounts);
+    localStorage.setItem("bankAccounts", JSON.stringify(updatedAccounts));
+
+    const accountEnding = accountToRemove.accountNumber.slice(-ACCOUNT_NUMBER_MASK_LENGTH);
+    addNotification({
+      title: "Bank Account Removed",
+      message: `Successfully removed ${accountToRemove.bankName} account ending in ${accountEnding}`,
+      type: "INFO",
+      category: "PAYMENT",
+      actionUrl: "/dashboard",
+      actionText: "View Details",
+    });
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleBookTour = () => {
+    setIsBookTourModalOpen(true);
+  };
+
+  const handleCloseBookTourModal = () => {
+    setIsBookTourModalOpen(false);
+  };
+
+  const handleBookTourSubmit = (bookingData: BookingData) => {
+    const newBooking: Booking = {
+      id: bookings.length + UNREAD_COUNT_DECREMENT,
+      tourTitle: bookingData.tourTitle,
+      date: bookingData.date,
       status: "Pending",
-      price: 399,
-    },
-  ]);
+      price: 299, // Default price, can be made dynamic
+    };
+    const updatedBookings = [...bookings, newBooking];
+    setBookings(updatedBookings);
+    localStorage.setItem("bookings", JSON.stringify(updatedBookings));
+
+    addNotification({
+      title: "Tour Booked Successfully",
+      message: `Your ${bookingData.tourTitle} tour has been booked for ${new Date(bookingData.date).toLocaleDateString()}`,
+      type: "SUCCESS",
+      category: "TOUR",
+      actionUrl: "/dashboard",
+      actionText: "View Booking",
+    });
+  };
+
+  const handleStatusChange = (bookingId: number, newStatus: "Confirmed" | "Pending" | "Cancelled") => {
+    const updatedBookings = bookings.map(booking =>
+      booking.id === bookingId
+        ? {...booking, status: newStatus}
+        : booking,
+    );
+    setBookings(updatedBookings);
+    localStorage.setItem("bookings", JSON.stringify(updatedBookings));
+  };
+
+  const handleRemoveTour = (bookingId: number) => {
+    const updatedBookings = bookings.filter(booking => booking.id !== bookingId);
+    setBookings(updatedBookings);
+    localStorage.setItem("bookings", JSON.stringify(updatedBookings));
+  };
 
   if (!user) {
     return (
@@ -82,20 +223,11 @@ export function Dashboard() {
 
           <div className={styles.profileInfo}>
             <div className={styles.avatarSection}>
-              {user.profilePicUrl
-                ? (
-                  <img
-                    src={user.profilePicUrl}
-                    alt={`${user.firstName} ${user.lastName}`}
-                    className={styles.avatar}
-                  />
-                )
-                : (
-                  <div className={styles.avatarPlaceholder}>
-                    {user.firstName.charAt(0)}
-                    {user.lastName.charAt(0)}
-                  </div>
-                )}
+              <img
+                src={getProfileImageUrl(user.profilePicUrl)}
+                alt={`${user.firstName} ${user.lastName}`}
+                className={styles.avatar}
+              />
             </div>
 
             <div className={styles.userDetails}>
@@ -168,7 +300,10 @@ export function Dashboard() {
             <h2>
               Bank Details
             </h2>
-            <button className={styles.actionButton}>
+            <button
+              className={styles.actionButton}
+              onClick={handleAddAccount}
+            >
               <Plus className="icon" />
               <span>
                 Add Account
@@ -176,9 +311,64 @@ export function Dashboard() {
             </button>
           </div>
           <div className={styles.bankingInfo}>
-            <p className={styles.noData}>
-              Bank details not added
-            </p>
+            {bankAccounts.length === 0
+              ? (
+                <p className={styles.noData}>
+                  Bank details not added
+                </p>
+              )
+              : (
+                <div className={styles.bankAccountsList}>
+                  {bankAccounts.map((account, index) => (
+                    <div
+                      key={index}
+                      className={styles.bankAccountInfo}
+                    >
+                      <button
+                        className={styles.closeButton}
+                        onClick={() => handleRemoveAccount(index)}
+                        title="Remove account"
+                      >
+                        <X size={16} />
+                      </button>
+                      <div className={styles.accountRow}>
+                        <label>
+                          Account Holder:
+                        </label>
+                        <span>
+                          {account.accountHolderName}
+                        </span>
+                      </div>
+                      <div className={styles.accountRow}>
+                        <label>
+                          Bank:
+                        </label>
+                        <span>
+                          {account.bankName}
+                        </span>
+                      </div>
+                      <div className={styles.accountRow}>
+                        <label>
+                          Account Type:
+                        </label>
+                        <span className={styles.accountType}>
+                          {account.accountType.charAt(FIRST_CHAR_INDEX).toUpperCase() +
+                             account.accountType.slice(SLICE_START_INDEX)}
+                        </span>
+                      </div>
+                      <div className={styles.accountRow}>
+                        <label>
+                          Account Number:
+                        </label>
+                        <span className={styles.maskedNumber}>
+                          ****
+                          {account.accountNumber.slice(-ACCOUNT_NUMBER_MASK_LENGTH)}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
           </div>
         </div>
 
@@ -187,15 +377,15 @@ export function Dashboard() {
             <h2>
               My Tours
             </h2>
-            <Link
-              to="/tours"
+            <button
               className={styles.actionButton}
+              onClick={handleBookTour}
             >
               <Plus className="icon" />
               <span>
                 Book a Tour
               </span>
-            </Link>
+            </button>
           </div>
 
           {bookings.length > 0
@@ -206,6 +396,13 @@ export function Dashboard() {
                     key={booking.id}
                     className={styles.bookingCard}
                   >
+                    <button
+                      className={styles.closeButton}
+                      onClick={() => handleRemoveTour(booking.id)}
+                      title="Remove tour"
+                    >
+                      <X size={16} />
+                    </button>
                     <div className={styles.bookingInfo}>
                       <h3>
                         {booking.tourTitle}
@@ -221,9 +418,20 @@ export function Dashboard() {
                       </p>
                     </div>
                     <div className={styles.bookingStatus}>
-                      <span className={`${styles.status} ${styles[booking.status.toLowerCase()]}`}>
-                        {booking.status === "Confirmed" ? "Confirmed" : "Pending"}
-                      </span>
+                      <div className={styles.statusDropdown}>
+                        <button
+                          className={`${styles.statusButton} ${styles[booking.status.toLowerCase()]}`}
+                          onClick={() => {
+                            const statusOptions = ["Confirmed", "Pending", "Cancelled"];
+                            const currentIndex = statusOptions.indexOf(booking.status);
+                            const nextIndex = (currentIndex + STATUS_CYCLE_INCREMENT) % STATUS_CYCLE_MODULO;
+                            const nextStatus = statusOptions[nextIndex] as "Confirmed" | "Pending" | "Cancelled";
+                            handleStatusChange(booking.id, nextStatus);
+                          }}
+                        >
+                          {booking.status}
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -270,6 +478,18 @@ export function Dashboard() {
           </div>
         </div>
       </div>
+
+      <BankAccountModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onSave={handleSaveAccount}
+      />
+
+      <BookTourModal
+        isOpen={isBookTourModalOpen}
+        onClose={handleCloseBookTourModal}
+        onBook={handleBookTourSubmit}
+      />
     </div>
   );
 }

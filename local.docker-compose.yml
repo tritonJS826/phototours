@@ -26,7 +26,6 @@ services:
       - app-network
     depends_on:
       - postgres-general
-
   grafana:
     build:
       context: .

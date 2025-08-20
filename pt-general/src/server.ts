@@ -1,6 +1,8 @@
 import {env} from 'src/config/env';
 import {prisma} from 'src/db/prisma';
 import {authRoutes} from 'src/routes/authRoutes';
+import {bankAccountRoutes} from 'src/routes/bankAccountRoutes';
+import {notificationRoutes} from 'src/routes/notificationRoutes';
 import {tourRoutes} from 'src/routes/tourRoutes';
 import {userRoutes} from 'src/routes/userRoutes';
 import {createZohoService} from 'src/services/zohoService';
@@ -316,11 +318,16 @@ app.post('/contact', (req: Request, res: Response) => {
       return res.status(CODE_400).json({error: 'Name, email and message are required'});
     }
 
+    // TODO: Save to database
+    logger.info('Contact form submitted:', {name, email, message});
+
+    // For now, just return success
     res.json({
       success: true,
       message: 'Message received successfully',
     });
-  } catch {
+  } catch (error) {
+    logger.error('Error processing contact form:', error);
     res.status(CODE_500).json({error: 'Failed to process contact form'});
   }
 });
@@ -332,6 +339,8 @@ app.use((req, res, next) => {
 app.use('/general/tours', tourRoutes);
 app.use('/general/users', userRoutes);
 app.use('/general/auth', authRoutes);
+app.use('/general/notifications', notificationRoutes);
+app.use('/general/bank-accounts', bankAccountRoutes);
 
 app.listen(port, () => {
   logger.info(`Server is running at http://localhost:${port}`);

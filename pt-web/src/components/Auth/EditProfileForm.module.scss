@@ -18,7 +18,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("/profile.jpg");
+    background-color: #5196f0;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -28,7 +28,7 @@
   h2 {
     text-align: center;
     margin-bottom: 2rem;
-    color: #3e7a3f;
+    color: #a5c8e2;
     font-size: 1.8rem;
     font-weight: 600;
   }
@@ -73,6 +73,24 @@
   }
 }
 
+.avatarOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  span {
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+  }
+}
+
 .avatarContainer {
   position: relative;
   width: 120px;
@@ -86,6 +104,10 @@
   &:hover {
     border-color: #f9a825;
     transform: scale(1.05);
+
+    .avatarOverlay {
+      opacity: 1;
+    }
   }
 }
 
@@ -108,30 +130,8 @@
   text-transform: uppercase;
 }
 
-.avatarOverlay {
-  position: absolute;
-  inset: 0;
-  background: rgb(0 0 0 / 70%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-
-  span {
-    color: white;
-    font-size: 0.8rem;
-    font-weight: 500;
-    text-align: center;
-  }
-}
-
-.avatarContainer:hover .avatarOverlay {
-  opacity: 1;
-}
-
 .avatarHint {
-  color: vars.$color-light;
+  color: #a5c8e2;
   font-size: 0.85rem;
   text-align: center;
   margin: 0;
@@ -159,31 +159,13 @@
     }
   }
 
-  input {
-    padding: 0.75rem 1rem;
-    border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-    background: white;
-
-    &:focus {
-      outline: none;
-      border-color: #f9a825;
-      box-shadow: 0 0 0 3px rgb(249 168 37 / 10%);
-    }
-
-    &:disabled {
-      background: #f7fafc;
-      color: #718096;
-      cursor: not-allowed;
-    }
-
-    &::placeholder {
-      color: #a0aec0;
-    }
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
   }
 
+  input,
   textarea {
     padding: 0.75rem 1rem;
     border: 2px solid #e2e8f0;
@@ -191,9 +173,6 @@
     font-size: 1rem;
     transition: border-color 0.3s ease;
     background: white;
-    resize: vertical;
-    min-height: 100px;
-    font-family: inherit;
 
     &:focus {
       outline: none;

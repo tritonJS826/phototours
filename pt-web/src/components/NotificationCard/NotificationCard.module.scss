@@ -1,0 +1,198 @@
+.notificationCard {
+  background: rgb(28 76 138 / 90%);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  border-left: 4px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgb(0 0 0 / 15%);
+  }
+
+  &.unread {
+    background: rgb(28 76 138 / 95%);
+    border-left-color: #f9a825;
+  }
+
+  &.success {
+    border-left-color: #4caf50;
+  }
+
+  &.error {
+    border-left-color: #f44336;
+  }
+
+  &.warning {
+    border-left-color: #ff9800;
+  }
+
+  &.info {
+    border-left-color: #2196f3;
+  }
+}
+
+.notificationHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.notificationIcon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(255 255 255 / 10%);
+
+  svg {
+    color: #a5c8e2;
+  }
+}
+
+.notificationMeta {
+  flex: 1;
+  min-width: 0;
+}
+
+.notificationTitle {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  line-height: 1.3;
+}
+
+.notificationTime {
+  color: #a5c8e2;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.notificationActions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.markReadButton,
+.deleteButton {
+  background: none;
+  border: none;
+  color: #a5c8e2;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: rgb(255 255 255 / 10%);
+    color: #fff;
+  }
+}
+
+.markReadButton:hover {
+  color: #4caf50;
+}
+
+.deleteButton:hover {
+  color: #f44336;
+}
+
+.notificationContent {
+  .notificationMessage {
+    color: #a5c8e2;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0 0 12px;
+  }
+}
+
+.actionButton {
+  background: rgb(249 168 37 / 20%);
+  border: 1px solid rgb(249 168 37 / 30%);
+  color: #f9a825;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  &:hover {
+    background: rgb(249 168 37 / 30%);
+    border-color: rgb(249 168 37 / 50%);
+    transform: translateY(-1px);
+  }
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.unreadIndicator {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 8px;
+  height: 8px;
+  background: #f9a825;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// Responsive design
+@media (width <= 768px) {
+  .notificationCard {
+    padding: 16px;
+  }
+
+  .notificationHeader {
+    gap: 10px;
+  }
+
+  .notificationIcon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .notificationTitle {
+    font-size: 14px;
+  }
+
+  .notificationMessage {
+    font-size: 13px;
+  }
+}

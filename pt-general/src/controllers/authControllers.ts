@@ -52,6 +52,8 @@ export const register = async (req: Request, res: Response) => {
         email: true,
         phone: true,
         role: true,
+        profilePicUrl: true,
+        bio: true,
         createdAt: true,
       },
     });
@@ -132,6 +134,8 @@ export const login = async (req: Request, res: Response) => {
       email: user.email,
       phone: user.phone,
       role: user.role,
+      profilePicUrl: user.profilePicUrl,
+      bio: user.bio,
       createdAt: user.createdAt,
     };
 

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {PublicUserProfile, userService} from "src/services/userService";
+import {getProfileImageUrl} from "src/utils/profileImage";
 import styles from "src/pages/profile/PublicProfile.module.scss";
 
 export function PublicProfile() {
@@ -71,20 +72,11 @@ export function PublicProfile() {
     <div className={styles.publicProfileContainer}>
       <div className={styles.profileCard}>
         <div className={styles.avatarSection}>
-          {user.profilePicUrl
-            ? (
-              <img
-                src={user.profilePicUrl}
-                alt={`${user.firstName} ${user.lastName}`}
-                className={styles.avatar}
-              />
-            )
-            : (
-              <div className={styles.avatarPlaceholder}>
-                {user.firstName.charAt(0)}
-                {user.lastName.charAt(0)}
-              </div>
-            )}
+          <img
+            src={getProfileImageUrl(user.profilePicUrl)}
+            alt={`${user.firstName} ${user.lastName}`}
+            className={styles.avatar}
+          />
         </div>
 
         <div className={styles.userInfo}>

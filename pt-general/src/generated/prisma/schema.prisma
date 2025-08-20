@@ -32,6 +32,8 @@ model User {
   reviews         Review[]
   photoDiaries    PhotoDiary[]
   processedPhotos UserProcessedPhoto[]
+  notifications   Notification[]
+  bankAccounts    BankAccount[]
 }
 
 model Guide {
@@ -190,6 +192,33 @@ model UserProcessedPhoto {
   updatedAt    DateTime         @updatedAt
 }
 
+model Notification {
+  id        Int                  @id @default(autoincrement())
+  userId    Int
+  user      User                 @relation(fields: [userId], references: [id])
+  title     String
+  message   String
+  type      NotificationType
+  category  NotificationCategory
+  isRead    Boolean              @default(false)
+  createdAt DateTime             @default(now())
+  updatedAt DateTime             @updatedAt
+}
+
+model BankAccount {
+  id            Int             @id @default(autoincrement())
+  userId        Int
+  user          User            @relation(fields: [userId], references: [id])
+  accountHolder String
+  bankName      String
+  accountType   BankAccountType
+  accountNumber String
+  routingNumber String?
+  isDefault     Boolean         @default(false)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+}
+
 enum Role {
   CLIENT
   GUIDE
@@ -232,4 +261,23 @@ enum ProcessingStatus {
   PROCESSING
   COMPLETED
   FAILED
+}
+
+enum NotificationType {
+  INFO
+  SUCCESS
+  WARNING
+  ERROR
+}
+
+enum NotificationCategory {
+  TOUR
+  PAYMENT
+  SYSTEM
+  PROMO
+}
+
+enum BankAccountType {
+  CHECKING
+  SAVINGS
 }

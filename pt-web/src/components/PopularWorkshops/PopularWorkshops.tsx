@@ -19,6 +19,17 @@ const slides = [
   {image: Fifth, title: "Norway Photo Tours and Workshops"},
 ];
 
+// Breakpoint constants
+const MOBILE_BREAKPOINT = 640;
+const TABLET_BREAKPOINT = 768;
+const DESKTOP_BREAKPOINT = 1024;
+
+// Slides per view constants
+const MOBILE_SLIDES_PER_VIEW = 1;
+const TABLET_SLIDES_PER_VIEW = 2;
+const DESKTOP_SLIDES_PER_VIEW = 3;
+const LARGE_DESKTOP_SLIDES_PER_VIEW = 4;
+
 export function PopularWorkshops() {
   const swiperRef = useRef<SwiperType | null>(null);
 
@@ -58,14 +69,28 @@ export function PopularWorkshops() {
         <Swiper
           modules={[Keyboard, A11y]}
           onSwiper={(s) => (swiperRef.current = s)}
-          loop
+          loop={slides.length > LARGE_DESKTOP_SLIDES_PER_VIEW}
           loopAdditionalSlides={6}
-          slidesPerView={4}
+          slidesPerView={MOBILE_SLIDES_PER_VIEW}
           spaceBetween={24}
           speed={500}
           allowTouchMove
           keyboard={{enabled: true}}
           className={styles.swiper}
+          breakpoints={{
+            [MOBILE_BREAKPOINT]: {
+              slidesPerView: TABLET_SLIDES_PER_VIEW,
+              loop: slides.length > TABLET_SLIDES_PER_VIEW,
+            },
+            [TABLET_BREAKPOINT]: {
+              slidesPerView: DESKTOP_SLIDES_PER_VIEW,
+              loop: slides.length > DESKTOP_SLIDES_PER_VIEW,
+            },
+            [DESKTOP_BREAKPOINT]: {
+              slidesPerView: LARGE_DESKTOP_SLIDES_PER_VIEW,
+              loop: slides.length > LARGE_DESKTOP_SLIDES_PER_VIEW,
+            },
+          }}
         >
           {slides.concat(slides).map((s, i) => (
             <SwiperSlide

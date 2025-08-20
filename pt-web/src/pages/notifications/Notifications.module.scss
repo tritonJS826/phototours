@@ -1,7 +1,10 @@
 .notificationsContainer {
   min-height: 100vh;
-  padding: 2rem 0;
+  padding: 40px;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .notificationsContainer::before {
@@ -11,7 +14,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("/profile.jpg");
+  background-color: #5196f0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -39,59 +42,240 @@
     text-align: center;
     color: #a5c8e2;
     font-size: 1.1rem;
-    margin-bottom: 3rem;
-  }
-}
-
-.notificationsList {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.notificationItem {
-  background: rgb(180 92 50 / 80%);
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 15px rgb(0 0 0 / 10%);
-  border-left: 4px solid #f9a825;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgb(0 0 0 / 15%);
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgb(28 76 138 / 90%);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgb(0 0 0 / 10%);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
   }
 
-  h3 {
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+  .notificationsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+    gap: 20px;
+
+    @media (width <= 768px) {
+      flex-direction: column;
+      align-items: stretch;
+    }
   }
 
-  p {
+  .headerLeft {
+    h1 {
+      color: #a5c8e2;
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+
+    p {
+      color: #a5c8e2;
+      font-size: 16px;
+      margin: 0;
+      opacity: 0.8;
+    }
+  }
+
+  .headerActions {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+
+    @media (width <= 768px) {
+      justify-content: flex-start;
+    }
+  }
+
+  .actionButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: rgb(255 255 255 / 10%);
+    border: 1px solid rgb(165 200 226 / 30%);
+    border-radius: 8px;
     color: #a5c8e2;
-    line-height: 1.6;
-    margin-bottom: 1rem;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgb(255 255 255 / 20%);
+      border-color: rgb(165 200 226 / 50%);
+    }
+
+    &.clearButton {
+      color: #ff6b6b;
+      border-color: rgb(255 107 107 / 30%);
+
+      &:hover {
+        background: rgb(255 107 107 / 10%);
+        border-color: rgb(255 107 107 / 50%);
+      }
+    }
   }
 
-  .notificationDate {
+  .filterSection {
+    margin-bottom: 24px;
+    padding: 16px;
+    background: rgb(255 255 255 / 5%);
+    border-radius: 12px;
+    border: 1px solid rgb(165 200 226 / 20%);
+  }
+
+  .filterLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
     color: #a5c8e2;
-    font-size: 0.9rem;
-    font-style: italic;
-  }
-}
-
-// Responsive design
-@media (width <= 768px) {
-  .notificationsContainer {
-    padding: 1rem 0;
+    font-size: 16px;
+    font-weight: 500;
   }
 
-  .notificationsContent {
-    margin: 0 1rem;
-    padding: 2rem;
+  .filterButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .filterButton {
+    padding: 8px 16px;
+    background: rgb(255 255 255 / 10%);
+    border: 1px solid rgb(165 200 226 / 30%);
+    border-radius: 8px;
+    color: #a5c8e2;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgb(255 255 255 / 20%);
+      border-color: rgb(165 200 226 / 50%);
+    }
+
+    &.active {
+      background: #f9a825;
+      border-color: #f9a825;
+      color: #1c4c8a;
+    }
+  }
+
+  .notificationsList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 8px;
+
+    /* Scrollbar styles */
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgb(28 76 138 / 30%);
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgb(165 200 226 / 50%);
+      border-radius: 4px;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: rgb(165 200 226 / 70%);
+      }
+    }
+
+    /* For Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: rgb(165 200 226 / 50%) rgb(28 76 138 / 30%);
+  }
+
+  .emptyState {
+    text-align: center;
+    padding: 48px 24px;
+    color: #a5c8e2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      margin-bottom: 16px;
+      opacity: 0.6;
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+
+    p {
+      font-size: 14px;
+      opacity: 0.8;
+      margin: 0;
+    }
+  }
+
+  .notificationItem {
+    background: rgb(180 92 50 / 80%);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 64px 240px rgb(0 0 0 / 10%);
+    border-left: 64px solid #f9a825;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-32px);
+      box-shadow: 0 128px 400px rgb(0 0 0 / 15%);
+    }
+
+    h3 {
+      color: #fff;
+      font-size: 19.2px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: #a5c8e2;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .notificationDate {
+      color: #a5c8e2;
+      font-size: 14.4px;
+      font-style: italic;
+    }
+  }
+
+  // Responsive design
+  @media (width <= 12288px) {
+    .notificationsContainer {
+      padding: 20px;
+    }
+
+    .notificationsContent {
+      width: 95%;
+      margin: 0;
+      padding: 32px;
+    }
   }
 }
