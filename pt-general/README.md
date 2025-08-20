@@ -48,6 +48,10 @@ This is a Node.js Express server for the PhotoTours application.
 - `pnpm prisma:migrate`: Runs database migrations.
 - `pnpm prisma:generate`: Generates the Prisma client.
 
+## reset:db script
+
+To fill the database with data, go to the `src/scripts` folder where the reset:db script and instructions for it are located.
+
 ## Zoho CRM Integration
 
 ### 1. Registration on Zoho Developer Console
