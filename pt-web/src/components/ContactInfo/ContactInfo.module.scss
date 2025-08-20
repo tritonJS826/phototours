@@ -5,6 +5,7 @@
   flex-direction: column;
   gap: vars.$gap-xxxxl;
   width: 100%;
+  padding-top: 40px; // Align right column with left 
 
   .contactDetails {
     display: flex;
@@ -78,18 +79,19 @@
   }
 
   .socialMedia {
+    margin-top: vars.$gap-sm; 
     h3 {
       color: vars.$btn-primary-bg;
       font-size: vars.$font-size-xl;
       font-weight: 600;
       margin-bottom: vars.$gap-xl;
-      margin-top: 0;
     }
 
     .socialIcons {
       display: flex;
       gap: vars.$gap-xl;
       flex-wrap: wrap;
+      margin-bottom: 14px; 
 
       .socialLink {
         display: flex;

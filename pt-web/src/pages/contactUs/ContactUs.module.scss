@@ -8,6 +8,12 @@
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
+  overflow: auto;
+
+  @media (max-width: vars.$breakpoint-mobile) {
+    background-position: center top;
+    background-size: cover;
+  }
 
   .overlay {
     position: absolute;
@@ -16,40 +22,65 @@
 
     @include mixin.flex-center;
 
-    padding: vars.$gap-xxxxl vars.$gap-xl;
+    padding: vars.$gap-lg;
+
+    @media (max-width: vars.$breakpoint-mobile) {
+      padding: vars.$gap-md;
+      background-color: rgb(0 0 0 / 30%);
+    }
   }
 
   .container {
-    max-width: vars.$container-width;
+    max-width: 1200px; // Reduce maximum width
     width: 100%;
     background-color: vars.$contact-bg-dark;
     border-radius: vars.$border-radius-lg;
-    padding: vars.$spacing-xxxxl;
+    padding: vars.$spacing-xxl;
     box-shadow: vars.$shadow-very-heavy;
+
+    @media (max-width: vars.$breakpoint-mobile) {
+      padding: vars.$spacing-xl;
+      border-radius: vars.$border-radius-md;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
 
     .header {
       text-align: center;
-      margin-bottom: vars.$spacing-xxxxl;
+      margin-bottom: vars.$spacing-xxl;
+
+      @media (max-width: vars.$breakpoint-mobile) {
+        margin-bottom: vars.$spacing-xl;
+      }
 
       h1 {
         color: vars.$btn-primary-bg;
-        font-size: vars.$font-size-xxxl;
+        font-size: vars.$font-size-hero-title;
         font-weight: 700;
-        margin-bottom: vars.$gap-xl;
+        margin-bottom: vars.$gap-lg;
         margin-top: 0;
+
+        @media (max-width: vars.$breakpoint-mobile) {
+          font-size: vars.$font-size-section-title;
+          margin-bottom: vars.$gap-md;
+        }
       }
 
       .headerSubtitle {
         color: vars.$contact-text-light;
         font-size: vars.$font-size-xl;
         line-height: 1.5;
+
+        @media (max-width: vars.$breakpoint-mobile) {
+          font-size: vars.$font-size-lg;
+        }
       }
     }
 
     .content {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: vars.$gap-xxxxxl;
+      grid-template-columns: 1.2fr 0.8fr; 
+      gap: vars.$gap-xxxxl; 
       align-items: start;
 
       @media (max-width: vars.$breakpoint-mobile) {
