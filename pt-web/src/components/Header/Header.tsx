@@ -9,7 +9,16 @@ import {getProfileImageUrl} from "src/utils/profileImage";
 import {handleClickOutside} from "src/utils/useOutsideClick";
 import styles from "src/components/Header/Header.module.scss";
 
-const LANGUAGES = ["English", "Deutsch"];
+interface LanguageOption {
+  label: string;
+  full: string;
+}
+
+const LANGUAGES: LanguageOption[] = [
+  {label: "ENG", full: "English"},
+  {label: "DEU", full: "Deutsch"},
+];
+
 const CURRENCIES = ["USD", "EUR"];
 const REFRESH_DELAY = 100;
 
@@ -17,7 +26,7 @@ export function Header() {
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
-  const [selectedLang, setSelectedLang] = useState("ENG");
+  const [selectedLang, setSelectedLang] = useState<string>("ENG");
   const [selectedCurrency, setSelectedCurrency] = useState("USD");
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState<"login" | "register">("login");
@@ -69,35 +78,39 @@ export function Header() {
       navigate(PATHS.DASHBOARD);
     }, REFRESH_DELAY);
   };
-
   const renderDropdown = (
     isOpen: boolean,
-    items: string[],
+    items: LanguageOption[] | string[],
     onSelect: (value: string) => void,
-  ) =>
-    isOpen && (
-      <ul
-        className={styles.dropdownMenu}
-        role="listbox"
-      >
-        {items.map((item) => (
+  ) => isOpen && (
+    <ul
+      className={styles.dropdownMenu}
+      role="listbox"
+    >
+      {items.map((item) => {
+        const label = typeof item === "string" ? item : item.label;
+        const display = typeof item === "string" ? item : item.full;
+
+        return (
           <li
-            key={item}
+            key={label}
             className={styles.dropdownOption}
             role="option"
             tabIndex={0}
-            onClick={() => onSelect(item)}
+            onClick={() => onSelect(label)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                onSelect(item);
+                onSelect(label);
               }
             }}
           >
-            {item}
+            {display}
           </li>
-        ))}
-      </ul>
-    );
+        );
+      })}
+
+    </ul>
+  );
 
   return (
     <header className={styles.header}>
