@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 // - useTransform: A hook that maps one motion value to another (e.g., scroll position
 import {AnimatePresence, motion, useScroll, useTransform} from "framer-motion";
 import {Container} from "src/components/Container/Container";
+import {Link} from "src/components/ui/link/Link";
 import styles from "src/pages/aboutUs/AboutUsPage.module.scss";
 
 const ANIMATION_DURATION = 300;
@@ -109,7 +110,6 @@ export function AboutUs() {
 
   const yHero = useTransform(scrollY, [0, ANIMATION_DURATION], [0, ANIMATION_DELAY]);
 
-  const [submitted, setSubmitted] = useState(false);
   const [showTopBtn, setShowTopBtn] = useState(false);
 
   useEffect(() => {
@@ -120,12 +120,6 @@ export function AboutUs() {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    // TODO: you can add sending data to the server here
-  };
 
   const scrollToTop = () => {
     window.scrollTo({top: 0, behavior: "smooth"});
@@ -328,40 +322,11 @@ export function AboutUs() {
 
           >
             <div className={styles.container}>
-              <h2>
-                Contact Us
-              </h2>
-              {submitted
-                ? (
-                  <p className={styles.thankYouMessage}>
-                    Thank you for your message! We'll get back to you soon.
-                  </p>
-                )
-                : (
-                  <form
-                    className={styles.contactForm}
-                    onSubmit={handleSubmit}
-                  >
-                    <input
-                      type="text"
-                      placeholder="Your Name"
-                      required
-                    />
-                    <input
-                      type="email"
-                      placeholder="Your Email"
-                      required
-                    />
-                    <textarea
-                      placeholder="Your Message"
-                      rows={5}
-                      required
-                    />
-                    <button type="submit">
-                      Send Message
-                    </button>
-                  </form>
-                )}
+              <Link to="/contact">
+                <h2>
+                  Contact Us
+                </h2>
+              </Link>
             </div>
           </motion.section>
         </div>
