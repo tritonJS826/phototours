@@ -213,6 +213,7 @@
     background-color 0.25s ease,
     color 0.25s ease,
     transform 0.08s ease;
+  border-radius: 17px;
 
   &:hover {
     background-color: #000;
@@ -239,10 +240,12 @@
   border: none;
   width: 42px;
   height: 35px;
+  border-radius: 17px;
 
   &:hover {
     background-color: #000;
     color: #fff;
+    border-radius: 17px;
   }
 }
 

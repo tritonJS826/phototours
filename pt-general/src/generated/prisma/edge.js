@@ -374,7 +374,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/anna/phototours/pt-general/src/generated/prisma",
+      "value": "/Users/air/phototours/pt-general/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -383,7 +383,7 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "debian-openssl-3.0.x",
+        "value": "darwin-arm64",
         "native": true
       },
       {
@@ -392,7 +392,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/anna/phototours/pt-general/prisma/schema.prisma",
+    "sourceFilePath": "/Users/air/phototours/pt-general/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -406,7 +406,6 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
