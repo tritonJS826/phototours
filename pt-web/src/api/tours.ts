@@ -103,8 +103,34 @@ function mapTourToView(t: TourDTO): TourView {
   };
 }
 
-export async function listTours(): Promise<TourView[]> {
-  const raw = await fetchData<TourDTO[]>(API);
+export type ToursFilter = {
+  location?: string;
+  startDate?: string;
+  endDate?: string;
+  travelers?: number;
+  tags?: string[];
+};
+
+export async function listTours(filter?: ToursFilter): Promise<TourView[]> {
+  const qs = new URLSearchParams();
+  if (filter?.location) {
+    qs.set("location", filter.location);
+  }
+  if (filter?.startDate) {
+    qs.set("startDate", filter.startDate);
+  }
+  if (filter?.endDate) {
+    qs.set("endDate", filter.endDate);
+  }
+  if (filter?.travelers) {
+    qs.set("travelers", String(filter.travelers));
+  }
+  if (filter?.tags?.length) {
+    qs.set("tags", filter.tags.join(","));
+  }
+
+  const url = qs.toString() ? `${API}?${qs.toString()}` : API;
+  const raw = await fetchData<TourDTO[]>(url);
 
   return (raw ?? []).map(mapTourToView);
 }

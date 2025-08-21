@@ -16,7 +16,6 @@ export function HomePage() {
 
   useEffect(() => {
     let mounted = true;
-
     (async () => {
       try {
         const data = await listTours();
@@ -41,6 +40,7 @@ export function HomePage() {
         <HeroSection />
         <TourSearchForm />
       </div>
+
       <PopularWorkshops />
 
       {tours.length > 0 && (
@@ -58,4 +58,3 @@ export function HomePage() {
     </div>
   );
 }
-

@@ -1,20 +1,33 @@
-@use "../../styles/mixins" as mixin;
 @use "../../styles/variables" as vars;
 
 .tourSearchForm {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   width: 100%;
-  margin-top: 250px;
+  margin-top: 350px;
   padding-bottom: 30px;
 }
 
 .iconsBar {
   display: none;
-  gap: 18px;
+  position: relative;
+  gap: 20px;
   align-items: center;
   justify-content: center;
-  padding: 8px 0;
+  padding: 6px 0;
+  z-index: 4;
+}
+
+.iconBtn {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 22px;
+  background: rgb(255 255 255 / 16%);
+  border: 1px solid rgb(255 255 255 / 30%);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
 }
 
 .iconWhite {
@@ -45,12 +58,14 @@
   text-shadow: 0 1px 2px rgb(0 0 0 / 35%);
 }
 
-.inputWrap {
+.inputWrap,
+.inputWrapHidden {
   position: relative;
   width: 100%;
 }
 
-.iconBlack {
+.iconBlack,
+.iconBlackHidden {
   position: absolute;
   left: 14px;
   top: 50%;
@@ -58,6 +73,12 @@
   width: 28px;
   height: 28px;
   color: #111;
+}
+
+/* оставляем одну версию */
+.iconBlackHidden {
+  opacity: 1;
+  pointer-events: none;
 }
 
 .input {
@@ -87,34 +108,75 @@
 }
 
 .dateGroup {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 14px 1fr;
   align-items: center;
   height: 56px;
-  background: #fff;
-  border: 1px solid rgb(0 0 0 / 15%);
+  background: #f2f2f2;
+  border: 1px solid rgb(0 0 0 / 12%);
   border-radius: 28px;
   box-shadow:
-    0 1px 0 rgb(0 0 0 / 8%) inset,
+    0 1px 0 rgb(0 0 0 / 6%) inset,
     0 2px 8px rgb(0 0 0 / 8%);
-  padding: 0 6px;
+  padding: 0 6px 0 48px;
+}
+
+.dateGroup:focus-within {
+  outline: none;
+  border-color: #9ecf9f;
+  box-shadow:
+    0 0 0 3px rgb(126 183 126 / 35%),
+    0 2px 8px rgb(0 0 0 / 8%);
+  background: #fff;
+}
+
+.inputDateLeft,
+.inputDateRight {
+  border: 0;
+  height: 54px;
+  padding: 0 16px;
+  box-shadow: none;
+  background: transparent;
+  font-size: 16px;
+  color: #222;
+  line-height: 54px;
+  appearance: none;
+  appearance: none;
+  outline: none;
+}
+
+.inputWrapHidden {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
 }
 
 .inputDateLeft {
   border-radius: 28px 0 0 28px;
-  border: 0;
-  height: 54px;
-  box-shadow: none;
-  background: transparent;
+}
+
+.inputDateLeft::placeholder {
+  padding: 10px;
+  border-radius: 18px;
+  background-color: #a8a8a8;
+  color: black;
+  opacity: 0.6;
 }
 
 .inputDateRight {
   border-radius: 0 28px 28px 0;
-  border: 0;
-  height: 54px;
-  padding-left: 20px;
-  box-shadow: none;
-  background: transparent;
+}
+
+.inputDateRight::placeholder {
+  padding: 10px;
+  border-radius: 18px;
+  background-color: #dcdcdc;
+  color: black;
+  opacity: 0.6;
 }
 
 .dateDivider {
@@ -134,8 +196,9 @@
   z-index: 3;
 }
 
+/* одна базовая версия */
 .btnSearch {
-  min-width: 535px;
+  min-width: 480px;
   height: 55px;
   padding: 10px 50px;
   font-size: 18px;
@@ -146,45 +209,145 @@
   cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: 0 6px 16px rgb(0 0 0 / 18%);
+
+  &:hover {
+    background-color: #76b77b;
+    color: #fff;
+  }
+
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 18%);
+  }
 }
 
-.btnSearch:hover {
-  background-color: #76b77b;
-  color: #fff;
+.mobilePanel {
+  display: none;
 }
 
-.btnSearch:active {
-  transform: translateY(1px);
-  box-shadow: 0 4px 12px rgb(0 0 0 / 18%);
+.panelHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.panelTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+}
+
+.panelClose {
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  border: 1px solid #ddd;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.panelBody {
+  padding: 12px;
 }
 
 @media (width <= 1024px) {
+  .tourSearchForm {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    margin-top: 515px;
+    padding-bottom: 30px;
+  }
+
   .form {
     grid-template-columns: 1fr;
     gap: 18px;
   }
 
-  .formBtn {
-    transform: translateY(22px);
+  .btnSearch {
+    min-width: 420px;
   }
 }
 
 @media (width <= 640px) {
   .iconsBar {
     display: flex;
+    position: relative;
+    top: -210px;
   }
 
   .form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .field {
     display: none;
   }
 
-  .iconWhite {
-    width: 26px;
-    height: 26px;
+  .formBtn {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
   }
 
-  .formBtn {
-    transform: none;
-    margin-top: 18px;
+  .btnSearch {
+    width: 100%;
+    max-width: 380px;
+    position: absolute;
+    top: -160px;
+    min-width: 335px;
+  }
+
+  .mobilePanel {
+    position: absolute;
+    left: 50%;
+    top: -400px;
+    transform: translateX(-50%);
+    width: min(560px, calc(100% - 24px));
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 10px 32px rgb(0 0 0 / 30%);
+    display: block;
+    z-index: 5;
+  }
+
+  .inputWrapHidden {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 28px;
+    pointer-events: none;
+  }
+
+  .inputDateLeft {
+    border-radius: 28px 0 0 28px;
+  }
+
+  .inputDateLeft::placeholder {
+    padding: 10px;
+    border-radius: 18px;
+    background-color: #a8a8a8;
+    color: black;
+    opacity: 0.6;
+  }
+
+  .inputDateRight {
+    border-radius: 0 28px 28px 0;
+  }
+
+  .inputDateRight::placeholder {
+    padding: 10px;
+    border-radius: 18px;
+    background-color: #dcdcdc;
+    color: black;
+    opacity: 0.6;
   }
 }
