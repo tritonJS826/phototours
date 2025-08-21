@@ -1,6 +1,5 @@
 .wrap {
-  padding: 55px 0 20px;
-  margin-bottom: 20px;
+  padding: 32px 0 8px;
 }
 
 .header {
@@ -8,18 +7,23 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  margin-bottom: 20px;
+}
+
+.titles {
+  display: grid;
+  gap: 6px;
 }
 
 .title {
-  font-size: 38px;
+  font-size: 28px;
   font-weight: 800;
-  margin: 10px 0 20px;
+  line-height: 1.2;
 }
 
 .subtitle {
-  font-size: 20px;
+  font-size: 16px;
   color: #666;
-  margin-bottom: 20px;
 }
 
 .link {
@@ -29,21 +33,23 @@
   border: 1px dashed #2b7a2b;
   padding: 8px 12px;
   border-radius: 999px;
-  transition: opacity 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.06s ease;
 }
 
 .link:hover {
-  opacity: 0.8;
+  opacity: 0.85;
+}
+
+.link:active {
+  transform: translateY(1px);
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.stateWrap {
-  padding: 32px 0;
+  gap: 24px;
 }
 
 .state {
@@ -51,11 +57,6 @@
   place-items: center;
   gap: 12px;
   padding: 24px 0;
-}
-
-.stateText {
-  color: #999;
-  font-size: 14px;
 }
 
 .retry {
@@ -66,7 +67,7 @@
   cursor: pointer;
 }
 
-@media (width <= 1024px) {
+@media (width <= 1200px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -76,9 +77,14 @@
   .header {
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
   }
 
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .title {
+    font-size: 24px;
   }
 }

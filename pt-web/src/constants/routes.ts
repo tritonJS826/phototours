@@ -3,7 +3,7 @@ export const PATHS = {
   ABOUT: "/about",
   ADMIN: "/admin",
   TOURS: "/tours",
-  TOUR_DETAILS: "/tours/:id",
+  TOUR_DETAILS: (idOrSlug = ":id") => `/tours/${idOrSlug}`,
   CART: "/cart",
   CONTACT: "/contact",
   ARTICLES: "/articles",

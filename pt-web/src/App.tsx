@@ -20,7 +20,7 @@ import {Notifications} from "src/pages/notifications/Notifications";
 import {EditProfile} from "src/pages/profile/EditProfile";
 import {Profile} from "src/pages/profile/Profile";
 import {PublicProfile} from "src/pages/profile/PublicProfile";
-import {TourDetailsPage} from "src/pages/tourDetails/TourDetails";
+import {TourDetailsPage} from "src/pages/tourDetailsPage/TourDetailsPage";
 import {ToursPage} from "src/pages/toursPage/ToursPage";
 
 export function App() {
@@ -47,7 +47,7 @@ export function App() {
             element={<ToursPage />}
           />
           <Route
-            path={PATHS.TOUR_DETAILS}
+            path={PATHS.TOUR_DETAILS()}
             element={<TourDetailsPage />}
           />
           <Route

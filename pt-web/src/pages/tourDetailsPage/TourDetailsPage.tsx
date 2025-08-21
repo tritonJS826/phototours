@@ -4,43 +4,85 @@ import {getTour} from "src/api/tours";
 import {Container} from "src/components/Container/Container";
 import {Select} from "src/components/Select/Select";
 import type {TourView} from "src/types/tour";
-import styles from "src/pages/tourDetails/TourDetails.module.scss";
+import styles from "src/pages/tourDetailsPage/TourDetailsPage.module.scss";
+
+const ONE = 1;
 
 function splitToParagraphs(text: string) {
-  return text
-    .split(/\n{2,}/g)
-    .map(s => s.trim())
-    .filter(Boolean);
+  return text.split(/\n{2,}/g).map(s => s.trim()).filter(Boolean);
 }
-
-const PHOTO_INDEX_OFFSET = 1;
 
 export function TourDetailsPage() {
   const {id} = useParams<{ id: string }>();
-  const nav = useNavigate();
+  const navigate = useNavigate();
+
   const [tour, setTour] = useState<TourView | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!id) {
+      setError("Missing tour id");
+      setLoading(false);
+
       return;
     }
+    let alive = true;
+
     (async () => {
       try {
+        setLoading(true);
+        setError(null);
         const t = await getTour(id);
+        if (!alive) {
+          return;
+        }
         setTour(t);
+        document.title = t.title || "Tour";
       } catch {
-        nav("/tours");
+        if (!alive) {
+          return;
+        }
+        setError("Tour not found");
       } finally {
-        setLoading(false);
+        if (alive) {
+          setLoading(false);
+        }
       }
     })();
-  }, [id, nav]);
+
+    return () => {
+      alive = false;
+    };
+  }, [id]);
 
   if (loading) {
     return (
       <section className={styles.wrap}>
-        Loading…
+        <Container>
+          <div className={styles.state}>
+            Loading…
+          </div>
+        </Container>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className={styles.wrap}>
+        <Container>
+          <div className={styles.state}>
+            {error}
+            <button
+              type="button"
+              className={styles.backBtn}
+              onClick={() => navigate("/tours")}
+            >
+              Back to all tours
+            </button>
+          </div>
+        </Container>
       </section>
     );
   }
@@ -48,13 +90,20 @@ export function TourDetailsPage() {
   if (!tour) {
     return (
       <section className={styles.wrap}>
-        Not found
+        <Container>
+          <div className={styles.state}>
+            No data
+          </div>
+        </Container>
       </section>
     );
   }
 
-  const cover = tour.coverUrl || tour.photos?.[0];
-  const paragraphs = useMemo(() => splitToParagraphs(tour.description || ""), [tour.description]);
+  const cover = tour.coverUrl || tour.photos?.[0] || "";
+  const paragraphs = useMemo(
+    () => splitToParagraphs(tour.description || ""),
+    [tour.description],
+  );
   const priceText = Number(tour.price || 0).toLocaleString();
 
   return (
@@ -76,7 +125,7 @@ export function TourDetailsPage() {
           <div className={styles.main}>
             <div className={styles.meta}>
               {tour.durationDays && (
-                <div>
+                <div className={styles.metaItem}>
                   <b>
                     Duration:
                   </b>
@@ -87,7 +136,7 @@ export function TourDetailsPage() {
                 </div>
               )}
               {tour.difficulty && (
-                <div>
+                <div className={styles.metaItem}>
                   <b>
                     Difficulty:
                   </b>
@@ -96,7 +145,7 @@ export function TourDetailsPage() {
                 </div>
               )}
               {tour.startLocation && (
-                <div>
+                <div className={styles.metaItem}>
                   <b>
                     Start:
                   </b>
@@ -105,7 +154,7 @@ export function TourDetailsPage() {
                 </div>
               )}
               {tour.endLocation && (
-                <div>
+                <div className={styles.metaItem}>
                   <b>
                     End:
                   </b>
@@ -123,7 +172,7 @@ export function TourDetailsPage() {
                 ? (
                   paragraphs.map((p, i) => (
                     <p
-                      key={i}
+                      key={`p-${i + ONE}`}
                       className={styles.paragraph}
                     >
                       {p}
@@ -137,30 +186,6 @@ export function TourDetailsPage() {
                 )}
             </div>
 
-            {!!tour.dailyItinerary?.length && (
-              <div className={styles.section}>
-                <h3 className={styles.sectionTitle}>
-                  Daily itinerary
-                </h3>
-                {tour.dailyItinerary.map(d => (
-                  <div
-                    key={d.day}
-                    className={styles.day}
-                  >
-                    <h4 className={styles.dayTitle}>
-                      Day
-                      {" "}
-                      {d.day}
-                      {d.title ? ` — ${d.title}` : ""}
-                    </h4>
-                    <p className={styles.paragraph}>
-                      {d.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
-
             {!!tour.activities?.length && (
               <div className={styles.section}>
                 <h3 className={styles.sectionTitle}>
@@ -168,7 +193,7 @@ export function TourDetailsPage() {
                 </h3>
                 <ul className={styles.bullets}>
                   {tour.activities.map((a, i) => (
-                    <li key={i}>
+                    <li key={`act-${i + ONE}`}>
                       {a}
                     </li>
                   ))}
@@ -183,19 +208,26 @@ export function TourDetailsPage() {
                 </h3>
                 <ul className={styles.bullets}>
                   {tour.included.map((a, i) => (
-                    <li key={i}>
+                    <li key={`inc-${i + ONE}`}>
                       {a}
                     </li>
                   ))}
                 </ul>
               </div>
             )}
-
             {tour.photos && tour.photos.length > 0 && (
               <div className={styles.gallery}>
-                {tour.photos.map((photo: string | {url: string}, i: number) => {
-                  const index = i + PHOTO_INDEX_OFFSET;
-                  const src = typeof photo === "string" ? photo : photo?.url || "";
+                {tour.photos.map((photo: string | { url?: string }, i) => {
+                  const index = i + ONE;
+
+                  let src = "";
+                  if (typeof photo === "string") {
+                    src = photo;
+                  } else if (photo && typeof photo === "object") {
+                    // Если приходит объект { url }
+                    src = photo.url ?? "";
+                  }
+
                   if (!src) {
                     return null;
                   }
@@ -205,17 +237,21 @@ export function TourDetailsPage() {
                       key={`${tour.id}-photo-${index}`}
                       className={styles.image}
                       src={src}
-                      alt={`${tour.title ?? "Tour"} ${index}`}
+                      alt={`${tour.title || "Tour"} ${index}`}
                       loading="lazy"
                     />
                   );
                 })}
               </div>
             )}
+
           </div>
 
           <aside className={styles.sidebar}>
             <div className={styles.priceBox}>
+              <span className={styles.priceFrom}>
+                From
+              </span>
               <span className={styles.priceValue}>
                 {priceText}
               </span>
@@ -225,12 +261,13 @@ export function TourDetailsPage() {
             </div>
 
             {!!tour.dates?.length && (
-              <Select
-                label="Select date"
-                placeholder="Choose a date"
-                options={tour.dates.map(d => ({value: d, label: d}))}
-                className={styles.selectBox}
-              />
+              <div className={styles.selectBox}>
+                <Select
+                  label="Select date"
+                  placeholder="Choose a date"
+                  options={tour.dates.map(d => ({value: d, label: d}))}
+                />
+              </div>
             )}
 
             <button className={styles.cta}>
