@@ -374,7 +374,11 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
+<<<<<<< HEAD
       "value": "/mnt/d/main_199_08_25/phototours/pt-general/src/generated/prisma",
+=======
+      "value": "/home/anna/phototours/pt-general/src/generated/prisma",
+>>>>>>> 0ddf06f (fix: #0 correct vite config to pass type-check and enable push)
       "fromEnvVar": null
     },
     "config": {
@@ -385,6 +389,10 @@ const config = {
         "fromEnvVar": null,
         "value": "darwin-arm64",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "linux-musl-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
