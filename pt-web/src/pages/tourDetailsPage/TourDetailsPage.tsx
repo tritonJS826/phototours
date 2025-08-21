@@ -56,6 +56,13 @@ export function TourDetailsPage() {
     };
   }, [id]);
 
+  const cover = tour?.coverUrl || tour?.photos?.[0];
+  const paragraphs = useMemo(
+    () => splitToParagraphs(tour?.description || ""),
+    [tour?.description],
+  );
+  const priceText = Number(tour?.price || 0).toLocaleString();
+
   if (loading) {
     return (
       <section className={styles.wrap}>
@@ -98,13 +105,6 @@ export function TourDetailsPage() {
       </section>
     );
   }
-
-  const cover = tour.coverUrl || tour.photos?.[0] || "";
-  const paragraphs = useMemo(
-    () => splitToParagraphs(tour.description || ""),
-    [tour.description],
-  );
-  const priceText = Number(tour.price || 0).toLocaleString();
 
   return (
     <section className={styles.wrap}>
@@ -224,7 +224,7 @@ export function TourDetailsPage() {
                   if (typeof photo === "string") {
                     src = photo;
                   } else if (photo && typeof photo === "object") {
-                    // Если приходит объект { url }
+
                     src = photo.url ?? "";
                   }
 
@@ -263,6 +263,7 @@ export function TourDetailsPage() {
             {!!tour.dates?.length && (
               <div className={styles.selectBox}>
                 <Select
+                  className={styles.select}
                   label="Select date"
                   placeholder="Choose a date"
                   options={tour.dates.map(d => ({value: d, label: d}))}
