@@ -22,7 +22,7 @@ export function HeroSection() {
               As Iceland's leading photo tour operator, we offer expert tours
             </span>
             <span>
-              to help you capture breathtaking images at the best spots-guaranteed
+              to help you capture breathtaking images at the best spots—guaranteed
             </span>
           </p>
         </div>
@@ -30,4 +30,3 @@ export function HeroSection() {
     </Container>
   );
 }
-

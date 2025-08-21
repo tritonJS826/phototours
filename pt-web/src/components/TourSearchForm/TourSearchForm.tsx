@@ -1,8 +1,13 @@
-import {CalendarDays, MapPin, Users} from "lucide-react";
+import {useState} from "react";
+import {CalendarDays, MapPin, Users, X} from "lucide-react";
 import {Container} from "src/components/Container/Container";
 import styles from "src/components/TourSearchForm/TourSearchForm.module.scss";
 
+type Panel = "location" | "dates" | "trav" | null;
+
 export function TourSearchForm() {
+  const [open, setOpen] = useState<Panel>(null);
+
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
   }
@@ -11,12 +16,107 @@ export function TourSearchForm() {
     <Container className={styles.tourSearchForm}>
       <div
         className={styles.iconsBar}
-        aria-hidden
+        aria-hidden={false}
       >
-        <MapPin className={styles.iconWhite} />
-        <CalendarDays className={styles.iconWhite} />
-        <Users className={styles.iconWhite} />
+        <button
+          type="button"
+          className={styles.iconBtn}
+          aria-label="Select starting location"
+          onClick={() => setOpen(open === "location" ? null : "location")}
+        >
+          <MapPin className={styles.iconWhite} />
+        </button>
+        <button
+          type="button"
+          className={styles.iconBtn}
+          aria-label="Select dates"
+          onClick={() => setOpen(open === "dates" ? null : "dates")}
+        >
+          <CalendarDays className={styles.iconWhite} />
+        </button>
+        <button
+          type="button"
+          className={styles.iconBtn}
+          aria-label="Add travelers"
+          onClick={() => setOpen(open === "trav" ? null : "trav")}
+        >
+          <Users className={styles.iconWhite} />
+        </button>
       </div>
+
+      {open && (
+        <div className={styles.mobilePanel}>
+          <div className={styles.panelHead}>
+            <span className={styles.panelTitle}>
+              {open === "location" && "Select starting location"}
+              {open === "dates" && "Select dates"}
+              {open === "trav" && "Add travelers"}
+            </span>
+            <button
+              type="button"
+              className={styles.panelClose}
+              onClick={() => setOpen(null)}
+              aria-label="Close"
+            >
+              <X />
+            </button>
+          </div>
+
+          {open === "location" && (
+            <div className={styles.panelBody}>
+              <div className={styles.inputWrap}>
+                <MapPin className={styles.iconBlack} />
+                <input
+                  type="text"
+                  id="m-location"
+                  name="m-location"
+                  placeholder="Any location"
+                  className={styles.input}
+                  autoFocus
+                />
+              </div>
+            </div>
+          )}
+
+          {open === "dates" && (
+            <div className={styles.panelBody}>
+              <div className={styles.dateGroup}>
+                <input
+                  type="text"
+                  id="m-dateFrom"
+                  name="m-dateFrom"
+                  placeholder="Starting date"
+                  className={styles.inputDateLeft}
+                />
+                <div className={styles.dateDivider} />
+                <input
+                  type="text"
+                  id="m-dateTo"
+                  name="m-dateTo"
+                  placeholder="Final date"
+                  className={styles.inputDateRight}
+                />
+              </div>
+            </div>
+          )}
+
+          {open === "trav" && (
+            <div className={styles.panelBody}>
+              <div className={styles.inputWrap}>
+                <Users className={styles.iconBlack} />
+                <input
+                  type="number"
+                  min={1}
+                  id="m-travelers"
+                  name="m-travelers"
+                  placeholder="1 traveler"
+                  className={styles.input}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       <form
         onSubmit={onSubmit}
@@ -33,38 +133,7 @@ export function TourSearchForm() {
               id="location"
               name="location"
               placeholder="Any location"
-              className={styles.formLocationInput}
-            />
-          </div>
-          <div className={styles.formDate}>
-            <label htmlFor="startDate">
-              Select dates
-            </label>
-            <input
-              type="text"
-              id="startDate"
-              name="startDate"
-              className={styles.formDateInputFirst}
-              placeholder="Starting date"
-            />
-            <input
-              type="text"
-              id="endDate"
-              name="endDate"
-              className={styles.formDateInputSecond}
-              placeholder="Final date"
-            />
-          </div>
-          <div className={styles.formTrav}>
-            <label htmlFor="travelers">
-              Add travelers
-            </label>
-            <input
-              type="text"
-              id="travelers"
-              name="travelers"
-              placeholder='1 traveler'
-              className={styles.formTravInput}
+              className={styles.input}
             />
           </div>
         </div>
@@ -74,23 +143,23 @@ export function TourSearchForm() {
             Select dates
           </label>
           <div className={styles.dateGroup}>
-            <div className={styles.inputWrap}>
-              <CalendarDays className={styles.iconBlack} />
-              <input
-                type="input"
-                id="dateFrom"
-                name="dateFrom"
-                placeholder="Starting date"
-                className={`${styles.input} ${styles.inputDateLeft}`}
-              />
+            <div className={styles.inputWrapHidden}>
+              <CalendarDays className={styles.iconBlackHidden} />
             </div>
+            <input
+              type="text"
+              id="dateFrom"
+              name="dateFrom"
+              placeholder="Starting date"
+              className={styles.inputDateLeft}
+            />
             <div className={styles.dateDivider} />
             <input
-              type="input"
+              type="text"
               id="dateTo"
               name="dateTo"
               placeholder="Final date"
-              className={`${styles.input} ${styles.inputDateRight}`}
+              className={styles.inputDateRight}
             />
           </div>
         </div>

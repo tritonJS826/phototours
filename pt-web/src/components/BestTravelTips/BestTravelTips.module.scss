@@ -5,13 +5,13 @@
 }
 
 .showcaseHeader {
-  margin-bottom: 16px;
+  margin-bottom: 40px;
 }
 
 .showcaseTitle {
   font-size: 38px;
   font-weight: 800;
-  margin: 10px 0 8px;
+  margin-bottom: 15px;
 }
 
 .showcaseSubtitle {
@@ -25,20 +25,20 @@
     "featured featured featured"
     "c1 c2 c3";
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 50px 30px;
+  margin-bottom: 60px;
 }
 
 .card {
   display: flex;
   flex-direction: column;
   background: vars.$color-bg-white;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
   overflow: hidden;
   transition:
     box-shadow 0.3s ease,
     transform 0.2s ease;
   height: 100%;
+  margin-bottom: 10px;
 
   &:hover {
     box-shadow: 0 5px 15px rgb(0 0 0 / 20%);
@@ -70,15 +70,51 @@
   overflow: hidden;
 }
 
+.cardText {
+  padding: 16px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cardExcerpt {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+  text-align: justify;
+  max-height: calc(1.5em * 3);
+  overflow: hidden;
+}
+
 .featured {
   grid-area: featured;
+  display: flex;
 
-  .cardTitle {
-    font-size: 42px;
+  .cardLink {
+    flex-direction: row;
+    align-items: stretch;
   }
 
   .cardPict {
-    aspect-ratio: 16 / 9;
+    flex: 1 1 50%;
+    aspect-ratio: auto;
+    max-height: 100%;
+  }
+
+  .cardText {
+    flex: 1 1 50%;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .cardTitle {
+    font-size: 36px;
+  }
+
+  .cardExcerpt {
+    max-height: none;
   }
 }
 
@@ -109,31 +145,11 @@
   display: block;
 }
 
-.cardText {
-  padding: 16px 16px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.cardExcerpt {
-  font-size: 16px;
-  line-height: 1.5;
-  color: #555;
-  text-align: justify;
-  max-height: calc(1.5em * 3);
-  overflow: hidden;
-}
-
-.featured .cardExcerpt {
-  max-height: calc(1.5em * 4);
-}
-
 .cardBtn {
   margin-top: 16px;
-  padding: 10px 50px;
+  padding: 10px 65px;
   font-size: 16px;
-  border-radius: 20px;
+  border-radius: 25px;
   background-color: transparent;
   border: 2px solid currentcolor;
   cursor: pointer;

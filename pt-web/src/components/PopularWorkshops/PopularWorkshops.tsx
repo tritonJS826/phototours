@@ -19,12 +19,10 @@ const slides = [
   {image: Fifth, title: "Norway Photo Tours and Workshops"},
 ];
 
-// Breakpoint constants
 const MOBILE_BREAKPOINT = 640;
 const TABLET_BREAKPOINT = 768;
 const DESKTOP_BREAKPOINT = 1024;
 
-// Slides per view constants
 const MOBILE_SLIDES_PER_VIEW = 1;
 const TABLET_SLIDES_PER_VIEW = 2;
 const DESKTOP_SLIDES_PER_VIEW = 3;
@@ -110,9 +108,6 @@ export function PopularWorkshops() {
                     {s.title}
                   </figcaption>
                 </div>
-                {/* <figcaption className={styles.captionBelow}>
-                  {s.title}
-                </figcaption> */}
               </figure>
             </SwiperSlide>
           ))}

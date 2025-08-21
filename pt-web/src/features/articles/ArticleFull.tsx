@@ -5,7 +5,7 @@ import styles from "src/features/articles/Articles.module.scss";
 export function ArticleFull({a}: { a: Article }) {
   return (
     <Container>
-      <article className={styles.full}>
+      <article className={styles.fullArt}>
         <div className={styles.fullPict}>
           <img
             src={a.cover}
