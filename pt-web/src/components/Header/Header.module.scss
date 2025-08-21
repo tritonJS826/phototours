@@ -235,10 +235,10 @@
 }
 
 .topbarProfile .iconBtn {
-  width: auto;
-  height: auto;
   background-color: #fff;
   border: none;
+  width: 42px;
+  height: 35px;
 
   &:hover {
     background-color: #000;
@@ -357,7 +357,6 @@
   border: 2px solid #fff;
 }
 
-/* Burger and mobile menu */
 .burgerBtn {
   display: none;
   align-items: center;
