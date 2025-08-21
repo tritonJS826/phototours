@@ -2,7 +2,6 @@
 
 .showcase {
   padding: 32px 0 20px;
-  max-width: 1320px;
   margin: 0 auto;
 }
 
@@ -27,20 +26,19 @@
     "featured featured featured"
     "c1 c2 c3";
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 20px;
 }
 
 .card {
   display: flex;
   flex-direction: column;
   background: vars.$color-bg-white;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
   overflow: hidden;
   transition:
     box-shadow 0.3s ease,
     transform 0.2s ease;
   height: 100%;
+  margin: 70px 0;
 
   &:hover {
     box-shadow: 0 5px 15px rgb(0 0 0 / 20%);
@@ -49,7 +47,7 @@
 }
 
 .cardTitle {
-  font-size: 24px;
+  font-size: 38px;
   font-weight: 700;
   margin: 0 0 8px;
   color: vars.$color-dark;
@@ -120,7 +118,7 @@
 }
 
 .cardExcerpt {
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.5;
   color: #555;
   text-align: justify;
@@ -134,9 +132,9 @@
 
 .cardBtn {
   margin-top: 16px;
-  padding: 10px 50px;
+  padding: 10px 70px;
   font-size: 16px;
-  border-radius: 20px;
+  border-radius: 25px;
   background-color: transparent;
   border: 2px solid currentcolor;
   cursor: pointer;
@@ -157,9 +155,8 @@
   outline-offset: 2px;
 }
 
-.full {
+.fullArt {
   width: 100%;
-  padding-top: 40px;
 }
 
 .fullPict {

@@ -70,7 +70,6 @@
   overflow: hidden;
 }
 
-/* БАЗА — ВЫШЕ контекстных селекторов */
 .cardText {
   padding: 16px 16px 20px;
   display: flex;
@@ -87,7 +86,6 @@
   overflow: hidden;
 }
 
-/* FEATURED — ПОСЛЕ базовых */
 .featured {
   grid-area: featured;
   display: flex;
