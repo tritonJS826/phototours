@@ -27,7 +27,9 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.d.ts",
-    ".storybook"
-, "src/features/articles", "src/features/articles"  ],
+    ".storybook",
+    "src/features/articles",
+    "src/features/articles"
+  ],
   "exclude": ["node_modules", "public", "dist"]
 }
