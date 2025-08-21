@@ -1,6 +1,6 @@
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import {defineConfig, loadEnv} from "vite";
+import {defineConfig, loadEnv, type UserConfig} from "vite";
 import eslint from "vite-plugin-eslint";
 import {VitePWA} from "vite-plugin-pwa";
 import viteTsconfigPaths from "vite-tsconfig-paths";
@@ -9,19 +9,17 @@ import viteTsconfigPaths from "vite-tsconfig-paths";
 export default defineConfig(() => {
   const env = loadEnv("", process.cwd(), "");
 
-  // Простое решение - отключаем валидацию env для vite config
   const validatedEnvs = env;
 
   const isProd = env.ENV_TYPE === "prod";
 
-  const config = {
+  const config: UserConfig = {
     build: {
       target: "esnext",
       outDir: "build",
-      cache: true,
     },
 
-    resolve: {alias: {"src": path.resolve(__dirname, "./src")}},
+    resolve: {alias: {src: path.resolve(__dirname, "./src")}},
     plugins: [
       react(),
       eslint(
@@ -41,36 +39,23 @@ export default defineConfig(() => {
         VITE_APP_TITLE: validatedEnvs.VITE_APP_TITLE,
       },
     },
-  };
+
+    server: {
+      host: true,
+      port: 5174,
+      strictPort: true,
+    },
+  } as const;
 
   if (isProd) {
-    config.plugins.push(
+    config.plugins?.push(
       VitePWA({
         registerType: "autoUpdate",
         includeAssets: ["favicon.svg", "favicon.ico", "robots.txt", "apple-touch-icon.png"],
-        // Manifest: {
-        //   name: 'My App',
-        //   short_name: 'MyApp',
-        //   description: 'My awesome app',
-        //   theme_color: '#ffffff',
-        //   icons: [
-        //     {
-        //       src: 'pwa-192x192.png',
-        //       sizes: '192x192',
-        //       type: 'image/png',
-        //     },
-        //     {
-        //       src: 'pwa-512x512.png',
-        //       sizes: '512x512',
-        //       type: 'image/png',
-        //     },
-        //   ],
-        // },
+        // Manifest ...
         workbox: {
-          // Если нужно, вы можете кастомизировать воркер, используя Workbox
-          // Например, можете настроить стратегии кэширования и другие параметры.
-          // eslint-disable-next-line max-len, no-magic-numbers
-          maximumFileSizeToCacheInBytes: 200 * 1024 * 1024, // 200MB - нужно про запас, скорее всего потом просто артифакты с googledrive лучше тянуть будет чем cdn
+          // eslint-disable-next-line no-magic-numbers
+          maximumFileSizeToCacheInBytes: 200 * 1024 * 1024,
         },
       }),
     );
@@ -78,3 +63,4 @@ export default defineConfig(() => {
 
   return config;
 });
+
