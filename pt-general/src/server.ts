@@ -19,9 +19,10 @@ const NAME_SLICE_INDEX = 1;
 const app: Express = express();
 app.use(express.json());
 const port = env.SERVER_PORT;
+const CORS_ORIGIN = env.CORS_ORIGIN;
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:5174');
+  res.header('Access-Control-Allow-Origin', CORS_ORIGIN);
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   if (req.method === 'OPTIONS') {
