@@ -10,7 +10,6 @@ const HTTP_STATUS = {
   INTERNAL_SERVER_ERROR: 500,
 } as const;
 
-// Получить все банковские счета пользователя
 export const getUserBankAccounts = async (req: Request, res: Response) => {
   try {
     const userId = req.user?.userId;
@@ -29,7 +28,6 @@ export const getUserBankAccounts = async (req: Request, res: Response) => {
   }
 };
 
-// Создать новый банковский счет
 export const createBankAccount = async (req: Request, res: Response) => {
   try {
     const userId = req.user?.userId;
@@ -43,9 +41,7 @@ export const createBankAccount = async (req: Request, res: Response) => {
       return res.status(HTTP_STATUS.BAD_REQUEST).json({error: 'Missing required fields'});
     }
 
-    // Если это первый счет или пользователь хочет сделать его основным
     if (isDefault) {
-      // Сбрасываем флаг isDefault для всех других счетов пользователя
       await prisma.bankAccount.updateMany({
         where: {userId},
         data: {isDefault: false},
@@ -70,7 +66,6 @@ export const createBankAccount = async (req: Request, res: Response) => {
   }
 };
 
-// Обновить банковский счет
 export const updateBankAccount = async (req: Request, res: Response) => {
   try {
     const userId = req.user?.userId;
@@ -81,9 +76,7 @@ export const updateBankAccount = async (req: Request, res: Response) => {
 
     const {accountHolder, bankName, accountType, accountNumber, routingNumber, isDefault} = req.body;
 
-    // Если пользователь хочет сделать этот счет основным
     if (isDefault) {
-      // Сбрасываем флаг isDefault для всех других счетов пользователя
       await prisma.bankAccount.updateMany({
         where: {userId, id: {not: parseInt(id)}},
         data: {isDefault: false},
@@ -93,7 +86,7 @@ export const updateBankAccount = async (req: Request, res: Response) => {
     const bankAccount = await prisma.bankAccount.updateMany({
       where: {
         id: parseInt(id),
-        userId, // Убеждаемся, что счет принадлежит пользователю
+        userId,
       },
       data: {
         accountHolder,
@@ -117,7 +110,6 @@ export const updateBankAccount = async (req: Request, res: Response) => {
   }
 };
 
-// Удалить банковский счет
 export const deleteBankAccount = async (req: Request, res: Response) => {
   try {
     const userId = req.user?.userId;
@@ -129,7 +121,7 @@ export const deleteBankAccount = async (req: Request, res: Response) => {
     const bankAccount = await prisma.bankAccount.deleteMany({
       where: {
         id: parseInt(id),
-        userId, // Убеждаемся, что счет принадлежит пользователю
+        userId,
       },
     });
 
@@ -143,7 +135,6 @@ export const deleteBankAccount = async (req: Request, res: Response) => {
   }
 };
 
-// Установить банковский счет как основной
 export const setDefaultBankAccount = async (req: Request, res: Response) => {
   try {
     const userId = req.user?.userId;
@@ -152,17 +143,15 @@ export const setDefaultBankAccount = async (req: Request, res: Response) => {
       return res.status(HTTP_STATUS.UNAUTHORIZED).json({error: 'Unauthorized'});
     }
 
-    // Сбрасываем флаг isDefault для всех счетов пользователя
     await prisma.bankAccount.updateMany({
       where: {userId},
       data: {isDefault: false},
     });
 
-    // Устанавливаем выбранный счет как основной
     const bankAccount = await prisma.bankAccount.updateMany({
       where: {
         id: parseInt(id),
-        userId, // Убеждаемся, что счет принадлежит пользователю
+        userId,
       },
       data: {isDefault: true},
     });
@@ -177,7 +166,6 @@ export const setDefaultBankAccount = async (req: Request, res: Response) => {
   }
 };
 
-// Получить основной банковский счет пользователя
 export const getDefaultBankAccount = async (req: Request, res: Response) => {
   try {
     const userId = req.user?.userId;

@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {Button} from "src/components/Button/Button";
 import {Container} from "src/components/Container/Container";
+import {env} from "src/env";
 import styles from "src/pages/adminPage/AdminPage.module.scss";
 
 type Guide = {
@@ -29,7 +30,7 @@ export function AdminPage() {
   const [, setError] = useState("");
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/tours`)
+    fetch(`${env.VITE_API_BASE_URL}/tours`)
       .then((res) => res.json()
         .then((data) => {
           setTours(data);
@@ -43,7 +44,7 @@ export function AdminPage() {
     }
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}`, {method: "DELETE"});
+      const res = await fetch(`${env.VITE_API_BASE_URL}/tours/${id}`, {method: "DELETE"});
       if (res.ok) {
         setTours((prev) => prev.filter((t) => t.id !== id));
         setSelectedTour(null);

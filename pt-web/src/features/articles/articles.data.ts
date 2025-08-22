@@ -6,12 +6,12 @@ import thirdCardImg from "src/features/articles/assets/third.avif";
 
 export type Article = {
     id: string;
-    slug: string; // "ЧПУ" — часть URL для перехода (/articles/aurora-in-iceland)
-    title: string; // Заголовок статьи
-    excerpt: string; // Краткий текст (анонс)
-    cover: string; // Путь к картинке обложки
-    alt: string; // Alt-текст для картинки (SEO и доступность)
-    content: string; // Полный HTML или Markdown статьи
+      slug: string;
+  title: string;
+  excerpt: string;
+  cover: string;
+  alt: string;
+  content: string;
 };
 
 export const articles: Article[] = [

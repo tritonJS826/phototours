@@ -1,5 +1,7 @@
 // Centralized API routes configuration
-export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+import {env} from "src/env";
+
+export const API_BASE_URL = env.VITE_API_BASE_URL;
 
 export const API_ROUTES = {
   CONTACT: {SEND_MESSAGE: "/contact"},

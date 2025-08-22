@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {Button} from "src/components/Button/Button";
+import {env} from "src/env";
 import styles from "src/components/AdminTourContinueForm/AdminTourContinueForm.module.scss";
 
 export const AdminTourContinueForm = () => {
@@ -73,7 +74,7 @@ export const AdminTourContinueForm = () => {
         .filter(Boolean);
 
       if (tags.length) {
-        await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/tags`, {
+        await fetch(`${env.VITE_API_BASE_URL}/tours/${id}/tags`, {
           method: "PATCH",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify({tags}),
@@ -81,7 +82,7 @@ export const AdminTourContinueForm = () => {
       }
 
       if (dates.length) {
-        await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/dates`, {
+        await fetch(`${env.VITE_API_BASE_URL}/tours/${id}/dates`, {
           method: "PATCH",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify({dates}),
@@ -95,7 +96,7 @@ export const AdminTourContinueForm = () => {
             form.append("file", file);
 
             return fetch(
-              `${import.meta.env.VITE_API_BASE_URL}/tours/${id}/photos`,
+              `${env.VITE_API_BASE_URL}/tours/${id}/photos`,
               {method: "PATCH", body: form},
             );
           }),
@@ -109,7 +110,7 @@ export const AdminTourContinueForm = () => {
             form.append("file", file);
 
             return fetch(
-              `${import.meta.env.VITE_API_BASE_URL}/tours/${id}/videos`,
+              `${env.VITE_API_BASE_URL}/tours/${id}/videos`,
               {method: "PATCH", body: form},
             );
           }),

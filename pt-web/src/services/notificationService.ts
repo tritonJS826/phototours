@@ -35,7 +35,6 @@ class NotificationService {
     return await response.json();
   }
 
-  // Получить количество непрочитанных уведомлений
   public async getUnreadCount(): Promise<number> {
     const response = await fetch(`${API_BASE_URL}/general/notifications/unread-count`, {
       method: "GET",
@@ -51,7 +50,6 @@ class NotificationService {
     return data.unreadCount;
   }
 
-  // Создать новое уведомление
   public async createNotification(data: CreateNotificationData): Promise<NotificationItem> {
     const response = await fetch(`${API_BASE_URL}/general/notifications`, {
       method: "POST",
@@ -66,7 +64,6 @@ class NotificationService {
     return await response.json();
   }
 
-  // Отметить уведомление как прочитанное
   public async markAsRead(id: number): Promise<void> {
     const response = await fetch(`${API_BASE_URL}/general/notifications/${id}/read`, {
       method: "PATCH",
@@ -78,7 +75,6 @@ class NotificationService {
     }
   }
 
-  // Отметить все уведомления как прочитанные
   public async markAllAsRead(): Promise<void> {
     const response = await fetch(`${API_BASE_URL}/general/notifications/mark-all-read`, {
       method: "PATCH",
@@ -90,7 +86,6 @@ class NotificationService {
     }
   }
 
-  // Удалить уведомление
   public async deleteNotification(id: number): Promise<void> {
     const response = await fetch(`${API_BASE_URL}/general/notifications/${id}`, {
       method: "DELETE",
@@ -102,7 +97,6 @@ class NotificationService {
     }
   }
 
-  // Удалить все уведомления
   public async deleteAllNotifications(): Promise<void> {
     const response = await fetch(`${API_BASE_URL}/general/notifications`, {
       method: "DELETE",

@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Button} from "src/components/Button/Button";
+import {env} from "src/env";
 import styles from "src/components/AdminCreateTourForm/AdminCreateTourForm.module.scss";
 
 const initialFormData = {
@@ -32,7 +33,7 @@ export const AdminCreateTourForm = () => {
   useEffect(() => {
     const fetchGuides = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/guides`);
+        const res = await fetch(`${env.VITE_API_BASE_URL}/tours/guides`);
         if (!res.ok) {
           throw new Error("Failed to load guides");
         }
@@ -55,7 +56,7 @@ export const AdminCreateTourForm = () => {
     setError("");
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours`, {
+      const response = await fetch(`${env.VITE_API_BASE_URL}/tours`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({

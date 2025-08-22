@@ -1,4 +1,5 @@
 import React, {useRef, useState} from "react";
+import {env} from "src/env";
 import {useAuth} from "src/hooks/useAuth";
 import {getProfileImageUrl} from "src/utils/profileImage";
 import styles from "src/components/Auth/EditProfileForm.module.scss";
@@ -87,8 +88,7 @@ export const EditProfileForm: React.FC = () => {
       if (avatarFile) {
         formDataToSend.append("avatar", avatarFile);
       }
-
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/general/auth/profile`, {
+      const response = await fetch(`${env.VITE_API_BASE_URL}/general/auth/profile`, {
         method: "PUT",
         headers: {Authorization: `Bearer ${localStorage.getItem("token")}`},
         body: formDataToSend,

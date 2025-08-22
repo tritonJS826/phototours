@@ -7,11 +7,26 @@ import viteTsconfigPaths from "vite-tsconfig-paths";
 
 // eslint-disable-next-line no-restricted-exports
 export default defineConfig(() => {
-  const env = loadEnv("", process.cwd(), "");
+  const rawEnv = loadEnv("", process.cwd(), "");
 
-  const validatedEnvs = env;
+  const validatedEnvs = {
+    VITE_API_BASE_URL: rawEnv.VITE_API_BASE_URL,
+    VITE_APP_TITLE: rawEnv.VITE_APP_TITLE || "PhotoTours",
+    ENV_TYPE: rawEnv.ENV_TYPE,
+  };
 
-  const isProd = env.ENV_TYPE === "prod";
+  const requiredVars = ["VITE_API_BASE_URL", "ENV_TYPE"];
+  const missingVars = requiredVars.filter(varName => !validatedEnvs[varName as keyof typeof validatedEnvs]);
+
+  if (missingVars.length > 0) {
+    throw new Error(`Missing required environment variables: ${missingVars.join(", ")}`);
+  }
+
+  if (!["dev", "prod"].includes(validatedEnvs.ENV_TYPE)) {
+    throw new Error(`ENV_TYPE must be 'dev' or 'prod', got: ${validatedEnvs.ENV_TYPE}`);
+  }
+
+  const isProd = validatedEnvs.ENV_TYPE === "prod";
 
   const config: UserConfig = {
     build: {
