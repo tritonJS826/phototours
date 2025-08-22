@@ -9,6 +9,7 @@ export const env = cleanEnv(process.env, {
   ENV_TYPE: str({choices: ['dev', 'prod']}),
   WEBAPP_DOMAIN: str(),
   ORIGIN_PORT: port(),
+  CORS_ORIGIN: url(),
 
   // JWT Configuration
   JWT_SECRET: str(),
