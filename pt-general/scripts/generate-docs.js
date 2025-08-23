@@ -1,10 +1,9 @@
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
+import process from "process";
 import swaggerJsdoc from "swagger-jsdoc";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = process.env.PWD || process.cwd();
 
 // Swagger configuration
 const swaggerOptions = {

@@ -10,7 +10,6 @@ const HTTP_STATUS = {
   INTERNAL_SERVER_ERROR: 500,
 } as const;
 
-// Получить все уведомления пользователя
 export const getAllNotifications = async (req: Request, res: Response) => {
   try {
     const userId = req.user?.userId;
@@ -29,7 +28,6 @@ export const getAllNotifications = async (req: Request, res: Response) => {
   }
 };
 
-// Создать новое уведомление
 export const createNotification = async (req: Request, res: Response) => {
   try {
     const userId = req.user?.userId;
@@ -59,7 +57,6 @@ export const createNotification = async (req: Request, res: Response) => {
   }
 };
 
-// Отметить уведомление как прочитанное
 export const markNotificationAsRead = async (req: Request, res: Response) => {
   try {
     const userId = req.user?.userId;
@@ -72,7 +69,7 @@ export const markNotificationAsRead = async (req: Request, res: Response) => {
     const notification = await prisma.notification.updateMany({
       where: {
         id: parseInt(id),
-        userId, // Убеждаемся, что уведомление принадлежит пользователю
+        userId,
       },
       data: {isRead: true},
     });
@@ -87,7 +84,6 @@ export const markNotificationAsRead = async (req: Request, res: Response) => {
   }
 };
 
-// Отметить все уведомления как прочитанные
 export const markAllNotificationsAsRead = async (req: Request, res: Response) => {
   try {
     const userId = req.user?.userId;
@@ -106,7 +102,6 @@ export const markAllNotificationsAsRead = async (req: Request, res: Response) =>
   }
 };
 
-// Удалить уведомление
 export const deleteNotification = async (req: Request, res: Response) => {
   try {
     const userId = req.user?.userId;
@@ -119,7 +114,7 @@ export const deleteNotification = async (req: Request, res: Response) => {
     const notification = await prisma.notification.deleteMany({
       where: {
         id: parseInt(id),
-        userId, // Убеждаемся, что уведомление принадлежит пользователю
+        userId,
       },
     });
 
@@ -133,7 +128,6 @@ export const deleteNotification = async (req: Request, res: Response) => {
   }
 };
 
-// Удалить все уведомления пользователя
 export const deleteAllNotifications = async (req: Request, res: Response) => {
   try {
     const userId = req.user?.userId;
@@ -149,7 +143,6 @@ export const deleteAllNotifications = async (req: Request, res: Response) => {
   }
 };
 
-// Получить количество непрочитанных уведомлений
 export const getUnreadCount = async (req: Request, res: Response) => {
   try {
     const userId = req.user?.userId;

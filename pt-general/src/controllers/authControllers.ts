@@ -239,12 +239,10 @@ export const updateProfile = async (req: AuthRequest, res: Response) => {
     const {firstName, lastName, bio} = req.body;
     const avatarFile = req.file;
 
-    // Проверяем обязательные поля
     if (!firstName || !lastName) {
       return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'firstName and lastName are required'});
     }
 
-    // Подготавливаем данные для обновления
     const updateData: {
       firstName: string;
       lastName: string;
@@ -256,11 +254,9 @@ export const updateProfile = async (req: AuthRequest, res: Response) => {
       bio: bio || null,
     };
 
-    // Если загружен аватар, обрабатываем его
     if (avatarFile) {
       try {
-        // Получаем URL загруженного файла из Cloudinary
-        // Multer с CloudinaryStorage автоматически загружает файл и добавляет его URL в req.file
+
         updateData.profilePicUrl = (avatarFile as { path: string }).path;
         logger.info(`Avatar uploaded successfully: ${updateData.profilePicUrl}`);
       } catch (uploadError) {
@@ -270,7 +266,6 @@ export const updateProfile = async (req: AuthRequest, res: Response) => {
       }
     }
 
-    // Обновляем пользователя
     const updatedUser = await prisma.user.update({
       where: {id: userId},
       data: updateData,

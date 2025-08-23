@@ -133,7 +133,38 @@ export function TourSearchForm() {
               id="location"
               name="location"
               placeholder="Any location"
-              className={styles.input}
+              className={styles.formLocationInput}
+            />
+          </div>
+          <div className={styles.formDate}>
+            <label htmlFor="startDate">
+              Select dates
+            </label>
+            <input
+              type="text"
+              id="startDate"
+              name="startDate"
+              className={styles.formDateInputFirst}
+              placeholder="Starting date"
+            />
+            <input
+              type="text"
+              id="endDate"
+              name="endDate"
+              className={styles.formDateInputSecond}
+              placeholder="Final date"
+            />
+          </div>
+          <div className={styles.formTrav}>
+            <label htmlFor="travelers">
+              Add travelers
+            </label>
+            <input
+              type="text"
+              id="travelers"
+              name="travelers"
+              placeholder='1 traveler'
+              className={styles.formTravInput}
             />
           </div>
         </div>

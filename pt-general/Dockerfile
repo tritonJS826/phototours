@@ -1,5 +1,6 @@
 FROM node:22.7.0-alpine
 WORKDIR /app
+<<<<<<< HEAD
 
 RUN corepack enable && corepack prepare pnpm@9.8.0 --activate
 
@@ -21,3 +22,18 @@ RUN pnpm --filter pt-general build
 
 CMD ["pnpm", "--filter", "pt-general", "start"]
 >>>>>>> 0c5dbea (fix: #0 restore frozen-lockfile in Dockerfiles; update nginx compose)
+=======
+COPY package.json package-lock.json ./
+RUN npm install --legacy-peer-deps
+COPY . .
+RUN npm run build
+
+# Production stage
+FROM node:22-alpine
+WORKDIR /app
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
+COPY package.json .
+EXPOSE 3000
+CMD ["npm", "start"]
+>>>>>>> cb36cf2 (feat: #34 dashboard and profile)

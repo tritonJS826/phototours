@@ -32,9 +32,8 @@ export interface UpdateBankAccountData {
 
 class BankAccountService {
 
-  // Получить все банковские счета пользователя
   public async getBankAccounts(): Promise<BankAccount[]> {
-    const response = await fetch(`${API_BASE_URL}/general/bank-accounts`, {
+    const response = await fetch(`${API_BASE_URL}/bank-accounts`, {
       method: "GET",
       headers: this.getAuthHeaders(),
     });
@@ -46,9 +45,8 @@ class BankAccountService {
     return await response.json();
   }
 
-  // Получить основной банковский счет пользователя
   public async getDefaultBankAccount(): Promise<BankAccount | null> {
-    const response = await fetch(`${API_BASE_URL}/general/bank-accounts/default`, {
+    const response = await fetch(`${API_BASE_URL}/bank-accounts/default`, {
       method: "GET",
       headers: this.getAuthHeaders(),
     });
@@ -56,7 +54,7 @@ class BankAccountService {
     if (!response.ok) {
       const NOT_FOUND_STATUS = 404;
       if (response.status === NOT_FOUND_STATUS) {
-        return null; // Нет основного счета
+        return null;
       }
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -64,9 +62,8 @@ class BankAccountService {
     return await response.json();
   }
 
-  // Создать новый банковский счет
   public async createBankAccount(data: CreateBankAccountData): Promise<BankAccount> {
-    const response = await fetch(`${API_BASE_URL}/general/bank-accounts`, {
+    const response = await fetch(`${API_BASE_URL}/bank-accounts`, {
       method: "POST",
       headers: this.getAuthHeaders(),
       body: JSON.stringify(data),
@@ -79,9 +76,8 @@ class BankAccountService {
     return await response.json();
   }
 
-  // Обновить банковский счет
   public async updateBankAccount(id: number, data: UpdateBankAccountData): Promise<BankAccount> {
-    const response = await fetch(`${API_BASE_URL}/general/bank-accounts/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/bank-accounts/${id}`, {
       method: "PUT",
       headers: this.getAuthHeaders(),
       body: JSON.stringify(data),
@@ -94,9 +90,8 @@ class BankAccountService {
     return await response.json();
   }
 
-  // Установить банковский счет как основной
   public async setDefaultBankAccount(id: number): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/general/bank-accounts/${id}/default`, {
+    const response = await fetch(`${API_BASE_URL}/bank-accounts/${id}/default`, {
       method: "PATCH",
       headers: this.getAuthHeaders(),
     });
@@ -106,9 +101,8 @@ class BankAccountService {
     }
   }
 
-  // Удалить банковский счет
   public async deleteBankAccount(id: number): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/general/bank-accounts/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/bank-accounts/${id}`, {
       method: "DELETE",
       headers: this.getAuthHeaders(),
     });

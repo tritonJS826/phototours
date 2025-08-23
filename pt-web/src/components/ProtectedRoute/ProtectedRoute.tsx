@@ -10,7 +10,6 @@ interface ProtectedRouteProps {
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({children}) => {
   const {isAuthenticated, isLoading} = useAuth();
 
-  // Показываем загрузку, пока проверяем авторизацию
   if (isLoading) {
     return (
       <div style={{
@@ -25,7 +24,6 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({children}) => {
     );
   }
 
-  // Если пользователь не авторизован, перенаправляем на главную
   if (!isAuthenticated) {
     return (
       <Navigate
@@ -35,7 +33,6 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({children}) => {
     );
   }
 
-  // Если авторизован, показываем защищенный контент
   return (
     <>
       {children}

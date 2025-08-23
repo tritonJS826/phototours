@@ -13,25 +13,7 @@ import simpleImportSort from "eslint-plugin-simple-import-sort";
 export default [
   js.configs.recommended,
   ...tseslint.configs.recommended,
-  {
-    files: ["**/*.ts", "**/*.tsx"],
-    rules: {
-      "no-restricted-imports": "off",
-      "no-magic-numbers": "off",
-    },
-  },
-  {
-    files: ["**/*.ts", "**/*.tsx"],
-    rules: {
-      "no-restricted-imports": [
-        "error",
-        {
-          patterns: [".*"],
-          ignorePatterns: ["\\.scss$", "\\.css$", "\\.module\\.scss$"],
-        },
-      ],
-    },
-  },
+
   {
     files: ["**/*.ts", "**/*.tsx"],
     languageOptions: {

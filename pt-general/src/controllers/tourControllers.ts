@@ -112,7 +112,7 @@ export const deleteTour = async (req: Request, res: Response) => {
 
   try {
     await prisma.$transaction([
-      // Удаляем связанные сущности
+
       prisma.photo.deleteMany({where: {tourId: id}}),
       prisma.video.deleteMany({where: {tourId: id}}),
       prisma.tourDate.deleteMany({where: {tourId: id}}),
@@ -120,7 +120,6 @@ export const deleteTour = async (req: Request, res: Response) => {
       prisma.tourMaterial.deleteMany({where: {tourId: id}}),
       prisma.booking.deleteMany({where: {tourId: id}}),
 
-      // Many-to-many связи с Category и Tag
       prisma.$executeRawUnsafe(`
         DELETE FROM "_TourCategories" WHERE "B" = ${id}
       `),
@@ -128,7 +127,6 @@ export const deleteTour = async (req: Request, res: Response) => {
         DELETE FROM "_TourTags" WHERE "B" = ${id}
       `),
 
-      // Удаляем сам тур
       prisma.tour.delete({where: {id}}),
     ]);
 
