@@ -1,4 +1,5 @@
 import react from "@vitejs/plugin-react-swc";
+import {cleanEnv} from "envalid";
 import path from "path";
 import {defineConfig, loadEnv, type UserConfig} from "vite";
 import eslint from "vite-plugin-eslint";
@@ -6,25 +7,12 @@ import {VitePWA} from "vite-plugin-pwa";
 import viteTsconfigPaths from "vite-tsconfig-paths";
 
 // eslint-disable-next-line no-restricted-exports
-export default defineConfig(() => {
+export default defineConfig(async() => {
   const rawEnv = loadEnv("", process.cwd(), "");
 
-  const validatedEnvs = {
-    VITE_API_BASE_URL: rawEnv.VITE_API_BASE_URL,
-    VITE_APP_TITLE: rawEnv.VITE_APP_TITLE || "PhotoTours",
-    ENV_TYPE: rawEnv.ENV_TYPE,
-  };
-
-  const requiredVars = ["VITE_API_BASE_URL", "ENV_TYPE"];
-  const missingVars = requiredVars.filter(varName => !validatedEnvs[varName as keyof typeof validatedEnvs]);
-
-  if (missingVars.length > 0) {
-    throw new Error(`Missing required environment variables: ${missingVars.join(", ")}`);
-  }
-
-  if (!["dev", "prod"].includes(validatedEnvs.ENV_TYPE)) {
-    throw new Error(`ENV_TYPE must be 'dev' or 'prod', got: ${validatedEnvs.ENV_TYPE}`);
-  }
+  const {envSchema} = await import("./src/config/env");
+  // Use the schema from env.ts for validation
+  const validatedEnvs = cleanEnv(rawEnv, envSchema);
 
   const isProd = validatedEnvs.ENV_TYPE === "prod";
 
@@ -34,7 +22,7 @@ export default defineConfig(() => {
       outDir: "build",
     },
 
-    resolve: {alias: {src: path.resolve(__dirname, "./src")}},
+    resolve: {alias: {src: path.resolve(__dirname, "src")}},
     plugins: [
       react(),
       eslint(
@@ -48,12 +36,7 @@ export default defineConfig(() => {
       ),
       viteTsconfigPaths(),
     ],
-    define: {
-      "process.env": {
-        VITE_API_BASE_URL: validatedEnvs.VITE_API_BASE_URL,
-        VITE_APP_TITLE: validatedEnvs.VITE_APP_TITLE,
-      },
-    },
+    define: {"process.env": {VITE_API_BASE_URL: validatedEnvs.VITE_API_BASE_URL}},
 
     server: {
       host: true,

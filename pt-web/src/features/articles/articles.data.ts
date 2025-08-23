@@ -6,12 +6,12 @@ import thirdCardImg from "src/features/articles/assets/third.avif";
 
 export type Article = {
     id: string;
-      slug: string;
-  title: string;
-  excerpt: string;
-  cover: string;
-  alt: string;
-  content: string;
+    slug: string;
+    title: string;
+    excerpt: string;
+    cover: string;
+    alt: string;
+    content: string;
 };
 
 export const articles: Article[] = [

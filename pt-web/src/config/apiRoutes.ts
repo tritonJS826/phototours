@@ -1,5 +1,5 @@
 // Centralized API routes configuration
-import {env} from "src/env";
+import {env} from "src/config/env";
 
 export const API_BASE_URL = env.VITE_API_BASE_URL;
 

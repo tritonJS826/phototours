@@ -33,7 +33,7 @@ export interface UpdateBankAccountData {
 class BankAccountService {
 
   public async getBankAccounts(): Promise<BankAccount[]> {
-    const response = await fetch(`${API_BASE_URL}/general/bank-accounts`, {
+    const response = await fetch(`${API_BASE_URL}/bank-accounts`, {
       method: "GET",
       headers: this.getAuthHeaders(),
     });
@@ -46,7 +46,7 @@ class BankAccountService {
   }
 
   public async getDefaultBankAccount(): Promise<BankAccount | null> {
-    const response = await fetch(`${API_BASE_URL}/general/bank-accounts/default`, {
+    const response = await fetch(`${API_BASE_URL}/bank-accounts/default`, {
       method: "GET",
       headers: this.getAuthHeaders(),
     });
@@ -63,7 +63,7 @@ class BankAccountService {
   }
 
   public async createBankAccount(data: CreateBankAccountData): Promise<BankAccount> {
-    const response = await fetch(`${API_BASE_URL}/general/bank-accounts`, {
+    const response = await fetch(`${API_BASE_URL}/bank-accounts`, {
       method: "POST",
       headers: this.getAuthHeaders(),
       body: JSON.stringify(data),
@@ -77,7 +77,7 @@ class BankAccountService {
   }
 
   public async updateBankAccount(id: number, data: UpdateBankAccountData): Promise<BankAccount> {
-    const response = await fetch(`${API_BASE_URL}/general/bank-accounts/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/bank-accounts/${id}`, {
       method: "PUT",
       headers: this.getAuthHeaders(),
       body: JSON.stringify(data),
@@ -91,7 +91,7 @@ class BankAccountService {
   }
 
   public async setDefaultBankAccount(id: number): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/general/bank-accounts/${id}/default`, {
+    const response = await fetch(`${API_BASE_URL}/bank-accounts/${id}/default`, {
       method: "PATCH",
       headers: this.getAuthHeaders(),
     });
@@ -102,7 +102,7 @@ class BankAccountService {
   }
 
   public async deleteBankAccount(id: number): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/general/bank-accounts/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/bank-accounts/${id}`, {
       method: "DELETE",
       headers: this.getAuthHeaders(),
     });

@@ -1,4 +1,4 @@
-import {env} from "src/env";
+import {env} from "src/config/env";
 
 const RAW_BASE = (env.VITE_API_BASE_URL ?? "").trim().replace(/\/+$/, "");
 const BASE = RAW_BASE ? `${RAW_BASE}${/\/general\/?$/.test(RAW_BASE) ? "" : "/general"}` : "/general";

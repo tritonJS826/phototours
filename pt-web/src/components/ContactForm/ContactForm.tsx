@@ -24,7 +24,7 @@ interface FormField {
 }
 
 // Constants
-import {env} from "src/env";
+import {env} from "src/config/env";
 
 const API_BASE_URL = env.VITE_API_BASE_URL;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

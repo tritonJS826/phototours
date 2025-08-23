@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {Button} from "src/components/Button/Button";
-import {env} from "src/env";
+import {env} from "src/config/env";
 import styles from "src/components/AdminTourEditForm/AdminTourEditForm.module.scss";
 
 // Types

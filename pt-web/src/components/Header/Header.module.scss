@@ -236,16 +236,16 @@
 }
 
 .topbarProfile .iconBtn {
-  background-color: #fff;
+  width: auto;
+  height: auto;
+  background-color: white;
   border: none;
-  width: 42px;
-  height: 35px;
-  border-radius: 17px;
 
   &:hover {
-    background-color: #000;
-    color: #fff;
-    border-radius: 17px;
+    width: auto;
+    height: auto;
+    background-color: black;
+    color: white;
   }
 }
 

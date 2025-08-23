@@ -23,7 +23,7 @@ export interface CreateNotificationData {
 class NotificationService {
 
   public async getNotifications(): Promise<NotificationItem[]> {
-    const response = await fetch(`${API_BASE_URL}/general/notifications`, {
+    const response = await fetch(`${API_BASE_URL}/notifications`, {
       method: "GET",
       headers: this.getAuthHeaders(),
     });
@@ -36,7 +36,7 @@ class NotificationService {
   }
 
   public async getUnreadCount(): Promise<number> {
-    const response = await fetch(`${API_BASE_URL}/general/notifications/unread-count`, {
+    const response = await fetch(`${API_BASE_URL}/notifications/unread-count`, {
       method: "GET",
       headers: this.getAuthHeaders(),
     });
@@ -51,7 +51,7 @@ class NotificationService {
   }
 
   public async createNotification(data: CreateNotificationData): Promise<NotificationItem> {
-    const response = await fetch(`${API_BASE_URL}/general/notifications`, {
+    const response = await fetch(`${API_BASE_URL}/notifications`, {
       method: "POST",
       headers: this.getAuthHeaders(),
       body: JSON.stringify(data),
@@ -65,7 +65,7 @@ class NotificationService {
   }
 
   public async markAsRead(id: number): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/general/notifications/${id}/read`, {
+    const response = await fetch(`${API_BASE_URL}/notifications/${id}/read`, {
       method: "PATCH",
       headers: this.getAuthHeaders(),
     });
@@ -76,7 +76,7 @@ class NotificationService {
   }
 
   public async markAllAsRead(): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/general/notifications/mark-all-read`, {
+    const response = await fetch(`${API_BASE_URL}/notifications/mark-all-read`, {
       method: "PATCH",
       headers: this.getAuthHeaders(),
     });
@@ -87,7 +87,7 @@ class NotificationService {
   }
 
   public async deleteNotification(id: number): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/general/notifications/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/notifications/${id}`, {
       method: "DELETE",
       headers: this.getAuthHeaders(),
     });
@@ -98,7 +98,7 @@ class NotificationService {
   }
 
   public async deleteAllNotifications(): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/general/notifications`, {
+    const response = await fetch(`${API_BASE_URL}/notifications`, {
       method: "DELETE",
       headers: this.getAuthHeaders(),
     });

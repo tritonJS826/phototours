@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Button} from "src/components/Button/Button";
-import {env} from "src/env";
+import {env} from "src/config/env";
 import styles from "src/components/AdminCreateTourForm/AdminCreateTourForm.module.scss";
 
 const initialFormData = {

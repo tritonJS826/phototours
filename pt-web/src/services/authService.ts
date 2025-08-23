@@ -1,4 +1,4 @@
-import {env} from "src/env";
+import {env} from "src/config/env";
 import {AuthResponse, ChangePasswordData, LoginData, RegisterData, User} from "src/types/auth";
 
 const API_BASE_URL = env.VITE_API_BASE_URL;
@@ -6,7 +6,7 @@ const API_BASE_URL = env.VITE_API_BASE_URL;
 class AuthService {
 
   public async register(data: RegisterData): Promise<AuthResponse> {
-    const response = await fetch(`${API_BASE_URL}/general/auth/register`, {
+    const response = await fetch(`${API_BASE_URL}/auth/register`, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(data),
@@ -21,7 +21,7 @@ class AuthService {
   }
 
   public async login(data: LoginData): Promise<AuthResponse> {
-    const response = await fetch(`${API_BASE_URL}/general/auth/login`, {
+    const response = await fetch(`${API_BASE_URL}/auth/login`, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(data),
@@ -36,7 +36,7 @@ class AuthService {
   }
 
   public async changePassword(data: ChangePasswordData): Promise<{ message: string }> {
-    const response = await fetch(`${API_BASE_URL}/general/auth/change-password`, {
+    const response = await fetch(`${API_BASE_URL}/auth/change-password`, {
       method: "POST",
       headers: this.getAuthHeaders(),
       body: JSON.stringify(data),
@@ -51,7 +51,7 @@ class AuthService {
   }
 
   public async getProfile(): Promise<{ user: User }> {
-    const response = await fetch(`${API_BASE_URL}/general/auth/profile`, {
+    const response = await fetch(`${API_BASE_URL}/auth/profile`, {
       method: "GET",
       headers: this.getAuthHeaders(),
     });

@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {Button} from "src/components/Button/Button";
 import {Container} from "src/components/Container/Container";
-import {env} from "src/env";
+import {env} from "src/config/env";
 import styles from "src/pages/adminPage/AdminPage.module.scss";
 
 type Guide = {

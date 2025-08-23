@@ -1,5 +1,5 @@
 import React, {useRef, useState} from "react";
-import {env} from "src/env";
+import {env} from "src/config/env";
 import {useAuth} from "src/hooks/useAuth";
 import {getProfileImageUrl} from "src/utils/profileImage";
 import styles from "src/components/Auth/EditProfileForm.module.scss";
