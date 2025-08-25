@@ -35,18 +35,18 @@ services:
     restart: unless-stopped
 
   grafana:
-    image: grafana/grafana:10.4.2
+    image: grafana/grafana:11.5.2
     container_name: grafana
-#    ports:
-#      - "3000:3000"
+    #    ports:
+    #      - "3000:3000"
     volumes:
       - grafana-data:/var/lib/grafana
       - ./grafana/grafana.ini:/etc/grafana/grafana.ini
     environment:
       - GF_SERVER_ROOT_URL=http://localhost:5173/grafana/
       - GF_SERVER_SERVE_FROM_SUB_PATH=true
-#      - GF_SECURITY_ADMIN_USER=admin
-#      - GF_SECURITY_ADMIN_PASSWORD=admin
+    #      - GF_SECURITY_ADMIN_USER=admin
+    #      - GF_SECURITY_ADMIN_PASSWORD=admin
     networks:
       - app-network
     restart: unless-stopped
@@ -58,4 +58,3 @@ volumes:
 networks:
   app-network:
     driver: bridge
-

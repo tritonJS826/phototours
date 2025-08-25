@@ -63,7 +63,7 @@ services:
     restart: unless-stopped
 
   grafana:
-    image: grafana/grafana:10.4.2
+    image: grafana/grafana:11.5.2
     container_name: grafana
     environment:
       GF_SERVER_ROOT_URL: http://localhost:5173/grafana/
@@ -83,4 +83,3 @@ volumes:
 networks:
   app-network:
     driver: bridge
-
