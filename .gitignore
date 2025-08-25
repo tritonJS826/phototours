@@ -58,3 +58,5 @@ package-lock.json
 
 # Prisma generated files
 pt-general/src/generated/prisma/
+# Ignore docker-compose generated effective file
+.compose.effective.yaml
