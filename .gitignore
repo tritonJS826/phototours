@@ -62,3 +62,4 @@ pt-general/src/generated/prisma/
 .compose.effective.yaml
 # Ignore stray component dump
 all_components.txt
+local.deploy.docker-compose.yml
