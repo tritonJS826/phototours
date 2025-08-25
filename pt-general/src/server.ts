@@ -19,17 +19,40 @@ const NAME_SLICE_INDEX = 1;
 const app: Express = express();
 app.use(express.json());
 const port = env.SERVER_PORT;
+const host = process.env.HOST || '0.0.0.0';
+// ===== EXPERIMENTAL CORS LOGIC START =====
+// 👉 Вариант из main: только whitelist-домены
+const ALLOWED_ORIGINS = new Set([
+  'http://localhost:5173',
+  'http://localhost:5174',
+]);
+
+// 👉 Вариант из env (.env): fallback-домен
 const CORS_ORIGIN = env.CORS_ORIGIN;
+// ===== EXPERIMENTAL CORS LOGIC END =====
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', CORS_ORIGIN);
+  const origin = req.headers.origin as string | undefined;
+
+  // 💡 Пробуем оба варианта
+  if (origin && ALLOWED_ORIGINS.has(origin)) {
+    res.header('Access-Control-Allow-Origin', origin); // из main
+  } else {
+    res.header('Access-Control-Allow-Origin', CORS_ORIGIN); // из env
+  }
+
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+
   if (req.method === 'OPTIONS') {
     res.sendStatus(CODE_204);
   } else {
     next();
   }
+});
+app.get('/health', (_req, res) => {
+  const HTTP_OK = 200;
+  res.status(HTTP_OK).send('OK');
 });
 
 // Swagger configuration
@@ -343,10 +366,11 @@ app.use('/general/auth', authRoutes);
 app.use('/general/notifications', notificationRoutes);
 app.use('/general/bank-accounts', bankAccountRoutes);
 
-app.listen(port, () => {
-  logger.info(`Server is running at http://localhost:${port}`);
+app.listen(port, host, () => {
+  logger.info(`Server is running at http://${host}:${port}`);
   logger.info(`API documentation available at http://localhost:${port}/api-docs`);
   logger.info('Available endpoints:');
   logger.info('   GET  / - Health check');
+  logger.info('   GET  /health - Health check');
   logger.info('   POST /users - Create user');
 });
