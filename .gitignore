@@ -60,3 +60,5 @@ package-lock.json
 pt-general/src/generated/prisma/
 # Ignore docker-compose generated effective file
 .compose.effective.yaml
+# Ignore stray component dump
+all_components.txt
