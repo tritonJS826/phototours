@@ -44,6 +44,7 @@ export default defineConfig(() => {
       host: true,
       port: 5174,
       strictPort: true,
+      allowedHosts: ["localhost", "host.docker.internal"],
     },
   } as const;
 

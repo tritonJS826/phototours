@@ -12,6 +12,7 @@ COPY pt-general ./pt-general
 
 ENV NODE_ENV=production
 ENV PORT=8000
+ENV HOST=0.0.0.0  
 
 EXPOSE 8000
 
@@ -20,4 +21,3 @@ RUN pnpm --filter pt-general prisma:generate
 RUN pnpm --filter pt-general build
 
 CMD ["pnpm", "--filter", "pt-general", "start"]
->>>>>>> 0c5dbea (fix: #0 restore frozen-lockfile in Dockerfiles; update nginx compose)
