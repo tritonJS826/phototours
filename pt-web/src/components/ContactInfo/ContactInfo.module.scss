@@ -3,7 +3,7 @@
 .contactInfo {
   display: flex;
   flex-direction: column;
-  gap: vars.$gap-xxxxl;
+  gap: vars.$gap-xl;
   width: 100%;
   padding-top: 40px; // Align right column with left
 
@@ -80,19 +80,24 @@
 
   .socialMedia {
     margin-top: vars.$gap-sm;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; // Prevent stretching
+    gap: 0;
 
     h3 {
       color: vars.$btn-primary-bg;
       font-size: vars.$font-size-xl;
       font-weight: 600;
-      margin-bottom: vars.$gap-xl;
+      margin-bottom: 12px; // 12px gap between "Follow us" and icons
+      margin-top: 10px;
     }
 
     .socialIcons {
       display: flex;
       gap: vars.$gap-xl;
       flex-wrap: wrap;
-      margin-bottom: 14px;
+      margin-bottom: 0; // Remove gap to lift QR code
 
       .socialLink {
         display: flex;
@@ -142,6 +147,31 @@
         }
       }
     }
+
+    .contactImage {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transform: translate(-2px, -20px);
+
+      .image {
+        width: vars.$qr-code-size-desktop;
+        height: auto;
+        border-radius: vars.$radius-small;
+        transition: vars.$transition-transform;
+        object-fit: contain;
+        will-change: transform;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+
+        &:focus-visible {
+          outline: vars.$border-width-medium solid vars.$contact-btn-bg;
+          outline-offset: vars.$border-width-medium;
+        }
+      }
+    }
   }
 }
 
@@ -165,9 +195,11 @@
     }
 
     .socialMedia {
+      gap: vars.$gap-md;
+
       h3 {
         font-size: vars.$font-size-lg;
-        margin-bottom: vars.$gap-md;
+        margin-bottom: 0;
       }
 
       .socialIcons {
@@ -181,6 +213,13 @@
             width: 18px;
             height: 18px;
           }
+        }
+      }
+
+      .contactImage {
+        .image {
+          width: vars.$qr-code-size-mobile;
+          height: auto;
         }
       }
     }

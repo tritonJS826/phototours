@@ -1,6 +1,6 @@
 import {memo} from "react";
 import {Facebook, Instagram, Mail, MapPin, Phone, Youtube} from "lucide-react";
-import {QRCode} from "src/components/QRCode/QRCode";
+import qrCodePhone from "src/components/ContactInfo/assets/qr.png";
 import styles from "src/components/ContactInfo/ContactInfo.module.scss";
 
 interface ContactItem {
@@ -140,13 +140,16 @@ export const ContactInfo = memo(function ContactInfo() {
         >
           {SOCIAL_LINKS.map(renderSocialLink)}
         </div>
-        <QRCode
-          value="tel:+3541234567"
-          size={94}
-          title="QR code for phone call"
-          bgColor="transparent"
-          fgColor="#ffffff"
-        />
+        <div className={styles.contactImage}>
+          <img
+            src={qrCodePhone}
+            alt="QR code to call +354 123 4567"
+            title="Scan to call our support team"
+            className={styles.image}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
       </div>
     </div>
   );
