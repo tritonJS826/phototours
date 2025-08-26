@@ -63,3 +63,5 @@ pt-general/src/generated/prisma/
 # Ignore stray component dump
 all_components.txt
 local.deploy.docker-compose.yml
+# Prisma generated client
+/pt-general/src/generated/prisma/
