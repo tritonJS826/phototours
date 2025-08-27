@@ -1,4 +1,4 @@
-AK# ---------- build ----------
+# ---------- build ----------
 FROM node:22.7.0-alpine AS build
 WORKDIR /app
 

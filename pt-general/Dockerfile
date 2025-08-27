@@ -20,4 +20,3 @@ RUN pnpm --filter pt-general prisma:generate
 RUN pnpm --filter pt-general build
 
 CMD ["pnpm", "--filter", "pt-general", "start"]
->>>>>>> 0c5dbea (fix: #0 restore frozen-lockfile in Dockerfiles; update nginx compose)

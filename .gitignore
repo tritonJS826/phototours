@@ -55,3 +55,6 @@ storybook-static
 
 # Do not use npm lockfile
 package-lock.json
+
+# Prisma generated files
+pt-general/src/generated/prisma/
