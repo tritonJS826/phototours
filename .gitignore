@@ -18,8 +18,8 @@ build/
 
 # Local env files
 .env
-.env.*
-!.env.example
+.env.local
+.env.*local
 
 # Vite cache
 .vite/
