@@ -7,7 +7,7 @@ services:
     ports:
       - "5432:5432"
     env_file:
-      - .env
+      - ./pt-general/.env
     volumes:
       - postgres-general:/var/lib/postgresql/data
     networks:
@@ -34,7 +34,7 @@ services:
     image: grafana/grafana:11.5.2
     container_name: grafana
     env_file:
-      - .env
+      - ./grafana/.env
     volumes:
       - grafana-data:/var/lib/grafana
       - ./grafana/grafana.ini:/etc/grafana/grafana.ini
