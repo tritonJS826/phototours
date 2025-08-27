@@ -58,13 +58,18 @@ services:
       - pt-web
 
   grafana:
-    image: grafana/grafana:11.5.2
+#    image: grafana/grafana:11.5.2
+    build:
+      context: .
+      dockerfile: ./grafana/Dockerfile
     container_name: grafana
+    ports:
+      - "9876:3000"
     env_file:
       - ./grafana/.env
-    volumes:
-      - grafana-data:/var/lib/grafana
-      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+#    volumes:
+ #     - grafana-data:/var/lib/grafana
+  #    - ./grafana/grafana.ini:/etc/grafana/grafana.ini
     networks:
       - app-network
 
