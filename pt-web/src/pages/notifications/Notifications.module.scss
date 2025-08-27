@@ -1,5 +1,6 @@
+@use "src/styles/variables" as var;
+
 .notificationsContainer {
-  min-height: 100vh;
   padding: 40px;
   position: relative;
   display: flex;
@@ -14,7 +15,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #5196f0;
+  background-color: var.$color-bg-light;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -24,7 +25,6 @@
 .notificationsContent {
   max-width: 800px;
   margin: 0 auto;
-  background: rgb(28 76 138 / 90%);
   border-radius: 20px;
   padding: 3rem;
   box-shadow: 0 20px 40px rgb(0 0 0 / 10%);
@@ -33,14 +33,14 @@
   h1 {
     text-align: center;
     margin-bottom: 1rem;
-    color: #a5c8e2;
+    color: var.$color-dark;
     font-size: 2.5rem;
     font-weight: 700;
   }
 
   > p {
     text-align: center;
-    color: #a5c8e2;
+    color: var.$color-dark;
     font-size: 1.1rem;
     width: 90%;
     max-width: 1200px;
@@ -69,14 +69,14 @@
 
   .headerLeft {
     h1 {
-      color: #a5c8e2;
+      color: var.$color-dark;
       font-size: 32px;
       font-weight: 700;
       margin: 0 0 8px;
     }
 
     p {
-      color: #a5c8e2;
+      color: var.$color-dark;
       font-size: 16px;
       margin: 0;
       opacity: 0.8;
@@ -101,7 +101,7 @@
     background: rgb(255 255 255 / 10%);
     border: 1px solid rgb(165 200 226 / 30%);
     border-radius: 8px;
-    color: #a5c8e2;
+    color: var.$color-dark;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
@@ -136,7 +136,7 @@
     align-items: center;
     gap: 8px;
     margin-bottom: 12px;
-    color: #a5c8e2;
+    color: var.$color-dark;
     font-size: 16px;
     font-weight: 500;
   }
@@ -152,7 +152,7 @@
     background: rgb(255 255 255 / 10%);
     border: 1px solid rgb(165 200 226 / 30%);
     border-radius: 8px;
-    color: #a5c8e2;
+    color: var.$color-dark;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
@@ -164,9 +164,8 @@
     }
 
     &.active {
-      background: #f9a825;
-      border-color: #f9a825;
-      color: #1c4c8a;
+      background: var.$contact-text-light;
+      // color: #1c4c8a;
     }
   }
 
@@ -206,7 +205,7 @@
   .emptyState {
     text-align: center;
     padding: 48px 24px;
-    color: #a5c8e2;
+    color: var.$color-dark;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -232,11 +231,11 @@
   }
 
   .notificationItem {
-    background: rgb(180 92 50 / 80%);
+    // background: rgb(180 92 50 / 80%);
     border-radius: 12px;
     padding: 24px;
     box-shadow: 0 64px 240px rgb(0 0 0 / 10%);
-    border-left: 64px solid #f9a825;
+    // border-left: 64px solid #f9a825;
     transition:
       transform 0.3s ease,
       box-shadow 0.3s ease;
@@ -254,13 +253,13 @@
     }
 
     p {
-      color: #a5c8e2;
+      color: var.$color-dark;
       line-height: 1.6;
       margin-bottom: 16px;
     }
 
     .notificationDate {
-      color: #a5c8e2;
+      color: var.$color-dark;
       font-size: 14.4px;
       font-style: italic;
     }

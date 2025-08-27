@@ -1,9 +1,9 @@
+@use "src/styles/variables" as var;
+
 .notificationCard {
-  background: rgb(28 76 138 / 90%);
   border-radius: 12px;
   padding: 20px;
-  margin-bottom: 16px;
-  border-left: 4px solid transparent;
+  border: 1px solid var.$color-border;
   transition: all 0.3s ease;
   cursor: pointer;
   position: relative;
@@ -15,24 +15,23 @@
   }
 
   &.unread {
-    background: rgb(28 76 138 / 95%);
-    border-left-color: #f9a825;
+    // border-left-color: #f9a825;
   }
 
   &.success {
-    border-left-color: #4caf50;
+    // border-left-color: #4caf50;
   }
 
   &.error {
-    border-left-color: #f44336;
+    // border-left-color: #f44336;
   }
 
   &.warning {
-    border-left-color: #ff9800;
+    // border-left-color: #ff9800;
   }
 
   &.info {
-    border-left-color: #2196f3;
+    // border-left-color: #2196f3;
   }
 }
 
@@ -54,7 +53,7 @@
   background: rgb(255 255 255 / 10%);
 
   svg {
-    color: #a5c8e2;
+    color: var.$color-dark;
   }
 }
 
@@ -64,7 +63,6 @@
 }
 
 .notificationTitle {
-  color: #fff;
   font-size: 16px;
   font-weight: 600;
   margin: 0 0 4px;
@@ -72,7 +70,7 @@
 }
 
 .notificationTime {
-  color: #a5c8e2;
+  color: var.$color-dark;
   font-size: 12px;
   opacity: 0.8;
 }
@@ -87,7 +85,7 @@
 .deleteButton {
   background: none;
   border: none;
-  color: #a5c8e2;
+  color: var.$color-dark;
   cursor: pointer;
   padding: 4px;
   border-radius: 4px;
@@ -98,12 +96,11 @@
 
   &:hover {
     background: rgb(255 255 255 / 10%);
-    color: #fff;
   }
 }
 
 .markReadButton:hover {
-  color: #4caf50;
+  // color: #4caf50;
 }
 
 .deleteButton:hover {
@@ -112,7 +109,7 @@
 
 .notificationContent {
   .notificationMessage {
-    color: #a5c8e2;
+    color: var.$color-dark;
     font-size: 14px;
     line-height: 1.5;
     margin: 0 0 12px;
@@ -122,7 +119,7 @@
 .actionButton {
   background: rgb(249 168 37 / 20%);
   border: 1px solid rgb(249 168 37 / 30%);
-  color: #f9a825;
+  color: var.$contact-btn-bg;
   padding: 8px 16px;
   border-radius: 6px;
   font-size: 12px;

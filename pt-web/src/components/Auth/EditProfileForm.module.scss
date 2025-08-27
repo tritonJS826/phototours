@@ -1,5 +1,5 @@
-@use "../../styles/mixins" as mixin;
-@use "../../styles/variables" as vars;
+@use "src/styles/mixins" as mixin;
+@use "src/styles/variables" as var;
 
 .editProfileContainer {
   max-width: 600px;
@@ -18,7 +18,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #5196f0;
+    background-color: var.$color-bg-light;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -28,7 +28,7 @@
   h2 {
     text-align: center;
     margin-bottom: 2rem;
-    color: #a5c8e2;
+    color: var.$color-dark;
     font-size: 1.8rem;
     font-weight: 600;
   }
@@ -68,7 +68,7 @@
 
   label {
     font-weight: 600;
-    color: #a5c8e2;
+    color: var.$color-dark;
     font-size: 1rem;
   }
 }
@@ -131,7 +131,7 @@
 }
 
 .avatarHint {
-  color: #a5c8e2;
+  color: var.$color-dark;
   font-size: 0.85rem;
   text-align: center;
   margin: 0;
@@ -150,7 +150,7 @@
 
   label {
     font-weight: 600;
-    color: vars.$color-dark;
+    color: var.$color-dark;
     font-size: 0.95rem;
 
     &::after {

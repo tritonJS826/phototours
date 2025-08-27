@@ -120,6 +120,7 @@ export function App() {
           />
         </Routes>
       </main>
+
       <Footer />
     </div>
   );

@@ -1,8 +1,9 @@
+@use "src/styles/variables" as var;
+
 .publicProfileContainer {
   max-width: 800px;
   margin: 2rem auto;
   padding: 2rem;
-  min-height: 100vh;
   position: relative;
 }
 
@@ -13,7 +14,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #5196f0;
+  background-color: var.$color-bg-light;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -21,7 +22,6 @@
 }
 
 .profileCard {
-  background: rgb(28 76 138 / 90%);
   border-radius: 20px;
   padding: 3rem;
   box-shadow: 0 20px 40px rgb(0 0 0 / 10%);
@@ -64,12 +64,12 @@
   h1 {
     font-size: 2rem;
     font-weight: 700;
-    color: #a5c8e2;
+    color: var.$color-dark;
     margin-bottom: 0.5rem;
   }
 
   .memberSince {
-    color: #a5c8e2;
+    color: var.$color-dark;
     font-size: 1rem;
     font-style: italic;
     margin-bottom: 2rem;
@@ -91,7 +91,7 @@
     }
 
     p {
-      color: #a5c8e2;
+      color: var.$color-dark;
       line-height: 1.6;
       font-size: 1rem;
     }
@@ -100,7 +100,7 @@
 
 .loading {
   text-align: center;
-  color: #a5c8e2;
+  color: var.$color-dark;
   font-size: 1.1rem;
   padding: 2rem;
 }

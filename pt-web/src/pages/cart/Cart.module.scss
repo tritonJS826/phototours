@@ -2,7 +2,6 @@
 @use "src/styles/mixins" as mix;
 
 .container {
-  background: var.$color-bg-light;
   max-width: 1320px;
   margin: 0 auto;
   padding: 20px;
