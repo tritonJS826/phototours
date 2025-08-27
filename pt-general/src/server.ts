@@ -19,20 +19,10 @@ const NAME_SLICE_INDEX = 1;
 const app: Express = express();
 app.use(express.json());
 const port = env.SERVER_PORT;
-const host = process.env.HOST || '0.0.0.0';
-
-const ALLOWED_ORIGINS = new Set([
-  'http://localhost:5173',
-  'http://localhost:5174',
-]);
+const CORS_ORIGIN = env.CORS_ORIGIN;
 
 app.use((req, res, next) => {
-  const origin = req.headers.origin as string | undefined;
-
-  if (origin && ALLOWED_ORIGINS.has(origin)) {
-    res.header('Access-Control-Allow-Origin', origin); // Из main
-  }
-
+  res.header('Access-Control-Allow-Origin', CORS_ORIGIN);
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
 
@@ -358,8 +348,8 @@ app.use('/general/auth', authRoutes);
 app.use('/general/notifications', notificationRoutes);
 app.use('/general/bank-accounts', bankAccountRoutes);
 
-app.listen(port, host, () => {
-  logger.info(`Server is running at http://${host}:${port}`);
+app.listen(port, () => {
+  logger.info(`Server is running at http://localhost:${port}`);
   logger.info(`API documentation available at http://localhost:${port}/api-docs`);
   logger.info('Available endpoints:');
   logger.info('   GET  / - Health check');
