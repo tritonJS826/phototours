@@ -342,11 +342,11 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/general/tours', tourRoutes);
-app.use('/general/users', userRoutes);
-app.use('/general/auth', authRoutes);
-app.use('/general/notifications', notificationRoutes);
-app.use('/general/bank-accounts', bankAccountRoutes);
+app.use('/tours', tourRoutes);
+app.use('/users', userRoutes);
+app.use('/auth', authRoutes);
+app.use('/notifications', notificationRoutes);
+app.use('/bank-accounts', bankAccountRoutes);
 
 app.listen(port, () => {
   logger.info(`Server is running at http://localhost:${port}`);

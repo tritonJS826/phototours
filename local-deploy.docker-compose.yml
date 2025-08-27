@@ -32,6 +32,7 @@ services:
     depends_on:
       postgres-general:
         condition: service_healthy
+
   pt-web:
     build:
       context: .

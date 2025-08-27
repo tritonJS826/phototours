@@ -16,7 +16,7 @@
     "type-check": "tsc --noEmit",
     "docs:generate": "node scripts/generate-docs.js",
     "docs:serve": "node scripts/serve-docs.js",
-    "db:reset": "vite-node src/scripts/reset.ts"
+    "db:reset": "prisma migrate reset && vite-node src/scripts/reset.ts"
   },
   "keywords": [],
   "author": "",
