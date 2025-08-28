@@ -77,7 +77,7 @@ export const AdminTourEdit = () => {
   useEffect(() => {
     const fetchGuides = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/guides`);
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours/guides`);
         if (!res.ok) {
           throw new Error("Failed to load guides");
         }
@@ -97,7 +97,7 @@ export const AdminTourEdit = () => {
 
     const fetchTour = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}`);
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours/${id}`);
         if (!res.ok) {
           throw new Error(`Failed to fetch tour with ID ${id}`);
         }
@@ -226,7 +226,7 @@ export const AdminTourEdit = () => {
     if (material.id) {
       try {
         await fetch(
-          `${import.meta.env.VITE_API_BASE_URL}/tours/materials/${material.id}`,
+          `${import.meta.env.VITE_API_BASE_URL}/general/tours/materials/${material.id}`,
           {method: "DELETE"},
         );
       } catch {
@@ -257,7 +257,7 @@ export const AdminTourEdit = () => {
         materialFormData.append("type", material.type);
 
         const res = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL}/tours/${id}/materials`,
+          `${import.meta.env.VITE_API_BASE_URL}/general/tours/${id}/materials`,
           {
             method: "PATCH",
             body: materialFormData,
@@ -281,7 +281,7 @@ export const AdminTourEdit = () => {
 
     try {
 
-      await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours/${id}`, {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
@@ -297,7 +297,7 @@ export const AdminTourEdit = () => {
 
       const tags = formData.tags.split(",").map(t => t.trim()).filter(Boolean);
       if (tags.length) {
-        await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/tags`, {
+        await fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours/${id}/tags`, {
           method: "PATCH",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify({tags}),
@@ -306,7 +306,7 @@ export const AdminTourEdit = () => {
 
       const dates = formData.dates.split(",").map(d => d.trim()).filter(Boolean);
       if (dates.length) {
-        await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/dates`, {
+        await fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours/${id}/dates`, {
           method: "PATCH",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify({dates}),
@@ -318,7 +318,7 @@ export const AdminTourEdit = () => {
           const form = new FormData();
           form.append("file", file);
 
-          return fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/photos`, {
+          return fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours/${id}/photos`, {
             method: "PATCH",
             body: form,
           });
@@ -330,7 +330,7 @@ export const AdminTourEdit = () => {
           const form = new FormData();
           form.append("file", file);
 
-          return fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/videos`, {
+          return fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours/${id}/videos`, {
             method: "PATCH",
             body: form,
           });

@@ -29,7 +29,7 @@ export function AdminPage() {
   const [, setError] = useState("");
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/tours`)
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours`)
       .then((res) => res.json()
         .then((data) => {
           setTours(data);
@@ -43,7 +43,7 @@ export function AdminPage() {
     }
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}`, {method: "DELETE"});
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours/${id}`, {method: "DELETE"});
       if (res.ok) {
         setTours((prev) => prev.filter((t) => t.id !== id));
         setSelectedTour(null);

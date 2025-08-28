@@ -165,6 +165,7 @@
 
     &.active {
       background: var.$contact-text-light;
+
       // color: #1c4c8a;
     }
   }
@@ -235,6 +236,7 @@
     border-radius: 12px;
     padding: 24px;
     box-shadow: 0 64px 240px rgb(0 0 0 / 10%);
+
     // border-left: 64px solid #f9a825;
     transition:
       transform 0.3s ease,
