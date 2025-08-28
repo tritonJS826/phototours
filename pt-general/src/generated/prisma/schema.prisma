@@ -89,7 +89,7 @@ model Tag {
 model TourDate {
   id          Int      @id @default(autoincrement())
   tourId      Int
-  tour        Tour     @relation(fields: [tourId], references: [id])
+  tour        Tour     @relation(fields: [tourId], references: [id], onDelete: Cascade)
   date        DateTime
   isAvailable Boolean  @default(true)
   createdAt   DateTime @default(now())
@@ -99,7 +99,7 @@ model TourDate {
 model Review {
   id        Int      @id @default(autoincrement())
   tourId    Int
-  tour      Tour     @relation(fields: [tourId], references: [id])
+  tour      Tour     @relation(fields: [tourId], references: [id], onDelete: Cascade)
   userId    Int
   user      User     @relation(fields: [userId], references: [id])
   rating    Int
@@ -110,7 +110,7 @@ model Review {
 model Photo {
   id          Int      @id @default(autoincrement())
   tourId      Int
-  tour        Tour     @relation(fields: [tourId], references: [id])
+  tour        Tour     @relation(fields: [tourId], references: [id], onDelete: Cascade)
   url         String
   description String?
   createdAt   DateTime @default(now())
@@ -119,7 +119,7 @@ model Photo {
 model Video {
   id          Int      @id @default(autoincrement())
   tourId      Int
-  tour        Tour     @relation(fields: [tourId], references: [id])
+  tour        Tour     @relation(fields: [tourId], references: [id], onDelete: Cascade)
   url         String
   description String?
   createdAt   DateTime @default(now())
@@ -128,7 +128,7 @@ model Video {
 model Booking {
   id           Int           @id @default(autoincrement())
   tourId       Int
-  tour         Tour          @relation(fields: [tourId], references: [id])
+  tour         Tour          @relation(fields: [tourId], references: [id], onDelete: Cascade)
   userId       Int
   user         User          @relation(fields: [userId], references: [id])
   status       BookingStatus @default(PENDING)
@@ -164,7 +164,7 @@ model PromoCode {
 model TourMaterial {
   id        Int          @id @default(autoincrement())
   tourId    Int
-  tour      Tour         @relation(fields: [tourId], references: [id])
+  tour      Tour         @relation(fields: [tourId], references: [id], onDelete: Cascade)
   title     String
   url       String
   type      MaterialType
