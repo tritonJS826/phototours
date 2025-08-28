@@ -1,3 +1,5 @@
+@use "src/styles/variables" as var;
+
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -13,10 +15,9 @@
 }
 
 .modalContent {
-  background: #1c4c8a;
+  background: var.$color-bg-white;
   border-radius: 16px;
   padding: 32px;
-  max-width: 500px;
   width: 90%;
   max-height: 90vh;
   overflow-y: auto;
@@ -33,7 +34,6 @@
   border-bottom: 1px solid rgb(165 200 226 / 20%);
 
   h2 {
-    color: #a5c8e2;
     font-size: 24px;
     font-weight: 600;
     margin: 0;
@@ -43,7 +43,6 @@
 .closeButton {
   background: none;
   border: none;
-  color: #a5c8e2;
   cursor: pointer;
   padding: 8px;
   border-radius: 8px;
@@ -71,7 +70,6 @@
   gap: 8px;
 
   label {
-    color: #a5c8e2;
     font-size: 14px;
     font-weight: 500;
   }
@@ -85,18 +83,16 @@
     padding: 12px 16px;
     border: 1px solid rgb(165 200 226 / 30%);
     border-radius: 8px;
-    background: rgb(255 255 255 / 10%);
-    color: #fff;
     font-size: 16px;
     transition: border-color 0.2s ease;
 
     &::placeholder {
-      color: rgb(165 200 226 / 60%);
+      // color: rgb(165 200 226 / 60%);
     }
 
     &:focus {
       outline: none;
-      border-color: #f9a825;
+      border-color: var.$color-border;
       box-shadow: 0 0 0 2px rgb(249 168 37 / 20%);
     }
 
@@ -134,7 +130,6 @@
   border: 1px solid rgb(165 200 226 / 30%);
   border-radius: 8px;
   background: transparent;
-  color: #a5c8e2;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
@@ -142,7 +137,6 @@
 
   &:hover {
     background: rgb(165 200 226 / 10%);
-    border-color: rgb(165 200 226 / 50%);
   }
 }
 
@@ -150,7 +144,6 @@
   padding: 12px 24px;
   border: none;
   border-radius: 8px;
-  background: #f9a825;
   color: #1c4c8a;
   font-size: 16px;
   font-weight: 600;
@@ -158,7 +151,6 @@
   transition: all 0.2s ease;
 
   &:hover {
-    background: #f39c12;
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgb(249 168 37 / 30%);
   }

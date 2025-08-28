@@ -18,7 +18,7 @@ importers:
   pt-general:
     dependencies:
       '@faker-js/faker':
-        specifier: ^9.9.0
+        specifier: 9.9.0
         version: 9.9.0
       axios:
         specifier: 1.11.0
@@ -44,9 +44,6 @@ importers:
       jsonwebtoken:
         specifier: 9.0.2
         version: 9.0.2
-      lint-staged:
-        specifier: 15.2.2
-        version: 15.2.2
       multer:
         specifier: 2.0.2
         version: 2.0.2
@@ -108,6 +105,9 @@ importers:
       eslint-plugin-simple-import-sort:
         specifier: 12.1.1
         version: 12.1.1(eslint@9.32.0(jiti@2.4.2))
+      lint-staged:
+        specifier: 15.2.2
+        version: 15.2.2
       nodemon:
         specifier: 3.1.10
         version: 3.1.10
@@ -142,13 +142,13 @@ importers:
   pt-web:
     dependencies:
       framer-motion:
-        specifier: ^12.23.12
+        specifier: 12.23.12
         version: 12.23.12(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       lucide-react:
-        specifier: ^0.536.0
+        specifier: 0.536.0
         version: 0.536.0(react@19.1.0)
       qrcode.react:
-        specifier: ^4.2.0
+        specifier: 4.2.0
         version: 4.2.0(react@19.1.0)
       react:
         specifier: 19.1.0
@@ -157,13 +157,13 @@ importers:
         specifier: 19.1.0
         version: 19.1.0(react@19.1.0)
       react-icons:
-        specifier: ^5.5.0
+        specifier: 5.5.0
         version: 5.5.0(react@19.1.0)
       react-router-dom:
         specifier: 7.7.1
         version: 7.7.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       swiper:
-        specifier: ^11.2.10
+        specifier: 11.2.10
         version: 11.2.10
     devDependencies:
       '@chromatic-com/storybook':
@@ -194,13 +194,13 @@ importers:
         specifier: 22.12.0
         version: 22.12.0
       '@types/qrcode.react':
-        specifier: ^3.0.0
+        specifier: 3.0.0
         version: 3.0.0(react@19.1.0)
       '@types/react':
-        specifier: ^19.1.8
+        specifier: 19.1.8
         version: 19.1.8
       '@types/react-dom':
-        specifier: ^19.1.6
+        specifier: 19.1.6
         version: 19.1.6(@types/react@19.1.8)
       '@typescript-eslint/eslint-plugin':
         specifier: 8.38.0
@@ -212,13 +212,13 @@ importers:
         specifier: 3.10.2
         version: 3.10.2(vite@7.0.4(@types/node@22.12.0)(jiti@2.4.2)(sass@1.89.2)(terser@5.43.1))
       '@vitest/browser':
-        specifier: ^3.2.4
+        specifier: 3.2.4
         version: 3.2.4(playwright@1.54.1)(vite@7.0.4(@types/node@22.12.0)(jiti@2.4.2)(sass@1.89.2)(terser@5.43.1))(vitest@3.2.4)
       '@vitest/coverage-v8':
-        specifier: ^3.2.4
+        specifier: 3.2.4
         version: 3.2.4(@vitest/browser@3.2.4(playwright@1.54.1)(vite@7.0.4(@types/node@22.12.0)(jiti@2.4.2)(sass@1.89.2)(terser@5.43.1))(vitest@3.2.4))(vitest@3.2.4(@types/node@22.12.0)(@vitest/browser@3.2.4)(jiti@2.4.2)(sass@1.89.2)(terser@5.43.1))
       clsx:
-        specifier: ^2.1.1
+        specifier: 2.1.1
         version: 2.1.1
       envalid:
         specifier: 8.1.0
@@ -257,7 +257,7 @@ importers:
         specifier: 15.2.2
         version: 15.2.2
       playwright:
-        specifier: ^1.54.1
+        specifier: 1.54.1
         version: 1.54.1
       prettier:
         specifier: 3.3.3
@@ -296,7 +296,7 @@ importers:
         specifier: 5.1.4
         version: 5.1.4(typescript@5.8.3)(vite@7.0.4(@types/node@22.12.0)(jiti@2.4.2)(sass@1.89.2)(terser@5.43.1))
       vitest:
-        specifier: ^3.2.4
+        specifier: 3.2.4
         version: 3.2.4(@types/node@22.12.0)(@vitest/browser@3.2.4)(jiti@2.4.2)(sass@1.89.2)(terser@5.43.1)
 
 packages:

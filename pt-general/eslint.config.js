@@ -6,6 +6,10 @@ import jsdoc from "eslint-plugin-jsdoc";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 
 export default [
+  {
+    ignores: ["dist/", "node_modules/", "src/generated/", "src/scripts/"],
+  },
+
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
@@ -136,8 +140,5 @@ export default [
         { blankLine: "always", prev: "import", next: "const" },
       ],
     },
-  },
-  {
-    ignores: ["dist/", "node_modules/", "src/generated/", "src/scripts/"],
   },
 ];

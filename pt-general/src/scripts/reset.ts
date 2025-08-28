@@ -1,5 +1,5 @@
-import {DifficultyLevel, PrismaClient, Role} from 'src/generated/prisma';
-import {logger} from 'src/utils/logger.js';
+import {DifficultyLevel, PrismaClient, Role} from '../generated/prisma';
+import {logger} from '../utils/logger';
 import {faker} from '@faker-js/faker';
 
 const prisma = new PrismaClient();

@@ -19,7 +19,7 @@ build/
 # Local env files
 .env
 .env.local
-.env.*.local
+.env.*local
 
 # Vite cache
 .vite/
@@ -53,8 +53,8 @@ build/
 *storybook.log
 storybook-static
 
-# Do not use npm lockfile
-package-lock.json
+# Ignore docker-compose generated effective file
+.compose.effective.yaml
 
-# Prisma generated files
-pt-general/src/generated/prisma/
+# Prisma generated client
+/pt-general/src/generated/prisma/

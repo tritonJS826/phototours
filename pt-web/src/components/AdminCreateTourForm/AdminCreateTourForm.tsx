@@ -32,7 +32,7 @@ export const AdminCreateTourForm = () => {
   useEffect(() => {
     const fetchGuides = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/guides`);
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours/guides`);
         if (!res.ok) {
           throw new Error("Failed to load guides");
         }
@@ -55,7 +55,7 @@ export const AdminCreateTourForm = () => {
     setError("");
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({

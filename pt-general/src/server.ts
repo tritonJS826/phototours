@@ -25,11 +25,16 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', CORS_ORIGIN);
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+
   if (req.method === 'OPTIONS') {
     res.sendStatus(CODE_204);
   } else {
     next();
   }
+});
+app.get('/health', (_req, res) => {
+  const HTTP_OK = 200;
+  res.status(HTTP_OK).send('OK');
 });
 
 // Swagger configuration
@@ -337,16 +342,17 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/general/tours', tourRoutes);
-app.use('/general/users', userRoutes);
-app.use('/general/auth', authRoutes);
-app.use('/general/notifications', notificationRoutes);
-app.use('/general/bank-accounts', bankAccountRoutes);
+app.use('/tours', tourRoutes);
+app.use('/users', userRoutes);
+app.use('/auth', authRoutes);
+app.use('/notifications', notificationRoutes);
+app.use('/bank-accounts', bankAccountRoutes);
 
 app.listen(port, () => {
   logger.info(`Server is running at http://localhost:${port}`);
   logger.info(`API documentation available at http://localhost:${port}/api-docs`);
   logger.info('Available endpoints:');
   logger.info('   GET  / - Health check');
+  logger.info('   GET  /health - Health check');
   logger.info('   POST /users - Create user');
 });

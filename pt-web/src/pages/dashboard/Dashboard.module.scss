@@ -1,3 +1,5 @@
+@use "src/styles/variables" as var;
+
 .dashboardContainer {
   max-width: 1200px;
   margin: 0 auto;
@@ -13,8 +15,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background-color: #5196f0;
+  background-color: var.$color-bg-light;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -28,7 +29,7 @@
   h1 {
     font-size: 50px;
     font-weight: 700;
-    color: #a5c8e2;
+    color: var.$color-dark;
     margin-bottom: 8px;
   }
 }
@@ -47,7 +48,7 @@
   h2 {
     font-size: 24px;
     font-weight: 600;
-    color: #a5c8e2;
+    color: var.$color-dark;
   }
 
   .sectionActions {
@@ -62,10 +63,8 @@
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  background: #f9a825;
-  color: white;
   text-decoration: none;
-  border: none;
+  border: 1px solid var.$color-border;
   border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
@@ -74,8 +73,6 @@
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgb(249 168 37 / 30%);
-    color: white;
     text-decoration: none;
   }
 
@@ -86,7 +83,7 @@
 }
 
 .profileSection {
-  background: rgb(28 76 138 / 90%);
+  background: var.$color-bg-white;
   border-radius: 15px;
   padding: 32px;
   box-shadow: 0 10px 30px rgb(0 0 0 / 10%);
@@ -151,14 +148,13 @@
 
   label {
     font-weight: 600;
-    color: #a5c8e2;
+    color: var.$color-dark;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
 
   span {
-    color: #fff;
     font-size: 16px;
   }
 
@@ -170,7 +166,7 @@
 }
 
 .bankingSection {
-  background: rgb(28 76 138 / 90%);
+  background: var.$color-bg-white;
   border-radius: 15px;
   padding: 32px;
   box-shadow: 0 10px 30px rgb(0 0 0 / 10%);
@@ -179,7 +175,7 @@
 
 .bankingInfo {
   .noData {
-    color: #a5c8e2;
+    color: var.$color-dark;
     font-style: italic;
     text-align: center;
     padding: 32px;
@@ -220,7 +216,7 @@
   right: 12px;
   background: none;
   border: none;
-  color: #a5c8e2;
+  color: var.$color-dark;
   cursor: pointer;
   padding: 4px;
   border-radius: 50%;
@@ -265,7 +261,7 @@
 
   label {
     font-weight: 600;
-    color: #a5c8e2;
+    color: var.$color-dark;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -300,7 +296,7 @@
 }
 
 .bookingsSection {
-  background: rgb(28 76 138 / 90%);
+  background: var.$color-bg-white;
   border-radius: 15px;
   padding: 32px;
   box-shadow: 0 10px 30px rgb(0 0 0 / 10%);
@@ -311,9 +307,9 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  max-height: 400px;
-  overflow-y: auto;
-  padding-right: 8px;
+
+  // max-height: 400px;
+  // overflow-y: auto;
 
   /* Стили для скроллбара */
   &::-webkit-scrollbar {
@@ -345,9 +341,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 24px;
-  background: rgb(180 92 50 / 80%);
   border-radius: 10px;
-  border: 1px solid #e9ecef;
+  border: 1px solid var.$contact-border;
   transition: all 0.3s ease;
   position: relative;
 
@@ -372,7 +367,7 @@
   }
 
   p {
-    color: #a5c8e2;
+    color: var.$color-dark;
     font-size: 14px;
     margin: 4px 0;
   }
@@ -438,7 +433,7 @@
   padding: 48px;
 
   p {
-    color: #a5c8e2;
+    color: var.$color-dark;
     font-size: 18px;
     margin-bottom: 24px;
   }
@@ -463,7 +458,7 @@
 }
 
 .quickActions {
-  background: rgb(28 76 138 / 90%);
+  background: var.$color-bg-white;
   border-radius: 15px;
   padding: 32px;
   box-shadow: 0 10px 30px rgb(0 0 0 / 10%);
@@ -472,7 +467,7 @@
   h2 {
     font-size: 24px;
     font-weight: 600;
-    color: #a5c8e2;
+    color: var.$color-dark;
     margin-bottom: 24px;
   }
 }
@@ -489,18 +484,14 @@
   align-items: center;
   gap: 16px;
   padding: 32px;
-  background: rgb(180 92 50 / 80%);
   border-radius: 10px;
   text-decoration: none;
-  color: #fff;
   transition: all 0.3s ease;
-  border: 1px solid #e9ecef;
+  border: 1px solid var.$color-border;
 
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgb(0 0 0 / 10%);
-    background: #f9a825;
-    color: white;
     text-decoration: none;
   }
 

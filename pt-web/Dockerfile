@@ -1,4 +1,3 @@
-# ---------- build ----------
 FROM node:22.7.0-alpine AS build
 WORKDIR /app
 
@@ -19,5 +18,5 @@ COPY --from=build /app/pt-web/build/ /usr/share/nginx/html/
 
 COPY pt-web/nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
+#EXPOSE 5174
 CMD ["nginx", "-g", "daemon off;"]
