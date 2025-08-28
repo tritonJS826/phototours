@@ -1,3 +1,4 @@
+
 .card {
   position: relative;
   margin-top: 40px;
@@ -123,6 +124,10 @@
 }
 
 .cta {
+  display: flex;             
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;    
   position: absolute;
   bottom: 15px;
   left: 30px;
@@ -134,6 +139,7 @@
   color: #102010;
   border: 0;
   font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
   transition:
     background-color 0.2s ease,
@@ -153,7 +159,12 @@
 }
 
 @media (width <= 640px) {
-  .title {
-    min-height: auto;
+  .cta {
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 42px;
+    font-size: 15px;
   }
 }

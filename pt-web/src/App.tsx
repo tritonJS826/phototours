@@ -47,7 +47,7 @@ export function App() {
             element={<ToursPage />}
           />
           <Route
-            path={PATHS.TOUR_DETAILS()}
+            path={PATHS.TOUR_DETAILS}
             element={<TourDetailsPage />}
           />
           <Route
@@ -68,19 +68,15 @@ export function App() {
           />
           <Route
             path={PATHS.PROFILE}
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
+            element={<ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>}
           />
           <Route
             path={PATHS.PROFILE_EDIT}
-            element={
-              <ProtectedRoute>
-                <EditProfile />
-              </ProtectedRoute>
-            }
+            element={<ProtectedRoute>
+              <EditProfile />
+            </ProtectedRoute>}
           />
           <Route
             path={PATHS.PROFILE_ID}
@@ -88,23 +84,15 @@ export function App() {
           />
           <Route
             path={PATHS.DASHBOARD}
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
+            element={<ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>}
           />
           <Route
             path={PATHS.NOTIFICATIONS}
-            element={
-              <ProtectedRoute>
-                <Notifications />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={PATHS.NOT_FOUND}
-            element={<NotFound />}
+            element={<ProtectedRoute>
+              <Notifications />
+            </ProtectedRoute>}
           />
           <Route
             path={PATHS.ADMIN_CREATE_TOUR}
@@ -118,9 +106,12 @@ export function App() {
             path={PATHS.ADMIN_TOUR_CONTINUE}
             element={<AdminTourContinueForm />}
           />
+          <Route
+            path={PATHS.NOT_FOUND}
+            element={<NotFound />}
+          />
         </Routes>
       </main>
-
       <Footer />
     </div>
   );
