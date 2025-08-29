@@ -2,13 +2,13 @@
 @use "../../styles/variables" as vars;
 
 .contactUs {
-  min-height: 100vh;
+  height: 100vh;
   background-image: url("./assets/wide.avif");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
-  overflow: auto;
+  overflow: hidden;
 
   @media (max-width: vars.$breakpoint-mobile) {
     background-position: center top;
@@ -42,7 +42,7 @@
       padding: vars.$spacing-xl;
       border-radius: vars.$border-radius-md;
       max-height: 90vh;
-      overflow-y: auto;
+      overflow: hidden;
     }
 
     .header {
