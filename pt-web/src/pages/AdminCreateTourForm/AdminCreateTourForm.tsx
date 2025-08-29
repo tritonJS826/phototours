@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {fetchData} from "src/api/http";
 import {Button} from "src/components/Button/Button";
-import styles from "src/components/AdminCreateTourForm/AdminCreateTourForm.module.scss";
+import styles from "src/pages/AdminCreateTourForm/AdminCreateTourForm.module.scss";
 
 const initialFormData = {
   title: "",
@@ -27,19 +28,15 @@ export const AdminCreateTourForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({...initialFormData});
   const [error, setError] = useState("");
-  const [guides, setGuides] = useState([]);
+  const [guides, setGuides] = useState<Guide[]>([]);
 
   useEffect(() => {
     const fetchGuides = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours/guides`);
-        if (!res.ok) {
-          throw new Error("Failed to load guides");
-        }
-        const data = await res.json();
+        const data = await fetchData<Guide[]>("/tours/guides");
         setGuides(data);
-      } catch {
-        setError("Error loading guides");
+      } catch (err: unknown) {
+        setError(err instanceof Error ? err.message : "Error loading guides");
       }
     };
     fetchGuides();
@@ -55,37 +52,21 @@ export const AdminCreateTourForm = () => {
     setError("");
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours`, {
+      const result = await fetchData<{ id: number }>("/tours", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
           ...formData,
           price: parseFloat(formData.price),
           guideId: parseInt(formData.guideId, 10),
           program: {text: formData.program.trim()},
         }),
+        headers: {"Content-Type": "application/json"},
       });
-
-      const text = await response.text();
-      let result;
-
-      try {
-        result = JSON.parse(text);
-      } catch {
-        result = text;
-      }
-
-      if (!response.ok) {
-        throw new Error(result?.message || "Failed to create tour");
-      }
       navigate(`/admin/tour/${result.id}/continue`);
     } catch (err: unknown) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("Error creating tour");
-      }
+      setError(err instanceof Error ? err.message : "Error creating tour");
     }
+
   };
 
   return (
@@ -196,3 +177,4 @@ export const AdminCreateTourForm = () => {
     </form>
   );
 };
+

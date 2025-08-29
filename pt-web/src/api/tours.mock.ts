@@ -5,7 +5,7 @@ import third from "src/assets/images/3.avif";
 import fourth from "src/assets/images/4.avif";
 import fifth from "src/assets/images/5.avif";
 import sixth from "src/assets/images/6.avif";
-import type {TourView} from "src/types/tour";
+import {Difficulty, type TourView} from "src/types/tour";
 
 export const mockTours: TourView[] = [
   {
@@ -14,7 +14,7 @@ export const mockTours: TourView[] = [
     title: "Dubai Photography Workshop",
     description:
       "Explore the UAE through your lens with this intensive photography workshop. Urban skylines and desert landscapes with pro guides.",
-    difficulty: "EASY",
+    difficulty: Difficulty.EASY,
     price: 1950,
     languages: ["English"],
     durationDays: 4,
@@ -43,7 +43,7 @@ export const mockTours: TourView[] = [
     id: 2,
     title: "Iceland Aurora Hunt",
     description: "Chasing Northern Lights with pro guides.",
-    difficulty: "EXPERIENCED",
+    difficulty: Difficulty.PRO,
     price: 2490,
     durationDays: 5,
     coverUrl: second,
@@ -58,7 +58,7 @@ export const mockTours: TourView[] = [
     title: "Dubai Photography Workshop",
     description:
       "Explore the UAE through your lens with this intensive photography workshop. Urban skylines and desert landscapes with pro guides.",
-    difficulty: "EASY",
+    difficulty: Difficulty.EASY,
     price: 1950,
     languages: ["English"],
     durationDays: 4,
@@ -87,7 +87,7 @@ export const mockTours: TourView[] = [
     id: 4,
     title: "Iceland Aurora Hunt",
     description: "Chasing Northern Lights with pro guides.",
-    difficulty: "EXPERIENCED",
+    difficulty: Difficulty.EXPERIENCED,
     price: 2490,
     durationDays: 5,
     coverUrl: fourth,
@@ -102,7 +102,7 @@ export const mockTours: TourView[] = [
     title: "Dubai Photography Workshop",
     description:
       "Explore the UAE through your lens with this intensive photography workshop. Urban skylines and desert landscapes with pro guides.",
-    difficulty: "EASY",
+    difficulty: Difficulty.EASY,
     price: 1950,
     languages: ["English"],
     durationDays: 4,
@@ -131,7 +131,7 @@ export const mockTours: TourView[] = [
     id: 6,
     title: "Iceland Aurora Hunt",
     description: "Chasing Northern Lights with pro guides.",
-    difficulty: "EXPERIENCED",
+    difficulty: Difficulty.EXPERIENCED,
     price: 2490,
     durationDays: 5,
     coverUrl: sixth,

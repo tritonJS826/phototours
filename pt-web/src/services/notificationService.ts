@@ -1,5 +1,4 @@
-import {API_BASE_URL} from "src/config/apiRoutes";
-
+import {fetchData} from "src/api/http";
 export interface NotificationItem {
   id: number;
   title: string;
@@ -23,89 +22,55 @@ export interface CreateNotificationData {
 class NotificationService {
 
   public async getNotifications(): Promise<NotificationItem[]> {
-    const response = await fetch(`${API_BASE_URL}/general/notifications`, {
+    return await fetchData<NotificationItem[]>("/notifications", {
       method: "GET",
       headers: this.getAuthHeaders(),
     });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    return await response.json();
   }
 
   public async getUnreadCount(): Promise<number> {
-    const response = await fetch(`${API_BASE_URL}/general/notifications/unread-count`, {
+    const data = await fetchData<{ unreadCount: number }>("/notifications/unread-count", {
       method: "GET",
       headers: this.getAuthHeaders(),
     });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
 
     return data.unreadCount;
   }
 
   public async createNotification(data: CreateNotificationData): Promise<NotificationItem> {
-    const response = await fetch(`${API_BASE_URL}/general/notifications`, {
+    return await fetchData<NotificationItem>("/notifications", {
       method: "POST",
       headers: this.getAuthHeaders(),
       body: JSON.stringify(data),
     });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    return await response.json();
   }
 
   public async markAsRead(id: number): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/general/notifications/${id}/read`, {
+    await fetchData(`/notifications/${id}/read`, {
       method: "PATCH",
       headers: this.getAuthHeaders(),
     });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
   }
 
   public async markAllAsRead(): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/general/notifications/mark-all-read`, {
+    await fetchData("/notifications/mark-all-read", {
       method: "PATCH",
       headers: this.getAuthHeaders(),
     });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
   }
 
   public async deleteNotification(id: number): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/general/notifications/${id}`, {
+    await fetchData(`/notifications/${id}`, {
       method: "DELETE",
       headers: this.getAuthHeaders(),
     });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
   }
 
   public async deleteAllNotifications(): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/general/notifications`, {
+    await fetchData("/notifications", {
       method: "DELETE",
       headers: this.getAuthHeaders(),
     });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
   }
 
   private getAuthHeaders(): HeadersInit {
@@ -120,3 +85,4 @@ class NotificationService {
 }
 
 export const notificationService = new NotificationService();
+
