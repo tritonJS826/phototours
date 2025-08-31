@@ -1,14 +1,14 @@
 import {Route, Routes} from "react-router-dom";
-import {AdminCreateTourForm} from "src/components/AdminCreateTourForm/AdminCreateTourForm";
-import {AdminTourContinueForm} from "src/components/AdminTourContinueForm/AdminTourContinueForm";
-import {AdminTourEdit} from "src/components/AdminTourEditForm/AdminTourEditForm";
 import {Footer} from "src/components/Footer/Footer";
 import {Header} from "src/components/Header/Header";
 import {ProtectedRoute} from "src/components/ProtectedRoute/ProtectedRoute";
 import {ScrollToTop} from "src/components/ScrollToTop/ScrollToTop";
 import {PATHS} from "src/constants/routes";
 import {AboutUs} from "src/pages/aboutUs/AboutUsPage";
+import {AdminCreateTourForm} from "src/pages/AdminCreateTourForm/AdminCreateTourForm";
 import {AdminPage} from "src/pages/adminPage/AdminPage";
+import {AdminTourContinueForm} from "src/pages/AdminTourContinueForm/AdminTourContinueForm";
+import {AdminTourEdit} from "src/pages/AdminTourEditForm/AdminTourEditForm";
 import {Cart} from "src/pages/cart/Cart";
 import {ContactUs} from "src/pages/contactUs/ContactUs";
 import {Dashboard} from "src/pages/dashboard/Dashboard";

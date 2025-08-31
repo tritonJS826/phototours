@@ -1,51 +1,9 @@
 import {useEffect, useRef, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
+import {fetchData} from "src/api/http";
 import {Button} from "src/components/Button/Button";
-import styles from "src/components/AdminTourEditForm/AdminTourEditForm.module.scss";
-
-// Types
-type DifficultyLevel = "BEGINNER" | "EXPERIENCED" | "PRO";
-
-export enum MaterialType {
-  PDF = "PDF",
-  VIDEO = "VIDEO",
-  ROUTE = "ROUTE",
-  TIPS = "TIPS",
-}
-
-interface TourMaterial {
-  id?: number;
-  file?: File;
-  url?: string;
-  title: string;
-  type: MaterialType;
-  isNew?: boolean;
-}
-
-interface TourData {
-  title: string;
-  description: string;
-  region: string;
-  difficulty: DifficultyLevel;
-  price: number | "";
-  program: string;
-  guideId: number | "";
-  tags: string;
-  dates: string;
-  materials: TourMaterial[];
-  photos: File[];
-  videos: File[];
-}
-
-type Guide = {
-  id: number;
-  experience: string;
-  user: {
-    id: number;
-    firstName: string;
-    lastName: string;
-  };
-};
+import {DifficultyLevel, Guide, MaterialType, TourData, TourDataFromApi, TourMaterial} from "src/types/tour";
+import styles from "src/pages/AdminTourEditForm/AdminTourEditForm.module.scss";
 
 export const AdminTourEdit = () => {
   const {id} = useParams<{ id: string }>();
@@ -56,7 +14,7 @@ export const AdminTourEdit = () => {
     title: "",
     description: "",
     region: "",
-    difficulty: "BEGINNER",
+    difficulty: DifficultyLevel.BEGINNER,
     price: "",
     program: "",
     guideId: "",
@@ -70,21 +28,17 @@ export const AdminTourEdit = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
-  const [guides, setGuides] = useState([]);
+  const [guides, setGuides] = useState<Guide[]>([]);
 
   const REMOVE_COUNT = 1;
 
   useEffect(() => {
     const fetchGuides = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours/guides`);
-        if (!res.ok) {
-          throw new Error("Failed to load guides");
-        }
-        const data = await res.json();
+        const data = await fetchData<Guide[]>("/tours/guides");
         setGuides(data);
-      } catch {
-        setError("Error loading guides");
+      } catch (err: unknown) {
+        setError(err instanceof Error ? err.message : "Error loading guides");
       }
     };
     fetchGuides();
@@ -94,15 +48,35 @@ export const AdminTourEdit = () => {
     if (!id) {
       return;
     }
-
     const fetchTour = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours/${id}`);
-        if (!res.ok) {
-          throw new Error(`Failed to fetch tour with ID ${id}`);
-        }
+        const data = await fetchData<TourDataFromApi>(`/tours/${id}`);
 
-        const data = await res.json();
+        const normalizedTags = Array.isArray(data.tags)
+          ? data.tags.map((t: string | { name?: string }) => (typeof t === "string" ? t : t.name || "")).join(", ")
+          : data.tags || "";
+
+        const normalizedDates = Array.isArray(data.dates)
+          ? data.dates.map((d: string | { date?: string }) =>
+            typeof d === "string" ? d : d.date?.split("T")[0] || "",
+          ).join(", ")
+          : data.dates || "";
+
+        const normalizedMaterials = Array.isArray(data.materials)
+          ? data.materials.map((m: { id?: number; url?: string; title?: string; type?: MaterialType }) => ({
+            id: m.id,
+            url: m.url,
+            title: m.title || "",
+            type: m.type || MaterialType.PDF,
+            isNew: false,
+          }))
+          : [];
+
+        const normalizedProgram = typeof data.program === "string"
+          ? data.program
+          : "text" in data.program
+            ? data.program.text
+            : "";
 
         setFormData({
           title: data.title || "",
@@ -110,27 +84,11 @@ export const AdminTourEdit = () => {
           region: data.region || "",
           difficulty: data.difficulty || "BEGINNER",
           price: data.price || "",
-          program: data.program?.text || "",
+          program: normalizedProgram,
           guideId: data.guideId || "",
-          tags: Array.isArray(data.tags)
-            ? data.tags.map((t: { name?: string } | string) =>
-              typeof t === "string" ? t : t.name || "",
-            ).join(", ")
-            : "",
-          dates: Array.isArray(data.dates)
-            ? data.dates.map((d: { date?: string }) =>
-              typeof d === "string" ? d : d.date?.split("T")[0],
-            ).join(", ")
-            : "",
-          materials: Array.isArray(data.materials)
-            ? data.materials.map((m: { id?: number; url?: string; title?: string; type?: MaterialType }) => ({
-              id: m.id,
-              url: m.url,
-              title: m.title,
-              type: m.type,
-              isNew: false,
-            }))
-            : [],
+          tags: normalizedTags,
+          dates: normalizedDates,
+          materials: normalizedMaterials,
           photos: [],
           videos: [],
         });
@@ -144,7 +102,6 @@ export const AdminTourEdit = () => {
     fetchTour();
   }, [id]);
 
-  // Form handling
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
@@ -166,7 +123,6 @@ export const AdminTourEdit = () => {
     });
   };
 
-  // File upload
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
       return;
@@ -194,7 +150,6 @@ export const AdminTourEdit = () => {
     });
   };
 
-  // Drag and drop
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     const files = Array.from(e.dataTransfer.files);
@@ -226,7 +181,7 @@ export const AdminTourEdit = () => {
     if (material.id) {
       try {
         await fetch(
-          `${import.meta.env.VITE_API_BASE_URL}/general/tours/materials/${material.id}`,
+          `${import.meta.env.VITE_API_BASE_URL}/tours/materials/${material.id}`,
           {method: "DELETE"},
         );
       } catch {
@@ -257,7 +212,7 @@ export const AdminTourEdit = () => {
         materialFormData.append("type", material.type);
 
         const res = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL}/general/tours/${id}/materials`,
+          `${import.meta.env.VITE_API_BASE_URL}/tours/${id}/materials`,
           {
             method: "PATCH",
             body: materialFormData,
@@ -281,9 +236,8 @@ export const AdminTourEdit = () => {
 
     try {
 
-      await fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours/${id}`, {
+      await fetchData(`/tours/${id}`, {
         method: "PUT",
-        headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
           title: formData.title,
           description: formData.description,
@@ -297,18 +251,16 @@ export const AdminTourEdit = () => {
 
       const tags = formData.tags.split(",").map(t => t.trim()).filter(Boolean);
       if (tags.length) {
-        await fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours/${id}/tags`, {
+        await fetchData(`/tours/${id}/tags`, {
           method: "PATCH",
-          headers: {"Content-Type": "application/json"},
           body: JSON.stringify({tags}),
         });
       }
 
       const dates = formData.dates.split(",").map(d => d.trim()).filter(Boolean);
       if (dates.length) {
-        await fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours/${id}/dates`, {
+        await fetchData(`/tours/${id}/dates`, {
           method: "PATCH",
-          headers: {"Content-Type": "application/json"},
           body: JSON.stringify({dates}),
         });
       }
@@ -318,7 +270,7 @@ export const AdminTourEdit = () => {
           const form = new FormData();
           form.append("file", file);
 
-          return fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours/${id}/photos`, {
+          return fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/photos`, {
             method: "PATCH",
             body: form,
           });
@@ -330,7 +282,7 @@ export const AdminTourEdit = () => {
           const form = new FormData();
           form.append("file", file);
 
-          return fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours/${id}/videos`, {
+          return fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/videos`, {
             method: "PATCH",
             body: form,
           });

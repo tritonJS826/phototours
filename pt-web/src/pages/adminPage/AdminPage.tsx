@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {fetchData} from "src/api/http";
 import {Button} from "src/components/Button/Button";
 import {Container} from "src/components/Container/Container";
 import styles from "src/pages/adminPage/AdminPage.module.scss";
@@ -29,12 +30,9 @@ export function AdminPage() {
   const [, setError] = useState("");
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours`)
-      .then((res) => res.json()
-        .then((data) => {
-          setTours(data);
-        })
-        .catch((err) => setError("Failed to load tours: " + err.message)));
+    fetchData<Tour[]>("/tours")
+      .then((data) => setTours(data))
+      .catch((err) => setError("Failed to load tours: " + err.message));
   }, []);
 
   const handleDelete = async (id: number) => {
@@ -43,16 +41,15 @@ export function AdminPage() {
     }
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/general/tours/${id}`, {method: "DELETE"});
-      if (res.ok) {
-        setTours((prev) => prev.filter((t) => t.id !== id));
-        setSelectedTour(null);
+      await fetchData<void>(`/tours/${id}`, {method: "DELETE"});
+      setTours((prev) => prev.filter((t) => t.id !== id));
+      setSelectedTour(null);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
       } else {
-        const errorData = await res.json();
-        setError(errorData.message || "Failed to delete tour");
+        setError(String(err));
       }
-    } catch {
-      setError("Error deleting tour:");
     }
   };
 

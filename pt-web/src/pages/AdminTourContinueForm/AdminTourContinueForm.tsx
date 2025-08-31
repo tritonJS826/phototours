@@ -1,7 +1,8 @@
 import {useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
+import {fetchData} from "src/api/http";
 import {Button} from "src/components/Button/Button";
-import styles from "src/components/AdminTourContinueForm/AdminTourContinueForm.module.scss";
+import styles from "src/pages/AdminTourContinueForm/AdminTourContinueForm.module.scss";
 
 export const AdminTourContinueForm = () => {
   const {id} = useParams();
@@ -73,17 +74,15 @@ export const AdminTourContinueForm = () => {
         .filter(Boolean);
 
       if (tags.length) {
-        await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/tags`, {
+        await fetchData(`/tours/${id}/tags`, {
           method: "PATCH",
-          headers: {"Content-Type": "application/json"},
           body: JSON.stringify({tags}),
         });
       }
 
       if (dates.length) {
-        await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/dates`, {
+        await fetchData(`/tours/${id}/dates`, {
           method: "PATCH",
-          headers: {"Content-Type": "application/json"},
           body: JSON.stringify({dates}),
         });
       }
