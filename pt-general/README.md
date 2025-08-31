@@ -1,124 +1,70 @@
 # PT-General Server
 
-This is a Node.js Express server for the PhotoTours application.
+This is a **Node.js + Express backend** for the PhotoTours application, using Prisma ORM and PostgreSQL.
 
-## Getting Started
+---
 
-1.  Install dependencies:
+## 🚀 Getting Started
 
-    ```bash
-    pnpm install
-    ```
-
-2.  Create a `.env` file in the root of this directory and add the following environment variable:
-
-    ```
-    DATABASE_URL='postgresql://USER:PASSWORD@HOST:PORT/DATABASE'
-    ```
-
-    Replace the values with your database connection details.
-
-3.  Run the database migrations:
-
-    ```bash
-    pnpm prisma:migrate
-    ```
-
-    This will create the necessary tables in your database. The `prisma:migrate` script runs `prisma migrate dev`. This command should be used during development to create and apply migrations.
-
-4.  Generate the Prisma client:
-
-    ```bash
-    pnpm prisma:generate
-    ```
-
-    This will generate the Prisma client based on your schema. The `prisma:generate` script runs `prisma generate`. This command should be run after every change to the `schema.prisma` file.
-
-5.  Start the development server:
-    ```bash
-    pnpm dev
-    ```
-    The server will start on the port specified in your `.env` file, or on port 3000 by default.
-
-## Scripts
-
-- `pnpm dev`: Starts the server in development mode with hot reloading.
-- `pnpm build`: Compiles the TypeScript code to JavaScript.
-- `pnpm start`: Starts the server in production mode.
-- `pnpm prisma:migrate`: Runs database migrations.
-- `pnpm prisma:generate`: Generates the Prisma client.
-
-## reset:db script
-
-To fill the database with data, go to the `src/scripts` folder where the reset:db script and instructions for it are located.
-
-## Zoho CRM Integration
-
-### 1. Registration on Zoho Developer Console
-
-1. Go to Zoho Developer Console
-2. Create an account or sign in to existing one
-3. Create a new project (Add Project)
-
-### 2. OAuth 2.0 Application Setup
-
-1. Go to https://api-console.zoho.eu → 'Add Client' → Server-based Applications
-2. Fill out the form:
-   - **Client Name**: Phototours CRM
-   - **Homepage URL**: http://localhost:8000 (for development)
-   - **Authorized Redirect URIs**: http://localhost:8000/auth/zoho/callback
-3. Save Client ID and Client Secret
-
-### 3. Obtaining Access Tokens
-
-1. Form the authorization URL:
-   ```
-   https://accounts.zoho.com/oauth/v2/auth?response_type=code&client_id=YOUR_CLIENT_ID&scope=ZohoCRM.modules.ALL,ZohoCRM.settings.ALL&redirect_uri=http://localhost:8000/auth/zoho/callback&access_type=offline
-   ```
-2. Open the URL in browser and authorize
-3. Copy the received `code` from redirect URL even if it shows incorrect or empty page
-
-### 4. Exchanging Code for Tokens
-
-1. Send POST request:
-
-   ```
-   POST https://accounts.zoho.com/oauth/v2/token
-
-   Content-Type: application/x-www-form-urlencoded
-
-   code=YOUR_CODE&client_id=YOUR_CLIENT_ID&client_secret=YOUR_CLIENT_SECRET&redirect_uri=http://localhost:8000/auth/zoho/callback&grant_type=authorization_code
+1. Install dependencies:
+   ```bash
+   pnpm install
    ```
 
-2. Get `access_token` and `refresh_token`
+2. Create `.env` file in this folder:
+   ```
+   DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE"
+   ```
 
-### 5. Environment Variables Setup
+3. Run database migrations:
+   ```bash
+   pnpm prisma:migrate
+   ```
 
-Add to `.env` file:
+4. Generate Prisma client:
+   ```bash
+   pnpm prisma:generate
+   ```
 
+5. Start dev server:
+   ```bash
+   pnpm dev
+   ```
+   API runs at ➜ http://localhost:8000
+
+---
+
+## 📜 Scripts
+
+- `pnpm dev` — start in dev mode with hot reload  
+- `pnpm build` — compile TypeScript  
+- `pnpm start` — run in production  
+- `pnpm prisma:migrate` — apply database migrations  
+- `pnpm prisma:generate` — regenerate Prisma client  
+
+---
+
+## 🗄 reset:db script
+Go to `src/scripts` folder for `reset.ts` script and instructions to seed database.
+
+---
+
+## 🔗 Integrations
+
+### Zoho CRM
+- OAuth 2.0 setup  
+- Automatic lead creation on user registration  
+- Refresh token flow supported  
+
+Add to `.env`:
 ```
 ZOHO_CLIENT_ID=your_client_id
 ZOHO_CLIENT_SECRET=your_client_secret
 ZOHO_REFRESH_TOKEN=your_refresh_token
 ```
 
-### 6. Usage in Application
-
-- Access Token is automatically refreshed via Refresh Token
-- When users register, leads are automatically created in Zoho CRM
-- All user data is transferred to the CRM system
-
-## Cloudinary Integration
-
-This project uses [Cloudinary](https://cloudinary.com/) for storing and managing media files such as photos, videos, and avatars.
-
-### Overview
-
-- Media files are uploaded via middleware using `multer-storage-cloudinary`.
-- Uploaded file URLs are saved in the database for efficient retrieval.
-- Cloudinary handles image/video optimization and delivery.
-- Upload folder path is configurable via environment variables.
-
-### Setup
-
-Please refer to the official [Cloudinary documentation](https://cloudinary.com/documentation) for detailed setup instructions.
+### Cloudinary
+- Media upload via `multer-storage-cloudinary`  
+- Optimized delivery of photos/videos  
+- URL saved in DB  
+- Configurable via `.env`  

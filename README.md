@@ -1,113 +1,51 @@
-# Photo Tours – Frontend
+# PhotoTours Monorepo
 
-This is the **frontend** part of the Photo Tours project, built with **React + TypeScript + Vite**.  
-It is located in the `pt-web/` directory, so backend can be added later as a separate service.
-
----
+This repository contains both frontend and backend parts of the PhotoTours project.
 
 ## 📂 Project structure
 
-At the root of the repo:
-
 ```
 / (root)
-  pt-web/      → React + TS + Vite frontend
-  pt-general/  → backend folder
+  pt-web/      → React + TypeScript + Vite frontend
+  pt-general/  → Node.js + Express backend with Prisma
 ```
 
-Inside `pt-web/`:
-
-```
-src/             → main source code
-public/          → static assets
-vite.config.ts   → Vite configuration
-tsconfig.json    → TypeScript configuration
-eslint.config.js → ESLint configuration
-```
-
----
-
-## 🛠 Requirements
-
-- **Node.js 22.5.1**
-- **pnpm 9.8.0** (we use pnpm as the package manager)
-
-Install `pnpm` globally if you don’t have it yet:
-
-```bash
-npm install -g pnpm
-```
-
-Check versions:
-
-```bash
-node -v
-pnpm -v
-```
-
----
-
-## 🚀 Setup & Development
-
+## 🚀 Quick Start
 
 1. Install dependencies:
+   ```bash
+   pnpm install
+   ```
 
-```bash
-pnpm install
-```
+2. Set up environment variables:
+   ```bash
+   ./useEnvs.sh local
+   ```
 
-2. Create .env file inside all modules with variables from .env.local.example (run "useEnvs.sh" script for such purpose)
+3. Start databases and nginx in containers:
+   ```bash
+   docker-compose -f local.docker-compose.yml up
+   ```
 
-`./useEnvs.sh local`
+4. Run database migrations:
+   ```bash
+   pnpm run general:prisma:migrate
+   ```
 
-3. Run databases and nginx in containers (check local.nginx.conf for right addresses):
+5. Start the application:
+   ```bash
+   pnpm start
+   ```
 
-`docker-compose -f local.docker-compose.yml up`
+- Frontend: http://localhost:5174  
+- Backend API: http://localhost:8000  
+- Grafana: http://localhost:5173/grafana/login  
 
-grafana will be available by [link](http://localhost:5173/grafana/login) locally
+---
 
-5. Run database migration to have appropriate tables in the db
+## Development
 
-`pnpm run general:prisma:migrate`
+Navigate to subprojects for details:
 
-4. Run dev server:
-
-```bash
-pnpm start
-```
-
-pt-webapp will be available by[link](http://localhost:5173) locally
-
-# Quick Start
-# Running the Application
-
-1. Install dependencies
-```bash
-pnpm install
-```
-2. Start web application
-```bash
-pnpm start
-```
-or
-```bash
-pnpm dev
-```
-3. Start backend
-```bash
-pnpm general:start
-```
-Development
-
-For development, navigate to the corresponding subproject:
-
-1. Web application
-```bash
-cd pt-web
-pnpm dev
-```
-2. Backend
-```bash
-cd pt-general  
-pnpm dev
-```
+- [Frontend README](./pt-web/README.md)  
+- [Backend README](./pt-general/README.md)  
