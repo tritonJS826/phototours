@@ -48,5 +48,4 @@ This repository contains both frontend and backend parts of the PhotoTours proje
 Navigate to subprojects for details:
 
 - [Frontend README](./pt-web/README.md)  
-- [Backend README](./pt-general/README.md)  
-
+- [Backend README](./pt-general/README.md)
