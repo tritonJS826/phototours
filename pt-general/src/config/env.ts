@@ -11,20 +11,16 @@ export const env = cleanEnv(process.env, {
   ORIGIN_PORT: port(),
   CORS_ORIGIN: url(),
 
-  // JWT Configuration
   JWT_SECRET: str(),
   JWT_EXPIRES_IN: str(),
 
-  // Password Configuration
   SALT_ROUNDS: port({default: 12}),
 
-  // Zoho API Configuration
   ZOHO_CLIENT_ID: str(),
   ZOHO_CLIENT_SECRET: str(),
   ZOHO_REDIRECT_URI: str(),
   ZOHO_REFRESH_TOKEN: str({default: ''}),
 
-  // Cloudinary Configuration
   CLOUDINARY_CLOUD_NAME: str(),
   CLOUDINARY_API_KEY: str(),
   CLOUDINARY_API_SECRET: str(),
