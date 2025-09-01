@@ -23,7 +23,7 @@ app.get('/health', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  // console.log(`📚 Documentation server running at http://localhost:${PORT}`);
-  // console.log(`📖 Open http://localhost:${PORT} in your browser`);
-  // console.log(`🏥 Health check: http://localhost:${PORT}/health`);
+  // console.log(`Documentation server running at http://localhost:${PORT}`);
+  // console.log(`Open http://localhost:${PORT} in your browser`);
+  // console.log(`Health check: http://localhost:${PORT}/health`);
 }); 
