@@ -3,7 +3,6 @@ import {Footer} from "src/components/Footer/Footer";
 import {Header} from "src/components/Header/Header";
 import {ProtectedRoute} from "src/components/ProtectedRoute/ProtectedRoute";
 import {ScrollToTop} from "src/components/ScrollToTop/ScrollToTop";
-import {PATHS} from "src/constants/routes";
 import {AboutUs} from "src/pages/aboutUs/AboutUsPage";
 import {AdminCreateTourForm} from "src/pages/AdminCreateTourForm/AdminCreateTourForm";
 import {AdminPage} from "src/pages/adminPage/AdminPage";
@@ -22,6 +21,7 @@ import {Profile} from "src/pages/profile/Profile";
 import {PublicProfile} from "src/pages/profile/PublicProfile";
 import {TourDetailsPage} from "src/pages/tourDetailsPage/TourDetailsPage";
 import {ToursPage} from "src/pages/toursPage/ToursPage";
+import {PATHS} from "src/routes/routes";
 
 export function App() {
   return (

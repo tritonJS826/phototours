@@ -1,8 +1,8 @@
 import {Link} from "react-router-dom";
 import {Container} from "src/components/Container/Container";
 import {TourCard} from "src/components/Tour/Tour";
-import {PATHS} from "src/constants/routes";
 import {useTours} from "src/hooks/useTours";
+import {PATHS} from "src/routes/routes";
 import styles from "src/components/ToursRail/ToursRail.module.scss";
 
 interface ToursRailProps {
