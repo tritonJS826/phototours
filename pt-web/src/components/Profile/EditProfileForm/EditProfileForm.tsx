@@ -1,7 +1,7 @@
 import React, {useRef, useState} from "react";
 import {useAuth} from "src/hooks/useAuth";
 import {getProfileImageUrl} from "src/utils/profileImage";
-import styles from "src/components/Auth/EditProfileForm.module.scss";
+import styles from "src/components/Profile/EditProfileForm/EditProfileForm.module.scss";
 
 interface EditProfileData {
   firstName: string;

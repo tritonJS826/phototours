@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {useAuth} from "src/hooks/useAuth";
-import styles from "src/components/Auth/UserProfile.module.scss";
+import styles from "src/components/Profile/UserProfile/UserProfile.module.scss";
 
 export const UserProfile: React.FC = () => {
   const {user} = useAuth();

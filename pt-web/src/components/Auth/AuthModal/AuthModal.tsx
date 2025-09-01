@@ -1,7 +1,7 @@
 import {useState} from "react";
-import {LoginForm} from "src/components/Auth/LoginForm";
-import {RegisterForm} from "src/components/Auth/RegisterForm";
-import styles from "src/components/Auth/Auth.module.scss";
+import {LoginForm} from "src/components/Auth/LoginForm/LoginForm";
+import {RegisterForm} from "src/components/Auth/RegisterForm/RegisterForm";
+import styles from "src/components/Auth/AuthModal/AuthModal.module.scss";
 
 interface AuthModalProps {
   isOpen: boolean;
