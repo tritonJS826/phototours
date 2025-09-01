@@ -1,5 +1,5 @@
 import {memo} from "react";
-import logo from "src/assets/icons/logo.png";
+import logo from "/logo.png";
 import styles from "src/components/Logo/Logo.module.scss";
 
 interface LogoProps {

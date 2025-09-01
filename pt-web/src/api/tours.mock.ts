@@ -1,10 +1,10 @@
 /* eslint-disable max-len */
-import first from "src/assets/images/1.avif";
-import second from "src/assets/images/2.avif";
-import third from "src/assets/images/3.avif";
-import fourth from "src/assets/images/4.avif";
-import fifth from "src/assets/images/5.avif";
-import sixth from "src/assets/images/6.avif";
+const first = "/images/1.avif";
+const second = "/images/2.avif";
+const third = "/images/3.avif";
+const fourth = "/images/4.avif";
+const fifth = "/images/5.avif";
+const sixth = "/images/6.avif";
 import {Difficulty, type TourView} from "src/types/tour";
 
 export const mockTours: TourView[] = [

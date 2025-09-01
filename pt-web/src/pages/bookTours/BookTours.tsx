@@ -1,7 +1,7 @@
-import bridge from "src/assets/images/bridge.avif";
-import lake from "src/assets/images/lake.avif";
-import train from "src/assets/images/train.avif";
 import {Container} from "src/components/Container/Container";
+import bridge from "src/pages/bookTours/images/bridge.avif";
+import lake from "src/pages/bookTours/images/lake.avif";
+import train from "src/pages/bookTours/images/train.avif";
 import styles from "src/pages/bookTours/BookTours.module.scss";
 
 export function BookTours() {

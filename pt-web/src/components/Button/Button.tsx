@@ -7,26 +7,22 @@ interface BaseButtonProps {
   className?: string;
 }
 
-// Пропсы для кнопки
 type ButtonAsButtonProps = BaseButtonProps &
   ButtonHTMLAttributes<HTMLButtonElement> & {
     href?: undefined;
   };
 
-// Пропсы для ссылки
 type ButtonAsAnchorProps = BaseButtonProps &
   AnchorHTMLAttributes<HTMLAnchorElement> & {
     href: string;
   };
 
-// Объединяем оба типа в один
 type ButtonProps = ButtonAsButtonProps | ButtonAsAnchorProps;
 
 export function Button({children, variant = "primary", className, ...rest}: ButtonProps) {
   const buttonClassName = `${styles.button} ${styles[variant]} ${className || ""}`;
 
   if (rest.href) {
-    // Если есть href, рендерим <a> и передаем все пропсы, включая href
     return (
       <a
         className={buttonClassName}
@@ -37,7 +33,6 @@ export function Button({children, variant = "primary", className, ...rest}: Butt
     );
   }
 
-  // Если нет href, рендерим <button>
   return (
     <button
       className={buttonClassName}

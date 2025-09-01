@@ -8,7 +8,6 @@ import {useAuth} from "src/hooks/useAuth";
 import {getProfileImageUrl} from "src/utils/profileImage";
 import styles from "src/pages/dashboard/Dashboard.module.scss";
 
-// Constants
 const ACCOUNT_NUMBER_MASK_LENGTH = 4;
 const UNREAD_COUNT_DECREMENT = 1;
 const FIRST_CHAR_INDEX = 0;
@@ -140,7 +139,7 @@ export function Dashboard() {
       tourTitle: bookingData.tourTitle,
       date: bookingData.date,
       status: "Pending",
-      price: 299, // Default price, can be made dynamic
+      price: 299,
     };
     const updatedBookings = [...bookings, newBooking];
     setBookings(updatedBookings);

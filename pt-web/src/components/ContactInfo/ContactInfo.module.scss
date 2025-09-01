@@ -5,7 +5,7 @@
   flex-direction: column;
   gap: vars.$gap-xl;
   width: 100%;
-  padding-top: 40px; // Align right column with left
+  padding-top: 40px;
 
   .contactDetails {
     display: flex;
@@ -39,7 +39,6 @@
           vars.$transition-color;
         outline: none;
 
-        // Focus states for accessibility
         &:focus,
         &:focus-visible {
           outline: 2px solid vars.$contact-btn-bg;
@@ -47,7 +46,6 @@
           background-color: vars.$contact-btn-bg-transparent-10;
         }
 
-        // Hover state
         &:hover {
           background-color: vars.$contact-btn-bg-transparent-10;
           transform: translateX(5px);
@@ -57,12 +55,10 @@
           }
         }
 
-        // Active state
         &:active {
           transform: translateX(3px);
         }
 
-        // Disabled state
         &:disabled {
           opacity: 0.6;
           cursor: not-allowed;
@@ -82,14 +78,14 @@
     margin-top: vars.$gap-sm;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; // Prevent stretching
+    justify-content: flex-start;
     gap: 0;
 
     h3 {
       color: vars.$btn-primary-bg;
       font-size: vars.$font-size-xl;
       font-weight: 600;
-      margin-bottom: 12px; // 12px gap between "Follow us" and icons
+      margin-bottom: 12px;
       margin-top: 10px;
     }
 
@@ -97,7 +93,7 @@
       display: flex;
       gap: vars.$gap-xl;
       flex-wrap: wrap;
-      margin-bottom: 0; // Remove gap to lift QR code
+      margin-bottom: 0;
 
       .socialLink {
         display: flex;
@@ -113,7 +109,6 @@
           vars.$transition-color;
         outline: none;
 
-        // Focus states for accessibility
         &:focus,
         &:focus-visible {
           outline: 2px solid vars.$contact-btn-bg;
@@ -121,19 +116,16 @@
           background-color: vars.$contact-btn-bg-transparent-10;
         }
 
-        // Hover state
         &:hover {
           background-color: vars.$contact-btn-bg;
           color: vars.$btn-primary-bg;
           transform: translateY(-2px);
         }
 
-        // Active state
         &:active {
           transform: translateY(-1px);
         }
 
-        // Disabled state
         &:disabled {
           opacity: 0.6;
           cursor: not-allowed;
@@ -175,7 +167,6 @@
   }
 }
 
-// ====== RESPONSIVE DESIGN ======
 @media (max-width: vars.$breakpoint-mobile) {
   .contactInfo {
     gap: vars.$gap-xxxl;
@@ -226,7 +217,6 @@
   }
 }
 
-// ====== ACCESSIBILITY ======
 @media (prefers-reduced-motion: reduce) {
   .contactInfo {
     .contactLink {
@@ -260,7 +250,6 @@
   }
 }
 
-// High contrast mode support
 @media (prefers-contrast: high) {
   .contactInfo {
     .contactLink {

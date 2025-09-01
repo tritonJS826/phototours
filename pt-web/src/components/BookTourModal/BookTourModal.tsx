@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import {X} from "lucide-react";
 import styles from "src/components/BookTourModal/BookTourModal.module.scss";
 
-// Constants for number validation
 const MIN_PEOPLE = 1;
 const MAX_PEOPLE = 20;
 
@@ -36,7 +35,6 @@ export function BookTourModal({isOpen, onClose, onBook}: BookTourModalProps) {
       [name]: value,
     }));
 
-    // Clear error when user starts typing
     if (errors[name as keyof BookingData]) {
       setErrors(prev => ({
         ...prev,
@@ -71,7 +69,6 @@ export function BookTourModal({isOpen, onClose, onBook}: BookTourModalProps) {
     if (validateForm()) {
       onBook(formData);
       onClose();
-      // Reset form
       setFormData({
         tourTitle: "",
         date: "",

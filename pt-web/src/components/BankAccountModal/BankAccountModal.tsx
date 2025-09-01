@@ -33,7 +33,6 @@ export function BankAccountModal({isOpen, onClose, onSave}: BankAccountModalProp
       ...prev,
       [name]: value,
     }));
-    // Clear error when user starts typing
     if (errors[name as keyof BankAccountData]) {
       setErrors(prev => ({
         ...prev,
@@ -76,7 +75,6 @@ export function BankAccountModal({isOpen, onClose, onSave}: BankAccountModalProp
     if (validateForm()) {
       onSave(formData);
       onClose();
-      // Reset form
       setFormData({
         accountHolderName: "",
         accountNumber: "",

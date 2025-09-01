@@ -1,6 +1,6 @@
 # Photo Tours – Frontend
 
-This is the **frontend** part of the PhotoTours project, built with **React + TypeScript + Vite**.  
+This is the **frontend** part of the PhotoTours project, built with **React + TypeScript + Vite**.
 
 ---
 
@@ -22,6 +22,7 @@ eslint.config.js → ESLint configuration
 - **pnpm 9.8.0**
 
 Check versions:
+
 ```bash
 node -v
 pnpm -v
@@ -32,6 +33,7 @@ pnpm -v
 ## 🚀 Setup & Development
 
 1. Install dependencies:
+
    ```bash
    pnpm install
    ```
@@ -49,13 +51,11 @@ pnpm -v
 
 ## 📜 Scripts
 
-- `pnpm dev` — start development server  
-- `pnpm start` — alias for `pnpm dev`  
-- `pnpm build` — build for production  
-- `pnpm serve` — preview build locally  
-- `pnpm lint-fix` — run ESLint with auto-fix  
-- `pnpm format` — format files with Prettier  
+- `pnpm dev` — start development server
+- `pnpm start` — alias for `pnpm dev`
+- `pnpm build` — build for production
+- `pnpm serve` — preview build locally
+- `pnpm lint-fix` — run ESLint with auto-fix
+- `pnpm format` — format files with Prettier
 - `pnpm stylelint-fix` — fix SCSS with Stylelint  
-- `pnpm storybook` — run Storybook on port 6006  
-
-
+- `pnpm storybook` — run Storybook on port 6006

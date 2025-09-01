@@ -138,7 +138,6 @@ export const EditProfileForm: React.FC = () => {
         onSubmit={handleSubmit}
         className={styles.editForm}
       >
-        {/* Аватар */}
         <div className={styles.avatarSection}>
           <label>
             Profile Picture
@@ -170,7 +169,6 @@ export const EditProfileForm: React.FC = () => {
           </p>
         </div>
 
-        {/* Форма */}
         <div className={styles.formFields}>
           <div className={styles.formField}>
             <label htmlFor="firstName">

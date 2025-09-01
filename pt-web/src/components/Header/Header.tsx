@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
+import logo from "/logo.png";
 import {Bell, CircleUser, LogOut, Search, ShoppingCart, User} from "lucide-react";
-import logo from "src/assets/icons/logo.png";
 import {AuthModal} from "src/components/Auth";
 import {PATHS} from "src/constants/routes";
 import {useAuth} from "src/hooks/useAuth";

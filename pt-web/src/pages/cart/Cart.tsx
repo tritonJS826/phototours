@@ -1,9 +1,9 @@
 import {useState} from "react";
-import amex from "src/assets/icons/amex.svg";
-import mastercard from "src/assets/icons/mastercard.svg";
-import visa from "src/assets/icons/visa.svg";
-import tourCardImage from "src/assets/images/7.avif";
+import tourCardImage from "/images/7.avif";
 import {Container} from "src/components/Container/Container";
+import amex from "src/pages/cart/icons/amex.svg";
+import mastercard from "src/pages/cart/icons/mastercard.svg";
+import visa from "src/pages/cart/icons/visa.svg";
 import styles from "src/pages/cart/Cart.module.scss";
 
 export function Cart() {

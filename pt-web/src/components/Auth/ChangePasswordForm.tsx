@@ -33,14 +33,12 @@ export const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({
     setError("");
     setSuccess("");
 
-    // Check that new password and confirmation match
     if (formData.newPassword !== confirmPassword) {
       setError("New password and confirmation do not match");
 
       return;
     }
 
-    // Check minimum password length
     if (formData.newPassword.length < MIN_PASSWORD_LENGTH) {
       setError("New password must contain at least 6 characters");
 

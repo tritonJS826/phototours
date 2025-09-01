@@ -8,8 +8,7 @@ interface NotificationProps {
   onClose: () => void;
 }
 
-// Constants
-const AUTO_HIDE_DELAY = 3000; // 3 seconds
+const AUTO_HIDE_DELAY = 3000;
 
 export const Notification = memo(function Notification({
   message,
@@ -17,7 +16,6 @@ export const Notification = memo(function Notification({
   isVisible,
   onClose,
 }: NotificationProps) {
-  // Auto-hide functionality
   useEffect(() => {
     if (isVisible) {
       const timer = setTimeout(() => {
@@ -28,19 +26,16 @@ export const Notification = memo(function Notification({
     }
   }, [isVisible, onClose]);
 
-  // Memoized close handler
   const handleClose = useCallback(() => {
     onClose();
   }, [onClose]);
 
-  // Memoized keydown handler for accessibility
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === "Escape") {
       onClose();
     }
   }, [onClose]);
 
-  // Don't render if not visible
   if (!isVisible) {
     return null;
   }

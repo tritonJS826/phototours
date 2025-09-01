@@ -190,7 +190,6 @@
   overflow-y: auto;
   padding-right: 8px;
 
-  /* Стилизация скроллбара */
   &::-webkit-scrollbar {
     width: 8px;
   }
@@ -308,10 +307,6 @@
   flex-direction: column;
   gap: 16px;
 
-  // max-height: 400px;
-  // overflow-y: auto;
-
-  /* Стили для скроллбара */
   &::-webkit-scrollbar {
     width: 8px;
   }
@@ -331,7 +326,6 @@
     }
   }
 
-  /* Для Firefox */
   scrollbar-width: thin;
   scrollbar-color: rgb(165 200 226 / 50%) rgb(28 76 138 / 30%);
 }
