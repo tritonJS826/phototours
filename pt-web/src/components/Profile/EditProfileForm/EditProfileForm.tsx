@@ -88,7 +88,7 @@ export const EditProfileForm: React.FC = () => {
         formDataToSend.append("avatar", avatarFile);
       }
 
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/general/auth/profile`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/profile`, {
         method: "PUT",
         headers: {Authorization: `Bearer ${localStorage.getItem("token")}`},
         body: formDataToSend,

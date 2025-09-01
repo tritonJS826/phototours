@@ -40,7 +40,7 @@ export class UserService {
    */
   public static async createUser(userData: CreateUserRequest): Promise<User> {
     const baseUrl = process.env.VITE_API_BASE_URL || "http://localhost:8000";
-    const response = await fetch(`${baseUrl}/general${API_ROUTES.USERS.CREATE}`, {
+    const response = await fetch(`${baseUrl}${API_ROUTES.USERS.CREATE}`, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(userData),
@@ -62,7 +62,7 @@ export class UserService {
    */
   public static async getUsers(): Promise<User[]> {
     const baseUrl = process.env.VITE_API_BASE_URL || "http://localhost:8000";
-    const response = await fetch(`${baseUrl}/general${API_ROUTES.USERS.GET_ALL}`);
+    const response = await fetch(`${baseUrl}${API_ROUTES.USERS.GET_ALL}`);
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
@@ -76,7 +76,7 @@ export class UserService {
 
   public static async getPublicProfile(userId: number): Promise<PublicUserProfile> {
     const baseUrl = process.env.VITE_API_BASE_URL || "http://localhost:8000";
-    const response = await fetch(`${baseUrl}/general/users/${userId}/public`, {
+    const response = await fetch(`${baseUrl}/users/${userId}/public`, {
       method: "GET",
       headers: {"Content-Type": "application/json"},
     });

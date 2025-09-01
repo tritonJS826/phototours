@@ -1,66 +1,97 @@
-import {AuthResponse, ChangePasswordData, LoginData, RegisterData, User} from "src/types/auth";
+import type {
+  AuthResponse,
+  ChangePasswordData,
+  LoginData,
+  RegisterData,
+  User,
+} from "src/types/auth";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+function normalizeBase(input?: string): string {
+  const raw = (input ?? "").trim();
+  if (!raw) {
+    return "http://localhost:8000";
+  }
+  try {
+    const u = new URL(raw, window.location.origin);
+    const cleanPath = u.pathname.replace(/\/+$/, "").replace(/\/general$/i, "");
+    u.pathname = cleanPath || "/";
+
+    return `${u.origin}${u.pathname === "/" ? "" : u.pathname}`;
+  } catch {
+    return raw.replace(/\/+$/, "").replace(/\/general$/i, "");
+  }
+}
+
+const API_BASE = normalizeBase(import.meta.env.VITE_API_BASE_URL);
+
+function buildUrl(path: string): string {
+  return `${API_BASE}${path.startsWith("/") ? path : `/${path}`}`;
+}
+
+async function parseJsonSafe(res: Response) {
+  const ct = res.headers.get("content-type") ?? "";
+  if (ct.includes("application/json")) {
+    return res.json();
+  }
+  const text = await res.text();
+  throw new Error(text || `${res.status} ${res.statusText}`);
+}
 
 class AuthService {
 
   public async register(data: RegisterData): Promise<AuthResponse> {
-    const response = await fetch(`${API_BASE_URL}/general/auth/register`, {
+    const res = await fetch(buildUrl("/auth/register"), {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(data),
     });
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || "Ошибка при регистрации");
+    if (!res.ok) {
+      const err = await parseJsonSafe(res).catch(e => ({error: String(e)}));
+      throw new Error((err as {error?: string}).error || "Registration failed");
     }
 
-    return response.json();
+    return parseJsonSafe(res);
   }
 
   public async login(data: LoginData): Promise<AuthResponse> {
-    const response = await fetch(`${API_BASE_URL}/general/auth/login`, {
+    const res = await fetch(buildUrl("/auth/login"), {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(data),
     });
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || "Ошибка при входе");
+    if (!res.ok) {
+      const err = await parseJsonSafe(res).catch(e => ({error: String(e)}));
+      throw new Error((err as {error?: string}).error || "Login failed");
     }
 
-    return response.json();
+    return parseJsonSafe(res);
   }
 
-  public async changePassword(data: ChangePasswordData): Promise<{ message: string }> {
-    const response = await fetch(`${API_BASE_URL}/general/auth/change-password`, {
+  public async changePassword(data: ChangePasswordData): Promise<{message: string}> {
+    const res = await fetch(buildUrl("/auth/change-password"), {
       method: "POST",
       headers: this.getAuthHeaders(),
       body: JSON.stringify(data),
     });
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || "Ошибка при смене пароля");
+    if (!res.ok) {
+      const err = await parseJsonSafe(res).catch(e => ({error: String(e)}));
+      throw new Error((err as {error?: string}).error || "Password change failed");
     }
 
-    return response.json();
+    return parseJsonSafe(res);
   }
 
-  public async getProfile(): Promise<{ user: User }> {
-    const response = await fetch(`${API_BASE_URL}/general/auth/profile`, {
+  public async getProfile(): Promise<{user: User}> {
+    const res = await fetch(buildUrl("/auth/profile"), {
       method: "GET",
       headers: this.getAuthHeaders(),
     });
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || "Ошибка при получении профиля");
+    if (!res.ok) {
+      const err = await parseJsonSafe(res).catch(e => ({error: String(e)}));
+      throw new Error((err as {error?: string}).error || "Profile fetch failed");
     }
 
-    return response.json();
+    return parseJsonSafe(res);
   }
 
   public logout(): void {
@@ -78,9 +109,9 @@ class AuthService {
   }
 
   public getStoredUser(): User | null {
-    const userStr = localStorage.getItem("user");
+    const s = localStorage.getItem("user");
 
-    return userStr ? JSON.parse(userStr) : null;
+    return s ? (JSON.parse(s) as User) : null;
   }
 
   private getAuthHeaders(): HeadersInit {
@@ -88,7 +119,7 @@ class AuthService {
 
     return {
       "Content-Type": "application/json",
-      ...(token && {Authorization: `Bearer ${token}`}),
+      ...(token ? {Authorization: `Bearer ${token}`} : {}),
     };
   }
 
