@@ -101,22 +101,7 @@ export const EditProfileForm: React.FC = () => {
         fd.append("avatar", avatarFile);
       }
 
-      if ([...fd.keys()].length === 0) {
-        setIsLoading(false);
-        setError("No changes to save");
-
-        return;
-      }
-
-      const base =
-        typeof window !== "undefined" &&
-        (window as unknown as { ENV: { VITE_API_BASE_URL: string } }) &&
-        (window as unknown as { ENV: { VITE_API_BASE_URL: string } }).ENV &&
-        typeof (window as unknown as { ENV: { VITE_API_BASE_URL: string } }).ENV.VITE_API_BASE_URL === "string"
-          ? (window as unknown as { ENV: { VITE_API_BASE_URL: string } }).ENV.VITE_API_BASE_URL
-          : "http://localhost:8000";
-
-      const res = await fetch(`${base}/auth/profile`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/profile`, {
         method: "PUT",
         headers: {Authorization: `Bearer ${localStorage.getItem("token") || ""}`},
         body: fd,
