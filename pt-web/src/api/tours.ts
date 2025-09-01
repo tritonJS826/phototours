@@ -1,8 +1,20 @@
 import {fetchData, fileUrl} from "src/api/http";
 import type {TourView} from "src/types/tour";
 
-const API = "/tours";
-const FIRST = 0 as const;
+export const TOURS_PATH = "/tours";
+
+const ISO_DATE_LENGTH = 10;
+
+export const QUERY_PARAMS = {
+  LOCATION: "location",
+  START_DATE: "startDate",
+  END_DATE: "endDate",
+  TRAVELERS: "travelers",
+  TAGS: "tags",
+} as const;
+
+type UrlObj = { url: string };
+type DateObj = { date: string; isAvailable?: boolean };
 
 type TourDTO = {
   id: number;
@@ -10,94 +22,91 @@ type TourDTO = {
   title: string;
   description: string;
   price?: number | string;
-
   startLocation?: string;
   endLocation?: string;
   durationDays?: number;
   languages?: string[];
-  difficulty?: "BEGINNER" | "EXPERIENCED" | "PRO" | "EASY";
+  difficulty?: TourView["difficulty"];
   minAge?: number | null;
   availableMonths?: string[];
-
   coverUrl?: string;
-  photos?: Array<string | {url: string}>;
-  videos?: Array<string | {url: string}>;
-
+  photos?: Array<string | UrlObj>;
+  videos?: Array<string | UrlObj>;
   included?: string[];
   activities?: string[];
-
-  dates?: Array<string | {date: string; isAvailable?: boolean}>;
-
+  dates?: Array<string | DateObj>;
   program?: {
-    days?: Array<{day: number; title?: string; description: string; photos?: string[]}>;
+    days?: Array<{ day: number; title?: string; description: string; photos?: string[] }>;
     included?: string[];
     activities?: string[];
   };
-
-  guide?: {id: number; name?: string};
-  tags?: Array<string | {name: string}>;
-  categories?: Array<string | {name: string}>;
+  guide?: { id: number; name?: string };
+  tags?: Array<string | { name: string }>;
+  categories?: Array<string | { name: string }>;
 };
 
-function mapTourToView(t: TourDTO): TourView {
-  const photos = (t.photos ?? []).map(p =>
-    fileUrl(typeof p === "string" ? p : p.url),
-  );
-  const videos = (t.videos ?? []).map(v =>
-    typeof v === "string" ? v : v.url,
-  );
+function toUrl(v: string | UrlObj): string {
+  return typeof v === "string" ? v : v.url;
+}
 
-  const dates = (t.dates ?? [])
-    .map(d => (typeof d === "string" ? d : d.date ?? ""))
-    .map(d => d.split("T")[FIRST] ?? d)
-    .filter(Boolean);
+function toName(v: string | { name?: string }): string {
+  return typeof v === "string" ? v : v.name ?? "";
+}
 
-  const tags = (t.tags ?? []).map(x =>
-    typeof x === "string" ? x : x.name,
-  );
-  const categories = (t.categories ?? []).map(x =>
-    typeof x === "string" ? x : x.name,
-  );
-  const coverUrl = t.coverUrl ? fileUrl(t.coverUrl) : photos[FIRST];
+function toIsoDate(value: string): string {
+  const ts = Date.parse(value);
+  if (!Number.isNaN(ts)) {
+    return new Date(ts).toISOString().slice(0, ISO_DATE_LENGTH);
+  }
+  const i = value.indexOf("T");
 
+  return i >= 0 ? value.slice(0, i) : value;
+}
+
+function mapTourToView(dto: TourDTO): TourView {
+  const photoUrls = (dto.photos ?? []).map(x => fileUrl(toUrl(x)));
+  const videoUrls = (dto.videos ?? []).map(toUrl);
+  const dates = (dto.dates ?? [])
+    .map(x => (typeof x === "string" ? x : x.date))
+    .filter(Boolean)
+    .map(toIsoDate);
+  const tags = (dto.tags ?? []).map(toName).filter(Boolean);
+  const categories = (dto.categories ?? []).map(toName).filter(Boolean);
+  const coverUrl = dto.coverUrl ? fileUrl(dto.coverUrl) : photoUrls[0];
   const dailyItinerary =
-    t.program?.days?.map(d => ({
+    dto.program?.days?.map(d => ({
       day: d.day,
       title: d.title,
       description: d.description,
       photos: (d.photos ?? []).map(fileUrl),
-    })) ?? undefined;
-
-  const included = t.included ?? t.program?.included ?? undefined;
-  const activities = t.activities ?? t.program?.activities ?? undefined;
+    })) ?? [];
+  const included = dto.included ?? dto.program?.included ?? [];
+  const activities = dto.activities ?? dto.program?.activities ?? [];
+  const priceRaw = dto.price === "" ? undefined : dto.price;
+  const priceNum = typeof priceRaw === "number" ? priceRaw : priceRaw ? Number(priceRaw) : undefined;
+  const price = Number.isFinite(priceNum) && (priceNum as number) > 0 ? (priceNum as number) : undefined;
 
   return {
-    id: t.id,
-    slug: t.slug,
-    title: t.title,
-    description: t.description,
-    price: Number(t.price ?? 0),
-
-    startLocation: t.startLocation,
-    endLocation: t.endLocation,
-    durationDays: t.durationDays,
-    languages: t.languages,
-    difficulty: t.difficulty as TourView["difficulty"],
-    minAge: t.minAge ?? null,
-    availableMonths: t.availableMonths ?? [],
-
+    id: dto.id,
+    slug: dto.slug,
+    title: dto.title,
+    description: dto.description,
+    price,
+    startLocation: dto.startLocation,
+    endLocation: dto.endLocation,
+    durationDays: dto.durationDays,
+    languages: dto.languages ?? [],
+    difficulty: dto.difficulty,
+    minAge: dto.minAge ?? null,
+    availableMonths: dto.availableMonths ?? [],
     coverUrl,
-    photos,
-    videos,
-
+    photos: photoUrls,
+    videos: videoUrls,
     included,
     activities,
-
     dates,
     dailyItinerary,
-
-    guide: t.guide ? {id: t.guide.id, name: t.guide.name} : undefined,
-
+    guide: dto.guide ? {id: dto.guide.id, name: dto.guide.name} : undefined,
     tags,
     categories,
   };
@@ -112,31 +121,30 @@ export type ToursFilter = {
 };
 
 export async function listTours(filter?: ToursFilter): Promise<TourView[]> {
-  const qs = new URLSearchParams();
+  const params = new URLSearchParams();
   if (filter?.location) {
-    qs.set("location", filter.location);
+    params.set(QUERY_PARAMS.LOCATION, filter.location);
   }
   if (filter?.startDate) {
-    qs.set("startDate", filter.startDate);
+    params.set(QUERY_PARAMS.START_DATE, filter.startDate);
   }
   if (filter?.endDate) {
-    qs.set("endDate", filter.endDate);
+    params.set(QUERY_PARAMS.END_DATE, filter.endDate);
   }
   if (filter?.travelers) {
-    qs.set("travelers", String(filter.travelers));
+    params.set(QUERY_PARAMS.TRAVELERS, String(filter.travelers));
   }
   if (filter?.tags?.length) {
-    qs.set("tags", filter.tags.join(","));
+    params.set(QUERY_PARAMS.TAGS, filter.tags.join(","));
   }
-
-  const url = qs.toString() ? `${API}?${qs.toString()}` : API;
+  const url = params.toString() ? `${TOURS_PATH}?${params.toString()}` : TOURS_PATH;
   const raw = await fetchData<TourDTO[]>(url);
 
   return (raw ?? []).map(mapTourToView);
 }
 
 export async function getTour(idOrSlug: string): Promise<TourView> {
-  const raw = await fetchData<TourDTO>(`${API}/${idOrSlug}`);
+  const raw = await fetchData<TourDTO>(`${TOURS_PATH}/${idOrSlug}`);
 
   return mapTourToView(raw);
 }

@@ -67,6 +67,4 @@ ZOHO_REFRESH_TOKEN=your_refresh_token
 - Media upload via `multer-storage-cloudinary`  
 - Optimized delivery of photos/videos  
 - URL saved in DB  
-- Configurable via `.env`  
-
-
+- Configurable via `.env`
