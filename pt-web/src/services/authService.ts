@@ -1,5 +1,32 @@
-import type {AuthResponse, ChangePasswordData, LoginData, RegisterData, User} from "src/types/auth";
-import {buildApiUrl} from "src/utils/apiBase";
+import type {
+  AuthResponse,
+  ChangePasswordData,
+  LoginData,
+  RegisterData,
+  User,
+} from "src/types/auth";
+
+function normalizeBase(input?: string): string {
+  const raw = (input ?? "").trim();
+  if (!raw) {
+    return "http://localhost:8000";
+  }
+  try {
+    const u = new URL(raw, window.location.origin);
+    const cleanPath = u.pathname.replace(/\/+$/, "").replace(/\/general$/i, "");
+    u.pathname = cleanPath || "/";
+
+    return `${u.origin}${u.pathname === "/" ? "" : u.pathname}`;
+  } catch {
+    return raw.replace(/\/+$/, "").replace(/\/general$/i, "");
+  }
+}
+
+const API_BASE = normalizeBase(import.meta.env.VITE_API_BASE_URL);
+
+function buildUrl(path: string): string {
+  return `${API_BASE}${path.startsWith("/") ? path : `/${path}`}`;
+}
 
 async function parseJsonSafe(res: Response) {
   const ct = res.headers.get("content-type") ?? "";
@@ -13,7 +40,7 @@ async function parseJsonSafe(res: Response) {
 class AuthService {
 
   public async register(data: RegisterData): Promise<AuthResponse> {
-    const res = await fetch(buildApiUrl("/auth/register"), {
+    const res = await fetch(buildUrl("/auth/register"), {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(data),
@@ -27,7 +54,7 @@ class AuthService {
   }
 
   public async login(data: LoginData): Promise<AuthResponse> {
-    const res = await fetch(buildApiUrl("/auth/login"), {
+    const res = await fetch(buildUrl("/auth/login"), {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(data),
@@ -41,7 +68,7 @@ class AuthService {
   }
 
   public async changePassword(data: ChangePasswordData): Promise<{message: string}> {
-    const res = await fetch(buildApiUrl("/auth/change-password"), {
+    const res = await fetch(buildUrl("/auth/change-password"), {
       method: "POST",
       headers: this.getAuthHeaders(),
       body: JSON.stringify(data),
@@ -55,7 +82,7 @@ class AuthService {
   }
 
   public async getProfile(): Promise<{user: User}> {
-    const res = await fetch(buildApiUrl("/auth/profile"), {
+    const res = await fetch(buildUrl("/auth/profile"), {
       method: "GET",
       headers: this.getAuthHeaders(),
     });
