@@ -57,5 +57,5 @@ pnpm -v
 - `pnpm serve` — preview build locally
 - `pnpm lint-fix` — run ESLint with auto-fix
 - `pnpm format` — format files with Prettier
-- `pnpm stylelint-fix` — fix SCSS with Stylelint
+- `pnpm stylelint-fix` — fix SCSS with Stylelint  
 - `pnpm storybook` — run Storybook on port 6006
