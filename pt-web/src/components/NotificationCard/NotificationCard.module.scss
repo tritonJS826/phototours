@@ -13,26 +13,6 @@
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgb(0 0 0 / 15%);
   }
-
-  &.unread {
-    // border-left-color: #f9a825;
-  }
-
-  &.success {
-    // border-left-color: #4caf50;
-  }
-
-  &.error {
-    // border-left-color: #f44336;
-  }
-
-  &.warning {
-    // border-left-color: #ff9800;
-  }
-
-  &.info {
-    // border-left-color: #2196f3;
-  }
 }
 
 .notificationHeader {
@@ -97,10 +77,6 @@
   &:hover {
     background: rgb(255 255 255 / 10%);
   }
-}
-
-.markReadButton:hover {
-  // color: #4caf50;
 }
 
 .deleteButton:hover {
@@ -170,7 +146,6 @@
   }
 }
 
-// Responsive design
 @media (width <= 768px) {
   .notificationCard {
     padding: 16px;

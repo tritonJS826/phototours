@@ -8,7 +8,6 @@ interface ContactUsContent {
   subtitle: string;
 }
 
-// Constants
 const CONTACT_US_CONTENT: ContactUsContent = {
   title: "Get in Touch",
   subtitle: "Have a question about our tours? We're here to help!",

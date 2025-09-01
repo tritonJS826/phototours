@@ -6,7 +6,7 @@
   gap: vars.$gap-xxxl;
   width: calc(100% - 16px);
   margin: 0 auto;
-  padding: 8px; // Equal padding on all sides
+  padding: 8px;
 
   .formGroup {
     display: flex;
@@ -20,14 +20,12 @@
       cursor: pointer;
     }
 
-    // Textarea specific styles
     .formTextarea {
       resize: vertical;
       min-height: 120px;
       line-height: 1.5;
     }
 
-    // Common styles for input and textarea
     .formInput,
     .formTextarea {
       padding: vars.$spacing-md;
@@ -40,14 +38,12 @@
       transition: vars.$transition-border, vars.$transition-bg,
         vars.$transition-color;
 
-      // Placeholder styles for all browsers
       &::placeholder {
         color: vars.$contact-placeholder-color;
         font-size: vars.$font-size-md;
         font-family: Poppins, sans-serif;
       }
 
-      // Focus states
       &:focus,
       &:focus-visible {
         outline: none;
@@ -55,14 +51,12 @@
         background-color: vars.$contact-btn-bg-transparent-10;
       }
 
-      // Filled state
       &:not(:placeholder-shown),
       &:valid {
         background-color: vars.$contact-btn-bg-transparent-15;
         border-color: vars.$contact-btn-bg-transparent-30;
       }
 
-      // Disabled state
       &:disabled {
         opacity: 0.6;
         cursor: not-allowed;
@@ -70,7 +64,6 @@
         border-color: vars.$contact-border;
       }
 
-      // Autofill styles
       &:-webkit-autofill,
       &:-webkit-autofill:hover,
       &:-webkit-autofill:focus {
@@ -79,7 +72,6 @@
         transition: background-color 5000s ease-in-out 0s;
       }
 
-      // Invalid state
       &:invalid:not(:placeholder-shown) {
         border-color: #dc3545;
 
@@ -125,7 +117,6 @@
   }
 }
 
-// ====== RESPONSIVE DESIGN ======
 @media (max-width: vars.$breakpoint-mobile) {
   .contactForm {
     gap: vars.$gap-xxl;
@@ -160,7 +151,6 @@
   }
 }
 
-// ====== ACCESSIBILITY ======
 @media (prefers-reduced-motion: reduce) {
   .contactForm {
     .formInput,
@@ -178,7 +168,6 @@
   }
 }
 
-// High contrast mode support
 @media (prefers-contrast: high) {
   .contactForm {
     .formInput,

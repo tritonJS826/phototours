@@ -10,7 +10,6 @@ export const useAuth = () => {
     isLoading: true,
   });
 
-  // Инициализация состояния из localStorage
   useEffect(() => {
     const token = authService.getStoredToken();
     const user = authService.getStoredUser();
@@ -51,7 +50,6 @@ export const useAuth = () => {
     try {
       setAuthState(prev => ({...prev, isLoading: true}));
 
-      // Очищаем старые данные из localStorage перед логином
       localStorage.removeItem("notifications");
       localStorage.removeItem("bankAccounts");
 
@@ -98,7 +96,6 @@ export const useAuth = () => {
 
       return response.user;
     } catch (error) {
-      // Если профиль не удалось получить, возможно токен истек
       logout();
       throw error;
     }

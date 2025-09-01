@@ -2,11 +2,9 @@ import React, {createContext, useContext, useEffect, useReducer} from "react";
 import {CreateNotificationData, NotificationItem, notificationService} from "src/services/notificationService";
 import {NotificationContextType, NotificationState} from "src/types/notifications";
 
-// Constants
 const UNREAD_COUNT_MIN = 0;
 const UNREAD_COUNT_DECREMENT = 1;
 
-// Actions
 type NotificationAction =
   | { type: "ADD_NOTIFICATION"; payload: NotificationItem }
   | { type: "MARK_AS_READ"; payload: number }
@@ -16,14 +14,12 @@ type NotificationAction =
   | { type: "LOAD_NOTIFICATIONS"; payload: NotificationItem[] }
   | { type: "SET_LOADING"; payload: boolean };
 
-// Initial state
 const initialState: NotificationState = {
   notifications: [],
   unreadCount: 0,
   isLoading: false,
 };
 
-// Reducer
 function notificationReducer(state: NotificationState, action: NotificationAction): NotificationState {
   switch (action.type) {
     case "ADD_NOTIFICATION":
@@ -88,14 +84,11 @@ function notificationReducer(state: NotificationState, action: NotificationActio
   }
 }
 
-// Create context
 const NotificationContext = createContext<NotificationContextType | undefined>(undefined);
 
-// Provider component
 export function NotificationProvider({children}: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(notificationReducer, initialState);
 
-  // Load notifications from server on mount
   useEffect(() => {
     const loadNotifications = async () => {
       try {
@@ -155,7 +148,6 @@ export function NotificationProvider({children}: { children: React.ReactNode }) 
   );
 }
 
-// Hook to use notifications
 export function useNotifications() {
   const context = useContext(NotificationContext);
   if (context === undefined) {

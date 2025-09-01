@@ -3,7 +3,6 @@ import {AlertCircle, CheckCircle, ExternalLink, Info, X} from "lucide-react";
 import {NotificationItem} from "src/types/notifications";
 import styles from "src/components/NotificationCard/NotificationCard.module.scss";
 
-// Constants for time calculations
 const MILLISECONDS_IN_SECOND = 1000;
 const SECONDS_IN_MINUTE = 60;
 const MINUTES_IN_HOUR = 60;

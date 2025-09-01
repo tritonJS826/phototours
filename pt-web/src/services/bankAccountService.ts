@@ -32,7 +32,6 @@ export interface UpdateBankAccountData {
 
 class BankAccountService {
 
-  // Получить все банковские счета пользователя
   public async getBankAccounts(): Promise<BankAccount[]> {
     const response = await fetch(`${API_BASE_URL}/general/bank-accounts`, {
       method: "GET",
@@ -46,7 +45,6 @@ class BankAccountService {
     return await response.json();
   }
 
-  // Получить основной банковский счет пользователя
   public async getDefaultBankAccount(): Promise<BankAccount | null> {
     const response = await fetch(`${API_BASE_URL}/general/bank-accounts/default`, {
       method: "GET",
@@ -56,7 +54,7 @@ class BankAccountService {
     if (!response.ok) {
       const NOT_FOUND_STATUS = 404;
       if (response.status === NOT_FOUND_STATUS) {
-        return null; // Нет основного счета
+        return null;
       }
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -64,7 +62,6 @@ class BankAccountService {
     return await response.json();
   }
 
-  // Создать новый банковский счет
   public async createBankAccount(data: CreateBankAccountData): Promise<BankAccount> {
     const response = await fetch(`${API_BASE_URL}/general/bank-accounts`, {
       method: "POST",
@@ -79,7 +76,6 @@ class BankAccountService {
     return await response.json();
   }
 
-  // Обновить банковский счет
   public async updateBankAccount(id: number, data: UpdateBankAccountData): Promise<BankAccount> {
     const response = await fetch(`${API_BASE_URL}/general/bank-accounts/${id}`, {
       method: "PUT",
@@ -94,7 +90,6 @@ class BankAccountService {
     return await response.json();
   }
 
-  // Установить банковский счет как основной
   public async setDefaultBankAccount(id: number): Promise<void> {
     const response = await fetch(`${API_BASE_URL}/general/bank-accounts/${id}/default`, {
       method: "PATCH",
@@ -106,7 +101,6 @@ class BankAccountService {
     }
   }
 
-  // Удалить банковский счет
   public async deleteBankAccount(id: number): Promise<void> {
     const response = await fetch(`${API_BASE_URL}/general/bank-accounts/${id}`, {
       method: "DELETE",

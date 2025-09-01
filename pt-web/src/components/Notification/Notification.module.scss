@@ -1,6 +1,5 @@
 @use "../../styles/variables" as vars;
 
-// ====== NOTIFICATION COMPONENT STYLES ======
 .notification {
   position: fixed;
   top: 20px;
@@ -14,21 +13,18 @@
   animation: slide-in 0.3s ease-out;
   outline: none;
 
-  // Focus state for accessibility
   &:focus,
   &:focus-visible {
     outline: 2px solid rgb(255 255 255 / 50%);
     outline-offset: 2px;
   }
 
-  // Success notification
   &.success {
     background-color: vars.$contact-btn-bg;
     color: vars.$btn-primary-bg;
     border: 1px solid vars.$contact-btn-hover-bg;
   }
 
-  // Error notification
   &.error {
     background-color: #dc3545;
     color: vars.$btn-primary-bg;
@@ -63,13 +59,11 @@
       transition: vars.$transition-bg, vars.$transition-transform;
       outline: none;
 
-      // Hover state
       &:hover {
         background-color: rgb(255 255 255 / 20%);
         transform: scale(1.1);
       }
 
-      // Focus state for accessibility
       &:focus,
       &:focus-visible {
         outline: 2px solid rgb(255 255 255 / 50%);
@@ -77,12 +71,10 @@
         background-color: rgb(255 255 255 / 20%);
       }
 
-      // Active state
       &:active {
         transform: scale(0.95);
       }
 
-      // Disabled state
       &:disabled {
         opacity: 0.6;
         cursor: not-allowed;
@@ -92,7 +84,6 @@
   }
 }
 
-// ====== ANIMATIONS ======
 @keyframes slide-in {
   from {
     transform: translateX(100%);
@@ -105,7 +96,6 @@
   }
 }
 
-// ====== RESPONSIVE DESIGN ======
 @media (max-width: vars.$breakpoint-mobile) {
   .notification {
     top: 10px;
@@ -131,7 +121,6 @@
   }
 }
 
-// ====== ACCESSIBILITY ======
 @media (prefers-reduced-motion: reduce) {
   .notification {
     animation: none;
@@ -150,7 +139,6 @@
   }
 }
 
-// High contrast mode support
 @media (prefers-contrast: high) {
   .notification {
     border-width: 2px;

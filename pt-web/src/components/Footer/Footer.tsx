@@ -24,7 +24,6 @@ interface SocialLink {
   title: string;
 }
 
-// Constants
 const FOOTER_COLUMNS: FooterColumn[] = [
   {
     id: "information",
@@ -112,16 +111,13 @@ export const Footer = memo(function Footer() {
       className={styles.footer}
       role="contentinfo"
     >
-      {/* Main Footer Content */}
       <section className={styles.mainSection}>
         <Container>
           <div className={styles.mainContent}>
-            {/* Logo Column */}
             <div className={styles.logoColumn}>
               <Logo showTagline={false} />
             </div>
 
-            {/* Navigation Columns */}
             {FOOTER_COLUMNS.map((column) => (
               <div
                 key={column.id}
@@ -136,7 +132,6 @@ export const Footer = memo(function Footer() {
               </div>
             ))}
 
-            {/* Subscribe Column */}
             <div className={styles.subscribeColumn}>
               <h3 className={styles.columnTitle}>
                 Subscribe
@@ -149,7 +144,6 @@ export const Footer = memo(function Footer() {
         </Container>
       </section>
 
-      {/* Copyright Section */}
       <section className={styles.copyrightSection}>
         <Container>
           <div className={styles.copyrightContent}>
