@@ -32,7 +32,6 @@ ol {
   list-style: none;
 }
 
-// App layout styles
 .app {
   display: flex;
   flex-direction: column;
@@ -41,4 +40,16 @@ ol {
 
 .main-content {
   flex: 1;
+}
+
+.container {
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.full-bleed {
+  width: 100%;
 }

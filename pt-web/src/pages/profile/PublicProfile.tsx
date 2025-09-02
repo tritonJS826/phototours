@@ -4,15 +4,26 @@ import {PublicUserProfile, userService} from "src/services/userService";
 import {getProfileImageUrl} from "src/utils/profileImage";
 import styles from "src/pages/profile/PublicProfile.module.scss";
 
-export function PublicProfile() {
-  const {id} = useParams<{id: string}>();
-  const [user, setUser] = useState<PublicUserProfile | null>(null);
+type Props = {
+  userId?: number;
+};
+
+type ProfileWithPhotos = PublicUserProfile & { tourPhotos?: string[] };
+
+export function PublicProfile({userId}: Props) {
+  const params = useParams<{ id: string }>();
+  const [user, setUser] = useState<ProfileWithPhotos | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const PHOTO_INDEX_OFFSET = 1;
 
   useEffect(() => {
     const fetchUserProfile = async () => {
-      if (!id) {
+      const idFromProps = typeof userId === "number" ? userId : undefined;
+      const idFromParams = params.id ? parseInt(params.id, 10) : undefined;
+      const finalId = idFromProps ?? idFromParams;
+
+      if (!finalId || Number.isNaN(finalId)) {
         setError("User ID is required");
         setIsLoading(false);
 
@@ -22,17 +33,17 @@ export function PublicProfile() {
       try {
         setIsLoading(true);
         setError(null);
-        const userData = await userService.getPublicProfile(parseInt(id));
-        setUser(userData);
+        const data = (await userService.getPublicProfile(finalId)) as ProfileWithPhotos;
+        setUser(data);
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to load user profile");
+        setError(err instanceof Error ? err.message : "Failed to fetch user profile");
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchUserProfile();
-  }, [id]);
+  }, [userId, params.id]);
 
   if (isLoading) {
     return (
@@ -61,12 +72,10 @@ export function PublicProfile() {
   const formatRegistrationDate = (dateString: string) => {
     const date = new Date(dateString);
 
-    return date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+    return date.toLocaleDateString("en-US", {year: "numeric", month: "long", day: "numeric"});
   };
+
+  const photos = user.tourPhotos ?? [];
 
   return (
     <div className={styles.publicProfileContainer}>
@@ -80,27 +89,52 @@ export function PublicProfile() {
         </div>
 
         <div className={styles.userInfo}>
-          <h1>
+          <div className={styles.title}>
             {user.firstName}
             {" "}
             {user.lastName}
-          </h1>
+          </div>
+
           <p className={styles.memberSince}>
             Member since
             {" "}
             {formatRegistrationDate(user.createdAt)}
           </p>
+
           {user.bio && (
             <div className={styles.bioSection}>
-              <h3>
+              <div className={styles.sectionTitle}>
                 About
-              </h3>
-              <p>
+              </div>
+              <p className={styles.bioText}>
                 {user.bio}
               </p>
             </div>
           )}
         </div>
+
+        {photos.length > 0 && (
+          <div className={styles.gallery}>
+            <div className={styles.galleryTitle}>
+              Tour Photos
+            </div>
+            <div className={styles.grid}>
+              {photos.map((url, i) => (
+                <div
+                  className={styles.gridItem}
+                  key={`${url}-${i}`}
+                >
+                  <img
+                    src={url}
+                    alt={`Tour photo ${i + PHOTO_INDEX_OFFSET}`}
+                    loading="lazy"
+                    className={styles.gridImg}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
