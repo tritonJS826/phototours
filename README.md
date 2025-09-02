@@ -37,7 +37,7 @@ This repository contains both frontend and backend parts of the PhotoTours proje
    pnpm start
    ```
 
-- Frontend: http://localhost:5174  
+- Frontend: http://localhost:5173  
 - Backend API: http://localhost:8000  
 - Grafana: http://localhost:5173/grafana/login  
 

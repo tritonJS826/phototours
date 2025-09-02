@@ -5251,22 +5251,31 @@ export namespace Prisma {
   export type TourAvgAggregateOutputType = {
     id: number | null
     price: number | null
+    durationDays: number | null
+    minAge: number | null
     guideId: number | null
   }
 
   export type TourSumAggregateOutputType = {
     id: number | null
     price: number | null
+    durationDays: number | null
+    minAge: number | null
     guideId: number | null
   }
 
   export type TourMinAggregateOutputType = {
     id: number | null
+    slug: string | null
     title: string | null
     description: string | null
-    region: string | null
-    difficulty: $Enums.DifficultyLevel | null
     price: number | null
+    startLocation: string | null
+    endLocation: string | null
+    durationDays: number | null
+    difficulty: $Enums.DifficultyLevel | null
+    minAge: number | null
+    coverUrl: string | null
     guideId: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -5274,11 +5283,16 @@ export namespace Prisma {
 
   export type TourMaxAggregateOutputType = {
     id: number | null
+    slug: string | null
     title: string | null
     description: string | null
-    region: string | null
-    difficulty: $Enums.DifficultyLevel | null
     price: number | null
+    startLocation: string | null
+    endLocation: string | null
+    durationDays: number | null
+    difficulty: $Enums.DifficultyLevel | null
+    minAge: number | null
+    coverUrl: string | null
     guideId: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -5286,11 +5300,18 @@ export namespace Prisma {
 
   export type TourCountAggregateOutputType = {
     id: number
+    slug: number
     title: number
     description: number
-    region: number
-    difficulty: number
     price: number
+    startLocation: number
+    endLocation: number
+    durationDays: number
+    languages: number
+    difficulty: number
+    minAge: number
+    availableMonths: number
+    coverUrl: number
     program: number
     guideId: number
     createdAt: number
@@ -5302,22 +5323,31 @@ export namespace Prisma {
   export type TourAvgAggregateInputType = {
     id?: true
     price?: true
+    durationDays?: true
+    minAge?: true
     guideId?: true
   }
 
   export type TourSumAggregateInputType = {
     id?: true
     price?: true
+    durationDays?: true
+    minAge?: true
     guideId?: true
   }
 
   export type TourMinAggregateInputType = {
     id?: true
+    slug?: true
     title?: true
     description?: true
-    region?: true
-    difficulty?: true
     price?: true
+    startLocation?: true
+    endLocation?: true
+    durationDays?: true
+    difficulty?: true
+    minAge?: true
+    coverUrl?: true
     guideId?: true
     createdAt?: true
     updatedAt?: true
@@ -5325,11 +5355,16 @@ export namespace Prisma {
 
   export type TourMaxAggregateInputType = {
     id?: true
+    slug?: true
     title?: true
     description?: true
-    region?: true
-    difficulty?: true
     price?: true
+    startLocation?: true
+    endLocation?: true
+    durationDays?: true
+    difficulty?: true
+    minAge?: true
+    coverUrl?: true
     guideId?: true
     createdAt?: true
     updatedAt?: true
@@ -5337,11 +5372,18 @@ export namespace Prisma {
 
   export type TourCountAggregateInputType = {
     id?: true
+    slug?: true
     title?: true
     description?: true
-    region?: true
-    difficulty?: true
     price?: true
+    startLocation?: true
+    endLocation?: true
+    durationDays?: true
+    languages?: true
+    difficulty?: true
+    minAge?: true
+    availableMonths?: true
+    coverUrl?: true
     program?: true
     guideId?: true
     createdAt?: true
@@ -5437,11 +5479,18 @@ export namespace Prisma {
 
   export type TourGroupByOutputType = {
     id: number
+    slug: string
     title: string
     description: string
-    region: string
+    price: number | null
+    startLocation: string | null
+    endLocation: string | null
+    durationDays: number | null
+    languages: string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge: number | null
+    availableMonths: string[]
+    coverUrl: string | null
     program: JsonValue
     guideId: number
     createdAt: Date
@@ -5469,11 +5518,18 @@ export namespace Prisma {
 
   export type TourSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    slug?: boolean
     title?: boolean
     description?: boolean
-    region?: boolean
-    difficulty?: boolean
     price?: boolean
+    startLocation?: boolean
+    endLocation?: boolean
+    durationDays?: boolean
+    languages?: boolean
+    difficulty?: boolean
+    minAge?: boolean
+    availableMonths?: boolean
+    coverUrl?: boolean
     program?: boolean
     guideId?: boolean
     createdAt?: boolean
@@ -5492,11 +5548,18 @@ export namespace Prisma {
 
   export type TourSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    slug?: boolean
     title?: boolean
     description?: boolean
-    region?: boolean
-    difficulty?: boolean
     price?: boolean
+    startLocation?: boolean
+    endLocation?: boolean
+    durationDays?: boolean
+    languages?: boolean
+    difficulty?: boolean
+    minAge?: boolean
+    availableMonths?: boolean
+    coverUrl?: boolean
     program?: boolean
     guideId?: boolean
     createdAt?: boolean
@@ -5506,11 +5569,18 @@ export namespace Prisma {
 
   export type TourSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    slug?: boolean
     title?: boolean
     description?: boolean
-    region?: boolean
-    difficulty?: boolean
     price?: boolean
+    startLocation?: boolean
+    endLocation?: boolean
+    durationDays?: boolean
+    languages?: boolean
+    difficulty?: boolean
+    minAge?: boolean
+    availableMonths?: boolean
+    coverUrl?: boolean
     program?: boolean
     guideId?: boolean
     createdAt?: boolean
@@ -5520,18 +5590,25 @@ export namespace Prisma {
 
   export type TourSelectScalar = {
     id?: boolean
+    slug?: boolean
     title?: boolean
     description?: boolean
-    region?: boolean
-    difficulty?: boolean
     price?: boolean
+    startLocation?: boolean
+    endLocation?: boolean
+    durationDays?: boolean
+    languages?: boolean
+    difficulty?: boolean
+    minAge?: boolean
+    availableMonths?: boolean
+    coverUrl?: boolean
     program?: boolean
     guideId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type TourOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "region" | "difficulty" | "price" | "program" | "guideId" | "createdAt" | "updatedAt", ExtArgs["result"]["tour"]>
+  export type TourOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "title" | "description" | "price" | "startLocation" | "endLocation" | "durationDays" | "languages" | "difficulty" | "minAge" | "availableMonths" | "coverUrl" | "program" | "guideId" | "createdAt" | "updatedAt", ExtArgs["result"]["tour"]>
   export type TourInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     guide?: boolean | GuideDefaultArgs<ExtArgs>
     categories?: boolean | Tour$categoriesArgs<ExtArgs>
@@ -5566,11 +5643,18 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      slug: string
       title: string
       description: string
-      region: string
+      price: number | null
+      startLocation: string | null
+      endLocation: string | null
+      durationDays: number | null
+      languages: string[]
       difficulty: $Enums.DifficultyLevel
-      price: number
+      minAge: number | null
+      availableMonths: string[]
+      coverUrl: string | null
       program: Prisma.JsonValue
       guideId: number
       createdAt: Date
@@ -6008,11 +6092,18 @@ export namespace Prisma {
    */
   interface TourFieldRefs {
     readonly id: FieldRef<"Tour", 'Int'>
+    readonly slug: FieldRef<"Tour", 'String'>
     readonly title: FieldRef<"Tour", 'String'>
     readonly description: FieldRef<"Tour", 'String'>
-    readonly region: FieldRef<"Tour", 'String'>
-    readonly difficulty: FieldRef<"Tour", 'DifficultyLevel'>
     readonly price: FieldRef<"Tour", 'Float'>
+    readonly startLocation: FieldRef<"Tour", 'String'>
+    readonly endLocation: FieldRef<"Tour", 'String'>
+    readonly durationDays: FieldRef<"Tour", 'Int'>
+    readonly languages: FieldRef<"Tour", 'String[]'>
+    readonly difficulty: FieldRef<"Tour", 'DifficultyLevel'>
+    readonly minAge: FieldRef<"Tour", 'Int'>
+    readonly availableMonths: FieldRef<"Tour", 'String[]'>
+    readonly coverUrl: FieldRef<"Tour", 'String'>
     readonly program: FieldRef<"Tour", 'Json'>
     readonly guideId: FieldRef<"Tour", 'Int'>
     readonly createdAt: FieldRef<"Tour", 'DateTime'>
@@ -22252,11 +22343,18 @@ export namespace Prisma {
 
   export const TourScalarFieldEnum: {
     id: 'id',
+    slug: 'slug',
     title: 'title',
     description: 'description',
-    region: 'region',
-    difficulty: 'difficulty',
     price: 'price',
+    startLocation: 'startLocation',
+    endLocation: 'endLocation',
+    durationDays: 'durationDays',
+    languages: 'languages',
+    difficulty: 'difficulty',
+    minAge: 'minAge',
+    availableMonths: 'availableMonths',
+    coverUrl: 'coverUrl',
     program: 'program',
     guideId: 'guideId',
     createdAt: 'createdAt',
@@ -22539,20 +22637,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'DifficultyLevel'
-   */
-  export type EnumDifficultyLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DifficultyLevel'>
-    
-
-
-  /**
-   * Reference to a field of type 'DifficultyLevel[]'
-   */
-  export type ListEnumDifficultyLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DifficultyLevel[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -22563,6 +22647,20 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'DifficultyLevel'
+   */
+  export type EnumDifficultyLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DifficultyLevel'>
+    
+
+
+  /**
+   * Reference to a field of type 'DifficultyLevel[]'
+   */
+  export type ListEnumDifficultyLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DifficultyLevel[]'>
     
 
 
@@ -22877,11 +22975,18 @@ export namespace Prisma {
     OR?: TourWhereInput[]
     NOT?: TourWhereInput | TourWhereInput[]
     id?: IntFilter<"Tour"> | number
+    slug?: StringFilter<"Tour"> | string
     title?: StringFilter<"Tour"> | string
     description?: StringFilter<"Tour"> | string
-    region?: StringFilter<"Tour"> | string
+    price?: FloatNullableFilter<"Tour"> | number | null
+    startLocation?: StringNullableFilter<"Tour"> | string | null
+    endLocation?: StringNullableFilter<"Tour"> | string | null
+    durationDays?: IntNullableFilter<"Tour"> | number | null
+    languages?: StringNullableListFilter<"Tour">
     difficulty?: EnumDifficultyLevelFilter<"Tour"> | $Enums.DifficultyLevel
-    price?: FloatFilter<"Tour"> | number
+    minAge?: IntNullableFilter<"Tour"> | number | null
+    availableMonths?: StringNullableListFilter<"Tour">
+    coverUrl?: StringNullableFilter<"Tour"> | string | null
     program?: JsonFilter<"Tour">
     guideId?: IntFilter<"Tour"> | number
     createdAt?: DateTimeFilter<"Tour"> | Date | string
@@ -22899,11 +23004,18 @@ export namespace Prisma {
 
   export type TourOrderByWithRelationInput = {
     id?: SortOrder
+    slug?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    region?: SortOrder
+    price?: SortOrderInput | SortOrder
+    startLocation?: SortOrderInput | SortOrder
+    endLocation?: SortOrderInput | SortOrder
+    durationDays?: SortOrderInput | SortOrder
+    languages?: SortOrder
     difficulty?: SortOrder
-    price?: SortOrder
+    minAge?: SortOrderInput | SortOrder
+    availableMonths?: SortOrder
+    coverUrl?: SortOrderInput | SortOrder
     program?: SortOrder
     guideId?: SortOrder
     createdAt?: SortOrder
@@ -22921,14 +23033,21 @@ export namespace Prisma {
 
   export type TourWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    slug?: string
     AND?: TourWhereInput | TourWhereInput[]
     OR?: TourWhereInput[]
     NOT?: TourWhereInput | TourWhereInput[]
     title?: StringFilter<"Tour"> | string
     description?: StringFilter<"Tour"> | string
-    region?: StringFilter<"Tour"> | string
+    price?: FloatNullableFilter<"Tour"> | number | null
+    startLocation?: StringNullableFilter<"Tour"> | string | null
+    endLocation?: StringNullableFilter<"Tour"> | string | null
+    durationDays?: IntNullableFilter<"Tour"> | number | null
+    languages?: StringNullableListFilter<"Tour">
     difficulty?: EnumDifficultyLevelFilter<"Tour"> | $Enums.DifficultyLevel
-    price?: FloatFilter<"Tour"> | number
+    minAge?: IntNullableFilter<"Tour"> | number | null
+    availableMonths?: StringNullableListFilter<"Tour">
+    coverUrl?: StringNullableFilter<"Tour"> | string | null
     program?: JsonFilter<"Tour">
     guideId?: IntFilter<"Tour"> | number
     createdAt?: DateTimeFilter<"Tour"> | Date | string
@@ -22942,15 +23061,22 @@ export namespace Prisma {
     videos?: VideoListRelationFilter
     materials?: TourMaterialListRelationFilter
     bookings?: BookingListRelationFilter
-  }, "id">
+  }, "id" | "slug">
 
   export type TourOrderByWithAggregationInput = {
     id?: SortOrder
+    slug?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    region?: SortOrder
+    price?: SortOrderInput | SortOrder
+    startLocation?: SortOrderInput | SortOrder
+    endLocation?: SortOrderInput | SortOrder
+    durationDays?: SortOrderInput | SortOrder
+    languages?: SortOrder
     difficulty?: SortOrder
-    price?: SortOrder
+    minAge?: SortOrderInput | SortOrder
+    availableMonths?: SortOrder
+    coverUrl?: SortOrderInput | SortOrder
     program?: SortOrder
     guideId?: SortOrder
     createdAt?: SortOrder
@@ -22967,11 +23093,18 @@ export namespace Prisma {
     OR?: TourScalarWhereWithAggregatesInput[]
     NOT?: TourScalarWhereWithAggregatesInput | TourScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Tour"> | number
+    slug?: StringWithAggregatesFilter<"Tour"> | string
     title?: StringWithAggregatesFilter<"Tour"> | string
     description?: StringWithAggregatesFilter<"Tour"> | string
-    region?: StringWithAggregatesFilter<"Tour"> | string
+    price?: FloatNullableWithAggregatesFilter<"Tour"> | number | null
+    startLocation?: StringNullableWithAggregatesFilter<"Tour"> | string | null
+    endLocation?: StringNullableWithAggregatesFilter<"Tour"> | string | null
+    durationDays?: IntNullableWithAggregatesFilter<"Tour"> | number | null
+    languages?: StringNullableListFilter<"Tour">
     difficulty?: EnumDifficultyLevelWithAggregatesFilter<"Tour"> | $Enums.DifficultyLevel
-    price?: FloatWithAggregatesFilter<"Tour"> | number
+    minAge?: IntNullableWithAggregatesFilter<"Tour"> | number | null
+    availableMonths?: StringNullableListFilter<"Tour">
+    coverUrl?: StringNullableWithAggregatesFilter<"Tour"> | string | null
     program?: JsonWithAggregatesFilter<"Tour">
     guideId?: IntWithAggregatesFilter<"Tour"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Tour"> | Date | string
@@ -24054,11 +24187,18 @@ export namespace Prisma {
   }
 
   export type TourCreateInput = {
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -24075,11 +24215,18 @@ export namespace Prisma {
 
   export type TourUncheckedCreateInput = {
     id?: number
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     guideId: number
     createdAt?: Date | string
@@ -24095,11 +24242,18 @@ export namespace Prisma {
   }
 
   export type TourUpdateInput = {
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24116,11 +24270,18 @@ export namespace Prisma {
 
   export type TourUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     guideId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24137,11 +24298,18 @@ export namespace Prisma {
 
   export type TourCreateManyInput = {
     id?: number
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     guideId: number
     createdAt?: Date | string
@@ -24149,11 +24317,18 @@ export namespace Prisma {
   }
 
   export type TourUpdateManyMutationInput = {
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24161,11 +24336,18 @@ export namespace Prisma {
 
   export type TourUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     guideId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25345,22 +25527,33 @@ export namespace Prisma {
     userId?: SortOrder
   }
 
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type EnumDifficultyLevelFilter<$PrismaModel = never> = {
     equals?: $Enums.DifficultyLevel | EnumDifficultyLevelFieldRefInput<$PrismaModel>
     in?: $Enums.DifficultyLevel[] | ListEnumDifficultyLevelFieldRefInput<$PrismaModel>
     notIn?: $Enums.DifficultyLevel[] | ListEnumDifficultyLevelFieldRefInput<$PrismaModel>
     not?: NestedEnumDifficultyLevelFilter<$PrismaModel> | $Enums.DifficultyLevel
-  }
-
-  export type FloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
   }
   export type JsonFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -25453,11 +25646,18 @@ export namespace Prisma {
 
   export type TourCountOrderByAggregateInput = {
     id?: SortOrder
+    slug?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    region?: SortOrder
-    difficulty?: SortOrder
     price?: SortOrder
+    startLocation?: SortOrder
+    endLocation?: SortOrder
+    durationDays?: SortOrder
+    languages?: SortOrder
+    difficulty?: SortOrder
+    minAge?: SortOrder
+    availableMonths?: SortOrder
+    coverUrl?: SortOrder
     program?: SortOrder
     guideId?: SortOrder
     createdAt?: SortOrder
@@ -25467,16 +25667,23 @@ export namespace Prisma {
   export type TourAvgOrderByAggregateInput = {
     id?: SortOrder
     price?: SortOrder
+    durationDays?: SortOrder
+    minAge?: SortOrder
     guideId?: SortOrder
   }
 
   export type TourMaxOrderByAggregateInput = {
     id?: SortOrder
+    slug?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    region?: SortOrder
-    difficulty?: SortOrder
     price?: SortOrder
+    startLocation?: SortOrder
+    endLocation?: SortOrder
+    durationDays?: SortOrder
+    difficulty?: SortOrder
+    minAge?: SortOrder
+    coverUrl?: SortOrder
     guideId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -25484,11 +25691,16 @@ export namespace Prisma {
 
   export type TourMinOrderByAggregateInput = {
     id?: SortOrder
+    slug?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    region?: SortOrder
-    difficulty?: SortOrder
     price?: SortOrder
+    startLocation?: SortOrder
+    endLocation?: SortOrder
+    durationDays?: SortOrder
+    difficulty?: SortOrder
+    minAge?: SortOrder
+    coverUrl?: SortOrder
     guideId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -25497,7 +25709,41 @@ export namespace Prisma {
   export type TourSumOrderByAggregateInput = {
     id?: SortOrder
     price?: SortOrder
+    durationDays?: SortOrder
+    minAge?: SortOrder
     guideId?: SortOrder
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type EnumDifficultyLevelWithAggregatesFilter<$PrismaModel = never> = {
@@ -25508,22 +25754,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumDifficultyLevelFilter<$PrismaModel>
     _max?: NestedEnumDifficultyLevelFilter<$PrismaModel>
-  }
-
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
   }
   export type JsonWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -25769,6 +25999,17 @@ export namespace Prisma {
     not?: NestedEnumBookingStatusFilter<$PrismaModel> | $Enums.BookingStatus
   }
 
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type PaymentListRelationFilter = {
     every?: PaymentWhereInput
     some?: PaymentWhereInput
@@ -25836,6 +26077,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumBookingStatusFilter<$PrismaModel>
     _max?: NestedEnumBookingStatusFilter<$PrismaModel>
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type EnumPaymentMethodFilter<$PrismaModel = never> = {
@@ -26627,6 +26884,14 @@ export namespace Prisma {
     deleteMany?: TourScalarWhereInput | TourScalarWhereInput[]
   }
 
+  export type TourCreatelanguagesInput = {
+    set: string[]
+  }
+
+  export type TourCreateavailableMonthsInput = {
+    set: string[]
+  }
+
   export type GuideCreateNestedOneWithoutToursInput = {
     create?: XOR<GuideCreateWithoutToursInput, GuideUncheckedCreateWithoutToursInput>
     connectOrCreate?: GuideCreateOrConnectWithoutToursInput
@@ -26741,16 +27006,34 @@ export namespace Prisma {
     connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
   }
 
-  export type EnumDifficultyLevelFieldUpdateOperationsInput = {
-    set?: $Enums.DifficultyLevel
-  }
-
-  export type FloatFieldUpdateOperationsInput = {
-    set?: number
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type TourUpdatelanguagesInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type EnumDifficultyLevelFieldUpdateOperationsInput = {
+    set?: $Enums.DifficultyLevel
+  }
+
+  export type TourUpdateavailableMonthsInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type GuideUpdateOneRequiredWithoutToursNestedInput = {
@@ -27161,6 +27444,14 @@ export namespace Prisma {
     set?: $Enums.BookingStatus
   }
 
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type TourUpdateOneRequiredWithoutBookingsNestedInput = {
     create?: XOR<TourCreateWithoutBookingsInput, TourUncheckedCreateWithoutBookingsInput>
     connectOrCreate?: TourCreateOrConnectWithoutBookingsInput
@@ -27470,11 +27761,54 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedEnumDifficultyLevelFilter<$PrismaModel = never> = {
     equals?: $Enums.DifficultyLevel | EnumDifficultyLevelFieldRefInput<$PrismaModel>
     in?: $Enums.DifficultyLevel[] | ListEnumDifficultyLevelFieldRefInput<$PrismaModel>
     notIn?: $Enums.DifficultyLevel[] | ListEnumDifficultyLevelFieldRefInput<$PrismaModel>
     not?: NestedEnumDifficultyLevelFilter<$PrismaModel> | $Enums.DifficultyLevel
+  }
+
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumDifficultyLevelWithAggregatesFilter<$PrismaModel = never> = {
@@ -27485,22 +27819,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumDifficultyLevelFilter<$PrismaModel>
     _max?: NestedEnumDifficultyLevelFilter<$PrismaModel>
-  }
-
-  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
   }
   export type NestedJsonFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -27554,6 +27872,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumBookingStatusFilter<$PrismaModel>
     _max?: NestedEnumBookingStatusFilter<$PrismaModel>
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type NestedEnumPaymentMethodFilter<$PrismaModel = never> = {
@@ -28123,11 +28457,18 @@ export namespace Prisma {
   }
 
   export type TourCreateWithoutGuideInput = {
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -28143,11 +28484,18 @@ export namespace Prisma {
 
   export type TourUncheckedCreateWithoutGuideInput = {
     id?: number
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -28242,11 +28590,18 @@ export namespace Prisma {
     OR?: TourScalarWhereInput[]
     NOT?: TourScalarWhereInput | TourScalarWhereInput[]
     id?: IntFilter<"Tour"> | number
+    slug?: StringFilter<"Tour"> | string
     title?: StringFilter<"Tour"> | string
     description?: StringFilter<"Tour"> | string
-    region?: StringFilter<"Tour"> | string
+    price?: FloatNullableFilter<"Tour"> | number | null
+    startLocation?: StringNullableFilter<"Tour"> | string | null
+    endLocation?: StringNullableFilter<"Tour"> | string | null
+    durationDays?: IntNullableFilter<"Tour"> | number | null
+    languages?: StringNullableListFilter<"Tour">
     difficulty?: EnumDifficultyLevelFilter<"Tour"> | $Enums.DifficultyLevel
-    price?: FloatFilter<"Tour"> | number
+    minAge?: IntNullableFilter<"Tour"> | number | null
+    availableMonths?: StringNullableListFilter<"Tour">
+    coverUrl?: StringNullableFilter<"Tour"> | string | null
     program?: JsonFilter<"Tour">
     guideId?: IntFilter<"Tour"> | number
     createdAt?: DateTimeFilter<"Tour"> | Date | string
@@ -28674,11 +29029,18 @@ export namespace Prisma {
   }
 
   export type TourCreateWithoutCategoriesInput = {
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -28694,11 +29056,18 @@ export namespace Prisma {
 
   export type TourUncheckedCreateWithoutCategoriesInput = {
     id?: number
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     guideId: number
     createdAt?: Date | string
@@ -28734,11 +29103,18 @@ export namespace Prisma {
   }
 
   export type TourCreateWithoutTagsInput = {
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -28754,11 +29130,18 @@ export namespace Prisma {
 
   export type TourUncheckedCreateWithoutTagsInput = {
     id?: number
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     guideId: number
     createdAt?: Date | string
@@ -28794,11 +29177,18 @@ export namespace Prisma {
   }
 
   export type TourCreateWithoutDatesInput = {
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -28814,11 +29204,18 @@ export namespace Prisma {
 
   export type TourUncheckedCreateWithoutDatesInput = {
     id?: number
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     guideId: number
     createdAt?: Date | string
@@ -28849,11 +29246,18 @@ export namespace Prisma {
   }
 
   export type TourUpdateWithoutDatesInput = {
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28869,11 +29273,18 @@ export namespace Prisma {
 
   export type TourUncheckedUpdateWithoutDatesInput = {
     id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     guideId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28888,11 +29299,18 @@ export namespace Prisma {
   }
 
   export type TourCreateWithoutReviewsInput = {
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -28908,11 +29326,18 @@ export namespace Prisma {
 
   export type TourUncheckedCreateWithoutReviewsInput = {
     id?: number
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     guideId: number
     createdAt?: Date | string
@@ -28987,11 +29412,18 @@ export namespace Prisma {
   }
 
   export type TourUpdateWithoutReviewsInput = {
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29007,11 +29439,18 @@ export namespace Prisma {
 
   export type TourUncheckedUpdateWithoutReviewsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     guideId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29076,11 +29515,18 @@ export namespace Prisma {
   }
 
   export type TourCreateWithoutPhotosInput = {
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -29096,11 +29542,18 @@ export namespace Prisma {
 
   export type TourUncheckedCreateWithoutPhotosInput = {
     id?: number
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     guideId: number
     createdAt?: Date | string
@@ -29131,11 +29584,18 @@ export namespace Prisma {
   }
 
   export type TourUpdateWithoutPhotosInput = {
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29151,11 +29611,18 @@ export namespace Prisma {
 
   export type TourUncheckedUpdateWithoutPhotosInput = {
     id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     guideId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29170,11 +29637,18 @@ export namespace Prisma {
   }
 
   export type TourCreateWithoutVideosInput = {
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -29190,11 +29664,18 @@ export namespace Prisma {
 
   export type TourUncheckedCreateWithoutVideosInput = {
     id?: number
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     guideId: number
     createdAt?: Date | string
@@ -29225,11 +29706,18 @@ export namespace Prisma {
   }
 
   export type TourUpdateWithoutVideosInput = {
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29245,11 +29733,18 @@ export namespace Prisma {
 
   export type TourUncheckedUpdateWithoutVideosInput = {
     id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     guideId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29264,11 +29759,18 @@ export namespace Prisma {
   }
 
   export type TourCreateWithoutBookingsInput = {
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -29284,11 +29786,18 @@ export namespace Prisma {
 
   export type TourUncheckedCreateWithoutBookingsInput = {
     id?: number
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     guideId: number
     createdAt?: Date | string
@@ -29392,11 +29901,18 @@ export namespace Prisma {
   }
 
   export type TourUpdateWithoutBookingsInput = {
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29412,11 +29928,18 @@ export namespace Prisma {
 
   export type TourUncheckedUpdateWithoutBookingsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     guideId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29569,11 +30092,18 @@ export namespace Prisma {
   }
 
   export type TourCreateWithoutMaterialsInput = {
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -29589,11 +30119,18 @@ export namespace Prisma {
 
   export type TourUncheckedCreateWithoutMaterialsInput = {
     id?: number
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     guideId: number
     createdAt?: Date | string
@@ -29624,11 +30161,18 @@ export namespace Prisma {
   }
 
   export type TourUpdateWithoutMaterialsInput = {
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29644,11 +30188,18 @@ export namespace Prisma {
 
   export type TourUncheckedUpdateWithoutMaterialsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     guideId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -30272,22 +30823,36 @@ export namespace Prisma {
 
   export type TourCreateManyGuideInput = {
     id?: number
+    slug: string
     title: string
     description: string
-    region: string
+    price?: number | null
+    startLocation?: string | null
+    endLocation?: string | null
+    durationDays?: number | null
+    languages?: TourCreatelanguagesInput | string[]
     difficulty: $Enums.DifficultyLevel
-    price: number
+    minAge?: number | null
+    availableMonths?: TourCreateavailableMonthsInput | string[]
+    coverUrl?: string | null
     program: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type TourUpdateWithoutGuideInput = {
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -30303,11 +30868,18 @@ export namespace Prisma {
 
   export type TourUncheckedUpdateWithoutGuideInput = {
     id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -30323,11 +30895,18 @@ export namespace Prisma {
 
   export type TourUncheckedUpdateManyWithoutGuideInput = {
     id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -30550,11 +31129,18 @@ export namespace Prisma {
   }
 
   export type TourUpdateWithoutCategoriesInput = {
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -30570,11 +31156,18 @@ export namespace Prisma {
 
   export type TourUncheckedUpdateWithoutCategoriesInput = {
     id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     guideId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -30590,11 +31183,18 @@ export namespace Prisma {
 
   export type TourUncheckedUpdateManyWithoutCategoriesInput = {
     id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     guideId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -30602,11 +31202,18 @@ export namespace Prisma {
   }
 
   export type TourUpdateWithoutTagsInput = {
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -30622,11 +31229,18 @@ export namespace Prisma {
 
   export type TourUncheckedUpdateWithoutTagsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     guideId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -30642,11 +31256,18 @@ export namespace Prisma {
 
   export type TourUncheckedUpdateManyWithoutTagsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    startLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    endLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    durationDays?: NullableIntFieldUpdateOperationsInput | number | null
+    languages?: TourUpdatelanguagesInput | string[]
     difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
-    price?: FloatFieldUpdateOperationsInput | number
+    minAge?: NullableIntFieldUpdateOperationsInput | number | null
+    availableMonths?: TourUpdateavailableMonthsInput | string[]
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
     program?: JsonNullValueInput | InputJsonValue
     guideId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

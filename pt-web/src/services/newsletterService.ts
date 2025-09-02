@@ -1,18 +1,3 @@
-/**
- * Newsletter Service
- *
- * This service handles newsletter subscription management:
- * - User subscription to newsletter
- * - Unsubscription from newsletter
- * - Getting list of subscribers (for admins)
- *
- * Used in:
- * - Footer (subscription form)
- * - Admin panel (subscriber management)
- * - Email campaigns
- */
-
-// ====== TYPES ======
 export interface NewsletterPreferences {
   categories?: string[];
   frequency?: "daily" | "weekly" | "monthly";
@@ -36,7 +21,6 @@ export interface NewsletterResponse {
   error?: string;
 }
 
-// ====== CONSTANTS ======
 const MESSAGES = {
   SUBSCRIPTION_SUCCESS: "Thank you for subscribing to our newsletter!",
   UNSUBSCRIPTION_SUCCESS: "Successfully unsubscribed from newsletter",
@@ -45,20 +29,14 @@ const MESSAGES = {
   SERVER_ERROR: "Server error occurred. Please try again later.",
 } as const;
 
-const MOCK_DELAY = 1000; // Simulate network delay
+const MOCK_DELAY = 1000;
 
-// ====== VALIDATION ======
 const validateEmail = (email: string): boolean => {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   return emailRegex.test(email.trim());
 };
 
-// ====== MOCK IMPLEMENTATIONS ======
-/**
- * Mock implementation for newsletter subscription
- * TODO: Replace with real API call when backend is ready
- */
 const mockSubscribeToNewsletter = async (email: string, source: string): Promise<NewsletterResponse> => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -80,10 +58,6 @@ const mockSubscribeToNewsletter = async (email: string, source: string): Promise
   });
 };
 
-/**
- * Mock implementation for newsletter unsubscription
- * TODO: Replace with real API call when backend is ready
- */
 const mockUnsubscribeFromNewsletter = async (email: string): Promise<NewsletterResponse> => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -102,10 +76,6 @@ const mockUnsubscribeFromNewsletter = async (email: string): Promise<NewsletterR
   });
 };
 
-/**
- * Mock implementation for getting newsletter subscriptions
- * TODO: Replace with real API call when backend is ready
- */
 const mockGetNewsletterSubscriptions = async (): Promise<{
   subscriptions: NewsletterSubscription[];
   count: number;
@@ -132,61 +102,37 @@ const mockGetNewsletterSubscriptions = async (): Promise<{
   });
 };
 
-// ====== PUBLIC API ======
-/**
- * Subscribe to newsletter
- * @param email - Email address to subscribe
- * @param source - Source of subscription (e.g., "footer", "popup")
- * @returns Promise with subscription result
- */
 export const subscribeToNewsletter = async (email: string, source: string = "footer"): Promise<NewsletterResponse> => {
-  // Validate email
   if (!email || !validateEmail(email)) {
     throw new Error(MESSAGES.VALIDATION_ERROR);
   }
 
   try {
-    // TODO: Replace with real API call when backend is ready
     return await mockSubscribeToNewsletter(email, source);
   } catch (error) {
-    // TODO: Replace with proper logger service
     throw error instanceof Error ? error : new Error(MESSAGES.SERVER_ERROR);
   }
 };
 
-/**
- * Unsubscribe from newsletter
- * @param email - Email address to unsubscribe
- * @returns Promise with unsubscription result
- */
 export const unsubscribeFromNewsletter = async (email: string): Promise<NewsletterResponse> => {
-  // Validate email
   if (!email || !validateEmail(email)) {
     throw new Error(MESSAGES.VALIDATION_ERROR);
   }
 
   try {
-    // TODO: Replace with real API call when backend is ready
     return await mockUnsubscribeFromNewsletter(email);
   } catch (error) {
-    // TODO: Replace with proper logger service
     throw error instanceof Error ? error : new Error(MESSAGES.SERVER_ERROR);
   }
 };
 
-/**
- * Get all newsletter subscriptions (admin only)
- * @returns Promise with list of subscriptions and count
- */
 export const getNewsletterSubscriptions = async (): Promise<{
   subscriptions: NewsletterSubscription[];
   count: number;
 }> => {
   try {
-    // TODO: Replace with real API call when backend is ready
     return await mockGetNewsletterSubscriptions();
   } catch (error) {
-    // TODO: Replace with proper logger service
     throw error instanceof Error ? error : new Error(MESSAGES.SERVER_ERROR);
   }
 };

@@ -42,29 +42,34 @@ export const EditProfileForm: React.FC = () => {
   };
 
   const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      if (!file.type.startsWith("image/")) {
-        setError("Please select an image file");
-
-        return;
-      }
-
-      if (file.size > MAX_FILE_SIZE_MB * BYTES_IN_MB) {
-        setError("Image size should be less than 5MB");
-
-        return;
-      }
-
-      setAvatarFile(file);
-      setError("");
-
-      const reader = new FileReader();
-      reader.onload = (loadEvent) => {
-        setAvatarPreview(loadEvent.target?.result as string);
-      };
-      reader.readAsDataURL(file);
+    const input = event.currentTarget;
+    const files = input.files;
+    let file: File | null = null;
+    if (files && files.length > 0) {
+      file = files[0];
     }
+    if (file === null) {
+      return;
+    }
+    if (!file.type.startsWith("image/")) {
+      setError("Please select an image file");
+
+      return;
+    }
+    if (file.size > MAX_FILE_SIZE_MB * BYTES_IN_MB) {
+      setError("Image size should be less than 5MB");
+
+      return;
+    }
+    setAvatarFile(file);
+    setError("");
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const r = ev.target;
+      const v = r && typeof r.result === "string" ? r.result : null;
+      setAvatarPreview(v);
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleAvatarClick = () => {
@@ -78,36 +83,68 @@ export const EditProfileForm: React.FC = () => {
     setSuccess("");
 
     try {
-      const formDataToSend = new FormData();
-      formDataToSend.append("firstName", formData.firstName);
-      formDataToSend.append("lastName", formData.lastName);
-      if (formData.bio) {
-        formDataToSend.append("bio", formData.bio);
+      const fd = new FormData();
+      const nextFirst = formData.firstName.trim();
+      const nextLast = formData.lastName.trim();
+      const nextBio = (formData.bio || "").trim();
+
+      if (nextFirst && nextFirst !== (user.firstName || "")) {
+        fd.append("firstName", nextFirst);
+      }
+      if (nextLast && nextLast !== (user.lastName || "")) {
+        fd.append("lastName", nextLast);
+      }
+      if (nextBio !== (user.bio || "")) {
+        fd.append("bio", nextBio);
       }
       if (avatarFile) {
-        formDataToSend.append("avatar", avatarFile);
+        fd.append("avatar", avatarFile);
       }
 
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/profile`, {
+      if ([...fd.keys()].length === 0) {
+        setIsLoading(false);
+        setError("No changes to save");
+
+        return;
+      }
+
+      const base =
+        typeof window !== "undefined" &&
+        (window as unknown as { ENV: { VITE_API_BASE_URL: string } }) &&
+        (window as unknown as { ENV: { VITE_API_BASE_URL: string } }).ENV &&
+        typeof (window as unknown as { ENV: { VITE_API_BASE_URL: string } }).ENV.VITE_API_BASE_URL === "string"
+          ? (window as unknown as { ENV: { VITE_API_BASE_URL: string } }).ENV.VITE_API_BASE_URL
+          : "http://localhost:8000";
+
+      const res = await fetch(`${base}/auth/profile`, {
         method: "PUT",
-        headers: {Authorization: `Bearer ${localStorage.getItem("token")}`},
-        body: formDataToSend,
+        headers: {Authorization: `Bearer ${localStorage.getItem("token") || ""}`},
+        body: fd,
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to update profile");
+      if (!res.ok) {
+        let msg = "Failed to update profile";
+        try {
+          const data = await res.json();
+          if (data && typeof data.error === "string" && data.error) {
+            msg = data.error;
+          }
+        } catch {
+          msg = "Failed to update profile";
+        }
+        throw new Error(msg);
       }
 
-      const updatedUser = await response.json();
-      setSuccess("Profile updated successfully!");
+      const updated = await res.json();
 
-      const currentUser = JSON.parse(localStorage.getItem("user") || "{}");
-      const updatedUserData = {...currentUser, ...updatedUser.user};
-      localStorage.setItem("user", JSON.stringify(updatedUserData));
+      const currentStr = localStorage.getItem("user");
+      const currentObj = currentStr ? JSON.parse(currentStr) : {};
+      const merged = {...currentObj, ...(updated?.user ? updated.user : {})};
+      localStorage.setItem("user", JSON.stringify(merged));
 
       await refreshProfile();
 
+      setSuccess("Profile updated successfully!");
       setAvatarFile(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to update profile");
@@ -122,17 +159,12 @@ export const EditProfileForm: React.FC = () => {
         Edit Profile
       </h2>
 
-      {error && (
-        <div className={styles.error}>
-          {error}
-        </div>
-      )}
-
-      {success && (
-        <div className={styles.success}>
-          {success}
-        </div>
-      )}
+      {error && <div className={styles.error}>
+        {error}
+      </div>}
+      {success && <div className={styles.success}>
+        {success}
+      </div>}
 
       <form
         onSubmit={handleSubmit}
@@ -172,7 +204,7 @@ export const EditProfileForm: React.FC = () => {
         <div className={styles.formFields}>
           <div className={styles.formField}>
             <label htmlFor="firstName">
-              First Name *
+              First Name
             </label>
             <input
               type="text"
@@ -180,14 +212,13 @@ export const EditProfileForm: React.FC = () => {
               name="firstName"
               value={formData.firstName}
               onChange={handleChange}
-              required
               disabled={isLoading}
             />
           </div>
 
           <div className={styles.formField}>
             <label htmlFor="lastName">
-              Last Name *
+              Last Name
             </label>
             <input
               type="text"
@@ -195,7 +226,6 @@ export const EditProfileForm: React.FC = () => {
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
-              required
               disabled={isLoading}
             />
           </div>
