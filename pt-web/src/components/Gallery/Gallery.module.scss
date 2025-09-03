@@ -1,0 +1,73 @@
+@use "src/styles/variables" as vars;
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: vars.$gap-lg;
+}
+
+.actions {
+  display: flex;
+  gap: vars.$gap-md;
+}
+
+.primary {
+  padding: vars.$padding-button;
+  border-radius: vars.$contact-btn-border-radius;
+  border: none;
+  background: vars.$contact-btn-bg;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.danger {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ef4444;
+  background: #fff5f5;
+  color: #b91c1c;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.error {
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #fee;
+  color: #c53030;
+  border: 1px solid #feb2b2;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: vars.$gap-lg;
+}
+
+.card {
+  border: 1px solid vars.$color-border;
+  border-radius: vars.$radius-medium;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.cardBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+}

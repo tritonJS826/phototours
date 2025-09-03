@@ -1,6 +1,19 @@
 import {useCallback, useEffect, useState} from "react";
 import {authService} from "src/services/authService";
-import {AuthState, ChangePasswordData, LoginData, RegisterData} from "src/types/auth";
+import type {AuthState, ChangePasswordData, LoginData, RegisterData, User} from "src/types/auth";
+
+type AuthSuccess = {
+  user: User;
+  token: string;
+};
+
+type ProfileSuccess = {
+  user: User;
+};
+
+type ChangePasswordSuccess = {
+  message: string;
+};
 
 export const useAuth = () => {
   const [authState, setAuthState] = useState<AuthState>({
@@ -26,49 +39,55 @@ export const useAuth = () => {
     }
   }, []);
 
-  const register = useCallback(async (data: RegisterData) => {
-    try {
-      setAuthState(prev => ({...prev, isLoading: true}));
-      const response = await authService.register(data);
+  const register = useCallback(
+    async (data: RegisterData): Promise<AuthSuccess> => {
+      try {
+        setAuthState(prev => ({...prev, isLoading: true}));
+        const response = await authService.register(data) as AuthSuccess;
 
-      authService.setAuthData(response.token, response.user);
-      setAuthState({
-        user: response.user,
-        token: response.token,
-        isAuthenticated: true,
-        isLoading: false,
-      });
+        authService.setAuthData(response.token, response.user);
+        setAuthState({
+          user: response.user,
+          token: response.token,
+          isAuthenticated: true,
+          isLoading: false,
+        });
 
-      return response;
-    } catch (error) {
-      setAuthState(prev => ({...prev, isLoading: false}));
-      throw error;
-    }
-  }, []);
+        return response;
+      } catch (error) {
+        setAuthState(prev => ({...prev, isLoading: false}));
+        throw error;
+      }
+    },
+    [],
+  );
 
-  const login = useCallback(async (data: LoginData) => {
-    try {
-      setAuthState(prev => ({...prev, isLoading: true}));
+  const login = useCallback(
+    async (data: LoginData): Promise<AuthSuccess> => {
+      try {
+        setAuthState(prev => ({...prev, isLoading: true}));
 
-      localStorage.removeItem("notifications");
-      localStorage.removeItem("bankAccounts");
+        localStorage.removeItem("notifications");
+        localStorage.removeItem("bankAccounts");
 
-      const response = await authService.login(data);
+        const response = await authService.login(data) as AuthSuccess;
 
-      authService.setAuthData(response.token, response.user);
-      setAuthState({
-        user: response.user,
-        token: response.token,
-        isAuthenticated: true,
-        isLoading: false,
-      });
+        authService.setAuthData(response.token, response.user);
+        setAuthState({
+          user: response.user,
+          token: response.token,
+          isAuthenticated: true,
+          isLoading: false,
+        });
 
-      return response;
-    } catch (error) {
-      setAuthState(prev => ({...prev, isLoading: false}));
-      throw error;
-    }
-  }, []);
+        return response;
+      } catch (error) {
+        setAuthState(prev => ({...prev, isLoading: false}));
+        throw error;
+      }
+    },
+    [],
+  );
 
   const logout = useCallback(() => {
     authService.logout();
@@ -80,18 +99,25 @@ export const useAuth = () => {
     });
   }, []);
 
-  const changePassword = useCallback(async (data: ChangePasswordData) => {
-    const response = await authService.changePassword(data);
+  const changePassword = useCallback(
+    async (data: ChangePasswordData): Promise<ChangePasswordSuccess> => {
+      const response = (await authService.changePassword(data)) as ChangePasswordSuccess;
 
-    return response;
-  }, []);
+      return response;
+    },
+    [],
+  );
 
-  const refreshProfile = useCallback(async () => {
+  const refreshProfile = useCallback(async (): Promise<User> => {
     try {
-      const response = await authService.getProfile();
+      const response = (await authService.getProfile()) as ProfileSuccess;
+
+      localStorage.setItem("user", JSON.stringify(response.user));
+
       setAuthState(prev => ({
         ...prev,
         user: response.user,
+        isAuthenticated: Boolean(prev.token),
       }));
 
       return response.user;

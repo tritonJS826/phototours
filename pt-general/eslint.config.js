@@ -13,6 +13,8 @@ export default [
       'src/generated/**',
       'prisma/migrations/**',
       'storybook-static/**',
+      "coverage/**",
+      "src/generated/**",
     ],
   },
 
