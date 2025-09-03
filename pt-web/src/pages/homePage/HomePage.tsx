@@ -13,8 +13,7 @@ const FEATURED_TOURS_LIMIT = 3;
 
 const COPY = {
   hero: {
-    title:
-      "Everything you need\nfor your dream photography\nadventure in Iceland",
+    title: "Everything you need\nfor your dream photography\nadventure in Iceland",
     subtitle:
       "As Iceland’s leading photo tour operator, we offer expert tours\n" +
       "to help you capture breathtaking images at the best photo locations.",
@@ -39,7 +38,6 @@ export function HomePage() {
 
   useEffect(() => {
     let mounted = true;
-
     (async () => {
       try {
         const data = await listTours();
@@ -66,7 +64,6 @@ export function HomePage() {
             <HeroSection
               title={COPY.hero.title}
               subtitle={COPY.hero.subtitle}
-              ctaLabel={COPY.hero.cta}
             />
             <TourSearchForm />
           </div>
@@ -95,20 +92,15 @@ export function HomePage() {
               {COPY.bestWinter.subtitle}
             </p>
           </header>
-          <ToursSection limit={3} />
+          <ToursSection />
         </Container>
       )}
 
       <Container>
-        <header className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>
-            {COPY.articles.title}
-          </h2>
-          <p className={styles.sectionSubtitle}>
-            {COPY.articles.subtitle}
-          </p>
-        </header>
-        <ArticlesShowcase />
+        <ArticlesShowcase
+          title={COPY.articles.title}
+          subtitle={COPY.articles.subtitle}
+        />
       </Container>
     </div>
   );
