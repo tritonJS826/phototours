@@ -1,32 +1,33 @@
-import {Container} from "src/components/Container/Container";
 import styles from "src/components/HeroSection/HeroSection.module.scss";
 
-export function HeroSection() {
+interface HeroSectionProps {
+  title: string;
+  subtitle?: string;
+  ctaLabel?: string;
+  className?: string;
+}
+
+function renderMultiline(text: string) {
+  return text.split("\n").map((line, i) => (
+    <span key={i}>
+      {line}
+    </span>
+  ));
+}
+
+export function HeroSection({title, subtitle, className = ""}: HeroSectionProps) {
   return (
-    <Container>
-      <section className={styles.heroSection}>
-        <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>
-            <span>
-              Everything you need
-            </span>
-            <span>
-              for your dream photography
-            </span>
-            <span>
-              adventure in Iceland
-            </span>
-          </h1>
+    <section className={`${styles.heroSection} ${className}`}>
+      <div className={styles.heroContent}>
+        <h1 className={styles.heroTitle}>
+          {renderMultiline(title)}
+        </h1>
+        {subtitle && (
           <p className={styles.heroDescription}>
-            <span>
-              As Iceland's leading photo tour operator, we offer expert tours
-            </span>
-            <span>
-              to help you capture breathtaking images at the best spots—guaranteed
-            </span>
+            {renderMultiline(subtitle)}
           </p>
-        </div>
-      </section>
-    </Container>
+        )}
+      </div>
+    </section>
   );
 }

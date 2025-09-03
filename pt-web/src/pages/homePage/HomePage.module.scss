@@ -8,7 +8,7 @@
 .heroSectionBg {
   position: relative;
   width: 100%;
-  height: 900px;
+  height: 940px;
   background-image: url("src/pages/homePage/assets/wide-hero.avif");
   background-size: cover;
   background-position: center;
@@ -25,19 +25,57 @@
   z-index: 1;
 }
 
+.heroInner {
+  position: relative;
+  z-index: 2;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.sectionHeader {
+  margin-top: 64px;
+  margin-bottom: 24px;
+}
+
+.sectionTitle {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: 0;
+  color: #111;
+  margin: 0 0 8px;
+}
+
+.sectionSubtitle {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #6b7280;
+  margin: 0;
+}
+
 @media (width <= 1024px) {
   .heroSectionBg {
     height: 1180px;
   }
 
   .heroSectionBg::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0;
     height: 370px;
-    background: rgb(0 0 0 / 35%);
-    backdrop-filter: blur(2px);
-    z-index: 1;
+  }
+
+  .sectionHeader {
+    margin-top: 48px;
+    margin-bottom: 20px;
+  }
+
+  .sectionTitle {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .sectionSubtitle {
+    font-size: 12px;
+    line-height: 16px;
   }
 }
 
@@ -48,5 +86,20 @@
 
   .heroSectionBg::after {
     content: none;
+  }
+
+  .sectionHeader {
+    margin-top: 40px;
+    margin-bottom: 16px;
+  }
+
+  .sectionTitle {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .sectionSubtitle {
+    font-size: 12px;
+    line-height: 16px;
   }
 }
