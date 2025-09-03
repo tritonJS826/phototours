@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {fetchData} from "src/api/http";
 import {Button} from "src/components/Button/Button";
-import styles from "src/pages/AdminCreateTourForm/AdminCreateTourForm.module.scss";
+import styles from "src/pages/adminCreateTourForm/AdminCreateTourForm.module.scss";
 
 const initialFormData = {
   title: "",

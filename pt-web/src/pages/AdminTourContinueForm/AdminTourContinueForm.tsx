@@ -2,7 +2,7 @@ import {useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {fetchData} from "src/api/http";
 import {Button} from "src/components/Button/Button";
-import styles from "src/pages/AdminTourContinueForm/AdminTourContinueForm.module.scss";
+import styles from "src/pages/adminTourContinueForm/AdminTourContinueForm.module.scss";
 
 export const AdminTourContinueForm = () => {
   const {id} = useParams();
