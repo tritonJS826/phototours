@@ -1,6 +1,5 @@
-/* src/styles/_variables.scss */
-
-/* ===== COLORS (hex only) ===== */
+$breakpoint-tablet: 1024px;
+$breakpoint-phone-sm: 640px;
 $color-dark: #222;
 $color-medium: #444;
 $color-light: #555;
@@ -19,8 +18,6 @@ $btn-primary-hover-bg: #e0e0e0;
 $btn-secondary-bg: #dc3a3a;
 $btn-secondary-color: #fcf9f9;
 $btn-secondary-hover-bg: #b72424;
-
-/* Contact theme */
 $contact-bg-dark: #3a3a3ae6;
 $contact-bg-medium: #2f2f2f;
 $contact-border: #555;
@@ -35,9 +32,8 @@ $contact-btn-hover-bg: #7ba86a;
 $contact-btn-bg-transparent-10: #92c07f1a;
 $contact-btn-bg-transparent-15: #92c07f26;
 $contact-btn-bg-transparent-30: #92c07f4d;
-
-/* ===== LAYOUT / SPACING (px) ===== */
 $container-width: 1320px;
+$container-max: 1320px;
 $spacing-sm: 8px;
 $spacing-md: 12px;
 $spacing-lg: 16px;
@@ -57,29 +53,27 @@ $padding-button: 14px 24px;
 $padding-input: 12px 16px;
 $padding-container: 48px 16px;
 $padding-section: 64px 16px;
-
-/* ===== BREAKPOINTS (px) ===== */
 $breakpoint-mobile: 768px;
-
-/* ===== TYPOGRAPHY (px) ===== */
+$font-size-2xs: 12px;
 $font-size-xs: 13px;
-$font-size-sm: 15px;
+$font-size-sm: 14px;
 $font-size-md: 16px;
 $font-size-lg: 18px;
 $font-size-xl: 20px;
+$font-size-2xl: 24px;
+$font-size-3xl: 28px;
+$font-size-4xl: 32px;
+$font-size-5xl: 36px;
+$font-size-6xl: 48px;
 $font-size-hero-title: 64px;
 $font-size-hero-subtitle: 32px;
-$font-size-section-title: 48px;
-$font-size-section-text: 32px;
 $font-size-card-title: 20px;
 $font-size-card-text: 16px;
-$font-weight-extra-bold: 700;
-$font-weight-bold: 600;
-$font-weight-normal: 400;
+$font-size-section-title: 28px;
 $font-weight-light: 300;
-$font-weight-minimal: 200;
-
-/* ===== RADII / BORDERS (px) ===== */
+$font-weight-normal: 400;
+$font-weight-bold: 600;
+$font-weight-extra-bold: 800;
 $radius-small: 6px;
 $radius-medium: 8px;
 $radius-large: 12px;
@@ -89,18 +83,14 @@ $border-width-hairline: 0.5px;
 $border-width-thin: 1px;
 $border-width-medium: 2px;
 $border-width-thick: 3px;
-$btn-border: 1px solid $color-border;
+$btn-border: 1px solid #ccc;
 $active-cart-border: 1px solid #9cbef4;
 $dashed-border: 1px dashed #999;
-
-/* ===== SHADOWS (hex with alpha) ===== */
 $shadow-light: 0 4px 10px #0000001a;
 $shadow-medium: 0 4px 15px #0000001a;
 $shadow-hover: 0 5px 15px #0003;
 $shadow-input-focus: 0 0 5px #007bff80;
 $shadow-very-heavy: 0 10px 30px #00000080;
-
-/* ===== TRANSITIONS ===== */
 $transition-fast: 0.2s ease;
 $transition-normal: 0.3s ease;
 $btn-transition-bg: background-color 0.3s ease;
@@ -108,37 +98,41 @@ $transition-bg: background-color 0.3s ease;
 $transition-color: color 0.3s ease;
 $transition-border: border-color 0.3s ease;
 $transition-transform: transform 0.3s ease;
-
-/* ===== LOGO (px) ===== */
 $logo-width: 180px;
 $logo-height: 90px;
 $logo-mobile-width: 140px;
 $logo-mobile-height: 70px;
-
-/* ===== Z-INDEX ===== */
 $z-index-notification: 1000;
 $z-header: 100;
 $z-modal: 1000;
 $z-overlay: 1100;
-
-/* ===== LEGACY ALIASES (compat) ===== */
 $btn-padding: $padding-button;
-
-/* === MISSING BUT USED BY MODULES === */
-$btn-border-radius: 5px; // Button.module.scss
-$btn-font-size: 16px; // Button.module.scss
-
-$transform-lift: -2px; // Footer: translateY(vars.$transform-lift)
-$autofill-box-shadow: 1000px; // NewsletterForm: box-shadow spread
-
-$badge-color: #d9534f; // Cart badge text
-$badge-background: #f9d6d5; // Cart badge bg
-
-$icon-size-large: 36px; // Footer social icons
-$qr-code-size-desktop: 122px; // ContactInfo QR code
+$btn-border-radius: 5px;
+$btn-font-size: 16px;
+$transform-lift: -2px;
+$autofill-box-shadow: 1000px;
+$badge-color: #d9534f;
+$badge-background: #f9d6d5;
+$icon-size-large: 36px;
+$qr-code-size-desktop: 122px;
 $qr-code-size-mobile: 90px;
 $icon-size-small: 20px;
-$btn-font-size: 16px;
 $contact-btn-border-radius: 25px;
-$badge-color: #d9534f;
-$icon-size-large: 36px;
+$font-size-section-text: 16px;
+$font-weight-minimal: 200;
+$gap-xs: 4px;
+$color-border-light: #e9ecef;
+$color-success-hover: #7ba86a;
+$color-error-bg: #f8d7da;
+$icon-md: 24px;
+$color-scroll-track: #f0f0f0;
+$color-error-border: $color-error;
+$padding-btn-sm: 10px 16px;
+$color-scroll-thumb: #c9c9c9;
+$color-bg-success-light: #e8f5e9;
+$color-scroll-thumb-hover: #a6a6a6;
+$border-thin: 1px solid #ddd;
+$color-danger-light: #f8d7da;
+$padding-badge: 2px 6px;
+$color-danger: #dc3545;
+$padding-btn: $padding-button;

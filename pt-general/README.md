@@ -6,65 +6,72 @@ This is a **Node.js + Express backend** for the PhotoTours application, using Pr
 
 ## 🚀 Getting Started
 
-1. Install dependencies:
-   ```bash
-   pnpm install
-   ```
+1) Install dependencies:
+```bash
+pnpm install
+```
 
-2. Create `.env` file in this folder:
-   ```
-   DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE"
-   ```
+2) Create `.env` file in this folder (see template below).
 
-3. Run database migrations:
-   ```bash
-   pnpm prisma:migrate
-   ```
+3) Prepare DB (generate + push schema + seed data):
+```bash
+pnpm setup:dev
+```
+This runs:
+- `prisma generate` — generates Prisma Client
+- `prisma db push` — pushes schema to DB (no migration files)
+- `vite-node src/seeds/seed.ts` — seeds initial data (articles)
 
-4. Generate Prisma client:
-   ```bash
-   pnpm prisma:generate
-   ```
+> Prefer `migrate dev` on shared environments to record migration history:
+```bash
+pnpm prisma:migrate
+```
 
-5. Start dev server:
-   ```bash
-   pnpm dev
-   ```
-   API runs at ➜ http://localhost:8000
+4) Start dev server:
+```bash
+pnpm start
+```
+API runs at ➜ http://localhost:8000
+
+---
+
+## 🔧 .env example
+
+```dotenv
+# Server
+PORT=8000
+NODE_ENV=development
+CORS_ORIGIN=http://localhost:5173
+
+# Database (PostgreSQL)
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/DBNAME?schema=public"
+
+# JWT
+JWT_SECRET=replace_me_with_long_random_string
+
+# Cloudinary
+CLOUDINARY_CLOUD_NAME=xxxx
+CLOUDINARY_API_KEY=xxxx
+CLOUDINARY_API_SECRET=xxxx
+
+# Zoho CRM (optional)
+ZOHO_CLIENT_ID=xxxx
+ZOHO_CLIENT_SECRET=xxxx
+ZOHO_REFRESH_TOKEN=xxxx
+```
 
 ---
 
 ## 📜 Scripts
 
-- `pnpm dev` — start in dev mode with hot reload  
-- `pnpm build` — compile TypeScript  
-- `pnpm start` — run in production  
-- `pnpm prisma:migrate` — apply database migrations  
-- `pnpm prisma:generate` — regenerate Prisma client  
-
----
-
-## 🗄 reset:db script
-Go to `src/scripts` folder for `reset.ts` script and instructions to seed database.
-
----
-
-## 🔗 Integrations
-
-### Zoho CRM
-- OAuth 2.0 setup  
-- Automatic lead creation on user registration  
-- Refresh token flow supported  
-
-Add to `.env`:
-```
-ZOHO_CLIENT_ID=your_client_id
-ZOHO_CLIENT_SECRET=your_client_secret
-ZOHO_REFRESH_TOKEN=your_refresh_token
-```
-
-### Cloudinary
-- Media upload via `multer-storage-cloudinary`  
-- Optimized delivery of photos/videos  
-- URL saved in DB  
-- Configurable via `.env`
+- `pnpm start` — dev server with hot reload (vite-node)
+- `pnpm build` — compile TypeScript to `dist/`
+- `pnpm type-check` — run TypeScript checks without emit
+- `pnpm prisma:migrate` — create/apply migrations
+- `pnpm prisma:generate` — regenerate Prisma Client
+- `pnpm db:push` — push schema to DB without migrations
+- `pnpm prisma:studio` — open Prisma Studio
+- `pnpm prisma:format` / `pnpm prisma:validate`
+- `pnpm db:reset` — reset DB (migrate reset) + run `src/scripts/reset.ts`
+- `pnpm seed:articles` — run `src/seeds/seed.ts`
+- `pnpm setup:dev` — **one command setup**

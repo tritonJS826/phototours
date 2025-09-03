@@ -1,13 +1,16 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixin;
+
 .bankAccountsContainer {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 2rem 0;
+  padding: 32px 0;
 }
 
 .bankAccountsContent {
   background: rgb(255 255 255 / 95%);
   border-radius: 20px;
-  padding: 2rem;
+  padding: 32px;
   box-shadow: 0 20px 40px rgb(0 0 0 / 10%);
   backdrop-filter: blur(10px);
 }
@@ -16,8 +19,8 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 2rem;
-  gap: 1rem;
+  margin-bottom: 32px;
+  gap: 16px;
 
   @media (width <= 768px) {
     flex-direction: column;
@@ -27,15 +30,15 @@
 
 .headerLeft {
   h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #1a202c;
-    margin: 0 0 0.5rem;
+    font-size: 40px;
+    font-weight: vars.$font-weight-bold;
+    color: vars.$color-dark;
+    margin: 0 0 8px;
   }
 
   p {
-    font-size: 1.1rem;
-    color: #718096;
+    font-size: 18px;
+    color: vars.$color-medium;
     margin: 0;
   }
 }
@@ -43,13 +46,13 @@
 .addButton {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
   background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-  color: white;
+  color: vars.$color-bg-white;
   border: none;
-  padding: 0.75rem 1.5rem;
+  padding: 12px 24px;
   border-radius: 12px;
-  font-weight: 600;
+  font-weight: vars.$font-weight-bold;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgb(238 90 36 / 30%);
@@ -67,16 +70,16 @@
 .accountsList {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 16px;
 }
 
 .accountCard {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: white;
+  background: vars.$color-bg-white;
   border-radius: 16px;
-  padding: 1.5rem;
+  padding: 24px;
   box-shadow: 0 4px 15px rgb(0 0 0 / 8%);
   border: 2px solid transparent;
   transition: all 0.3s ease;
@@ -90,7 +93,7 @@
   @media (width <= 768px) {
     flex-direction: column;
     align-items: stretch;
-    gap: 1rem;
+    gap: 16px;
   }
 }
 
@@ -101,13 +104,13 @@
 .accountHeader {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
+  gap: 16px;
+  margin-bottom: 8px;
 
   h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #1a202c;
+    font-size: 20px;
+    font-weight: vars.$font-weight-bold;
+    color: vars.$color-dark;
     margin: 0;
   }
 }
@@ -115,52 +118,52 @@
 .defaultBadge {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 4px;
   background: linear-gradient(135deg, #ffd700, #ffed4e);
-  color: #1a202c;
-  padding: 0.25rem 0.75rem;
+  color: vars.$color-dark;
+  padding: 4px 12px;
   border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: vars.$font-weight-bold;
 }
 
 .bankName {
-  font-size: 1rem;
-  color: #718096;
-  margin: 0 0 0.75rem;
+  font-size: 16px;
+  color: vars.$color-medium;
+  margin: 0 0 12px;
 }
 
 .accountDetails {
   display: flex;
-  gap: 1rem;
+  gap: 16px;
   align-items: center;
 
   @media (width <= 480px) {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: 8px;
   }
 }
 
 .accountType {
   background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-  padding: 0.25rem 0.75rem;
+  color: vars.$color-bg-white;
+  padding: 4px 12px;
   border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: vars.$font-weight-bold;
 }
 
 .accountNumber {
   font-family: "Courier New", monospace;
-  font-weight: 600;
+  font-weight: vars.$font-weight-bold;
   color: #4a5568;
-  font-size: 0.9rem;
+  font-size: 14px;
 }
 
 .accountActions {
   display: flex;
-  gap: 0.5rem;
+  gap: 8px;
   align-items: center;
 
   @media (width <= 768px) {
@@ -183,7 +186,7 @@
 
   &:hover {
     background: #e2e8f0;
-    color: #1a202c;
+    color: vars.$color-dark;
     transform: scale(1.05);
   }
 
@@ -194,23 +197,22 @@
 
 .emptyState {
   text-align: center;
-  padding: 3rem 1rem;
-  color: #718096;
+  padding: 48px 16px;
+  color: vars.$color-medium;
 
   p {
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
+    font-size: 18px;
+    margin-bottom: 24px;
   }
 }
 
 .loading {
   text-align: center;
-  padding: 3rem;
-  color: #718096;
-  font-size: 1.1rem;
+  padding: 48px;
+  color: vars.$color-medium;
+  font-size: 18px;
 }
 
-// Modal styles
 .modalOverlay {
   position: fixed;
   inset: 0;
@@ -219,13 +221,13 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 1rem;
+  padding: 16px;
 }
 
 .modal {
-  background: white;
+  background: vars.$color-bg-white;
   border-radius: 20px;
-  padding: 2rem;
+  padding: 32px;
   max-width: 500px;
   width: 100%;
   max-height: 90vh;
@@ -237,12 +239,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 32px;
 
   h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #1a202c;
+    font-size: 24px;
+    font-weight: vars.$font-weight-bold;
+    color: vars.$color-dark;
     margin: 0;
   }
 }
@@ -250,41 +252,41 @@
 .closeButton {
   background: none;
   border: none;
-  color: #718096;
+  color: vars.$color-medium;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 8px;
   border-radius: 8px;
   transition: all 0.3s ease;
 
   &:hover {
     background: #f7fafc;
-    color: #1a202c;
+    color: vars.$color-dark;
   }
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 24px;
 }
 
 .formGroup {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 8px;
 
   label {
-    font-weight: 600;
-    color: #1a202c;
-    font-size: 0.9rem;
+    font-weight: vars.$font-weight-bold;
+    color: vars.$color-dark;
+    font-size: 14px;
   }
 
   input,
   select {
-    padding: 0.75rem;
+    padding: 12px;
     border: 2px solid #e2e8f0;
     border-radius: 10px;
-    font-size: 1rem;
+    font-size: 16px;
     transition: all 0.3s ease;
 
     &:focus {
@@ -298,9 +300,9 @@
 .checkboxLabel {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: vars.$font-weight-normal;
 
   input[type="checkbox"] {
     width: 18px;
@@ -311,8 +313,8 @@
 
 .formActions {
   display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: 16px;
+  margin-top: 16px;
 
   @media (width <= 480px) {
     flex-direction: column;
@@ -321,12 +323,12 @@
 
 .cancelButton {
   flex: 1;
-  padding: 0.75rem;
+  padding: 12px;
   border: 2px solid #e2e8f0;
-  background: white;
+  background: vars.$color-bg-white;
   color: #4a5568;
   border-radius: 10px;
-  font-weight: 600;
+  font-weight: vars.$font-weight-bold;
   cursor: pointer;
   transition: all 0.3s ease;
 
@@ -338,12 +340,12 @@
 
 .saveButton {
   flex: 1;
-  padding: 0.75rem;
+  padding: 12px;
   background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
+  color: vars.$color-bg-white;
   border: none;
   border-radius: 10px;
-  font-weight: 600;
+  font-weight: vars.$font-weight-bold;
   cursor: pointer;
   transition: all 0.3s ease;
 
