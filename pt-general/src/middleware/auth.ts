@@ -1,7 +1,6 @@
 import {extractTokenFromHeader, verifyToken} from 'src/utils/auth.js';
 import {NextFunction, Request, Response} from 'express';
 
-// HTTP Status Codes
 const HTTP_STATUS_UNAUTHORIZED = 401;
 const HTTP_STATUS_FORBIDDEN = 403;
 

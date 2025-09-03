@@ -1,5 +1,6 @@
 import {env} from 'src/config/env';
 import {prisma} from 'src/db/prisma';
+import {articleRoutes} from 'src/routes/articleRoutes';
 import {authRoutes} from 'src/routes/authRoutes';
 import {bankAccountRoutes} from 'src/routes/bankAccountRoutes';
 import {notificationRoutes} from 'src/routes/notificationRoutes';
@@ -251,6 +252,7 @@ app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
 app.use('/notifications', notificationRoutes);
 app.use('/bank-accounts', bankAccountRoutes);
+app.use('/articles', articleRoutes);
 
 app.listen(port, () => {
   logger.info(`Server is running at http://localhost:${port}`);

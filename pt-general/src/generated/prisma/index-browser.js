@@ -292,6 +292,19 @@ exports.Prisma.BankAccountScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ArticleScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  title: 'title',
+  excerpt: 'excerpt',
+  content: 'content',
+  coverUrl: 'coverUrl',
+  alt: 'alt',
+  author: 'author',
+  featured: 'featured',
+  publishedAt: 'publishedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -396,7 +409,8 @@ exports.Prisma.ModelName = {
   PhotoDiary: 'PhotoDiary',
   UserProcessedPhoto: 'UserProcessedPhoto',
   Notification: 'Notification',
-  BankAccount: 'BankAccount'
+  BankAccount: 'BankAccount',
+  Article: 'Article'
 };
 
 /**

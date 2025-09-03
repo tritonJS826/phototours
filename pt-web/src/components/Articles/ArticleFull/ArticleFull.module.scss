@@ -1,0 +1,31 @@
+@use "../../styles/variables" as vars;
+
+.full {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.cover {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.meta {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 32px;
+}
+
+.content {
+  text-align: justify;
+}

@@ -1,41 +1,35 @@
-function pickRawBase(): string {
-  let fromWindow: string | undefined;
-  if (typeof window !== "undefined") {
-    const w = window as unknown as { __ENV?: { API_BASE_URL?: string } };
-    fromWindow = w.__ENV?.API_BASE_URL;
-  }
+type EnvLike = {env?: {VITE_API_BASE_URL?: string}};
 
-  let fromProcess: string | undefined;
-  if (typeof process !== "undefined") {
-    const p = process as unknown as { env?: { VITE_API_BASE_URL?: string } };
-    fromProcess = p.env?.VITE_API_BASE_URL;
-  }
+function getEnvBase(): string {
+  const meta = (import.meta as unknown as EnvLike);
+  const v = meta?.env?.VITE_API_BASE_URL ? meta.env.VITE_API_BASE_URL : "";
 
-  if (fromWindow) {
-    return fromWindow;
-  }
-  if (fromProcess) {
-    return fromProcess;
-  }
-
-  return "http://localhost:8000";
+  return v ?? "";
 }
 
 function normalizeBase(input: string): string {
-  const trimmed = input.trim();
-  if (trimmed === "") {
-    return "http://localhost:8000";
+  const raw = input.trim();
+  const fallback = "http://localhost:8000";
+  const base = raw === "" ? fallback : raw;
+
+  try {
+    const u = new URL(base, window.location.origin);
+    let p = u.pathname.replace(/\/+$/, "");
+    if (p.toLowerCase().endsWith("/general")) {
+      p = p.slice(0, -"/general".length);
+    }
+    u.pathname = p || "/";
+
+    return `${u.origin}${u.pathname === "/" ? "" : u.pathname}`;
+  } catch {
+    return base.replace(/\/+$/, "").replace(/\/general$/i, "");
   }
-
-  return trimmed.replace(/\/+$/, "").replace(/\/general$/i, "");
 }
 
-export function getApiBase(): string {
-  return normalizeBase(pickRawBase());
-}
+export const API_BASE = normalizeBase(getEnvBase());
 
 export function buildApiUrl(path: string): string {
-  const base = getApiBase();
+  const segment = path.startsWith("/") ? path : `/${path}`;
 
-  return base + (path.startsWith("/") ? path : "/" + path);
+  return `${API_BASE}${segment}`;
 }

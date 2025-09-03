@@ -1,5 +1,5 @@
-import {DifficultyLevel, PrismaClient, Role} from '../generated/prisma';
-import {logger} from '../utils/logger';
+import {DifficultyLevel, Prisma, PrismaClient, Role} from 'src/generated/prisma';
+import {logger} from 'src/utils/logger';
 import {faker} from '@faker-js/faker';
 
 const prisma = new PrismaClient();
@@ -47,29 +47,66 @@ const DATE_SOON_1 = 30;
 const DATE_SOON_2 = 60;
 const DATE_AVAILABILITY_PROB = 0.5;
 
+type ProgramDay = {
+  day: number;
+  title: string;
+  description: string;
+  photos: string[];
+};
+
+type ProgramPayload = {
+  days: ProgramDay[];
+  included: string[];
+  activities: string[];
+};
+
 function getRandomItem<T>(array: T[]): T {
   return array[Math.floor(Math.random() * array.length)];
 }
 
 function getRandomPrice(min: number, max: number): number {
-
   return Math.floor(Math.random() * (max - min + INCLUSIVE_OFFSET)) + min;
 }
 
-function generateTourProgram(daysCount: number = DEFAULT_TOUR_DAYS): string[] {
+function generateProgram(daysCount = DEFAULT_TOUR_DAYS): ProgramPayload {
   const activities = [
-    'mountain hiking', 'historical site tour', 'kayaking',
-    'local market visit', 'cultural workshop',
-    'sunset photoshoot', 'city bike tour', 'local cuisine tasting',
+    'mountain hiking',
+    'historical site tour',
+    'kayaking',
+    'local market visit',
+    'cultural workshop',
+    'sunset photoshoot',
+    'city bike tour',
+    'local cuisine tasting',
   ];
-  const program: string[] = [];
+
+  const days: ProgramDay[] = [];
+
   for (let i = FIRST_DAY_INDEX; i <= daysCount; i++) {
-    const time = `${START_HOUR_MIN + Math.floor(Math.random()
-       * START_HOUR_MAX_OFFSET)}:00 - ${END_HOUR_MIN + Math.floor(Math.random() * END_HOUR_MAX_OFFSET)}:00`;
-    program.push(`Day ${i} (${time}): ${getRandomItem(activities)}`);
+    const startHour = START_HOUR_MIN + Math.floor(Math.random() * START_HOUR_MAX_OFFSET);
+    const endHour = END_HOUR_MIN + Math.floor(Math.random() * END_HOUR_MAX_OFFSET);
+    const time = `${startHour}:00 - ${endHour}:00`;
+
+    days.push({
+      day: i,
+      title: `Day ${i}`,
+      description: `${getRandomItem(activities)} (${time})`,
+      photos: [],
+    });
   }
 
-  return program;
+  return {
+    days,
+    included: ['Guide', 'Transportation'],
+    activities: ['Photo spots', 'Local food'],
+  };
+}
+
+function capitalizeFirstLetter(str: string) {
+  const FIRST_CHAR_INDEX = 0;
+  const SECOND_CHAR_INDEX = 1;
+
+  return str.charAt(FIRST_CHAR_INDEX).toUpperCase() + str.slice(SECOND_CHAR_INDEX);
 }
 
 async function seedDatabase() {
@@ -93,7 +130,7 @@ async function seedDatabase() {
     prisma.tag.create({data: {name: 'Photography'}}),
   ]);
 
-  const clientPromises = [];
+  const clientPromises: Promise<unknown>[] = [];
   for (let i = 0; i < NUMBER_OF_CLIENTS; i++) {
     clientPromises.push(
       prisma.user.create({
@@ -109,7 +146,7 @@ async function seedDatabase() {
   }
   await Promise.all(clientPromises);
 
-  const guideUsers = [];
+  const guideUsers: Array<{id: number}> = [];
   for (let i = 0; i < NUMBER_OF_GUIDES; i++) {
     const user = await prisma.user.create({
       data: {
@@ -123,20 +160,16 @@ async function seedDatabase() {
     guideUsers.push(user);
   }
 
-  const guides = [];
+  const guides: Array<{id: number}> = [];
   for (const user of guideUsers) {
-    guides.push(
-      await prisma.guide.create({
-        data: {
-          userId: user.id,
-          experience: `${MIN_EXPERIENCE_YEARS + Math.floor(Math.random() * MAX_ADDITIONAL_EXPERIENCE_YEARS)} years guiding tours`,
-          specializations: [
-            getRandomItem(categories).name,
-            getRandomItem(categories).name,
-          ],
-        },
-      }),
-    );
+    const guide = await prisma.guide.create({
+      data: {
+        userId: user.id,
+        experience: `${MIN_EXPERIENCE_YEARS + Math.floor(Math.random() * MAX_ADDITIONAL_EXPERIENCE_YEARS)} years guiding tours`,
+        specializations: [getRandomItem(categories).name, getRandomItem(categories).name],
+      },
+    });
+    guides.push(guide);
   }
 
   const difficultyLevels = [
@@ -145,37 +178,33 @@ async function seedDatabase() {
     DifficultyLevel.EXPERIENCED,
   ];
 
-  const FIRST_CHAR_INDEX = 0;
-  const SECOND_CHAR_INDEX = 1;
-
-  function capitalizeFirstLetter(str: string) {
-    return str.charAt(FIRST_CHAR_INDEX).toUpperCase() + str.slice(SECOND_CHAR_INDEX);
-  }
-
-  const tourPromises = [];
+  const tourPromises: Promise<unknown>[] = [];
   for (let i = 0; i < TOURS_COUNT; i++) {
     const guide = getRandomItem(guides);
     const category = getRandomItem(categories);
     const tag = getRandomItem(tags);
 
     const adjective = capitalizeFirstLetter(faker.word.adjective({length: {min: 5, max: 10}}));
-
     const titleTemplates = [
       `${adjective} ${category.name}`,
       `${adjective} ${category.name} Journey`,
       `${adjective} ${category.name} Experience`,
     ];
 
+    const programPayload = generateProgram(TOUR_PROGRAM_DAYS) as unknown as Prisma.InputJsonValue;
+
     tourPromises.push(
       prisma.tour.create({
         data: {
+          slug: faker.lorem.slug(),
           title: getRandomItem(titleTemplates),
-          description: `Join this ${category.name} tour and discover unique experiences in the region of 
-          ${faker.location.city()}, ${faker.location.country()}.`,
-          region: faker.location.city(),
-          difficulty: getRandomItem(difficultyLevels),
+          description: faker.lorem.paragraphs({min: 2, max: 4}),
           price: getRandomPrice(PRICE_MIN, PRICE_MAX),
-          program: {text: generateTourProgram(TOUR_PROGRAM_DAYS)},
+          difficulty: getRandomItem(difficultyLevels),
+          startLocation: faker.location.city(),
+          endLocation: faker.location.city(),
+          coverUrl: faker.image.urlPicsumPhotos(),
+          program: programPayload,
           guideId: guide.id,
           categories: {connect: [{id: category.id}]},
           tags: {connect: [{id: tag.id}]},
