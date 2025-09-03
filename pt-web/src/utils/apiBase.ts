@@ -9,7 +9,7 @@ function getEnvBase(): string {
 
 function normalizeBase(input: string): string {
   const raw = input.trim();
-  const fallback = "http://localhost:8000";
+  const fallback = "http://localhost:5173";
   const base = raw === "" ? fallback : raw;
 
   try {

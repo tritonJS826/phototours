@@ -7,7 +7,7 @@ import {AboutUs} from "src/pages/aboutUs/AboutUsPage";
 import {AdminCreateTourForm} from "src/pages/adminCreateTourForm/AdminCreateTourForm";
 import {AdminPage} from "src/pages/adminPage/AdminPage";
 import {AdminTourContinueForm} from "src/pages/adminTourContinueForm/AdminTourContinueForm";
-import {AdminTourEdit} from "src/pages/AdminTourEditForm/AdminTourEditForm";
+import {AdminTourEdit} from "src/pages/adminTourEditForm/AdminTourEditForm";
 import {Cart} from "src/pages/cart/Cart";
 import {ContactUs} from "src/pages/contactUs/ContactUs";
 import {Dashboard} from "src/pages/dashboard/Dashboard";

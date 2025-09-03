@@ -10,31 +10,29 @@ const HTTP_INTERNAL = 500;
 const MIN_LIMIT = 1;
 
 articleRoutes.get('/', async (req, res) => {
-  try {
-    const limitRaw = req.query.limit;
-    const limitNum = typeof limitRaw === 'string' ? Number(limitRaw) : 0;
-    const take = Number.isFinite(limitNum) && limitNum >= MIN_LIMIT ? limitNum : undefined;
 
-    const items = await prisma.article.findMany({
-      orderBy: [{featured: 'desc'}, {publishedAt: 'desc'}],
-      take,
-      select: {
-        id: true,
-        slug: true,
-        title: true,
-        excerpt: true,
-        coverUrl: true,
-        alt: true,
-        author: true,
-        featured: true,
-        publishedAt: true,
-      },
-    });
+  const limitRaw = req.query.limit;
+  const limitNum = typeof limitRaw === 'string' ? Number(limitRaw) : 0;
+  const take = Number.isFinite(limitNum) && limitNum >= MIN_LIMIT ? limitNum : undefined;
 
-    res.status(HTTP_OK).json(items);
-  } catch {
-    res.status(HTTP_INTERNAL).json({error: 'Failed to load articles'});
-  }
+  const items = await prisma.article.findMany({
+    orderBy: [{featured: 'desc'}, {publishedAt: 'desc'}],
+    take,
+    select: {
+      id: true,
+      slug: true,
+      title: true,
+      excerpt: true,
+      coverUrl: true,
+      alt: true,
+      author: true,
+      featured: true,
+      publishedAt: true,
+    },
+  });
+
+  res.status(HTTP_OK).json(items);
+
 });
 
 articleRoutes.get('/:slug', async (req, res) => {

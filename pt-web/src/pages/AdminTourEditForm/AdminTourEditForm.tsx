@@ -3,7 +3,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {fetchData} from "src/api/http";
 import {Button} from "src/components/Button/Button";
 import {DifficultyLevel, Guide, MaterialType, TourData, TourDataFromApi, TourMaterial} from "src/types/tour";
-import styles from "src/pages/AdminTourEditForm/AdminTourEditForm.module.scss";
+import styles from "src/pages/adminTourEditForm/AdminTourEditForm.module.scss";
 
 export const AdminTourEdit = () => {
   const {id} = useParams<{ id: string }>();

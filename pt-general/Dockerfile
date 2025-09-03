@@ -6,9 +6,13 @@ RUN corepack enable && corepack prepare pnpm@9.8.0 --activate
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
 COPY pt-general/package.json pt-general/package.json
 
+# tempporal solution
+# src copuing should be moved after pnpm install
+COPY pt-general ./pt-general
+
 RUN pnpm install --filter pt-general --frozen-lockfile
 
-COPY pt-general ./pt-general
+#COPY pt-general ./pt-general
 
 ENV NODE_ENV=production
 ENV PORT=8000
