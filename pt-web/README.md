@@ -34,18 +34,23 @@ pnpm -v
 
 1. Install dependencies:
 
-   ```bash
-   pnpm install
-   ```
+```bash
+pnpm install
+```
 
-2. Create `.env` files with `./useEnvs.sh local`
+2. Create `.env` files with:
+
+```bash
+./useEnvs.sh local
+```
 
 3. Start dev server:
-   ```bash
-   pnpm dev
-   ```
-   App will be available at:  
-   ➜ http://localhost:5173
+
+```bash
+pnpm dev
+```
+
+App ➜ http://localhost:5173
 
 ---
 

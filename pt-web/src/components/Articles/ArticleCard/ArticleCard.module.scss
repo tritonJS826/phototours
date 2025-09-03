@@ -1,37 +1,31 @@
-@use "../../styles/variables" as vars;
+@use "src/styles/variables" as vars;
+@use "src/styles/mixins" as mixin;
 
 .card {
   display: grid;
   grid-template-columns: 1fr 420px;
-  gap: 24px;
+  gap: vars.$gap-xxl;
   align-items: center;
-  padding: 20px 0;
-  border-bottom: 1px solid #eee;
+  padding: vars.$spacing-lg 0;
+  border-bottom: vars.$border-width-thin solid vars.$color-border;
 }
 
 .text {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: vars.$gap-lg;
 }
 
 .title {
-  font-size: 28px;
-  font-weight: 700;
+  font-size: vars.$font-size-card-title;
+  font-weight: vars.$font-weight-bold;
+  color: vars.$color-dark;
 }
 
 .excerpt {
-  font-size: 18px;
+  font-size: vars.$font-size-card-text;
   line-height: 1.5;
-  color: #555;
-}
-
-.btn {
-  align-self: flex-start;
-  padding: 10px 28px;
-  border-radius: 24px;
-  border: 2px solid currentcolor;
-  background: transparent;
+  color: vars.$color-light;
 }
 
 .pict {
@@ -39,17 +33,17 @@
   width: 100%;
   height: 260px;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: vars.$radius-large;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 }
 
-.pict img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-@media (width<=900px) {
+@media (width <= 900px) {
   .card {
     grid-template-columns: 1fr;
   }

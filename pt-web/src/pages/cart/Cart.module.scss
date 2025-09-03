@@ -1,157 +1,157 @@
-@use "src/styles/variables" as var;
-@use "src/styles/mixins" as mix;
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixin;
 
 .container {
-  max-width: 1320px;
+  max-width: vars.$container-max;
   margin: 0 auto;
-  padding: 20px;
+  padding: vars.$padding-container;
 }
 
 .containerSection {
   display: flex;
-  gap: 30px;
+  gap: vars.$gap-xl;
   align-items: flex-start;
 }
 
 .formSection {
   flex: 0.4;
-  background: var.$color-bg-white;
-  border-radius: var.$radius-medium;
-  padding: 20px;
-  box-shadow: var.$shadow-medium;
+  background: vars.$color-bg-white;
+  border-radius: vars.$radius-medium;
+  padding: vars.$spacing-lg;
+  box-shadow: vars.$shadow-medium;
 }
 
 .sectionTitle {
-  font-size: var.$font-size-lg;
-  font-weight: var.$font-weight-extra-bold;
-  margin-bottom: 20px;
-  color: var.$color-dark;
+  font-size: vars.$font-size-lg;
+  font-weight: vars.$font-weight-extra-bold;
+  margin-bottom: vars.$spacing-lg;
+  color: vars.$color-dark;
 }
 
 .titlePage {
   text-align: center;
-  font-size: 22px;
-  font-weight: var.$font-weight-extra-bold;
-  color: var.$color-dark;
-  margin-top: 40px;
-  margin-bottom: 30px;
+  font-size: vars.$font-size-xl;
+  font-weight: vars.$font-weight-extra-bold;
+  color: vars.$color-dark;
+  margin-top: vars.$spacing-xxl;
+  margin-bottom: vars.$spacing-xl;
 }
 
 .benefits {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 24px;
-  margin-bottom: 24px;
-  color: var.$color-success;
-  font-size: var.$font-size-xs;
-  font-weight: var.$font-weight-normal;
+  gap: vars.$gap-lg;
+  margin-bottom: vars.$spacing-lg;
+  color: vars.$color-success;
+  font-size: vars.$font-size-xs;
+  font-weight: vars.$font-weight-normal;
 }
 
 .benefit {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: vars.$gap-xs;
 }
 
 .icon {
-  font-size: var.$font-size-md;
+  font-size: vars.$font-size-md;
 }
 
 .inputs {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 12px;
+  gap: vars.$gap-md;
+  margin-bottom: vars.$spacing-md;
 }
 
 .input {
-  padding: 10px;
-  border: var.$btn-border;
-  border-radius: var.$radius-medium;
-  font-size: var.$font-size-xs;
-}
+  padding: vars.$padding-input;
+  border: vars.$btn-border;
+  border-radius: vars.$radius-medium;
+  font-size: vars.$font-size-xs;
 
-.input :focus {
-  outline: none;
-  border-color: var.$color-primary;
-  box-shadow: var.$shadow-input-focus;
+  &:focus {
+    outline: none;
+    border-color: vars.$color-primary;
+    box-shadow: vars.$shadow-input-focus;
+  }
 }
 
 .checkbox {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: var.$font-size-xs;
-  margin: 10px 0;
+  gap: vars.$gap-xs;
+  font-size: vars.$font-size-xs;
+  margin: vars.$spacing-sm 0;
 }
 
 .paymentMethods {
   display: flex;
-  gap: 12px;
-  margin: 14px 0;
+  gap: vars.$gap-md;
+  margin: vars.$spacing-md 0;
 }
 
 .cardLogos {
   display: flex;
-  gap: 12px;
-  margin: 10px 0 16px;
+  gap: vars.$gap-md;
+  margin: vars.$spacing-sm 0 vars.$spacing-lg;
 
   .cartLogoImg {
-    height: 24px;
+    height: vars.$icon-md;
   }
 }
 
 .payBtn {
-  border: 1px solid #ccc;
-  background: #f7f7f7;
-  padding: 8px 14px;
-  border-radius: var.$radius-medium;
+  border: vars.$btn-border;
+  background: vars.$color-bg-light;
+  padding: vars.$padding-btn-sm;
+  border-radius: vars.$radius-medium;
   cursor: pointer;
 }
 
 .active {
-  border-color: var.$contact-btn-bg;
-  background: #e6f7eb;
+  border-color: vars.$contact-btn-bg;
+  background: vars.$color-bg-success-light;
 }
 
 .cartSection {
   flex: 1;
-  background: #fff;
-  border-radius: var.$radius-medium;
-  padding: 20px;
-  box-shadow: var.$shadow-medium;
+  background: vars.$color-bg-white;
+  border-radius: vars.$radius-medium;
+  padding: vars.$spacing-lg;
+  box-shadow: vars.$shadow-medium;
 }
 
 .cartHeader {
-  font-size: var.$font-size-lg;
-  font-weight: var.$font-weight-extra-bold;
-  margin-bottom: 20px;
-  color: var.$color-dark;
+  font-size: vars.$font-size-lg;
+  font-weight: vars.$font-weight-extra-bold;
+  margin-bottom: vars.$spacing-lg;
+  color: vars.$color-dark;
 }
 
 .tourCard {
   display: flex;
-  gap: 40px;
-  margin-bottom: 16px;
-  padding: 16px;
-  border-radius: var.$radius-medium;
-  background: #fafafa;
-  border: 1px solid #eee;
+  gap: vars.$gap-xl;
+  margin-bottom: vars.$spacing-md;
+  padding: vars.$spacing-md;
+  border-radius: vars.$radius-medium;
+  background: vars.$color-bg-light;
+  border: vars.$border-thin;
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+    transform vars.$transition-normal,
+    box-shadow vars.$transition-normal;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgb(0 0 0 / 8%);
+    box-shadow: vars.$shadow-hover;
   }
 }
 
 .image {
   width: 30%;
   height: 30%;
-  border-radius: var.$radius-medium;
+  border-radius: vars.$radius-medium;
   object-fit: cover;
 }
 
@@ -160,34 +160,34 @@
 }
 
 .title {
-  font-size: var.$font-size-md;
-  font-weight: var.$font-weight-extra-bold;
-  margin: 0 0 12px;
+  font-size: vars.$font-size-md;
+  font-weight: vars.$font-weight-extra-bold;
+  margin: 0 0 vars.$spacing-md;
   cursor: pointer;
 }
 
 .location {
-  font-size: var.$font-size-xs;
-  font-weight: var.$font-weight-bold;
-  color: var.$color-light;
-  margin: 0 0 12px;
+  font-size: vars.$font-size-xs;
+  font-weight: vars.$font-weight-bold;
+  color: vars.$color-light;
+  margin: 0 0 vars.$spacing-md;
 }
 
 .date {
-  font-weight: var.$font-weight-bold;
-  font-size: var.$font-size-xs;
-  color: var.$header-footer-color;
-  margin: 0 0 12px;
+  font-weight: vars.$font-weight-bold;
+  font-size: vars.$font-size-xs;
+  color: vars.$header-footer-color;
+  margin: 0 0 vars.$spacing-md;
 }
 
 .badge {
   display: inline-block;
-  font-size: var.$font-size-xs;
-  font-weight: var.$font-weight-bold;
-  color: var.$badge-color;
-  background: var.$badge-background;
-  padding: 2px 6px;
-  border-radius: var.$radius-small;
+  font-size: vars.$font-size-xs;
+  font-weight: vars.$font-weight-bold;
+  color: vars.$badge-color;
+  background: vars.$badge-background;
+  padding: vars.$padding-badge;
+  border-radius: vars.$radius-small;
   cursor: pointer;
   letter-spacing: 0.2px;
 }
@@ -199,22 +199,22 @@
 }
 
 .total {
-  font-weight: 700;
-  color: var.$color-dark;
-  font-size: var.$font-size-md;
+  font-weight: vars.$font-weight-bold;
+  color: vars.$color-dark;
+  font-size: vars.$font-size-md;
 }
 
 .button {
-  background: var.$color-success;
-  color: var.$color-bg-white;
+  background: vars.$color-success;
+  color: vars.$color-bg-white;
   border: none;
-  padding: 10px 14px;
-  border-radius: var.$radius-medium;
-  font-size: var.$font-size-xs;
+  padding: vars.$padding-btn;
+  border-radius: vars.$radius-medium;
+  font-size: vars.$font-size-xs;
   cursor: pointer;
-  transition: 0.1s;
+  transition: vars.$transition-fast;
 }
 
 .button:hover {
-  background: var.$contact-btn-hover-bg;
+  background: vars.$contact-btn-hover-bg;
 }

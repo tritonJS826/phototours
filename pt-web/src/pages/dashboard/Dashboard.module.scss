@@ -1,4 +1,5 @@
-@use "src/styles/variables" as var;
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixin;
 
 .dashboardContainer {
   max-width: 1200px;
@@ -15,7 +16,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: var.$color-bg-light;
+  background-color: vars.$color-bg-light;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -28,8 +29,8 @@
 
   h1 {
     font-size: 50px;
-    font-weight: 700;
-    color: var.$color-dark;
+    font-weight: vars.$font-weight-extra-bold;
+    color: vars.$color-dark;
     margin-bottom: 8px;
   }
 }
@@ -47,8 +48,8 @@
 
   h2 {
     font-size: 24px;
-    font-weight: 600;
-    color: var.$color-dark;
+    font-weight: vars.$font-weight-bold;
+    color: vars.$color-dark;
   }
 
   .sectionActions {
@@ -64,10 +65,10 @@
   gap: 8px;
   padding: 8px 16px;
   text-decoration: none;
-  border: 1px solid var.$color-border;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
+  border: 1px solid vars.$color-border;
+  border-radius: vars.$radius-small;
+  font-size: vars.$font-size-xs;
+  font-weight: vars.$font-weight-normal;
   cursor: pointer;
   transition: all 0.3s ease;
 
@@ -82,12 +83,16 @@
   }
 }
 
-.profileSection {
-  background: var.$color-bg-white;
-  border-radius: 15px;
+.profileSection,
+.bankingSection,
+.bookingsSection,
+.quickActions,
+.photosSection {
+  background: vars.$color-bg-white;
+  border-radius: vars.$radius-medium;
   padding: 32px;
-  box-shadow: 0 10px 30px rgb(0 0 0 / 10%);
-  border: 1px solid #e9ecef;
+  box-shadow: vars.$shadow-medium;
+  border: 1px solid vars.$color-border-light;
 }
 
 .profileInfo {
@@ -108,8 +113,8 @@
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid #fff;
-    box-shadow: 0 8px 25px rgb(0 0 0 / 15%);
+    border: 4px solid vars.$color-bg-white;
+    box-shadow: vars.$shadow-medium;
   }
 
   .avatarPlaceholder {
@@ -117,16 +122,16 @@
     height: 120px;
     border-radius: 50%;
     background: linear-gradient(135deg, #1c4c8a, #3e7a3f);
-    color: white;
+    color: vars.$color-bg-white;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 40px;
-    font-weight: 700;
+    font-weight: vars.$font-weight-extra-bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border: 4px solid #fff;
-    box-shadow: 0 8px 25px rgb(0 0 0 / 15%);
+    border: 4px solid vars.$color-bg-white;
+    box-shadow: vars.$shadow-medium;
   }
 }
 
@@ -140,45 +145,28 @@
   grid-template-columns: 150px 1fr;
   align-items: center;
   padding: 12px 0;
-  border-bottom: 1px solid #f8f9fa;
+  border-bottom: 1px solid vars.$color-border-light;
 
   &:last-child {
     border-bottom: none;
   }
 
   label {
-    font-weight: 600;
-    color: var.$color-dark;
-    font-size: 14px;
+    font-weight: vars.$font-weight-bold;
+    color: vars.$color-dark;
+    font-size: vars.$font-size-xs;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
 
   span {
-    font-size: 16px;
+    font-size: vars.$font-size-sm;
   }
 
   @media (width <= 768px) {
     grid-template-columns: 1fr;
     text-align: left;
     gap: 4px;
-  }
-}
-
-.bankingSection {
-  background: var.$color-bg-white;
-  border-radius: 15px;
-  padding: 32px;
-  box-shadow: 0 10px 30px rgb(0 0 0 / 10%);
-  border: 1px solid #e9ecef;
-}
-
-.bankingInfo {
-  .noData {
-    color: var.$color-dark;
-    font-style: italic;
-    text-align: center;
-    padding: 32px;
   }
 }
 
@@ -195,17 +183,17 @@
   }
 
   &::-webkit-scrollbar-track {
-    background: rgb(165 200 226 / 10%);
+    background: vars.$color-scroll-track;
     border-radius: 4px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #888;
+    background: vars.$color-scroll-thumb;
     border-radius: 4px;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: vars.$color-scroll-thumb-hover;
   }
 }
 
@@ -215,7 +203,7 @@
   right: 12px;
   background: none;
   border: none;
-  color: var.$color-dark;
+  color: vars.$color-dark;
   cursor: pointer;
   padding: 4px;
   border-radius: 50%;
@@ -226,8 +214,8 @@
   z-index: 10;
 
   &:hover {
-    background: rgb(255 107 107 / 20%);
-    color: #ff6b6b;
+    background: vars.$color-danger-light;
+    color: vars.$color-danger;
     transform: scale(1.1);
   }
 
@@ -237,14 +225,13 @@
 }
 
 .bankAccountInfo {
-  position: relative;
   display: flex;
   flex-direction: column;
   gap: 16px;
   padding: 24px;
-  background: rgb(255 255 255 / 5%);
-  border-radius: 12px;
-  border: 1px solid rgb(165 200 226 / 20%);
+  background: vars.$color-bg-light;
+  border-radius: vars.$radius-small;
+  border: 1px solid vars.$color-border-light;
 }
 
 .accountRow {
@@ -252,33 +239,32 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 0;
-  border-bottom: 1px solid rgb(165 200 226 / 10%);
+  border-bottom: 1px solid vars.$color-border-light;
 
   &:last-child {
     border-bottom: none;
   }
 
   label {
-    font-weight: 600;
-    color: var.$color-dark;
-    font-size: 14px;
+    font-weight: vars.$font-weight-bold;
+    color: vars.$color-dark;
+    font-size: vars.$font-size-xs;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
 
   span {
-    color: #fff;
-    font-size: 16px;
-    font-weight: 500;
+    font-size: vars.$font-size-sm;
+    font-weight: vars.$font-weight-normal;
   }
 
   .accountType {
-    background: rgb(249 168 37 / 20%);
-    color: #f9a825;
+    background: vars.$badge-background;
+    color: vars.$badge-color;
     padding: 4px 12px;
-    border-radius: 16px;
-    font-size: 12px;
-    font-weight: 600;
+    border-radius: vars.$radius-medium;
+    font-size: vars.$font-size-xs;
+    font-weight: vars.$font-weight-bold;
     text-transform: uppercase;
   }
 
@@ -294,55 +280,19 @@
   }
 }
 
-.bookingsSection {
-  background: var.$color-bg-white;
-  border-radius: 15px;
-  padding: 32px;
-  box-shadow: 0 10px 30px rgb(0 0 0 / 10%);
-  border: 1px solid #e9ecef;
-}
-
-.bookingsList {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: rgb(28 76 138 / 30%);
-    border-radius: 4px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgb(165 200 226 / 50%);
-    border-radius: 4px;
-    transition: background 0.2s ease;
-
-    &:hover {
-      background: rgb(165 200 226 / 70%);
-    }
-  }
-
-  scrollbar-width: thin;
-  scrollbar-color: rgb(165 200 226 / 50%) rgb(28 76 138 / 30%);
-}
-
 .bookingCard {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 24px;
-  border-radius: 10px;
-  border: 1px solid var.$contact-border;
+  border-radius: vars.$radius-small;
+  border: 1px solid vars.$color-border;
   transition: all 0.3s ease;
   position: relative;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgb(0 0 0 / 10%);
+    box-shadow: vars.$shadow-medium;
   }
 
   @media (width <= 768px) {
@@ -352,140 +302,20 @@
   }
 }
 
-.bookingInfo {
-  h3 {
-    font-size: 18px;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 8px;
-  }
-
-  p {
-    color: var.$color-dark;
-    font-size: 14px;
-    margin: 4px 0;
-  }
-}
-
-.bookingStatus {
-  .statusDropdown {
-    position: relative;
-  }
-
-  .statusButton {
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    min-width: 100px;
-
-    &:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 2px 8px rgb(0 0 0 / 20%);
-    }
-
-    &:active {
-      transform: translateY(0);
-    }
-
-    &.confirmed {
-      background: #d4edda;
-      color: #155724;
-
-      &:hover {
-        background: #c3e6cb;
-      }
-    }
-
-    &.pending {
-      background: #fff3cd;
-      color: #856404;
-
-      &:hover {
-        background: #ffeaa7;
-      }
-    }
-
-    &.cancelled {
-      background: #f8d7da;
-      color: #721c24;
-
-      &:hover {
-        background: #f5c6cb;
-      }
-    }
-  }
-}
-
-.noBookings {
-  text-align: center;
-  padding: 48px;
-
-  p {
-    color: var.$color-dark;
-    font-size: 18px;
-    margin-bottom: 24px;
-  }
-
-  .browseButton {
-    display: inline-block;
-    padding: 12px 24px;
-    background: #b45c32;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgb(180 92 50 / 30%);
-      color: white;
-      text-decoration: none;
-    }
-  }
-}
-
-.quickActions {
-  background: var.$color-bg-white;
-  border-radius: 15px;
-  padding: 32px;
-  box-shadow: 0 10px 30px rgb(0 0 0 / 10%);
-  border: 1px solid #e9ecef;
-
-  h2 {
-    font-size: 24px;
-    font-weight: 600;
-    color: var.$color-dark;
-    margin-bottom: 24px;
-  }
-}
-
-.actionsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-}
-
 .quickAction {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
   padding: 32px;
-  border-radius: 10px;
+  border-radius: vars.$radius-small;
   text-decoration: none;
   transition: all 0.3s ease;
-  border: 1px solid var.$color-border;
+  border: 1px solid vars.$color-border;
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgb(0 0 0 / 10%);
+    box-shadow: vars.$shadow-medium;
     text-decoration: none;
   }
 
@@ -495,43 +325,16 @@
   }
 
   span {
-    font-weight: 600;
-    font-size: 16px;
+    font-weight: vars.$font-weight-bold;
+    font-size: vars.$font-size-sm;
   }
 }
 
-.photosSection {
-  background: var.$color-bg-white;
-  border-radius: 15px;
-  padding: 32px;
-  box-shadow: 0 10px 30px rgb(0 0 0 / 10%);
-  border: 1px solid #e9ecef;
-}
-
-.fileInput {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.uploadLabel {
-  position: relative;
-  overflow: hidden;
-}
-
-.galleryGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  margin-top: 8px;
-}
-
 .galleryItem {
-  border: 1px solid var.$color-border;
-  border-radius: 12px;
+  border: 1px solid vars.$color-border;
+  border-radius: vars.$radius-small;
   overflow: hidden;
-  background: #fafafa;
+  background: vars.$color-bg-light;
 }
 
 .galleryImg {

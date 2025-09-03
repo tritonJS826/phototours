@@ -2,6 +2,7 @@ import {Article, ArticleSummary} from "src/types/article";
 import {buildApiUrl} from "src/utils/apiBase";
 
 export const ARTICLES_SHOWCASE_LIMIT = 4;
+const HTTP_NOT_FOUND = 404;
 
 function build(path: string) {
   return buildApiUrl(path);
@@ -20,9 +21,19 @@ export async function listArticles(limit?: number): Promise<ArticleSummary[]> {
   return res.json();
 }
 
-export async function getArticleBySlug(slug: string): Promise<Article> {
-  const res = await fetch(build(`/articles/${encodeURIComponent(slug)}`), {headers: {"Content-Type": "application/json"}});
+export async function getArticleBySlug(
+  slug: string,
+  opts?: { signal?: AbortSignal },
+): Promise<Article | null> {
+  const res = await fetch(build(`/articles/${encodeURIComponent(slug)}`), {
+    headers: {"Content-Type": "application/json"},
+    signal: opts?.signal,
+  });
+
   if (!res.ok) {
+    if (res.status === HTTP_NOT_FOUND) {
+      return null;
+    }
     throw new Error("Failed to load article");
   }
 

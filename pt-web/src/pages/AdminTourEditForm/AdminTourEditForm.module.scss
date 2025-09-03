@@ -1,94 +1,93 @@
-@use "src/styles/variables" as var;
-@use "src/styles/mixins" as mix;
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixin;
 
 .form {
   max-width: 700px;
-  margin: 30px auto;
-  padding: 1.5rem;
-  border-radius: var.$radius-medium;
+  margin: vars.$spacing-xl auto;
+  padding: vars.$spacing-xl;
+  border-radius: vars.$radius-medium;
   display: flex;
   flex-direction: column;
-  box-shadow: var.$shadow-light;
-  background-color: var.$color-bg-light;
+  box-shadow: vars.$shadow-light;
+  background-color: vars.$color-bg-light;
 
   .label {
-    margin-top: 1rem;
-    font-weight: var.$font-weight-light;
-    font-size: var.$font-size-card-text;
+    margin-top: vars.$spacing-lg;
+    font-weight: vars.$font-weight-light;
+    font-size: vars.$font-size-card-text;
+    color: vars.$color-medium;
   }
 
   .buttonContainer {
     display: flex;
     justify-content: space-between;
-    margin-top: 1.5rem;
-    gap: 1rem;
+    margin-top: vars.$spacing-xl;
+    gap: vars.$gap-xl;
   }
 
   .inputSelectText {
-    margin-top: 0.3rem;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border-radius: var.$radius-small;
-    border: 1px solid #ccc;
+    margin-top: vars.$spacing-sm;
+    padding: vars.$padding-input;
+    font-size: vars.$font-size-md;
+    border-radius: vars.$radius-small;
+    border: vars.$border-width-thin solid vars.$color-border;
     width: 100%;
     box-sizing: border-box;
     resize: vertical;
 
     &:focus {
       outline: none;
-      border-color: var.$color-primary;
-      box-shadow: var.$shadow-input-focus;
+      border-color: vars.$color-primary;
+      box-shadow: vars.$shadow-input-focus;
     }
   }
 }
 
-// .materialsFieldset {
-//   margin-top: 1.5rem;
-// }
-
 .materialsFieldset {
-  border: 1px solid #ccc;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-top: 1.5rem;
+  border: vars.$border-width-thin solid vars.$color-border;
+  padding: vars.$spacing-xl;
+  border-radius: vars.$radius-medium;
+  margin-top: vars.$spacing-xl;
+  background: vars.$color-bg-white;
 }
 
 .materialCard {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: 1px solid #eee;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgb(0 0 0 / 5%);
-  background-color: #fff;
+  gap: vars.$gap-md;
+  padding: vars.$spacing-lg;
+  margin-bottom: vars.$spacing-lg;
+  border: vars.$border-width-thin solid vars.$color-border;
+  border-radius: vars.$radius-medium;
+  box-shadow: vars.$shadow-light;
+  background-color: vars.$color-bg-white;
 }
 
 .inputText,
 .inputSelect {
-  padding: 0.5rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  font-size: 0.95rem;
+  padding: vars.$padding-input;
+  border-radius: vars.$radius-small;
+  border: vars.$border-width-thin solid vars.$color-border;
+  font-size: vars.$font-size-card-text;
 
   &:focus {
     outline: none;
-    border-color: var.$color-primary;
-    box-shadow: var.$shadow-input-focus;
+    border-color: vars.$color-primary;
+    box-shadow: vars.$shadow-input-focus;
   }
 }
 
 .fileUpload {
   display: inline-block;
-  padding: 0.5rem;
-  border: 1px dashed #999;
-  border-radius: 4px;
+  padding: vars.$spacing-md;
+  border: vars.$dashed-border;
+  border-radius: vars.$radius-small;
   cursor: pointer;
   text-align: center;
-  font-size: 0.9rem;
-  color: #555;
+  font-size: vars.$font-size-sm;
+  color: vars.$color-light;
   position: relative;
+  background: vars.$color-bg-white;
 }
 
 .fileUpload input {
@@ -102,21 +101,29 @@
 }
 
 .materialLink {
-  color: var.$color-primary;
+  color: vars.$color-primary;
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: vars.$font-size-sm;
+  transition: color vars.$transition-normal;
+
+  &:hover {
+    color: vars.$color-primary-hover;
+  }
 }
 
 .removeButton,
 .addButton {
-  background-color: var.$btn-secondary-bg;
-  color: var.$color-bg-white;
+  background-color: vars.$btn-secondary-bg;
+  color: vars.$color-bg-white;
   border: none;
-  padding: 0.5rem 0.75rem;
-  border-radius: var.$radius-small;
+  padding: 8px 12px;
+  border-radius: vars.$radius-small;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: vars.$font-size-sm;
   align-self: flex-start;
+  transition:
+    background-color vars.$transition-normal,
+    opacity vars.$transition-fast;
 }
 
 .removeButton:hover,
@@ -125,29 +132,31 @@
 }
 
 .addButton {
-  background-color: var.$color-primary;
-  margin-top: 0.5rem;
+  background-color: vars.$color-primary;
+  margin-top: vars.$spacing-sm;
 }
 
 .dropZone {
-  border: var.$dashed-border;
-  padding: 15px;
+  border: vars.$dashed-border;
+  padding: vars.$spacing-xl;
   text-align: center;
   cursor: pointer;
-  margin-bottom: 10px;
-  border-radius: var.$radius-small;
-  transition: border-color 0.2s;
+  margin-bottom: vars.$spacing-md;
+  border-radius: vars.$radius-small;
+  transition:
+    border-color vars.$transition-normal,
+    background-color vars.$transition-normal;
+
+  &:hover {
+    background-color: vars.$btn-primary-hover-bg;
+    border-color: vars.$color-medium;
+  }
 }
 
 .dropZoneText {
-  color: #666;
-  font-weight: var.$font-weight-light;
-  font-size: var.$font-size-card-text;
-}
-
-.dropZone:hover {
-  background-color: #f5f5f5;
-  border-color: #666;
+  color: vars.$color-light;
+  font-weight: vars.$font-weight-light;
+  font-size: vars.$font-size-card-text;
 }
 
 .hiddenFileInput {
@@ -157,25 +166,26 @@
 .fileList {
   list-style: none;
   padding-left: 0;
-}
 
-.fileList li {
-  margin-bottom: 4px;
+  li {
+    margin-bottom: vars.$spacing-sm;
+  }
 }
 
 .fileUploadPreview {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: vars.$gap-md;
 }
 
 .fileUploadItem {
   position: relative;
   max-width: 100px;
   max-height: 100px;
-  border-radius: 8px;
+  border-radius: vars.$radius-medium;
   overflow: hidden;
-  border: var.$dashed-border;
+  border: vars.$dashed-border;
+  background: vars.$color-bg-white;
 }
 
 .fileUploadItemImage {
@@ -188,8 +198,8 @@
   position: absolute;
   top: 2px;
   right: 2px;
-  background: var.$color-dark;
-  color: var.$color-bg-white;
+  background: vars.$color-dark;
+  color: vars.$color-bg-white;
   border: none;
   border-radius: 50%;
   width: 20px;
@@ -204,14 +214,14 @@
 }
 
 .previewCard {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 8px;
+  @include mixin.flex-center;
+
+  gap: vars.$gap-sm;
+  margin-top: vars.$spacing-sm;
   padding: 4px 6px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background: #f9f9f9;
+  border: vars.$border-width-thin solid vars.$color-border;
+  border-radius: vars.$radius-small;
+  background: vars.$color-bg-light;
 }
 
 .previewIcon {
@@ -220,6 +230,6 @@
 }
 
 .previewTitle {
-  font-size: 14px;
-  color: #333;
+  font-size: vars.$font-size-sm;
+  color: vars.$color-medium;
 }
