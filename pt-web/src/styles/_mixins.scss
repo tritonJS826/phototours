@@ -1,6 +1,6 @@
 @use "src/styles/variables" as var;
 
-/* Layout */
+/* ===== Layout ===== */
 @mixin flex-center {
   display: flex;
   justify-content: center;
@@ -13,19 +13,19 @@
   align-items: center;
 }
 
-/* Text */
+/* ===== Text ===== */
 @mixin text-center {
   text-align: center;
 }
 
-/* Grid */
+/* ===== Grid ===== */
 @mixin responsive-grid($minWidth: 200px, $gap: 10px) {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax($minWidth, 1fr));
   gap: $gap;
 }
 
-/* Card */
+/* ===== Card ===== */
 @mixin card(
   $bg: var.$color-card-bg,
   $radius: var.$radius-large,
@@ -39,7 +39,7 @@
     transform var.$transition-normal;
 }
 
-// /* Hover scale */
+/* ===== Hover scale ===== */
 @mixin hover-scale($scale: 1.02) {
   transition: transform var.$transition-fast;
 
@@ -48,7 +48,7 @@
   }
 }
 
-/* Button */
+/* ===== Button ===== */
 @mixin button(
   $bg: var.$color-primary,
   $color: #fff,
