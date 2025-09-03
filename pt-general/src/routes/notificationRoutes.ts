@@ -7,7 +7,7 @@ import {
   markAllNotificationsAsRead,
   markNotificationAsRead,
 } from 'src/controllers/notificationControllers';
-import {authenticateToken} from 'src/middleware/auth';
+import {authenticateToken} from 'src/middlewares/auth';
 import {Router} from 'express';
 
 const router = Router();

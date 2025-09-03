@@ -21,8 +21,8 @@ import {
   createTourSchema,
   updateTourTagsSchema,
 } from 'src/controllers/validators/zodTourSchemas';
-import {upload} from 'src/middleware/upload';
-import {validate} from 'src/middleware/validate';
+import {upload} from 'src/middlewares/upload';
+import {validate} from 'src/middlewares/validate';
 import {Router} from 'express';
 
 export const tourRoutes = Router();

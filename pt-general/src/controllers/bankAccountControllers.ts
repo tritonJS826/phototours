@@ -1,21 +1,20 @@
 import {prisma} from 'src/db/prisma';
-import {Request, Response} from 'express';
+import {AuthRequest} from 'src/middlewares/auth';
+import {Response} from 'express';
 
-// HTTP status codes
-const HTTP_STATUS = {
+const HTTP = {
   UNAUTHORIZED: 401,
   BAD_REQUEST: 400,
   NOT_FOUND: 404,
   CREATED: 201,
-  INTERNAL_SERVER_ERROR: 500,
+  SERVER: 500,
 } as const;
 
-// Получить все банковские счета пользователя
-export const getUserBankAccounts = async (req: Request, res: Response) => {
+export const getUserBankAccounts = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.userId;
     if (!userId) {
-      return res.status(HTTP_STATUS.UNAUTHORIZED).json({error: 'Unauthorized'});
+      return res.status(HTTP.UNAUTHORIZED).json({error: 'Unauthorized'});
     }
 
     const bankAccounts = await prisma.bankAccount.findMany({
@@ -23,33 +22,26 @@ export const getUserBankAccounts = async (req: Request, res: Response) => {
       orderBy: {createdAt: 'desc'},
     });
 
-    res.json(bankAccounts);
+    return res.json(bankAccounts);
   } catch {
-    res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({error: 'Internal server error'});
+    return res.status(HTTP.SERVER).json({error: 'Internal server error'});
   }
 };
 
-// Создать новый банковский счет
-export const createBankAccount = async (req: Request, res: Response) => {
+export const createBankAccount = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.userId;
     if (!userId) {
-      return res.status(HTTP_STATUS.UNAUTHORIZED).json({error: 'Unauthorized'});
+      return res.status(HTTP.UNAUTHORIZED).json({error: 'Unauthorized'});
     }
 
     const {accountHolder, bankName, accountType, accountNumber, routingNumber, isDefault} = req.body;
-
     if (!accountHolder || !bankName || !accountType || !accountNumber) {
-      return res.status(HTTP_STATUS.BAD_REQUEST).json({error: 'Missing required fields'});
+      return res.status(HTTP.BAD_REQUEST).json({error: 'Missing required fields'});
     }
 
-    // Если это первый счет или пользователь хочет сделать его основным
     if (isDefault) {
-      // Сбрасываем флаг isDefault для всех других счетов пользователя
-      await prisma.bankAccount.updateMany({
-        where: {userId},
-        data: {isDefault: false},
-      });
+      await prisma.bankAccount.updateMany({where: {userId}, data: {isDefault: false}});
     }
 
     const bankAccount = await prisma.bankAccount.create({
@@ -60,135 +52,103 @@ export const createBankAccount = async (req: Request, res: Response) => {
         accountType,
         accountNumber,
         routingNumber,
-        isDefault: isDefault || false,
+        isDefault: Boolean(isDefault),
       },
     });
 
-    res.status(HTTP_STATUS.CREATED).json(bankAccount);
+    return res.status(HTTP.CREATED).json(bankAccount);
   } catch {
-    res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({error: 'Internal server error'});
+    return res.status(HTTP.SERVER).json({error: 'Internal server error'});
   }
 };
 
-// Обновить банковский счет
-export const updateBankAccount = async (req: Request, res: Response) => {
+export const updateBankAccount = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.userId;
-    const {id} = req.params;
     if (!userId) {
-      return res.status(HTTP_STATUS.UNAUTHORIZED).json({error: 'Unauthorized'});
+      return res.status(HTTP.UNAUTHORIZED).json({error: 'Unauthorized'});
     }
 
+    const id = Number(req.params.id);
     const {accountHolder, bankName, accountType, accountNumber, routingNumber, isDefault} = req.body;
 
-    // Если пользователь хочет сделать этот счет основным
     if (isDefault) {
-      // Сбрасываем флаг isDefault для всех других счетов пользователя
       await prisma.bankAccount.updateMany({
-        where: {userId, id: {not: parseInt(id)}},
+        where: {userId, id: {not: id}},
         data: {isDefault: false},
       });
     }
 
-    const bankAccount = await prisma.bankAccount.updateMany({
-      where: {
-        id: parseInt(id),
-        userId, // Убеждаемся, что счет принадлежит пользователю
-      },
-      data: {
-        accountHolder,
-        bankName,
-        accountType,
-        accountNumber,
-        routingNumber,
-        isDefault,
-      },
+    const result = await prisma.bankAccount.updateMany({
+      where: {id, userId},
+      data: {accountHolder, bankName, accountType, accountNumber, routingNumber, isDefault},
     });
 
-    if (bankAccount.count === 0) {
-      return res.status(HTTP_STATUS.NOT_FOUND).json({error: 'Bank account not found'});
+    if (result.count === 0) {
+      return res.status(HTTP.NOT_FOUND).json({error: 'Bank account not found'});
     }
 
-    const updatedAccount = await prisma.bankAccount.findUnique({where: {id: parseInt(id)}});
+    const updated = await prisma.bankAccount.findUnique({where: {id}});
 
-    res.json(updatedAccount);
+    return res.json(updated);
   } catch {
-    res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({error: 'Internal server error'});
+    return res.status(HTTP.SERVER).json({error: 'Internal server error'});
   }
 };
 
-// Удалить банковский счет
-export const deleteBankAccount = async (req: Request, res: Response) => {
+export const deleteBankAccount = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.userId;
-    const {id} = req.params;
     if (!userId) {
-      return res.status(HTTP_STATUS.UNAUTHORIZED).json({error: 'Unauthorized'});
+      return res.status(HTTP.UNAUTHORIZED).json({error: 'Unauthorized'});
     }
 
-    const bankAccount = await prisma.bankAccount.deleteMany({
-      where: {
-        id: parseInt(id),
-        userId, // Убеждаемся, что счет принадлежит пользователю
-      },
-    });
+    const id = Number(req.params.id);
 
-    if (bankAccount.count === 0) {
-      return res.status(HTTP_STATUS.NOT_FOUND).json({error: 'Bank account not found'});
+    const result = await prisma.bankAccount.deleteMany({where: {id, userId}});
+    if (result.count === 0) {
+      return res.status(HTTP.NOT_FOUND).json({error: 'Bank account not found'});
     }
 
-    res.json({message: 'Bank account deleted'});
+    return res.json({message: 'Bank account deleted'});
   } catch {
-    res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({error: 'Internal server error'});
+    return res.status(HTTP.SERVER).json({error: 'Internal server error'});
   }
 };
 
-// Установить банковский счет как основной
-export const setDefaultBankAccount = async (req: Request, res: Response) => {
+export const setDefaultBankAccount = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.userId;
-    const {id} = req.params;
     if (!userId) {
-      return res.status(HTTP_STATUS.UNAUTHORIZED).json({error: 'Unauthorized'});
+      return res.status(HTTP.UNAUTHORIZED).json({error: 'Unauthorized'});
     }
 
-    // Сбрасываем флаг isDefault для всех счетов пользователя
-    await prisma.bankAccount.updateMany({
-      where: {userId},
-      data: {isDefault: false},
-    });
+    const id = Number(req.params.id);
 
-    // Устанавливаем выбранный счет как основной
-    const bankAccount = await prisma.bankAccount.updateMany({
-      where: {
-        id: parseInt(id),
-        userId, // Убеждаемся, что счет принадлежит пользователю
-      },
-      data: {isDefault: true},
-    });
+    await prisma.bankAccount.updateMany({where: {userId}, data: {isDefault: false}});
 
-    if (bankAccount.count === 0) {
-      return res.status(HTTP_STATUS.NOT_FOUND).json({error: 'Bank account not found'});
+    const result = await prisma.bankAccount.updateMany({where: {id, userId}, data: {isDefault: true}});
+    if (result.count === 0) {
+      return res.status(HTTP.NOT_FOUND).json({error: 'Bank account not found'});
     }
 
-    res.json({message: 'Default bank account updated'});
+    return res.json({message: 'Default bank account updated'});
   } catch {
-    res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({error: 'Internal server error'});
+    return res.status(HTTP.SERVER).json({error: 'Internal server error'});
   }
 };
 
-// Получить основной банковский счет пользователя
-export const getDefaultBankAccount = async (req: Request, res: Response) => {
+export const getDefaultBankAccount = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.userId;
     if (!userId) {
-      return res.status(HTTP_STATUS.UNAUTHORIZED).json({error: 'Unauthorized'});
+      return res.status(HTTP.UNAUTHORIZED).json({error: 'Unauthorized'});
     }
 
-    const defaultAccount = await prisma.bankAccount.findFirst({where: {userId, isDefault: true}});
+    const acc = await prisma.bankAccount.findFirst({where: {userId, isDefault: true}});
 
-    res.json(defaultAccount);
+    return res.json(acc);
   } catch {
-    res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({error: 'Internal server error'});
+    return res.status(HTTP.SERVER).json({error: 'Internal server error'});
   }
 };

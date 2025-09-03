@@ -3,25 +3,27 @@ import {useAuth} from "src/hooks/useAuth";
 import {getProfileImageUrl} from "src/utils/profileImage";
 import styles from "src/components/Profile/EditProfileForm/EditProfileForm.module.scss";
 
-interface EditProfileData {
+type EditProfileData = {
   firstName: string;
   lastName: string;
   bio?: string;
 }
 
-const MAX_FILE_SIZE_MB = 5;
 const KB_IN_BYTES = 1024;
-const BYTES_IN_MB = KB_IN_BYTES * KB_IN_BYTES;
+const MB_IN_BYTES = KB_IN_BYTES * KB_IN_BYTES;
+const MAX_FILE_SIZE_MB = 5;
+const BIO_ROWS = 4;
+const FOCUS_OUTLINE_PX = 3;
 
 export const EditProfileForm: React.FC = () => {
   const {user, refreshProfile} = useAuth();
   const [formData, setFormData] = useState<EditProfileData>({
-    firstName: user?.firstName || "",
-    lastName: user?.lastName || "",
-    bio: user?.bio || "",
+    firstName: user?.firstName ?? "",
+    lastName: user?.lastName ?? "",
+    bio: user?.bio ?? "",
   });
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
-  const [avatarPreview, setAvatarPreview] = useState<string | null>(user?.profilePicUrl || getProfileImageUrl());
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(user?.profilePicUrl ?? getProfileImageUrl());
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -42,34 +44,29 @@ export const EditProfileForm: React.FC = () => {
   };
 
   const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const input = event.currentTarget;
-    const files = input.files;
-    let file: File | null = null;
-    if (files && files.length > 0) {
-      file = files[0];
-    }
-    if (file === null) {
+    const files = event.currentTarget.files;
+    const picked = files && files.length > 0 ? files.item(0) : null;
+    if (picked === null) {
       return;
     }
-    if (!file.type.startsWith("image/")) {
+    if (!picked.type.startsWith("image/")) {
       setError("Please select an image file");
 
       return;
     }
-    if (file.size > MAX_FILE_SIZE_MB * BYTES_IN_MB) {
+    if (picked.size > MAX_FILE_SIZE_MB * MB_IN_BYTES) {
       setError("Image size should be less than 5MB");
 
       return;
     }
-    setAvatarFile(file);
+    setAvatarFile(picked);
     setError("");
     const reader = new FileReader();
-    reader.onload = (ev) => {
-      const r = ev.target;
-      const v = r && typeof r.result === "string" ? r.result : null;
-      setAvatarPreview(v);
+    reader.onload = ev => {
+      const res = ev.target && typeof ev.target.result === "string" ? ev.target.result : null;
+      setAvatarPreview(res);
     };
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(picked);
   };
 
   const handleAvatarClick = () => {
@@ -86,15 +83,15 @@ export const EditProfileForm: React.FC = () => {
       const fd = new FormData();
       const nextFirst = formData.firstName.trim();
       const nextLast = formData.lastName.trim();
-      const nextBio = (formData.bio || "").trim();
+      const nextBio = (formData.bio ?? "").trim();
 
-      if (nextFirst && nextFirst !== (user.firstName || "")) {
+      if (nextFirst !== (user.firstName ?? "") && nextFirst.length > 0) {
         fd.append("firstName", nextFirst);
       }
-      if (nextLast && nextLast !== (user.lastName || "")) {
+      if (nextLast !== (user.lastName ?? "") && nextLast.length > 0) {
         fd.append("lastName", nextLast);
       }
-      if (nextBio !== (user.bio || "")) {
+      if (nextBio !== (user.bio ?? "")) {
         fd.append("bio", nextBio);
       }
       if (avatarFile) {
@@ -108,17 +105,12 @@ export const EditProfileForm: React.FC = () => {
         return;
       }
 
-      const base =
-        typeof window !== "undefined" &&
-        (window as unknown as { ENV: { VITE_API_BASE_URL: string } }) &&
-        (window as unknown as { ENV: { VITE_API_BASE_URL: string } }).ENV &&
-        typeof (window as unknown as { ENV: { VITE_API_BASE_URL: string } }).ENV.VITE_API_BASE_URL === "string"
-          ? (window as unknown as { ENV: { VITE_API_BASE_URL: string } }).ENV.VITE_API_BASE_URL
-          : "http://localhost:8000";
+      const FALLBACK_API = "http://localhost:8000";
+      const base = (import.meta as unknown as { env?: { VITE_API_BASE_URL?: string } }).env?.VITE_API_BASE_URL ?? FALLBACK_API;
 
       const res = await fetch(`${base}/auth/profile`, {
         method: "PUT",
-        headers: {Authorization: `Bearer ${localStorage.getItem("token") || ""}`},
+        headers: {Authorization: `Bearer ${localStorage.getItem("token") ?? ""}`},
         body: fd,
       });
 
@@ -126,9 +118,7 @@ export const EditProfileForm: React.FC = () => {
         let msg = "Failed to update profile";
         try {
           const data = await res.json();
-          if (data && typeof data.error === "string" && data.error) {
-            msg = data.error;
-          }
+          msg = typeof data?.error === "string" && data.error.length > 0 ? data.error : msg;
         } catch {
           msg = "Failed to update profile";
         }
@@ -136,7 +126,6 @@ export const EditProfileForm: React.FC = () => {
       }
 
       const updated = await res.json();
-
       const currentStr = localStorage.getItem("user");
       const currentObj = currentStr ? JSON.parse(currentStr) : {};
       const merged = {...currentObj, ...(updated?.user ? updated.user : {})};
@@ -177,9 +166,16 @@ export const EditProfileForm: React.FC = () => {
           <div
             className={styles.avatarContainer}
             onClick={handleAvatarClick}
+            tabIndex={0}
+            onKeyDown={e => {
+              if (e.key === "Enter" || e.key === " ") {
+                handleAvatarClick();
+              }
+            }}
+            style={{outlineWidth: FOCUS_OUTLINE_PX}}
           >
             <img
-              src={avatarPreview || getProfileImageUrl()}
+              src={avatarPreview ?? getProfileImageUrl()}
               alt="Profile preview"
               className={styles.avatarPreview}
             />
@@ -239,7 +235,7 @@ export const EditProfileForm: React.FC = () => {
               name="bio"
               value={formData.bio}
               onChange={handleChange}
-              rows={4}
+              rows={BIO_ROWS}
               placeholder="Tell us about yourself..."
               disabled={isLoading}
             />
@@ -259,4 +255,3 @@ export const EditProfileForm: React.FC = () => {
     </div>
   );
 };
-

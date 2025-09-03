@@ -6,7 +6,7 @@ import {
   setDefaultBankAccount,
   updateBankAccount,
 } from 'src/controllers/bankAccountControllers';
-import {authenticateToken} from 'src/middleware/auth';
+import {authenticateToken} from 'src/middlewares/auth';
 import {Router} from 'express';
 
 const router = Router();

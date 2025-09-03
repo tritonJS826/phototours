@@ -1,35 +1,40 @@
-import {env} from 'src/config/env.js';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import jwt, {JwtPayload} from 'jsonwebtoken';
 
-export interface JWTPayload {
+const JWT_SECRET = process.env.JWT_SECRET ?? '';
+const SALT_ROUNDS = 10;
+
+export type DecodedUser = JwtPayload & {
   userId: number;
   email: string;
   role: string;
-}
-
-export const hashPassword = async (password: string): Promise<string> => {
-  return await bcrypt.hash(password, env.SALT_ROUNDS);
 };
 
-export const comparePassword = async (password: string, hashedPassword: string): Promise<boolean> => {
-  return await bcrypt.compare(password, hashedPassword);
-};
-
-export const generateToken = (payload: JWTPayload): string => {
-  return jwt.sign(payload, env.JWT_SECRET, {expiresIn: env.JWT_EXPIRES_IN});
-};
-
-export const verifyToken = (token: string): JWTPayload => {
-  return jwt.verify(token, env.JWT_SECRET) as JWTPayload;
-};
-
-const BEARER_PREFIX_LENGTH = 7;
-
-export const extractTokenFromHeader = (authorization?: string): string | null => {
-  if (!authorization?.startsWith('Bearer ')) {
+export function extractTokenFromHeader(authHeader: string | undefined): string | null {
+  if (!authHeader) {
+    return null;
+  }
+  if (!authHeader.startsWith('Bearer ')) {
     return null;
   }
 
-  return authorization.substring(BEARER_PREFIX_LENGTH);
-};
+  return authHeader.replace('Bearer ', '').trim();
+}
+
+export function verifyToken(token: string): DecodedUser {
+  const decoded = jwt.verify(token, JWT_SECRET) as DecodedUser;
+
+  return decoded;
+}
+
+export async function hashPassword(password: string): Promise<string> {
+  return bcrypt.hash(password, SALT_ROUNDS);
+}
+
+export async function comparePassword(password: string, hash: string): Promise<boolean> {
+  return bcrypt.compare(password, hash);
+}
+
+export function generateToken(payload: object): string {
+  return jwt.sign(payload, JWT_SECRET, {expiresIn: '7d'});
+}

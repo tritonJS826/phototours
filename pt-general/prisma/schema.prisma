@@ -9,17 +9,17 @@ datasource db {
 }
 
 model User {
-  id              Int                @id @default(autoincrement())
+  id              Int                  @id @default(autoincrement())
   firstName       String
   lastName        String
-  email           String             @unique
+  email           String               @unique
   password        String
   phone           String?
-  role            Role               @default(CLIENT)
+  role            Role                 @default(CLIENT)
   profilePicUrl   String?
   bio             String?
-  createdAt       DateTime           @default(now())
-  updatedAt       DateTime           @updatedAt
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
   guide           Guide?
   bookings        Booking[]
   reviews         Review[]
@@ -27,47 +27,48 @@ model User {
   processedPhotos UserProcessedPhoto[]
   notifications   Notification[]
   bankAccounts    BankAccount[]
+  galleryImages   GalleryImage[]
 }
 
 model Guide {
-  id              Int       @id @default(autoincrement())
-  userId          Int       @unique
-  user            User      @relation(fields: [userId], references: [id])
+  id              Int      @id @default(autoincrement())
+  userId          Int      @unique
+  user            User     @relation(fields: [userId], references: [id])
   experience      String?
   specializations String[]
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
   tours           Tour[]
 }
 
 model Tour {
-  id              Int               @id @default(autoincrement())
-  slug            String            @unique
+  id              Int             @id @default(autoincrement())
+  slug            String          @unique
   title           String
   description     String
   price           Float?
   startLocation   String?
   endLocation     String?
   durationDays    Int?
-  languages       String[]          @default([])
+  languages       String[]        @default([])
   difficulty      DifficultyLevel
   minAge          Int?
-  availableMonths String[]          @default([])
+  availableMonths String[]        @default([])
   coverUrl        String?
   program         Json
   guideId         Int
-  guide           Guide             @relation(fields: [guideId], references: [id])
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
+  guide           Guide           @relation(fields: [guideId], references: [id])
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
 
-  categories      Category[]        @relation("TourCategories")
-  tags            Tag[]             @relation("TourTags")
-  dates           TourDate[]
-  reviews         Review[]
-  photos          Photo[]
-  videos          Video[]
-  materials       TourMaterial[]
-  bookings        Booking[]
+  categories Category[]     @relation("TourCategories")
+  tags       Tag[]          @relation("TourTags")
+  dates      TourDate[]
+  reviews    Review[]
+  photos     Photo[]
+  videos     Video[]
+  materials  TourMaterial[]
+  bookings   Booking[]
 }
 
 model Category {
@@ -104,21 +105,21 @@ model Review {
 }
 
 model Photo {
-  id        Int      @id @default(autoincrement())
-  tourId    Int
-  tour      Tour     @relation(fields: [tourId], references: [id], onDelete: Cascade)
-  url       String
+  id          Int      @id @default(autoincrement())
+  tourId      Int
+  tour        Tour     @relation(fields: [tourId], references: [id], onDelete: Cascade)
+  url         String
   description String?
-  createdAt DateTime @default(now())
+  createdAt   DateTime @default(now())
 }
 
 model Video {
-  id        Int      @id @default(autoincrement())
-  tourId    Int
-  tour      Tour     @relation(fields: [tourId], references: [id], onDelete: Cascade)
-  url       String
+  id          Int      @id @default(autoincrement())
+  tourId      Int
+  tour        Tour     @relation(fields: [tourId], references: [id], onDelete: Cascade)
+  url         String
   description String?
-  createdAt DateTime @default(now())
+  createdAt   DateTime @default(now())
 }
 
 model Booking {
@@ -136,15 +137,15 @@ model Booking {
 }
 
 model Payment {
-  id            Int            @id @default(autoincrement())
+  id            Int           @id @default(autoincrement())
   bookingId     Int
-  booking       Booking        @relation(fields: [bookingId], references: [id])
+  booking       Booking       @relation(fields: [bookingId], references: [id])
   amount        Float
   paymentMethod PaymentMethod
-  status        PaymentStatus  @default(PENDING)
+  status        PaymentStatus @default(PENDING)
   transactionId String?
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 }
 
 model PromoCode {
@@ -157,13 +158,13 @@ model PromoCode {
 }
 
 model TourMaterial {
-  id        Int      @id @default(autoincrement())
+  id        Int          @id @default(autoincrement())
   tourId    Int
-  tour      Tour     @relation(fields: [tourId], references: [id], onDelete: Cascade)
+  tour      Tour         @relation(fields: [tourId], references: [id], onDelete: Cascade)
   title     String
   url       String
   type      MaterialType
-  createdAt DateTime @default(now())
+  createdAt DateTime     @default(now())
 }
 
 model PhotoDiary {
@@ -189,16 +190,16 @@ model UserProcessedPhoto {
 }
 
 model Notification {
-  id        Int                   @id @default(autoincrement())
+  id        Int                  @id @default(autoincrement())
   userId    Int
-  user      User                  @relation(fields: [userId], references: [id])
+  user      User                 @relation(fields: [userId], references: [id])
   title     String
   message   String
   type      NotificationType
   category  NotificationCategory
-  isRead    Boolean               @default(false)
-  createdAt DateTime              @default(now())
-  updatedAt DateTime              @updatedAt
+  isRead    Boolean              @default(false)
+  createdAt DateTime             @default(now())
+  updatedAt DateTime             @updatedAt
 }
 
 model BankAccount {
@@ -291,4 +292,17 @@ model Article {
   publishedAt DateTime @default(now())
 
   @@index([publishedAt, featured])
+}
+
+model GalleryImage {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  url       String
+  publicId  String
+  bytes     Int
+  width     Int
+  height    Int
+  format    String
+  createdAt DateTime @default(now())
 }

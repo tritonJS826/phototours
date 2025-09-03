@@ -1,133 +1,76 @@
 import {prisma} from 'src/db/prisma.js';
-import {AuthRequest} from 'src/middleware/auth.js';
-import {createZohoService} from 'src/services/zohoService.js';
+import {AuthRequest} from 'src/middlewares/auth.js';
 import {comparePassword, generateToken, hashPassword} from 'src/utils/auth.js';
 import {logger} from 'src/utils/logger.js';
 import {Request, Response} from 'express';
 
-// HTTP Status Codes
-const HTTP_STATUS_BAD_REQUEST = 400;
-const HTTP_STATUS_UNAUTHORIZED = 401;
-const HTTP_STATUS_NOT_FOUND = 404;
-const HTTP_STATUS_CONFLICT = 409;
-const HTTP_STATUS_CREATED = 201;
-const HTTP_STATUS_INTERNAL_SERVER_ERROR = 500;
+const HTTP_BAD_REQUEST = 400;
+const HTTP_UNAUTHORIZED = 401;
+const HTTP_NOT_FOUND = 404;
+const HTTP_CONFLICT = 409;
+const HTTP_CREATED = 201;
+const HTTP_OK = 200;
+const HTTP_SERVER_ERROR = 500;
 
 export const register = async (req: Request, res: Response) => {
   try {
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
-    const email = req.body.email;
-    const password = req.body.password;
-    const phone = req.body.phone;
+    const firstName = typeof req.body.firstName === 'string' ? req.body.firstName.trim() : '';
+    const lastName = typeof req.body.lastName === 'string' ? req.body.lastName.trim() : '';
+    const email = typeof req.body.email === 'string' ? req.body.email.trim() : '';
+    const password = typeof req.body.password === 'string' ? req.body.password : '';
+    const phone = typeof req.body.phone === 'string' ? req.body.phone.trim() : '';
 
-    // Check that all required fields are filled
     if (!firstName || !lastName || !email || !password) {
-      return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'firstName, lastName, email and password are required'});
+      return res.status(HTTP_BAD_REQUEST).json({error: 'firstName, lastName, email and password are required'});
     }
 
-    // Check that user with such email doesn't exist
-    const existingUser = await prisma.user.findUnique({where: {email}});
-
-    if (existingUser) {
-      return res.status(HTTP_STATUS_CONFLICT).json({error: 'User with such email already exists'});
+    const existing = await prisma.user.findUnique({where: {email}});
+    if (existing) {
+      return res.status(HTTP_CONFLICT).json({error: 'User with such email already exists'});
     }
 
-    // Hash password
-    const hashedPassword = await hashPassword(password);
+    const hashed = await hashPassword(password);
 
-    // Create user (password is not sent to Zoho)
     const user = await prisma.user.create({
-      data: {
-        firstName,
-        lastName,
-        email,
-        password: hashedPassword,
-        phone: phone || null,
-      },
+      data: {firstName, lastName, email, password: hashed, phone: phone || null},
       select: {
-        id: true,
-        firstName: true,
-        lastName: true,
-        email: true,
-        phone: true,
-        role: true,
-        profilePicUrl: true,
-        bio: true,
-        createdAt: true,
+        id: true, firstName: true, lastName: true, email: true, phone: true,
+        role: true, profilePicUrl: true, bio: true, createdAt: true,
       },
     });
 
-    // Generate JWT token
-    const token = generateToken({
-      userId: user.id,
-      email: user.email,
-      role: user.role,
-    });
+    const token = generateToken({userId: user.id, email: user.email, role: user.role});
 
-    // Create lead in Zoho CRM
-    try {
-      const zohoService = createZohoService();
-      const leadData = {
-        First_Name: user.firstName,
-        Last_Name: user.lastName,
-        Email: user.email,
-        Phone: user.phone || '',
-        Lead_Source: 'PhotoTours Website Registration',
-        Description: `New user registered through website form. Email: ${user.email}`,
-      };
+    return res.status(HTTP_CREATED).json({message: 'User successfully registered', user, token});
+  } catch (e) {
+    logger.error('Registration error:', e);
 
-      await zohoService.createLead(leadData);
-      logger.info(`Lead created in Zoho CRM for user: ${user.email}`);
-    } catch (zohoError) {
-      logger.error('Failed to create lead in Zoho CRM:', zohoError);
-      // Don't fail registration if Zoho is unavailable
-    }
-
-    res.status(HTTP_STATUS_CREATED).json({
-      message: 'User successfully registered',
-      user,
-      token,
-    });
-  } catch (error) {
-    logger.error('Registration error:', error);
-    res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({error: 'Registration error'});
+    return res.status(HTTP_SERVER_ERROR).json({error: 'Registration error'});
   }
 };
 
 export const login = async (req: Request, res: Response) => {
   try {
-    const email = req.body.email;
-    const password = req.body.password;
+    const email = typeof req.body.email === 'string' ? req.body.email.trim() : '';
+    const password = typeof req.body.password === 'string' ? req.body.password : '';
 
-    // Check that all required fields are filled
     if (!email || !password) {
-      return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'email and password are required'});
+      return res.status(HTTP_BAD_REQUEST).json({error: 'email and password are required'});
     }
 
-    // Find user by email
     const user = await prisma.user.findUnique({where: {email}});
-
     if (!user) {
-      return res.status(HTTP_STATUS_UNAUTHORIZED).json({error: 'Invalid credentials'});
+      return res.status(HTTP_UNAUTHORIZED).json({error: 'Invalid credentials'});
     }
 
-    // Check password
-    const isPasswordValid = await comparePassword(password, user.password);
-
-    if (!isPasswordValid) {
-      return res.status(HTTP_STATUS_UNAUTHORIZED).json({error: 'Invalid credentials'});
+    const ok = await comparePassword(password, user.password);
+    if (!ok) {
+      return res.status(HTTP_UNAUTHORIZED).json({error: 'Invalid credentials'});
     }
 
-    // Generate JWT token
-    const token = generateToken({
-      userId: user.id,
-      email: user.email,
-      role: user.role,
-    });
+    const token = generateToken({userId: user.id, email: user.email, role: user.role});
 
-    // Return user data without password
-    const userWithoutPassword = {
+    const safeUser = {
       id: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
@@ -139,160 +82,131 @@ export const login = async (req: Request, res: Response) => {
       createdAt: user.createdAt,
     };
 
-    res.json({
-      message: 'Login successful',
-      user: userWithoutPassword,
-      token,
-    });
-  } catch (error) {
-    logger.error('Login error:', error);
-    res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({error: 'Login error'});
-  }
-};
+    return res.status(HTTP_OK).json({message: 'Login successful', user: safeUser, token});
+  } catch (e) {
+    logger.error('Login error:', e);
 
-export const changePassword = async (req: AuthRequest, res: Response) => {
-  try {
-    const userId = req.user?.userId;
-    const currentPassword = req.body.currentPassword;
-    const newPassword = req.body.newPassword;
-
-    if (!userId) {
-      return res.status(HTTP_STATUS_UNAUTHORIZED).json({error: 'Authentication required'});
-    }
-
-    if (!currentPassword || !newPassword) {
-      return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'currentPassword and newPassword are required'});
-    }
-
-    // Find user
-    const user = await prisma.user.findUnique({where: {id: userId}});
-
-    if (!user) {
-      return res.status(HTTP_STATUS_NOT_FOUND).json({error: 'User not found'});
-    }
-
-    // Verify current password
-    const isCurrentPasswordValid = await comparePassword(currentPassword, user.password);
-
-    if (!isCurrentPasswordValid) {
-      return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'Current password is incorrect'});
-    }
-
-    // Hash new password
-    const hashedNewPassword = await hashPassword(newPassword);
-
-    // Update password
-    await prisma.user.update({
-      where: {id: userId},
-      data: {password: hashedNewPassword},
-    });
-
-    res.json({message: 'Password successfully changed'});
-  } catch (error) {
-    logger.error('Password change error:', error);
-    res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({error: 'Password change error'});
+    return res.status(HTTP_SERVER_ERROR).json({error: 'Login error'});
   }
 };
 
 export const getProfile = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.userId;
-
     if (!userId) {
-      return res.status(HTTP_STATUS_UNAUTHORIZED).json({error: 'Authentication required'});
+      return res.status(HTTP_UNAUTHORIZED).json({error: 'Authentication required'});
     }
 
     const user = await prisma.user.findUnique({
       where: {id: userId},
       select: {
-        id: true,
-        firstName: true,
-        lastName: true,
-        email: true,
-        phone: true,
-        role: true,
-        profilePicUrl: true,
-        bio: true,
-        createdAt: true,
+        id: true, firstName: true, lastName: true, email: true, phone: true,
+        role: true, profilePicUrl: true, bio: true, createdAt: true,
       },
     });
 
     if (!user) {
-      return res.status(HTTP_STATUS_NOT_FOUND).json({error: 'User not found'});
+      return res.status(HTTP_NOT_FOUND).json({error: 'User not found'});
     }
 
-    res.json({user});
-  } catch (error) {
-    logger.error('Get profile error:', error);
-    res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({error: 'Get profile error'});
+    return res.json({user});
+  } catch (e) {
+    logger.error('Get profile error:', e);
+
+    return res.status(HTTP_SERVER_ERROR).json({error: 'Get profile error'});
+  }
+};
+
+export const changePassword = async (req: AuthRequest, res: Response) => {
+  try {
+    const userId = req.user?.userId;
+    const currentPassword = typeof req.body.currentPassword === 'string' ? req.body.currentPassword : '';
+    const newPassword = typeof req.body.newPassword === 'string' ? req.body.newPassword : '';
+
+    if (!userId) {
+      return res.status(HTTP_UNAUTHORIZED).json({error: 'Authentication required'});
+    }
+    if (!currentPassword || !newPassword) {
+      return res.status(HTTP_BAD_REQUEST).json({error: 'currentPassword and newPassword are required'});
+    }
+
+    const user = await prisma.user.findUnique({where: {id: userId}});
+    if (!user) {
+      return res.status(HTTP_NOT_FOUND).json({error: 'User not found'});
+    }
+
+    const ok = await comparePassword(currentPassword, user.password);
+    if (!ok) {
+      return res.status(HTTP_BAD_REQUEST).json({error: 'Current password is incorrect'});
+    }
+
+    const hashed = await hashPassword(newPassword);
+    await prisma.user.update({where: {id: userId}, data: {password: hashed}});
+
+    return res.json({message: 'Password successfully changed'});
+  } catch (e) {
+    logger.error('Password change error:', e);
+
+    return res.status(HTTP_SERVER_ERROR).json({error: 'Password change error'});
   }
 };
 
 export const updateProfile = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.userId;
-
     if (!userId) {
-      return res.status(HTTP_STATUS_UNAUTHORIZED).json({error: 'Authentication required'});
+      return res.status(HTTP_UNAUTHORIZED).json({error: 'Authentication required'});
     }
 
-    const {firstName, lastName, bio} = req.body;
-    const avatarFile = req.file;
+    const firstNameRaw = typeof req.body.firstName === 'string' ? req.body.firstName.trim() : '';
+    const lastNameRaw = typeof req.body.lastName === 'string' ? req.body.lastName.trim() : '';
+    const bioRaw = typeof req.body.bio === 'string' ? req.body.bio.trim() : '';
 
-    // Проверяем обязательные поля
-    if (!firstName || !lastName) {
-      return res.status(HTTP_STATUS_BAD_REQUEST).json({error: 'firstName and lastName are required'});
-    }
+    const fileObj = req.file as unknown as { path?: string } | undefined;
+    const uploadedUrl = fileObj && typeof fileObj.path === 'string' ? fileObj.path : '';
 
-    // Подготавливаем данные для обновления
-    const updateData: {
-      firstName: string;
-      lastName: string;
-      bio: string | null;
+    const data: {
+      firstName?: string;
+      lastName?: string;
+      bio?: string | null;
       profilePicUrl?: string;
-    } = {
-      firstName,
-      lastName,
-      bio: bio || null,
-    };
+    } = {};
 
-    // Если загружен аватар, обрабатываем его
-    if (avatarFile) {
-      try {
-        // Получаем URL загруженного файла из Cloudinary
-        // Multer с CloudinaryStorage автоматически загружает файл и добавляет его URL в req.file
-        updateData.profilePicUrl = (avatarFile as { path: string }).path;
-        logger.info(`Avatar uploaded successfully: ${updateData.profilePicUrl}`);
-      } catch (uploadError) {
-        logger.error('Avatar upload error:', uploadError);
-
-        return res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({error: 'Failed to upload avatar'});
-      }
+    if (firstNameRaw) {
+      data.firstName = firstNameRaw;
+    }
+    if (lastNameRaw) {
+      data.lastName = lastNameRaw;
+    }
+    if (bioRaw || req.body.bio === '') {
+      data.bio = bioRaw;
+    }
+    if (uploadedUrl) {
+      data.profilePicUrl = uploadedUrl;
     }
 
-    // Обновляем пользователя
+    if (Object.keys(data).length === 0) {
+      return res.status(HTTP_BAD_REQUEST).json({error: 'No changes'});
+    }
+
+    const user = await prisma.user.findUnique({where: {id: userId}});
+    if (!user) {
+      return res.status(HTTP_NOT_FOUND).json({error: 'User not found'});
+    }
+
     const updatedUser = await prisma.user.update({
       where: {id: userId},
-      data: updateData,
+      data,
       select: {
-        id: true,
-        firstName: true,
-        lastName: true,
-        email: true,
-        phone: true,
-        role: true,
-        profilePicUrl: true,
-        bio: true,
-        createdAt: true,
+        id: true, firstName: true, lastName: true, email: true, phone: true,
+        role: true, profilePicUrl: true, bio: true, createdAt: true,
       },
     });
 
-    res.json({
-      message: 'Profile updated successfully',
-      user: updatedUser,
-    });
-  } catch (error) {
-    logger.error('Update profile error:', error);
-    res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).json({error: 'Update profile error'});
+    return res.json({message: 'Profile updated', user: updatedUser});
+  } catch (e) {
+    logger.error('Update profile error:', e);
+
+    return res.status(HTTP_SERVER_ERROR).json({error: 'Update profile error'});
   }
 };
