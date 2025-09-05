@@ -1,29 +1,20 @@
-import dotenv from 'dotenv';
-import {cleanEnv, port, str, url} from 'envalid';
+import {config} from 'dotenv';
+config();
 
-dotenv.config();
+const SERVER_PORT = 8000;
 
-export const env = cleanEnv(process.env, {
-  DATABASE_URL: url(),
-  SERVER_PORT: port(),
-  ENV_TYPE: str({choices: ['dev', 'prod']}),
-  WEBAPP_DOMAIN: str(),
-  ORIGIN_PORT: port(),
-  CORS_ORIGIN: url(),
+const must = (name: string) => {
+  const v = process.env[name];
+  if (!v) {
+    throw new Error(`Missing env ${name}`);
+  }
 
-  JWT_SECRET: str(),
-  JWT_EXPIRES_IN: str(),
+  return v;
+};
 
-  SALT_ROUNDS: port({default: 12}),
-
-  ZOHO_CLIENT_ID: str(),
-  ZOHO_CLIENT_SECRET: str(),
-  ZOHO_REDIRECT_URI: str(),
-  ZOHO_REFRESH_TOKEN: str({default: ''}),
-
-  CLOUDINARY_CLOUD_NAME: str(),
-  CLOUDINARY_API_KEY: str(),
-  CLOUDINARY_API_SECRET: str(),
-  CLOUDINARY_UPLOAD_FOLDER: str(),
-
-});
+export const env = {
+  SERVER_PORT: Number(process.env.SERVER_PORT ?? SERVER_PORT),
+  CORS_ORIGIN: process.env.CORS_ORIGIN ?? '*',
+  JWT_SECRET: must('JWT_SECRET'),
+  JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN ?? '7d',
+};
