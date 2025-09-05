@@ -3,17 +3,16 @@ import {Footer} from "src/components/Footer/Footer";
 import {Header} from "src/components/Header/Header";
 import {ProtectedRoute} from "src/components/ProtectedRoute/ProtectedRoute";
 import {ScrollToTop} from "src/components/ScrollToTop/ScrollToTop";
-import {PATHS} from "src/constants/routes";
 import {AboutUs} from "src/pages/aboutUs/AboutUsPage";
-import {AdminCreateTourForm} from "src/pages/AdminCreateTourForm/AdminCreateTourForm";
+import {AdminCreateTourForm} from "src/pages/adminCreateTourForm/AdminCreateTourForm";
 import {AdminPage} from "src/pages/adminPage/AdminPage";
-import {AdminTourContinueForm} from "src/pages/AdminTourContinueForm/AdminTourContinueForm";
-import {AdminTourEdit} from "src/pages/AdminTourEditForm/AdminTourEditForm";
+import {AdminTourContinueForm} from "src/pages/adminTourContinueForm/AdminTourContinueForm";
+import {AdminTourEdit} from "src/pages/adminTourEditForm/AdminTourEditForm";
 import {Cart} from "src/pages/cart/Cart";
 import {ContactUs} from "src/pages/contactUs/ContactUs";
 import {Dashboard} from "src/pages/dashboard/Dashboard";
-import {ArticlePage} from "src/pages/exploreArticles/ArticlePage";
-import {ExploreArticles} from "src/pages/exploreArticles/ExploreArticles";
+import {ArticlePage} from "src/pages/exploreArticles/ArticlePage/ArticlePage";
+import {ArticlesPage} from "src/pages/exploreArticles/ArticlesPage/ArticlesPage";
 import {HomePage} from "src/pages/homePage/HomePage";
 import {NotFound} from "src/pages/notFound/notFound";
 import {Notifications} from "src/pages/notifications/Notifications";
@@ -22,13 +21,14 @@ import {Profile} from "src/pages/profile/Profile";
 import {PublicProfile} from "src/pages/profile/PublicProfile";
 import {TourDetailsPage} from "src/pages/tourDetailsPage/TourDetailsPage";
 import {ToursPage} from "src/pages/toursPage/ToursPage";
+import {PATHS} from "src/routes/routes";
 
 export function App() {
   return (
-    <div className="app">
+    <div className='app'>
       <Header />
       <ScrollToTop />
-      <main className="main-content">
+      <main className='main-content'>
         <Routes>
           <Route
             path={PATHS.HOME}
@@ -58,25 +58,31 @@ export function App() {
             path={PATHS.CONTACT}
             element={<ContactUs />}
           />
+
           <Route
             path={PATHS.ARTICLES}
-            element={<ExploreArticles />}
+            element={<ArticlesPage />}
           />
           <Route
             path={PATHS.ARTICLES_SLUG}
             element={<ArticlePage />}
           />
+
           <Route
             path={PATHS.PROFILE}
-            element={<ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>}
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
           />
           <Route
             path={PATHS.PROFILE_EDIT}
-            element={<ProtectedRoute>
-              <EditProfile />
-            </ProtectedRoute>}
+            element={
+              <ProtectedRoute>
+                <EditProfile />
+              </ProtectedRoute>
+            }
           />
           <Route
             path={PATHS.PROFILE_ID}
@@ -84,15 +90,19 @@ export function App() {
           />
           <Route
             path={PATHS.DASHBOARD}
-            element={<ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>}
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
           />
           <Route
             path={PATHS.NOTIFICATIONS}
-            element={<ProtectedRoute>
-              <Notifications />
-            </ProtectedRoute>}
+            element={
+              <ProtectedRoute>
+                <Notifications />
+              </ProtectedRoute>
+            }
           />
           <Route
             path={PATHS.ADMIN_CREATE_TOUR}

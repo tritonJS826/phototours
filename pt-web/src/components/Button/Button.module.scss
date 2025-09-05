@@ -1,43 +1,79 @@
-@use "sass:color";
-@use "src/styles/variables" as var;
+@use "src/styles/variables" as vars;
+@use "src/styles/mixins" as mixin;
 
-.button {
-  width: 170px;
-  display: inline-block;
-  padding: var.$btn-padding;
-  font-size: var.$btn-font-size;
-  text-align: center;
+.btn {
+  @include mixin.flex-center;
+
+  gap: vars.$gap-md;
+  padding: vars.$padding-button;
+  border-radius: vars.$contact-btn-border-radius;
+  font-size: vars.$btn-font-size;
+  font-weight: vars.$font-weight-bold;
+  line-height: 1;
+  white-space: nowrap;
+  user-select: none;
   text-decoration: none;
-  cursor: pointer;
-  border-radius: var.$btn-border-radius;
-  transition: var.$btn-transition-bg;
+  transition:
+    background-color vars.$transition-normal,
+    color vars.$transition-normal,
+    border-color vars.$transition-normal,
+    transform vars.$transition-fast,
+    box-shadow vars.$transition-normal;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px vars.$contact-btn-bg-transparent-30;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.block {
+  width: 100%;
+}
+
+.md {
+  padding: vars.$padding-button;
+}
+
+.sm {
+  padding: 10px 18px;
+  font-size: vars.$font-size-sm;
+}
+
+.primary {
+  background-color: vars.$contact-btn-bg;
+  color: vars.$color-bg-white;
   border: none;
-  font-weight: bold;
+  box-shadow: vars.$shadow-light;
 
-  &.primary {
-    background: var.$color-primary;
-    color: var.$color-bg-white;
-
-    &:hover {
-      background-color: var.$color-primary-hover;
-    }
+  &:hover {
+    background-color: vars.$contact-btn-hover-bg;
+    box-shadow: vars.$shadow-hover;
   }
 
-  &.secondary {
-    background: var.$btn-secondary-bg;
-    color: var.$btn-secondary-color;
+  &.disabled,
+  &:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
 
-    &:hover {
-      background-color: var.$btn-secondary-hover-bg;
-    }
+.outline {
+  background-color: transparent;
+  color: vars.$header-footer-color;
+  border: vars.$btn-border;
+  border-radius: vars.$contact-btn-border-radius;
+
+  &:hover {
+    background-color: vars.$btn-primary-hover-bg;
   }
 
-  &.link {
-    background-color: transparent;
-    padding: 0;
-
-    &:hover {
-      text-decoration: underline;
-    }
+  &.disabled,
+  &:disabled {
+    opacity: 0.6;
+    pointer-events: none;
   }
 }

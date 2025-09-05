@@ -1,49 +1,62 @@
-import React, {AnchorHTMLAttributes, ButtonHTMLAttributes} from "react";
+import {
+  ComponentPropsWithoutRef,
+  ElementType,
+  forwardRef,
+  Ref,
+} from "react";
 import styles from "src/components/Button/Button.module.scss";
 
-interface BaseButtonProps {
-  children: React.ReactNode;
-  variant?: "primary" | "secondary";
+type ButtonOwnProps = {
+  variant?: "primary" | "outline";
+  size?: "md" | "sm";
+  block?: boolean;
   className?: string;
-}
+  as?: ElementType;
+};
 
-// Пропсы для кнопки
-type ButtonAsButtonProps = BaseButtonProps &
-  ButtonHTMLAttributes<HTMLButtonElement> & {
-    href?: undefined;
-  };
+type PolymorphicProps<C extends ElementType> =
+  ButtonOwnProps & Omit<ComponentPropsWithoutRef<C>, keyof ButtonOwnProps>;
 
-// Пропсы для ссылки
-type ButtonAsAnchorProps = BaseButtonProps &
-  AnchorHTMLAttributes<HTMLAnchorElement> & {
-    href: string;
-  };
+const defaultElement = "button";
 
-// Объединяем оба типа в один
-type ButtonProps = ButtonAsButtonProps | ButtonAsAnchorProps;
+export const Button = forwardRef(
+  <C extends ElementType = typeof defaultElement>(
+    props: PolymorphicProps<C>,
+    ref: Ref<Element>,
+  ) => {
+    const {
+      as,
+      variant = "primary",
+      size = "md",
+      block = false,
+      className,
+      ...rest
+    } = props;
 
-export function Button({children, variant = "primary", className, ...rest}: ButtonProps) {
-  const buttonClassName = `${styles.button} ${styles[variant]} ${className || ""}`;
+    const Component = (as ?? defaultElement) as ElementType;
 
-  if (rest.href) {
-    // Если есть href, рендерим <a> и передаем все пропсы, включая href
+    const classes = [
+      styles.btn,
+      variant ? styles[variant] : "",
+      size ? styles[size] : "",
+      block ? styles.block : "",
+      className ? className : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+
+    const extra =
+      Component === "button" ? {type: "button" as const} : {};
+
     return (
-      <a
-        className={buttonClassName}
-        {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
-      >
-        {children}
-      </a>
+      <Component
+        ref={ref}
+        className={classes}
+        {...extra}
+        {...rest}
+      />
     );
-  }
+  },
+);
 
-  // Если нет href, рендерим <button>
-  return (
-    <button
-      className={buttonClassName}
-      {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
-    >
-      {children}
-    </button>
-  );
-}
+Button.displayName = "Button";

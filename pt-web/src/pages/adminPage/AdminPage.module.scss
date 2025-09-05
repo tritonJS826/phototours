@@ -1,80 +1,96 @@
-@use "src/styles/variables" as var;
-@use "src/styles/mixins" as mix;
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixin;
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: vars.$padding-container;
+}
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: vars.$gap-md;
+  margin-bottom: vars.$spacing-xl;
 }
 
 .header h2 {
-  font-size: var.$font-size-card-title;
-  font-weight: var.$font-weight-bold;
-  color: var.$color-medium;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var.$padding-container;
+  font-size: vars.$font-size-section-title;
+  font-weight: vars.$font-weight-bold;
+  color: vars.$color-dark;
+  margin: 0;
 }
 
 .searchWrapper {
   flex: 1;
+  max-width: 520px;
 }
 
 .searchWrapper input {
   width: 100%;
-  padding: var.$padding-input;
-  border: var.$btn-border;
-  border-radius: var.$radius-medium;
-  font-size: var.$font-size-card-text;
+  padding: vars.$padding-input;
+  border: vars.$btn-border;
+  border-radius: vars.$radius-medium;
+  font-size: vars.$font-size-card-text;
+  transition:
+    border-color vars.$transition-normal,
+    box-shadow vars.$transition-normal;
 }
 
 .searchWrapper input:focus {
   outline: none;
-  border-color: var.$color-primary;
-  box-shadow: var.$shadow-input-focus;
-}
-
-.createButton {
-  max-width: 120px;
-  font-size: 10px;
-  padding: var.$btn-padding;
-  border: none;
+  border-color: vars.$color-primary;
+  box-shadow: vars.$shadow-input-focus;
 }
 
 .actionBtn {
   display: flex;
   align-items: center;
-  gap: 4px;
-  border: none;
+  gap: vars.$gap-sm;
+}
+
+.actions {
+  display: flex;
+  gap: vars.$gap-sm;
+}
+
+.createButton {
+  max-width: 160px;
+}
+
+.hiddenBtn {
+  max-width: 120px;
 }
 
 .tourGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 16px;
+  gap: vars.$gap-xl;
 }
 
 .tourCard {
-  background: var.$color-card-bg;
-  border-radius: 10px;
-  box-shadow: var.$shadow-light;
+  background: vars.$color-card-bg;
+  border-radius: vars.$radius-large;
+  box-shadow: vars.$shadow-light;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   cursor: pointer;
   transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
+    transform vars.$transition-fast,
+    box-shadow vars.$transition-fast,
+    border-color vars.$transition-normal;
+  border: vars.$border-width-thin solid transparent;
 }
 
 .tourCard:hover {
-  transform: translateY(-3px);
-  box-shadow: var.$shadow-hover;
+  transform: translateY(-2px);
+  box-shadow: vars.$shadow-hover;
+}
+
+.active {
+  border: vars.$active-cart-border;
 }
 
 .photoWrapper {
@@ -87,45 +103,50 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .noPhoto {
-  background: #f3f3f3;
-  color: #aaa;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100%;
-  font-size: 0.9rem;
+  background: vars.$color-bg-light;
+  color: vars.$color-light;
+
+  @include mixin.flex-center;
+
+  font-size: vars.$font-size-sm;
 }
 
 .info {
-  padding: 12px;
+  padding: vars.$spacing-lg vars.$spacing-lg vars.$spacing-xl;
 }
 
 .info h3 {
-  font-size: 1.1rem;
-  margin: 0 0 4px;
-  color: var.$color-medium;
+  font-size: vars.$font-size-card-title;
+  margin: 0 0 vars.$spacing-sm;
+  color: vars.$color-medium;
+  font-weight: vars.$font-weight-bold;
 }
 
 .guide {
-  font-size: 0.9rem;
-  color: var.$color-light;
+  font-size: vars.$font-size-sm;
+  color: vars.$color-light;
+  margin: 0;
 }
 
-.actions {
-  display: flex;
-  gap: 4px;
-}
+@media (width <= #{vars.$breakpoint-tablet}) {
+  .header {
+    flex-wrap: wrap;
+    gap: vars.$gap-md;
+  }
 
-.hiddenBtn {
-  font-size: 10px;
-  max-width: 120px;
-  padding: var.$btn-padding;
-  border: none;
-}
+  .searchWrapper {
+    order: 3;
+    width: 100%;
+    max-width: none;
+  }
 
-.active {
-  border: var.$active-cart-border;
+  .actionBtn {
+    order: 2;
+    margin-left: auto;
+  }
 }

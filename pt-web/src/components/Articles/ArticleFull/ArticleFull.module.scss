@@ -1,0 +1,34 @@
+@use "src/styles/variables" as vars;
+@use "src/styles/mixins" as mixin;
+
+.full {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: vars.$spacing-xxxl vars.$spacing-lg;
+  font-size: vars.$font-size-md;
+  line-height: 1.6;
+}
+
+.cover {
+  width: 100%;
+  border-radius: vars.$radius-large;
+  margin-bottom: vars.$spacing-xl;
+}
+
+.title {
+  font-size: vars.$font-size-3xl;
+  font-weight: vars.$font-weight-bold;
+  margin-bottom: vars.$spacing-md;
+}
+
+.meta {
+  font-size: vars.$font-size-xs;
+  color: vars.$color-medium;
+  margin-bottom: vars.$spacing-xxl;
+}
+
+.content {
+  text-align: justify;
+  font-size: vars.$font-size-md;
+  line-height: 1.6;
+}

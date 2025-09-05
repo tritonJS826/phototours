@@ -1,4 +1,18 @@
 import {env} from 'src/config/env';
+
+const ZOHO_HOST = 'https://accounts.zoho.eu';
+const ZOHO_API_HOST = 'https://www.zohoapis.eu';
+const OAUTH_AUTHORIZE = `${ZOHO_HOST}/oauth/v2/auth`;
+const OAUTH_TOKEN = `${ZOHO_HOST}/oauth/v2/token`;
+const API_ORG = `${ZOHO_API_HOST}/crm/v3/org`;
+const API_LEADS = `${ZOHO_API_HOST}/crm/v3/Leads`;
+
+const ZOHO_SCOPES = [
+  'ZohoCRM.modules.ALL',
+  'ZohoCRM.settings.ALL',
+  'ZohoCRM.org.READ',
+] as const;
+
 export interface ZohoConfig {
   clientId: string;
   clientSecret: string;
@@ -7,48 +21,52 @@ export interface ZohoConfig {
 
 export interface ZohoTokenResponse {
   access_token: string;
-  refresh_token: string;
+  refresh_token?: string;
   expires_in: number;
   api_domain: string;
   token_type: string;
   expires_in_sec: number;
 }
 
+type LeadPayload =
+  | Record<string, unknown>
+  | {
+      data: unknown[];
+    };
+
 export class ZohoService {
 
-  private config: ZohoConfig;
+  private readonly config: ZohoConfig;
 
-  private accessToken: string | null = null;
+  private accessToken?: string;
 
-  private refreshToken: string | null = null;
+  private refreshToken?: string;
 
   constructor(config: ZohoConfig) {
+
     this.config = config;
-    // Initialize refresh token from environment variables
-    this.refreshToken = env.ZOHO_REFRESH_TOKEN || null;
+    this.refreshToken = env.ZOHO_REFRESH_TOKEN;
+
   }
 
-  /**
-   * Generates URL for OAuth authorization
-   */
   public getAuthUrl(): string {
+
     const params = new URLSearchParams({
       client_id: this.config.clientId,
       response_type: 'code',
       redirect_uri: this.config.redirectUri,
-      scope: 'ZohoCRM.modules.ALL,ZohoCRM.settings.ALL,ZohoCRM.org.READ',
+      scope: ZOHO_SCOPES.join(','),
       access_type: 'offline',
       prompt: 'consent',
     });
 
-    return `https://accounts.zoho.eu/oauth/v2/auth?${params.toString()}`;
+    return `${OAUTH_AUTHORIZE}?${params.toString()}`;
+
   }
 
-  /**
-   * Exchanges authorization code for tokens
-   */
   public async exchangeCodeForTokens(code: string): Promise<ZohoTokenResponse> {
-    const response = await fetch('https://accounts.zoho.eu/oauth/v2/token', {
+
+    const response = await fetch(OAUTH_TOKEN, {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: new URLSearchParams({
@@ -61,25 +79,28 @@ export class ZohoService {
     });
 
     if (!response.ok) {
-      throw new Error(`Failed to exchange code for tokens: ${response.statusText}`);
+      throw new Error(
+        `Failed to exchange code for tokens: ${response.status} ${response.statusText}`,
+      );
     }
 
-    const data = await response.json() as ZohoTokenResponse;
+    const data = (await response.json()) as ZohoTokenResponse;
     this.accessToken = data.access_token;
-    this.refreshToken = data.refresh_token;
+    if (data.refresh_token) {
+      this.refreshToken = data.refresh_token;
+    }
 
     return data;
+
   }
 
-  /**
-   * Refreshes access token using refresh token
-   */
   public async refreshAccessToken(): Promise<string> {
+
     if (!this.refreshToken) {
       throw new Error('No refresh token available');
     }
 
-    const response = await fetch('https://accounts.zoho.eu/oauth/v2/token', {
+    const response = await fetch(OAUTH_TOKEN, {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: new URLSearchParams({
@@ -91,134 +112,107 @@ export class ZohoService {
     });
 
     if (!response.ok) {
-      throw new Error(`Failed to refresh token: ${response.statusText}`);
+      throw new Error(
+        `Failed to refresh token: ${response.status} ${response.statusText}`,
+      );
     }
 
-    const data = await response.json() as ZohoTokenResponse;
+    const data = (await response.json()) as ZohoTokenResponse;
     this.accessToken = data.access_token;
 
     return data.access_token;
+
   }
 
-  /**
-   * Gets organization information
-   */
   public async getOrganizationInfo(): Promise<unknown> {
+
     const token = await this.getValidAccessToken();
 
-    // Console.log('🔍 Making request to Zoho API with token:', token.substring(0, 20) + '...');
-
-    const response = await fetch('https://www.zohoapis.eu/crm/v3/org', {
+    const response = await fetch(API_ORG, {
       headers: {
-        'Authorization': `Zoho-oauthtoken ${token}`,
+        Authorization: `Zoho-oauthtoken ${token}`,
         'Content-Type': 'application/json',
       },
     });
 
-    // Console.log('📡 Zoho API response status:', response.status, response.statusText);
-
     if (!response.ok) {
       const errorText = await response.text();
-      // Console.error('❌ Zoho API error response:', errorText);
-      throw new Error(`Failed to get organization info: ${response.status} ${response.statusText} - ${errorText}`);
+      throw new Error(
+        `Failed to get organization info: ${response.status} ${response.statusText} - ${errorText}`,
+      );
     }
 
-    const data = await response.json();
-    // Console.log('✅ Zoho API response:', JSON.stringify(data, null, 2));
+    return await response.json();
 
-    return data;
   }
 
-  /**
-   * Creates a lead in Zoho CRM
-   */
-  public async createLead(leadData: Record<string, unknown>): Promise<unknown> {
+  public async createLead(payload: LeadPayload): Promise<unknown> {
+
     const token = await this.getValidAccessToken();
 
-    // Console.log('🔍 Creating lead with data:', JSON.stringify(leadData, null, 2));
-    // console.log('🔑 Using token:', token.substring(0, 20) + '...');
+    const hasDataArray =
+      typeof (payload as {data?: unknown[]}).data !== 'undefined' &&
+      Array.isArray((payload as {data?: unknown[]}).data);
 
-    // Check data structure
-    let requestBody;
-    if (leadData.data && Array.isArray(leadData.data)) {
-      // If data is already in {data: [...]} format
-      requestBody = leadData;
-    } else {
-      // If data came as a lead object
-      requestBody = {data: [leadData]};
-    }
+    const body = hasDataArray ? payload : {data: [payload]};
 
-    // Const JSON_INDENT = 2;
-    // Console.log('📤 Sending to Zoho API:', JSON.stringify(requestBody, null, JSON_INDENT));
-
-    const response = await fetch('https://www.zohoapis.eu/crm/v3/Leads', {
+    const response = await fetch(API_LEADS, {
       method: 'POST',
       headers: {
-        'Authorization': `Zoho-oauthtoken ${token}`,
+        Authorization: `Zoho-oauthtoken ${token}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(requestBody),
+      body: JSON.stringify(body),
     });
-
-    // Console.log('📡 Zoho API response status:', response.status, response.statusText);
 
     if (!response.ok) {
       const errorText = await response.text();
-      // Console.error('❌ Zoho API error response:', errorText);
-      throw new Error(`Failed to create lead: ${response.status} ${response.statusText} - ${errorText}`);
+      throw new Error(
+        `Failed to create lead: ${response.status} ${response.statusText} - ${errorText}`,
+      );
     }
 
-    const data = await response.json();
-    // Console.log('✅ Zoho API response:', JSON.stringify(data, null, 2));
+    return await response.json();
 
-    return data;
   }
 
-  /**
-   * Sets tokens (for saving to database)
-   */
-  public setTokens(accessToken: string, refreshToken: string): void {
+  public setTokens(accessToken: string, refreshToken?: string): void {
+
     this.accessToken = accessToken;
-    this.refreshToken = refreshToken;
-  }
-
-  /**
-   * Saves refresh token (for persistent storage)
-   */
-  public saveRefreshToken(refreshToken: string): void {
-    this.refreshToken = refreshToken;
-    // Console.log('💾 Refresh token saved for future use');
-    // In a real application, this should be saved to database or file
-  }
-
-  /**
-   * Gets a valid access token (refreshes if needed)
-   */
-  private async getValidAccessToken(): Promise<string> {
-    if (!this.accessToken) {
-      // If no access token, try to refresh using refresh token
-      if (this.refreshToken) {
-        // Console.log('🔄 Refreshing access token...');
-
-        return await this.refreshAccessToken();
-      }
-      throw new Error('No access token available. Please authenticate first.');
+    if (refreshToken) {
+      this.refreshToken = refreshToken;
     }
 
-    // In a real application, there should be token expiration check here
-    // For now, just return the current token
-    return this.accessToken;
+  }
+
+  public saveRefreshToken(refreshToken: string): void {
+
+    this.refreshToken = refreshToken;
+
+  }
+
+  private async getValidAccessToken(): Promise<string> {
+
+    if (this.accessToken) {
+      return this.accessToken;
+    }
+
+    if (this.refreshToken) {
+      return await this.refreshAccessToken();
+    }
+
+    throw new Error('No access token available. Please authenticate first.');
+
   }
 
 }
 
-/**
- * Creates a ZohoService instance with configuration from environment variables
- */
 export function createZohoService(): ZohoService {
+
   return new ZohoService({
     clientId: env.ZOHO_CLIENT_ID,
     clientSecret: env.ZOHO_CLIENT_SECRET,
     redirectUri: env.ZOHO_REDIRECT_URI,
   });
+
 }

@@ -1,4 +1,16 @@
-// ====== GLOBAL COLORS ======
+$breakpoint-tablet: 1024px;
+$breakpoint-phone-sm: 640px;
+$color-dark: #222;
+$color-medium: #444;
+$color-light: #555;
+$color-primary: #007bff;
+$color-primary-hover: #005fa3;
+$color-success: #2a7a2a;
+$color-error: #dc3545;
+$color-bg-white: #fff;
+$color-bg-light: #f9f9f9;
+$color-card-bg: #fafafa;
+$color-border: #ccc;
 $header-footer-color: #616161;
 $btn-primary-bg: #f5f5f5;
 $btn-primary-color: #333;
@@ -6,78 +18,30 @@ $btn-primary-hover-bg: #e0e0e0;
 $btn-secondary-bg: #dc3a3a;
 $btn-secondary-color: #fcf9f9;
 $btn-secondary-hover-bg: #b72424;
-$color-primary: #007bff;
-$color-primary-hover: #005fa3;
-$color-dark: #222;
-$color-medium: #444;
-$color-light: #555;
-$color-bg-light: #f9f9f9;
-$color-bg-white: #fff;
-$color-card-bg: #fafafa;
-$color-border: #ccc;
-$color-success: #2a7a2a;
-$badge-color: #d9534f;
-$badge-background: #f9d6d5;
-
-// ====== CONTACT US COLORS ======
-
-// Background colors
-$contact-bg-dark: rgb(58 58 58 / 90%);
+$contact-bg-dark: #3a3a3ae6;
 $contact-bg-medium: #2f2f2f;
-
-// Border colors
 $contact-border: #555;
-
-// Text colors
 $contact-text-light: #ccc;
 $contact-placeholder-color: #7b7f86;
-$contact-error-color: #dc3545; // Error color for forms
-$contact-error-dark: #c82333; // Darker shade for borders
-$contact-error-transparent-10: rgb(220 53 69 / 10%);
-
-// Transparent for backgrounds
-$contact-error-transparent-20: rgb(220 53 69 / 20%); // Transparent for borders
-
-// Common border widths
-$border-width-thin: 1px;
-$border-width-medium: 2px;
-$border-width-thick: 3px;
-$border-width-hairline: 0.5px;
-
-// Transform values
-$transform-lift: -2px;
-
-// Button colors
+$contact-error-color: #dc3545;
+$contact-error-dark: #c82333;
+$contact-error-transparent-10: #dc35451a;
+$contact-error-transparent-20: #dc354533;
 $contact-btn-bg: #92c07f;
 $contact-btn-hover-bg: #7ba86a;
-
-// Transparent green shades for hover effects
-$contact-btn-bg-transparent-10: rgb(146 192 127 / 10%);
-$contact-btn-bg-transparent-15: rgb(146 192 127 / 15%);
-$contact-btn-bg-transparent-30: rgb(146 192 127 / 30%);
-
-// ====== SIZES AND SPACING ======
-
-$container-width: 1620px;
-
-// Icon sizes
-$icon-size-small: 20px;
-$icon-size-medium: 24px;
-$icon-size-large: 36px;
-
-// QR Code sizes
-$qr-code-size-desktop: 122px;
-$qr-code-size-mobile: 90px;
-
-// Common spacing values (padding, margin)
+$contact-btn-bg-transparent-10: #92c07f1a;
+$contact-btn-bg-transparent-15: #92c07f26;
+$contact-btn-bg-transparent-30: #92c07f4d;
+$container-width: 1320px;
+$container-max: 1320px;
 $spacing-sm: 8px;
 $spacing-md: 12px;
-$spacing-xl: 20px;
-$spacing-xxl: 24px;
+$spacing-lg: 16px;
+$spacing-xl: 24px;
+$spacing-xxl: 32px;
+$spacing-xxxl: 40px;
 $spacing-xxxxl: 48px;
-
-// Common gap values (flexbox, grid)
-$gap-sm: 6.4px;
+$gap-sm: 6px;
 $gap-md: 8px;
 $gap-lg: 12px;
 $gap-xl: 16px;
@@ -85,131 +49,90 @@ $gap-xxl: 20px;
 $gap-xxxl: 24px;
 $gap-xxxxl: 32px;
 $gap-xxxxxl: 48px;
-
-// ====== BREAKPOINTS ======
-
+$padding-button: 14px 24px;
+$padding-input: 12px 16px;
+$padding-container: 48px 16px;
+$padding-section: 64px 16px;
 $breakpoint-mobile: 768px;
-
-// ====== TRANSITIONS AND ANIMATIONS ======
-
-$btn-transition-bg: background-color 0.3s ease; // For existing Button component
-
-// Common transition combinations
-$transition-normal: 0.3s ease;
+$font-size-2xs: 12px;
+$font-size-xs: 13px;
+$font-size-sm: 14px;
+$font-size-md: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-2xl: 24px;
+$font-size-3xl: 28px;
+$font-size-4xl: 32px;
+$font-size-5xl: 36px;
+$font-size-6xl: 48px;
+$font-size-hero-title: 64px;
+$font-size-hero-subtitle: 32px;
+$font-size-card-title: 20px;
+$font-size-card-text: 16px;
+$font-size-section-title: 28px;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 600;
+$font-weight-extra-bold: 800;
+$radius-small: 6px;
+$radius-medium: 8px;
+$radius-large: 12px;
+$border-radius-md: 8px;
+$border-radius-lg: 10px;
+$border-width-hairline: 0.5px;
+$border-width-thin: 1px;
+$border-width-medium: 2px;
+$border-width-thick: 3px;
+$btn-border: 1px solid #ccc;
+$active-cart-border: 1px solid #9cbef4;
+$dashed-border: 1px dashed #999;
+$shadow-light: 0 4px 10px #0000001a;
+$shadow-medium: 0 4px 15px #0000001a;
+$shadow-hover: 0 5px 15px #0003;
+$shadow-input-focus: 0 0 5px #007bff80;
+$shadow-very-heavy: 0 10px 30px #00000080;
 $transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$btn-transition-bg: background-color 0.3s ease;
 $transition-bg: background-color 0.3s ease;
 $transition-color: color 0.3s ease;
 $transition-border: border-color 0.3s ease;
 $transition-transform: transform 0.3s ease;
-
-// ====== BORDERS AND SHADOWS ======
-
-// Border styles
-$btn-border: $border-width-thin solid $color-border;
-$active-cart-border: 1px solid #9cbef4;
-$dashed-border: 1px dashed #999;
-$border-radius-md: 8px;
-$border-radius-lg: 10px;
-$contact-btn-border-radius: 25px; // Moved here for logical grouping
-
-// Common shadow values
-$shadow-light: 0 4px 10px rgb(0 0 0 / 10%);
-$shadow-medium: 0 4px 15px rgb(0 0 0 / 10%);
-$shadow-hover: 0 5px 15px rgb(0 0 0 / 20%);
-$shadow-input-focus: 0 0 5px rgb(0 123 255 / 50%);
-$shadow-very-heavy: 0 10px 30px rgb(0 0 0 / 50%);
-
-// ====== FONT SIZES ======
-
-$font-size-xs: 13.6px;
-$font-size-sm: 15.2px;
-$font-size-md: 16px;
-$font-size-lg: 17.6px;
-$font-size-xl: 20px;
-$font-size-xxxl: 48px;
-$font-size-hero-title: 64px;
-$font-size-hero-subtitle: 32px;
-$font-size-section-title: 48px;
-$font-size-section-text: 32px;
-$font-size-card-title: 20px;
-$font-size-card-text: 16px;
-
-// ====== Sizes and Spacing ======
-$container-width: 1620px;
-$btn-padding: 12px 12px;
-$btn-font-size: 16px;
-$btn-border-radius: 8px;
-$font-weight-bold: 500;
-$font-weight-normal: 400;
-$font-weight-light: 300;
-$font-weight-minimal: 200;
-$font-size-hero-title: 64px;
-$font-size-hero-subtitle: 32px;
-$font-size-section-title: 48px;
-$font-size-section-text: 32px;
-$font-size-card-title: 24px;
-$font-size-card-text: 16px;
-
-// ====== BUTTON SPECIFIC ======
-
-$btn-padding: 12px 24px;
-$btn-font-size: 16px;
-$btn-border-radius: 5px;
-
-// ====== FONT WEIGHTS ======
-$font-weight-extra-bold: 700;
-$font-weight-bold: 500;
-$font-weight-normal: 400;
-$font-weight-light: 300;
-$font-weight-minimal: 200;
-
-// ====== Z-INDEX LAYERS ======
-
-$z-index-notification: 1000;
-
-// ====== Borders and Transitions ======
-$btn-border: 1px solid #ccc;
-$active-cart-border: 1px solid #9cbef4;
-$dashed-border: 1px dashed #999;
-$btn-transition-bg: background-color 0.3s ease;
-
-// ====== PADDINGS AND MARGINS ======
-
-// ===== Padding and Margins ======
-$padding-section: 64px 16px;
-$padding-container: 48px 16px;
-$padding-button: 14px 24px;
-$padding-input: 12px 16px;
-
-// Form specific values
-$form-width-offset: 10px;
-$textarea-min-height: 120px;
-$textarea-mobile-min-height: 100px;
-$autofill-box-shadow: 1000px;
-
-// Logo sizes
 $logo-width: 180px;
 $logo-height: 90px;
 $logo-mobile-width: 140px;
 $logo-mobile-height: 70px;
-$margin-top-large: 32px;
-$margin-top-medium: 24px;
-$margin-top-small: 16px;
-
-// ====== RADIUS VALUES ======
-$radius-small: 6px;
-$radius-medium: 8px;
-$radius-large: 12px;
-$border-radius-md: 8px;
-$border-radius-lg: 10px;
+$z-index-notification: 1000;
+$z-header: 100;
+$z-modal: 1000;
+$z-overlay: 1100;
+$btn-padding: $padding-button;
+$btn-border-radius: 5px;
+$btn-font-size: 16px;
+$transform-lift: -2px;
+$autofill-box-shadow: 1000px;
+$badge-color: #d9534f;
+$badge-background: #f9d6d5;
+$icon-size-large: 36px;
+$qr-code-size-desktop: 122px;
+$qr-code-size-mobile: 90px;
+$icon-size-small: 20px;
 $contact-btn-border-radius: 25px;
-
-// ====== Radius and Shadows ======
-$radius-small: 6px;
-$radius-medium: 8px;
-$radius-large: 12px;
-$shadow-light: 0 4px 10px rgb(0 0 0 / 10%);
-$shadow-medium: 0 4px 15px rgb(0 0 0 / 10%);
-$shadow-hover: 0 5px 15px rgb(0 0 0 / 20%);
-$transition-fast: 0.2s ease;
-$transition-normal: 0.3s ease;
+$font-size-section-text: 16px;
+$font-weight-minimal: 200;
+$gap-xs: 4px;
+$color-border-light: #e9ecef;
+$color-success-hover: #7ba86a;
+$color-error-bg: #f8d7da;
+$icon-md: 24px;
+$color-scroll-track: #f0f0f0;
+$color-error-border: $color-error;
+$padding-btn-sm: 10px 16px;
+$color-scroll-thumb: #c9c9c9;
+$color-bg-success-light: #e8f5e9;
+$color-scroll-thumb-hover: #a6a6a6;
+$border-thin: 1px solid #ddd;
+$color-danger-light: #f8d7da;
+$padding-badge: 2px 6px;
+$color-danger: #dc3545;
+$padding-btn: $padding-button;

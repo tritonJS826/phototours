@@ -1,6 +1,6 @@
 import {changePassword, getProfile, login, register, updateProfile} from 'src/controllers/authControllers.js';
-import {authenticateToken} from 'src/middleware/auth.js';
-import {upload} from 'src/middleware/upload.js';
+import {authenticateToken} from 'src/middlewares/auth.js';
+import {upload} from 'src/middlewares/upload.js';
 import {Router} from 'express';
 
 const router = Router();

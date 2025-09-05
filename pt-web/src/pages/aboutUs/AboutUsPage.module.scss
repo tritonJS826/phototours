@@ -1,38 +1,38 @@
-@use "src/styles/variables" as var;
-@use "src/styles/mixins" as mix;
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixin;
 
 .aboutUs {
-  color: var.$color-dark;
+  color: vars.$color-dark;
   line-height: 1.6;
-  background: var.$color-bg-light;
+  background: vars.$color-bg-light;
 }
 
 .container {
   max-width: 1000px;
   margin: 0 auto;
-  padding: var.$padding-container;
+  padding: vars.$padding-container;
 }
 
 .container-Column {
-  @include mix.flex-column;
-  @include mix.text-center;
+  @include mixin.flex-column;
+  @include mixin.text-center;
 }
 
 .container.reverse,
 .container:not(.reverse) {
-  @include mix.flex-column;
+  @include mixin.flex-column;
 }
 
 .intro h2,
 .whyBook h2,
 .destinations h2,
 .contact h2 {
-  font-size: var.$font-size-section-title;
-  color: var.$color-dark;
+  font-size: vars.$font-size-section-title;
+  color: vars.$color-dark;
 }
 
 p {
-  font-size: var.$font-size-hero-subtitle;
+  font-size: vars.$font-size-hero-subtitle;
   font-weight: 300;
 }
 
@@ -40,37 +40,37 @@ p {
 .whyBook p,
 .destinations p,
 .contact p {
-  font-size: var.$font-size-section-text;
-  color: var.$color-medium;
+  font-size: vars.$font-size-section-text;
+  color: vars.$color-medium;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 32px;
 }
 
 .text {
-  @include mix.text-center;
+  @include mixin.text-center;
 
   flex: 1;
 }
 
 .text h3 {
-  font-size: var.$font-size-section-title;
-  margin-bottom: 0.75rem;
+  font-size: vars.$font-size-section-title;
+  margin-bottom: 12px;
 }
 
 .text p {
-  font-size: var.$font-size-section-text;
-  color: var.$color-light;
+  font-size: vars.$font-size-section-text;
+  color: vars.$color-light;
   margin-bottom: 30px;
 }
 
 .imageTextMeet {
-  background-color: var.$color-bg-light;
+  background-color: vars.$color-bg-light;
 }
 
 .imageGrid {
   flex: 1;
 
-  @include mix.responsive-grid(200px, 10px);
+  @include mixin.responsive-grid(200px, 10px);
 
   margin-bottom: 60px;
 }
@@ -79,79 +79,79 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: var.$radius-medium;
-  box-shadow: var.$shadow-light;
+  border-radius: vars.$radius-medium;
+  box-shadow: vars.$shadow-light;
   cursor: pointer;
 
-  @include mix.hover-scale;
+  @include mixin.hover-scale;
 }
 
 .imageAmazingDestinations {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: var.$radius-medium;
-  box-shadow: var.$shadow-light;
+  border-radius: vars.$radius-medium;
+  box-shadow: vars.$shadow-light;
   cursor: pointer;
 
-  @include mix.hover-scale;
+  @include mixin.hover-scale;
 }
 
 .whyBook {
-  background-color: var.$color-bg-white;
-  padding: var.$padding-section;
+  background-color: vars.$color-bg-white;
+  padding: vars.$padding-section;
 }
 
 .whyBook .cards {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin-top: 2rem;
+  gap: 32px;
+  margin-top: 32px;
   flex-wrap: wrap;
 }
 
 .whyBook .cards .card {
-  @include mix.card;
+  @include mixin.card;
 
-  padding: 1.5rem;
+  padding: 24px;
   max-width: 280px;
   text-align: center;
   cursor: pointer;
 
-  @include mix.flex-column;
+  @include mixin.flex-column;
 }
 
 .whyBook .cards .card img {
   width: 100%;
   object-fit: cover;
-  border-radius: var.$radius-medium;
-  margin-bottom: 1rem;
+  border-radius: vars.$radius-medium;
+  margin-bottom: 16px;
 }
 
 .whyBook .cards .card h4 {
-  margin-bottom: 0.5rem;
-  font-size: var.$font-size-card-title;
-  color: var.$color-dark;
+  margin-bottom: 8px;
+  font-size: vars.$font-size-card-title;
+  color: vars.$color-dark;
 }
 
 .whyBook .cards .card p {
-  font-size: var.$font-size-card-text;
-  color: var.$color-light;
+  font-size: vars.$font-size-card-text;
+  color: vars.$color-light;
 }
 
 .destinations {
-  background-color: var.$color-bg-white;
+  background-color: vars.$color-bg-white;
 }
 
 .destinations .grid {
-  margin-top: 2rem;
+  margin-top: 32px;
 
-  @include mix.responsive-grid(180px, 15px);
+  @include mixin.responsive-grid(180px, 15px);
 }
 
 .contact {
-  padding: var.$padding-section;
-  background-color: var.$color-bg-white;
+  padding: vars.$padding-section;
+  background-color: vars.$color-bg-white;
 }
 
 .hero {
@@ -160,9 +160,9 @@ p {
   min-height: 400px;
   overflow: hidden;
 
-  @include mix.flex-center;
+  @include mixin.flex-center;
 
-  color: var.$color-bg-white;
+  color: vars.$color-bg-white;
   text-align: center;
 }
 
@@ -181,29 +181,29 @@ p {
   position: relative;
   z-index: 2;
   max-width: 600px;
-  padding: 0 1rem;
+  padding: 0 16px;
 }
 
 .overlay h1 {
-  font-size: var.$font-size-hero-title;
-  margin-bottom: 0.5rem;
+  font-size: vars.$font-size-hero-title;
+  margin-bottom: 8px;
 }
 
 .backToTop {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 32px;
+  right: 32px;
 
-  @include mix.button(var.$color-primary, white, var.$color-primary-hover);
+  @include mixin.button(vars.$color-primary, white, vars.$color-primary-hover);
 
   border-radius: 30px;
-  font-size: 1rem;
-  box-shadow: var.$shadow-hover;
+  font-size: 16px;
+  box-shadow: vars.$shadow-hover;
   z-index: 1000;
   user-select: none;
   transition:
-    background-color var.$transition-normal,
-    transform var.$transition-fast;
+    background-color vars.$transition-normal,
+    transform vars.$transition-fast;
 }
 
 .backToTop:hover {
@@ -213,7 +213,7 @@ p {
 @media (width <= 900px) {
   .container,
   .container-Column {
-    padding: 2rem 1rem;
+    padding: 32px 16px;
   }
 
   .container.reverse,
@@ -222,7 +222,7 @@ p {
   }
 
   .imageGrid {
-    @include mix.responsive-grid(150px, 10px);
+    @include mixin.responsive-grid(150px, 10px);
   }
 
   .cards {
@@ -242,21 +242,21 @@ p {
   }
 
   .overlay h1 {
-    font-size: 2rem;
+    font-size: 32px;
   }
 
   .overlay p {
-    font-size: 1rem;
+    font-size: 16px;
   }
 
   .intro h2,
   .whyBook h2,
   .destinations h2,
   .contact h2 {
-    font-size: 1.75rem;
+    font-size: 28px;
   }
 
   .text h3 {
-    font-size: 1.5rem;
+    font-size: 24px;
   }
 }

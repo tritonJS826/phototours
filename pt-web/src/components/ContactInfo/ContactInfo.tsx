@@ -20,7 +20,6 @@ interface SocialLink {
   title: string;
 }
 
-// Constants
 const CONTACT_ITEMS: ContactItem[] = [
   {
     id: "email",

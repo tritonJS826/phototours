@@ -1,65 +1,88 @@
-const RAW_BASE = (import.meta.env.VITE_API_BASE_URL ?? "").trim().replace(/\/+$/, "");
-
-const BASE = RAW_BASE.replace(/\/general\/?$/i, "");
-
-const ABSOLUTE_RE = /^https?:\/\//i;
-const HTTP_NO_CONTENT = 204;
-
-const FILES_BASE = RAW_BASE.replace(/\/general\/?$/i, "");
-
-function buildUrl(base: string, path: string): string {
-  const cleanBase = base.replace(/\/+$/, "");
-  const cleanPath = path.startsWith("/") ? path : `/${path}`;
-
-  return `${cleanBase}${cleanPath}`;
+function safeUrl(input?: string): URL | undefined {
+  const v = (input ?? "").trim();
+  if (!v) {
+    return undefined;
+  }
+  try {
+    return new URL(v);
+  } catch {
+    return undefined;
+  }
 }
 
-export async function fetchData<T>(path: string, init?: RequestInit): Promise<T> {
+const DEFAULT_TIMEOUT_MS = 15000;
+const HTTP_NO_CONTENT = 204;
 
-  const url = ABSOLUTE_RE.test(path) ? path : buildUrl(BASE, path);
+const API_BASE = safeUrl(import.meta.env.VITE_API_BASE_URL);
+const FILES_BASE = safeUrl(
+  import.meta.env.VITE_FILES_BASE_URL ?? import.meta.env.VITE_API_BASE_URL,
+);
 
-  const res = await fetch(url, {
-    headers: {"Content-Type": "application/json", ...(init?.headers ?? {})},
-    ...init,
-  });
+interface RequestOptions extends RequestInit {
+  timeoutMs?: number;
+}
 
-  if (!res.ok) {
-    let msg = res.statusText;
-    try {
-      const ct = res.headers.get("content-type") ?? "";
-      if (ct.includes("application/json")) {
-        const j = (await res.json()) as { error?: string; message?: string };
-        msg = j?.error || j?.message || msg;
-      } else {
-        const t = await res.text();
-        msg = t || msg;
+export async function fetchData<T>(
+  path: string,
+  options: RequestOptions = {},
+): Promise<T> {
+  const controller = new AbortController();
+  const timeout = setTimeout(
+    () => controller.abort(),
+    options.timeoutMs ?? DEFAULT_TIMEOUT_MS,
+  );
+
+  try {
+    const url = API_BASE ? new URL(path, API_BASE).toString() : path;
+
+    const res = await fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+        ...(options.headers ?? {}),
+      },
+      signal: controller.signal,
+      ...options,
+    });
+
+    if (!res.ok) {
+      let msg = res.statusText;
+      try {
+        const ct = res.headers.get("content-type") ?? "";
+        if (ct.includes("application/json")) {
+          const j = (await res.json()) as { error?: string; message?: string };
+          msg = j?.error || j?.message || msg;
+        } else {
+          const t = await res.text();
+          msg = t || msg;
+        }
+      } catch (e) {
+        msg = msg || (e instanceof Error ? e.message : String(e));
       }
-    } catch (e) {
-      msg = msg || (e instanceof Error ? e.message : String(e));
+      throw new Error(msg);
     }
-    throw new Error(msg);
-  }
 
-  if (res.status === HTTP_NO_CONTENT) {
-    return undefined as unknown as T;
-  }
+    if (res.status === HTTP_NO_CONTENT) {
+      return undefined as unknown as T;
+    }
 
-  const ct = res.headers.get("content-type") ?? "";
-  if (ct.includes("application/json")) {
-    return (await res.json()) as T;
-  }
+    const ct = res.headers.get("content-type") ?? "";
+    if (ct.includes("application/json")) {
+      return (await res.json()) as T;
+    }
 
-  return (await res.text()) as unknown as T;
+    return (await res.text()) as unknown as T;
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 export function fileUrl(url?: string): string {
   if (!url) {
     return "";
   }
-  if (ABSOLUTE_RE.test(url)) {
+  if (/^https?:\/\//i.test(url)) {
     return url;
   }
 
-  return buildUrl(FILES_BASE, url);
+  return FILES_BASE ? new URL(url, FILES_BASE).toString() : url;
 }
-

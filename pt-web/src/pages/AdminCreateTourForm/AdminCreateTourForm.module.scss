@@ -1,39 +1,40 @@
-@use "src/styles/variables" as var;
-@use "src/styles/mixins" as mix;
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixin;
 
 .form {
   max-width: 600px;
   margin: 30px auto;
   display: flex;
   flex-direction: column;
-  border-radius: var.$radius-medium;
-  gap: 1rem;
-  box-shadow: var.$shadow-light;
-  padding: 1.5rem;
-  background-color: var.$color-bg-light;
+  border-radius: vars.$radius-medium;
+  gap: 16px;
+  box-shadow: vars.$shadow-light;
+  padding: 24px;
+  background-color: vars.$color-bg-light;
 }
 
 .selectTextInput {
   width: 100%;
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: var.$btn-border;
-  border-radius: var.$radius-small;
+  padding: 8px;
+  font-size: 16px;
+  border: vars.$btn-border;
+  border-radius: vars.$radius-small;
 
   &:focus {
     outline: none;
-    border-color: var.$color-primary;
-    box-shadow: var.$shadow-input-focus;
+    border-color: vars.$color-primary;
+    box-shadow: vars.$shadow-input-focus;
   }
 }
 
 .button {
-  font-size: var.$font-size-card-text;
+  font-size: vars.$font-size-card-text;
   width: 100%;
   border: none;
   cursor: pointer;
 }
 
 .error {
-  color: red;
+  color: vars.$color-error;
+  font-size: vars.$font-size-card-text;
 }

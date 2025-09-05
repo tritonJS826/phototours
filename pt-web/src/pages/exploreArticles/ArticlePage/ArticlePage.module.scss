@@ -1,0 +1,61 @@
+@use "src/styles/variables" as vars;
+@use "src/styles/mixins" as mixin;
+
+.page {
+  padding-top: vars.$spacing-xxxl;
+  padding-bottom: vars.$spacing-xxxl;
+  background: vars.$color-bg-white;
+}
+
+.error,
+.notFound {
+  padding: vars.$spacing-lg;
+  border: vars.$border-width-thin solid vars.$color-border;
+  border-radius: vars.$radius-medium;
+  color: vars.$color-error;
+  font-size: vars.$font-size-md;
+  background: vars.$color-card-bg;
+}
+
+.loading {
+  display: grid;
+  gap: vars.$gap-lg;
+  padding: vars.$spacing-xl;
+  border: vars.$border-width-thin solid vars.$color-border;
+  border-radius: vars.$radius-medium;
+  background: vars.$color-card-bg;
+
+  .bar {
+    height: 14px;
+    border-radius: vars.$radius-small;
+    background: linear-gradient(90deg, #eee 0%, #f5f5f5 40%, #eee 80%);
+    animation: shimmer 1.2s infinite linear;
+    background-size: 200% 100%;
+
+    &.w-40 {
+      width: 40%;
+    }
+
+    &.w-60 {
+      width: 60%;
+    }
+
+    &.w-80 {
+      width: 80%;
+    }
+
+    &.w-100 {
+      width: 100%;
+    }
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}

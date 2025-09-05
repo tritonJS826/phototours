@@ -1,6 +1,7 @@
-@use "src/styles/variables" as var;
+/* src/styles/_mixins.scss */
+@use "./variables" as vars; // <— относительный импорт и алиас vars
 
-/* Layout */
+/* ===== Layout ===== */
 @mixin flex-center {
   display: flex;
   justify-content: center;
@@ -13,48 +14,48 @@
   align-items: center;
 }
 
-/* Text */
+/* ===== Text ===== */
 @mixin text-center {
   text-align: center;
 }
 
-/* Grid */
+/* ===== Grid ===== */
 @mixin responsive-grid($minWidth: 200px, $gap: 10px) {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax($minWidth, 1fr));
   gap: $gap;
 }
 
-/* Card */
+/* ===== Card ===== */
 @mixin card(
-  $bg: var.$color-card-bg,
-  $radius: var.$radius-large,
-  $shadow: var.$shadow-medium
+  $bg: vars.$color-card-bg,
+  $radius: vars.$radius-large,
+  $shadow: vars.$shadow-medium
 ) {
   background: $bg;
   border-radius: $radius;
   box-shadow: $shadow;
   transition:
-    box-shadow var.$transition-normal,
-    transform var.$transition-normal;
+    box-shadow vars.$transition-normal,
+    transform vars.$transition-normal;
 }
 
-// /* Hover scale */
+/* ===== Hover scale ===== */
 @mixin hover-scale($scale: 1.02) {
-  transition: transform var.$transition-fast;
+  transition: transform vars.$transition-fast;
 
   &:hover {
     transform: scale($scale);
   }
 }
 
-/* Button */
+/* ===== Button ===== */
 @mixin button(
-  $bg: var.$color-primary,
+  $bg: vars.$color-primary,
   $color: #fff,
-  $bg-hover: var.$color-primary-hover,
-  $radius: var.$radius-medium,
-  $padding: var.$padding-button
+  $bg-hover: vars.$color-primary-hover,
+  $radius: vars.$radius-medium,
+  $padding: vars.$padding-button
 ) {
   background-color: $bg;
   color: $color;
@@ -65,8 +66,8 @@
   cursor: pointer;
   font-size: 1.1rem;
   transition:
-    background-color var.$transition-normal,
-    transform var.$transition-fast;
+    background-color vars.$transition-normal,
+    transform vars.$transition-fast;
 
   &:hover {
     background-color: $bg-hover;

@@ -1,9 +1,10 @@
-@use "src/styles/variables" as var;
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixin;
 
 .publicProfileContainer {
   max-width: 800px;
-  margin: 2rem auto;
-  padding: 2rem;
+  margin: 32px auto;
+  padding: 32px;
   position: relative;
 }
 
@@ -14,7 +15,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var.$color-bg-light;
+  background-color: vars.$color-bg-light;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -22,95 +23,152 @@
 }
 
 .profileCard {
-  border-radius: 20px;
-  padding: 3rem;
-  box-shadow: 0 20px 40px rgb(0 0 0 / 10%);
-  border: 1px solid #e9ecef;
+  border-radius: vars.$radius-medium;
+  padding: 48px;
+  box-shadow: vars.$shadow-medium;
+  border: 1px solid vars.$color-border;
   text-align: center;
+  background: vars.$color-bg-white;
 }
 
 .avatarSection {
-  margin-bottom: 2rem;
+  margin-bottom: 32px;
+}
 
-  .avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid #fff;
-    box-shadow: 0 8px 25px rgb(0 0 0 / 15%);
-  }
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid vars.$color-bg-white;
+  box-shadow: vars.$shadow-light;
+}
 
-  .avatarPlaceholder {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #1c4c8a, #3e7a3f);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border: 4px solid #fff;
-    box-shadow: 0 8px 25px rgb(0 0 0 / 15%);
-    margin: 0 auto;
+.avatarPlaceholder {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1c4c8a, #3e7a3f);
+  color: vars.$color-bg-white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: vars.$font-weight-extra-bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 4px solid vars.$color-bg-white;
+  box-shadow: vars.$shadow-light;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: vars.$font-size-lg;
+  font-weight: vars.$font-weight-extra-bold;
+  color: vars.$color-dark;
+  margin-bottom: 8px;
+}
+
+.memberSince {
+  color: vars.$color-dark;
+  font-size: vars.$font-size-sm;
+  font-style: italic;
+  margin-bottom: 32px;
+}
+
+.bioSection {
+  margin-top: 32px;
+  text-align: left;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sectionTitle {
+  font-size: vars.$font-size-md;
+  font-weight: vars.$font-weight-bold;
+  color: vars.$color-dark;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.bioText {
+  color: vars.$color-dark;
+  line-height: 1.6;
+  font-size: vars.$font-size-sm;
+}
+
+.gallery {
+  margin-top: 40px;
+  text-align: left;
+}
+
+.galleryTitle {
+  font-size: vars.$font-size-md;
+  font-weight: vars.$font-weight-bold;
+  color: vars.$color-dark;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.gridItem {
+  position: relative;
+  width: 100%;
+  padding-bottom: 66%;
+  border-radius: vars.$radius-small;
+  overflow: hidden;
+  background: vars.$color-bg-light;
+  border: 1px solid vars.$color-border;
+}
+
+.gridImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.gridItem:hover .gridImg {
+  transform: scale(1.02);
+}
+
+@media (width <= 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-.userInfo {
-  h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var.$color-dark;
-    margin-bottom: 0.5rem;
+@media (width <= 560px) {
+  .profileCard {
+    padding: 32px;
   }
 
-  .memberSince {
-    color: var.$color-dark;
-    font-size: 1rem;
-    font-style: italic;
-    margin-bottom: 2rem;
-  }
-
-  .bioSection {
-    margin-top: 2rem;
-    text-align: left;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-
-    h3 {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-
-    p {
-      color: var.$color-dark;
-      line-height: 1.6;
-      font-size: 1rem;
-    }
+  .grid {
+    grid-template-columns: 1fr;
   }
 }
 
 .loading {
   text-align: center;
-  color: var.$color-dark;
-  font-size: 1.1rem;
-  padding: 2rem;
+  color: vars.$color-dark;
+  font-size: vars.$font-size-md;
+  padding: 32px;
 }
 
 .error {
   text-align: center;
-  color: #dc3545;
-  font-size: 1.1rem;
-  padding: 2rem;
-  background: #f8d7da;
-  border: 1px solid #f5c6cb;
-  border-radius: 8px;
+  color: vars.$color-error;
+  font-size: vars.$font-size-md;
+  padding: 32px;
+  background: vars.$color-error-bg;
+  border: 1px solid vars.$color-error-border;
+  border-radius: vars.$radius-small;
 }

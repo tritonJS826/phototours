@@ -1,10 +1,17 @@
 import React, {useEffect, useRef, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import {Bell, CircleUser, LogOut, Search, ShoppingCart, User} from "lucide-react";
-import logo from "src/assets/icons/logo.png";
+import logo from "/logo.png";
+import {
+  Bell,
+  CircleUser,
+  LogOut,
+  Search,
+  ShoppingCart,
+  User,
+} from "lucide-react";
 import {AuthModal} from "src/components/Auth";
-import {PATHS} from "src/constants/routes";
 import {useAuth} from "src/hooks/useAuth";
+import {PATHS} from "src/routes/routes";
 import {getProfileImageUrl} from "src/utils/profileImage";
 import {handleClickOutside} from "src/utils/useOutsideClick";
 import styles from "src/components/Header/Header.module.scss";
@@ -52,7 +59,11 @@ export function Header() {
   useEffect(() => {
     const listener = handleClickOutside(
       [langRef, currencyRef, profileDropdownRef],
-      [() => setIsLangOpen(false), () => setIsCurrencyOpen(false), () => setIsProfileDropdownOpen(false)],
+      [
+        () => setIsLangOpen(false),
+        () => setIsCurrencyOpen(false),
+        () => setIsProfileDropdownOpen(false),
+      ],
     );
     document.addEventListener("mousedown", listener);
 
@@ -73,44 +84,44 @@ export function Header() {
 
   const handleAuthSuccess = () => {
     refreshFromStorage();
-
     setTimeout(() => {
       navigate(PATHS.DASHBOARD);
     }, REFRESH_DELAY);
   };
+
   const renderDropdown = (
     isOpen: boolean,
     items: LanguageOption[] | string[],
     onSelect: (value: string) => void,
-  ) => isOpen && (
-    <ul
-      className={styles.dropdownMenu}
-      role="listbox"
-    >
-      {items.map((item) => {
-        const label = typeof item === "string" ? item : item.label;
-        const display = typeof item === "string" ? item : item.full;
+  ) =>
+    isOpen && (
+      <ul
+        className={styles.dropdownMenu}
+        role="listbox"
+      >
+        {items.map((item) => {
+          const label = typeof item === "string" ? item : item.label;
+          const display = typeof item === "string" ? item : item.full;
 
-        return (
-          <li
-            key={label}
-            className={styles.dropdownOption}
-            role="option"
-            tabIndex={0}
-            onClick={() => onSelect(label)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                onSelect(label);
-              }
-            }}
-          >
-            {display}
-          </li>
-        );
-      })}
-
-    </ul>
-  );
+          return (
+            <li
+              key={label}
+              className={styles.dropdownOption}
+              role="option"
+              tabIndex={0}
+              onClick={() => onSelect(label)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  onSelect(label);
+                }
+              }}
+            >
+              {display}
+            </li>
+          );
+        })}
+      </ul>
+    );
 
   return (
     <header className={styles.header}>
@@ -234,35 +245,39 @@ export function Header() {
                   ref={profileDropdownRef}
                 >
                   <button
-                    className={styles.iconBtn}
+                    className={styles.profileBtn}
                     onClick={handleProfileClick}
-                    aria-label="Profile"
+                    aria-haspopup="menu"
+                    aria-expanded={isProfileDropdownOpen}
                   >
                     <img
                       src={getProfileImageUrl(user?.profilePicUrl)}
                       alt={`${user?.firstName} ${user?.lastName}`}
                       className={styles.avatarImage}
                     />
+                    <span>
+                      {user?.firstName}
+                    </span>
                   </button>
+
                   {isProfileDropdownOpen && (
-                    <div className={styles.profileMenu}>
-                      <div className={styles.profileHeader}>
-                        <div className={styles.profileUserInfo}>
+                    <div
+                      className={styles.profileMenu}
+                      role="menu"
+                    >
+                      <div className={styles.profileMenuHead}>
+                        <span>
                           {user?.firstName}
                           {" "}
                           {user?.lastName}
-                        </div>
-                        <button
-                          className={styles.closeButton}
-                          onClick={() => setIsProfileDropdownOpen(false)}
-                        >
-                          ×
-                        </button>
+                        </span>
                       </div>
+
                       <div className={styles.profileActions}>
                         <Link
                           to={PATHS.DASHBOARD}
                           className={styles.profileAction}
+                          role="menuitem"
                           onClick={() => setIsProfileDropdownOpen(false)}
                         >
                           <User className="icon" />
@@ -270,9 +285,11 @@ export function Header() {
                             Dashboard
                           </span>
                         </Link>
+
                         <Link
                           to="/notifications"
                           className={styles.profileAction}
+                          role="menuitem"
                           onClick={() => setIsProfileDropdownOpen(false)}
                         >
                           <Bell className="icon" />
@@ -281,8 +298,10 @@ export function Header() {
                           </span>
                         </Link>
                       </div>
+
                       <button
                         className={styles.logoutButton}
+                        role="menuitem"
                         onClick={() => {
                           logout();
                           setIsProfileDropdownOpen(false);

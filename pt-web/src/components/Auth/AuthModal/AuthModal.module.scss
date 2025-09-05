@@ -1,0 +1,68 @@
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(0 0 0 / 50%);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+}
+
+.modalContent {
+  position: relative;
+  width: 90%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid rgb(0 0 0 / 6%);
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgb(0 0 0 / 15%);
+  padding: 24px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgb(0 0 0 / 12%);
+  border-radius: 50%;
+  background: #f7f7f7;
+  font-size: 20px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.authContainer {
+  padding-top: 8px;
+}
+
+.authTitle {
+  margin: 0 0 16px;
+  text-align: center;
+  color: #222;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.authSwitch {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.switchButton {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin-left: 6px;
+  color: #0a66ff;
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+}

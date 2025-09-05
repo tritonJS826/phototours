@@ -70,7 +70,6 @@ export function ContactForm() {
   const [notification, setNotification] = useState<NotificationState>(INITIAL_NOTIFICATION);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Memoized handlers
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {name, value} = e.target;
 
@@ -92,7 +91,6 @@ export function ContactForm() {
     });
   }, []);
 
-  // Validation logic
   const validateField = useCallback((field: keyof FormData, value: string): string | null => {
     switch (field) {
       case "name":
@@ -123,7 +121,6 @@ export function ContactForm() {
     return true;
   }, [formData, validateField, showNotification]);
 
-  // Form submission
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -154,7 +151,6 @@ export function ContactForm() {
     }
   }, [formData, validateForm, showNotification]);
 
-  // Memoized form fields
   const renderedFormFields = useMemo(() =>
     FORM_FIELDS.map(({id, label, type, placeholder, title}) => (
       <div

@@ -1,20 +1,22 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Edit, Eye, MessageSquare, Plus, X} from "lucide-react";
 import {BankAccountData, BankAccountModal} from "src/components/BankAccountModal/BankAccountModal";
 import {BookingData, BookTourModal} from "src/components/BookTourModal/BookTourModal";
 import {useNotifications} from "src/contexts/NotificationContext";
 import {useAuth} from "src/hooks/useAuth";
+import {PublicProfile} from "src/pages/profile/PublicProfile";
 import {getProfileImageUrl} from "src/utils/profileImage";
+import modalStyles from "src/components/Auth/AuthModal/AuthModal.module.scss";
 import styles from "src/pages/dashboard/Dashboard.module.scss";
 
-// Constants
 const ACCOUNT_NUMBER_MASK_LENGTH = 4;
 const UNREAD_COUNT_DECREMENT = 1;
 const FIRST_CHAR_INDEX = 0;
 const SLICE_START_INDEX = 1;
 const STATUS_CYCLE_INCREMENT = 1;
 const STATUS_CYCLE_MODULO = 3;
+const HISTORY_BACK_STEP = 1;
 
 interface Booking {
   id: number;
@@ -25,69 +27,36 @@ interface Booking {
 }
 
 export function Dashboard() {
+  const navigate = useNavigate();
   const {user} = useAuth();
   const {addNotification} = useNotifications();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isBookTourModalOpen, setIsBookTourModalOpen] = useState(false);
+  const [isViewProfileOpen, setIsViewProfileOpen] = useState(false);
+
   const [bankAccounts, setBankAccounts] = useState<BankAccountData[]>(() => {
     const savedAccounts = localStorage.getItem("bankAccounts");
 
     return savedAccounts ? JSON.parse(savedAccounts) : [];
   });
+
   const [bookings, setBookings] = useState<Booking[]>(() => {
     const savedBookings = localStorage.getItem("bookings");
 
     return savedBookings
       ? JSON.parse(savedBookings)
       : [
-        {
-          id: 1,
-          tourTitle: "Golden Circle Photo Tour",
-          date: "2025-01-15",
-          status: "Confirmed",
-          price: 299,
-        },
-        {
-          id: 2,
-          tourTitle: "Northern Lights Adventure",
-          date: "2025-02-20",
-          status: "Pending",
-          price: 399,
-        },
-        {
-          id: 3,
-          tourTitle: "South Coast Adventure",
-          date: "2025-03-10",
-          status: "Pending",
-          price: 349,
-        },
-        {
-          id: 4,
-          tourTitle: "Reykjavik City Tour",
-          date: "2025-04-05",
-          status: "Cancelled",
-          price: 199,
-        },
-        {
-          id: 5,
-          tourTitle: "Blue Lagoon Experience",
-          date: "2025-05-12",
-          status: "Confirmed",
-          price: 449,
-        },
-        {
-          id: 6,
-          tourTitle: "Glacier Hiking Tour",
-          date: "2025-06-18",
-          status: "Pending",
-          price: 599,
-        },
+        {id: 1, tourTitle: "Golden Circle Photo Tour", date: "2025-01-15", status: "Confirmed", price: 299},
+        {id: 2, tourTitle: "Northern Lights Adventure", date: "2025-02-20", status: "Pending", price: 399},
+        {id: 3, tourTitle: "South Coast Adventure", date: "2025-03-10", status: "Pending", price: 349},
+        {id: 4, tourTitle: "Reykjavik City Tour", date: "2025-04-05", status: "Cancelled", price: 199},
+        {id: 5, tourTitle: "Blue Lagoon Experience", date: "2025-05-12", status: "Confirmed", price: 449},
+        {id: 6, tourTitle: "Glacier Hiking Tour", date: "2025-06-18", status: "Pending", price: 599},
       ];
   });
 
-  const handleAddAccount = () => {
-    setIsModalOpen(true);
-  };
+  const handleAddAccount = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   const handleSaveAccount = (accountData: BankAccountData) => {
     const updatedAccounts = [...bankAccounts, accountData];
@@ -122,17 +91,8 @@ export function Dashboard() {
     });
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleBookTour = () => {
-    setIsBookTourModalOpen(true);
-  };
-
-  const handleCloseBookTourModal = () => {
-    setIsBookTourModalOpen(false);
-  };
+  const handleBookTour = () => setIsBookTourModalOpen(true);
+  const handleCloseBookTourModal = () => setIsBookTourModalOpen(false);
 
   const handleBookTourSubmit = (bookingData: BookingData) => {
     const newBooking: Booking = {
@@ -140,7 +100,7 @@ export function Dashboard() {
       tourTitle: bookingData.tourTitle,
       date: bookingData.date,
       status: "Pending",
-      price: 299, // Default price, can be made dynamic
+      price: 299,
     };
     const updatedBookings = [...bookings, newBooking];
     setBookings(updatedBookings);
@@ -157,17 +117,15 @@ export function Dashboard() {
   };
 
   const handleStatusChange = (bookingId: number, newStatus: "Confirmed" | "Pending" | "Cancelled") => {
-    const updatedBookings = bookings.map(booking =>
-      booking.id === bookingId
-        ? {...booking, status: newStatus}
-        : booking,
+    const updatedBookings = bookings.map((booking) =>
+      booking.id === bookingId ? {...booking, status: newStatus} : booking,
     );
     setBookings(updatedBookings);
     localStorage.setItem("bookings", JSON.stringify(updatedBookings));
   };
 
   const handleRemoveTour = (bookingId: number) => {
-    const updatedBookings = bookings.filter(booking => booking.id !== bookingId);
+    const updatedBookings = bookings.filter((booking) => booking.id !== bookingId);
     setBookings(updatedBookings);
     localStorage.setItem("bookings", JSON.stringify(updatedBookings));
   };
@@ -183,6 +141,15 @@ export function Dashboard() {
   return (
     <div className={styles.dashboardContainer}>
       <div className={styles.dashboardHeader}>
+        <div className={styles.sectionActions}>
+          <button
+            type="button"
+            className={styles.actionButton}
+            onClick={() => navigate(-HISTORY_BACK_STEP)}
+          >
+            ← Back
+          </button>
+        </div>
         <h1>
           Welcome,
           {" "}
@@ -207,17 +174,17 @@ export function Dashboard() {
                   Edit
                 </span>
               </Link>
-              <Link
-                to={`/profile/${user.id}`}
+
+              <button
+                type="button"
                 className={styles.actionButton}
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={() => setIsViewProfileOpen(true)}
               >
                 <Eye className="icon" />
                 <span>
                   View Profile
                 </span>
-              </Link>
+              </button>
             </div>
           </div>
 
@@ -310,6 +277,7 @@ export function Dashboard() {
               </span>
             </button>
           </div>
+
           <div className={styles.bankingInfo}>
             {bankAccounts.length === 0
               ? (
@@ -331,6 +299,7 @@ export function Dashboard() {
                       >
                         <X size={16} />
                       </button>
+
                       <div className={styles.accountRow}>
                         <label>
                           Account Holder:
@@ -353,7 +322,7 @@ export function Dashboard() {
                         </label>
                         <span className={styles.accountType}>
                           {account.accountType.charAt(FIRST_CHAR_INDEX).toUpperCase() +
-                             account.accountType.slice(SLICE_START_INDEX)}
+                          account.accountType.slice(SLICE_START_INDEX)}
                         </span>
                       </div>
                       <div className={styles.accountRow}>
@@ -403,6 +372,7 @@ export function Dashboard() {
                     >
                       <X size={16} />
                     </button>
+
                     <div className={styles.bookingInfo}>
                       <h3>
                         {booking.tourTitle}
@@ -417,6 +387,7 @@ export function Dashboard() {
                         {booking.price}
                       </p>
                     </div>
+
                     <div className={styles.bookingStatus}>
                       <div className={styles.statusDropdown}>
                         <button
@@ -484,12 +455,45 @@ export function Dashboard() {
         onClose={handleCloseModal}
         onSave={handleSaveAccount}
       />
-
       <BookTourModal
         isOpen={isBookTourModalOpen}
         onClose={handleCloseBookTourModal}
         onBook={handleBookTourSubmit}
       />
+
+      {isViewProfileOpen && user && (
+        <div
+          className={modalStyles.modalOverlay}
+          onClick={() => setIsViewProfileOpen(false)}
+        >
+          <div
+            className={modalStyles.modalContent}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div
+              className={styles.sectionActions}
+              style={{justifyContent: "space-between"}}
+            >
+              <button
+                className={styles.actionButton}
+                onClick={() => setIsViewProfileOpen(false)}
+              >
+                ← Back
+              </button>
+              <button
+                className={modalStyles.closeButton}
+                onClick={() => setIsViewProfileOpen(false)}
+              >
+                ×
+              </button>
+            </div>
+
+            <div className={modalStyles.authContainer}>
+              <PublicProfile userId={user.id} />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

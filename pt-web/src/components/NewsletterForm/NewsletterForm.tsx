@@ -3,7 +3,6 @@ import {Mail} from "lucide-react";
 import {subscribeToNewsletter} from "src/services/newsletterService";
 import styles from "src/components/NewsletterForm/NewsletterForm.module.scss";
 
-// ====== CONSTANTS ======
 const MESSAGES = {
   EMPTY_EMAIL: "Please enter your email address",
   INVALID_EMAIL: "Please enter a valid email address",
@@ -16,7 +15,6 @@ const BUTTON_TEXT = {
   SUBSCRIBING: "Subscribing...",
 } as const;
 
-// ====== VALIDATION ======
 const validateEmail = (email: string): boolean => {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 

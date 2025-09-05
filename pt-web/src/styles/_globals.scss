@@ -7,13 +7,27 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+:root {
+  --container-max: 1320px;
+  --gutter: 16px;
+  --gutter-sm: 12px;
+}
+
 body {
   font-family: Poppins, sans-serif;
   background-color: #fff;
   min-height: 100vh;
 }
 
-#root {
+#root,
+.app {
   min-height: 100vh;
 }
 
@@ -32,13 +46,59 @@ ol {
   list-style: none;
 }
 
-// App layout styles
-.app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+img,
+picture,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 .main-content {
   flex: 1;
+  display: block;
+}
+
+.container {
+  box-sizing: content-box;
+  max-width: var(--container-max);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+  min-width: 0;
+}
+
+@media (width <= 768px) {
+  .container {
+    padding-left: var(--gutter-sm);
+    padding-right: var(--gutter-sm);
+  }
+}
+
+.full-bleed {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+  display: block;
+}
+
+.page {
+  display: block;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.section + .section {
+  padding-top: 0;
 }
