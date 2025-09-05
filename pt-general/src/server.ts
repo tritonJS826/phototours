@@ -39,3 +39,4 @@ app.listen(env.SERVER_PORT, () => {
   logger.info(`Server is running at http://localhost:${env.SERVER_PORT}`);
   logger.info(`API documentation available at http://localhost:${env.SERVER_PORT}/api-docs`);
 });
+
