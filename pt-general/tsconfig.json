@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "lib": ["ES2020"],
+    "target": "esNext",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -9,21 +9,27 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "outDir": "./dist",
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
     "baseUrl": ".",
-    "types": ["node", "express"],
     "paths": {
       "src/*": ["./src/*"]
-    },
-    "typeRoots": ["./node_modules/@types", "./src/types"]
+    }
   },
   "include": [
-    "src/**/*",
+    "src",
+    "vite.config.ts",
+    "global.d.ts",
     "**/*.ts",
-    "**/*.d.ts"
+    "**/*.tsx",
+    "**/*.d.ts",
+    ".storybook",
+    "src/features/articles",
+    "src/features/articles"
   ],
-  "exclude": ["node_modules", "dist", "src/scripts"]
+  "exclude": ["node_modules", "public", "dist"]
 }

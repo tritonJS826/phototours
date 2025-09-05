@@ -1,5 +1,6 @@
 import {env} from 'src/config/env';
 import {prisma} from 'src/db/prisma';
+import type {AuthRequest} from 'src/middlewares/auth';
 import {hashPassword, verifyPassword} from 'src/utils/password';
 import {Prisma, Role} from '@prisma/client';
 import {Request, Response} from 'express';
@@ -93,17 +94,14 @@ function safeUser(u: DbUserPick) {
 export async function register(req: Request, res: Response) {
   try {
     const dto = RegisterDto.parse(req.body);
-
     const exists = await prisma.user.findUnique({where: {email: dto.email}});
     if (exists) {
       res.status(CODE_CONFLICT).json({error: ERROR_EXISTS});
 
       return;
     }
-
     const passwordHash = await hashPassword(dto.password);
     const phoneValue = dto.phone === '' ? null : dto.phone;
-
     const created = await prisma.user.create({
       data: {
         firstName: dto.firstName,
@@ -114,9 +112,7 @@ export async function register(req: Request, res: Response) {
         role: Role.CLIENT,
       },
     });
-
     const token = sign(created.id);
-
     res.status(CODE_CREATED).json({message: MESSAGE_REGISTERED, user: safeUser(created as DbUserPick), token});
   } catch (e) {
     if ((e as {name?: string}).name === 'ZodError') {
@@ -127,7 +123,8 @@ export async function register(req: Request, res: Response) {
     if (e instanceof Prisma.PrismaClientKnownRequestError) {
       const meta = e.meta as {target?: string[]};
       const target = meta?.target ?? [];
-      if (e.code === DUPLICATE_CODE && target.includes(TARGET_EMAIL)) {
+      const dup = e.code === DUPLICATE_CODE && target.includes(TARGET_EMAIL);
+      if (dup) {
         res.status(CODE_CONFLICT).json({error: ERROR_EXISTS});
 
         return;
@@ -140,23 +137,19 @@ export async function register(req: Request, res: Response) {
 export async function login(req: Request, res: Response) {
   try {
     const dto = LoginDto.parse(req.body);
-
     const user = await prisma.user.findUnique({where: {email: dto.email}});
     if (!user) {
       res.status(CODE_BAD_REQUEST).json({error: ERROR_CREDENTIALS});
 
       return;
     }
-
     const ok = await verifyPassword(dto.password, user.password);
     if (!ok) {
       res.status(CODE_BAD_REQUEST).json({error: ERROR_CREDENTIALS});
 
       return;
     }
-
     const token = sign(user.id);
-
     res.status(CODE_OK).json({message: MESSAGE_LOGGED_IN, user: safeUser(user as DbUserPick), token});
   } catch (e) {
     if ((e as {name?: string}).name === 'ZodError') {
@@ -168,35 +161,29 @@ export async function login(req: Request, res: Response) {
   }
 }
 
-export async function changePassword(req: Request, res: Response) {
+export async function changePassword(req: AuthRequest, res: Response) {
   try {
     const dto = ChangePasswordDto.parse(req.body);
-
     const userId = req.userId;
     if (!userId) {
       res.status(CODE_BAD_REQUEST).json({error: ERROR_UNAUTHORIZED});
 
       return;
     }
-
     const user = await prisma.user.findUnique({where: {id: userId}});
     if (!user) {
       res.status(CODE_BAD_REQUEST).json({error: ERROR_UNAUTHORIZED});
 
       return;
     }
-
     const ok = await verifyPassword(dto.currentPassword, user.password);
     if (!ok) {
       res.status(CODE_BAD_REQUEST).json({error: 'Invalid current password'});
 
       return;
     }
-
     const newHash = await hashPassword(dto.newPassword);
-
     await prisma.user.update({where: {id: userId}, data: {password: newHash}});
-
     res.status(CODE_OK).json({message: MESSAGE_CHANGED});
   } catch (e) {
     if ((e as {name?: string}).name === 'ZodError') {
@@ -208,7 +195,7 @@ export async function changePassword(req: Request, res: Response) {
   }
 }
 
-export async function getProfile(req: Request, res: Response) {
+export async function getProfile(req: AuthRequest, res: Response) {
   try {
     const userId = req.userId;
     if (!userId) {
@@ -216,31 +203,27 @@ export async function getProfile(req: Request, res: Response) {
 
       return;
     }
-
     const user = await prisma.user.findUnique({where: {id: userId}});
     if (!user) {
       res.status(CODE_BAD_REQUEST).json({error: ERROR_UNAUTHORIZED});
 
       return;
     }
-
     res.status(CODE_OK).json({user: safeUser(user as DbUserPick)});
   } catch {
     res.status(CODE_SERVER_ERROR).json({error: ERROR_PROFILE});
   }
 }
 
-type UploadedFileLike={url?: string; path?: string; filename?: string};
+type UploadedFileLike = { url?: string; path?: string; filename?: string };
 
-function resolveUploadedPath(file?: UploadedFileLike): string|undefined {
+function resolveUploadedPath(file?: UploadedFileLike): string | undefined {
   if (file?.url) {
     return file.url;
   }
-
   if (file?.path) {
     return file.path;
   }
-
   if (file?.filename) {
     return `${PATH_UPLOADS}/${file.filename}`;
   }
@@ -248,7 +231,7 @@ function resolveUploadedPath(file?: UploadedFileLike): string|undefined {
   return undefined;
 }
 
-export async function updateProfile(req: Request, res: Response) {
+export async function updateProfile(req: AuthRequest, res: Response) {
   try {
     const userId = req.userId;
     if (!userId) {
@@ -256,13 +239,9 @@ export async function updateProfile(req: Request, res: Response) {
 
       return;
     }
-
     const dto = UpdateProfileDto.parse(req.body);
-
     const fileObj = (req as unknown as {file?: UploadedFileLike}).file;
-
     const uploadedPath = resolveUploadedPath(fileObj);
-
     const data = {
       ...(dto.firstName !== undefined ? {firstName: dto.firstName} : {}),
       ...(dto.lastName !== undefined ? {lastName: dto.lastName} : {}),
@@ -270,9 +249,7 @@ export async function updateProfile(req: Request, res: Response) {
       ...(dto.bio !== undefined ? {bio: dto.bio} : {}),
       ...(uploadedPath !== undefined ? {profilePicUrl: uploadedPath} : {}),
     };
-
     const updated = await prisma.user.update({where: {id: userId}, data});
-
     res.status(CODE_OK).json({message: MESSAGE_UPDATED, user: safeUser(updated as DbUserPick)});
   } catch (e) {
     if ((e as {name?: string}).name === 'ZodError') {

@@ -1,20 +1,17 @@
-import {config} from 'dotenv';
-config();
+import {cleanEnv, port, str, url} from 'envalid';
 
-const SERVER_PORT = 8000;
-
-const must = (name: string) => {
-  const v = process.env[name];
-  if (!v) {
-    throw new Error(`Missing env ${name}`);
-  }
-
-  return v;
-};
-
-export const env = {
-  SERVER_PORT: Number(process.env.SERVER_PORT ?? SERVER_PORT),
-  CORS_ORIGIN: process.env.CORS_ORIGIN ?? '*',
-  JWT_SECRET: must('JWT_SECRET'),
-  JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN ?? '7d',
-};
+export const env = cleanEnv(process.env, {
+  SERVER_PORT: port(),
+  CORS_ORIGIN: url(),
+  JWT_SECRET: str(),
+  JWT_EXPIRES_IN: str(),
+  DATABASE_URL: str(),
+  CLOUDINARY_CLOUD_NAME: str(),
+  CLOUDINARY_API_KEY: str(),
+  CLOUDINARY_API_SECRET: str(),
+  CLOUDINARY_UPLOAD_FOLDER: str({default: 'uploads'}),
+  ZOHO_REFRESH_TOKEN: str({default: ''}),
+  ZOHO_CLIENT_ID: str({default: ''}),
+  ZOHO_CLIENT_SECRET: str({default: ''}),
+  ZOHO_REDIRECT_URI: str({default: ''}),
+});
