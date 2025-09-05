@@ -1,212 +1,262 @@
-import {prisma} from 'src/db/prisma.js';
-import {AuthRequest} from 'src/middlewares/auth.js';
-import {comparePassword, generateToken, hashPassword} from 'src/utils/auth.js';
-import {logger} from 'src/utils/logger.js';
+import {env} from 'src/config/env';
+import {prisma} from 'src/db/prisma';
+import type {AuthRequest} from 'src/middlewares/auth';
+import {hashPassword, verifyPassword} from 'src/utils/password';
+import {Prisma, Role} from '@prisma/client';
 import {Request, Response} from 'express';
+import jwt from 'jsonwebtoken';
+import {z} from 'zod';
 
-const HTTP_BAD_REQUEST = 400;
-const HTTP_UNAUTHORIZED = 401;
-const HTTP_NOT_FOUND = 404;
-const HTTP_CONFLICT = 409;
-const HTTP_CREATED = 201;
-const HTTP_OK = 200;
-const HTTP_SERVER_ERROR = 500;
+const CODE_OK = 200;
+const CODE_CREATED = 201;
+const CODE_BAD_REQUEST = 400;
+const CODE_CONFLICT = 409;
+const CODE_SERVER_ERROR = 500;
 
-export const register = async (req: Request, res: Response) => {
-  try {
-    const firstName = typeof req.body.firstName === 'string' ? req.body.firstName.trim() : '';
-    const lastName = typeof req.body.lastName === 'string' ? req.body.lastName.trim() : '';
-    const email = typeof req.body.email === 'string' ? req.body.email.trim() : '';
-    const password = typeof req.body.password === 'string' ? req.body.password : '';
-    const phone = typeof req.body.phone === 'string' ? req.body.phone.trim() : '';
+const MIN_REQUIRED = 1;
+const MIN_PASSWORD = 6;
 
-    if (!firstName || !lastName || !email || !password) {
-      return res.status(HTTP_BAD_REQUEST).json({error: 'firstName, lastName, email and password are required'});
-    }
+const DUPLICATE_CODE = 'P2002';
+const TARGET_EMAIL = 'email';
 
-    const existing = await prisma.user.findUnique({where: {email}});
-    if (existing) {
-      return res.status(HTTP_CONFLICT).json({error: 'User with such email already exists'});
-    }
+const MESSAGE_REGISTERED = 'Registered';
+const MESSAGE_LOGGED_IN = 'Logged in';
+const MESSAGE_CHANGED = 'Password changed';
+const MESSAGE_UPDATED = 'Profile updated';
 
-    const hashed = await hashPassword(password);
+const ERROR_EXISTS = 'User already exists';
+const ERROR_INVALID = 'Invalid data';
+const ERROR_CREDENTIALS = 'Invalid credentials';
+const ERROR_UNAUTHORIZED = 'Unauthorized';
+const ERROR_REGISTER = 'Register failed';
+const ERROR_LOGIN = 'Login failed';
+const ERROR_CHANGE = 'Password change failed';
+const ERROR_PROFILE = 'Failed to get profile';
+const ERROR_UPDATE = 'Profile update failed';
 
-    const user = await prisma.user.create({
-      data: {firstName, lastName, email, password: hashed, phone: phone || null},
-      select: {
-        id: true, firstName: true, lastName: true, email: true, phone: true,
-        role: true, profilePicUrl: true, bio: true, createdAt: true,
-      },
-    });
+const PATH_UPLOADS = '/uploads';
 
-    const token = generateToken({userId: user.id, email: user.email, role: user.role});
+const RegisterDto = z.object({
+  firstName: z.string().min(MIN_REQUIRED),
+  lastName: z.string().min(MIN_REQUIRED),
+  email: z.string().email(),
+  password: z.string().min(MIN_PASSWORD),
+  phone: z.string().optional().default(''),
+});
 
-    return res.status(HTTP_CREATED).json({message: 'User successfully registered', user, token});
-  } catch (e) {
-    logger.error('Registration error:', e);
+const LoginDto = z.object({
+  email: z.string().email(),
+  password: z.string().min(MIN_REQUIRED),
+});
 
-    return res.status(HTTP_SERVER_ERROR).json({error: 'Registration error'});
-  }
+const ChangePasswordDto = z.object({
+  currentPassword: z.string().min(MIN_REQUIRED),
+  newPassword: z.string().min(MIN_PASSWORD),
+});
+
+const UpdateProfileDto = z.object({
+  firstName: z.string().min(MIN_REQUIRED).optional(),
+  lastName: z.string().min(MIN_REQUIRED).optional(),
+  phone: z.string().nullable().optional(),
+  bio: z.string().nullable().optional(),
+});
+
+function sign(userId: number) {
+  return jwt.sign({sub: String(userId)}, env.JWT_SECRET, {expiresIn: env.JWT_EXPIRES_IN});
+}
+
+type DbUserPick = {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string | null;
+  role: string;
+  profilePicUrl: string | null;
+  bio: string | null;
+  createdAt: Date;
 };
 
-export const login = async (req: Request, res: Response) => {
+function safeUser(u: DbUserPick) {
+  return {
+    id: u.id,
+    firstName: u.firstName,
+    lastName: u.lastName,
+    email: u.email,
+    phone: u.phone ?? '',
+    role: u.role,
+    profilePicUrl: u.profilePicUrl ?? '',
+    bio: u.bio ?? '',
+    createdAt: u.createdAt.toISOString(),
+  };
+}
+
+export async function register(req: Request, res: Response) {
   try {
-    const email = typeof req.body.email === 'string' ? req.body.email.trim() : '';
-    const password = typeof req.body.password === 'string' ? req.body.password : '';
+    const dto = RegisterDto.parse(req.body);
+    const exists = await prisma.user.findUnique({where: {email: dto.email}});
+    if (exists) {
+      res.status(CODE_CONFLICT).json({error: ERROR_EXISTS});
 
-    if (!email || !password) {
-      return res.status(HTTP_BAD_REQUEST).json({error: 'email and password are required'});
+      return;
     }
+    const passwordHash = await hashPassword(dto.password);
+    const phoneValue = dto.phone === '' ? null : dto.phone;
+    const created = await prisma.user.create({
+      data: {
+        firstName: dto.firstName,
+        lastName: dto.lastName,
+        email: dto.email,
+        password: passwordHash,
+        phone: phoneValue,
+        role: Role.CLIENT,
+      },
+    });
+    const token = sign(created.id);
+    res.status(CODE_CREATED).json({message: MESSAGE_REGISTERED, user: safeUser(created as DbUserPick), token});
+  } catch (e) {
+    if ((e as {name?: string}).name === 'ZodError') {
+      res.status(CODE_BAD_REQUEST).json({error: ERROR_INVALID});
 
-    const user = await prisma.user.findUnique({where: {email}});
+      return;
+    }
+    if (e instanceof Prisma.PrismaClientKnownRequestError) {
+      const meta = e.meta as {target?: string[]};
+      const target = meta?.target ?? [];
+      const dup = e.code === DUPLICATE_CODE && target.includes(TARGET_EMAIL);
+      if (dup) {
+        res.status(CODE_CONFLICT).json({error: ERROR_EXISTS});
+
+        return;
+      }
+    }
+    res.status(CODE_SERVER_ERROR).json({error: ERROR_REGISTER});
+  }
+}
+
+export async function login(req: Request, res: Response) {
+  try {
+    const dto = LoginDto.parse(req.body);
+    const user = await prisma.user.findUnique({where: {email: dto.email}});
     if (!user) {
-      return res.status(HTTP_UNAUTHORIZED).json({error: 'Invalid credentials'});
-    }
+      res.status(CODE_BAD_REQUEST).json({error: ERROR_CREDENTIALS});
 
-    const ok = await comparePassword(password, user.password);
+      return;
+    }
+    const ok = await verifyPassword(dto.password, user.password);
     if (!ok) {
-      return res.status(HTTP_UNAUTHORIZED).json({error: 'Invalid credentials'});
+      res.status(CODE_BAD_REQUEST).json({error: ERROR_CREDENTIALS});
+
+      return;
     }
+    const token = sign(user.id);
+    res.status(CODE_OK).json({message: MESSAGE_LOGGED_IN, user: safeUser(user as DbUserPick), token});
+  } catch (e) {
+    if ((e as {name?: string}).name === 'ZodError') {
+      res.status(CODE_BAD_REQUEST).json({error: ERROR_INVALID});
 
-    const token = generateToken({userId: user.id, email: user.email, role: user.role});
+      return;
+    }
+    res.status(CODE_SERVER_ERROR).json({error: ERROR_LOGIN});
+  }
+}
 
-    const safeUser = {
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      phone: user.phone,
-      role: user.role,
-      profilePicUrl: user.profilePicUrl,
-      bio: user.bio,
-      createdAt: user.createdAt,
+export async function changePassword(req: AuthRequest, res: Response) {
+  try {
+    const dto = ChangePasswordDto.parse(req.body);
+    const userId = req.userId;
+    if (!userId) {
+      res.status(CODE_BAD_REQUEST).json({error: ERROR_UNAUTHORIZED});
+
+      return;
+    }
+    const user = await prisma.user.findUnique({where: {id: userId}});
+    if (!user) {
+      res.status(CODE_BAD_REQUEST).json({error: ERROR_UNAUTHORIZED});
+
+      return;
+    }
+    const ok = await verifyPassword(dto.currentPassword, user.password);
+    if (!ok) {
+      res.status(CODE_BAD_REQUEST).json({error: 'Invalid current password'});
+
+      return;
+    }
+    const newHash = await hashPassword(dto.newPassword);
+    await prisma.user.update({where: {id: userId}, data: {password: newHash}});
+    res.status(CODE_OK).json({message: MESSAGE_CHANGED});
+  } catch (e) {
+    if ((e as {name?: string}).name === 'ZodError') {
+      res.status(CODE_BAD_REQUEST).json({error: ERROR_INVALID});
+
+      return;
+    }
+    res.status(CODE_SERVER_ERROR).json({error: ERROR_CHANGE});
+  }
+}
+
+export async function getProfile(req: AuthRequest, res: Response) {
+  try {
+    const userId = req.userId;
+    if (!userId) {
+      res.status(CODE_BAD_REQUEST).json({error: ERROR_UNAUTHORIZED});
+
+      return;
+    }
+    const user = await prisma.user.findUnique({where: {id: userId}});
+    if (!user) {
+      res.status(CODE_BAD_REQUEST).json({error: ERROR_UNAUTHORIZED});
+
+      return;
+    }
+    res.status(CODE_OK).json({user: safeUser(user as DbUserPick)});
+  } catch {
+    res.status(CODE_SERVER_ERROR).json({error: ERROR_PROFILE});
+  }
+}
+
+type UploadedFileLike = { url?: string; path?: string; filename?: string };
+
+function resolveUploadedPath(file?: UploadedFileLike): string | undefined {
+  if (file?.url) {
+    return file.url;
+  }
+  if (file?.path) {
+    return file.path;
+  }
+  if (file?.filename) {
+    return `${PATH_UPLOADS}/${file.filename}`;
+  }
+
+  return undefined;
+}
+
+export async function updateProfile(req: AuthRequest, res: Response) {
+  try {
+    const userId = req.userId;
+    if (!userId) {
+      res.status(CODE_BAD_REQUEST).json({error: ERROR_UNAUTHORIZED});
+
+      return;
+    }
+    const dto = UpdateProfileDto.parse(req.body);
+    const fileObj = (req as unknown as {file?: UploadedFileLike}).file;
+    const uploadedPath = resolveUploadedPath(fileObj);
+    const data = {
+      ...(dto.firstName !== undefined ? {firstName: dto.firstName} : {}),
+      ...(dto.lastName !== undefined ? {lastName: dto.lastName} : {}),
+      ...(dto.phone !== undefined ? {phone: dto.phone} : {}),
+      ...(dto.bio !== undefined ? {bio: dto.bio} : {}),
+      ...(uploadedPath !== undefined ? {profilePicUrl: uploadedPath} : {}),
     };
-
-    return res.status(HTTP_OK).json({message: 'Login successful', user: safeUser, token});
+    const updated = await prisma.user.update({where: {id: userId}, data});
+    res.status(CODE_OK).json({message: MESSAGE_UPDATED, user: safeUser(updated as DbUserPick)});
   } catch (e) {
-    logger.error('Login error:', e);
+    if ((e as {name?: string}).name === 'ZodError') {
+      res.status(CODE_BAD_REQUEST).json({error: ERROR_INVALID});
 
-    return res.status(HTTP_SERVER_ERROR).json({error: 'Login error'});
+      return;
+    }
+    res.status(CODE_SERVER_ERROR).json({error: ERROR_UPDATE});
   }
-};
-
-export const getProfile = async (req: AuthRequest, res: Response) => {
-  try {
-    const userId = req.user?.userId;
-    if (!userId) {
-      return res.status(HTTP_UNAUTHORIZED).json({error: 'Authentication required'});
-    }
-
-    const user = await prisma.user.findUnique({
-      where: {id: userId},
-      select: {
-        id: true, firstName: true, lastName: true, email: true, phone: true,
-        role: true, profilePicUrl: true, bio: true, createdAt: true,
-      },
-    });
-
-    if (!user) {
-      return res.status(HTTP_NOT_FOUND).json({error: 'User not found'});
-    }
-
-    return res.json({user});
-  } catch (e) {
-    logger.error('Get profile error:', e);
-
-    return res.status(HTTP_SERVER_ERROR).json({error: 'Get profile error'});
-  }
-};
-
-export const changePassword = async (req: AuthRequest, res: Response) => {
-  try {
-    const userId = req.user?.userId;
-    const currentPassword = typeof req.body.currentPassword === 'string' ? req.body.currentPassword : '';
-    const newPassword = typeof req.body.newPassword === 'string' ? req.body.newPassword : '';
-
-    if (!userId) {
-      return res.status(HTTP_UNAUTHORIZED).json({error: 'Authentication required'});
-    }
-    if (!currentPassword || !newPassword) {
-      return res.status(HTTP_BAD_REQUEST).json({error: 'currentPassword and newPassword are required'});
-    }
-
-    const user = await prisma.user.findUnique({where: {id: userId}});
-    if (!user) {
-      return res.status(HTTP_NOT_FOUND).json({error: 'User not found'});
-    }
-
-    const ok = await comparePassword(currentPassword, user.password);
-    if (!ok) {
-      return res.status(HTTP_BAD_REQUEST).json({error: 'Current password is incorrect'});
-    }
-
-    const hashed = await hashPassword(newPassword);
-    await prisma.user.update({where: {id: userId}, data: {password: hashed}});
-
-    return res.json({message: 'Password successfully changed'});
-  } catch (e) {
-    logger.error('Password change error:', e);
-
-    return res.status(HTTP_SERVER_ERROR).json({error: 'Password change error'});
-  }
-};
-
-export const updateProfile = async (req: AuthRequest, res: Response) => {
-  try {
-    const userId = req.user?.userId;
-    if (!userId) {
-      return res.status(HTTP_UNAUTHORIZED).json({error: 'Authentication required'});
-    }
-
-    const firstNameRaw = typeof req.body.firstName === 'string' ? req.body.firstName.trim() : '';
-    const lastNameRaw = typeof req.body.lastName === 'string' ? req.body.lastName.trim() : '';
-    const bioRaw = typeof req.body.bio === 'string' ? req.body.bio.trim() : '';
-
-    const fileObj = req.file as unknown as { path?: string } | undefined;
-    const uploadedUrl = fileObj && typeof fileObj.path === 'string' ? fileObj.path : '';
-
-    const data: {
-      firstName?: string;
-      lastName?: string;
-      bio?: string | null;
-      profilePicUrl?: string;
-    } = {};
-
-    if (firstNameRaw) {
-      data.firstName = firstNameRaw;
-    }
-    if (lastNameRaw) {
-      data.lastName = lastNameRaw;
-    }
-    if (bioRaw || req.body.bio === '') {
-      data.bio = bioRaw;
-    }
-    if (uploadedUrl) {
-      data.profilePicUrl = uploadedUrl;
-    }
-
-    if (Object.keys(data).length === 0) {
-      return res.status(HTTP_BAD_REQUEST).json({error: 'No changes'});
-    }
-
-    const user = await prisma.user.findUnique({where: {id: userId}});
-    if (!user) {
-      return res.status(HTTP_NOT_FOUND).json({error: 'User not found'});
-    }
-
-    const updatedUser = await prisma.user.update({
-      where: {id: userId},
-      data,
-      select: {
-        id: true, firstName: true, lastName: true, email: true, phone: true,
-        role: true, profilePicUrl: true, bio: true, createdAt: true,
-      },
-    });
-
-    return res.json({message: 'Profile updated', user: updatedUser});
-  } catch (e) {
-    logger.error('Update profile error:', e);
-
-    return res.status(HTTP_SERVER_ERROR).json({error: 'Update profile error'});
-  }
-};
+}

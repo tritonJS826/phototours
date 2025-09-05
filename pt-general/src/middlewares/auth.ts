@@ -1,39 +1,34 @@
-import {DecodedUser, extractTokenFromHeader, verifyToken} from 'src/utils/auth';
+import {env} from 'src/config/env';
 import {NextFunction, Request, Response} from 'express';
+import jwt, {JwtPayload} from 'jsonwebtoken';
 
-const HTTP_UNAUTHORIZED = 401;
-const HTTP_FORBIDDEN = 403;
+const CODE_UNAUTHORIZED = 401;
+const BEARER_PREFIX = 'Bearer ';
 
-export type AuthRequest = Request & {
-  user?: DecodedUser;
-};
+export type AuthRequest = Request & { userId?: number };
 
-export function authenticateToken(req: AuthRequest, res: Response, next: NextFunction) {
-  const token = extractTokenFromHeader(typeof req.headers.authorization === 'string' ? req.headers.authorization : '');
-
-  if (!token) {
-    return res.status(HTTP_UNAUTHORIZED).json({error: 'Access token required'});
-  }
-
+export function authenticateToken(req: Request, res: Response, next: NextFunction) {
   try {
-    const decoded = verifyToken(token);
-    req.user = decoded;
+    const auth = req.headers.authorization ?? '';
+    const starts = auth.startsWith(BEARER_PREFIX);
+    if (!starts) {
+      res.status(CODE_UNAUTHORIZED).json({error: 'Unauthorized'});
 
-    return next();
+      return;
+    }
+    const token = auth.slice(BEARER_PREFIX.length).trim();
+    const decoded = jwt.verify(token, env.JWT_SECRET) as JwtPayload | string;
+    const sub = typeof decoded === 'string' ? undefined : decoded.sub;
+    const num = typeof sub === 'number' ? sub : typeof sub === 'string' ? Number(sub) : undefined;
+    const ok = typeof num === 'number' && Number.isFinite(num);
+    if (!ok) {
+      res.status(CODE_UNAUTHORIZED).json({error: 'Unauthorized'});
+
+      return;
+    }
+    (req as AuthRequest).userId = num as number;
+    next();
   } catch {
-    return res.status(HTTP_FORBIDDEN).json({error: 'Invalid or expired token'});
+    res.status(CODE_UNAUTHORIZED).json({error: 'Unauthorized'});
   }
-}
-
-export function requireRole(roles: readonly string[]) {
-  return (req: AuthRequest, res: Response, next: NextFunction) => {
-    if (!req.user) {
-      return res.status(HTTP_UNAUTHORIZED).json({error: 'Authentication required'});
-    }
-    if (!roles.includes(req.user.role)) {
-      return res.status(HTTP_FORBIDDEN).json({error: 'Insufficient permissions'});
-    }
-
-    return next();
-  };
 }
