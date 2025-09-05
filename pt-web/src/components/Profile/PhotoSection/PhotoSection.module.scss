@@ -1,0 +1,131 @@
+@use "src/styles/variables" as var;
+
+.photoSection {
+  margin-top: 32px;
+  background: rgb(28 76 138 / 80%);
+  border-radius: 15px;
+  padding: 32px;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 5%);
+  border: 1px solid rgb(0 0 0 / 3%);
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 28px;
+    font-weight: 600;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, #3e7a3f, #28a745);
+      border-radius: 1px;
+    }
+  }
+
+  .uploadButton {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgb(40 167 69 / 30%);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgb(40 167 69 / 40%);
+      background: linear-gradient(135deg, #218838, #1ea085);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+.uploaderContainer {
+  margin-bottom: 24px;
+  padding: 24px;
+  background: rgb(255 255 255 / 10%);
+  border-radius: 12px;
+  border: 1px solid rgb(255 255 255 / 20%);
+  backdrop-filter: blur(10px);
+}
+
+.galleryContainer {
+  background: rgb(255 255 255 / 5%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgb(255 255 255 / 10%);
+}
+
+// Responsive design
+@media (width <= 768px) {
+  .photoSection {
+    padding: 20px;
+    margin-top: 24px;
+  }
+
+  .sectionHeader {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+
+    h3 {
+      font-size: 24px;
+
+      &::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    .uploadButton {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+  }
+
+  .uploaderContainer {
+    padding: 16px;
+  }
+
+  .galleryContainer {
+    padding: 16px;
+  }
+}
+
+@media (width <= 480px) {
+  .photoSection {
+    padding: 16px;
+  }
+
+  .sectionHeader {
+    h3 {
+      font-size: 20px;
+    }
+  }
+
+  .uploaderContainer,
+  .galleryContainer {
+    padding: 12px;
+  }
+}

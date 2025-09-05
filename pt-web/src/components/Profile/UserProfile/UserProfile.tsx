@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
+import {PhotoSection} from "src/components/Profile/PhotoSection/PhotoSection";
 import {useAuth} from "src/hooks/useAuth";
 import styles from "src/components/Profile/UserProfile/UserProfile.module.scss";
 
@@ -121,6 +122,8 @@ export const UserProfile: React.FC = () => {
           Edit Profile
         </Link>
       </div>
+
+      <PhotoSection />
     </div>
   );
 };

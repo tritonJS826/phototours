@@ -1,0 +1,233 @@
+.imageUploader {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.dropZone {
+  border: 2px dashed #ddd;
+  border-radius: 12px;
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #fafafa;
+  margin-bottom: 20px;
+
+  &:hover {
+    border-color: #007bff;
+    background: #f0f8ff;
+  }
+
+  &.dragOver {
+    border-color: #007bff;
+    background: #e3f2fd;
+    transform: scale(1.02);
+  }
+}
+
+.dropZoneContent {
+  .uploadIcon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+
+  h3 {
+    margin: 0 0 8px;
+    color: #333;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 4px 0;
+    color: #666;
+    font-size: 14px;
+  }
+
+  .fileTypes {
+    font-size: 12px;
+    color: #999;
+    margin-top: 12px;
+  }
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.progressSection {
+  margin-top: 24px;
+
+  h4 {
+    margin: 0 0 16px;
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
+.progressItem {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background: #fff;
+  transition: all 0.3s ease;
+
+  &.completed {
+    border-color: #28a745;
+    background: #f8fff9;
+  }
+
+  &.error {
+    border-color: #dc3545;
+    background: #fff8f8;
+  }
+
+  &.uploading {
+    border-color: #007bff;
+    background: #f8fbff;
+  }
+}
+
+.fileInfo {
+  flex: 1;
+  min-width: 0;
+
+  .fileName {
+    display: block;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .fileSize {
+    font-size: 12px;
+    color: #666;
+  }
+}
+
+.progressBar {
+  width: 120px;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  margin: 0 16px;
+  overflow: hidden;
+
+  .progressFill {
+    height: 100%;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    transition: width 0.3s ease;
+    border-radius: 4px;
+  }
+}
+
+.status {
+  min-width: 100px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+
+  .errorActions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    .errorText {
+      color: #dc3545;
+      font-size: 12px;
+    }
+  }
+}
+
+.retryButton {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: #c82333;
+  }
+}
+
+.removeButton {
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  margin-left: 12px;
+
+  &:hover {
+    color: #dc3545;
+    background: #fff5f5;
+  }
+}
+
+.uploadButton {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 16px;
+
+  &:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgb(0 123 255 / 30%);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Responsive design
+@media (width <= 768px) {
+  .dropZone {
+    padding: 30px 16px;
+  }
+
+  .progressItem {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .progressBar {
+    width: 100%;
+    margin: 0;
+  }
+
+  .status {
+    min-width: auto;
+    text-align: left;
+  }
+
+  .removeButton {
+    align-self: flex-end;
+    margin-left: 0;
+  }
+}

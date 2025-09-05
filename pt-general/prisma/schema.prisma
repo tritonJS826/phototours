@@ -28,6 +28,7 @@ model User {
   notifications   Notification[]
   bankAccounts    BankAccount[]
   galleryImages   GalleryImage[]
+  photos    UserPhoto[]
 }
 
 model Guide {
@@ -305,4 +306,17 @@ model GalleryImage {
   height    Int
   format    String
   createdAt DateTime @default(now())
+}
+
+model UserPhoto {
+  id          String   @id @default(cuid())
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fileName    String
+  originalUrl String
+  format      String
+  fileSize    Int
+  isPrivate   Boolean  @default(false)
+  publicId    String?
+  createdAt   DateTime @default(now())
 }
