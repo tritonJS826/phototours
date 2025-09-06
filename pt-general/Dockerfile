@@ -3,23 +3,25 @@ WORKDIR /app
 
 RUN corepack enable && corepack prepare pnpm@9.8.0 --activate
 
-# Copy package.json first
-COPY package.json ./
+COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
+COPY pt-general/package.json pt-general/package.json
 
-# Copy source code (including prisma schema)
-COPY . .
+# tempporal solution
+# src copuing should be moved after pnpm install
+COPY pt-general ./pt-general
 
-# Install dependencies (now prisma schema is available)
-RUN pnpm install
+RUN pnpm install --filter pt-general --frozen-lockfile
 
-ENV NODE_ENV=development
+#COPY pt-general ./pt-general
+
+ENV NODE_ENV=production
 ENV PORT=8000
 ENV HOST=0.0.0.0  
 
 EXPOSE 8000
 
-# Build the application
-RUN pnpm build
+RUN pnpm --filter pt-general prisma:generate
 
-# Start the application
-CMD ["pnpm", "start"]
+RUN pnpm --filter pt-general build
+
+CMD ["pnpm", "--filter", "pt-general", "start"]

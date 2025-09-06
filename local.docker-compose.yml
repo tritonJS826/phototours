@@ -6,10 +6,6 @@ services:
     container_name: postgres-pt-general
     ports:
       - "5432:5432"
-    environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
     env_file:
       - ./pt-general/.env
     volumes:
@@ -17,7 +13,7 @@ services:
     networks:
       - app-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres -h localhost"]
+      test: ["CMD-SHELL", "pg_isready -U root -d phototours_db -h localhost"]
       interval: 5s
       timeout: 3s
       retries: 20
@@ -33,35 +29,6 @@ services:
       - ./gateway/local.nginx.conf:/etc/nginx/nginx.conf:ro
     networks:
       - app-network
-
-  pt-general:
-    build:
-      context: ./pt-general
-      dockerfile: Dockerfile
-    container_name: pt-general
-    ports:
-      - "8000:8000"
-    environment:
-      - DATABASE_URL=postgresql://postgres:postgres@postgres-general:5432/postgres
-      - PORT=8000
-      - NODE_ENV=development
-      - CORS_ORIGIN=http://localhost:5173
-      - JWT_SECRET=your-super-secret-jwt-key-here
-      - JWT_EXPIRES_IN=7d
-      - ENV_TYPE=dev
-    volumes:
-      - ./pt-general:/app
-      - /app/node_modules
-    networks:
-      - app-network
-    depends_on:
-      postgres-general:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8000"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
 
   grafana:
     image: grafana/grafana:11.5.2
