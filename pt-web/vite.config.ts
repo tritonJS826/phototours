@@ -16,8 +16,7 @@ export default defineConfig(() => {
     resolve: {alias: {src: path.resolve(__dirname, "./src")}},
     plugins: [
       react(),
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      eslint({exclude: ["/virtual:/**", "/sb-preview/**"], failOnError: false}) as any,
+      eslint({exclude: ["/virtual:/**", "/sb-preview/**"], failOnError: false}),
       viteTsconfigPaths(),
     ],
     define: {
@@ -36,13 +35,11 @@ export default defineConfig(() => {
 
   if (isProd) {
     config.plugins?.push(
-
       VitePWA({
         registerType: "autoUpdate",
         includeAssets: ["favicon.svg", "favicon.ico", "robots.txt", "apple-touch-icon.png"],
         workbox: {maximumFileSizeToCacheInBytes: 200 * 1024 * 1024},
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      }) as any,
+      }),
     );
   }
 
