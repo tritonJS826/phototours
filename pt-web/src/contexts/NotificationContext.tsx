@@ -3,16 +3,23 @@ import {CreateNotificationData, NotificationItem, notificationService} from "src
 import {NotificationContextType, NotificationState} from "src/types/notifications";
 
 const UNREAD_COUNT_MIN = 0;
-const UNREAD_COUNT_DECREMENT = 1;
+const STEP_ONE = 1;
+const TYPE_ADD = "ADD_NOTIFICATION";
+const TYPE_MARK = "MARK_AS_READ";
+const TYPE_MARK_ALL = "MARK_ALL_AS_READ";
+const TYPE_DELETE = "DELETE_NOTIFICATION";
+const TYPE_CLEAR = "CLEAR_ALL";
+const TYPE_LOAD = "LOAD_NOTIFICATIONS";
+const TYPE_LOADING = "SET_LOADING";
 
 type NotificationAction =
-  | { type: "ADD_NOTIFICATION"; payload: NotificationItem }
-  | { type: "MARK_AS_READ"; payload: number }
-  | { type: "MARK_ALL_AS_READ" }
-  | { type: "DELETE_NOTIFICATION"; payload: number }
-  | { type: "CLEAR_ALL" }
-  | { type: "LOAD_NOTIFICATIONS"; payload: NotificationItem[] }
-  | { type: "SET_LOADING"; payload: boolean };
+  | {type: typeof TYPE_ADD; payload: NotificationItem}
+  | {type: typeof TYPE_MARK; payload: number}
+  | {type: typeof TYPE_MARK_ALL}
+  | {type: typeof TYPE_DELETE; payload: number}
+  | {type: typeof TYPE_CLEAR}
+  | {type: typeof TYPE_LOAD; payload: unknown}
+  | {type: typeof TYPE_LOADING; payload: boolean};
 
 const initialState: NotificationState = {
   notifications: [],
@@ -20,116 +27,137 @@ const initialState: NotificationState = {
   isLoading: false,
 };
 
-function notificationReducer(state: NotificationState, action: NotificationAction): NotificationState {
-  switch (action.type) {
-    case "ADD_NOTIFICATION":
-      return {
-        ...state,
-        notifications: [action.payload, ...state.notifications],
-        unreadCount: state.unreadCount + UNREAD_COUNT_DECREMENT,
-      };
-
-    case "MARK_AS_READ":
-      return {
-        ...state,
-        notifications: state.notifications.map(notification =>
-          notification.id === action.payload
-            ? {...notification, isRead: true}
-            : notification,
-        ),
-        unreadCount: Math.max(UNREAD_COUNT_MIN, state.unreadCount - UNREAD_COUNT_DECREMENT),
-      };
-
-    case "MARK_ALL_AS_READ":
-      return {
-        ...state,
-        notifications: state.notifications.map(notification => ({...notification, isRead: true})),
-        unreadCount: UNREAD_COUNT_MIN,
-      };
-
-    case "DELETE_NOTIFICATION": {
-      const deletedNotification = state.notifications.find(n => n.id === action.payload);
-
-      return {
-        ...state,
-        notifications: state.notifications.filter(notification => notification.id !== action.payload),
-        unreadCount: deletedNotification?.isRead
-          ? state.unreadCount
-          : Math.max(UNREAD_COUNT_MIN, state.unreadCount - UNREAD_COUNT_DECREMENT),
-      };
-    }
-
-    case "CLEAR_ALL":
-      return {
-        ...state,
-        notifications: [],
-        unreadCount: UNREAD_COUNT_MIN,
-      };
-
-    case "LOAD_NOTIFICATIONS":
-      return {
-        ...state,
-        notifications: action.payload,
-        // TODO: fix unread count check type
-        // unreadCount: action?.payload?.filter(n => !n.isRead).length ?? 0,
-        unreadCount: 0,
-      };
-
-    case "SET_LOADING":
-      return {
-        ...state,
-        isLoading: action.payload,
-      };
-
-    default:
-      return state;
+function asItems(value: unknown): NotificationItem[] {
+  if (Array.isArray(value)) {
+    return value as NotificationItem[];
   }
+
+  if (typeof value === "object" && value !== null) {
+    const obj = value as {data?: unknown};
+    if (Array.isArray(obj.data)) {
+      return obj.data as NotificationItem[];
+    }
+  }
+
+  return [];
+}
+
+function notificationReducer(state: NotificationState, action: NotificationAction): NotificationState {
+  if (action.type === TYPE_ADD) {
+    return {
+      ...state,
+      notifications: [action.payload, ...state.notifications],
+      unreadCount: state.unreadCount + STEP_ONE,
+    };
+  }
+
+  if (action.type === TYPE_MARK) {
+    return {
+      ...state,
+      notifications: state.notifications.map(n => {
+        if (n.id === action.payload) {
+          return {...n, isRead: true};
+        }
+
+        return n;
+      }),
+      unreadCount: Math.max(UNREAD_COUNT_MIN, state.unreadCount - STEP_ONE),
+    };
+  }
+
+  if (action.type === TYPE_MARK_ALL) {
+    return {
+      ...state,
+      notifications: state.notifications.map(n => ({...n, isRead: true})),
+      unreadCount: UNREAD_COUNT_MIN,
+    };
+  }
+
+  if (action.type === TYPE_DELETE) {
+    const deleted = state.notifications.find(n => n.id === action.payload);
+
+    return {
+      ...state,
+      notifications: state.notifications.filter(n => n.id !== action.payload),
+      unreadCount: deleted?.isRead ? state.unreadCount : Math.max(UNREAD_COUNT_MIN, state.unreadCount - STEP_ONE),
+    };
+  }
+
+  if (action.type === TYPE_CLEAR) {
+    return {
+      ...state,
+      notifications: [],
+      unreadCount: UNREAD_COUNT_MIN,
+    };
+  }
+
+  if (action.type === TYPE_LOAD) {
+    const list = asItems(action.payload);
+
+    return {
+      ...state,
+      notifications: list,
+      unreadCount: list.filter(n => !n.isRead).length,
+    };
+  }
+
+  if (action.type === TYPE_LOADING) {
+    return {...state, isLoading: action.payload};
+  }
+
+  return state;
 }
 
 const NotificationContext = createContext<NotificationContextType | undefined>(undefined);
 
-export function NotificationProvider({children}: { children: React.ReactNode }) {
+export function NotificationProvider({children}: {children: React.ReactNode}) {
   const [state, dispatch] = useReducer(notificationReducer, initialState);
 
   useEffect(() => {
-    const loadNotifications = async () => {
+    const load = async () => {
+      dispatch({type: TYPE_LOADING, payload: true});
+
       try {
-        dispatch({type: "SET_LOADING", payload: true});
-        const notifications = await notificationService.getNotifications();
-        dispatch({type: "LOAD_NOTIFICATIONS", payload: notifications});
+        const data = await notificationService.getNotifications();
+        dispatch({type: TYPE_LOAD, payload: data});
       } catch {
-        // Failed to load notifications from server
+        dispatch({type: TYPE_LOAD, payload: []});
       } finally {
-        dispatch({type: "SET_LOADING", payload: false});
+        dispatch({type: TYPE_LOADING, payload: false});
       }
     };
 
-    loadNotifications();
+    load();
   }, []);
 
-  const addNotification = async (notification: CreateNotificationData) => {
-    const newNotification = await notificationService.createNotification(notification);
-    dispatch({type: "ADD_NOTIFICATION", payload: newNotification});
+  const addNotification = async (input: CreateNotificationData) => {
+    const created = await notificationService.createNotification(input);
+
+    dispatch({type: TYPE_ADD, payload: created});
   };
 
   const markAsRead = async (id: number) => {
     await notificationService.markAsRead(id);
-    dispatch({type: "MARK_AS_READ", payload: id});
+
+    dispatch({type: TYPE_MARK, payload: id});
   };
 
   const markAllAsRead = async () => {
     await notificationService.markAllAsRead();
-    dispatch({type: "MARK_ALL_AS_READ"});
+
+    dispatch({type: TYPE_MARK_ALL});
   };
 
   const deleteNotification = async (id: number) => {
     await notificationService.deleteNotification(id);
-    dispatch({type: "DELETE_NOTIFICATION", payload: id});
+
+    dispatch({type: TYPE_DELETE, payload: id});
   };
 
   const clearAll = async () => {
     await notificationService.deleteAllNotifications();
-    dispatch({type: "CLEAR_ALL"});
+
+    dispatch({type: TYPE_CLEAR});
   };
 
   const value: NotificationContextType = {
@@ -152,6 +180,7 @@ export function NotificationProvider({children}: { children: React.ReactNode }) 
 
 export function useNotifications() {
   const context = useContext(NotificationContext);
+
   if (context === undefined) {
     throw new Error("useNotifications must be used within a NotificationProvider");
   }
