@@ -112,7 +112,7 @@ export function Cart() {
                 Alipay
               </button>
             </div>
-            {/* Логотипы карт */}
+            {/* Card logos */}
             <div className={styles.cardLogos}>
               <img
                 className={styles.cartLogoImg}

@@ -35,7 +35,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({
 
     try {
       await login(formData);
-      // Добавляем небольшую задержку, чтобы состояние успело обновиться
       const REFRESH_DELAY = 100;
       setTimeout(() => {
         onSuccess?.();
