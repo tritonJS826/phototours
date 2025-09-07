@@ -15,7 +15,6 @@ export default [
       'storybook-static/**',
       "coverage/**",
       "src/generated/**",
-      'src/scripts/reset.ts',
     ],
   },
 
@@ -23,13 +22,12 @@ export default [
   ...tseslint.configs.recommended,
 
   {
-    files: ['**/*.ts', '**/*.tsx'],
+    files: ['**/*.ts'],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
         sourceType: 'module',
         project: './tsconfig.json',
-        tsconfigRootDir: import.meta.dirname,
       },
     },
     plugins: {

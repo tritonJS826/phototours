@@ -8,18 +8,16 @@ cloudinary.config({
   api_secret: env.CLOUDINARY_API_SECRET,
 });
 
-export const CLOUDINARY_UPLOAD_FOLDER = env.CLOUDINARY_UPLOAD_FOLDER;
-
-export const storage = new CloudinaryStorage({
+const storage = new CloudinaryStorage({
   cloudinary,
   params: (_req, file) => {
-    const name = `${Date.now()}-${file.originalname}`;
 
     return {
-      public_id: `${CLOUDINARY_UPLOAD_FOLDER}/${name}`,
+      folder: env.CLOUDINARY_UPLOAD_FOLDER,
       resource_type: 'auto',
+      public_id: `${file.fieldname}_${Date.now()}_${file.originalname.split('.')[0]}`,
     };
   },
 });
 
-export {cloudinary};
+export {cloudinary, storage};

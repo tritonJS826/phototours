@@ -9,7 +9,7 @@ function build(path: string) {
 }
 
 export async function listArticles(limit?: number): Promise<ArticleSummary[]> {
-  const url = new URL(build("/articles"));
+  const url = new URL(build("/general/articles"));
   if (typeof limit === "number" && Number.isFinite(limit) && limit > 0) {
     url.searchParams.set("limit", String(limit));
   }

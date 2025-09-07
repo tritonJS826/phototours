@@ -1,14 +1,12 @@
-export type Role = "CLIENT" | "GUIDE" | "ADMIN";
-
 export interface User {
   id: number;
   firstName: string;
   lastName: string;
   email: string;
-  phone?: string | null;
-  role: Role;
-  profilePicUrl?: string | null;
-  bio?: string | null;
+  phone?: string;
+  role: string;
+  profilePicUrl?: string;
+  bio?: string;
   createdAt: string;
 }
 
@@ -43,9 +41,3 @@ export interface AuthState {
   isLoading: boolean;
 }
 
-export const emptyAuthState: AuthState = {
-  user: null,
-  token: null,
-  isAuthenticated: false,
-  isLoading: false,
-};

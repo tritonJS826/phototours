@@ -1,31 +1,33 @@
 import {env} from 'src/config/env';
+import {prisma} from 'src/db/prisma';
 import {articleRoutes} from 'src/routes/articleRoutes';
 import {authRouter} from 'src/routes/auth';
 import {bankAccountRoutes} from 'src/routes/bankAccountRoutes';
 import {notificationRoutes} from 'src/routes/notificationRoutes';
 import {tourRoutes} from 'src/routes/tourRoutes';
 import {userRoutes} from 'src/routes/userRoutes';
-import {logger} from 'src/utils/logger';
+import {createZohoService} from 'src/services/zohoService';
+import {logger} from 'src/utils/logger.js';
 import cors from 'cors';
-import express, {Express} from 'express';
+import express, {Express, Request, Response} from 'express';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
 const CODE_200 = 200;
 const CODE_204 = 204;
+const CODE_400 = 400;
+const CODE_500 = 500;
+const NAME_SLICE_INDEX = 1;
 
 const app: Express = express();
-
-app.use(cors({
-  origin: env.CORS_ORIGIN,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
-}));
-
+app.use(cors());
 app.use(express.json());
 
+const port = env.SERVER_PORT;
+const CORS_ORIGIN = env.CORS_ORIGIN;
+
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', env.CORS_ORIGIN);
+  res.header('Access-Control-Allow-Origin', CORS_ORIGIN);
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   if (req.method === 'OPTIONS') {
@@ -40,7 +42,7 @@ app.get('/health', (_req, res) => {
   res.status(CODE_200).send('OK');
 });
 
-const swaggerSpec = swaggerJsdoc({
+const swaggerOptions = {
   definition: {
     openapi: '3.0.0',
     info: {
@@ -49,20 +51,150 @@ const swaggerSpec = swaggerJsdoc({
       description: 'Backend API for Photo Tours application.',
       license: {name: 'MIT', url: 'https://opensource.org/licenses/MIT'},
     },
-    servers: [{url: `http://localhost:${env.SERVER_PORT}`, description: 'Development server'}],
+    servers: [{url: `http://localhost:${port}`, description: 'Development server'}],
     components: {securitySchemes: {bearerAuth: {type: 'http', scheme: 'bearer', bearerFormat: 'JWT'}}},
   },
   apis: ['./src/server.ts', './src/routes/*.ts'],
-});
+};
 
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.get('/', (_req, res) => {
+app.get('/', (_req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
 });
 
-app.get('/test', (_req, res) => {
+app.get('/test', (_req: Request, res: Response) => {
   res.json({message: 'Test endpoint works!'});
+});
+
+app.post('/users', async (req: Request, res: Response) => {
+  try {
+    const email = req.body.email as string;
+    const name = req.body.name as string;
+    const phone = (req.body.phone as string) || '';
+    const company = (req.body.company as string) || '';
+
+    const user = await prisma.user.create({
+      data: {
+        email,
+        firstName: name.split(' ')[0] || name,
+        lastName: name.split(' ').slice(NAME_SLICE_INDEX).join(' ') || '',
+        password: 'test',
+      },
+    });
+
+    try {
+      const zohoService = createZohoService();
+      const leadData = {
+        First_Name: name.split(' ')[0] || name,
+        Last_Name: name.split(' ').slice(NAME_SLICE_INDEX).join(' ') || '',
+        Email: email,
+        Phone: phone,
+        Company: company,
+        Lead_Source: 'PhotoTours Website Registration',
+        Description: `New user registered through website form. Email: ${email}`,
+      };
+      const leadResult = await zohoService.createLead(leadData);
+      res.json({message: 'Lead created in Zoho CRM', leadResult});
+    } catch {
+      res.status(CODE_500).json({error: 'Error creating lead in Zoho'});
+
+      return;
+    }
+
+    res.json({success: true, user, message: 'User registered successfully'});
+  } catch {
+    res.status(CODE_500).json({error: 'Failed to register user'});
+  }
+});
+
+app.get('/auth/zoho', (_req: Request, res: Response) => {
+  try {
+    const zohoService = createZohoService();
+    res.json({authUrl: zohoService.getAuthUrl()});
+  } catch {
+    res.status(CODE_500).json({error: 'Failed to generate auth URL'});
+  }
+});
+
+app.get('/auth/zoho/callback', async (req: Request, res: Response) => {
+  try {
+    const code = req.query.code;
+    if (!code || typeof code !== 'string') {
+      res.status(CODE_400).json({error: 'Authorization code is required'});
+
+      return;
+    }
+    const zohoService = createZohoService();
+    const tokens = await zohoService.exchangeCodeForTokens(code);
+    res.json({
+      success: true,
+      message: 'Zoho authentication successful',
+      tokens: {access_token: tokens.access_token, refresh_token: tokens.refresh_token, expires_in: tokens.expires_in},
+    });
+  } catch {
+    res.status(CODE_500).json({error: 'Failed to authenticate with Zoho'});
+  }
+});
+
+app.post('/auth/zoho/exchange', async (req: Request, res: Response) => {
+  try {
+    const code = req.body.code as string;
+    if (!code) {
+      res.status(CODE_400).json({error: 'Authorization code is required'});
+
+      return;
+    }
+    const zohoService = createZohoService();
+    const tokens = await zohoService.exchangeCodeForTokens(code);
+    if (tokens.refresh_token) {
+      zohoService.saveRefreshToken(tokens.refresh_token);
+    }
+    res.json({
+      success: true,
+      message: 'Zoho authentication successful',
+      tokens: {access_token: tokens.access_token, refresh_token: tokens.refresh_token, expires_in: tokens.expires_in},
+    });
+  } catch {
+    res.status(CODE_500).json({error: 'Failed to authenticate with Zoho'});
+  }
+});
+
+app.get('/api/zoho/org', (_req: Request, res: Response) => {
+  try {
+    const zohoService = createZohoService();
+    zohoService.getOrganizationInfo().then(res.json.bind(res)).catch(() => {
+      res.status(CODE_500).json({error: 'Failed to get organization info'});
+    });
+  } catch {
+    res.status(CODE_500).json({error: 'Failed to get organization info'});
+  }
+});
+
+app.get('/api/zoho/test', async (_req: Request, res: Response) => {
+  try {
+    const zohoService = createZohoService();
+    const result = await zohoService.createLead({
+      Last_Name: 'Test Lead',
+      Email: 'test@example.com',
+      Phone: '+1234567890',
+      Company: 'Test Company',
+    });
+    res.json(result);
+  } catch {
+    res.status(CODE_500).json({error: 'Failed to create test lead'});
+  }
+});
+
+app.post('/api/zoho/leads', async (req: Request, res: Response) => {
+  try {
+    const zohoService = createZohoService();
+    const result = await zohoService.createLead(req.body as Record<string, unknown>);
+    res.json(result);
+  } catch {
+    res.status(CODE_500).json({error: 'Failed to create lead'});
+  }
 });
 
 app.use('/tours', tourRoutes);
@@ -70,9 +202,11 @@ app.use('/users', userRoutes);
 app.use('/notifications', notificationRoutes);
 app.use('/bank-accounts', bankAccountRoutes);
 app.use('/articles', articleRoutes);
-app.use('/auth', authRouter);
 
-app.listen(env.SERVER_PORT, () => {
-  logger.info(`Server is running at http://localhost:${env.SERVER_PORT}`);
-  logger.info(`API documentation available at http://localhost:${env.SERVER_PORT}/api-docs`);
+app.use('/auth', authRouter);
+app.use('/general/auth', authRouter);
+
+app.listen(port, () => {
+  logger.info(`Server is running at http://localhost:${port}`);
+  logger.info(`API documentation available at http://localhost:${port}/api-docs`);
 });

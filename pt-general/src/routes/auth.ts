@@ -1,14 +1,28 @@
 import {changePassword, getProfile, login, register, updateProfile} from 'src/controllers/authControllers';
 import {authenticateToken} from 'src/middlewares/auth';
-import {upload} from 'src/middlewares/upload';
+import {UploadApiOptions, v2 as cloudinary} from 'cloudinary';
 import {Router} from 'express';
+import multer from 'multer';
+import {CloudinaryStorage} from 'multer-storage-cloudinary';
 
-const router = Router();
+const AVATAR_FIELD = 'avatar';
+const FOLDER_AVATARS = 'phototours/avatars';
+const RESOURCE_IMAGE = 'image';
 
-router.post('/register', register);
-router.post('/login', login);
-router.post('/change-password', authenticateToken, changePassword);
-router.get('/profile', authenticateToken, getProfile);
-router.put('/profile', authenticateToken, upload.single('avatar'), updateProfile);
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: (): UploadApiOptions => ({
+    folder: FOLDER_AVATARS,
+    resource_type: RESOURCE_IMAGE,
+  }),
+});
 
-export {router as authRouter};
+const upload = multer({storage});
+
+export const authRouter = Router();
+
+authRouter.post('/register', register);
+authRouter.post('/login', login);
+authRouter.get('/profile', authenticateToken, getProfile);
+authRouter.put('/profile', authenticateToken, upload.single(AVATAR_FIELD), updateProfile);
+authRouter.post('/change-password', authenticateToken, changePassword);

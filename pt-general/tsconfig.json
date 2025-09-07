@@ -1,35 +1,24 @@
 {
   "compilerOptions": {
-    "target": "esNext",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "baseUrl": ".",
     "paths": {
       "src/*": ["./src/*"]
-    }
+    },
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
   "include": [
-    "src",
-    "vite.config.ts",
-    "global.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.d.ts",
-    ".storybook",
-    "src/features/articles",
-    "src/features/articles"
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/scripts/**/*.ts"
   ],
-  "exclude": ["node_modules", "public", "dist"]
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

@@ -1,18 +1,19 @@
-type EnvLike = { env?: { VITE_API_BASE_URL?: string } };
+type EnvLike = {env?: {VITE_API_BASE_URL?: string}};
 
 function getEnvBase(): string {
-  const meta = import.meta as unknown as EnvLike;
+  const meta = (import.meta as unknown as EnvLike);
+  const v = meta?.env?.VITE_API_BASE_URL ? meta.env.VITE_API_BASE_URL : "";
 
-  return meta?.env?.VITE_API_BASE_URL?.trim() ?? "";
+  return v ?? "";
 }
 
 function normalizeBase(input: string): string {
   const raw = input.trim();
-  const fallback = "http://localhost:8000";
+  const fallback = "http://localhost:5173";
   const base = raw === "" ? fallback : raw;
 
   try {
-    const u = new URL(base);
+    const u = new URL(base, window.location.origin);
     let p = u.pathname.replace(/\/+$/, "");
     if (p.toLowerCase().endsWith("/general")) {
       p = p.slice(0, -"/general".length);
