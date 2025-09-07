@@ -1,5 +1,5 @@
 /* src/styles/_mixins.scss */
-@use "./variables" as vars; // <— относительный импорт и алиас vars
+@use "./variables" as vars; // relative import with vars alias
 
 /* ===== Layout ===== */
 @mixin flex-center {

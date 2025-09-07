@@ -19,7 +19,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({children}) => {
         height: "100vh",
       }}
       >
-        Загрузка...
+        Loading...
       </div>
     );
   }
