@@ -4,11 +4,10 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "start": "vite --host 0.0.0.0 --port 5173 ",
-    "dev": "vite --host 0.0.0.0 --port 5173",
+    "start": "vite --host 0.0.0.0 --port 5174 ",
     "build": "vite build",
     "type-check": "tsc --noEmit",
-    "serve": "pnpm build && vite preview --port 5173 --host 0.0.0.0",
+    "serve": "pnpm build && vite preview --port 5174 --host 0.0.0.0",
     "lint-check": "eslint .",
     "lint-fix": "eslint . --fix",
     "lint-staged": "lint-staged",
