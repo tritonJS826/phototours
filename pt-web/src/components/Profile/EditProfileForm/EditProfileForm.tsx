@@ -144,7 +144,7 @@ export const EditProfileForm: React.FC = () => {
 
   return (
     <div className={styles.editProfileContainer}>
-      <h2>
+      <h2 className={styles["edit-form-heading-2"]}>
         Edit Profile
       </h2>
 

@@ -27,7 +27,7 @@ export const UserProfile: React.FC = () => {
 
   return (
     <div className={styles.profileContainer}>
-      <h2>
+      <h2 className={styles["profile-heading-2"]}>
         User Profile
       </h2>
 

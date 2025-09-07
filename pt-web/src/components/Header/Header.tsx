@@ -132,6 +132,7 @@ export function Header() {
             aria-label="Homepage"
           >
             <img
+              className={styles["header-logo-img"]}
               src={logo}
               alt="Photo Tour Logo"
               className={styles.icon}
