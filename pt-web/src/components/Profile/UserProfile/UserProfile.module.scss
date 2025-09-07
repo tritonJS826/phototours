@@ -37,7 +37,7 @@
   background: linear-gradient(90deg, #007bff, #0056b3, #28a745);
 }
 
-h2 {
+.profile-heading-2 {
   text-align: center;
   margin: 0 0 48px;
   color: #3e7a3f;
@@ -46,7 +46,7 @@ h2 {
   position: relative;
 }
 
-h2::after {
+.profile-heading-2::after {
   content: "";
   position: absolute;
   bottom: -10px;
