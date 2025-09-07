@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import {fetchData} from "src/api/http";
 import {Button} from "src/components/Button/Button";
 import {Container} from "src/components/Container/Container";
@@ -9,18 +10,14 @@ type Guide = {
   userId: number;
   experience: string;
   specializations: string[];
-  user?: {
-    id: number;
-    firstName: string;
-    lastName: string;
-  };
+  user?: { id: number; firstName: string; lastName: string };
 };
 
 type Tour = {
   id: number;
   title: string;
   guide?: Guide;
-  photos?: {id: number; url: string}[];
+  photos?: { id: number; url: string }[];
 };
 
 export function AdminPage() {
@@ -28,6 +25,7 @@ export function AdminPage() {
   const [selectedTour, setSelectedTour] = useState<Tour | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [, setError] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchData<Tour[]>("/tours")
@@ -39,17 +37,12 @@ export function AdminPage() {
     if (!confirm("Are you sure you want to delete this tour?")) {
       return;
     }
-
     try {
       await fetchData<void>(`/tours/${id}`, {method: "DELETE"});
       setTours((prev) => prev.filter((t) => t.id !== id));
       setSelectedTour(null);
     } catch (err: unknown) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError(String(err));
-      }
+      setError(err instanceof Error ? err.message : String(err));
     }
   };
 
@@ -79,13 +72,15 @@ export function AdminPage() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
+
           <div className={styles.actionBtn}>
             {selectedTour && (
               <div className={styles.actions}>
                 <Button
                   className={styles.hiddenBtn}
                   variant="primary"
-                  href={`/admin/tours/${selectedTour.id}`}
+                  onClick={() => navigate(`/admin/tours/${selectedTour.id}`)}
+                  type="button"
                 >
                   Edit
                 </Button>
@@ -93,6 +88,7 @@ export function AdminPage() {
                   className={styles.hiddenBtn}
                   variant="secondary"
                   onClick={() => handleDelete(selectedTour.id)}
+                  type="button"
                 >
                   Delete
                 </Button>
@@ -102,12 +98,12 @@ export function AdminPage() {
             <Button
               className={styles.createButton}
               variant="primary"
-              href="/admin/tours"
+              onClick={() => navigate("/admin/tours")}
+              type="button"
             >
               + Create Tour
             </Button>
           </div>
-
         </div>
 
         <div className={styles.tourGrid}>
@@ -116,14 +112,11 @@ export function AdminPage() {
               filteredTours.map((tour) => (
                 <div
                   key={tour.id}
-                  className={`${styles.tourCard} ${
-                    selectedTour?.id === tour.id ? styles.active : ""
-                  }`}
+                  className={`${styles.tourCard} ${selectedTour?.id === tour.id ? styles.active : ""}`}
                   onClick={() =>
                     setSelectedTour(selectedTour?.id === tour.id ? null : tour)
                   }
                 >
-
                   <div className={styles.photoWrapper}>
                     {tour.photos?.[0]?.url
                       ? (

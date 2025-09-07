@@ -1,6 +1,9 @@
 import {storage} from 'src/config/cloudinary';
 import multer from 'multer';
 
-const upload = multer({storage});
+const FILES_LIMIT = 50;
 
-export {upload};
+export const upload = multer({
+  storage,
+  limits: {files: FILES_LIMIT},
+});

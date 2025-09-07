@@ -1,58 +1,52 @@
 import {useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
-import {fetchData} from "src/api/http";
 import {Button} from "src/components/Button/Button";
 import styles from "src/pages/adminTourContinueForm/AdminTourContinueForm.module.scss";
 
+const ZERO = 0;
+const ONE = 1;
+
 export const AdminTourContinueForm = () => {
-  const {id} = useParams();
+  const params = useParams();
+  const id = params.id;
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    tags: "",
-    dates: "",
-    photos: [] as File[],
-    videos: [] as File[],
-  });
-
+  const [tags, setTags] = useState("");
+  const [dates, setDates] = useState("");
+  const [photos, setPhotos] = useState<File[]>([]);
+  const [videos, setVideos] = useState<File[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const REMOVE_COUNT = 1;
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {name, files} = e.target;
+  const handlePhotoInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
     if (!files) {
       return;
     }
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: [...prev[name as "photos" | "videos"], ...Array.from(files)],
-    }));
+    setPhotos(prev => [...prev, ...Array.from(files)]);
   };
-
-  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {name, value} = e.target;
-    setFormData((prev) => ({...prev, [name]: value}));
+  const handleVideoInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files) {
+      return;
+    }
+    setVideos(prev => [...prev, ...Array.from(files)]);
   };
-
   const handleRemovePhoto = (index: number) => {
-    setFormData((prev) => {
-      const updated = [...prev.photos];
-      updated.splice(index, REMOVE_COUNT);
+    setPhotos(prev => {
+      const updated = [...prev];
+      updated.splice(index, ONE);
 
-      return {...prev, photos: updated};
+      return updated;
     });
   };
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     const files = Array.from(e.dataTransfer.files);
-    setFormData((prev) => ({
-      ...prev,
-      photos: [...prev.photos, ...files.filter(file => file.type.startsWith("image/"))],
-      videos: [...prev.videos, ...files.filter(file => file.type.startsWith("video/"))],
-    }));
+    const images = files.filter(f => f.type.startsWith("image/"));
+    const vids = files.filter(f => f.type.startsWith("video/"));
+    setPhotos(prev => [...prev, ...images]);
+    setVideos(prev => [...prev, ...vids]);
   };
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -64,62 +58,47 @@ export const AdminTourContinueForm = () => {
     setLoading(true);
 
     try {
-      const tags = formData.tags
-        .split(",")
-        .map((t) => t.trim())
-        .filter(Boolean);
-      const dates = formData.dates
-        .split(",")
-        .map((d) => d.trim())
-        .filter(Boolean);
+      const tagsList = tags.split(",").map(t => t.trim()).filter(t => t.length > ZERO);
+      const datesList = dates.split(",").map(d => d.trim()).filter(d => d.length > ZERO);
 
-      if (tags.length) {
-        await fetchData(`/tours/${id}/tags`, {
+      if (id && tagsList.length > ZERO) {
+        await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/tags`, {
           method: "PATCH",
-          body: JSON.stringify({tags}),
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({tags: tagsList}),
         });
       }
-
-      if (dates.length) {
-        await fetchData(`/tours/${id}/dates`, {
+      if (id && datesList.length > ZERO) {
+        await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/dates`, {
           method: "PATCH",
-          body: JSON.stringify({dates}),
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({dates: datesList}),
         });
       }
+      if (id && photos.length > ZERO) {
+        const uploads = photos.map(file => {
+          const form = new FormData();
+          form.append("file", file);
 
-      if (formData.photos.length) {
-        await Promise.all(
-          formData.photos.map((file) => {
-            const form = new FormData();
-            form.append("file", file);
-
-            return fetch(
-              `${import.meta.env.VITE_API_BASE_URL}/tours/${id}/photos`,
-              {method: "PATCH", body: form},
-            );
-          }),
-        );
+          return fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/photos`,
+            {method: "PATCH", body: form});
+        });
+        await Promise.all(uploads);
       }
+      if (id && videos.length > ZERO) {
+        const uploads = videos.map(file => {
+          const form = new FormData();
+          form.append("file", file);
 
-      if (formData.videos.length) {
-        await Promise.all(
-          formData.videos.map((file) => {
-            const form = new FormData();
-            form.append("file", file);
-
-            return fetch(
-              `${import.meta.env.VITE_API_BASE_URL}/tours/${id}/videos`,
-              {method: "PATCH", body: form},
-            );
-          }),
-        );
+          return fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/videos`,
+            {method: "PATCH", body: form});
+        });
+        await Promise.all(uploads);
       }
 
       navigate("/admin");
-    } catch (err: unknown) {
-      setError(
-        err instanceof Error ? err.message || "Failed to continue tour" : "Failed to continue tour",
-      );
+    } catch {
+      setError("Failed to continue tour");
     } finally {
       setLoading(false);
     }
@@ -139,8 +118,8 @@ export const AdminTourContinueForm = () => {
         <input
           className={styles.formInput}
           name="tags"
-          value={formData.tags}
-          onChange={handleTextChange}
+          value={tags}
+          onChange={(e) => setTags(e.target.value)}
           placeholder="e.g. adventure, hiking, family"
         />
       </label>
@@ -150,8 +129,8 @@ export const AdminTourContinueForm = () => {
         <input
           className={styles.formInput}
           name="dates"
-          value={formData.dates}
-          onChange={handleTextChange}
+          value={dates}
+          onChange={(e) => setDates(e.target.value)}
           placeholder="e.g. 2025-10-01, 2025-10-15"
         />
       </label>
@@ -168,7 +147,7 @@ export const AdminTourContinueForm = () => {
             type="file"
             multiple
             accept="image/*"
-            onChange={handleFileChange}
+            onChange={handlePhotoInput}
           />
           <span>
             Drag & Drop photos or click to select
@@ -176,7 +155,7 @@ export const AdminTourContinueForm = () => {
         </label>
 
         <div className={styles.fileUploadPreview}>
-          {formData.photos.map((file, i) => (
+          {photos.map((file, i) => (
             <div
               key={i}
               className={styles.fileUploadItem}
@@ -207,13 +186,11 @@ export const AdminTourContinueForm = () => {
           <p className={styles.fileUploadAreaText}>
             Drag & drop videos here, or click to select
           </p>
-          {formData.videos.length > 0 && (
+          {videos.length > ZERO && (
             <ul className={styles.fileUploadAreaFileList}>
-              {formData.videos.map((file, idx) => (
-                <li key={idx}>
-                  {file.name}
-                </li>
-              ))}
+              {videos.map((file, idx) => (<li key={idx}>
+                {file.name}
+              </li>))}
             </ul>
           )}
         </div>
@@ -223,11 +200,11 @@ export const AdminTourContinueForm = () => {
           type="file"
           multiple
           accept="video/*"
-          onChange={handleFileChange}
+          onChange={handleVideoInput}
         />
       </label>
 
-      {error && <p className={styles.formError}>
+      {error.length > ZERO && <p className={styles.formError}>
         {error}
       </p>}
 
@@ -249,6 +226,5 @@ export const AdminTourContinueForm = () => {
         </Button>
       </div>
     </form>
-
   );
 };

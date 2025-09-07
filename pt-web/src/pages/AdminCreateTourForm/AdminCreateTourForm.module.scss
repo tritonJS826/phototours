@@ -2,14 +2,14 @@
 @use "../../styles/mixins" as mixin;
 
 .form {
-  max-width: 600px;
+  max-width: 720px;
   margin: 30px auto;
   display: flex;
   flex-direction: column;
-  border-radius: vars.$radius-medium;
   gap: 16px;
-  box-shadow: vars.$shadow-light;
   padding: 24px;
+  border-radius: vars.$radius-medium;
+  box-shadow: vars.$shadow-light;
   background-color: vars.$color-bg-light;
 }
 
@@ -28,10 +28,10 @@
 }
 
 .button {
-  font-size: vars.$font-size-card-text;
   width: 100%;
   border: none;
   cursor: pointer;
+  font-size: vars.$font-size-card-text;
 }
 
 .error {
