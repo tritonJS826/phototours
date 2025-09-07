@@ -2,24 +2,38 @@ import {env} from 'src/config/env';
 import {v2 as cloudinary} from 'cloudinary';
 import {CloudinaryStorage} from 'multer-storage-cloudinary';
 
+const WIDTH = 1920;
+const HEIGHT = 1080;
+
+type CloudinaryParams = {
+  folder?: string;
+  resource_type?: 'image' | 'raw' | 'video' | 'auto';
+  transformation?: Array<Record<string, unknown>>;
+  public_id?: string;
+};
+
 cloudinary.config({
   cloud_name: env.CLOUDINARY_CLOUD_NAME,
   api_key: env.CLOUDINARY_API_KEY,
   api_secret: env.CLOUDINARY_API_SECRET,
 });
 
-export const CLOUDINARY_UPLOAD_FOLDER = env.CLOUDINARY_UPLOAD_FOLDER;
-
-export const storage = new CloudinaryStorage({
+const storage = new CloudinaryStorage({
   cloudinary,
-  params: (_req, file) => {
-    const name = `${Date.now()}-${file.originalname}`;
-
-    return {
-      public_id: `${CLOUDINARY_UPLOAD_FOLDER}/${name}`,
+  params: () => {
+    const name = String(Date.now());
+    const params: CloudinaryParams = {
+      folder: env.CLOUDINARY_UPLOAD_FOLDER,
       resource_type: 'auto',
+      transformation: [
+        {width: WIDTH, height: HEIGHT, crop: 'limit'},
+        {quality: 'auto:good'},
+      ],
+      public_id: name,
     };
+
+    return params;
   },
 });
 
-export {cloudinary};
+export {cloudinary, storage};

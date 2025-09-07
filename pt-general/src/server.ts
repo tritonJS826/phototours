@@ -65,7 +65,7 @@ app.get('/test', (_req, res) => {
   res.json({message: 'Test endpoint works!'});
 });
 
-app.use('/tours', tourRoutes);
+app.use(['/tours', '/general/tours'], tourRoutes);
 app.use('/users', userRoutes);
 app.use('/notifications', notificationRoutes);
 app.use('/bank-accounts', bankAccountRoutes);
