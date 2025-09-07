@@ -15,6 +15,11 @@ import {prisma} from 'src/db/prisma';
 import {logger} from 'src/utils/logger';
 import {Request, Response} from 'express';
 
+const HTTP = {
+  NOT_FOUND: 404,
+  INTERNAL: 500,
+} as const;
+
 export const getAllTours = async (req: Request, res: Response) => {
   try {
     const tours = await prisma.tour.findMany({
@@ -38,10 +43,13 @@ export const getAllTours = async (req: Request, res: Response) => {
   }
 };
 
-export const getTourById = async (req: Request, res: Response) => {
+export const getTourByIdOrSlug = async (req: Request, res: Response) => {
   try {
+    const idOrSlug = String(req.params.id);
+    const isNumericId = /^\d+$/.test(idOrSlug);
+
     const tour = await prisma.tour.findUnique({
-      where: {id: Number(req.params.id)},
+      where: isNumericId ? {id: Number(idOrSlug)} : {slug: idOrSlug},
       include: {
         guide: {include: {user: true}},
         categories: true,
@@ -52,18 +60,16 @@ export const getTourById = async (req: Request, res: Response) => {
         materials: true,
       },
     });
+
     if (!tour) {
-      return res
-        .status(HTTP_STATUS_NOT_FOUND)
-        .json({message: 'Tour not found'});
+      return res.status(HTTP.NOT_FOUND).json({message: 'Tour not found'});
     }
+
     res.json(tour);
   } catch (error) {
     logger.error('Failed to fetch tour', error);
 
-    return res
-      .status(HTTP_STATUS_INTERNAL_SERVER_ERROR)
-      .json({error: 'Failed to fetch tour'});
+    return res.status(HTTP.INTERNAL).json({error: 'Failed to fetch tour'});
   }
 };
 

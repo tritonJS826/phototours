@@ -9,7 +9,7 @@ import {
   deleteTour,
   getAllGuides,
   getAllTours,
-  getTourById,
+  getTourByIdOrSlug,
   updateTour,
   updateTourCategories,
   updateTourTags,
@@ -29,7 +29,7 @@ export const tourRoutes = Router();
 
 tourRoutes.get('/', getAllTours);
 tourRoutes.get('/guides', getAllGuides);
-tourRoutes.get('/:id', getTourById);
+tourRoutes.get('/:id', getTourByIdOrSlug);
 tourRoutes.post('/', validate(createTourSchema), createTour);
 tourRoutes.put('/:id', updateTour);
 tourRoutes.delete('/:id', deleteTour);
