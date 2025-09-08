@@ -105,8 +105,7 @@ export const EditProfileForm: React.FC = () => {
         return;
       }
 
-      const FALLBACK_API = "http://localhost:8000";
-      const base = (import.meta as unknown as { env?: { VITE_API_BASE_URL?: string } }).env?.VITE_API_BASE_URL ?? FALLBACK_API;
+      const base = (import.meta as unknown as { env?: { VITE_API_BASE_URL?: string } }).env?.VITE_API_BASE_URL;
 
       const res = await fetch(`${base}/auth/profile`, {
         method: "PUT",

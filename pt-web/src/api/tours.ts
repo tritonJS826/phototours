@@ -1,7 +1,7 @@
 import {fetchData, fileUrl} from "src/api/http";
 import type {TourView} from "src/types/tour";
 
-export const TOURS_PATH = "/tours";
+export const TOURS_PATH = "/general/tours";
 
 const ISO_DATE_LENGTH = 10;
 

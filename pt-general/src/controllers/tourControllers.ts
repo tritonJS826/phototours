@@ -22,24 +22,18 @@ function isMaterialType(v: string): v is MaterialType {
 }
 
 export const getAllTours = async (req: Request, res: Response) => {
-  try {
-    const tours = await prisma.tour.findMany({
-      include: {
-        guide: {include: {user: true}},
-        categories: true,
-        tags: true,
-        dates: true,
-        photos: true,
-        videos: true,
-        materials: true,
-      },
-    });
-    res.json(tours);
-  } catch {
-    res
-      .status(HTTP_STATUS_INTERNAL_SERVER_ERROR)
-      .json({error: 'Failed to fetch tours'});
-  }
+  const tours = await prisma.tour.findMany({
+    include: {
+      guide: {include: {user: true}},
+      categories: true,
+      tags: true,
+      dates: true,
+      photos: true,
+      videos: true,
+      materials: true,
+    },
+  });
+  res.json(tours);
 };
 
 export const getTourById = async (req: Request, res: Response) => {

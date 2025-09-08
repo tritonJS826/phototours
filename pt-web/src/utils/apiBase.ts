@@ -8,8 +8,7 @@ function getEnvBase(): string {
 
 function normalizeBase(input: string): string {
   const raw = input.trim();
-  const fallback = "http://localhost:8000";
-  const base = raw === "" ? fallback : raw;
+  const base = raw;
 
   try {
     const u = new URL(base);
