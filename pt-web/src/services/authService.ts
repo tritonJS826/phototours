@@ -31,7 +31,7 @@ function pickErrorMessage(obj: unknown, fallback: string) {
 class AuthService {
 
   public async register(data: RegisterData): Promise<AuthResponse> {
-    const res = await fetch(buildApiUrl("/auth/register"), {
+    const res = await fetch(buildApiUrl("general/auth/register"), {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(data),
@@ -46,7 +46,7 @@ class AuthService {
   }
 
   public async login(data: LoginData): Promise<AuthResponse> {
-    const res = await fetch(buildApiUrl("/auth/login"), {
+    const res = await fetch(buildApiUrl("general/auth/login"), {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(data),
@@ -61,7 +61,7 @@ class AuthService {
   }
 
   public async changePassword(data: ChangePasswordData): Promise<{message: string}> {
-    const res = await fetch(buildApiUrl("/auth/change-password"), {
+    const res = await fetch(buildApiUrl("general/auth/change-password"), {
       method: "POST",
       headers: this.getAuthHeaders(),
       body: JSON.stringify(data),
@@ -76,7 +76,7 @@ class AuthService {
   }
 
   public async getProfile(): Promise<{user: User}> {
-    const res = await fetch(buildApiUrl("/auth/profile"), {
+    const res = await fetch(buildApiUrl("general/auth/profile"), {
       method: "GET",
       headers: this.getAuthHeaders(),
     });
