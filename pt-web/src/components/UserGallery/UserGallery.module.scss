@@ -1,0 +1,73 @@
+.wrap {
+  display: grid;
+  gap: 16px;
+}
+
+.drop {
+  position: relative;
+  border: 2px dashed #c6c6c6;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+.drop.over {
+  border-color: #6aa36a;
+  background: #f6fff6;
+}
+
+.drop input {
+  display: none;
+}
+
+.drop label {
+  display: block;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.error {
+  color: #d33;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  position: relative;
+  margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f8f8f8;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.tools {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.btn {
+  border: 0;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgb(0 0 0 / 65%);
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+}

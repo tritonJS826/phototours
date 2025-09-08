@@ -135,7 +135,6 @@ export function Header() {
               className={styles["header-logo-img"]}
               src={logo}
               alt="Photo Tour Logo"
-              className={styles.icon}
             />
           </Link>
         </div>

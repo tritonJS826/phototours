@@ -8,6 +8,69 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  CLIENT
+  GUIDE
+  ADMIN
+}
+
+enum DifficultyLevel {
+  BEGINNER
+  EXPERIENCED
+  PRO
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  WAITING_LIST
+}
+
+enum PaymentMethod {
+  STRIPE
+  PAYPAL
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+enum MaterialType {
+  PDF
+  VIDEO
+  ROUTE
+  TIPS
+}
+
+enum ProcessingStatus {
+  UPLOADED
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum NotificationType {
+  INFO
+  SUCCESS
+  WARNING
+  ERROR
+}
+
+enum NotificationCategory {
+  TOUR
+  PAYMENT
+  SYSTEM
+  PROMO
+}
+
+enum BankAccountType {
+  CHECKING
+  SAVINGS
+}
+
 model User {
   id              Int                  @id @default(autoincrement())
   firstName       String
@@ -20,6 +83,7 @@ model User {
   bio             String?
   createdAt       DateTime             @default(now())
   updatedAt       DateTime             @updatedAt
+
   guide           Guide?
   bookings        Booking[]
   reviews         Review[]
@@ -28,6 +92,8 @@ model User {
   notifications   Notification[]
   bankAccounts    BankAccount[]
   galleryImages   GalleryImage[]
+
+  userImages      UserImage[]
 }
 
 model Guide {
@@ -56,8 +122,10 @@ model Tour {
   availableMonths String[]        @default([])
   coverUrl        String?
   program         Json
-  guideId Int?
-  guide   Guide? @relation(fields: [guideId], references: [id])
+
+  guideId         Int?
+  guide           Guide?          @relation(fields: [guideId], references: [id])
+
   createdAt       DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
 
@@ -216,69 +284,6 @@ model BankAccount {
   updatedAt     DateTime        @updatedAt
 }
 
-enum Role {
-  CLIENT
-  GUIDE
-  ADMIN
-}
-
-enum DifficultyLevel {
-  BEGINNER
-  EXPERIENCED
-  PRO
-}
-
-enum BookingStatus {
-  PENDING
-  CONFIRMED
-  CANCELLED
-  WAITING_LIST
-}
-
-enum PaymentMethod {
-  STRIPE
-  PAYPAL
-}
-
-enum PaymentStatus {
-  PENDING
-  COMPLETED
-  FAILED
-}
-
-enum MaterialType {
-  PDF
-  VIDEO
-  ROUTE
-  TIPS
-}
-
-enum ProcessingStatus {
-  UPLOADED
-  PROCESSING
-  COMPLETED
-  FAILED
-}
-
-enum NotificationType {
-  INFO
-  SUCCESS
-  WARNING
-  ERROR
-}
-
-enum NotificationCategory {
-  TOUR
-  PAYMENT
-  SYSTEM
-  PROMO
-}
-
-enum BankAccountType {
-  CHECKING
-  SAVINGS
-}
-
 model Article {
   id          Int      @id @default(autoincrement())
   slug        String   @unique
@@ -305,4 +310,19 @@ model GalleryImage {
   height    Int
   format    String
   createdAt DateTime @default(now())
+}
+
+/* Личная галерея: хранение Cloudinary publicId и метаданных */
+model UserImage {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id])
+  publicId   String
+  bytes      Int
+  width      Int?
+  height     Int?
+  uploadedAt DateTime
+  createdAt  DateTime @default(now())
+
+  @@index([userId, uploadedAt])
 }
