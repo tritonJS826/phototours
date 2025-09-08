@@ -35,7 +35,7 @@ export const AdminTourEdit = () => {
   useEffect(() => {
     const fetchGuides = async () => {
       try {
-        const data = await fetchData<Guide[]>("/tours/guides");
+        const data = await fetchData<Guide[]>("general/tours/guides");
         setGuides(data);
       } catch (err: unknown) {
         setError(err instanceof Error ? err.message : "Error loading guides");

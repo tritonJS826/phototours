@@ -16,7 +16,7 @@ export function AdminUsersPage() {
   const [err, setErr] = useState<string>("");
 
   useEffect(() => {
-    fetchData<AdminUserRow[]>("/admin/users")
+    fetchData<AdminUserRow[]>("general/admin/users")
       .then(setRows)
       .catch((e: unknown) => setErr(e instanceof Error ? e.message : String(e)));
   }, []);
