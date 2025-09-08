@@ -2,9 +2,9 @@
 @use "../../styles/mixins" as mixin;
 
 .dashboardContainer {
-  max-width: 1200px;
+  max-width: vars.$container-width;
   margin: 0 auto;
-  padding: 32px;
+  padding: vars.$spacing-xxxl vars.$spacing-xl;
   min-height: 100vh;
   position: relative;
   z-index: 1;
@@ -13,9 +13,9 @@
 .dashboardContainer::before {
   content: "";
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0 0 auto;
   width: 100%;
+  height: 40vh;
   background-color: vars.$color-bg-light;
   background-size: cover;
   background-position: center;
@@ -24,323 +24,407 @@
 }
 
 .dashboardHeader {
-  text-align: center;
-  margin-bottom: 48px;
-
-  h1 {
-    font-size: 50px;
-    font-weight: vars.$font-weight-extra-bold;
-    color: vars.$color-dark;
-    margin-bottom: 8px;
-  }
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: vars.$gap-xl;
+  margin-bottom: vars.$spacing-xxxl;
+  text-align: left;
 }
 
+.dashboardHeader h1 {
+  font-size: vars.$font-size-4xl;
+  line-height: 1.15;
+  font-weight: vars.$font-weight-extra-bold;
+  color: vars.$color-dark;
+}
+
+.sectionActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: vars.$gap-md;
+}
+
+/* большие заметные CTA сверху */
+.profileCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: vars.$gap-md;
+  padding: vars.$padding-button;
+  min-height: 52px;
+  min-width: 220px;
+  font-size: vars.$font-size-lg;
+  font-weight: vars.$font-weight-bold;
+  border-radius: vars.$contact-btn-border-radius;
+  background: vars.$contact-btn-bg;
+  color: vars.$color-bg-white;
+  text-decoration: none;
+  transition:
+    background-color vars.$transition-normal,
+    box-shadow vars.$transition-normal,
+    transform vars.$transition-fast;
+  box-shadow: vars.$shadow-light;
+}
+
+.profileCta:hover {
+  background: vars.$contact-btn-hover-bg;
+  box-shadow: vars.$shadow-hover;
+  transform: translateY(-2px);
+}
+
+.myPhotosButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: vars.$gap-md;
+  padding: vars.$padding-button;
+  min-height: 52px;
+  min-width: 220px;
+  font-size: vars.$font-size-lg;
+  font-weight: vars.$font-weight-bold;
+  border-radius: vars.$contact-btn-border-radius;
+  background: vars.$contact-btn-bg;
+  color: vars.$color-bg-white;
+  text-decoration: none;
+  transition:
+    background-color vars.$transition-normal,
+    box-shadow vars.$transition-normal,
+    transform vars.$transition-fast;
+  box-shadow: vars.$shadow-light;
+}
+
+.myPhotosButton:hover {
+  background: vars.$contact-btn-hover-bg;
+  box-shadow: vars.$shadow-hover;
+  transform: translateY(-2px);
+}
+
+/* вспомогательные, чтобы все кнопки были одного размера */
+.iconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: vars.$gap-md;
+  min-height: 46px;
+  min-width: 160px;
+  font-size: vars.$font-size-md;
+}
+
+.icon16 {
+  width: vars.$icon-size-small;
+  height: vars.$icon-size-small;
+}
+
+.icon24 {
+  width: vars.$icon-md;
+  height: vars.$icon-md;
+}
+
+/* вертикальная колонка секций */
 .dashboardContent {
   display: grid;
-  gap: 32px;
+  grid-template-columns: 1fr;
+  gap: vars.$gap-xxxl;
+  align-items: start;
+  margin-bottom: vars.$spacing-xxxl;
+}
+
+.profileSection,
+.bankingSection,
+.bookingsSection,
+.quickActions {
+  background: vars.$color-bg-white;
+  border-radius: vars.$radius-medium;
+  padding: vars.$spacing-xxl;
+  border: 1px solid vars.$color-border-light;
+  box-shadow: vars.$shadow-light;
 }
 
 .sectionHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
-
-  h2 {
-    font-size: 24px;
-    font-weight: vars.$font-weight-bold;
-    color: vars.$color-dark;
-  }
-
-  .sectionActions {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-  }
+  margin-bottom: vars.$spacing-xl;
 }
 
-.actionButton {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  text-decoration: none;
-  border: 1px solid vars.$color-border;
-  border-radius: vars.$radius-small;
-  font-size: vars.$font-size-xs;
-  font-weight: vars.$font-weight-normal;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-    text-decoration: none;
-  }
-
-  .icon {
-    width: 16px;
-    height: 16px;
-  }
-}
-
-.profileSection,
-.bankingSection,
-.bookingsSection,
-.quickActions,
-.photosSection {
-  background: vars.$color-bg-white;
-  border-radius: vars.$radius-medium;
-  padding: 32px;
-  box-shadow: vars.$shadow-medium;
-  border: 1px solid vars.$color-border-light;
+.sectionHeader h2 {
+  font-size: vars.$font-size-2xl;
+  font-weight: vars.$font-weight-bold;
+  color: vars.$color-dark;
 }
 
 .profileInfo {
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 32px;
+  grid-template-columns: 160px 1fr;
+  gap: vars.$gap-xxxl;
   align-items: start;
+}
 
-  @media (width <= 768px) {
+@media (width <= 560px) {
+  .profileInfo {
     grid-template-columns: 1fr;
-    text-align: center;
   }
 }
 
-.avatarSection {
-  .avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid vars.$color-bg-white;
-    box-shadow: vars.$shadow-medium;
-  }
-
-  .avatarPlaceholder {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #1c4c8a, #3e7a3f);
-    color: vars.$color-bg-white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 40px;
-    font-weight: vars.$font-weight-extra-bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border: 4px solid vars.$color-bg-white;
-    box-shadow: vars.$shadow-medium;
-  }
+.avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid vars.$color-bg-white;
+  box-shadow: vars.$shadow-medium;
 }
 
 .userDetails {
   display: grid;
-  gap: 16px;
+  gap: vars.$gap-lg;
 }
 
 .detailRow {
   display: grid;
-  grid-template-columns: 150px 1fr;
+  grid-template-columns: 180px 1fr;
   align-items: center;
-  padding: 12px 0;
+  padding: vars.$spacing-md 0;
   border-bottom: 1px solid vars.$color-border-light;
+}
 
-  &:last-child {
-    border-bottom: none;
-  }
+.detailRow:last-child {
+  border-bottom: none;
+}
 
-  label {
-    font-weight: vars.$font-weight-bold;
-    color: vars.$color-dark;
-    font-size: vars.$font-size-xs;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
+.detailRow label {
+  font-size: vars.$font-size-sm;
+  font-weight: vars.$font-weight-bold;
+  color: vars.$color-dark;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
 
-  span {
-    font-size: vars.$font-size-sm;
-  }
-
-  @media (width <= 768px) {
-    grid-template-columns: 1fr;
-    text-align: left;
-    gap: 4px;
-  }
+.detailRow span {
+  font-size: vars.$font-size-md;
+  color: vars.$color-medium;
 }
 
 .bankAccountsList {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-height: 400px;
-  overflow-y: auto;
-  padding-right: 8px;
-
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: vars.$color-scroll-track;
-    border-radius: 4px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: vars.$color-scroll-thumb;
-    border-radius: 4px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: vars.$color-scroll-thumb-hover;
-  }
-}
-
-.closeButton {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: none;
-  border: none;
-  color: vars.$color-dark;
-  cursor: pointer;
-  padding: 4px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  z-index: 10;
-
-  &:hover {
-    background: vars.$color-danger-light;
-    color: vars.$color-danger;
-    transform: scale(1.1);
-  }
-
-  &:active {
-    transform: scale(0.9);
-  }
+  display: grid;
+  gap: vars.$gap-lg;
+  max-height: 420px;
+  overflow: auto;
+  padding-right: vars.$spacing-sm;
 }
 
 .bankAccountInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 24px;
+  position: relative;
+  display: grid;
+  gap: vars.$gap-md;
   background: vars.$color-bg-light;
-  border-radius: vars.$radius-small;
   border: 1px solid vars.$color-border-light;
+  border-radius: vars.$radius-small;
+  padding: vars.$spacing-xl;
 }
 
 .accountRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0;
+  padding: vars.$spacing-sm 0;
   border-bottom: 1px solid vars.$color-border-light;
+}
 
-  &:last-child {
-    border-bottom: none;
-  }
+.accountRow:last-child {
+  border-bottom: none;
+}
 
-  label {
-    font-weight: vars.$font-weight-bold;
-    color: vars.$color-dark;
-    font-size: vars.$font-size-xs;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
+.accountType {
+  background: vars.$badge-background;
+  color: vars.$badge-color;
+  padding: vars.$padding-badge;
+  border-radius: vars.$radius-medium;
+  font-size: vars.$font-size-xs;
+  font-weight: vars.$font-weight-bold;
+  text-transform: uppercase;
+}
 
-  span {
-    font-size: vars.$font-size-sm;
-    font-weight: vars.$font-weight-normal;
-  }
+.maskedNumber {
+  letter-spacing: 2px;
+  font-family: "Courier New", monospace;
+}
 
-  .accountType {
-    background: vars.$badge-background;
-    color: vars.$badge-color;
-    padding: 4px 12px;
-    border-radius: vars.$radius-medium;
-    font-size: vars.$font-size-xs;
-    font-weight: vars.$font-weight-bold;
-    text-transform: uppercase;
-  }
+.closeButton {
+  position: absolute;
+  top: vars.$spacing-md;
+  right: vars.$spacing-md;
+  background: transparent;
+  border: 0;
+  padding: vars.$spacing-sm;
+  border-radius: 50%;
+  cursor: pointer;
+  transition:
+    background vars.$transition-fast,
+    transform vars.$transition-fast;
+}
 
-  .maskedNumber {
-    font-family: "Courier New", monospace;
-    letter-spacing: 2px;
-  }
+.closeButton:hover {
+  background: rgb(0 0 0 / 6%);
+}
 
-  @media (width <= 768px) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
+.bookingsList {
+  display: grid;
+  gap: vars.$gap-lg;
 }
 
 .bookingCard {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: vars.$gap-lg;
+  padding: vars.$spacing-xl;
+  border: 1px solid vars.$color-border;
+  border-radius: vars.$radius-small;
+  transition:
+    transform vars.$transition-fast,
+    box-shadow vars.$transition-normal;
+}
+
+.bookingCard:hover {
+  transform: translateY(-2px);
+  box-shadow: vars.$shadow-light;
+}
+
+.bookingInfo h3 {
+  font-size: vars.$font-size-xl;
+  margin-bottom: vars.$spacing-sm;
+  color: vars.$color-dark;
+}
+
+.bookingDate,
+.bookingPrice {
+  font-size: vars.$font-size-md;
+  color: vars.$color-medium;
+}
+
+.bookingStatus {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 24px;
+}
+
+.statusDropdown {
+  display: flex;
+}
+
+.statusButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: vars.$gap-sm;
+  padding: 12px 18px;
   border-radius: vars.$radius-small;
   border: 1px solid vars.$color-border;
-  transition: all 0.3s ease;
-  position: relative;
+  background: vars.$color-bg-white;
+  cursor: pointer;
+  font-size: vars.$font-size-md;
+  font-weight: vars.$font-weight-bold;
+  line-height: 1;
+  min-height: 46px;
+  min-width: 160px;
+  white-space: nowrap;
+  transition:
+    transform vars.$transition-fast,
+    box-shadow vars.$transition-normal,
+    background-color vars.$transition-normal,
+    color vars.$transition-normal,
+    border-color vars.$transition-normal;
+}
 
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: vars.$shadow-medium;
-  }
+.statusButton:hover {
+  transform: translateY(-2px);
+  box-shadow: vars.$shadow-light;
+}
 
-  @media (width <= 768px) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
+.statusButton.confirmed {
+  border-color: vars.$color-success;
+  color: vars.$color-success;
+  background: vars.$color-bg-success-light;
+}
+
+.statusButton.pending {
+  border-color: vars.$color-primary;
+  color: vars.$color-primary;
+  background: vars.$btn-primary-hover-bg;
+}
+
+.statusButton.cancelled {
+  border-color: vars.$color-danger;
+  color: vars.$color-danger;
+  background: vars.$color-danger-light;
+}
+
+.noBookings {
+  display: grid;
+  gap: vars.$gap-md;
+  padding: vars.$spacing-xl;
+  border: 1px dashed vars.$color-border;
+  border-radius: vars.$radius-small;
+  text-align: center;
+}
+
+.browseButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: vars.$padding-button;
+  border-radius: vars.$contact-btn-border-radius;
+  background: vars.$contact-btn-bg;
+  color: vars.$color-bg-white;
+  font-weight: vars.$font-weight-bold;
+  text-decoration: none;
+  transition:
+    background-color vars.$transition-normal,
+    box-shadow vars.$transition-normal,
+    transform vars.$transition-fast;
+  min-height: 46px;
+  min-width: 200px;
+}
+
+.browseButton:hover {
+  background: vars.$contact-btn-hover-bg;
+  box-shadow: vars.$shadow-hover;
+  transform: translateY(-2px);
+}
+
+/* нижние две кнопки — в одну линию слева и справа */
+.quickActions .actionsGrid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: vars.$gap-xxl;
 }
 
 .quickAction {
-  display: flex;
-  flex-direction: column;
+  display: inline-flex;
   align-items: center;
-  gap: 16px;
-  padding: 32px;
-  border-radius: vars.$radius-small;
+  justify-content: center;
+  gap: vars.$gap-md;
+  padding: vars.$padding-button;
+  border: vars.$btn-border;
+  border-radius: vars.$contact-btn-border-radius;
+  background: vars.$btn-primary-bg;
+  color: vars.$btn-primary-color;
+  font-size: vars.$font-size-md;
+  font-weight: vars.$font-weight-bold;
   text-decoration: none;
-  transition: all 0.3s ease;
-  border: 1px solid vars.$color-border;
-
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: vars.$shadow-medium;
-    text-decoration: none;
-  }
-
-  .icon {
-    width: 32px;
-    height: 32px;
-  }
-
-  span {
-    font-weight: vars.$font-weight-bold;
-    font-size: vars.$font-size-sm;
-  }
+  transition:
+    background-color vars.$transition-normal,
+    box-shadow vars.$transition-normal,
+    transform vars.$transition-fast;
+  min-height: 46px;
+  min-width: 220px;
+  flex: 0 0 auto;
 }
 
-.galleryItem {
-  border: 1px solid vars.$color-border;
-  border-radius: vars.$radius-small;
-  overflow: hidden;
-  background: vars.$color-bg-light;
-}
-
-.galleryImg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+.quickAction:hover {
+  background: vars.$btn-primary-hover-bg;
+  box-shadow: vars.$shadow-light;
+  transform: translateY(-2px);
 }

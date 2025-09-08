@@ -63,6 +63,19 @@ export class UserService {
     return res.json();
   }
 
+  public static async getMyProfile(): Promise<PublicUserProfile> {
+    const res = await fetch(buildApiUrl("/me"), {
+      headers: {"Content-Type": "application/json"},
+      credentials: "include",
+    });
+    if (!res.ok) {
+      const msg = await res.text().catch(() => "");
+      throw new Error(msg || "Failed to fetch my profile");
+    }
+
+    return res.json();
+  }
+
 }
 
 export const userService = UserService;

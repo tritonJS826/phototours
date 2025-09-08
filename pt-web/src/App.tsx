@@ -16,19 +16,19 @@ import {ArticlesPage} from "src/pages/exploreArticles/ArticlesPage/ArticlesPage"
 import {HomePage} from "src/pages/homePage/HomePage";
 import {NotFound} from "src/pages/notFound/notFound";
 import {Notifications} from "src/pages/notifications/Notifications";
+import {MyPhotosPage} from "src/pages/photos/MyPhotosPage";
 import {EditProfile} from "src/pages/profile/EditProfile";
 import {Profile} from "src/pages/profile/Profile";
-import {PublicProfile} from "src/pages/profile/PublicProfile";
 import {TourDetailsPage} from "src/pages/tourDetailsPage/TourDetailsPage";
 import {ToursPage} from "src/pages/toursPage/ToursPage";
 import {PATHS} from "src/routes/routes";
 
 export function App() {
   return (
-    <div className='app'>
+    <div className="app">
       <Header />
       <ScrollToTop />
-      <main className='main-content'>
+      <main className="main-content">
         <Routes>
           <Route
             path={PATHS.HOME}
@@ -58,7 +58,6 @@ export function App() {
             path={PATHS.CONTACT}
             element={<ContactUs />}
           />
-
           <Route
             path={PATHS.ARTICLES}
             element={<ArticlesPage />}
@@ -67,7 +66,6 @@ export function App() {
             path={PATHS.ARTICLES_SLUG}
             element={<ArticlePage />}
           />
-
           <Route
             path={PATHS.PROFILE}
             element={
@@ -77,16 +75,16 @@ export function App() {
             }
           />
           <Route
+            path={PATHS.PROFILE_ID}
+            element={<Profile />}
+          />
+          <Route
             path={PATHS.PROFILE_EDIT}
             element={
               <ProtectedRoute>
                 <EditProfile />
               </ProtectedRoute>
             }
-          />
-          <Route
-            path={PATHS.PROFILE_ID}
-            element={<PublicProfile />}
           />
           <Route
             path={PATHS.DASHBOARD}
@@ -115,6 +113,14 @@ export function App() {
           <Route
             path={PATHS.ADMIN_TOUR_CONTINUE}
             element={<AdminTourContinueForm />}
+          />
+          <Route
+            path={PATHS.MY_PHOTOS}
+            element={
+              <ProtectedRoute>
+                <MyPhotosPage />
+              </ProtectedRoute>
+            }
           />
           <Route
             path={PATHS.NOT_FOUND}

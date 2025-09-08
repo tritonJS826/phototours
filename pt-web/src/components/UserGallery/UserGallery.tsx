@@ -195,7 +195,8 @@ export function UserGallery({userId, canManage}: Props) {
 
       <div className={styles.grid}>
         {sorted.map((img) => {
-          const hasDims = typeof img.width === "number" && typeof img.height === "number" && (img.width as number) > ZERO;
+          const hasDims =
+            typeof img.width === "number" && typeof img.height === "number" && (img.width as number) > ZERO;
           const scaledH = hasDims
             ? Math.max(ONE, Math.round(((img.height as number) / Math.max(ONE, img.width as number)) * THUMB_W))
             : Math.round((THREE / FOUR) * THUMB_W);
