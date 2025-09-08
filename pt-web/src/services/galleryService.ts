@@ -61,7 +61,7 @@ export function downloadUrl(publicIdOrUrl: string): string {
 }
 
 export async function getUploadSignature() {
-  return fetchData<UploadSignature>("/gallery/signature", {method: "GET"});
+  return fetchData<UploadSignature>("general/gallery/signature", {method: "GET"});
 }
 
 export async function uploadToCloudinary(args: {file: File; userId: number}) {
@@ -92,7 +92,7 @@ export async function confirmUpload(payload: {
   height: number;
   format: string;
 }) {
-  return fetchData<GalleryImage>("/gallery/confirm", {
+  return fetchData<GalleryImage>("general/gallery/confirm", {
     method: "POST",
     headers: {"Content-Type": "application/json", "x-user-id": String(payload.userId)},
     body: JSON.stringify({
@@ -108,7 +108,7 @@ export async function confirmUpload(payload: {
 }
 
 export async function getMyGallery(userId: number) {
-  const rows = await fetchData<Array<GalleryImage>>("/gallery/my", {
+  const rows = await fetchData<Array<GalleryImage>>("general/gallery/my", {
     method: "GET",
     headers: {"x-user-id": String(userId)},
   });
@@ -126,7 +126,7 @@ export async function getMyGallery(userId: number) {
 }
 
 export async function getPublicGallery(userId: number) {
-  const rows = await fetchData<Array<GalleryImage>>(`/gallery/public/${userId}`);
+  const rows = await fetchData<Array<GalleryImage>>(`general/gallery/public/${userId}`);
 
   return rows.map((r) => ({
     id: r.id,
@@ -141,7 +141,7 @@ export async function getPublicGallery(userId: number) {
 }
 
 export async function deleteMyImage(publicId: string, userId: number) {
-  const url = `/gallery/my?publicId=${encodeURIComponent(publicId)}`;
+  const url = `general/gallery/my?publicId=${encodeURIComponent(publicId)}`;
 
   return fetchData<{deleted: boolean}>(url, {
     method: "DELETE",
