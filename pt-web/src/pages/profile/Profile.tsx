@@ -1,6 +1,8 @@
 import React, {useEffect, useRef, useState} from "react";
-import {useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
+import {Button} from "src/components/Button/Button";
 import {useAuth} from "src/hooks/useAuth";
+import {PATHS} from "src/routes/routes";
 import {getPublicGallery, previewUrl} from "src/services/galleryService";
 import {PublicUserProfile, userService} from "src/services/userService";
 import {getProfileImageUrl} from "src/utils/profileImage";
@@ -11,8 +13,10 @@ type ProfileProps = { userId?: number };
 const ZERO = 0;
 const ONE = 1;
 const PHOTO_W = 2000;
+const HISTORY_BACK_STEP = 1;
 
 export function Profile({userId}: ProfileProps) {
+  const navigate = useNavigate();
   const params = useParams<{ id: string }>();
   const {user: me} = useAuth();
 
@@ -23,31 +27,26 @@ export function Profile({userId}: ProfileProps) {
   const [active, setActive] = useState<number | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
 
+  const fromProp = typeof userId === "number" ? userId : Number.NaN;
+  const fromParams = typeof params.id === "string" ? Number.parseInt(params.id, 10) : Number.NaN;
+  const fromAuth = typeof me?.id === "number" ? me.id : Number.NaN;
+  const viewedId = Number.isFinite(fromProp) ? fromProp : Number.isFinite(fromParams) ? fromParams : fromAuth;
+  const isOwner = Number.isFinite(viewedId) && typeof me?.id === "number" && me.id === viewedId;
+
   useEffect(() => {
     const run = async () => {
-      const fromProp = Number.isFinite(userId as number) ? (userId as number) : NaN;
-      const fromParams = typeof params.id === "string" ? Number.parseInt(params.id, 10) : NaN;
-      const fromAuth = typeof me?.id === "number" ? (me.id as number) : NaN;
-
-      const id = Number.isFinite(fromProp)
-        ? fromProp
-        : Number.isFinite(fromParams)
-          ? fromParams
-          : fromAuth;
-
-      if (!Number.isFinite(id)) {
+      if (!Number.isFinite(viewedId)) {
         setErr("User ID is required");
         setLoading(false);
 
         return;
       }
-
       try {
         setLoading(true);
         setErr(null);
-        const profile = await userService.getPublicProfile(id);
+        const profile = await userService.getPublicProfile(viewedId);
         setUser(profile);
-        const gallery = await getPublicGallery(id);
+        const gallery = await getPublicGallery(viewedId);
         setUrls(gallery.map(g => previewUrl(g.url, PHOTO_W)));
       } catch (e) {
         setErr(e instanceof Error ? e.message : "Failed to fetch user profile");
@@ -56,7 +55,7 @@ export function Profile({userId}: ProfileProps) {
       }
     };
     run();
-  }, [userId, params.id, me?.id]);
+  }, [viewedId]);
 
   useEffect(() => {
     if (active !== null && stageRef.current) {
@@ -118,6 +117,26 @@ export function Profile({userId}: ProfileProps) {
 
   return (
     <div className={styles.page}>
+      <div className={styles.topBar}>
+        <Button
+          variant="outline"
+          onClick={() => navigate(-HISTORY_BACK_STEP)}
+        >
+          ← Back
+        </Button>
+        {isOwner && (
+          <div className={styles.topActions}>
+            <Button
+              as={Link}
+              to={PATHS.MY_PHOTOS}
+              className={styles.primaryCta}
+            >
+              Manage Photos
+            </Button>
+          </div>
+        )}
+      </div>
+
       <section className={styles.hero}>
         <img
           loading="lazy"

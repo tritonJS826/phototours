@@ -1,0 +1,86 @@
+@use "src/styles/variables" as vars;
+
+.wrap {
+  max-width: vars.$container-width;
+  margin: 0 auto;
+  padding: vars.$spacing-xxl;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: vars.$spacing-xl;
+}
+
+.title {
+  font-size: vars.$font-size-3xl;
+  font-weight: vars.$font-weight-extra-bold;
+}
+
+.tools {
+  display: flex;
+  gap: vars.$gap-md;
+}
+
+.search {
+  min-width: 320px;
+  padding: vars.$padding-input;
+  border: 1px solid vars.$color-border-light;
+  border-radius: vars.$radius-medium;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: vars.$gap-xxl;
+}
+
+@media (width <= 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: vars.$color-bg-white;
+  border: 1px solid vars.$color-border-light;
+  border-radius: vars.$radius-medium;
+  box-shadow: vars.$shadow-light;
+  padding: vars.$spacing-xl;
+  display: grid;
+  gap: vars.$gap-md;
+}
+
+.row {
+  display: grid;
+  gap: vars.$gap-sm;
+}
+
+.name {
+  font-weight: vars.$font-weight-bold;
+  font-size: vars.$font-size-xl;
+}
+
+.meta {
+  color: vars.$color-medium;
+}
+
+.actions {
+  display: flex;
+  gap: vars.$gap-md;
+  justify-content: flex-end;
+}
+
+.state {
+  text-align: center;
+  color: vars.$color-medium;
+}
+
+.error {
+  color: vars.$color-error;
+  background: vars.$color-error-bg;
+  border: 1px solid vars.$color-error-border;
+  border-radius: vars.$radius-medium;
+  padding: vars.$spacing-xl;
+}

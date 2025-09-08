@@ -1,3 +1,4 @@
+// Src/App.tsx
 import {Route, Routes} from "react-router-dom";
 import {Footer} from "src/components/Footer/Footer";
 import {Header} from "src/components/Header/Header";
@@ -8,6 +9,8 @@ import {AdminCreateTourForm} from "src/pages/adminCreateTourForm/AdminCreateTour
 import {AdminPage} from "src/pages/adminPage/AdminPage";
 import {AdminTourContinueForm} from "src/pages/adminTourContinueForm/AdminTourContinueForm";
 import {AdminTourEdit} from "src/pages/adminTourEditForm/AdminTourEditForm";
+import {AdminUserGallery} from "src/pages/adminUserGallery/AdminUserGallery";
+import {AdminUsersPage} from "src/pages/adminUsers/AdminUsersPage";
 import {Cart} from "src/pages/cart/Cart";
 import {ContactUs} from "src/pages/contactUs/ContactUs";
 import {Dashboard} from "src/pages/dashboard/Dashboard";
@@ -38,10 +41,56 @@ export function App() {
             path={PATHS.ABOUT}
             element={<AboutUs />}
           />
+
           <Route
             path={PATHS.ADMIN}
-            element={<AdminPage />}
+            element={
+              <ProtectedRoute>
+                <AdminPage />
+              </ProtectedRoute>
+            }
           />
+          <Route
+            path={PATHS.ADMIN_USERS}
+            element={
+              <ProtectedRoute>
+                <AdminUsersPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={PATHS.ADMIN_USER_GALLERY}
+            element={
+              <ProtectedRoute>
+                <AdminUserGallery />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={PATHS.ADMIN_CREATE_TOUR}
+            element={
+              <ProtectedRoute>
+                <AdminCreateTourForm />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={PATHS.ADMIN_EDIT_TOUR}
+            element={
+              <ProtectedRoute>
+                <AdminTourEdit />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={PATHS.ADMIN_TOUR_CONTINUE}
+            element={
+              <ProtectedRoute>
+                <AdminTourContinueForm />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path={PATHS.TOURS}
             element={<ToursPage />}
@@ -66,6 +115,7 @@ export function App() {
             path={PATHS.ARTICLES_SLUG}
             element={<ArticlePage />}
           />
+
           <Route
             path={PATHS.PROFILE}
             element={
@@ -75,10 +125,6 @@ export function App() {
             }
           />
           <Route
-            path={PATHS.PROFILE_ID}
-            element={<Profile />}
-          />
-          <Route
             path={PATHS.PROFILE_EDIT}
             element={
               <ProtectedRoute>
@@ -86,6 +132,7 @@ export function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
             path={PATHS.DASHBOARD}
             element={
@@ -102,18 +149,7 @@ export function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path={PATHS.ADMIN_CREATE_TOUR}
-            element={<AdminCreateTourForm />}
-          />
-          <Route
-            path={PATHS.ADMIN_EDIT_TOUR}
-            element={<AdminTourEdit />}
-          />
-          <Route
-            path={PATHS.ADMIN_TOUR_CONTINUE}
-            element={<AdminTourContinueForm />}
-          />
+
           <Route
             path={PATHS.MY_PHOTOS}
             element={
@@ -122,6 +158,7 @@ export function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
             path={PATHS.NOT_FOUND}
             element={<NotFound />}

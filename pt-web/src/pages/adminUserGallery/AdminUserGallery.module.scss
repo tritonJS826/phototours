@@ -1,0 +1,119 @@
+@use "src/styles/variables" as vars;
+
+.wrap {
+  max-width: vars.$container-width;
+  margin: 0 auto;
+  padding: vars.$spacing-xxl;
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: vars.$gap-xl;
+  align-items: center;
+  margin-bottom: vars.$spacing-xxl;
+}
+
+.title {
+  font-size: vars.$font-size-2xl;
+  font-weight: vars.$font-weight-bold;
+}
+
+.actions {
+  display: flex;
+  gap: vars.$gap-md;
+  align-items: center;
+}
+
+.uploader {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: vars.$padding-button;
+  background: vars.$btn-primary-bg;
+  color: vars.$btn-primary-color;
+  border: vars.$btn-border;
+  border-radius: vars.$contact-btn-border-radius;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: vars.$color-primary;
+}
+
+.drop {
+  margin-bottom: vars.$spacing-xl;
+  border: 2px dashed vars.$color-border;
+  border-radius: vars.$radius-medium;
+  padding: vars.$spacing-xxl;
+  text-align: center;
+  color: vars.$color-medium;
+}
+
+.info {
+  margin-bottom: vars.$spacing-md;
+  color: vars.$color-success;
+}
+
+.error {
+  margin-bottom: vars.$spacing-md;
+  color: vars.$color-error;
+}
+
+.grid {
+  display: grid;
+  gap: vars.$gap-xl;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (width <= 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width <= 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  border: 1px solid vars.$color-border-light;
+  border-radius: vars.$radius-medium;
+  overflow: hidden;
+  background: vars.$color-bg-white;
+  box-shadow: vars.$shadow-light;
+}
+
+.thumb {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.tools {
+  display: flex;
+  justify-content: space-between;
+  gap: vars.$gap-md;
+  padding: vars.$spacing-md;
+}
+
+.btn {
+  padding: vars.$padding-btn;
+  border: vars.$btn-border;
+  border-radius: vars.$radius-small;
+  background: vars.$btn-primary-bg;
+  color: vars.$btn-primary-color;
+  text-decoration: none;
+}

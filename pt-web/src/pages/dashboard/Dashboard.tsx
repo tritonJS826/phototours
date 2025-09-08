@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import {Edit, Eye, MessageSquare, Plus, X} from "lucide-react";
+import {Edit, MessageSquare, Plus, X} from "lucide-react";
 import {BankAccountData, BankAccountModal} from "src/components/BankAccountModal/BankAccountModal";
 import {BookingData, BookTourModal} from "src/components/BookTourModal/BookTourModal";
 import {Button} from "src/components/Button/Button";
@@ -155,20 +155,18 @@ export function Dashboard() {
 
           <Button
             as={Link}
-            to={PATHS.PROFILE}
+            to={PATHS.MY_PHOTOS}
             size="sm"
-            variant="outline"
-            className={styles.iconBtn}
+            className={styles.myPhotosButton}
           >
-            <Eye className={styles.icon16} />
-            View Profile
+            Manage Photos
           </Button>
 
           <Button
             as={Link}
-            to={PATHS.MY_PHOTOS}
+            to={PATHS.PROFILE}
             size="sm"
-            className={styles.myPhotosCta}
+            className={styles.myPhotosButton}
           >
             My Photos
           </Button>

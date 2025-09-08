@@ -6,6 +6,46 @@
   padding: vars.$spacing-xxl;
 }
 
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: vars.$gap-xl;
+  margin-bottom: vars.$spacing-xl;
+  background: vars.$color-bg-white;
+  border: 1px solid vars.$color-border-light;
+  border-radius: vars.$radius-medium;
+  box-shadow: vars.$shadow-light;
+  padding: vars.$spacing-lg vars.$spacing-xl;
+}
+
+.topActions {
+  display: flex;
+  gap: vars.$gap-md;
+}
+
+.primaryCta {
+  border: vars.$btn-border;
+  background: vars.$btn-primary-bg;
+  color: vars.$btn-primary-color;
+  border-radius: vars.$contact-btn-border-radius;
+  padding: vars.$padding-btn;
+  font-size: vars.$font-size-md;
+  font-weight: vars.$font-weight-bold;
+  min-height: 48px;
+  min-width: 200px;
+  transition:
+    background-color vars.$transition-normal,
+    box-shadow vars.$transition-normal,
+    transform vars.$transition-fast;
+}
+
+.primaryCta:hover {
+  background: vars.$btn-primary-hover-bg;
+  box-shadow: vars.$shadow-hover;
+  transform: translateY(-2px);
+}
+
 .hero {
   display: grid;
   grid-template-columns: 140px 1fr;
