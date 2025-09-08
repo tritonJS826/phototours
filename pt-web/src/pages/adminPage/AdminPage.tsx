@@ -29,7 +29,7 @@ export function AdminPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchData<Tour[]>("/tours")
+    fetchData<Tour[]>("general/tours")
       .then((data) => setTours(data))
       .catch((err) => setError("Failed to load tours: " + err.message));
   }, []);
@@ -39,7 +39,7 @@ export function AdminPage() {
       return;
     }
     try {
-      await fetchData<void>(`/tours/${id}`, {method: "DELETE"});
+      await fetchData<void>(`general/tours/${id}`, {method: "DELETE"});
       setTours((prev) => prev.filter((t) => t.id !== id));
       setSelectedTour(null);
     } catch (err: unknown) {
@@ -47,7 +47,7 @@ export function AdminPage() {
     }
   };
 
-  const filteredTours = tours.filter((tour) => {
+  const filteredTours = tours?.filter((tour) => {
     const titleMatch = tour.title?.toLowerCase().includes(searchTerm.toLowerCase());
     const guideName = tour.guide?.user
       ? `${tour.guide.user.firstName} ${tour.guide.user.lastName}`.toLowerCase()
