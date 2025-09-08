@@ -35,3 +35,80 @@
   margin-bottom: 40px;
   color: vars.$header-footer-color;
 }
+
+.button {
+  @include mixin.flex-center;
+
+  gap: vars.$gap-md;
+  padding: vars.$padding-button;
+  border-radius: vars.$contact-btn-border-radius;
+  font-size: vars.$btn-font-size;
+  font-weight: vars.$font-weight-bold;
+  line-height: 1;
+  white-space: nowrap;
+  user-select: none;
+  text-decoration: none;
+  transition:
+    background-color vars.$transition-normal,
+    color vars.$transition-normal,
+    border-color vars.$transition-normal,
+    transform vars.$transition-fast,
+    box-shadow vars.$transition-normal;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px vars.$contact-btn-bg-transparent-30;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.block {
+  width: 100%;
+}
+
+.md {
+  padding: vars.$padding-button;
+}
+
+.sm {
+  padding: 10px 18px;
+  font-size: vars.$font-size-sm;
+}
+
+.primary {
+  background-color: vars.$contact-btn-bg;
+  color: vars.$color-bg-white;
+  border: none;
+  box-shadow: vars.$shadow-light;
+
+  &:hover {
+    background-color: vars.$contact-btn-hover-bg;
+    box-shadow: vars.$shadow-hover;
+  }
+
+  &.disabled,
+  &:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+.outline {
+  background-color: transparent;
+  color: vars.$header-footer-color;
+  border: vars.$btn-border;
+  border-radius: vars.$contact-btn-border-radius;
+
+  &:hover {
+    background-color: vars.$btn-primary-hover-bg;
+  }
+
+  &.disabled,
+  &:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}

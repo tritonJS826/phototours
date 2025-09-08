@@ -1,4 +1,4 @@
-import {Button} from "src/components/Button/Button";
+import {Link} from "react-router-dom";
 import styles from "src/pages/notFound/notFound.module.scss";
 
 export function NotFound() {
@@ -15,9 +15,13 @@ export function NotFound() {
           <p className={styles.description}>
             This page wandered off somewhere...
           </p>
-          <Button href="/">
+
+          <Link
+            to="/"
+            className={`${styles.button} ${styles.primary} ${styles.md}`}
+          >
             Home Page
-          </Button>
+          </Link>
         </div>
       </div>
     </div>
