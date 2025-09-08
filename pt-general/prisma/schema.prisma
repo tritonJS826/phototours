@@ -312,7 +312,6 @@ model GalleryImage {
   createdAt DateTime @default(now())
 }
 
-/* Личная галерея: хранение Cloudinary publicId и метаданных */
 model UserImage {
   id         Int      @id @default(autoincrement())
   userId     Int
