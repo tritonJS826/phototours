@@ -3,6 +3,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {Edit, Eye, MessageSquare, Plus, X} from "lucide-react";
 import {BankAccountData, BankAccountModal} from "src/components/BankAccountModal/BankAccountModal";
 import {BookingData, BookTourModal} from "src/components/BookTourModal/BookTourModal";
+import {UserGallery} from "src/components/UserGallery/UserGallery";
 import {useNotifications} from "src/contexts/NotificationContext";
 import {useAuth} from "src/hooks/useAuth";
 import {PublicProfile} from "src/pages/profile/PublicProfile";
@@ -174,7 +175,6 @@ export function Dashboard() {
                   Edit
                 </span>
               </Link>
-
               <button
                 type="button"
                 className={styles.actionButton}
@@ -393,10 +393,10 @@ export function Dashboard() {
                         <button
                           className={`${styles.statusButton} ${styles[booking.status.toLowerCase()]}`}
                           onClick={() => {
-                            const statusOptions = ["Confirmed", "Pending", "Cancelled"];
-                            const currentIndex = statusOptions.indexOf(booking.status);
-                            const nextIndex = (currentIndex + STATUS_CYCLE_INCREMENT) % STATUS_CYCLE_MODULO;
-                            const nextStatus = statusOptions[nextIndex] as "Confirmed" | "Pending" | "Cancelled";
+                            const options = ["Confirmed", "Pending", "Cancelled"];
+                            const idx = options.indexOf(booking.status);
+                            const next = (idx + STATUS_CYCLE_INCREMENT) % STATUS_CYCLE_MODULO;
+                            const nextStatus = options[next] as "Confirmed" | "Pending" | "Cancelled";
                             handleStatusChange(booking.id, nextStatus);
                           }}
                         >
@@ -421,6 +421,18 @@ export function Dashboard() {
                 </Link>
               </div>
             )}
+        </div>
+
+        <div className={styles.gallerySection}>
+          <div className={styles.sectionHeader}>
+            <h2>
+              My Tour Photos
+            </h2>
+          </div>
+          <UserGallery
+            userId={user.id}
+            canManage
+          />
         </div>
 
         <div className={styles.quickActions}>

@@ -1,155 +1,104 @@
-import {prisma} from 'src/db/prisma';
-import {AuthRequest} from 'src/middlewares/auth';
-import {CloudinaryUploadResult, destroy, signedDownloadUrl, uploadStream} from 'src/utils/cloudinary';
-import {Response} from 'express';
+import {
+  getSignaturePayload,
+  listMyImages,
+  listPublicImages,
+  removeMyImage,
+  saveImageMeta,
+} from 'src/services/galleryService';
+import {Request, Response} from 'express';
 
-const HTTP_OK = 200;
-const HTTP_CREATED = 201;
-const HTTP_BAD = 400;
-const HTTP_FORBIDDEN = 403;
-const HTTP_NOT_FOUND = 404;
-const HTTP_SERVER = 500;
+const CODE_200 = 200;
+const CODE_201 = 201;
+const CODE_400 = 400;
+const ZERO = 0;
+const SEC = 1000;
 
-const MAX_FILES = 10;
-const FOLDER_USER = 'phototours/users';
-const FOLDER_ADMIN = 'phototours/admin';
-
-function isAdmin(role: string | undefined): boolean {
-  return role === 'ADMIN';
+export function getUploadSignature(_req: Request, res: Response) {
+  const payload = getSignaturePayload();
+  res.status(CODE_200).json(payload);
 }
 
-export async function listMy(req: AuthRequest, res: Response) {
+export async function confirmUpload(req: Request, res: Response) {
   try {
-    const userId = Number(req.user?.userId);
-    const rows = await prisma.galleryImage.findMany({
-      where: {userId},
-      orderBy: {createdAt: 'desc'},
+    const headerUserId = req.header('x-user-id');
+    const bodyUserId = req.body?.userId;
+    const userId = Number(typeof headerUserId === 'string' ? headerUserId : bodyUserId);
+
+    const publicId = req.body?.publicId as string | undefined;
+    const bytes = Number(req.body?.bytes);
+    const width = Number(req.body?.width);
+    const height = Number(req.body?.height);
+    const format = typeof req.body?.format === 'string' ? (req.body.format as string) : undefined;
+    const uploadedAtRaw = Number(req.body?.uploadedAt);
+    const uploadedAt = Number.isInteger(uploadedAtRaw) && uploadedAtRaw > ZERO
+      ? uploadedAtRaw
+      : Math.floor(Date.now() / SEC);
+
+    const hasUser = Number.isInteger(userId) && userId > ZERO;
+    const hasId = typeof publicId === 'string' && publicId.length > ZERO;
+    const hasBytes = Number.isInteger(bytes) && bytes > ZERO;
+
+    if (!(hasUser && hasId && hasBytes)) {
+      res.status(CODE_400).json({error: 'Invalid payload'});
+
+      return;
+    }
+
+    const secureUrl = typeof req.body?.secureUrl === 'string' ? req.body.secureUrl : undefined;
+
+    const item = await saveImageMeta({
+      userId,
+      publicId,
+      bytes,
+      width: Number.isFinite(width) ? width : undefined,
+      height: Number.isFinite(height) ? height : undefined,
+      format,
+      uploadedAt,
+      secureUrl,
     });
 
-    return res.status(HTTP_OK).json(rows);
-  } catch {
-    return res.status(HTTP_SERVER).json({error: 'Failed'});
+    res.status(CODE_201).json(item);
+  } catch (e) {
+    res.status(CODE_400).json({error: e instanceof Error ? e.message : String(e)});
   }
 }
 
-export async function listAll(req: AuthRequest, res: Response) {
-  try {
-    if (!isAdmin(req.user?.role)) {
-      return res.status(HTTP_FORBIDDEN).json({error: 'Forbidden'});
-    }
+export async function getMyGallery(req: Request, res: Response) {
+  const headerUserId = req.header('x-user-id');
+  const userId = Number(typeof headerUserId === 'string' ? headerUserId : req.query.userId);
+  const ok = Number.isInteger(userId) && userId > ZERO;
+  if (!ok) {
+    res.status(CODE_400).json({error: 'Invalid user id'});
 
-    const rows = await prisma.galleryImage.findMany({orderBy: {createdAt: 'desc'}});
-
-    return res.status(HTTP_OK).json(rows);
-  } catch {
-    return res.status(HTTP_SERVER).json({error: 'Failed'});
+    return;
   }
+  const rows = await listMyImages(userId);
+  res.status(CODE_200).json(rows);
 }
 
-export async function removeMine(req: AuthRequest, res: Response) {
-  try {
-    const id = Number(req.params.id);
-    const userId = Number(req.user?.userId);
+export async function getPublicGallery(req: Request, res: Response) {
+  const idRaw = req.params.userId;
+  const userId = Number(idRaw);
+  const ok = Number.isInteger(userId) && userId > ZERO;
+  if (!ok) {
+    res.status(CODE_400).json({error: 'Invalid user id'});
 
-    const row = await prisma.galleryImage.findFirst({where: {id, userId}});
-    if (!row) {
-      return res.status(HTTP_NOT_FOUND).json({error: 'Not found'});
-    }
-
-    await destroy(row.publicId);
-    await prisma.galleryImage.delete({where: {id}});
-
-    return res.status(HTTP_OK).json({ok: true});
-  } catch {
-    return res.status(HTTP_SERVER).json({error: 'Failed'});
+    return;
   }
+  const rows = await listPublicImages(userId);
+  res.status(CODE_200).json(rows);
 }
 
-export async function removeAny(req: AuthRequest, res: Response) {
-  try {
-    if (!isAdmin(req.user?.role)) {
-      return res.status(HTTP_FORBIDDEN).json({error: 'Forbidden'});
-    }
+export async function deleteMyImage(req: Request, res: Response) {
+  const headerUserId = req.header('x-user-id');
+  const userId = Number(typeof headerUserId === 'string' ? headerUserId : req.query.userId);
+  const publicId = String(req.query.publicId ?? '');
+  const ok = Number.isInteger(userId) && userId > ZERO && publicId.length > ZERO;
+  if (!ok) {
+    res.status(CODE_400).json({error: 'Invalid params'});
 
-    const id = Number(req.params.id);
-    const row = await prisma.galleryImage.findUnique({where: {id}});
-    if (!row) {
-      return res.status(HTTP_NOT_FOUND).json({error: 'Not found'});
-    }
-
-    await destroy(row.publicId);
-    await prisma.galleryImage.delete({where: {id}});
-
-    return res.status(HTTP_OK).json({ok: true});
-  } catch {
-    return res.status(HTTP_SERVER).json({error: 'Failed'});
+    return;
   }
-}
-
-export async function downloadLink(req: AuthRequest, res: Response) {
-  try {
-    if (!isAdmin(req.user?.role)) {
-      return res.status(HTTP_FORBIDDEN).json({error: 'Forbidden'});
-    }
-
-    const id = Number(req.params.id);
-    const row = await prisma.galleryImage.findUnique({where: {id}});
-    if (!row) {
-      return res.status(HTTP_NOT_FOUND).json({error: 'Not found'});
-    }
-
-    const url = signedDownloadUrl(row.publicId);
-
-    return res.status(HTTP_OK).json({url});
-  } catch {
-    return res.status(HTTP_SERVER).json({error: 'Failed'});
-  }
-}
-
-export async function uploadMany(req: AuthRequest, res: Response) {
-  try {
-    const userId = Number(req.user?.userId);
-
-    const typed = req as unknown as { files?: Express.Multer.File[] };
-    const files = Array.isArray(typed.files) ? typed.files : [];
-    const count = files.length;
-
-    if (count === 0) {
-      return res.status(HTTP_BAD).json({error: 'No files'});
-    }
-    if (count > MAX_FILES) {
-      return res.status(HTTP_BAD).json({error: 'Too many files'});
-    }
-
-    const folder = isAdmin(req.user?.role) ? FOLDER_ADMIN : FOLDER_USER;
-    const saved: { id: number }[] = [];
-
-    for (const f of files) {
-      const result: CloudinaryUploadResult = await new Promise((resolve, reject) => {
-        const stream = uploadStream(folder);
-        stream.on('error', reject);
-        stream.on('finish', () => resolve((stream as unknown as { result: CloudinaryUploadResult }).result));
-        stream.end(f.buffer);
-      });
-
-      const row = await prisma.galleryImage.create({
-        data: {
-          userId,
-          publicId: result.public_id,
-          url: result.secure_url,
-          bytes: result.bytes,
-          width: result.width ?? 0,
-          height: result.height ?? 0,
-          format: result.format ?? '',
-        },
-        select: {id: true},
-      });
-
-      saved.push(row);
-    }
-
-    return res.status(HTTP_CREATED).json({ids: saved.map(x => x.id)});
-  } catch {
-    return res.status(HTTP_SERVER).json({error: 'Failed'});
-  }
+  const done = await removeMyImage(userId, publicId);
+  res.status(CODE_200).json({deleted: done});
 }
