@@ -1,0 +1,74 @@
+@use "../../styles/variables" as vars;
+
+.wrap {
+  max-width: vars.$container-width;
+  margin: 0 auto;
+  padding: vars.$spacing-xxl;
+}
+
+.header {
+  margin-bottom: vars.$spacing-xxl;
+  text-align: left;
+}
+
+.title {
+  font-size: vars.$font-size-3xl;
+  font-weight: vars.$font-weight-extra-bold;
+  color: vars.$color-dark;
+  margin-bottom: vars.$spacing-sm;
+}
+
+.sub {
+  color: vars.$color-medium;
+  font-size: vars.$font-size-sm;
+}
+
+.section {
+  background: vars.$color-bg-white;
+  border: 1px solid vars.$color-border-light;
+  border-radius: vars.$radius-medium;
+  box-shadow: vars.$shadow-medium;
+  padding: vars.$spacing-xxl;
+}
+
+.card {
+  background: vars.$color-bg-white;
+  border: 1px solid vars.$color-border-light;
+  border-radius: vars.$radius-medium;
+  box-shadow: vars.$shadow-medium;
+  padding: vars.$spacing-xxl;
+}
+
+.msg {
+  text-align: center;
+  font-size: vars.$font-size-md;
+  color: vars.$color-dark;
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: vars.$gap-md;
+  margin-bottom: vars.$spacing-xxl;
+  padding: vars.$padding-button;
+  min-height: 52px;
+  min-width: 220px;
+  border-radius: vars.$contact-btn-border-radius;
+  border: 1px solid vars.$color-border-light;
+  background: vars.$btn-primary-bg;
+  color: vars.$btn-primary-color;
+  font-size: vars.$font-size-lg;
+  font-weight: vars.$font-weight-bold;
+  text-decoration: none;
+  transition:
+    background-color vars.$transition-normal,
+    box-shadow vars.$transition-normal,
+    transform vars.$transition-fast;
+}
+
+.backBtn:hover {
+  background: vars.$btn-primary-hover-bg;
+  box-shadow: vars.$shadow-light;
+  transform: translateY(-2px);
+}
