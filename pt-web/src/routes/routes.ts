@@ -40,3 +40,4 @@ export const buildPath = {
   adminUsers: () => PATHS.ADMIN_USERS,
   publicProfile: (id: string | number) => `/profile/${id}`,
 } as const;
+

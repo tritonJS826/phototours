@@ -241,3 +241,4 @@ export function Profile({userId}: ProfileProps) {
     </div>
   );
 }
+
