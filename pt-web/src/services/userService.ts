@@ -30,7 +30,7 @@ export interface PublicUserProfile {
 export class UserService {
 
   public static async createUser(userData: CreateUserRequest): Promise<User> {
-    const res = await fetch(buildApiUrl("/admin/users"), {
+    const res = await fetch(buildApiUrl("general/admin/users"), {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(userData),
@@ -44,7 +44,7 @@ export class UserService {
   }
 
   public static async getUsers(): Promise<User[]> {
-    const res = await fetch(buildApiUrl("/admin/users"));
+    const res = await fetch(buildApiUrl("general/admin/users"));
     if (!res.ok) {
       const msg = await res.text().catch(() => "");
       throw new Error(`Failed to fetch users: ${res.status} ${res.statusText}. ${msg}`);
@@ -54,7 +54,7 @@ export class UserService {
   }
 
   public static async getPublicProfile(userId: number): Promise<PublicUserProfile> {
-    const res = await fetch(buildApiUrl(`/users/${userId}/public`), {headers: {"Content-Type": "application/json"}});
+    const res = await fetch(buildApiUrl(`general/users/${userId}/public`), {headers: {"Content-Type": "application/json"}});
     if (!res.ok) {
       const msg = await res.text().catch(() => "");
       throw new Error(msg || "Failed to fetch user profile");
@@ -64,7 +64,7 @@ export class UserService {
   }
 
   public static async getMyProfile(): Promise<PublicUserProfile> {
-    const res = await fetch(buildApiUrl("/me"), {
+    const res = await fetch(buildApiUrl("general/me"), {
       headers: {"Content-Type": "application/json"},
       credentials: "include",
     });

@@ -12,7 +12,7 @@ export type AdminGalleryItem = {
 };
 
 export async function adminGetUserGallery(userId: number): Promise<AdminGalleryItem[]> {
-  const res = await fetch(buildApiUrl(`/users/${userId}/gallery`));
+  const res = await fetch(buildApiUrl(`general/users/${userId}/gallery`));
   if (!res.ok) {
     throw new Error("Failed to load gallery");
   }
@@ -21,7 +21,10 @@ export async function adminGetUserGallery(userId: number): Promise<AdminGalleryI
 }
 
 export async function adminDeleteImage(userId: number, publicId: string): Promise<void> {
-  const res = await fetch(buildApiUrl(`/admin/users/${userId}/gallery/${encodeURIComponent(publicId)}`), {method: "DELETE"});
+  const res = await fetch(buildApiUrl(
+    `general/admin/users/${userId}/gallery/${encodeURIComponent(publicId)}`,
+  ),
+  {method: "DELETE"});
   if (!res.ok) {
     const msg = await res.text().catch(() => "");
     throw new Error(msg || "Failed to delete image");
@@ -36,7 +39,7 @@ export async function adminAttachImageToUser(userId: number, payload: {
   height?: number;
   format?: string;
 }): Promise<AdminGalleryItem> {
-  const res = await fetch(buildApiUrl(`/admin/users/${userId}/gallery`), {
+  const res = await fetch(buildApiUrl(`general/admin/users/${userId}/gallery`), {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(payload),
