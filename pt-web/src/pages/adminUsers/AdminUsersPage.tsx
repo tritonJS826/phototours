@@ -13,11 +13,12 @@ type AdminUserRow = {
 export function AdminUsersPage() {
   const [rows, setRows] = useState<AdminUserRow[]>([]);
   const [q, setQ] = useState("");
+  const [err, setErr] = useState<string>("");
 
   useEffect(() => {
-    fetchData<AdminUserRow[]>("/users")
+    fetchData<AdminUserRow[]>("/admin/users")
       .then(setRows)
-      .catch(() => setRows([]));
+      .catch((e: unknown) => setErr(e instanceof Error ? e.message : String(e)));
   }, []);
 
   const filtered = rows.filter(
@@ -31,12 +32,27 @@ export function AdminUsersPage() {
       <h1 style={{marginBottom: 16}}>
         Users
       </h1>
+
+      {err && (
+        <div style={{
+          marginBottom: 16,
+          padding: "10px 12px",
+          border: "1px solid #f1c0c0",
+          background: "#fdeaea",
+          borderRadius: 8,
+        }}
+        >
+          {err === "Unauthorized" ? "Please sign in as admin." : err}
+        </div>
+      )}
+
       <input
         placeholder="Search by name or email"
         value={q}
         onChange={(e) => setQ(e.target.value)}
         style={{width: "100%", padding: 10, marginBottom: 16}}
       />
+
       <ul style={{display: "grid", gap: 12}}>
         {filtered.map((u) => (
           <li

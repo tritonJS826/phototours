@@ -1,10 +1,13 @@
 import {env} from 'src/config/env';
+import {adminUserPhotos} from 'src/routes/adminUserPhotos';
+import {adminUsers} from 'src/routes/adminUsers';
 import {articleRoutes} from 'src/routes/articleRoutes';
 import {authRouter} from 'src/routes/auth';
 import {bankAccountRoutes} from 'src/routes/bankAccountRoutes';
 import galleryRouter from 'src/routes/gallery';
 import {galleryRoutes} from 'src/routes/galleryRoutes';
 import {notificationRoutes} from 'src/routes/notificationRoutes';
+import {publicGallery} from 'src/routes/publicGallery';
 import {tourRoutes} from 'src/routes/tourRoutes';
 import {userRoutes} from 'src/routes/userRoutes';
 import {logger} from 'src/utils/logger';
@@ -38,10 +41,7 @@ app.use(express.json());
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', env.CORS_ORIGIN);
-  res.header(
-    'Access-Control-Allow-Methods',
-    'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-  );
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   res.header(
     'Access-Control-Allow-Headers',
     [
@@ -73,17 +73,9 @@ const swaggerSpec = swaggerJsdoc({
       title: 'Photo Tours API',
       version: '1.0.0',
       description: 'Backend API for Photo Tours application.',
-      license: {
-        name: 'MIT',
-        url: 'https://opensource.org/licenses/MIT',
-      },
+      license: {name: 'MIT', url: 'https://opensource.org/licenses/MIT'},
     },
-    servers: [
-      {
-        url: `http://localhost:${env.SERVER_PORT}`,
-        description: 'Development server',
-      },
-    ],
+    servers: [{url: `http://localhost:${env.SERVER_PORT}`, description: 'Development server'}],
     components: {securitySchemes: {bearerAuth: {type: 'http', scheme: 'bearer', bearerFormat: 'JWT'}}},
   },
   apis: ['./src/server.ts', './src/routes/*.ts'],
@@ -108,9 +100,11 @@ app.use('/auth', authRouter);
 app.use('/gallery', galleryRoutes);
 app.use('/', galleryRouter);
 
+app.use('/admin/users', adminUsers);
+app.use('/admin/photos', adminUserPhotos);
+app.use('/public/gallery', publicGallery);
+
 app.listen(env.SERVER_PORT, () => {
   logger.info(`Server is running at http://localhost:${env.SERVER_PORT}`);
-  logger.info(
-    `API documentation available at http://localhost:${env.SERVER_PORT}/api-docs`,
-  );
+  logger.info(`API documentation available at http://localhost:${env.SERVER_PORT}/api-docs`);
 });

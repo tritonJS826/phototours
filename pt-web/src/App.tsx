@@ -1,9 +1,7 @@
-// Src/App.tsx
 import {Route, Routes} from "react-router-dom";
-import {Footer} from "src/components/Footer/Footer";
-import {Header} from "src/components/Header/Header";
-import {ProtectedRoute} from "src/components/ProtectedRoute/ProtectedRoute";
-import {ScrollToTop} from "src/components/ScrollToTop/ScrollToTop";
+import {AppLayout} from "src/layouts/AppLayout";
+import {PageLayout} from "src/layouts/PageLayout";
+import {ProtectedPageLayout} from "src/layouts/ProtectedPageLayout";
 import {AboutUs} from "src/pages/aboutUs/AboutUsPage";
 import {AdminCreateTourForm} from "src/pages/adminCreateTourForm/AdminCreateTourForm";
 import {AdminPage} from "src/pages/adminPage/AdminPage";
@@ -28,11 +26,9 @@ import {PATHS} from "src/routes/routes";
 
 export function App() {
   return (
-    <div className="app">
-      <Header />
-      <ScrollToTop />
-      <main className="main-content">
-        <Routes>
+    <Routes>
+      <Route element={<AppLayout />}>
+        <Route element={<PageLayout />}>
           <Route
             path={PATHS.HOME}
             element={<HomePage />}
@@ -41,56 +37,6 @@ export function App() {
             path={PATHS.ABOUT}
             element={<AboutUs />}
           />
-
-          <Route
-            path={PATHS.ADMIN}
-            element={
-              <ProtectedRoute>
-                <AdminPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={PATHS.ADMIN_USERS}
-            element={
-              <ProtectedRoute>
-                <AdminUsersPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={PATHS.ADMIN_USER_GALLERY}
-            element={
-              <ProtectedRoute>
-                <AdminUserGallery />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={PATHS.ADMIN_CREATE_TOUR}
-            element={
-              <ProtectedRoute>
-                <AdminCreateTourForm />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={PATHS.ADMIN_EDIT_TOUR}
-            element={
-              <ProtectedRoute>
-                <AdminTourEdit />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={PATHS.ADMIN_TOUR_CONTINUE}
-            element={
-              <ProtectedRoute>
-                <AdminTourContinueForm />
-              </ProtectedRoute>
-            }
-          />
-
           <Route
             path={PATHS.TOURS}
             element={<ToursPage />}
@@ -115,57 +61,62 @@ export function App() {
             path={PATHS.ARTICLES_SLUG}
             element={<ArticlePage />}
           />
+        </Route>
 
+        <Route element={<ProtectedPageLayout />}>
           <Route
             path={PATHS.PROFILE}
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
+            element={<Profile />}
           />
           <Route
             path={PATHS.PROFILE_EDIT}
-            element={
-              <ProtectedRoute>
-                <EditProfile />
-              </ProtectedRoute>
-            }
+            element={<EditProfile />}
           />
-
           <Route
             path={PATHS.DASHBOARD}
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
+            element={<Dashboard />}
           />
           <Route
             path={PATHS.NOTIFICATIONS}
-            element={
-              <ProtectedRoute>
-                <Notifications />
-              </ProtectedRoute>
-            }
+            element={<Notifications />}
           />
-
           <Route
             path={PATHS.MY_PHOTOS}
-            element={
-              <ProtectedRoute>
-                <MyPhotosPage />
-              </ProtectedRoute>
-            }
+            element={<MyPhotosPage />}
           />
+          <Route
+            path={PATHS.ADMIN}
+            element={<AdminPage />}
+          />
+          <Route
+            path={PATHS.ADMIN_USERS}
+            element={<AdminUsersPage />}
+          />
+          <Route
+            path={PATHS.ADMIN_USER_GALLERY}
+            element={<AdminUserGallery />}
+          />
+          <Route
+            path={PATHS.ADMIN_CREATE_TOUR}
+            element={<AdminCreateTourForm />}
+          />
+          <Route
+            path={PATHS.ADMIN_EDIT_TOUR}
+            element={<AdminTourEdit />}
+          />
+          <Route
+            path={PATHS.ADMIN_TOUR_CONTINUE}
+            element={<AdminTourContinueForm />}
+          />
+        </Route>
 
+        <Route element={<PageLayout />}>
           <Route
             path={PATHS.NOT_FOUND}
             element={<NotFound />}
           />
-        </Routes>
-      </main>
-      <Footer />
-    </div>
+        </Route>
+      </Route>
+    </Routes>
   );
 }

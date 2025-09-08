@@ -7,10 +7,16 @@ function mustEnv(key: string): string {
   return value;
 }
 
+function toNumber(value: string | undefined, fallback: number): number {
+  const n = typeof value === 'string' ? Number(value) : NaN;
+
+  return Number.isFinite(n) ? n : fallback;
+}
+
 const DEFAULT_SERVER_PORT = 8000;
 
 export const env = {
-  SERVER_PORT: Number(process.env.SERVER_PORT ?? DEFAULT_SERVER_PORT),
+  SERVER_PORT: toNumber(process.env.SERVER_PORT, DEFAULT_SERVER_PORT),
   CORS_ORIGIN: mustEnv('CORS_ORIGIN'),
   JWT_SECRET: mustEnv('JWT_SECRET'),
   JWT_EXPIRES_IN: mustEnv('JWT_EXPIRES_IN'),

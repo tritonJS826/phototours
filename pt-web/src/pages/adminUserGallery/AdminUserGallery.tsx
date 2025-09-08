@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useEffect, useMemo, useRef, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {Button} from "src/components/Button/Button";
 import {buildPath, PATHS} from "src/routes/routes";
@@ -48,6 +48,8 @@ export function AdminUserGallery() {
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string>("");
   const [info, setInfo] = useState<string>("");
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [isDragOver, setIsDragOver] = useState(false);
 
   const sorted = useMemo(
     () =>
@@ -117,7 +119,6 @@ export function AdminUserGallery() {
           userId,
           secureUrl: up.secure_url,
         });
-
         const normalized: Img = {
           id: String((saved as {id?: number | string}).id ?? up.public_id),
           publicId: (saved as {publicId?: string}).publicId ?? up.public_id,
@@ -130,7 +131,6 @@ export function AdminUserGallery() {
           height: (saved as {height?: number}).height ?? up.height,
           format: (saved as {format?: string}).format ?? up.format,
         };
-
         setItems(prev => [normalized, ...prev]);
       }
       showInfo("Uploaded");
@@ -139,17 +139,44 @@ export function AdminUserGallery() {
       setErr(msg);
     } finally {
       setBusy(false);
+      setIsDragOver(false);
     }
   };
 
   const onDrop = (e: React.DragEvent) => {
     e.preventDefault();
-    onFiles(e.dataTransfer.files);
+    e.stopPropagation();
+    setIsDragOver(false);
+    const dt = e.dataTransfer;
+    if (dt?.files && dt.files.length > ZERO) {
+      onFiles(dt.files);
+    }
+  };
+
+  const onDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!isDragOver) {
+      setIsDragOver(true);
+    }
+  };
+
+  const onDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(false);
   };
 
   const onInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       onFiles(e.target.files);
+      e.target.value = "";
+    }
+  };
+
+  const onPaste = (e: React.ClipboardEvent) => {
+    if (e.clipboardData.files.length > 0) {
+      onFiles(e.clipboardData.files);
     }
   };
 
@@ -203,6 +230,7 @@ export function AdminUserGallery() {
         <div className={styles.actions}>
           <label className={styles.uploader}>
             <input
+              ref={fileInputRef}
               type="file"
               multiple
               accept="image/*,.dng,.cr2,.nef,.raf,.arw,.rw2,.orf"
@@ -223,11 +251,22 @@ export function AdminUserGallery() {
       </div>
 
       <div
-        className={styles.drop}
+        className={`${styles.drop} ${isDragOver ? styles.dropOver : ""}`}
+        onClick={() => fileInputRef.current?.click()}
         onDrop={onDrop}
-        onDragOver={(e) => e.preventDefault()}
+        onDragOver={onDragOver}
+        onDragLeave={onDragLeave}
+        onPaste={onPaste}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            fileInputRef.current?.click();
+          }
+        }}
       >
-        Drag & drop images here
+        Drag & drop images here or click to upload
       </div>
 
       {err

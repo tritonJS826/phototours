@@ -37,7 +37,6 @@
       transition: vars.$transition-color;
     }
 
-    // Focus state: make icon and placeholder lighter
     &:focus-within {
       .emailIcon {
         color: color.adjust(vars.$contact-placeholder-color, $lightness: 12%);
@@ -57,13 +56,11 @@
         vars.$transition-color;
       outline: none;
 
-      // Placeholder styles for all browsers
       &::placeholder {
         color: vars.$contact-placeholder-color;
         font-size: vars.$font-size-md;
       }
 
-      // Focus states
       &:focus-visible {
         outline: none;
         border: vars.$border-width-medium solid vars.$contact-btn-bg;
@@ -74,14 +71,12 @@
         }
       }
 
-      // Filled state
       &:not(:placeholder-shown),
       &:valid {
         background-color: vars.$color-bg-white;
         border: vars.$border-width-medium solid vars.$color-border;
       }
 
-      // Disabled state
       &:disabled {
         opacity: 0.6;
         cursor: not-allowed;
@@ -89,7 +84,6 @@
         border: vars.$border-width-medium solid vars.$color-border;
       }
 
-      // Autofill styles
       &:-webkit-autofill,
       &:-webkit-autofill:hover,
       &:-webkit-autofill:focus {
@@ -98,7 +92,6 @@
         transition: background-color 5000s ease-in-out 0s;
       }
 
-      // Invalid state
       &:invalid:not(:placeholder-shown) {
         border: vars.$border-width-thin solid vars.$contact-error-color;
 
@@ -166,7 +159,6 @@
   }
 }
 
-// ====== ACCESSIBILITY ======
 @media (prefers-reduced-motion: reduce) {
   .newsletterForm {
     .subscribeButton {
@@ -183,7 +175,6 @@
   }
 }
 
-// High contrast mode support
 @media (prefers-contrast: high) {
   .newsletterForm {
     .emailInput {

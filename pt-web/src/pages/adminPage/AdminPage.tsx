@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {fetchData} from "src/api/http";
 import {Button} from "src/components/Button/Button";
 import {Container} from "src/components/Container/Container";
+import {buildPath, PATHS} from "src/routes/routes";
 import styles from "src/pages/adminPage/AdminPage.module.scss";
 
 type Guide = {
@@ -61,48 +62,65 @@ export function AdminPage() {
       <div className={styles.container}>
         <div className={styles.header}>
           <h2>
-            All Tours
+            Admin
           </h2>
 
-          <div className={styles.searchWrapper}>
-            <input
-              type="text"
-              placeholder="Search tours..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-
-          <div className={styles.actionBtn}>
-            {selectedTour && (
-              <div className={styles.actions}>
-                <Button
-                  className={styles.hiddenBtn}
-                  variant="primary"
-                  onClick={() => navigate(`/admin/tours/${selectedTour.id}`)}
-                  type="button"
-                >
-                  Edit
-                </Button>
-                <Button
-                  className={styles.hiddenBtn}
-                  variant="secondary"
-                  onClick={() => handleDelete(selectedTour.id)}
-                  type="button"
-                >
-                  Delete
-                </Button>
-              </div>
-            )}
-
+          <div className={styles.topActions}>
             <Button
-              className={styles.createButton}
               variant="primary"
-              onClick={() => navigate("/admin/tours")}
+              onClick={() => navigate(PATHS.ADMIN_CREATE_TOUR)}
               type="button"
             >
               + Create Tour
             </Button>
+
+            <Button
+              variant="outline"
+              onClick={() => navigate(PATHS.ADMIN_USERS)}
+              type="button"
+            >
+              Users & Photos
+            </Button>
+
+            <Button
+              variant="outline"
+              onClick={() => navigate(PATHS.ADMIN)}
+              type="button"
+            >
+              All Tours
+            </Button>
+          </div>
+
+          <div className={styles.searchRow}>
+            <div className={styles.searchWrapper}>
+              <input
+                type="text"
+                placeholder="Search tours or guides…"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+
+            <div className={styles.inlineActions}>
+              {selectedTour && (
+                <>
+                  <Button
+                    variant="primary"
+                    onClick={() => navigate(buildPath.adminEditTour(selectedTour.id))}
+                    type="button"
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    onClick={() => handleDelete(selectedTour.id)}
+                    type="button"
+                  >
+                    Delete
+                  </Button>
+                </>
+              )}
+            </div>
           </div>
         </div>
 

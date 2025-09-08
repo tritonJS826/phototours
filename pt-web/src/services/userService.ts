@@ -30,7 +30,7 @@ export interface PublicUserProfile {
 export class UserService {
 
   public static async createUser(userData: CreateUserRequest): Promise<User> {
-    const res = await fetch(buildApiUrl("/users"), {
+    const res = await fetch(buildApiUrl("/admin/users"), {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(userData),
@@ -44,7 +44,7 @@ export class UserService {
   }
 
   public static async getUsers(): Promise<User[]> {
-    const res = await fetch(buildApiUrl("/users"));
+    const res = await fetch(buildApiUrl("/admin/users"));
     if (!res.ok) {
       const msg = await res.text().catch(() => "");
       throw new Error(`Failed to fetch users: ${res.status} ${res.statusText}. ${msg}`);

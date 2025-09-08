@@ -1,16 +1,12 @@
-import {PropsWithChildren, useEffect} from "react";
-import {Container} from "src/components/Container/Container";
+import {PropsWithChildren} from "react";
+import styles from "src/components/Page/Page.module.scss";
 
-export function Page({title, children}: PropsWithChildren<{title?: string}>) {
-  useEffect(() => {
-    if (title) {
-      document.title = title;
-    }
-  }, [title]);
+type Props = { className?: string };
 
+export function Page({children, className = ""}: PropsWithChildren<Props>) {
   return (
-    <Container>
+    <div className={`${styles.page} ${className}`}>
       {children}
-    </Container>
+    </div>
   );
 }
