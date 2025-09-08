@@ -304,12 +304,14 @@ model GalleryImage {
   userId    Int
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   url       String
-  publicId  String
+  publicId  String   @unique
   bytes     Int
   width     Int
   height    Int
   format    String
   createdAt DateTime @default(now())
+
+  @@index([userId, createdAt])
 }
 
 model UserImage {

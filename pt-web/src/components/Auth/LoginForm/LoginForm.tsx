@@ -26,7 +26,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = e.target;
     setFormData(prev => ({...prev, [name]: value}));
-    setError(""); // Clear error when field changes
+    setError("");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {

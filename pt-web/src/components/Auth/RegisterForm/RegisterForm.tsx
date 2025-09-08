@@ -31,7 +31,6 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = e.target;
     setFormData(prev => ({...prev, [name]: value}));
-    // Clear error when field changes
     setError("");
   };
 

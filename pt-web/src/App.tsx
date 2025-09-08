@@ -1,13 +1,14 @@
 import {Route, Routes} from "react-router-dom";
-import {Footer} from "src/components/Footer/Footer";
-import {Header} from "src/components/Header/Header";
-import {ProtectedRoute} from "src/components/ProtectedRoute/ProtectedRoute";
-import {ScrollToTop} from "src/components/ScrollToTop/ScrollToTop";
+import {AppLayout} from "src/layouts/AppLayout";
+import {PageLayout} from "src/layouts/PageLayout";
+import {ProtectedPageLayout} from "src/layouts/ProtectedPageLayout";
 import {AboutUs} from "src/pages/aboutUs/AboutUsPage";
 import {AdminCreateTourForm} from "src/pages/adminCreateTourForm/AdminCreateTourForm";
 import {AdminPage} from "src/pages/adminPage/AdminPage";
 import {AdminTourContinueForm} from "src/pages/adminTourContinueForm/AdminTourContinueForm";
 import {AdminTourEdit} from "src/pages/adminTourEditForm/AdminTourEditForm";
+import {AdminUserGallery} from "src/pages/adminUserGallery/AdminUserGallery";
+import {AdminUsersPage} from "src/pages/adminUsers/AdminUsersPage";
 import {Cart} from "src/pages/cart/Cart";
 import {ContactUs} from "src/pages/contactUs/ContactUs";
 import {Dashboard} from "src/pages/dashboard/Dashboard";
@@ -25,11 +26,9 @@ import {PATHS} from "src/routes/routes";
 
 export function App() {
   return (
-    <div className="app">
-      <Header />
-      <ScrollToTop />
-      <main className="main-content">
-        <Routes>
+    <Routes>
+      <Route element={<AppLayout />}>
+        <Route element={<PageLayout />}>
           <Route
             path={PATHS.HOME}
             element={<HomePage />}
@@ -37,10 +36,6 @@ export function App() {
           <Route
             path={PATHS.ABOUT}
             element={<AboutUs />}
-          />
-          <Route
-            path={PATHS.ADMIN}
-            element={<AdminPage />}
           />
           <Route
             path={PATHS.TOURS}
@@ -66,41 +61,40 @@ export function App() {
             path={PATHS.ARTICLES_SLUG}
             element={<ArticlePage />}
           />
+        </Route>
+
+        <Route element={<ProtectedPageLayout />}>
           <Route
             path={PATHS.PROFILE}
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={PATHS.PROFILE_ID}
             element={<Profile />}
           />
           <Route
             path={PATHS.PROFILE_EDIT}
-            element={
-              <ProtectedRoute>
-                <EditProfile />
-              </ProtectedRoute>
-            }
+            element={<EditProfile />}
           />
           <Route
             path={PATHS.DASHBOARD}
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
+            element={<Dashboard />}
           />
           <Route
             path={PATHS.NOTIFICATIONS}
-            element={
-              <ProtectedRoute>
-                <Notifications />
-              </ProtectedRoute>
-            }
+            element={<Notifications />}
+          />
+          <Route
+            path={PATHS.MY_PHOTOS}
+            element={<MyPhotosPage />}
+          />
+          <Route
+            path={PATHS.ADMIN}
+            element={<AdminPage />}
+          />
+          <Route
+            path={PATHS.ADMIN_USERS}
+            element={<AdminUsersPage />}
+          />
+          <Route
+            path={PATHS.ADMIN_USER_GALLERY}
+            element={<AdminUserGallery />}
           />
           <Route
             path={PATHS.ADMIN_CREATE_TOUR}
@@ -114,21 +108,15 @@ export function App() {
             path={PATHS.ADMIN_TOUR_CONTINUE}
             element={<AdminTourContinueForm />}
           />
-          <Route
-            path={PATHS.MY_PHOTOS}
-            element={
-              <ProtectedRoute>
-                <MyPhotosPage />
-              </ProtectedRoute>
-            }
-          />
+        </Route>
+
+        <Route element={<PageLayout />}>
           <Route
             path={PATHS.NOT_FOUND}
             element={<NotFound />}
           />
-        </Routes>
-      </main>
-      <Footer />
-    </div>
+        </Route>
+      </Route>
+    </Routes>
   );
 }

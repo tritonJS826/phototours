@@ -2,8 +2,8 @@ import {env} from 'src/config/env';
 import {v2 as cloudinary} from 'cloudinary';
 import {CloudinaryStorage} from 'multer-storage-cloudinary';
 
-const WIDTH = 1920;
-const HEIGHT = 1080;
+const DEFAULT_WIDTH = 1920;
+const DEFAULT_HEIGHT = 1080;
 
 type CloudinaryParams = {
   folder?: string;
@@ -26,7 +26,7 @@ const storage = new CloudinaryStorage({
       folder: env.CLOUDINARY_UPLOAD_FOLDER,
       resource_type: 'auto',
       transformation: [
-        {width: WIDTH, height: HEIGHT, crop: 'limit'},
+        {width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT, crop: 'limit'},
         {quality: 'auto:good'},
       ],
       public_id: name,

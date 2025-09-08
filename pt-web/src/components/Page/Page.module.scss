@@ -1,0 +1,7 @@
+@use "src/styles/variables" as vars;
+
+.page {
+  display: block;
+  padding: vars.$spacing-xxl 0;
+  background: vars.$color-bg-white;
+}

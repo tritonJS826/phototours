@@ -101,10 +101,13 @@ export const AdminCreateTourForm = () => {
         const res = await fetch(url);
         if (!res.ok) {
           return;
-        } // Не блокируем форму
+        }
+
         const data = await res.json();
         setGuides(data);
-      } catch { /* игнорим, можно создать тур и без списка */ }
+      } catch {
+        void 0;
+      }
     };
     load();
   }, []);

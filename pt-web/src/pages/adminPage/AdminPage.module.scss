@@ -9,8 +9,7 @@
 
 .header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   gap: vars.$gap-md;
   margin-bottom: vars.$spacing-xl;
 }
@@ -20,6 +19,55 @@
   font-weight: vars.$font-weight-bold;
   color: vars.$color-dark;
   margin: 0;
+}
+
+.topActions {
+  display: flex;
+  gap: vars.$gap-md;
+  margin-bottom: vars.$spacing-md;
+}
+
+.topActions button {
+  padding: 12px 20px;
+  font-size: vars.$font-size-md;
+  font-weight: vars.$font-weight-bold;
+  border-radius: vars.$radius-medium;
+  min-width: 140px;
+  transition:
+    transform vars.$transition-fast,
+    box-shadow vars.$transition-normal;
+}
+
+.inlineActions {
+  display: flex;
+  gap: vars.$gap-sm;
+}
+
+.inlineActions button {
+  padding: 10px 18px;
+  font-size: vars.$font-size-sm;
+  font-weight: vars.$font-weight-bold;
+  border-radius: vars.$radius-small;
+  transition:
+    transform vars.$transition-fast,
+    box-shadow vars.$transition-normal;
+}
+
+.topActions button:hover {
+  transform: translateY(-2px);
+  box-shadow: vars.$shadow-hover;
+}
+
+.inlineActions button:hover {
+  transform: translateY(-2px);
+  box-shadow: vars.$shadow-hover;
+}
+
+.searchRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: vars.$gap-md;
 }
 
 .searchWrapper {
@@ -42,25 +90,6 @@
   outline: none;
   border-color: vars.$color-primary;
   box-shadow: vars.$shadow-input-focus;
-}
-
-.actionBtn {
-  display: flex;
-  align-items: center;
-  gap: vars.$gap-sm;
-}
-
-.actions {
-  display: flex;
-  gap: vars.$gap-sm;
-}
-
-.createButton {
-  max-width: 160px;
-}
-
-.hiddenBtn {
-  max-width: 120px;
 }
 
 .tourGrid {
@@ -139,13 +168,22 @@
     gap: vars.$gap-md;
   }
 
+  .topActions {
+    flex-wrap: wrap;
+  }
+
+  .searchRow {
+    flex-wrap: wrap;
+    gap: vars.$gap-md;
+  }
+
   .searchWrapper {
     order: 3;
     width: 100%;
     max-width: none;
   }
 
-  .actionBtn {
+  .inlineActions {
     order: 2;
     margin-left: auto;
   }
