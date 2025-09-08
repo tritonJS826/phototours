@@ -22,10 +22,18 @@ export interface CreateNotificationData {
 class NotificationService {
 
   public async getNotifications(): Promise<NotificationItem[]> {
-    return await fetchData<NotificationItem[]>("general/notifications", {
-      method: "GET",
-      headers: this.getAuthHeaders(),
-    });
+    let response: NotificationItem[] = [];
+    try {
+      response = await fetchData<NotificationItem[]>("general/notifications", {
+        method: "GET",
+        headers: this.getAuthHeaders(),
+      });
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e);
+    }
+
+    return response;
   }
 
   public async getUnreadCount(): Promise<number> {
