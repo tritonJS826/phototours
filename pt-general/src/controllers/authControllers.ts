@@ -6,6 +6,7 @@ import {Prisma, Role} from '@prisma/client';
 import {Request, Response} from 'express';
 import jwt from 'jsonwebtoken';
 import {z} from 'zod';
+import { createZohoService, LeadData } from 'src/services/zohoService';
 
 const CODE_OK = 200;
 const CODE_CREATED = 201;
@@ -91,6 +92,8 @@ function safeUser(u: DbUserPick) {
   };
 }
 
+const zohoService = createZohoService()
+
 export async function register(req: Request, res: Response) {
   try {
     const dto = RegisterDto.parse(req.body);
@@ -113,6 +116,15 @@ export async function register(req: Request, res: Response) {
       },
     });
     const token = sign(created.id);
+
+    const zohoLeadPayload: LeadData = {
+      Company: "test",
+      Phone: phoneValue,
+      Email: dto.email,
+      Last_Name: dto.lastName,
+      First_Name: dto.firstName,
+    };
+    await zohoService.createLead(zohoLeadPayload);
     res.status(CODE_CREATED).json({message: MESSAGE_REGISTERED, user: safeUser(created as DbUserPick), token});
   } catch (e) {
     if ((e as {name?: string}).name === 'ZodError') {

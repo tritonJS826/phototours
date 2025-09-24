@@ -28,11 +28,13 @@ export interface ZohoTokenResponse {
   expires_in_sec: number;
 }
 
-type LeadPayload =
-  | Record<string, unknown>
-  | {
-      data: unknown[];
-    };
+export interface LeadData {
+  Company: string,
+  Phone: string,
+  Last_Name: string;
+  First_Name: string;
+  Email: string;
+}
 
 export class ZohoService {
 
@@ -146,7 +148,7 @@ export class ZohoService {
 
   }
 
-  public async createLead(payload: LeadPayload): Promise<unknown> {
+  public async createLead(payload: LeadData): Promise<unknown> {
 
     const token = await this.getValidAccessToken();
 
