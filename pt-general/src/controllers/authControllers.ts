@@ -119,7 +119,7 @@ export async function register(req: Request, res: Response) {
 
     const zohoLeadPayload: LeadData = {
       Company: "test",
-      Phone: phoneValue,
+      Phone: dto.phone,
       Email: dto.email,
       Last_Name: dto.lastName,
       First_Name: dto.firstName,
