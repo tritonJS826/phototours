@@ -1,7 +1,6 @@
-import {Link} from "react-router-dom";
+import {Container} from "src/components/Container/Container";
 import {TourCard} from "src/components/Tour/Tour";
 import {useTours} from "src/hooks/useTours";
-import {PATHS} from "src/routes/routes";
 import styles from "src/components/ToursSection/ToursSection.module.scss";
 
 interface ToursSectionProps {
@@ -57,21 +56,17 @@ export function ToursSection({limit, className = ""}: ToursSectionProps) {
   }
 
   return (
-    <section className={`${styles.wrap} ${className}`}>
-      <div className={styles.grid}>
-        {tours.map((t) => (
-          <TourCard
-            key={t.id}
-            tour={t}
-          />
-        ))}
-      </div>
-      <Link
-        to={PATHS.TOURS}
-        className={styles.link}
-      >
-        See all travel plans
-      </Link>
-    </section>
+    <Container>
+      <section className={`${styles.wrap} ${className}`}>
+        <div className={styles.grid}>
+          {tours.map((t) => (
+            <TourCard
+              key={t.id}
+              tour={t}
+            />
+          ))}
+        </div>
+      </section>
+    </Container>
   );
 }

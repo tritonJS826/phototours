@@ -4,7 +4,7 @@
   position: relative;
   z-index: 3;
   width: 100%;
-  margin-top: 350px;
+  margin-top: 170px;
   padding-bottom: 30px;
 }
 
@@ -252,25 +252,12 @@
     position: relative;
     z-index: 3;
     width: 100%;
-    margin-top: 515px;
-    padding-bottom: 30px;
+    margin-top: 190px;
   }
 
-  .form {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
-  .btnSearch {
-    min-width: 420px;
-  }
-}
-
-@media (width <= 640px) {
   .iconsBar {
     display: flex;
     position: relative;
-    top: -210px;
   }
 
   .form {
@@ -294,7 +281,7 @@
     width: 100%;
     max-width: 380px;
     position: absolute;
-    top: -160px;
+    top: 10px;
     min-width: 335px;
   }
 
@@ -342,5 +329,180 @@
     background-color: #dcdcdc;
     color: black;
     opacity: 0.6;
+  }
+}
+
+@media (width <= 1280px) {
+  .tourSearchForm {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    margin-top: 190px;
+  }
+}
+
+@media (width <= 1120px) {
+  .tourSearchForm {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    margin-top: 210px;
+  }
+}
+
+@media (width <= 1029px) {
+  .tourSearchForm {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    margin-top: 190px;
+  }
+}
+
+@media (width <= 800px) {
+  .tourSearchForm {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    margin-top: 205px;
+  }
+}
+
+@media (width <= 768px) {
+  .tourSearchForm {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    margin-top: 210px;
+  }
+}
+
+@media (width <= 679px) {
+  .tourSearchForm {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    margin-top: 185px;
+  }
+}
+
+@media (width <= 640px) {
+  .tourSearchForm {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    margin-top: 195px;
+  }
+
+  .iconsBar {
+    display: flex;
+    position: relative;
+  }
+
+  .form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .field {
+    display: none;
+  }
+
+  .formBtn {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
+  }
+
+  .btnSearch {
+    width: 100%;
+    max-width: 380px;
+    position: absolute;
+    top: 10px;
+    min-width: 335px;
+  }
+
+  .mobilePanel {
+    position: absolute;
+    left: 50%;
+    top: -400px;
+    transform: translateX(-50%);
+    width: min(560px, calc(100% - 24px));
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 10px 32px rgb(0 0 0 / 30%);
+    display: block;
+    z-index: 5;
+  }
+
+  .inputWrapHidden {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 28px;
+    pointer-events: none;
+  }
+
+  .inputDateLeft {
+    border-radius: 28px 0 0 28px;
+  }
+
+  .inputDateLeft::placeholder {
+    padding: 10px;
+    border-radius: 18px;
+    background-color: #a8a8a8;
+    color: black;
+    opacity: 0.6;
+  }
+
+  .inputDateRight {
+    border-radius: 0 28px 28px 0;
+  }
+
+  .inputDateRight::placeholder {
+    padding: 10px;
+    border-radius: 18px;
+    background-color: #dcdcdc;
+    color: black;
+    opacity: 0.6;
+  }
+}
+
+@media (width <= 612px) {
+  .tourSearchForm {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    margin-top: 170px;
+  }
+}
+
+@media (width <= 580px) {
+  .tourSearchForm {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    margin-top: 130px;
+  }
+}
+
+@media (width <= 552px) {
+  .tourSearchForm {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    margin-top: 110px;
+  }
+}
+
+@media (width <= 439px) {
+  .tourSearchForm {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    margin-top: 70px;
   }
 }

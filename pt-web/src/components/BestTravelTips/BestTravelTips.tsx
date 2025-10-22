@@ -1,19 +1,20 @@
 import {Link} from "react-router-dom";
+import {SectionHeader} from "src/components/SectionHeader/SectionHeader";
 import type {ArticleSummary} from "src/types/article";
 import styles from "src/components/BestTravelTips/BestTravelTips.module.scss";
 
 interface BestTravelTipsProps {
-  items: ArticleSummary[];
   title: string;
-  subtitle: string;
+  subtitle?: string;
   className?: string;
+  items: ArticleSummary[];
 }
 
 const FIRST_INDEX = 0 as const;
 const DEFAULT_FEATURED_COUNT = 1;
 const DEFAULT_GRID_COLUMNS = 3;
 
-export function BestTravelTips({items, title, subtitle, className = ""}: BestTravelTipsProps) {
+export function BestTravelTips({items, className = ""}: BestTravelTipsProps) {
   if (!items?.length) {
     return null;
   }
@@ -23,14 +24,11 @@ export function BestTravelTips({items, title, subtitle, className = ""}: BestTra
 
   return (
     <section className={`${styles.showcase} ${className}`}>
-      <header className={styles.showcaseHeader}>
-        <h2 className={styles.showcaseTitle}>
-          {title}
-        </h2>
-        <p className={styles.showcaseSubtitle}>
-          {subtitle}
-        </p>
-      </header>
+      <SectionHeader
+        title="Best travel tips for Iceland"
+        subtitle="Find all your essential photography tips and information"
+        className={styles.showcaseHeader}
+      />
 
       <div className={styles.showcaseGrid}>
         {featured.map(a => (

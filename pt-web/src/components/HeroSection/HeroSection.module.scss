@@ -4,12 +4,12 @@
 }
 
 .heroContent {
-  padding-top: 120px;
+  padding-top: 50px;
   color: #fff;
+  max-width: 980px;
 }
 
 .heroTitle {
-  margin: 0 0 16px;
   font-size: 64px;
   line-height: 1.05;
   letter-spacing: -0.5px;
@@ -30,13 +30,25 @@
   display: block;
 }
 
+@media (width <= 1280px) {
+  .heroTitle {
+    font-size: 56px;
+  }
+}
+
+@media (width <= 1120px) {
+  .heroTitle {
+    font-size: 50px;
+  }
+}
+
 @media (width <= 1024px) {
   .heroContent {
-    padding-top: 90px;
+    padding-top: 50px;
   }
 
   .heroTitle {
-    font-size: 48px;
+    font-size: 46px;
   }
 
   .heroDescription {
@@ -44,9 +56,23 @@
   }
 }
 
+@media (width <= 800px) {
+  .heroTitle {
+    font-size: 42px;
+  }
+}
+
+@media (width <= 768px) {
+  .heroTitle {
+    font-size: 38px;
+    line-height: 1.1;
+  }
+}
+
 @media (width <= 640px) {
   .heroContent {
     padding-top: 70px;
+    max-width: 560px;
   }
 
   .heroTitle {
