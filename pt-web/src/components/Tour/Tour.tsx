@@ -1,5 +1,5 @@
-
 import {Link} from "react-router-dom";
+import {Button} from "src/components/Button/Button";
 import type {TourView} from "src/types/tour";
 import styles from "src/components/Tour/Tour.module.scss";
 
@@ -98,12 +98,15 @@ export function TourCard({tour}: Props) {
           </span>
         </div>
 
-        <Link
+        <Button
+          as={Link}
           to={tourUrl}
           className={styles.cta}
+          size="md"
+          variant="primary"
         >
           See More
-        </Link>
+        </Button>
       </div>
     </article>
   );

@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {CalendarDays, MapPin, Users, X} from "lucide-react";
+import {Button} from "src/components/Button/Button";
 import {Container} from "src/components/Container/Container";
 import styles from "src/components/TourSearchForm/TourSearchForm.module.scss";
 
@@ -182,12 +183,12 @@ export function TourSearchForm() {
         </div>
 
         <div className={styles.formBtn}>
-          <button
+          <Button
             type="submit"
             className={styles.btnSearch}
           >
             Search Now
-          </button>
+          </Button>
         </div>
       </form>
     </Container>

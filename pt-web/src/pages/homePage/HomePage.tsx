@@ -3,6 +3,7 @@ import {listTours} from "src/api/tours";
 import {Container} from "src/components/Container/Container";
 import {HeroSection} from "src/components/HeroSection/HeroSection";
 import {PopularWorkshops} from "src/components/PopularWorkshops/PopularWorkshops";
+import {SectionHeader} from "src/components/SectionHeader/SectionHeader";
 import {TourSearchForm} from "src/components/TourSearchForm/TourSearchForm";
 import {ToursSection} from "src/components/ToursSection/ToursSection";
 import {ArticlesShowcase} from "src/pages/homePage/ArticlesShowcase/ArticlesShowcase";
@@ -17,7 +18,6 @@ const COPY = {
     subtitle:
       "As Iceland’s leading photo tour operator, we offer expert tours\n" +
       "to help you capture breathtaking images at the best photo locations.",
-    cta: "Search Now",
   },
   popular: {
     title: "Popular photo tours & workshops",
@@ -60,43 +60,45 @@ export function HomePage() {
     <div className={styles.homePage}>
       <div className={styles.heroSectionBg}>
         <Container>
-          <div className={styles.heroInner}>
-            <HeroSection
-              title={COPY.hero.title}
-              subtitle={COPY.hero.subtitle}
-            />
-            <TourSearchForm />
+          <div className={styles.heroContent}>
+            <div className={styles.heroText}>
+              <HeroSection
+                title={COPY.hero.title}
+                subtitle={COPY.hero.subtitle}
+              />
+              {" "}
+              <div className={styles.heroForm}>
+                <TourSearchForm />
+              </div>
+            </div>
+
           </div>
         </Container>
       </div>
 
       <Container>
-        <header className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>
-            {COPY.popular.title}
-          </h2>
-          <p className={styles.sectionSubtitle}>
-            {COPY.popular.subtitle}
-          </p>
-        </header>
+        <SectionHeader
+          title={COPY.popular.title}
+          subtitle={COPY.popular.subtitle}
+        />
         <PopularWorkshops />
       </Container>
 
       {tours.length > 0 && (
         <Container>
-          <header className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>
-              {COPY.bestWinter.title}
-            </h2>
-            <p className={styles.sectionSubtitle}>
-              {COPY.bestWinter.subtitle}
-            </p>
-          </header>
+          <SectionHeader
+            title={COPY.bestWinter.title}
+            subtitle={COPY.bestWinter.subtitle}
+          />
           <ToursSection />
         </Container>
       )}
 
       <Container>
+        <SectionHeader
+          title={COPY.articles.title}
+          subtitle={COPY.articles.subtitle}
+        />
         <ArticlesShowcase
           title={COPY.articles.title}
           subtitle={COPY.articles.subtitle}

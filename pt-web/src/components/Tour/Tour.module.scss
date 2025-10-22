@@ -1,6 +1,5 @@
 .card {
   position: relative;
-  margin-top: 40px;
   height: 550px;
   display: flex;
   flex-direction: column;
@@ -138,7 +137,6 @@
   color: #102010;
   border: 0;
   font-size: 16px;
-  font-weight: 500;
   cursor: pointer;
   transition:
     background-color 0.2s ease,

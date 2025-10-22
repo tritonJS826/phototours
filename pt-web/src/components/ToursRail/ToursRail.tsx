@@ -1,8 +1,6 @@
-import {Link} from "react-router-dom";
 import {Container} from "src/components/Container/Container";
 import {TourCard} from "src/components/Tour/Tour";
 import {useTours} from "src/hooks/useTours";
-import {PATHS} from "src/routes/routes";
 import styles from "src/components/ToursRail/ToursRail.module.scss";
 
 interface ToursRailProps {
@@ -68,12 +66,6 @@ export function ToursRail({title, subtitle, limit}: ToursRailProps) {
             </p>}
           </div>
 
-          <Link
-            to={PATHS.TOURS}
-            className={styles.link}
-          >
-            See all travel plans
-          </Link>
         </div>
 
         <div className={styles.grid}>
