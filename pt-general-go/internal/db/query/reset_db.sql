@@ -1,0 +1,6 @@
+-- name: ResetSchema :exec
+DO $$
+BEGIN
+    EXECUTE 'DROP SCHEMA IF EXISTS public CASCADE';
+    EXECUTE 'CREATE SCHEMA public';
+END $$;
