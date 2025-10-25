@@ -1,6 +1,3 @@
--- name: CheckUserExistsByEmail :one
-SELECT EXISTS(SELECT 1 FROM users WHERE email = $1);
-
 -- name: CreateUser :one
 INSERT INTO users (
     email,
@@ -27,3 +24,35 @@ RETURNING
   role,
   created_at,
   updated_at;
+
+-- name: GetUserByID :one
+SELECT
+    id,
+    email,
+    password,
+    first_name,
+    last_name,
+    phone,
+    bio,
+    profile_pic_url,
+    role,
+    created_at,
+    updated_at
+FROM users
+WHERE id = $1;
+
+-- name: GetUserByEmail :one
+SELECT
+    id,
+    email,
+    password,
+    first_name,
+    last_name,
+    phone,
+    bio,
+    profile_pic_url,
+    role,
+    created_at,
+    updated_at
+FROM users
+WHERE email = $1;

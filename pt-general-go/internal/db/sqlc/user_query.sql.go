@@ -11,17 +11,6 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
-const checkUserExistsByEmail = `-- name: CheckUserExistsByEmail :one
-SELECT EXISTS(SELECT 1 FROM users WHERE email = $1)
-`
-
-func (q *Queries) CheckUserExistsByEmail(ctx context.Context, email string) (bool, error) {
-	row := q.db.QueryRow(ctx, checkUserExistsByEmail, email)
-	var exists bool
-	err := row.Scan(&exists)
-	return exists, err
-}
-
 const createUser = `-- name: CreateUser :one
 INSERT INTO users (
     email,
@@ -72,6 +61,78 @@ func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, e
 		arg.ProfilePicUrl,
 		arg.Role,
 	)
+	var i User
+	err := row.Scan(
+		&i.ID,
+		&i.Email,
+		&i.Password,
+		&i.FirstName,
+		&i.LastName,
+		&i.Phone,
+		&i.Bio,
+		&i.ProfilePicUrl,
+		&i.Role,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
+const getUserByEmail = `-- name: GetUserByEmail :one
+SELECT
+    id,
+    email,
+    password,
+    first_name,
+    last_name,
+    phone,
+    bio,
+    profile_pic_url,
+    role,
+    created_at,
+    updated_at
+FROM users
+WHERE email = $1
+`
+
+func (q *Queries) GetUserByEmail(ctx context.Context, email string) (User, error) {
+	row := q.db.QueryRow(ctx, getUserByEmail, email)
+	var i User
+	err := row.Scan(
+		&i.ID,
+		&i.Email,
+		&i.Password,
+		&i.FirstName,
+		&i.LastName,
+		&i.Phone,
+		&i.Bio,
+		&i.ProfilePicUrl,
+		&i.Role,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
+const getUserByID = `-- name: GetUserByID :one
+SELECT
+    id,
+    email,
+    password,
+    first_name,
+    last_name,
+    phone,
+    bio,
+    profile_pic_url,
+    role,
+    created_at,
+    updated_at
+FROM users
+WHERE id = $1
+`
+
+func (q *Queries) GetUserByID(ctx context.Context, id int32) (User, error) {
+	row := q.db.QueryRow(ctx, getUserByID, id)
 	var i User
 	err := row.Scan(
 		&i.ID,

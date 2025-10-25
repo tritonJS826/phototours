@@ -6,11 +6,6 @@ import (
 	"time"
 )
 
-type LoginDTO struct {
-	Email    string `json:"email" binding:"required,email"`
-	Password string `json:"password" binding:"required"`
-}
-
 type ChangePasswordDTO struct {
 	CurrentPassword string `json:"currentPassword" binding:"required"`
 	NewPassword     string `json:"newPassword" binding:"required,min=6"`

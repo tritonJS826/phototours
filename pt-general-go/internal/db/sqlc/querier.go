@@ -9,8 +9,9 @@ import (
 )
 
 type Querier interface {
-	CheckUserExistsByEmail(ctx context.Context, email string) (bool, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
+	GetUserByEmail(ctx context.Context, email string) (User, error)
+	GetUserByID(ctx context.Context, id int32) (User, error)
 	ResetSchema(ctx context.Context) error
 }
 

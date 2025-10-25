@@ -2,9 +2,14 @@ package repository
 
 import (
 	"context"
+	"errors"
 	db "pt-general-go/internal/db/sqlc"
 	"pt-general-go/internal/domain"
+	"pt-general-go/internal/repository/mapper"
 
+	"github.com/jackc/pgerrcode"
+	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
@@ -16,24 +21,13 @@ func NewUserRepository(db db.Querier) *UserRepository {
 	return &UserRepository{db}
 }
 
-func (r *UserRepository) CheckUserExistsByEmail(ctx context.Context, email string) (bool, error) {
-	return r.db.CheckUserExistsByEmail(ctx, email)
-}
-
-// firstName: dto.firstName,
-//         lastName: dto.lastName,
-//         email: dto.email,
-//         password: passwordHash,
-//         phone: phoneValue,
-//         role: Role.CLIENT,
-
-func (r *UserRepository) CreateClient(ctx context.Context, register *domain.Register) (*domain.User, error) {
+func (r *UserRepository) CreateUser(ctx context.Context, register *domain.Register) (*domain.User, error) {
 	var phone pgtype.Text
 	if register.Phone != nil && *register.Phone != "" {
 		phone = pgtype.Text{String: *register.Phone, Valid: true}
 	}
 
-	createdUser, err := r.db.CreateUser(ctx, db.CreateUserParams{
+	dbUser, err := r.db.CreateUser(ctx, db.CreateUserParams{
 		FirstName: register.FirstName,
 		LastName:  register.LastName,
 		Email:     register.Email,
@@ -42,29 +36,35 @@ func (r *UserRepository) CreateClient(ctx context.Context, register *domain.Regi
 		Role:      db.Role(domain.RoleClient),
 	})
 	if err != nil {
+		var pgErr *pgconn.PgError
+		if errors.As(err, &pgErr) {
+			if pgErr.Code == pgerrcode.UniqueViolation {
+				return nil, domain.ErrUserAlreadyExists
+			}
+		}
 		return nil, err
 	}
+	return mapper.MapDBUserToUser(dbUser), nil
+}
 
-	user := &domain.User{
-		ID:        createdUser.ID,
-		Email:     createdUser.Email,
-		Password:  createdUser.Password,
-		FirstName: createdUser.FirstName,
-		LastName:  createdUser.LastName,
-		Role:      domain.Role(createdUser.Role),
-		CreatedAt: createdUser.CreatedAt.Time,
-		UpdatedAt: createdUser.UpdatedAt.Time,
+func (r *UserRepository) GetUserByID(ctx context.Context, id int32) (*domain.User, error) {
+	dbUser, err := r.db.GetUserByID(ctx, id)
+	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return nil, nil
+		}
+		return nil, err
 	}
+	return mapper.MapDBUserToUser(dbUser), nil
+}
 
-	if createdUser.Phone.Valid {
-		user.Phone = &createdUser.Phone.String
+func (r *UserRepository) GetUserByEmail(ctx context.Context, email string) (*domain.User, error) {
+	dbUser, err := r.db.GetUserByEmail(ctx, email)
+	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return nil, nil
+		}
+		return nil, err
 	}
-	if createdUser.ProfilePicUrl.Valid {
-		user.ProfilePicURL = &createdUser.ProfilePicUrl.String
-	}
-	if createdUser.Bio.Valid {
-		user.Bio = &createdUser.Bio.String
-	}
-
-	return user, nil
+	return mapper.MapDBUserToUser(dbUser), nil
 }

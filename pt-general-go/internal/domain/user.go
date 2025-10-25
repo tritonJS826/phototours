@@ -14,7 +14,7 @@ type User struct {
 	FirstName     string    `json:"firstName"`
 	LastName      string    `json:"lastName"`
 	Email         string    `json:"email"`
-	Password      string    `json:"-"` // не сериализуется в JSON
+	Password      string    `json:"-"`
 	Role          Role      `json:"role"`
 	CreatedAt     time.Time `json:"createdAt"`
 	UpdatedAt     time.Time `json:"updatedAt"`
