@@ -149,3 +149,103 @@ func (q *Queries) GetUserByID(ctx context.Context, id int32) (User, error) {
 	)
 	return i, err
 }
+
+const updateUser = `-- name: UpdateUser :one
+UPDATE users
+SET
+    first_name = COALESCE($2, first_name),
+    last_name = COALESCE($3, last_name),
+    phone = COALESCE($4, phone),
+    bio = COALESCE($5, bio),
+    profile_pic_url = COALESCE($6, profile_pic_url)
+WHERE id = $1
+RETURNING
+  id,
+  email,
+  password,
+  first_name,
+  last_name,
+  phone,
+  bio,
+  profile_pic_url,
+  role,
+  created_at,
+  updated_at
+`
+
+type UpdateUserParams struct {
+	ID            int32
+	FirstName     pgtype.Text
+	LastName      pgtype.Text
+	Phone         pgtype.Text
+	Bio           pgtype.Text
+	ProfilePicUrl pgtype.Text
+}
+
+func (q *Queries) UpdateUser(ctx context.Context, arg UpdateUserParams) (User, error) {
+	row := q.db.QueryRow(ctx, updateUser,
+		arg.ID,
+		arg.FirstName,
+		arg.LastName,
+		arg.Phone,
+		arg.Bio,
+		arg.ProfilePicUrl,
+	)
+	var i User
+	err := row.Scan(
+		&i.ID,
+		&i.Email,
+		&i.Password,
+		&i.FirstName,
+		&i.LastName,
+		&i.Phone,
+		&i.Bio,
+		&i.ProfilePicUrl,
+		&i.Role,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
+const updateUserPassword = `-- name: UpdateUserPassword :one
+UPDATE users
+SET password = $1
+WHERE id = $2
+RETURNING
+  id,
+  email,
+  password,
+  first_name,
+  last_name,
+  phone,
+  bio,
+  profile_pic_url,
+  role,
+  created_at,
+  updated_at
+`
+
+type UpdateUserPasswordParams struct {
+	Password string
+	ID       int32
+}
+
+func (q *Queries) UpdateUserPassword(ctx context.Context, arg UpdateUserPasswordParams) (User, error) {
+	row := q.db.QueryRow(ctx, updateUserPassword, arg.Password, arg.ID)
+	var i User
+	err := row.Scan(
+		&i.ID,
+		&i.Email,
+		&i.Password,
+		&i.FirstName,
+		&i.LastName,
+		&i.Phone,
+		&i.Bio,
+		&i.ProfilePicUrl,
+		&i.Role,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}

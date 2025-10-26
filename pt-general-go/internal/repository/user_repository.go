@@ -5,6 +5,7 @@ import (
 	"errors"
 	db "pt-general-go/internal/db/sqlc"
 	"pt-general-go/internal/domain"
+	"pt-general-go/internal/handler/dto"
 	"pt-general-go/internal/repository/mapper"
 
 	"github.com/jackc/pgerrcode"
@@ -66,5 +67,64 @@ func (r *UserRepository) GetUserByEmail(ctx context.Context, email string) (*dom
 		}
 		return nil, err
 	}
+	return mapper.MapDBUserToUser(dbUser), nil
+}
+
+func (r *UserRepository) UpdateUserByID(ctx context.Context, updateUser *dto.UpdateProfileDTO) (*domain.User, error) {
+	var firstName, lastName, phone, bio, profilePicURL pgtype.Text
+
+	if updateUser.FirstName != nil && *updateUser.FirstName != "" {
+		firstName = pgtype.Text{String: *updateUser.FirstName, Valid: true}
+	}
+
+	if updateUser.LastName != nil && *updateUser.LastName != "" {
+		lastName = pgtype.Text{String: *updateUser.LastName, Valid: true}
+	}
+
+	if updateUser.Phone != nil && *updateUser.Phone != "" {
+		phone = pgtype.Text{String: *updateUser.Phone, Valid: true}
+	}
+
+	if updateUser.Bio != nil && *updateUser.Bio != "" {
+		bio = pgtype.Text{String: *updateUser.Bio, Valid: true}
+	}
+
+	if updateUser.UploadedPath != nil && *updateUser.UploadedPath != "" {
+		profilePicURL = pgtype.Text{String: *updateUser.UploadedPath, Valid: true}
+	}
+
+	params := db.UpdateUserParams{
+		ID:            updateUser.ID, // предполагается, что ID есть в DTO
+		FirstName:     firstName,
+		LastName:      lastName,
+		Phone:         phone,
+		Bio:           bio,
+		ProfilePicUrl: profilePicURL,
+	}
+
+	dbUser, err := r.db.UpdateUser(ctx, params)
+	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return nil, nil
+		}
+		return nil, err
+	}
+
+	return mapper.MapDBUserToUser(dbUser), nil
+}
+
+func (r *UserRepository) UpdateUserPassword(ctx context.Context, userID int32, password string) (*domain.User, error) {
+	params := db.UpdateUserPasswordParams{
+		ID:       userID,
+		Password: password,
+	}
+	dbUser, err := r.db.UpdateUserPassword(ctx, params)
+	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return nil, nil
+		}
+		return nil, err
+	}
+
 	return mapper.MapDBUserToUser(dbUser), nil
 }

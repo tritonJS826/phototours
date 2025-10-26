@@ -39,9 +39,9 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 	{
 		auth.POST("/register", h.Register)
 		auth.POST("/login", h.Login)
-		// auth.POST("/change-password", h.AuthMiddleware(), h.ChangePassword)
+		auth.POST("/change-password", h.AuthMiddleware(), h.ChangePassword)
 		auth.GET("/profile", h.AuthMiddleware(), h.GetProfile)
-		// 	auth.PUT("/profile", h.AuthMiddleware(), h.UpdateProfile)
+		auth.PUT("/profile", h.AuthMiddleware(), h.UpdateProfile)
 	}
 
 	return router

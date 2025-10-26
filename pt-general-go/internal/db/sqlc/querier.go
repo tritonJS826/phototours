@@ -13,6 +13,8 @@ type Querier interface {
 	GetUserByEmail(ctx context.Context, email string) (User, error)
 	GetUserByID(ctx context.Context, id int32) (User, error)
 	ResetSchema(ctx context.Context) error
+	UpdateUser(ctx context.Context, arg UpdateUserParams) (User, error)
+	UpdateUserPassword(ctx context.Context, arg UpdateUserPasswordParams) (User, error)
 }
 
 var _ Querier = (*Queries)(nil)

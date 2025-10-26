@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"pt-general-go/internal/config"
 	"pt-general-go/internal/domain"
+	"pt-general-go/internal/handler/dto"
 	"pt-general-go/internal/repository"
 	"pt-general-go/pkg/utils"
 
@@ -79,4 +80,32 @@ func (s *AuthService) Login(ctx context.Context, login *domain.Login) (*domain.R
 
 func (s *AuthService) GetProfile(ctx context.Context, userID int32) (*domain.User, error) {
 	return s.userRepository.GetUserByID(ctx, userID)
+}
+
+func (s *AuthService) ChangePassword(ctx context.Context, changePasswordDTO *dto.ChangePasswordDTO) (*domain.User, error) {
+	user, err := s.userRepository.GetUserByID(ctx, changePasswordDTO.ID)
+	if err != nil {
+		s.logger.Error("Failed to get user", zap.Error(err), zap.Int32("user_id", changePasswordDTO.ID))
+		return nil, domain.ErrInternal
+	}
+	if user == nil {
+		return nil, domain.ErrInvalidCredentials
+	}
+
+	if !utils.VerifyPassword(changePasswordDTO.CurrentPassword, user.Password) {
+		return nil, domain.ErrInvalidCredentials
+	}
+
+	hashedPassword, err := utils.HashPassword(changePasswordDTO.NewPassword)
+	if err != nil {
+		s.logger.Error("Password hashing failed", zap.Error(err))
+		return nil, fmt.Errorf("password hashing failed: %w", domain.ErrInvalidPassword)
+	}
+	user.Password = hashedPassword
+
+	return s.userRepository.UpdateUserPassword(ctx, user.ID, hashedPassword)
+}
+
+func (s *AuthService) UpdateProfile(ctx context.Context, updateProfile *dto.UpdateProfileDTO) (*domain.User, error) {
+	return s.userRepository.UpdateUserByID(ctx, updateProfile)
 }
