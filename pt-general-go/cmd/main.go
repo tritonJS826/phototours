@@ -6,15 +6,14 @@ import (
 	"os"
 	"os/signal"
 	"pt-general-go/internal/config"
-	sqlc "pt-general-go/internal/db/sqlc"
+	db "pt-general-go/internal/db/sqlc"
 	"pt-general-go/internal/handler"
 	"pt-general-go/internal/repository"
 	"pt-general-go/internal/server"
 	"pt-general-go/internal/service"
-
-	// "pt-general-go/pkg/db"
-	"pt-general-go/pkg/db"
+	"pt-general-go/pkg/database"
 	"pt-general-go/pkg/logger"
+	"pt-general-go/pkg/storage"
 	"syscall"
 	"time"
 
@@ -37,26 +36,27 @@ func main() {
 	logg, err := logger.NewLogger(logLevel)
 	if err != nil {
 		logg.Fatal("failed to initalize logger", zap.Error(err))
-		return
 	}
 
 	cfg, err := config.NewConfig()
 	if err != nil {
 		logg.Fatal("failed to initalize config", zap.Error(err))
-		return
 	}
 
-	// connect to database
-	dbpool, err := db.NewPostgresDB(ctx, cfg.DatabaseURL)
+	dbPool, err := database.NewPostgresDB(ctx, cfg.DatabaseURL)
 	if err != nil {
 		logg.Fatal("failed to connect to postgres", zap.Error(err))
-		return
 	}
-	defer dbpool.Close()
+	defer dbPool.Close()
 
-	queries := sqlc.New(dbpool)
+	queries := db.New(dbPool)
 
-	repositories := repository.NewRepository(queries, dbpool)
+	cld, err := storage.NewCloudinaryClient(&cfg.CloudinaryConfig)
+	if err != nil {
+		logg.Fatal("failed to connect to postgres", zap.Error(err))
+	}
+
+	repositories := repository.NewRepository(cfg, queries, dbPool, cld)
 	services := service.NewService(repositories, cfg, logg)
 	handlers := handler.NewHandler(cfg, services)
 
@@ -65,7 +65,6 @@ func main() {
 		err := serv.Start(handlers.SetupRoutes(), cfg.ServerPort)
 		if err != nil {
 			logg.Fatal("failed to connect to postgres", zap.Error(err))
-			return
 		}
 	}()
 

@@ -5,7 +5,6 @@ import (
 	"errors"
 	db "pt-general-go/internal/db/sqlc"
 	"pt-general-go/internal/domain"
-	"pt-general-go/internal/handler/dto"
 	"pt-general-go/internal/repository/mapper"
 
 	"github.com/jackc/pgerrcode"
@@ -70,7 +69,7 @@ func (r *UserRepository) GetUserByEmail(ctx context.Context, email string) (*dom
 	return mapper.MapDBUserToUser(dbUser), nil
 }
 
-func (r *UserRepository) UpdateUserByID(ctx context.Context, updateUser *dto.UpdateProfileDTO) (*domain.User, error) {
+func (r *UserRepository) UpdateUserByID(ctx context.Context, updateUser *domain.UpdateProfile) (*domain.User, error) {
 	var firstName, lastName, phone, bio, profilePicURL pgtype.Text
 
 	if updateUser.FirstName != nil && *updateUser.FirstName != "" {
@@ -94,7 +93,7 @@ func (r *UserRepository) UpdateUserByID(ctx context.Context, updateUser *dto.Upd
 	}
 
 	params := db.UpdateUserParams{
-		ID:            updateUser.ID, // предполагается, что ID есть в DTO
+		ID:            updateUser.ID,
 		FirstName:     firstName,
 		LastName:      lastName,
 		Phone:         phone,

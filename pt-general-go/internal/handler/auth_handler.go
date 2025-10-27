@@ -4,25 +4,35 @@ import (
 	"net/http"
 	"pt-general-go/internal/domain"
 	"pt-general-go/internal/handler/dto"
-	"pt-general-go/pkg/utils"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
 
+const (
+	MaxAvatarSize     = 5 * 1024 * 1024 // 5MB
+	AllowedImageTypes = "image/jpeg,image/png,image/gif,image/webp"
+)
+
 func (h *Handler) Register(ctx *gin.Context) {
-	var res domain.Register
-	if err := ctx.ShouldBindJSON(&res); err != nil {
+	var register domain.Register
+	if err := ctx.ShouldBindJSON(&register); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request data"})
 		return
 	}
 
-	result, err := h.services.AuthService.Register(ctx, &res)
+	if err := register.Validate(); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	result, err := h.services.AuthService.Register(ctx, &register)
 	if err != nil {
 		h.handleAuthError(ctx, err)
 		return
 	}
 
-	ctx.JSON(http.StatusCreated, dto.RegisterResponse{
+	ctx.JSON(http.StatusCreated, dto.AuthResponse{
 		User:  dto.MapUserToSafeUser(result.User),
 		Token: result.Token,
 	})
@@ -35,13 +45,18 @@ func (h *Handler) Login(ctx *gin.Context) {
 		return
 	}
 
+	if err := login.Validate(); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
 	result, err := h.services.AuthService.Login(ctx, &login)
 	if err != nil {
 		h.handleAuthError(ctx, err)
 		return
 	}
 
-	ctx.JSON(http.StatusCreated, dto.RegisterResponse{
+	ctx.JSON(http.StatusOK, dto.AuthResponse{
 		User:  dto.MapUserToSafeUser(result.User),
 		Token: result.Token,
 	})
@@ -54,7 +69,7 @@ func (h *Handler) GetProfile(ctx *gin.Context) {
 		return
 	}
 
-	user, err := h.services.AuthService.GetProfile(ctx, int32(userID))
+	user, err := h.services.AuthService.GetProfile(ctx, userID)
 	if err != nil {
 		h.handleAuthError(ctx, err)
 		return
@@ -91,46 +106,53 @@ func (h *Handler) UpdateProfile(ctx *gin.Context) {
 		return
 	}
 
-	updateDto := ParseUpdateProfileForm(ctx)
-	if err := updateDto.Validate(); err != nil {
-		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "invalid data"})
+	updateProfileInput := &domain.UpdateProfileInput{
+		ID: userID,
+	}
+
+	file, err := ctx.FormFile("avatar")
+	if err != nil && err != http.ErrMissingFile {
+		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "failed to process avatar"})
+		return
+	}
+	if file != nil {
+		if file.Size > MaxAvatarSize {
+			ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "file too large (max 5MB)"})
+			return
+		}
+
+		contentType := file.Header.Get("Content-Type")
+		if !strings.Contains(AllowedImageTypes, contentType) {
+			ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "invalid file type"})
+			return
+		}
+		updateProfileInput.File = file
+	}
+
+	if v := ctx.PostForm("firstName"); v != "" {
+		updateProfileInput.FirstName = &v
+	}
+	if v := ctx.PostForm("lastName"); v != "" {
+		updateProfileInput.LastName = &v
+	}
+	if v := ctx.PostForm("phone"); v != "" {
+		updateProfileInput.Phone = &v
+	}
+	if v := ctx.PostForm("bio"); v != "" {
+		updateProfileInput.Bio = &v
+	}
+
+	if err := updateProfileInput.Validate(); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	updateDto.ID = userID
-
-	user, err := h.services.AuthService.UpdateProfile(ctx, updateDto)
+	// TODO: If user adds new profile image, we should delete the old image
+	user, err := h.services.AuthService.UpdateProfile(ctx, updateProfileInput)
 	if err != nil {
 		h.handleAuthError(ctx, err)
 		return
 	}
 
 	ctx.JSON(http.StatusOK, dto.MapUserToSafeUser(user))
-}
-
-func ParseUpdateProfileForm(ctx *gin.Context) *dto.UpdateProfileDTO {
-	updateDTO := new(dto.UpdateProfileDTO)
-
-	file, err := ctx.FormFile("avatar")
-	if err == nil {
-		savedPath, err := utils.SaveUploadedFile(ctx, file)
-		if err == nil {
-			updateDTO.UploadedPath = &savedPath
-		}
-	}
-
-	if v := ctx.PostForm("firstName"); v != "" {
-		updateDTO.FirstName = &v
-	}
-	if v := ctx.PostForm("lastName"); v != "" {
-		updateDTO.LastName = &v
-	}
-	if v := ctx.PostForm("phone"); v != "" {
-		updateDTO.Phone = &v
-	}
-	if v := ctx.PostForm("bio"); v != "" {
-		updateDTO.Bio = &v
-	}
-
-	return updateDTO
 }
