@@ -32,8 +32,8 @@ type Config struct {
 	CORSOrigins string `env:"CORS_ORIGIN,required"`
 	DatabaseURL string `env:"DATABASE_URL,required"`
 	// ZohoConfig       ZohoConfig       `envPrefix:"ZOHO_"`
-	JWTConfig JWTConfig
-	// CloudinaryConfig CloudinaryConfig `envPrefix:"CLOUDINARY_"`
+	JWTConfig        JWTConfig
+	CloudinaryConfig CloudinaryConfig
 }
 
 func NewConfig() (*Config, error) {
@@ -48,27 +48,3 @@ func NewConfig() (*Config, error) {
 
 	return cfg, nil
 }
-
-// WEBAPP_DOMAIN=localhost
-// ORIGIN_PORT=5173
-
-// DATABASE_URL="postgresql://root:secret@localhost:5432/phototours_db"
-
-// JWT_SECRET=your_super_secret_jwt_key_here_change_this_in_production
-// JWT_EXPIRES_IN=7d
-
-// POSTGRES_USER=root
-// POSTGRES_PASSWORD=secret
-// POSTGRES_DB=phototours_db
-
-// CORS_ORIGIN=http://localhost:5173
-// ZOHO_CLIENT_ID="1000.PHOCM1CA1QXOYZRVTOEYFBB1KU49FX"
-// ZOHO_CLIENT_SECRET="1b19c682c51d51f6c0b769fc5174b88d6967c312e8"
-// ZOHO_REFRESH_TOKEN="1000.c5254ebe6ed124d1ccfbb33dc0429dc0.81a626892accc25b4ca9448430426789"
-// ZOHO_REDIRECT_URI="http://localhost:8000/auth/zoho/callback"
-// SALT_ROUNDS=12
-
-// CLOUDINARY_CLOUD_NAME=dpmgvfdta
-// CLOUDINARY_API_KEY=946944336417467
-// CLOUDINARY_API_SECRET=sfmWtPy-X-mKWwx2AWX01xaDEdA
-// CLOUDINARY_UPLOAD_FOLDER=phototours

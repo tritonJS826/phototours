@@ -13,20 +13,27 @@ import (
 )
 
 type AuthService struct {
-	userRepository *repository.UserRepository
-	cfg            *config.Config
-	logger         *zap.Logger
+	userRepository   *repository.UserRepository
+	uploadRepository *repository.UploadRepository
+	cfg              *config.Config
+	logger           *zap.Logger
 }
 
-func NewAuthService(userRepository *repository.UserRepository, cfg *config.Config, logger *zap.Logger) *AuthService {
+func NewAuthService(
+	userRepository *repository.UserRepository,
+	uploadRepository *repository.UploadRepository,
+	cfg *config.Config,
+	logger *zap.Logger,
+) *AuthService {
 	return &AuthService{
-		userRepository: userRepository,
-		cfg:            cfg,
-		logger:         logger,
+		userRepository:   userRepository,
+		uploadRepository: uploadRepository,
+		cfg:              cfg,
+		logger:           logger,
 	}
 }
 
-func (s *AuthService) Register(ctx context.Context, register *domain.Register) (*domain.RegisterResult, error) {
+func (s *AuthService) Register(ctx context.Context, register *domain.Register) (*domain.AuthResult, error) {
 	hashedPassword, err := utils.HashPassword(register.Password)
 	if err != nil {
 		s.logger.Error("Password hashing failed", zap.Error(err))
@@ -46,13 +53,13 @@ func (s *AuthService) Register(ctx context.Context, register *domain.Register) (
 		return nil, fmt.Errorf("failed to generate token: %w", err)
 	}
 
-	return &domain.RegisterResult{
+	return &domain.AuthResult{
 		User:  user,
 		Token: token,
 	}, nil
 }
 
-func (s *AuthService) Login(ctx context.Context, login *domain.Login) (*domain.RegisterResult, error) {
+func (s *AuthService) Login(ctx context.Context, login *domain.Login) (*domain.AuthResult, error) {
 	user, err := s.userRepository.GetUserByEmail(ctx, login.Email)
 	if err != nil {
 		s.logger.Error("Failed to get user", zap.Error(err), zap.String("email", login.Email))
@@ -72,7 +79,7 @@ func (s *AuthService) Login(ctx context.Context, login *domain.Login) (*domain.R
 		return nil, fmt.Errorf("token generation error: %w", err)
 	}
 
-	return &domain.RegisterResult{
+	return &domain.AuthResult{
 		User:  user,
 		Token: token,
 	}, nil
@@ -106,6 +113,22 @@ func (s *AuthService) ChangePassword(ctx context.Context, changePasswordDTO *dto
 	return s.userRepository.UpdateUserPassword(ctx, user.ID, hashedPassword)
 }
 
-func (s *AuthService) UpdateProfile(ctx context.Context, updateProfile *dto.UpdateProfileDTO) (*domain.User, error) {
+func (s *AuthService) UpdateProfile(ctx context.Context, input *domain.UpdateProfileInput) (*domain.User, error) {
+	updateProfile := &domain.UpdateProfile{
+		ID:        input.ID,
+		FirstName: input.FirstName,
+		LastName:  input.LastName,
+		Phone:     input.Phone,
+		Bio:       input.Bio,
+	}
+
+	if input.File != nil {
+		url, err := s.uploadRepository.UploadAvatar(ctx, input.File)
+		if err != nil {
+			return nil, fmt.Errorf("upload avatar: %w", err)
+		}
+		updateProfile.UploadedPath = &url
+	}
+
 	return s.userRepository.UpdateUserByID(ctx, updateProfile)
 }

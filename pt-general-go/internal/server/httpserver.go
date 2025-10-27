@@ -15,12 +15,11 @@ func NewServer() *Server {
 }
 
 func (s *Server) Start(handler http.Handler, port string) error {
-
 	s.httpServer = &http.Server{
 		Handler:      handler,
 		Addr:         ":" + port,
-		WriteTimeout: 15 * time.Second,
-		ReadTimeout:  15 * time.Second,
+		WriteTimeout: 3 * time.Minute,
+		ReadTimeout:  3 * time.Minute,
 	}
 	return s.httpServer.ListenAndServe()
 }

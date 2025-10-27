@@ -1,7 +1,6 @@
 package dto
 
 import (
-	"errors"
 	"pt-general-go/internal/domain"
 	"pt-general-go/pkg/utils"
 	"time"
@@ -13,7 +12,7 @@ type ChangePasswordDTO struct {
 	NewPassword     string `json:"newPassword" binding:"required,min=6"`
 }
 
-type RegisterResponse struct {
+type AuthResponse struct {
 	User  *SafeUser `json:"user"`
 	Token string    `json:"token"`
 }
@@ -42,24 +41,4 @@ func MapUserToSafeUser(u *domain.User) *SafeUser {
 		Bio:           utils.StringPtrToString(u.Bio),
 		CreatedAt:     u.CreatedAt.Format(time.RFC3339),
 	}
-}
-
-type UpdateProfileDTO struct {
-	ID           int32
-	FirstName    *string `json:"firstName"`
-	LastName     *string `json:"lastName"`
-	Phone        *string `json:"phone"`
-	Bio          *string `json:"bio"`
-	UploadedPath *string
-}
-
-func (d *UpdateProfileDTO) Validate() error {
-	if d.FirstName == nil &&
-		d.LastName == nil &&
-		d.Phone == nil &&
-		d.Bio == nil &&
-		d.UploadedPath == nil {
-		return errors.New("no fields to update")
-	}
-	return nil
 }

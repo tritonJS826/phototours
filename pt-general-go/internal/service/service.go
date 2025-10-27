@@ -14,7 +14,7 @@ type Service struct {
 
 func NewService(repo *repository.Repository, cfg *config.Config, logger *zap.Logger) *Service {
 	return &Service{
-		AuthService:  NewAuthService(repo.UserRepository, cfg, logger),
+		AuthService:  NewAuthService(repo.UserRepository, repo.UploadRepository, cfg, logger),
 		ResetService: NewResetService(repo.ResetRepository),
 	}
 }
