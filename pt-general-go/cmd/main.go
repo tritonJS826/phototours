@@ -6,7 +6,6 @@ import (
 	"os"
 	"os/signal"
 	"pt-general-go/internal/config"
-	db "pt-general-go/internal/db/sqlc"
 	"pt-general-go/internal/handler"
 	"pt-general-go/internal/repository"
 	"pt-general-go/internal/server"
@@ -49,14 +48,12 @@ func main() {
 	}
 	defer dbPool.Close()
 
-	queries := db.New(dbPool)
-
 	cld, err := storage.NewCloudinaryClient(&cfg.CloudinaryConfig)
 	if err != nil {
 		logg.Fatal("failed to connect to postgres", zap.Error(err))
 	}
 
-	repositories := repository.NewRepository(cfg, queries, dbPool, cld)
+	repositories := repository.NewRepository(cfg, dbPool, cld)
 	services := service.NewService(repositories, cfg, logg)
 	handlers := handler.NewHandler(cfg, services)
 

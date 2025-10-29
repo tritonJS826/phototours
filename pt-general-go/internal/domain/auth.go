@@ -54,6 +54,12 @@ type AuthResult struct {
 	Token string
 }
 
+type ChangePassword struct {
+	ID              int32
+	CurrentPassword string `json:"currentPassword" binding:"required"`
+	NewPassword     string `json:"newPassword" binding:"required,min=6"`
+}
+
 type Login struct {
 	Email    string `json:"email" binding:"required,email"`
 	Password string `json:"password" binding:"required"`

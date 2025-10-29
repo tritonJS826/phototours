@@ -10,15 +10,16 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
-func GenerateToken(userID int32, jwtSecret, expiresIn string) (string, error) {
+func GenerateToken(userID int32, role, jwtSecret, expiresIn string) (string, error) {
 	duration, err := parseDuration(expiresIn)
 	if err != nil {
 		return "", fmt.Errorf("invalid expiresIn format: %w", err)
 	}
 
 	claims := jwt.MapClaims{
-		"sub": userID,
-		"exp": time.Now().Add(duration).Unix(),
+		"sub":  userID,
+		"role": role,
+		"exp":  time.Now().Add(duration).Unix(),
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)

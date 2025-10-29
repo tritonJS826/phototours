@@ -6,12 +6,6 @@ import (
 	"time"
 )
 
-type ChangePasswordDTO struct {
-	ID              int32
-	CurrentPassword string `json:"currentPassword" binding:"required"`
-	NewPassword     string `json:"newPassword" binding:"required,min=6"`
-}
-
 type AuthResponse struct {
 	User  *SafeUser `json:"user"`
 	Token string    `json:"token"`

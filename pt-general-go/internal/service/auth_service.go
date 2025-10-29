@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"pt-general-go/internal/config"
 	"pt-general-go/internal/domain"
-	"pt-general-go/internal/handler/dto"
 	"pt-general-go/internal/repository"
 	"pt-general-go/pkg/utils"
 
@@ -47,7 +46,7 @@ func (s *AuthService) Register(ctx context.Context, register *domain.Register) (
 		return nil, err
 	}
 
-	token, err := utils.GenerateToken(user.ID, s.cfg.JWTConfig.Secret, s.cfg.JWTConfig.ExpiresIn)
+	token, err := utils.GenerateToken(user.ID, string(user.Role), s.cfg.JWTConfig.Secret, s.cfg.JWTConfig.ExpiresIn)
 	if err != nil {
 		s.logger.Error("Token generation failed", zap.Error(err), zap.Int32("user_id", user.ID))
 		return nil, fmt.Errorf("failed to generate token: %w", err)
@@ -73,7 +72,7 @@ func (s *AuthService) Login(ctx context.Context, login *domain.Login) (*domain.A
 		return nil, domain.ErrInvalidCredentials
 	}
 
-	token, err := utils.GenerateToken(user.ID, s.cfg.JWTConfig.Secret, s.cfg.JWTConfig.ExpiresIn)
+	token, err := utils.GenerateToken(user.ID, string(user.Role), s.cfg.JWTConfig.Secret, s.cfg.JWTConfig.ExpiresIn)
 	if err != nil {
 		s.logger.Error("Failed to generate token", zap.Error(err))
 		return nil, fmt.Errorf("token generation error: %w", err)
@@ -89,7 +88,7 @@ func (s *AuthService) GetProfile(ctx context.Context, userID int32) (*domain.Use
 	return s.userRepository.GetUserByID(ctx, userID)
 }
 
-func (s *AuthService) ChangePassword(ctx context.Context, changePasswordDTO *dto.ChangePasswordDTO) (*domain.User, error) {
+func (s *AuthService) ChangePassword(ctx context.Context, changePasswordDTO *domain.ChangePassword) (*domain.User, error) {
 	user, err := s.userRepository.GetUserByID(ctx, changePasswordDTO.ID)
 	if err != nil {
 		s.logger.Error("Failed to get user", zap.Error(err), zap.Int32("user_id", changePasswordDTO.ID))

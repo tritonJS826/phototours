@@ -24,11 +24,11 @@ func NewHandler(cfg *config.Config, services *service.Service) *Handler {
 
 func (h *Handler) handleAuthError(ctx *gin.Context, err error) {
 	switch {
-	case errors.Is(err, domain.ErrUserNotFound),
+	case errors.Is(err, domain.ErrNotFound),
 		errors.Is(err, domain.ErrInvalidCredentials):
 		ctx.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "Invalid email or password"})
 
-	case errors.Is(err, domain.ErrUserAlreadyExists):
+	case errors.Is(err, domain.ErrAlreadyExists):
 		ctx.AbortWithStatusJSON(http.StatusConflict, gin.H{"error": "User with this email already exists"})
 
 	case errors.Is(err, domain.ErrInvalidPassword):
