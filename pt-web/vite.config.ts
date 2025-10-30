@@ -1,6 +1,9 @@
 /* eslint-disable no-restricted-exports */
 /* eslint-disable no-magic-numbers */
+// eslint-disable-next-line no-restricted-imports
+import {envSchema} from "./src/utils/env/envSchema";
 import react from "@vitejs/plugin-react-swc";
+import {cleanEnv} from "envalid";
 import path from "path";
 import {defineConfig, loadEnv, type UserConfig} from "vite";
 import eslint from "vite-plugin-eslint";
@@ -9,7 +12,8 @@ import viteTsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig(() => {
   const env = loadEnv("", process.cwd(), "");
-  const isProd = env.ENV_TYPE === "prod";
+  const validatedEnvs = cleanEnv(env, envSchema);
+  const isProd = validatedEnvs.ENV_TYPE === "prod";
 
   const config: UserConfig = {
     build: {target: "esnext", outDir: "build"},
@@ -19,12 +23,7 @@ export default defineConfig(() => {
       eslint({exclude: ["/virtual:/**", "/sb-preview/**"], failOnError: false}),
       viteTsconfigPaths(),
     ],
-    define: {
-      "process.env": {
-        VITE_API_BASE_URL: env.VITE_API_BASE_URL,
-        VITE_APP_TITLE: env.VITE_APP_TITLE,
-      },
-    },
+    define: {"process.env": validatedEnvs},
     server: {
       host: true,
       port: 5173,

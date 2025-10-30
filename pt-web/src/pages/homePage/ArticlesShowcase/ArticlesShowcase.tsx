@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import {ARTICLES_SHOWCASE_LIMIT, listArticles} from "src/api/articles";
 import {BestTravelTips} from "src/components/BestTravelTips/BestTravelTips";
+import {ARTICLES_SHOWCASE_LIMIT, listArticles} from "src/services/articlesService";
 import type {ArticleSummary} from "src/types/article";
 
 interface ArticlesShowcaseProps {

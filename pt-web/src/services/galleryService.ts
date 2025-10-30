@@ -1,4 +1,4 @@
-import {fetchData} from "src/api/http";
+import {fetchData} from "src/services/httpHelper";
 
 const WIDTH_DEFAULT = 1200;
 const UPLOAD_SEGMENT = "upload/";
@@ -61,7 +61,7 @@ export function downloadUrl(publicIdOrUrl: string): string {
 }
 
 export async function getUploadSignature() {
-  return fetchData<UploadSignature>("general/gallery/signature", {method: "GET"});
+  return await fetchData<UploadSignature>("general/gallery/signature", {method: "GET"});
 }
 
 export async function uploadToCloudinary(args: {file: File; userId: number}) {
@@ -92,7 +92,7 @@ export async function confirmUpload(payload: {
   height: number;
   format: string;
 }) {
-  return fetchData<GalleryImage>("general/gallery/confirm", {
+  return await fetchData<GalleryImage>("general/gallery/confirm", {
     method: "POST",
     headers: {"Content-Type": "application/json", "x-user-id": String(payload.userId)},
     body: JSON.stringify({
@@ -143,7 +143,7 @@ export async function getPublicGallery(userId: number) {
 export async function deleteMyImage(publicId: string, userId: number) {
   const url = `general/gallery/my?publicId=${encodeURIComponent(publicId)}`;
 
-  return fetchData<{deleted: boolean}>(url, {
+  return await fetchData<{deleted: boolean}>(url, {
     method: "DELETE",
     headers: {"x-user-id": String(userId)},
   });

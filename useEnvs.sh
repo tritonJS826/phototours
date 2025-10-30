@@ -4,6 +4,7 @@
 services=(
   "pt-web"
   "pt-general"
+  "pt-general-go"
   "grafana"
 )
 

@@ -1,8 +1,8 @@
 import {useEffect, useMemo, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
-import {getTour} from "src/api/tours";
 import {Container} from "src/components/Container/Container";
 import {Select} from "src/components/Select/Select";
+import {getTour} from "src/services/toursService";
 import type {TourView} from "src/types/tour";
 import styles from "src/pages/tourDetailsPage/TourDetailsPage.module.scss";
 

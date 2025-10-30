@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useRef, useState} from "react";
-import {listTours} from "src/api/tours";
+import {listTours} from "src/services/toursService";
 import type {TourView} from "src/types/tour";
 
 type State = {

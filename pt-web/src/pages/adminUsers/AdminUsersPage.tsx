@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import {fetchData} from "src/api/http";
 import {buildPath, PATHS} from "src/routes/routes";
+import {fetchData} from "src/services/httpHelper";
 
 type AdminUserRow = {
   id: number;

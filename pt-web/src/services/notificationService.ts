@@ -1,4 +1,4 @@
-import {fetchData} from "src/api/http";
+import {fetchData} from "src/services/httpHelper";
 export interface NotificationItem {
   id: number;
   title: string;

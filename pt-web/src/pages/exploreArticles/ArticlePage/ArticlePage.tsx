@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from "react";
 import {useParams} from "react-router-dom";
-import {getArticleBySlug} from "src/api/articles";
 import {ArticleFull} from "src/components/Articles/ArticleFull/ArticleFull";
+import {getArticleBySlug} from "src/services/articlesService";
 import type {Article} from "src/types/article";
 import styles from "src/pages/exploreArticles/ArticlePage/ArticlePage.module.scss";
 

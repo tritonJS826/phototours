@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import {listTours} from "src/api/tours";
 import {Container} from "src/components/Container/Container";
 import {HeroSection} from "src/components/HeroSection/HeroSection";
 import {PopularWorkshops} from "src/components/PopularWorkshops/PopularWorkshops";
@@ -7,6 +6,7 @@ import {SectionHeader} from "src/components/SectionHeader/SectionHeader";
 import {TourSearchForm} from "src/components/TourSearchForm/TourSearchForm";
 import {ToursSection} from "src/components/ToursSection/ToursSection";
 import {ArticlesShowcase} from "src/pages/homePage/ArticlesShowcase/ArticlesShowcase";
+import {listTours} from "src/services/toursService";
 import type {TourView} from "src/types/tour";
 import styles from "src/pages/homePage/HomePage.module.scss";
 

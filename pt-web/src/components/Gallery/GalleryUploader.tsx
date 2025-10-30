@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from "react";
-import {GalleryImage, galleryList, galleryRemove, galleryUpload} from "src/api/gallery";
+import {GalleryImage, galleryList, galleryRemove, galleryUpload} from "src/services/gallery2Service";
 import styles from "src/components/Gallery/Gallery.module.scss";
 
 const ZERO = 0;
@@ -24,7 +24,7 @@ export function GalleryUploader() {
 
   async function refresh() {
     try {
-      const data = await galleryList();
+      const data: GalleryImage[] = await galleryList();
       setItems(data);
       setErr("");
     } catch {
@@ -130,7 +130,7 @@ export function GalleryUploader() {
             />
             <div className={styles.cardBar}>
               <span>
-                {formatSize(it.bytes)}
+                {formatSize(it.bytes ?? 0)}
               </span>
               <button
                 onClick={() => onDelete(it.id)}

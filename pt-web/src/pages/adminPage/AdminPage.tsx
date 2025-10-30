@@ -1,9 +1,9 @@
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {fetchData} from "src/api/http";
 import {Button} from "src/components/Button/Button";
 import {Container} from "src/components/Container/Container";
 import {buildPath, PATHS} from "src/routes/routes";
+import {fetchData} from "src/services/httpHelper";
 import styles from "src/pages/adminPage/AdminPage.module.scss";
 
 type Guide = {

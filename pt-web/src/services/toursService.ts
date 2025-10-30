@@ -1,4 +1,4 @@
-import {fetchData, fileUrl} from "src/api/http";
+import {fetchData, fileUrl} from "src/services/httpHelper";
 import type {TourView} from "src/types/tour";
 
 export const TOURS_PATH = "/general/tours";

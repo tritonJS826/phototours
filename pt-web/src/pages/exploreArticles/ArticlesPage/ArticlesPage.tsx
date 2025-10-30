@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import {listArticles} from "src/api/articles";
+import {listArticles} from "src/services/articlesService";
 import type {ArticleSummary} from "src/types/article";
 import styles from "src/pages/exploreArticles/ArticlesPage/ArticlesPage.module.scss";
 

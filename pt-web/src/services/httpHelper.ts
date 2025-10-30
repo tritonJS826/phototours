@@ -1,3 +1,5 @@
+import {env} from "src/utils/env/env";
+
 function safeUrl(input?: string): URL | undefined {
   const v = (input ?? "").trim();
   if (v === "") {
@@ -15,11 +17,11 @@ const HTTP_NO_CONTENT = 204;
 const HTTP_UNAUTHORIZED = 401;
 const CT_JSON = "application/json";
 
-const ENV_API_BASE = import.meta.env.VITE_API_BASE_URL;
-const ENV_FILES_BASE = import.meta.env.VITE_FILES_BASE_URL;
+const ENV_API_BASE = env.VITE_API_BASE_URL;
+// Const ENV_FILES_BASE = env.VITE_FILES_BASE_URL;
 
 const API_BASE = safeUrl(ENV_API_BASE);
-const FILES_BASE = safeUrl(ENV_FILES_BASE ?? ENV_API_BASE);
+// Const FILES_BASE = safeUrl(ENV_FILES_BASE ?? ENV_API_BASE);
 
 interface RequestOptions extends RequestInit {
   timeoutMs?: number;
@@ -94,5 +96,6 @@ export function fileUrl(url?: string): string {
     return url;
   }
 
-  return FILES_BASE ? new URL(url, FILES_BASE).toString() : url;
+  return "i'm broken and i'm does not exist in env examples";
+  // Return FILES_BASE ? new URL(url, FILES_BASE).toString() : url;
 }
