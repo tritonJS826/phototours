@@ -28,6 +28,8 @@ import (
 type APITestSuite struct {
 	suite.Suite
 
+	basePath string
+
 	pgPool *pgxpool.Pool
 	repo   *repository.Repository
 
@@ -103,6 +105,7 @@ func (s *APITestSuite) startTestServer(ready chan<- bool) {
 
 	serv := server.NewServer()
 	s.serv = serv
+	s.basePath = "http://localhost:" + s.config.ServerPort
 
 	go func() {
 		defer func() {

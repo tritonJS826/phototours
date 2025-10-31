@@ -7,6 +7,12 @@ import (
 	"pt-general-go/internal/handler/dto"
 )
 
+const (
+	RegisterEndpoint   = "/auth/register"
+	LoginEndpoint      = "/auth/login"
+	GetProfileEndpoint = "/auth/profile"
+)
+
 func (s *APITestSuite) TestAuthFlow() {
 	phone := "+1 111 555 9999"
 	registerPayload := domain.Register{
@@ -39,7 +45,7 @@ func (s *APITestSuite) TestAuthFlow() {
 }
 
 func (s *APITestSuite) registerUser(payload domain.Register) dto.AuthResponse {
-	url := "http://localhost:8000/auth/register"
+	url := s.basePath + RegisterEndpoint
 	body := s.postJSON(url, payload, http.StatusCreated)
 
 	var resp dto.AuthResponse
@@ -48,12 +54,12 @@ func (s *APITestSuite) registerUser(payload domain.Register) dto.AuthResponse {
 }
 
 func (s *APITestSuite) registerUserConflict(payload domain.Register) {
-	url := "http://localhost:8000/auth/register"
+	url := s.basePath + RegisterEndpoint
 	s.postJSON(url, payload, http.StatusConflict)
 }
 
 func (s *APITestSuite) loginUser(email, password string) dto.AuthResponse {
-	url := "http://localhost:8000/auth/login"
+	url := s.basePath + LoginEndpoint
 	body := s.postJSON(url, domain.Login{Email: email, Password: password}, http.StatusOK)
 
 	var resp dto.AuthResponse
@@ -62,13 +68,14 @@ func (s *APITestSuite) loginUser(email, password string) dto.AuthResponse {
 }
 
 func (s *APITestSuite) loginUserUnauthorized(email, password string) {
-	url := "http://localhost:8000/auth/login"
+	url := s.basePath + LoginEndpoint
 	s.postJSON(url, domain.Login{Email: email, Password: password}, http.StatusUnauthorized)
 }
 
 func (s *APITestSuite) getProfile(token string) dto.SafeUser {
-	url := "http://localhost:8000/auth/profile"
-	req, _ := http.NewRequest("GET", url, nil)
+	url := s.basePath + GetProfileEndpoint
+	req, err := http.NewRequest(http.MethodGet, url, nil)
+	s.Require().NoError(err)
 	req.Header.Set("Authorization", "Bearer "+token)
 
 	body := s.doRequest(req, http.StatusOK)
@@ -79,8 +86,9 @@ func (s *APITestSuite) getProfile(token string) dto.SafeUser {
 }
 
 func (s *APITestSuite) getProfileUnauthorized(token string) {
-	url := "http://localhost:8000/auth/profile"
-	req, _ := http.NewRequest("GET", url, nil)
+	url := s.basePath + GetProfileEndpoint
+	req, err := http.NewRequest(http.MethodGet, url, nil)
+	s.Require().NoError(err)
 	req.Header.Set("Authorization", "Bearer "+token)
 
 	s.doRequest(req, http.StatusUnauthorized)

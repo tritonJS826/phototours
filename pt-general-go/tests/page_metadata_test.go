@@ -9,6 +9,10 @@ import (
 	"pt-general-go/internal/handler/dto"
 )
 
+const (
+	PageMetadataEndpoint = "/page-metadata"
+)
+
 func (s *APITestSuite) TestPageMetadataFlow() {
 	// Создаем обычного юзера
 	user := s.registerUser(domain.Register{
@@ -54,7 +58,7 @@ func (s *APITestSuite) TestPageMetadataFlow() {
 
 func (s *APITestSuite) getPageMetadata(token, urlStr string) domain.PageMetadata {
 	// Формируем URL с query-параметрами
-	u, _ := url.Parse("http://localhost:8000/page-metadata")
+	u, _ := url.Parse(s.basePath + PageMetadataEndpoint)
 	q := u.Query()
 	q.Set("url", urlStr)
 	u.RawQuery = q.Encode()
@@ -70,15 +74,15 @@ func (s *APITestSuite) getPageMetadata(token, urlStr string) domain.PageMetadata
 }
 
 func (s *APITestSuite) createPageMetadata(token string, payload domain.PageMetadata) {
-	s.postJSONAuth("http://localhost:8000/page-metadata", token, payload, http.StatusCreated)
+	s.postJSONAuth(s.basePath+PageMetadataEndpoint, token, payload, http.StatusCreated)
 }
 
 func (s *APITestSuite) updatePageMetadata(token string, payload domain.PageMetadata) {
-	s.patchJSONAuth("http://localhost:8000/page-metadata", token, payload, http.StatusOK)
+	s.patchJSONAuth(s.basePath+PageMetadataEndpoint, token, payload, http.StatusOK)
 }
 
 func (s *APITestSuite) deletePageMetadata(token, urlStr string) {
-	u, _ := url.Parse("http://localhost:8000/page-metadata")
+	u, _ := url.Parse(s.basePath + PageMetadataEndpoint)
 	q := u.Query()
 	q.Set("url", urlStr)
 	u.RawQuery = q.Encode()
@@ -89,15 +93,15 @@ func (s *APITestSuite) deletePageMetadata(token, urlStr string) {
 }
 
 func (s *APITestSuite) createPageMetadataForbidden(token string, payload domain.PageMetadata) {
-	s.postJSONAuth("http://localhost:8000/page-metadata", token, payload, http.StatusForbidden)
+	s.postJSONAuth(s.basePath+PageMetadataEndpoint, token, payload, http.StatusForbidden)
 }
 
 func (s *APITestSuite) updatePageMetadataForbidden(token string, payload domain.PageMetadata) {
-	s.patchJSONAuth("http://localhost:8000/page-metadata", token, payload, http.StatusForbidden)
+	s.patchJSONAuth(s.basePath+PageMetadataEndpoint, token, payload, http.StatusForbidden)
 }
 
 func (s *APITestSuite) deletePageMetadataForbidden(token string, page string) {
-	req, _ := http.NewRequest("DELETE", "http://localhost:8000/page-metadata?page="+page, nil)
+	req, _ := http.NewRequest("DELETE", s.basePath+PageMetadataEndpoint+"?page="+page, nil)
 	req.Header.Set("Authorization", "Bearer "+token)
 	s.doRequest(req, http.StatusForbidden)
 }
