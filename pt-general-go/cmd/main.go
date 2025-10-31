@@ -65,7 +65,7 @@ func main() {
 		}
 	}()
 
-	logg.Info("server started")
+	logg.Info("server started", zap.String("port", cfg.ServerPort))
 
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, syscall.SIGTERM, syscall.SIGINT)

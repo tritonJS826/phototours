@@ -18,6 +18,21 @@ services:
       timeout: 3s
       retries: 20
 
+  # pt-general-go:
+  #   build:
+  #     context: ./pt-general-go
+  #     dockerfile: Dockerfile
+  #   container_name: pt-general-go
+  #   env_file:
+  #     - ./pt-general-go/.env
+  #   networks:
+  #     - app-network
+  #   expose:
+  #     - "8000"
+  #   depends_on:
+  #     postgres-general:
+  #       condition: service_healthy
+
   pt-general:
     build:
       context: .
@@ -58,21 +73,21 @@ services:
       - pt-general
       - pt-web
 
-  grafana:
-    build:
-      context: .
-      dockerfile: ./grafana/Dockerfile
-    container_name: grafana
-    ports:
-      - "9876:3000"
-    env_file:
-      - ./grafana/.env
-    networks:
-      - app-network
+  # grafana:
+  #   build:
+  #     context: .
+  #     dockerfile: ./grafana/Dockerfile
+  #   container_name: grafana
+  #   ports:
+  #     - "9876:3000"
+  #   env_file:
+  #     - ./grafana/.env
+  #   networks:
+  #     - app-network
 
 volumes:
   postgres-general:
-  grafana-data:
+  # grafana-data:
 
 networks:
   app-network:
