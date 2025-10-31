@@ -21,11 +21,6 @@ func (h *Handler) Register(ctx *gin.Context) {
 		return
 	}
 
-	if err := register.Validate(); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-
 	result, err := h.services.AuthService.Register(ctx, &register)
 	if err != nil {
 		h.handleAuthError(ctx, err)
@@ -42,11 +37,6 @@ func (h *Handler) Login(ctx *gin.Context) {
 	var login domain.Login
 	if err := ctx.ShouldBindJSON(&login); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request data"})
-		return
-	}
-
-	if err := login.Validate(); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -84,15 +74,13 @@ func (h *Handler) ChangePassword(ctx *gin.Context) {
 		return
 	}
 
-	var changePassword domain.ChangePassword
-	if err := ctx.ShouldBindJSON(&changePassword); err != nil {
+	var input dto.ChangePasswordDTO
+	if err := ctx.ShouldBindJSON(&input); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request data"})
 		return
 	}
 
-	changePassword.ID = userClaims.UserID
-
-	user, err := h.services.AuthService.ChangePassword(ctx, &changePassword)
+	user, err := h.services.AuthService.ChangePassword(ctx, input.ToDomain(userClaims.UserID))
 	if err != nil {
 		h.handleAuthError(ctx, err)
 		return
@@ -142,11 +130,6 @@ func (h *Handler) UpdateProfile(ctx *gin.Context) {
 	}
 	if v := ctx.PostForm("bio"); v != "" {
 		updateProfileInput.Bio = &v
-	}
-
-	if err := updateProfileInput.Validate(); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
 	}
 
 	// TODO: If user adds new profile image, we should delete the old image

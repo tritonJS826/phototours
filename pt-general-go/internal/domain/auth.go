@@ -1,11 +1,13 @@
 package domain
 
 import (
-	"errors"
+	"fmt"
 	"mime/multipart"
 	"regexp"
 	"strings"
 )
+
+const MinimalPasswordLength = 6
 
 var emailRegex = regexp.MustCompile(`^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$`)
 
@@ -19,31 +21,31 @@ type Register struct {
 
 func (r *Register) Validate() error {
 	if strings.TrimSpace(r.Email) == "" {
-		return ErrFieldRequired
+		return fmt.Errorf("%w: email required", ErrValidation)
 	}
 	if !emailRegex.MatchString(r.Email) {
-		return ErrInvalidEmail
+		return fmt.Errorf("%w: invalid email", ErrValidation)
 	}
 
-	if len(r.Password) < 8 {
-		return ErrWeakPassword
+	if len(r.Password) < MinimalPasswordLength {
+		return fmt.Errorf("%w: weak password", ErrValidation)
 	}
-	if len(r.Password) > 128 {
-		return ErrFieldTooLong
+	if len(r.Password) > 255 {
+		return fmt.Errorf("%w: password too long", ErrValidation)
 	}
 
 	if strings.TrimSpace(r.FirstName) == "" {
-		return ErrFieldRequired
+		return fmt.Errorf("%w: first name required", ErrValidation)
 	}
 	if len(r.FirstName) > 50 {
-		return ErrFieldTooLong
+		return fmt.Errorf("%w: first name too long", ErrValidation)
 	}
 
 	if strings.TrimSpace(r.LastName) == "" {
-		return ErrFieldRequired
+		return fmt.Errorf("%w: last name required", ErrValidation)
 	}
 	if len(r.LastName) > 50 {
-		return ErrFieldTooLong
+		return fmt.Errorf("%w: last name too long", ErrValidation)
 	}
 
 	return nil
@@ -56,8 +58,24 @@ type AuthResult struct {
 
 type ChangePassword struct {
 	ID              int32
-	CurrentPassword string `json:"currentPassword" binding:"required"`
-	NewPassword     string `json:"newPassword" binding:"required,min=6"`
+	CurrentPassword string
+	NewPassword     string
+}
+
+func (cp *ChangePassword) Validate() error {
+	if strings.TrimSpace(cp.CurrentPassword) == "" {
+		return fmt.Errorf("%w: current password required", ErrValidation)
+	}
+	if strings.TrimSpace(cp.NewPassword) == "" {
+		return fmt.Errorf("%w: new password required", ErrValidation)
+	}
+	if cp.NewPassword == cp.CurrentPassword {
+		return fmt.Errorf("%w: new password must differ from current", ErrValidation)
+	}
+	if len(cp.NewPassword) < MinimalPasswordLength {
+		return fmt.Errorf("%w: new password too short", ErrValidation)
+	}
+	return nil
 }
 
 type Login struct {
@@ -67,14 +85,14 @@ type Login struct {
 
 func (l *Login) Validate() error {
 	if strings.TrimSpace(l.Email) == "" {
-		return ErrFieldRequired
+		return fmt.Errorf("%w: email required", ErrValidation)
 	}
 	if !emailRegex.MatchString(l.Email) {
-		return ErrInvalidEmail
+		return fmt.Errorf("%w: invalid email", ErrValidation)
 	}
 
 	if strings.TrimSpace(l.Password) == "" {
-		return ErrFieldRequired
+		return fmt.Errorf("%w: password required", ErrValidation)
 	}
 
 	return nil
@@ -104,7 +122,7 @@ func (d *UpdateProfileInput) Validate() error {
 		d.Phone == nil &&
 		d.Bio == nil &&
 		d.File == nil {
-		return errors.New("no fields to update")
+		return fmt.Errorf("%w: no fields to update", ErrValidation)
 	}
 	return nil
 }

@@ -6,11 +6,6 @@ import (
 	"time"
 )
 
-type AuthResponse struct {
-	User  *SafeUser `json:"user"`
-	Token string    `json:"token"`
-}
-
 type SafeUser struct {
 	ID            int32  `json:"id"`
 	FirstName     string `json:"firstName"`
