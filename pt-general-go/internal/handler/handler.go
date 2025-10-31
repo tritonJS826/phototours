@@ -8,17 +8,20 @@ import (
 	"pt-general-go/internal/service"
 
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 )
 
 type Handler struct {
 	services *service.Service
 	cfg      *config.Config
+	logger   *zap.Logger
 }
 
-func NewHandler(cfg *config.Config, services *service.Service) *Handler {
+func NewHandler(cfg *config.Config, services *service.Service, logger *zap.Logger) *Handler {
 	return &Handler{
 		cfg:      cfg,
 		services: services,
+		logger:   logger,
 	}
 }
 

@@ -36,8 +36,8 @@ type Config struct {
 	CloudinaryConfig CloudinaryConfig
 }
 
-func NewConfig() (*Config, error) {
-	if err := godotenv.Load(); err != nil {
+func NewConfig(path string) (*Config, error) {
+	if err := godotenv.Load(path); err != nil {
 		return nil, err
 	}
 

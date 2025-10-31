@@ -37,7 +37,7 @@ func main() {
 		logg.Fatal("failed to initalize logger", zap.Error(err))
 	}
 
-	cfg, err := config.NewConfig()
+	cfg, err := config.NewConfig(".env")
 	if err != nil {
 		logg.Fatal("failed to initalize config", zap.Error(err))
 	}
@@ -55,7 +55,7 @@ func main() {
 
 	repositories := repository.NewRepository(cfg, dbPool, cld)
 	services := service.NewService(repositories, cfg, logg)
-	handlers := handler.NewHandler(cfg, services)
+	handlers := handler.NewHandler(cfg, services, logg)
 
 	serv := server.NewServer()
 	go func() {
