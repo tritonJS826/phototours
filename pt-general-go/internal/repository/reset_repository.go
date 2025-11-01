@@ -18,7 +18,8 @@ func NewResetRepository(db db.Querier, pool *pgxpool.Pool) *ResetRepository {
 }
 
 func (r *ResetRepository) ResetSchema(ctx context.Context) error {
-	migration, err := os.ReadFile("internal/db/migration/000001_init_schema.up.sql")
+	// TODO: move path to config
+	migration, err := os.ReadFile("../internal/db/migration/000001_init_schema.up.sql")
 	if err != nil {
 		return err
 	}

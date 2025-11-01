@@ -9,15 +9,18 @@ import (
 )
 
 type Repository struct {
-	UserRepository   *UserRepository
-	UploadRepository *UploadRepository
-	ResetRepository  *ResetRepository
+	UserRepository         *UserRepository
+	UploadRepository       *UploadRepository
+	ResetRepository        *ResetRepository
+	PageMetadataRepository *PageMetadataRepository
 }
 
-func NewRepository(cfg *config.Config, db db.Querier, pool *pgxpool.Pool, cld *cloudinary.Cloudinary) *Repository {
+func NewRepository(cfg *config.Config, dbPool *pgxpool.Pool, cld *cloudinary.Cloudinary) *Repository {
+	queries := db.New(dbPool)
 	return &Repository{
-		UserRepository:   NewUserRepository(db),
-		UploadRepository: NewUploadRepository(cld, cfg.CloudinaryConfig.UploadFolder),
-		ResetRepository:  NewResetRepository(db, pool),
+		UserRepository:         NewUserRepository(queries),
+		UploadRepository:       NewUploadRepository(cld, cfg.CloudinaryConfig.UploadFolder),
+		ResetRepository:        NewResetRepository(queries, dbPool),
+		PageMetadataRepository: NewPageMetadataRepository(queries),
 	}
 }

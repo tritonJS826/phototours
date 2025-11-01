@@ -39,7 +39,7 @@ func (r *UserRepository) CreateUser(ctx context.Context, register *domain.Regist
 		var pgErr *pgconn.PgError
 		if errors.As(err, &pgErr) {
 			if pgErr.Code == pgerrcode.UniqueViolation {
-				return nil, domain.ErrUserAlreadyExists
+				return nil, domain.ErrAlreadyExists
 			}
 		}
 		return nil, err

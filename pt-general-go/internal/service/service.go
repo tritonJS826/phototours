@@ -8,13 +8,15 @@ import (
 )
 
 type Service struct {
-	AuthService  *AuthService
-	ResetService *DevService
+	AuthService         *AuthService
+	ResetService        *DevService
+	PageMetadataService *PageMetadataService
 }
 
 func NewService(repo *repository.Repository, cfg *config.Config, logger *zap.Logger) *Service {
 	return &Service{
-		AuthService:  NewAuthService(repo.UserRepository, repo.UploadRepository, cfg, logger),
-		ResetService: NewResetService(repo.ResetRepository),
+		AuthService:         NewAuthService(repo.UserRepository, repo.UploadRepository, cfg, logger),
+		ResetService:        NewResetService(repo.ResetRepository),
+		PageMetadataService: NewPageMetadataService(repo.PageMetadataRepository),
 	}
 }

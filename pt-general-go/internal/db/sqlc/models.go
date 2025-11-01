@@ -54,6 +54,13 @@ func (ns NullRole) Value() (driver.Value, error) {
 	return string(ns.Role), nil
 }
 
+type PageMetadatum struct {
+	Url       string
+	Tags      string
+	CreatedAt pgtype.Timestamp
+	UpdatedAt pgtype.Timestamp
+}
+
 type User struct {
 	ID            int32
 	Email         string

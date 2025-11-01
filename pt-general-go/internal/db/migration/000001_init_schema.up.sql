@@ -1,19 +1,3 @@
-CREATE TYPE role AS ENUM ('ADMIN', 'CLIENT', 'MANAGER');
-
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    email TEXT NOT NULL,
-    password TEXT NOT NULL,
-    first_name TEXT NOT NULL,
-    last_name TEXT NOT NULL,
-    phone TEXT,
-    bio TEXT,
-    profile_pic_url TEXT,
-    role role DEFAULT 'CLIENT'::role NOT NULL,
-    created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL
-);
-
 CREATE OR REPLACE FUNCTION set_updated_at()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -22,8 +6,35 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+CREATE TYPE role AS ENUM ('ADMIN', 'CLIENT', 'MANAGER');
+
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    phone VARCHAR(20),
+    bio TEXT,
+    profile_pic_url VARCHAR(512),
+    role role DEFAULT 'CLIENT'::role NOT NULL,
+    created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
 CREATE TRIGGER set_updated_at_trigger
 BEFORE UPDATE ON users
 FOR EACH ROW
 EXECUTE FUNCTION set_updated_at();
 
+CREATE TABLE page_metadata (
+    url TEXT PRIMARY KEY,
+    tags TEXT NOT NULL,
+    created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+CREATE TRIGGER set_updated_at_trigger_page_metadata
+BEFORE UPDATE ON page_metadata
+FOR EACH ROW
+EXECUTE FUNCTION set_updated_at();

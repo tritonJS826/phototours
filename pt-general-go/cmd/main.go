@@ -6,7 +6,6 @@ import (
 	"os"
 	"os/signal"
 	"pt-general-go/internal/config"
-	db "pt-general-go/internal/db/sqlc"
 	"pt-general-go/internal/handler"
 	"pt-general-go/internal/repository"
 	"pt-general-go/internal/server"
@@ -38,7 +37,7 @@ func main() {
 		logg.Fatal("failed to initalize logger", zap.Error(err))
 	}
 
-	cfg, err := config.NewConfig()
+	cfg, err := config.NewConfig(".env")
 	if err != nil {
 		logg.Fatal("failed to initalize config", zap.Error(err))
 	}
@@ -49,16 +48,14 @@ func main() {
 	}
 	defer dbPool.Close()
 
-	queries := db.New(dbPool)
-
 	cld, err := storage.NewCloudinaryClient(&cfg.CloudinaryConfig)
 	if err != nil {
 		logg.Fatal("failed to connect to postgres", zap.Error(err))
 	}
 
-	repositories := repository.NewRepository(cfg, queries, dbPool, cld)
+	repositories := repository.NewRepository(cfg, dbPool, cld)
 	services := service.NewService(repositories, cfg, logg)
-	handlers := handler.NewHandler(cfg, services)
+	handlers := handler.NewHandler(cfg, services, logg)
 
 	serv := server.NewServer()
 	go func() {
@@ -68,7 +65,7 @@ func main() {
 		}
 	}()
 
-	logg.Info("server started")
+	logg.Info("server started", zap.String("port", cfg.ServerPort))
 
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, syscall.SIGTERM, syscall.SIGINT)

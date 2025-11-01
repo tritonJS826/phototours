@@ -21,11 +21,6 @@ func (h *Handler) Register(ctx *gin.Context) {
 		return
 	}
 
-	if err := register.Validate(); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-
 	result, err := h.services.AuthService.Register(ctx, &register)
 	if err != nil {
 		h.handleAuthError(ctx, err)
@@ -45,11 +40,6 @@ func (h *Handler) Login(ctx *gin.Context) {
 		return
 	}
 
-	if err := login.Validate(); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-
 	result, err := h.services.AuthService.Login(ctx, &login)
 	if err != nil {
 		h.handleAuthError(ctx, err)
@@ -63,13 +53,13 @@ func (h *Handler) Login(ctx *gin.Context) {
 }
 
 func (h *Handler) GetProfile(ctx *gin.Context) {
-	userID := ctx.GetInt32("userID")
-	if userID == 0 {
-		ctx.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+	userClaims, err := GetUserClaimsFromContext(ctx)
+	if err != nil {
+		ctx.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
 
-	user, err := h.services.AuthService.GetProfile(ctx, userID)
+	user, err := h.services.AuthService.GetProfile(ctx, userClaims.UserID)
 	if err != nil {
 		h.handleAuthError(ctx, err)
 		return
@@ -78,19 +68,19 @@ func (h *Handler) GetProfile(ctx *gin.Context) {
 }
 
 func (h *Handler) ChangePassword(ctx *gin.Context) {
-	userID := ctx.GetInt32("userID")
-	if userID == 0 {
-		ctx.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+	userClaims, err := GetUserClaimsFromContext(ctx)
+	if err != nil {
+		ctx.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
 
-	var res dto.ChangePasswordDTO
-	if err := ctx.ShouldBindJSON(&res); err != nil {
+	var input dto.ChangePasswordDTO
+	if err := ctx.ShouldBindJSON(&input); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request data"})
 		return
 	}
 
-	user, err := h.services.AuthService.ChangePassword(ctx, &res)
+	user, err := h.services.AuthService.ChangePassword(ctx, input.ToDomain(userClaims.UserID))
 	if err != nil {
 		h.handleAuthError(ctx, err)
 		return
@@ -100,14 +90,14 @@ func (h *Handler) ChangePassword(ctx *gin.Context) {
 }
 
 func (h *Handler) UpdateProfile(ctx *gin.Context) {
-	userID := ctx.GetInt32("userID")
-	if userID == 0 {
-		ctx.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+	userClaims, err := GetUserClaimsFromContext(ctx)
+	if err != nil {
+		ctx.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
 
 	updateProfileInput := &domain.UpdateProfileInput{
-		ID: userID,
+		ID: userClaims.UserID,
 	}
 
 	file, err := ctx.FormFile("avatar")
@@ -140,11 +130,6 @@ func (h *Handler) UpdateProfile(ctx *gin.Context) {
 	}
 	if v := ctx.PostForm("bio"); v != "" {
 		updateProfileInput.Bio = &v
-	}
-
-	if err := updateProfileInput.Validate(); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
 	}
 
 	// TODO: If user adds new profile image, we should delete the old image

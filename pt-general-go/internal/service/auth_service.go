@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"pt-general-go/internal/config"
 	"pt-general-go/internal/domain"
-	"pt-general-go/internal/handler/dto"
 	"pt-general-go/internal/repository"
 	"pt-general-go/pkg/utils"
 
@@ -34,6 +33,10 @@ func NewAuthService(
 }
 
 func (s *AuthService) Register(ctx context.Context, register *domain.Register) (*domain.AuthResult, error) {
+	if err := register.Validate(); err != nil {
+		return nil, err
+	}
+
 	hashedPassword, err := utils.HashPassword(register.Password)
 	if err != nil {
 		s.logger.Error("Password hashing failed", zap.Error(err))
@@ -47,7 +50,7 @@ func (s *AuthService) Register(ctx context.Context, register *domain.Register) (
 		return nil, err
 	}
 
-	token, err := utils.GenerateToken(user.ID, s.cfg.JWTConfig.Secret, s.cfg.JWTConfig.ExpiresIn)
+	token, err := utils.GenerateToken(user.ID, string(user.Role), s.cfg.JWTConfig.Secret, s.cfg.JWTConfig.ExpiresIn)
 	if err != nil {
 		s.logger.Error("Token generation failed", zap.Error(err), zap.Int32("user_id", user.ID))
 		return nil, fmt.Errorf("failed to generate token: %w", err)
@@ -60,10 +63,14 @@ func (s *AuthService) Register(ctx context.Context, register *domain.Register) (
 }
 
 func (s *AuthService) Login(ctx context.Context, login *domain.Login) (*domain.AuthResult, error) {
+	if err := login.Validate(); err != nil {
+		return nil, err
+	}
+
 	user, err := s.userRepository.GetUserByEmail(ctx, login.Email)
 	if err != nil {
 		s.logger.Error("Failed to get user", zap.Error(err), zap.String("email", login.Email))
-		return nil, domain.ErrInternal
+		return nil, err
 	}
 	if user == nil {
 		return nil, domain.ErrInvalidCredentials
@@ -73,7 +80,7 @@ func (s *AuthService) Login(ctx context.Context, login *domain.Login) (*domain.A
 		return nil, domain.ErrInvalidCredentials
 	}
 
-	token, err := utils.GenerateToken(user.ID, s.cfg.JWTConfig.Secret, s.cfg.JWTConfig.ExpiresIn)
+	token, err := utils.GenerateToken(user.ID, string(user.Role), s.cfg.JWTConfig.Secret, s.cfg.JWTConfig.ExpiresIn)
 	if err != nil {
 		s.logger.Error("Failed to generate token", zap.Error(err))
 		return nil, fmt.Errorf("token generation error: %w", err)
@@ -89,21 +96,25 @@ func (s *AuthService) GetProfile(ctx context.Context, userID int32) (*domain.Use
 	return s.userRepository.GetUserByID(ctx, userID)
 }
 
-func (s *AuthService) ChangePassword(ctx context.Context, changePasswordDTO *dto.ChangePasswordDTO) (*domain.User, error) {
-	user, err := s.userRepository.GetUserByID(ctx, changePasswordDTO.ID)
+func (s *AuthService) ChangePassword(ctx context.Context, changePassword *domain.ChangePassword) (*domain.User, error) {
+	if err := changePassword.Validate(); err != nil {
+		return nil, err
+	}
+
+	user, err := s.userRepository.GetUserByID(ctx, changePassword.ID)
 	if err != nil {
-		s.logger.Error("Failed to get user", zap.Error(err), zap.Int32("user_id", changePasswordDTO.ID))
-		return nil, domain.ErrInternal
+		s.logger.Error("Failed to get user", zap.Error(err), zap.Int32("user_id", changePassword.ID))
+		return nil, err
 	}
 	if user == nil {
 		return nil, domain.ErrInvalidCredentials
 	}
 
-	if !utils.VerifyPassword(changePasswordDTO.CurrentPassword, user.Password) {
+	if !utils.VerifyPassword(changePassword.CurrentPassword, user.Password) {
 		return nil, domain.ErrInvalidCredentials
 	}
 
-	hashedPassword, err := utils.HashPassword(changePasswordDTO.NewPassword)
+	hashedPassword, err := utils.HashPassword(changePassword.NewPassword)
 	if err != nil {
 		s.logger.Error("Password hashing failed", zap.Error(err))
 		return nil, fmt.Errorf("password hashing failed: %w", domain.ErrInvalidPassword)
@@ -114,20 +125,26 @@ func (s *AuthService) ChangePassword(ctx context.Context, changePasswordDTO *dto
 }
 
 func (s *AuthService) UpdateProfile(ctx context.Context, input *domain.UpdateProfileInput) (*domain.User, error) {
-	updateProfile := &domain.UpdateProfile{
-		ID:        input.ID,
-		FirstName: input.FirstName,
-		LastName:  input.LastName,
-		Phone:     input.Phone,
-		Bio:       input.Bio,
+	if err := input.Validate(); err != nil {
+		return nil, err
 	}
 
+	var uploadedAvatarURL *string
 	if input.File != nil {
-		url, err := s.uploadRepository.UploadAvatar(ctx, input.File)
+		u, err := s.uploadRepository.UploadAvatar(ctx, input.File)
 		if err != nil {
 			return nil, fmt.Errorf("upload avatar: %w", err)
 		}
-		updateProfile.UploadedPath = &url
+		uploadedAvatarURL = &u
+	}
+
+	updateProfile := &domain.UpdateProfile{
+		ID:           input.ID,
+		FirstName:    input.FirstName,
+		LastName:     input.LastName,
+		Phone:        input.Phone,
+		Bio:          input.Bio,
+		UploadedPath: uploadedAvatarURL,
 	}
 
 	return s.userRepository.UpdateUserByID(ctx, updateProfile)

@@ -2,6 +2,7 @@ package handler
 
 import (
 	"net/http"
+	"pt-general-go/internal/domain"
 	"time"
 
 	"github.com/gin-contrib/cors"
@@ -39,9 +40,25 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 	{
 		auth.POST("/register", h.Register)
 		auth.POST("/login", h.Login)
-		auth.POST("/change-password", h.AuthMiddleware(), h.ChangePassword)
-		auth.GET("/profile", h.AuthMiddleware(), h.GetProfile)
-		auth.PUT("/profile", h.AuthMiddleware(), h.UpdateProfile)
+
+		auth.Use(h.AuthMiddleware())
+		{
+			auth.POST("/change-password", h.ChangePassword)
+			auth.GET("/profile", h.GetProfile)
+			auth.PUT("/profile", h.UpdateProfile)
+		}
+	}
+
+	pageMetadata := router.Group("/page-metadata", h.AuthMiddleware())
+	{
+		pageMetadata.GET("", h.GetPageMetadata)
+
+		pageMetadataAdmin := pageMetadata.Group("", RequireRole(domain.RoleAdmin))
+		{
+			pageMetadataAdmin.POST("", h.CreatePageMetadata)
+			pageMetadataAdmin.PATCH("", h.UpdatePageMetadata)
+			pageMetadataAdmin.DELETE("", h.DeletePageMetadata)
+		}
 	}
 
 	return router

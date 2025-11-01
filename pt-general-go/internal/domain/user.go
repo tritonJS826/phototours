@@ -9,6 +9,15 @@ const (
 	RoleClient Role = "CLIENT"
 )
 
+func IsValidRole(r string) bool {
+	switch Role(r) {
+	case RoleAdmin, RoleClient:
+		return true
+	default:
+		return false
+	}
+}
+
 type User struct {
 	ID            int32     `json:"id"`
 	FirstName     string    `json:"firstName"`
