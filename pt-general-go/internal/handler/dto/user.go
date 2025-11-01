@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-type SafeUser struct {
+type UserDTO struct {
 	ID            int32  `json:"id"`
 	FirstName     string `json:"firstName"`
 	LastName      string `json:"lastName"`
@@ -18,8 +18,8 @@ type SafeUser struct {
 	CreatedAt     string `json:"createdAt"`
 }
 
-func MapUserToSafeUser(u *domain.User) *SafeUser {
-	return &SafeUser{
+func MapToUserDTO(u *domain.User) *UserDTO {
+	return &UserDTO{
 		ID:            u.ID,
 		FirstName:     u.FirstName,
 		LastName:      u.LastName,
@@ -29,5 +29,23 @@ func MapUserToSafeUser(u *domain.User) *SafeUser {
 		ProfilePicURL: utils.StringPtrToString(u.ProfilePicURL),
 		Bio:           utils.StringPtrToString(u.Bio),
 		CreatedAt:     u.CreatedAt.Format(time.RFC3339),
+	}
+}
+
+type PublicProfileDTO struct {
+	ID            int32  `json:"id"`
+	FirstName     string `json:"firstName"`
+	LastName      string `json:"lastName"`
+	ProfilePicURL string `json:"profilePicUrl"`
+	Bio           string `json:"bio"`
+}
+
+func MapToPublicProfileDTO(u *domain.User) *PublicProfileDTO {
+	return &PublicProfileDTO{
+		ID:            u.ID,
+		FirstName:     u.FirstName,
+		LastName:      u.LastName,
+		ProfilePicURL: utils.StringPtrToString(u.ProfilePicURL),
+		Bio:           utils.StringPtrToString(u.Bio),
 	}
 }

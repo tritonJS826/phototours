@@ -28,7 +28,7 @@ func (h *Handler) Register(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusCreated, dto.AuthResponse{
-		User:  dto.MapUserToSafeUser(result.User),
+		User:  dto.MapToUserDTO(result.User),
 		Token: result.Token,
 	})
 }
@@ -47,7 +47,7 @@ func (h *Handler) Login(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusOK, dto.AuthResponse{
-		User:  dto.MapUserToSafeUser(result.User),
+		User:  dto.MapToUserDTO(result.User),
 		Token: result.Token,
 	})
 }
@@ -59,12 +59,12 @@ func (h *Handler) GetProfile(ctx *gin.Context) {
 		return
 	}
 
-	user, err := h.services.AuthService.GetProfile(ctx, userClaims.UserID)
+	user, err := h.services.AuthService.GetUserByID(ctx, userClaims.UserID)
 	if err != nil {
 		h.handleAuthError(ctx, err)
 		return
 	}
-	ctx.JSON(http.StatusOK, dto.MapUserToSafeUser(user))
+	ctx.JSON(http.StatusOK, dto.MapToUserDTO(user))
 }
 
 func (h *Handler) ChangePassword(ctx *gin.Context) {
@@ -86,7 +86,7 @@ func (h *Handler) ChangePassword(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusOK, dto.MapUserToSafeUser(user))
+	ctx.JSON(http.StatusOK, dto.MapToUserDTO(user))
 }
 
 func (h *Handler) UpdateProfile(ctx *gin.Context) {
@@ -139,5 +139,5 @@ func (h *Handler) UpdateProfile(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusOK, dto.MapUserToSafeUser(user))
+	ctx.JSON(http.StatusOK, dto.MapToUserDTO(user))
 }
