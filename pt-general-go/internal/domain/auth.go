@@ -12,8 +12,8 @@ const MinimalPasswordLength = 6
 var emailRegex = regexp.MustCompile(`^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$`)
 
 type Register struct {
-	FirstName string  `json:"firstName" binding:"required"`
-	LastName  string  `json:"lastName" binding:"required"`
+	FirstName string  `json:"firstName" binding:"required,min=1"`
+	LastName  string  `json:"lastName" binding:"required,min=1"`
 	Email     string  `json:"email" binding:"required,email"`
 	Password  string  `json:"password" binding:"required,min=6"`
 	Phone     *string `json:"phone"`

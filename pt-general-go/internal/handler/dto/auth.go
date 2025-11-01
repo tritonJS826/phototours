@@ -5,8 +5,8 @@ import (
 )
 
 type AuthResponse struct {
-	User  *SafeUser `json:"user"`
-	Token string    `json:"token"`
+	User  *UserDTO `json:"user"`
+	Token string   `json:"token"`
 }
 
 type ChangePasswordDTO struct {

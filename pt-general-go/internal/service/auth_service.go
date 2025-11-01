@@ -92,7 +92,7 @@ func (s *AuthService) Login(ctx context.Context, login *domain.Login) (*domain.A
 	}, nil
 }
 
-func (s *AuthService) GetProfile(ctx context.Context, userID int32) (*domain.User, error) {
+func (s *AuthService) GetUserByID(ctx context.Context, userID int32) (*domain.User, error) {
 	return s.userRepository.GetUserByID(ctx, userID)
 }
 

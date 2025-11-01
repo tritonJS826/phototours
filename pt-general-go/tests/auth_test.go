@@ -2,6 +2,7 @@ package tests
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"pt-general-go/internal/domain"
 	"pt-general-go/internal/handler/dto"
@@ -12,6 +13,10 @@ const (
 	LoginEndpoint      = "/auth/login"
 	GetProfileEndpoint = "/auth/profile"
 )
+
+func getPublicProfileEndpoint(id int32) string {
+	return fmt.Sprintf("/users/%d/public", id)
+}
 
 func (s *APITestSuite) TestAuthFlow() {
 	phone := "+1 111 555 9999"
@@ -29,6 +34,11 @@ func (s *APITestSuite) TestAuthFlow() {
 	// Получить профиль
 	user := s.getProfile(authResp.Token)
 	s.Require().Equal(registerPayload.Email, user.Email)
+
+	// Получить публичный профиль
+	publicProfile := s.getPublicProfile(user.ID)
+	s.Require().Equal(registerPayload.FirstName, publicProfile.FirstName)
+	s.Require().Equal(registerPayload.LastName, publicProfile.LastName)
 
 	// Логин успешный
 	loginResp := s.loginUser(registerPayload.Email, registerPayload.Password)
@@ -72,7 +82,7 @@ func (s *APITestSuite) loginUserUnauthorized(email, password string) {
 	s.postJSON(url, domain.Login{Email: email, Password: password}, http.StatusUnauthorized)
 }
 
-func (s *APITestSuite) getProfile(token string) dto.SafeUser {
+func (s *APITestSuite) getProfile(token string) dto.UserDTO {
 	url := s.basePath + GetProfileEndpoint
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	s.Require().NoError(err)
@@ -80,9 +90,21 @@ func (s *APITestSuite) getProfile(token string) dto.SafeUser {
 
 	body := s.doRequest(req, http.StatusOK)
 
-	var user dto.SafeUser
+	var user dto.UserDTO
 	s.Require().NoError(json.Unmarshal(body, &user))
 	return user
+}
+
+func (s *APITestSuite) getPublicProfile(id int32) dto.PublicProfileDTO {
+	url := s.basePath + getPublicProfileEndpoint(id)
+	req, err := http.NewRequest(http.MethodGet, url, nil)
+	s.Require().NoError(err)
+
+	body := s.doRequest(req, http.StatusOK)
+
+	var publicProfile dto.PublicProfileDTO
+	s.Require().NoError(json.Unmarshal(body, &publicProfile))
+	return publicProfile
 }
 
 func (s *APITestSuite) getProfileUnauthorized(token string) {
