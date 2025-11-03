@@ -12,6 +12,7 @@ const (
 	RegisterEndpoint   = "/auth/register"
 	LoginEndpoint      = "/auth/login"
 	GetProfileEndpoint = "/auth/profile"
+	GetUsersEndpoint   = "/users"
 )
 
 func getPublicProfileEndpoint(id int32) string {
@@ -114,4 +115,20 @@ func (s *APITestSuite) getProfileUnauthorized(token string) {
 	req.Header.Set("Authorization", "Bearer "+token)
 
 	s.doRequest(req, http.StatusUnauthorized)
+}
+
+func (s *APITestSuite) getUsers(token string, statusCode int) []dto.UserDTO {
+	url := s.basePath + GetUsersEndpoint
+	req, err := http.NewRequest(http.MethodGet, url, nil)
+	s.Require().NoError(err)
+	req.Header.Set("Authorization", "Bearer "+token)
+
+	body := s.doRequest(req, statusCode)
+	if statusCode != http.StatusOK {
+		return nil
+	}
+
+	var users []dto.UserDTO
+	s.Require().NoError(json.Unmarshal(body, &users))
+	return users
 }

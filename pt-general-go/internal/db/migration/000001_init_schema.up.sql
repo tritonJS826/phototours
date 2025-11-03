@@ -38,3 +38,21 @@ CREATE TRIGGER set_updated_at_trigger_page_metadata
 BEFORE UPDATE ON page_metadata
 FOR EACH ROW
 EXECUTE FUNCTION set_updated_at();
+
+CREATE TABLE articles (
+    id SERIAL PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    title TEXT NOT NULL,
+    excerpt TEXT NOT NULL,
+    content TEXT NOT NULL,
+    cover_url TEXT NOT NULL,
+    alt TEXT,
+    author TEXT,
+    featured BOOLEAN DEFAULT FALSE NOT NULL,
+    published_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+CREATE TRIGGER set_updated_at_trigger_article
+BEFORE UPDATE ON articles
+FOR EACH ROW
+EXECUTE FUNCTION set_updated_at();

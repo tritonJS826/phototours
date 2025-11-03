@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"errors"
 	"net/http"
+
 	"pt-general-go/internal/domain"
 
 	"github.com/gin-gonic/gin"
@@ -17,11 +17,7 @@ func (h *Handler) CreatePageMetadata(ctx *gin.Context) {
 
 	createdPageMetadata, err := h.services.PageMetadataService.CreatePageMetadata(ctx, &pageMetadata)
 	if err != nil {
-		if errors.Is(err, domain.ErrAlreadyExists) {
-			ctx.JSON(http.StatusConflict, gin.H{"error": "Page metadata already exists"})
-			return
-		}
-		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		h.handleError(ctx, err)
 		return
 	}
 
@@ -37,11 +33,7 @@ func (h *Handler) GetPageMetadata(ctx *gin.Context) {
 
 	pageMetadata, err := h.services.PageMetadataService.GetPageMetadata(ctx, url)
 	if err != nil {
-		if errors.Is(err, domain.ErrNotFound) {
-			ctx.JSON(http.StatusNotFound, gin.H{"error": "Page metadata not found"})
-			return
-		}
-		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		h.handleError(ctx, err)
 		return
 	}
 
@@ -57,11 +49,7 @@ func (h *Handler) UpdatePageMetadata(ctx *gin.Context) {
 
 	updatedPageMetadata, err := h.services.PageMetadataService.UpdatePageMetadata(ctx, &update)
 	if err != nil {
-		if errors.Is(err, domain.ErrNotFound) {
-			ctx.JSON(http.StatusNotFound, gin.H{"error": "Page metadata not found"})
-			return
-		}
-		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		h.handleError(ctx, err)
 		return
 	}
 
@@ -77,11 +65,7 @@ func (h *Handler) DeletePageMetadata(ctx *gin.Context) {
 
 	err := h.services.PageMetadataService.DeletePageMetadata(ctx, url)
 	if err != nil {
-		if errors.Is(err, domain.ErrNotFound) {
-			ctx.JSON(http.StatusNotFound, gin.H{"error": "Page metadata not found"})
-			return
-		}
-		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		h.handleError(ctx, err)
 		return
 	}
 

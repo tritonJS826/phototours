@@ -5,7 +5,7 @@ import (
 	"pt-general-go/internal/domain"
 )
 
-func MapDBUserToUser(dbUser sqlc.User) *domain.User {
+func MapToDomainUser(dbUser sqlc.User) *domain.User {
 	user := &domain.User{
 		ID:        dbUser.ID,
 		FirstName: dbUser.FirstName,

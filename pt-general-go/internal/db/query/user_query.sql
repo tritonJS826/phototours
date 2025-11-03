@@ -57,6 +57,23 @@ SELECT
 FROM users
 WHERE email = $1;
 
+-- name: GetUsers :many
+SELECT
+    id,
+    email,
+    password,
+    first_name,
+    last_name,
+    phone,
+    bio,
+    profile_pic_url,
+    role,
+    created_at,
+    updated_at
+FROM users
+ORDER BY created_at DESC
+LIMIT $1 OFFSET $2;
+
 -- name: UpdateUser :one
 UPDATE users
 SET

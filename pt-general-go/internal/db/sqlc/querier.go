@@ -12,9 +12,12 @@ type Querier interface {
 	CreatePageMetadata(ctx context.Context, arg CreatePageMetadataParams) (CreatePageMetadataRow, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
 	DeletePageMetadata(ctx context.Context, url string) error
+	GetArticleBySlug(ctx context.Context, slug string) (Article, error)
+	GetArticles(ctx context.Context, arg GetArticlesParams) ([]Article, error)
 	GetPageMetadata(ctx context.Context, url string) (GetPageMetadataRow, error)
 	GetUserByEmail(ctx context.Context, email string) (User, error)
 	GetUserByID(ctx context.Context, id int32) (User, error)
+	GetUsers(ctx context.Context, arg GetUsersParams) ([]User, error)
 	ResetSchema(ctx context.Context) error
 	UpdatePageMetadata(ctx context.Context, arg UpdatePageMetadataParams) (UpdatePageMetadataRow, error)
 	UpdateUser(ctx context.Context, arg UpdateUserParams) (User, error)

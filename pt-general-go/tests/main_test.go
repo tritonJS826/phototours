@@ -9,6 +9,9 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"testing"
+	"time"
+
 	"pt-general-go/internal/config"
 	"pt-general-go/internal/handler"
 	"pt-general-go/internal/repository"
@@ -16,8 +19,6 @@ import (
 	"pt-general-go/internal/service"
 	"pt-general-go/pkg/database"
 	"pt-general-go/pkg/logger"
-	"testing"
-	"time"
 
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/stretchr/testify/suite"
@@ -159,6 +160,7 @@ func (s *APITestSuite) cleanupDB() {
 	if err != nil {
 		s.FailNow("", zap.Error(err))
 	}
+	defer resp.Body.Close()
 	if resp.StatusCode != http.StatusOK {
 		s.FailNow("", zap.Error(err))
 	}
@@ -182,7 +184,8 @@ func (s *APITestSuite) doRequest(req *http.Request, expectedStatus int) []byte {
 	s.Require().NoError(err)
 	defer resp.Body.Close()
 
-	body, _ := io.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
+	s.Require().NoError(err)
 	bodyStr := string(body)
 
 	if resp.StatusCode != expectedStatus {
@@ -198,20 +201,22 @@ func (s *APITestSuite) doRequest(req *http.Request, expectedStatus int) []byte {
 	return body
 }
 
-func (s *APITestSuite) postJSONAuth(url, token string, payload any, expectedStatus int) []byte {
-	jsonData, _ := json.Marshal(payload)
-	req, _ := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+func (s *APITestSuite) postJSONAuth(url, token string, payload any, expectedStatus int) {
+	jsonData, err := json.Marshal(payload)
+	s.Require().NoError(err)
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+	s.Require().NoError(err)
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", "Bearer "+token)
-
-	return s.doRequest(req, expectedStatus)
+	s.doRequest(req, expectedStatus)
 }
 
-func (s *APITestSuite) patchJSONAuth(url, token string, payload any, expectedStatus int) []byte {
-	jsonData, _ := json.Marshal(payload)
-	req, _ := http.NewRequest("PATCH", url, bytes.NewBuffer(jsonData))
+func (s *APITestSuite) patchJSONAuth(url, token string, payload any, expectedStatus int) {
+	jsonData, err := json.Marshal(payload)
+	s.Require().NoError(err)
+	req, err := http.NewRequest("PATCH", url, bytes.NewBuffer(jsonData))
+	s.Require().NoError(err)
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", "Bearer "+token)
-
-	return s.doRequest(req, expectedStatus)
+	s.doRequest(req, expectedStatus)
 }

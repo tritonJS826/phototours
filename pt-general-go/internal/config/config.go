@@ -38,7 +38,7 @@ type Config struct {
 
 func NewConfig(path string) (*Config, error) {
 	if err := godotenv.Load(path); err != nil {
-		fmt.Println("No .env file found or error loading .env file, proceeding with system environment variables")
+		fmt.Println("No .env file found or error loading .env file, proceeding with system environment variables") //nolint:errcheck
 	}
 
 	cfg := new(Config)

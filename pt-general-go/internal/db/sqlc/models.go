@@ -54,6 +54,19 @@ func (ns NullRole) Value() (driver.Value, error) {
 	return string(ns.Role), nil
 }
 
+type Article struct {
+	ID          int32
+	Slug        string
+	Title       string
+	Excerpt     string
+	Content     string
+	CoverUrl    string
+	Alt         pgtype.Text
+	Author      pgtype.Text
+	Featured    bool
+	PublishedAt pgtype.Timestamp
+}
+
 type PageMetadatum struct {
 	Url       string
 	Tags      string

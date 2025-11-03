@@ -9,7 +9,7 @@ type DevService struct {
 	resetRepository *repository.ResetRepository
 }
 
-func NewResetService(resetRepository *repository.ResetRepository) *DevService {
+func NewDevService(resetRepository *repository.ResetRepository) *DevService {
 	return &DevService{
 		resetRepository: resetRepository,
 	}

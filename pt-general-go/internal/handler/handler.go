@@ -25,16 +25,19 @@ func NewHandler(cfg *config.Config, services *service.Service, logger *zap.Logge
 	}
 }
 
-func (h *Handler) handleAuthError(ctx *gin.Context, err error) {
+func (h *Handler) handleError(ctx *gin.Context, err error) {
 	switch {
 	case errors.Is(err, domain.ErrValidation):
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 
-	case errors.Is(err, domain.ErrNotFound), errors.Is(err, domain.ErrInvalidCredentials), errors.Is(err, domain.ErrInvalidPassword):
+	case errors.Is(err, domain.ErrInvalidCredentials), errors.Is(err, domain.ErrInvalidPassword):
 		ctx.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 
+	case errors.Is(err, domain.ErrNotFound):
+		ctx.AbortWithStatusJSON(http.StatusNotFound, gin.H{"error": err.Error()})
+
 	case errors.Is(err, domain.ErrAlreadyExists):
-		ctx.AbortWithStatusJSON(http.StatusConflict, gin.H{"error": "User with this email already exists"})
+		ctx.AbortWithStatusJSON(http.StatusConflict, gin.H{"error": err.Error()})
 
 	default:
 		ctx.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})

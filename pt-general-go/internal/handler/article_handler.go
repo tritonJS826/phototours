@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"fmt"
 	"net/http"
 	"pt-general-go/internal/handler/dto"
 	"strconv"
@@ -9,22 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (h *Handler) GetPublicProfile(ctx *gin.Context) {
-	idString := ctx.Param("id")
-	id, err := strconv.Atoi(idString)
-	if err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": fmt.Sprintf("Invalid user ID: %v", err)})
-		return
-	}
-	user, err := h.services.UserService.GetUserByID(ctx, int32(id))
-	if err != nil {
-		h.handleError(ctx, err)
-		return
-	}
-	ctx.JSON(http.StatusOK, dto.MapToPublicProfileDTO(user))
-}
-
-func (h *Handler) GetAllUsers(ctx *gin.Context) {
+func (h *Handler) GetArticles(ctx *gin.Context) {
 	page, err := strconv.Atoi(ctx.DefaultQuery("page", "1"))
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid page parameter"})
@@ -43,10 +27,21 @@ func (h *Handler) GetAllUsers(ctx *gin.Context) {
 
 	offset := (page - 1) * limit
 
-	user, err := h.services.UserService.GetUsers(ctx, limit, offset)
+	articles, err := h.services.ArticleService.GetArticles(ctx.Request.Context(), limit, offset)
 	if err != nil {
 		h.handleError(ctx, err)
 		return
 	}
-	ctx.JSON(http.StatusOK, dto.MapToUserDTOs(user))
+
+	ctx.JSON(http.StatusOK, dto.MapToArticleSummaryDTOs(articles))
+}
+
+func (h *Handler) GetArticleBySlug(ctx *gin.Context) {
+	slug := ctx.Param("slug")
+	article, err := h.services.ArticleService.GetArticleBySlug(ctx.Request.Context(), slug)
+	if err != nil {
+		h.handleError(ctx, err)
+		return
+	}
+	ctx.JSON(http.StatusOK, dto.MapToArticleDetailDTO(article))
 }
