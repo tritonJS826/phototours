@@ -27,6 +27,6 @@ func (s *UserService) GetUserByID(ctx context.Context, userID int32) (*domain.Us
 	return s.userRepository.GetUserByID(ctx, userID)
 }
 
-func (s *UserService) GetUsers(ctx context.Context, limit, offset int) ([]domain.User, error) {
+func (s *UserService) GetUsers(ctx context.Context, limit, offset int32) ([]domain.User, error) {
 	return s.userRepository.GetUsers(ctx, limit, offset)
 }

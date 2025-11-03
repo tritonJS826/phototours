@@ -6,9 +6,8 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
-	"time"
-
 	"pt-general-go/internal/handler/dto"
+	"time"
 )
 
 func (s *APITestSuite) createArticle(slug, title string) {
@@ -29,7 +28,7 @@ func (s *APITestSuite) TestArticlesRoutes() {
 	// --- GET /articles list (public endpoint) ---
 	listURL, err := url.Parse(s.basePath + "/articles?page=1&limit=10")
 	s.Require().NoError(err)
-	reqList, err := http.NewRequest("GET", listURL.String(), nil)
+	reqList, err := http.NewRequest(http.MethodGet, listURL.String(), nil)
 	s.Require().NoError(err)
 
 	respList := s.doRequest(reqList, http.StatusOK)
@@ -40,7 +39,7 @@ func (s *APITestSuite) TestArticlesRoutes() {
 	s.Equal("first-article", articles[1].Slug)
 
 	// --- GET /articles/:slug valid ---
-	req, err := http.NewRequest("GET", s.basePath+"/articles/first-article", nil)
+	req, err := http.NewRequest(http.MethodGet, s.basePath+"/articles/first-article", nil)
 	s.Require().NoError(err)
 	resp := s.doRequest(req, http.StatusOK)
 
@@ -50,7 +49,7 @@ func (s *APITestSuite) TestArticlesRoutes() {
 	s.Equal("First article", article.Title)
 
 	// --- GET /articles/:slug invalid ---
-	req404, err := http.NewRequest("GET", s.basePath+"/articles/not-found", nil)
+	req404, err := http.NewRequest(http.MethodGet, s.basePath+"/articles/not-found", nil)
 	s.Require().NoError(err)
 	s.doRequest(req404, http.StatusNotFound)
 }

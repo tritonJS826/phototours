@@ -34,12 +34,12 @@ func main() {
 
 	logg, err := logger.NewLogger(logLevel)
 	if err != nil {
-		logg.Fatal("failed to initalize logger", zap.Error(err))
+		logg.Fatal("failed to initialize logger", zap.Error(err))
 	}
 
 	cfg, err := config.NewConfig(".env")
 	if err != nil {
-		logg.Fatal("failed to initalize config", zap.Error(err))
+		logg.Fatal("failed to initialize config", zap.Error(err))
 	}
 
 	dbPool, err := database.NewPostgresDB(ctx, cfg.DatabaseURL)
@@ -81,7 +81,7 @@ func main() {
 
 	err = serv.Shutdown(shutdownCtx)
 	if err != nil {
-		logg.Error("error occured on server shutting down", zap.Error(err))
+		logg.Error("error occurred on server shutting down", zap.Error(err))
 	} else {
 		logg.Info("HTTP server stopped gracefully")
 	}

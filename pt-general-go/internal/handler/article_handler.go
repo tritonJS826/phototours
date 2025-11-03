@@ -11,11 +11,13 @@ import (
 func (h *Handler) GetArticles(ctx *gin.Context) {
 	page, err := strconv.Atoi(ctx.DefaultQuery("page", "1"))
 	if err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid page parameter"})
+		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Invalid page parameter"})
+		return
 	}
 	limit, err := strconv.Atoi(ctx.DefaultQuery("limit", "20"))
 	if err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid limit parameter"})
+		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Invalid limit parameter"})
+		return
 	}
 
 	if page < 1 {
@@ -27,7 +29,7 @@ func (h *Handler) GetArticles(ctx *gin.Context) {
 
 	offset := (page - 1) * limit
 
-	articles, err := h.services.ArticleService.GetArticles(ctx.Request.Context(), limit, offset)
+	articles, err := h.services.ArticleService.GetArticles(ctx.Request.Context(), int32(limit), int32(offset))
 	if err != nil {
 		h.handleError(ctx, err)
 		return

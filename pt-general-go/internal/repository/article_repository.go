@@ -15,10 +15,10 @@ func NewArticleRepository(db db.Querier) *ArticleRepository {
 	return &ArticleRepository{db}
 }
 
-func (r *ArticleRepository) GetArticles(ctx context.Context, limit int, offset int) ([]domain.Article, error) {
+func (r *ArticleRepository) GetArticles(ctx context.Context, limit, offset int32) ([]domain.Article, error) {
 	dbArticles, err := r.db.GetArticles(ctx, db.GetArticlesParams{
-		Limit:  int32(limit),
-		Offset: int32(offset),
+		Limit:  limit,
+		Offset: offset,
 	})
 	if err != nil {
 		return nil, handleDBError(err)

@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
-
 	"pt-general-go/internal/domain"
 	"pt-general-go/internal/handler/dto"
 )
@@ -66,7 +65,7 @@ func (s *APITestSuite) getPageMetadata(token, urlStr string) domain.PageMetadata
 	q.Set("url", urlStr)
 	u.RawQuery = q.Encode()
 
-	req, err := http.NewRequest("GET", u.String(), nil)
+	req, err := http.NewRequest(http.MethodGet, u.String(), nil)
 	s.Require().NoError(err)
 	req.Header.Set("Authorization", "Bearer "+token)
 
@@ -107,7 +106,7 @@ func (s *APITestSuite) updatePageMetadataForbidden(token string, payload domain.
 }
 
 func (s *APITestSuite) deletePageMetadataForbidden(token string, page string) {
-	req, err := http.NewRequest("DELETE", s.basePath+PageMetadataEndpoint+"?page="+page, nil)
+	req, err := http.NewRequest(http.MethodDelete, s.basePath+PageMetadataEndpoint+"?page="+page, nil)
 	s.Require().NoError(err)
 	req.Header.Set("Authorization", "Bearer "+token)
 	s.doRequest(req, http.StatusForbidden)

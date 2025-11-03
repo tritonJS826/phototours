@@ -23,7 +23,7 @@ func NewArticleService(
 	}
 }
 
-func (s *ArticleService) GetArticles(ctx context.Context, limit, offset int) ([]domain.Article, error) {
+func (s *ArticleService) GetArticles(ctx context.Context, limit, offset int32) ([]domain.Article, error) {
 	return s.articleRepository.GetArticles(ctx, limit, offset)
 }
 

@@ -14,9 +14,8 @@ import (
 type Role string
 
 const (
-	RoleADMIN   Role = "ADMIN"
-	RoleCLIENT  Role = "CLIENT"
-	RoleMANAGER Role = "MANAGER"
+	RoleADMIN  Role = "ADMIN"
+	RoleCLIENT Role = "CLIENT"
 )
 
 func (e *Role) Scan(src interface{}) error {

@@ -53,10 +53,10 @@ func (r *UserRepository) GetUserByEmail(ctx context.Context, email string) (*dom
 	return mapper.MapToDomainUser(dbUser), nil
 }
 
-func (r *UserRepository) GetUsers(ctx context.Context, limit, offset int) ([]domain.User, error) {
+func (r *UserRepository) GetUsers(ctx context.Context, limit, offset int32) ([]domain.User, error) {
 	dbUsers, err := r.db.GetUsers(ctx, db.GetUsersParams{
-		Limit:  int32(limit),
-		Offset: int32(offset),
+		Limit:  limit,
+		Offset: offset,
 	})
 	if err != nil {
 		return nil, handleDBError(err)
