@@ -27,11 +27,11 @@ type CloudinaryConfig struct {
 }
 
 type Config struct {
-	ServerPort  string `env:"SERVER_PORT,required"`
-	EnvType     string `env:"ENV_TYPE,required"`
-	CORSOrigins string `env:"CORS_ORIGIN,required"`
-	DatabaseURL string `env:"DATABASE_URL,required"`
-	// ZohoConfig       ZohoConfig       `envPrefix:"ZOHO_"`
+	ServerPort       string `env:"SERVER_PORT,required"`
+	EnvType          string `env:"ENV_TYPE,required"`
+	CORSOrigins      string `env:"CORS_ORIGIN,required"`
+	DatabaseURL      string `env:"DATABASE_URL,required"`
+	ZohoConfig       ZohoConfig
 	JWTConfig        JWTConfig
 	CloudinaryConfig CloudinaryConfig
 }

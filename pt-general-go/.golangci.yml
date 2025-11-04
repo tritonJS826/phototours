@@ -1,0 +1,74 @@
+# Версия конфигурации golangci-lint
+version: "2"
+
+# Настройки запуска линтера
+run:
+  timeout: 5m       # Максимальное время выполнения
+  tests: true       # Проверять также тестовые файлы
+
+# Список включенных линтеров
+linters:
+  enable:
+    - asciicheck      # Проверка на не-ASCII символы в идентификаторах
+    - bidichk         # Проверка на опасные Unicode символы (bi-directional)
+    - copyloopvar     # Проверка правильного копирования переменных цикла
+    - sqlclosecheck   # Проверка закрытия SQL ресурсов (rows, statements)
+    - bodyclose       # Проверка закрытия HTTP response body
+    - unparam         # Обнаружение неиспользуемых параметров функций
+    - unused          # Обнаружение неиспользуемого кода
+    - misspell        # Проверка орфографии в комментариях и строках
+    - importas        # Контроль алиасов импортов (enforce naming)
+    - dupword         # Обнаружение повторяющихся слов в комментариях
+    - nolintlint      # Проверка корректности директив //nolint
+    - errname         # Проверка именования ошибок (должны начинаться с Err/err)
+    - gocyclo         # Проверка цикломатической сложности функций
+    - gocognit        # Проверка когнитивной сложности функций
+
+# Глобальные настройки линтеров
+settings:
+  staticcheck:
+    # Включить все проверки кроме перечисленных
+    checks: ["all", "-ST1000", "-ST1003", "-ST1012", "-ST1020", "-SA1029"]
+    # ST1000 - incorrect or missing package comment
+    # ST1003 - naming conventions (MixedCaps)
+    # ST1012 - error messages should not be capitalized
+    # ST1020 - comment on exported function/type
+    # SA1029 - inappropriate key in call to context.WithValue
+  
+  errcheck:
+    Default: true                      # Использовать дефолтные исключения
+    check-type-assertions: false       # Не проверять type assertions (ok идиома)
+    check-blank: true                  # Проверять присваивание в blank identifier (_)
+    disable-default-exclusions: true   # Отключить встроенные исключения
+    exclude-functions:                 # Функции, для которых игнорировать ошибки
+      - github.com/joho/godotenv.Load  # .env файл опционален
+    verbose: true                      # Подробный вывод
+
+  wrapcheck:
+    # Сигнатуры функций, для которых не требуется оборачивать ошибки
+    ignoreSigs:
+      - errors.New            # Новые ошибки не нужно оборачивать
+      - fmt.Errorf            # Errorf уже оборачивает
+      - context.*             # Контекстные ошибки
+  
+  revive:
+    rules:
+      - name: var-naming           # Проверка именования переменных
+      - name: indent-error-flow    # Проверка индентации при обработке ошибок
+  
+  gocyclo:
+    min-complexity: 12  # Максимальная цикломатическая сложность функции
+  
+  gocognit:
+    min-complexity: 15  # Максимальная когнитивная сложность функции
+  
+  varnamelen:
+    min-name-length: 2  # Минимальная длина имени переменной
+    ignore-decls:       # Исключения для коротких имен
+      - i               # Счетчик цикла
+      - j               # Вложенный счетчик
+      - err             # Стандартное имя для ошибки
+
+# Настройки обработки найденных проблем
+issues:
+  max-same-issues: 45  # Максимум повторов одной и той же проблемы в выводе

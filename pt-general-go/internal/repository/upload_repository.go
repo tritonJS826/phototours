@@ -3,6 +3,7 @@ package repository
 import (
 	"context"
 	"fmt"
+	"log"
 	"mime/multipart"
 	"time"
 
@@ -28,7 +29,11 @@ func (r *UploadRepository) UploadAvatar(ctx context.Context, file *multipart.Fil
 	if err != nil {
 		return "", err
 	}
-	defer f.Close()
+	defer func() {
+		if err := f.Close(); err != nil {
+			log.Printf("failed to close file: %v", err)
+		}
+	}()
 
 	uploadParams := uploader.UploadParams{
 		Folder:         r.cloudinaryUploadFolder,

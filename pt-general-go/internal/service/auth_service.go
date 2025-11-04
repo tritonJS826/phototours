@@ -92,10 +92,6 @@ func (s *AuthService) Login(ctx context.Context, login *domain.Login) (*domain.A
 	}, nil
 }
 
-func (s *AuthService) GetUserByID(ctx context.Context, userID int32) (*domain.User, error) {
-	return s.userRepository.GetUserByID(ctx, userID)
-}
-
 func (s *AuthService) ChangePassword(ctx context.Context, changePassword *domain.ChangePassword) (*domain.User, error) {
 	if err := changePassword.Validate(); err != nil {
 		return nil, err

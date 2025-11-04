@@ -23,7 +23,7 @@ func (h *Handler) Register(ctx *gin.Context) {
 
 	result, err := h.services.AuthService.Register(ctx, &register)
 	if err != nil {
-		h.handleAuthError(ctx, err)
+		h.handleError(ctx, err)
 		return
 	}
 
@@ -42,7 +42,7 @@ func (h *Handler) Login(ctx *gin.Context) {
 
 	result, err := h.services.AuthService.Login(ctx, &login)
 	if err != nil {
-		h.handleAuthError(ctx, err)
+		h.handleError(ctx, err)
 		return
 	}
 
@@ -59,9 +59,9 @@ func (h *Handler) GetProfile(ctx *gin.Context) {
 		return
 	}
 
-	user, err := h.services.AuthService.GetUserByID(ctx, userClaims.UserID)
+	user, err := h.services.UserService.GetUserByID(ctx, userClaims.UserID)
 	if err != nil {
-		h.handleAuthError(ctx, err)
+		h.handleError(ctx, err)
 		return
 	}
 	ctx.JSON(http.StatusOK, dto.MapToUserDTO(user))
@@ -82,7 +82,7 @@ func (h *Handler) ChangePassword(ctx *gin.Context) {
 
 	user, err := h.services.AuthService.ChangePassword(ctx, input.ToDomain(userClaims.UserID))
 	if err != nil {
-		h.handleAuthError(ctx, err)
+		h.handleError(ctx, err)
 		return
 	}
 
@@ -135,7 +135,7 @@ func (h *Handler) UpdateProfile(ctx *gin.Context) {
 	// TODO: If user adds new profile image, we should delete the old image
 	user, err := h.services.AuthService.UpdateProfile(ctx, updateProfileInput)
 	if err != nil {
-		h.handleAuthError(ctx, err)
+		h.handleError(ctx, err)
 		return
 	}
 

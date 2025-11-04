@@ -64,6 +64,13 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 	users := router.Group("/users")
 	{
 		users.GET("/:id/public", h.GetPublicProfile)
+		users.GET("", h.AuthMiddleware(), RequireRole(domain.RoleAdmin), h.GetAllUsers)
+	}
+
+	articles := router.Group("/articles")
+	{
+		articles.GET("", h.GetArticles)
+		articles.GET("/:slug", h.GetArticleBySlug)
 	}
 
 	return router

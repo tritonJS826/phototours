@@ -2,14 +2,10 @@ package repository
 
 import (
 	"context"
-	"errors"
 	db "pt-general-go/internal/db/sqlc"
 	"pt-general-go/internal/domain"
 	"pt-general-go/internal/repository/mapper"
 
-	"github.com/jackc/pgerrcode"
-	"github.com/jackc/pgx/v5"
-	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
@@ -36,37 +32,42 @@ func (r *UserRepository) CreateUser(ctx context.Context, register *domain.Regist
 		Role:      db.Role(domain.RoleClient),
 	})
 	if err != nil {
-		var pgErr *pgconn.PgError
-		if errors.As(err, &pgErr) {
-			if pgErr.Code == pgerrcode.UniqueViolation {
-				return nil, domain.ErrAlreadyExists
-			}
-		}
-		return nil, err
+		return nil, handleDBError(err)
 	}
-	return mapper.MapDBUserToUser(dbUser), nil
+	return mapper.MapToDomainUser(dbUser), nil
 }
 
 func (r *UserRepository) GetUserByID(ctx context.Context, id int32) (*domain.User, error) {
 	dbUser, err := r.db.GetUserByID(ctx, id)
 	if err != nil {
-		if errors.Is(err, pgx.ErrNoRows) {
-			return nil, nil
-		}
-		return nil, err
+		return nil, handleDBError(err)
 	}
-	return mapper.MapDBUserToUser(dbUser), nil
+	return mapper.MapToDomainUser(dbUser), nil
 }
 
 func (r *UserRepository) GetUserByEmail(ctx context.Context, email string) (*domain.User, error) {
 	dbUser, err := r.db.GetUserByEmail(ctx, email)
 	if err != nil {
-		if errors.Is(err, pgx.ErrNoRows) {
-			return nil, nil
-		}
-		return nil, err
+		return nil, handleDBError(err)
 	}
-	return mapper.MapDBUserToUser(dbUser), nil
+	return mapper.MapToDomainUser(dbUser), nil
+}
+
+func (r *UserRepository) GetUsers(ctx context.Context, limit, offset int32) ([]domain.User, error) {
+	dbUsers, err := r.db.GetUsers(ctx, db.GetUsersParams{
+		Limit:  limit,
+		Offset: offset,
+	})
+	if err != nil {
+		return nil, handleDBError(err)
+	}
+
+	users := make([]domain.User, 0, len(dbUsers))
+	for _, dbUser := range dbUsers {
+		users = append(users, *mapper.MapToDomainUser(dbUser))
+	}
+
+	return users, nil
 }
 
 func (r *UserRepository) UpdateUserByID(ctx context.Context, updateUser *domain.UpdateProfile) (*domain.User, error) {
@@ -103,13 +104,9 @@ func (r *UserRepository) UpdateUserByID(ctx context.Context, updateUser *domain.
 
 	dbUser, err := r.db.UpdateUser(ctx, params)
 	if err != nil {
-		if errors.Is(err, pgx.ErrNoRows) {
-			return nil, nil
-		}
-		return nil, err
+		return nil, handleDBError(err)
 	}
-
-	return mapper.MapDBUserToUser(dbUser), nil
+	return mapper.MapToDomainUser(dbUser), nil
 }
 
 func (r *UserRepository) UpdateUserPassword(ctx context.Context, userID int32, password string) (*domain.User, error) {
@@ -119,11 +116,7 @@ func (r *UserRepository) UpdateUserPassword(ctx context.Context, userID int32, p
 	}
 	dbUser, err := r.db.UpdateUserPassword(ctx, params)
 	if err != nil {
-		if errors.Is(err, pgx.ErrNoRows) {
-			return nil, nil
-		}
-		return nil, err
+		return nil, handleDBError(err)
 	}
-
-	return mapper.MapDBUserToUser(dbUser), nil
+	return mapper.MapToDomainUser(dbUser), nil
 }

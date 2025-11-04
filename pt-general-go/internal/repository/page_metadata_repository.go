@@ -2,13 +2,9 @@ package repository
 
 import (
 	"context"
-	"errors"
 	db "pt-general-go/internal/db/sqlc"
 	"pt-general-go/internal/domain"
 
-	"github.com/jackc/pgerrcode"
-	"github.com/jackc/pgx/v5"
-	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
@@ -26,13 +22,7 @@ func (r *PageMetadataRepository) CreatePageMetadata(ctx context.Context, pageMet
 		Tags: pageMetadata.Tags,
 	})
 	if err != nil {
-		var pgErr *pgconn.PgError
-		if errors.As(err, &pgErr) {
-			if pgErr.Code == pgerrcode.UniqueViolation {
-				return nil, domain.ErrAlreadyExists
-			}
-		}
-		return nil, err
+		return nil, handleDBError(err)
 	}
 	return &domain.PageMetadata{
 		URL:  dbPageMetadata.Url,
@@ -43,10 +33,7 @@ func (r *PageMetadataRepository) CreatePageMetadata(ctx context.Context, pageMet
 func (r *PageMetadataRepository) GetPageMetadata(ctx context.Context, url string) (*domain.PageMetadata, error) {
 	dbPageMetadata, err := r.db.GetPageMetadata(ctx, url)
 	if err != nil {
-		if errors.Is(err, pgx.ErrNoRows) {
-			return nil, nil
-		}
-		return nil, err
+		return nil, handleDBError(err)
 	}
 	return &domain.PageMetadata{
 		URL:  dbPageMetadata.Url,
@@ -73,10 +60,7 @@ func (r *PageMetadataRepository) UpdatePageMetadata(ctx context.Context, update 
 
 	dbPageMetadata, err := r.db.UpdatePageMetadata(ctx, params)
 	if err != nil {
-		if errors.Is(err, pgx.ErrNoRows) {
-			return nil, nil
-		}
-		return nil, err
+		return nil, handleDBError(err)
 	}
 	return &domain.PageMetadata{
 		URL:  dbPageMetadata.Url,

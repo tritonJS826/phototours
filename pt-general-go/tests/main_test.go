@@ -9,6 +9,9 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"testing"
+	"time"
+
 	"pt-general-go/internal/config"
 	"pt-general-go/internal/handler"
 	"pt-general-go/internal/repository"
@@ -16,8 +19,6 @@ import (
 	"pt-general-go/internal/service"
 	"pt-general-go/pkg/database"
 	"pt-general-go/pkg/logger"
-	"testing"
-	"time"
 
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/stretchr/testify/suite"
@@ -125,12 +126,22 @@ func (s *APITestSuite) startTestServer(ready chan<- bool) {
 	go func() {
 		client := http.Client{Timeout: 100 * time.Millisecond}
 		start := time.Now()
+
 		for time.Since(start) < 30*time.Second {
 			resp, err := client.Get(fmt.Sprintf("http://localhost:%s/health", s.config.ServerPort))
-			if err == nil && resp.StatusCode == http.StatusOK {
-				resp.Body.Close()
-				ready <- true
-				return
+			if err == nil {
+				func() {
+					defer func() {
+						if err := resp.Body.Close(); err != nil {
+							s.T().Errorf("failed to close response body: %v", err)
+						}
+					}()
+
+					if resp.StatusCode == http.StatusOK {
+						ready <- true
+						return
+					}
+				}()
 			}
 			time.Sleep(100 * time.Millisecond)
 		}
@@ -157,10 +168,16 @@ func (s *APITestSuite) initDBConnections() {
 func (s *APITestSuite) cleanupDB() {
 	resp, err := http.Get(fmt.Sprintf("http://localhost:%s/dev/reset-db", s.config.ServerPort))
 	if err != nil {
-		s.FailNow("", zap.Error(err))
+		s.FailNow("Request to reset DB failed", zap.Error(err))
 	}
+	defer func() {
+		if err := resp.Body.Close(); err != nil {
+			s.T().Errorf("failed to close response body: %v", err)
+		}
+	}()
+
 	if resp.StatusCode != http.StatusOK {
-		s.FailNow("", zap.Error(err))
+		s.FailNow(fmt.Sprintf("Unexpected status: %d", resp.StatusCode))
 	}
 }
 
@@ -170,7 +187,7 @@ func (s *APITestSuite) postJSON(url string, payload any, expectedStatus int) []b
 	jsonData, err := json.Marshal(payload)
 	s.Require().NoError(err)
 
-	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+	req, err := http.NewRequest(http.MethodPost, url, bytes.NewBuffer(jsonData))
 	s.Require().NoError(err)
 	req.Header.Set("Content-Type", "application/json")
 
@@ -179,10 +196,17 @@ func (s *APITestSuite) postJSON(url string, payload any, expectedStatus int) []b
 
 func (s *APITestSuite) doRequest(req *http.Request, expectedStatus int) []byte {
 	resp, err := http.DefaultClient.Do(req)
-	s.Require().NoError(err)
-	defer resp.Body.Close()
+	if err != nil {
+		s.FailNow("Request failed:", zap.Error(err))
+	}
+	defer func() {
+		if resp != nil && resp.Body != nil {
+			_ = resp.Body.Close()
+		}
+	}()
 
-	body, _ := io.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
+	s.Require().NoError(err)
 	bodyStr := string(body)
 
 	if resp.StatusCode != expectedStatus {
@@ -198,20 +222,22 @@ func (s *APITestSuite) doRequest(req *http.Request, expectedStatus int) []byte {
 	return body
 }
 
-func (s *APITestSuite) postJSONAuth(url, token string, payload any, expectedStatus int) []byte {
-	jsonData, _ := json.Marshal(payload)
-	req, _ := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+func (s *APITestSuite) postJSONAuth(url, token string, payload any, expectedStatus int) {
+	jsonData, err := json.Marshal(payload)
+	s.Require().NoError(err)
+	req, err := http.NewRequest(http.MethodPost, url, bytes.NewBuffer(jsonData))
+	s.Require().NoError(err)
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", "Bearer "+token)
-
-	return s.doRequest(req, expectedStatus)
+	s.doRequest(req, expectedStatus)
 }
 
-func (s *APITestSuite) patchJSONAuth(url, token string, payload any, expectedStatus int) []byte {
-	jsonData, _ := json.Marshal(payload)
-	req, _ := http.NewRequest("PATCH", url, bytes.NewBuffer(jsonData))
+func (s *APITestSuite) patchJSONAuth(url, token string, payload any, expectedStatus int) {
+	jsonData, err := json.Marshal(payload)
+	s.Require().NoError(err)
+	req, err := http.NewRequest(http.MethodPatch, url, bytes.NewBuffer(jsonData))
+	s.Require().NoError(err)
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", "Bearer "+token)
-
-	return s.doRequest(req, expectedStatus)
+	s.doRequest(req, expectedStatus)
 }

@@ -7,7 +7,7 @@ import (
 )
 
 func (h *Handler) ResetSchema(ctx *gin.Context) {
-	if err := h.services.ResetService.ResetSchema(ctx); err != nil {
+	if err := h.services.DevService.ResetSchema(ctx); err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"status":  "error",
 			"message": "failed to reset schema",

@@ -44,8 +44,10 @@ func (s *APITestSuite) TestPageMetadataFlow() {
 	s.updatePageMetadata(adminToken, page)
 
 	// GET — доступен всем
-	_ = s.getPageMetadata(userToken, page.URL)
-	_ = s.getPageMetadata(adminToken, page.URL)
+	pageMetadataByUser := s.getPageMetadata(userToken, page.URL)
+	s.Require().Equal(page, pageMetadataByUser)
+	pageMetadataByAdmin := s.getPageMetadata(adminToken, page.URL)
+	s.Require().Equal(page, pageMetadataByAdmin)
 
 	// DELETE — только админ
 	s.deletePageMetadata(adminToken, page.URL)
@@ -57,13 +59,14 @@ func (s *APITestSuite) TestPageMetadataFlow() {
 }
 
 func (s *APITestSuite) getPageMetadata(token, urlStr string) domain.PageMetadata {
-	// Формируем URL с query-параметрами
-	u, _ := url.Parse(s.basePath + PageMetadataEndpoint)
+	u, err := url.Parse(s.basePath + PageMetadataEndpoint)
+	s.Require().NoError(err)
 	q := u.Query()
 	q.Set("url", urlStr)
 	u.RawQuery = q.Encode()
 
-	req, _ := http.NewRequest("GET", u.String(), nil)
+	req, err := http.NewRequest(http.MethodGet, u.String(), nil)
+	s.Require().NoError(err)
 	req.Header.Set("Authorization", "Bearer "+token)
 
 	body := s.doRequest(req, http.StatusOK)
@@ -82,12 +85,14 @@ func (s *APITestSuite) updatePageMetadata(token string, payload domain.PageMetad
 }
 
 func (s *APITestSuite) deletePageMetadata(token, urlStr string) {
-	u, _ := url.Parse(s.basePath + PageMetadataEndpoint)
+	u, err := url.Parse(s.basePath + PageMetadataEndpoint)
+	s.Require().NoError(err)
 	q := u.Query()
 	q.Set("url", urlStr)
 	u.RawQuery = q.Encode()
 
-	req, _ := http.NewRequest("DELETE", u.String(), nil)
+	req, err := http.NewRequest("DELETE", u.String(), nil)
+	s.Require().NoError(err)
 	req.Header.Set("Authorization", "Bearer "+token)
 	s.doRequest(req, http.StatusNoContent)
 }
@@ -101,7 +106,8 @@ func (s *APITestSuite) updatePageMetadataForbidden(token string, payload domain.
 }
 
 func (s *APITestSuite) deletePageMetadataForbidden(token string, page string) {
-	req, _ := http.NewRequest("DELETE", s.basePath+PageMetadataEndpoint+"?page="+page, nil)
+	req, err := http.NewRequest(http.MethodDelete, s.basePath+PageMetadataEndpoint+"?page="+page, nil)
+	s.Require().NoError(err)
 	req.Header.Set("Authorization", "Bearer "+token)
 	s.doRequest(req, http.StatusForbidden)
 }

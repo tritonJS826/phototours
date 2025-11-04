@@ -14,9 +14,8 @@ import (
 type Role string
 
 const (
-	RoleADMIN   Role = "ADMIN"
-	RoleCLIENT  Role = "CLIENT"
-	RoleMANAGER Role = "MANAGER"
+	RoleADMIN  Role = "ADMIN"
+	RoleCLIENT Role = "CLIENT"
 )
 
 func (e *Role) Scan(src interface{}) error {
@@ -52,6 +51,19 @@ func (ns NullRole) Value() (driver.Value, error) {
 		return nil, nil
 	}
 	return string(ns.Role), nil
+}
+
+type Article struct {
+	ID          int32
+	Slug        string
+	Title       string
+	Excerpt     string
+	Content     string
+	CoverUrl    string
+	Alt         pgtype.Text
+	Author      pgtype.Text
+	Featured    bool
+	PublishedAt pgtype.Timestamp
 }
 
 type PageMetadatum struct {
