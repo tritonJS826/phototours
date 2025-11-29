@@ -1,0 +1,111 @@
+@import "src/styles/variables";
+
+$dropdownMaxWidth: 45vw;
+$dropdownIndentationBottom: 8px;
+$dropdownMaxHeight: 50vh;
+
+.dropdownContent,
+.dropdownMenuSubContent {
+  z-index: $dropdownZIndex;
+  max-height: $dropdownMaxHeight;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  animation-duration: 400ms;
+  animation-name: slideDownAndFade;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  background: var(--tertiaryBgColor);
+  outline: none;
+  overflow-wrap: anywhere;
+  overflow-y: auto;
+  user-select: none;
+  will-change: transform, opacity;
+}
+
+.dropdownMenuContent[data-side="top"],
+.dropdownMenuSubContent[data-side="top"] {
+  animation-name: slideDownAndFade;
+}
+.dropdownMenuContent[data-side="right"],
+.dropdownMenuSubContent[data-side="right"] {
+  animation-name: slideLeftAndFade;
+}
+.dropdownMenuContent[data-side="bottom"],
+.dropdownMenuSubContent[data-side="bottom"] {
+  animation-name: slideUpAndFade;
+}
+.dropdownMenuContent[data-side="left"],
+.dropdownMenuSubContent[data-side="left"] {
+  max-width: $dropdownMaxWidth;
+  max-height: $dropdownMaxHeight;
+  animation-name: slideRightAndFade;
+}
+
+.dropdownMenuSubTrigger {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  padding-right: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  outline: none;
+  user-select: none;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid white;
+  }
+}
+
+.dropdownMenuSubTrigger[data-state="open"] {
+  color: #fff;
+}
+
+@keyframes slideUpAndFade {
+  from {
+    opacity: 0;
+    transform: translateY($dropdownIndentationBottom);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRightAndFade {
+  from {
+    opacity: 0;
+    transform: translateX(-$dropdownIndentationBottom);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideDownAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(-$dropdownIndentationBottom);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeftAndFade {
+  from {
+    opacity: 0;
+    transform: translateX($dropdownIndentationBottom);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+}

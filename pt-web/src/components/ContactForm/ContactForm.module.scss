@@ -34,14 +34,14 @@
       border-radius: vars.$contact-btn-border-radius;
       color: vars.$btn-primary-hover-bg;
       font-size: vars.$font-size-md;
-      font-family: Poppins, sans-serif;
+      // font-family: Poppins, sans-serif;
       transition: vars.$transition-border, vars.$transition-bg,
         vars.$transition-color;
 
       &::placeholder {
         color: vars.$contact-placeholder-color;
         font-size: vars.$font-size-md;
-        font-family: Poppins, sans-serif;
+        // font-family: Poppins, sans-serif;
       }
 
       &:focus,

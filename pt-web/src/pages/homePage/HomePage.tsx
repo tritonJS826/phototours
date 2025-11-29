@@ -1,11 +1,23 @@
 import {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
+import cart from "/images/cart.svg";
+import email from "/images/email.svg";
+import instagram from "/images/instagram.svg";
+import logo from "/images/logo.svg";
+import phone from "/images/phone.svg";
+import telegram from "/images/telegram.svg";
+import user from "/images/user.svg";
+import whatsapp from "/images/whatsapp.svg";
+import clsx from "clsx";
 import {Container} from "src/components/Container/Container";
-import {HeroSection} from "src/components/HeroSection/HeroSection";
+import {Dropdown} from "src/components/Dropdown/Dropdown";
+import {HeroTextSection} from "src/components/HeroSection/HeroSection";
 import {PopularWorkshops} from "src/components/PopularWorkshops/PopularWorkshops";
 import {SectionHeader} from "src/components/SectionHeader/SectionHeader";
 import {TourSearchForm} from "src/components/TourSearchForm/TourSearchForm";
 import {ToursSection} from "src/components/ToursSection/ToursSection";
 import {ArticlesShowcase} from "src/pages/homePage/ArticlesShowcase/ArticlesShowcase";
+import {PATHS} from "src/routes/routes";
 import {listTours} from "src/services/toursService";
 import type {TourView} from "src/types/tour";
 import styles from "src/pages/homePage/HomePage.module.scss";
@@ -57,23 +69,152 @@ export function HomePage() {
   }, []);
 
   return (
-    <div className={styles.homePage}>
+    <div>
       <div className={styles.heroSectionBg}>
-        <Container>
-          <div className={styles.heroContent}>
-            <div className={styles.heroText}>
-              <HeroSection
-                title={COPY.hero.title}
-                subtitle={COPY.hero.subtitle}
+        <div className={styles.heroContent}>
+          <div className={styles.heroHeader}>
+            <Link
+              to={PATHS.HOME}
+              aria-label="Homepage"
+            >
+              <img
+                src={logo}
+                alt="Photo Tour Logo"
               />
-              {" "}
-              <div className={styles.heroForm}>
-                <TourSearchForm />
+            </Link>
+
+            <div className={styles.rightHeaderBlock}>
+              <ul className={styles.leftHeaderLinks}>
+                <li>
+                  <Link
+                    to={PATHS.TOURS}
+                    className={styles.primaryHeaderLink}
+                  >
+                    Explore Tours
+                  </Link>
+                </li>
+                &#9675;
+                <li>
+                  <Link to={PATHS.ARTICLES}>
+                    Blog
+                  </Link>
+                </li>
+                &#9675;
+                <li>
+                  <Link to={PATHS.ABOUT}>
+                    About Us
+                  </Link>
+                </li>
+              </ul>
+              <div className={styles.rightHeaderLinks}>
+
+                <Link to={PATHS.HOME}>
+                  <img
+                    src={cart}
+                    alt="cart link"
+                  />
+                </Link>
+
+                <Link to={PATHS.HOME}>
+                  <img
+                    src={user}
+                    alt="user link"
+                  />
+                </Link>
+
+                <Dropdown
+                  trigger={(
+                    <button
+                      className={styles.contactUsDropdownTrigger}
+                      onClick={() => {}}
+                    >
+                      Contact Us
+                    </button>
+                  )}
+
+                  dropdownMenuItems={[
+                    {
+                      dropdownSubMenuItems: [
+                        {
+                          id: "Phone",
+                          isPreventDefaultUsed: true,
+                          value: <div className={styles.contactUsItem}>
+                            <img
+                              src={phone}
+                              alt="user link"
+                            />
+                            Phone
+                          </div>,
+                          isVisible: true,
+                        },
+                        {
+                          id: "Telegram",
+                          isPreventDefaultUsed: true,
+                          value: <div className={styles.contactUsItem}>
+                            <img
+                              src={telegram}
+                              alt="user link"
+                            />
+                            Telegram
+                          </div>,
+                          isVisible: true,
+                        },
+                        {
+                          id: "WhatsApp",
+                          isPreventDefaultUsed: true,
+                          value: <div className={styles.contactUsItem}>
+                            <img
+                              src={whatsapp}
+                              alt="user link"
+                            />
+                            WhatsApp
+                          </div>,
+                          isVisible: true,
+                        },
+                        {
+                          id: "Email",
+                          isPreventDefaultUsed: true,
+                          value: <div className={styles.contactUsItem}>
+                            <img
+                              src={email}
+                              alt="user link"
+                            />
+                            Email
+                          </div>,
+                          isVisible: true,
+                        },
+                        {
+                          id: "Instagram",
+                          isPreventDefaultUsed: true,
+                          value: <div className={clsx(styles.contactUsItem, styles.lastChild)}>
+                            <img
+                              src={instagram}
+                              alt="user link"
+                            />
+                            Instagram
+                          </div>,
+                          isVisible: true,
+                        },
+                      ],
+                    },
+                  ]}
+                />
               </div>
             </div>
-
           </div>
-        </Container>
+
+          <div className={styles.heroText}>
+            <HeroTextSection
+              title={COPY.hero.title}
+              subtitle={COPY.hero.subtitle}
+            />
+            {" "}
+            <div className={styles.heroForm}>
+              <TourSearchForm />
+            </div>
+          </div>
+
+        </div>
       </div>
 
       <Container>

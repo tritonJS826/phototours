@@ -1,4 +1,4 @@
-import {Container} from "src/components/Container/Container";
+import clsx from "clsx";
 import styles from "src/components/HeroSection/HeroSection.module.scss";
 
 interface HeroSectionProps {
@@ -7,27 +7,26 @@ interface HeroSectionProps {
   className?: string;
 }
 
-function renderMultiline(text: string) {
-  return text.split("\n").map((line, i) => (<span key={i}>
-    {line}
-  </span>));
-}
-
-export function HeroSection({title, subtitle, className = ""}: HeroSectionProps) {
+export function HeroTextSection(props: HeroSectionProps) {
   return (
-    <Container>
-      <section className={`${styles.heroSection} ${className}`}>
-        <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>
-            {renderMultiline(title)}
-          </h1>
-          {subtitle && (
-            <p className={styles.heroDescription}>
-              {renderMultiline(subtitle)}
-            </p>
-          )}
-        </div>
-      </section>
-    </Container>
+    <section className={clsx(styles.heroSection, props.className)}>
+      <h1 className={styles.heroTitle}>
+        <b>
+          Unforgettable Photo
+          {" "}
+          <i className={styles.italic}>
+            Tours Across Tuscany
+          </i>
+          {" "}
+          Capture breathtaking landscapes with expert guidance
+        </b>
+      </h1>
+      {props.subtitle && (
+        <p className={styles.subtitle}>
+          Small groups • Iconic locations • Professional photo mentoring to
+          help you create award-winning shots on cinematic Tuscan routes.
+        </p>
+      )}
+    </section>
   );
 }

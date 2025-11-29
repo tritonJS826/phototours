@@ -70,12 +70,12 @@ export function App() {
         ))}
       </Helmet>
       <Routes>
+        <Route
+          path={PATHS.HOME}
+          element={<HomePage />}
+        />
         <Route element={<AppLayout />}>
           <Route element={<PageLayout />}>
-            <Route
-              path={PATHS.HOME}
-              element={<HomePage />}
-            />
             <Route
               path={PATHS.ABOUT}
               element={<AboutUs />}

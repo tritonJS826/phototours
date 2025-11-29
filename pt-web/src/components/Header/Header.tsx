@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import logo from "/logo.png";
+import logo from "/images/logo.svg";
 import {
   Bell,
   CircleUser,
