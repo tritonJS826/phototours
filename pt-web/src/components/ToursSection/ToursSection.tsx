@@ -1,4 +1,4 @@
-import {Container} from "src/components/Container/Container";
+import clsx from "clsx";
 import {TourCard} from "src/components/Tour/Tour";
 import {useTours} from "src/hooks/useTours";
 import styles from "src/components/ToursSection/ToursSection.module.scss";
@@ -47,7 +47,7 @@ export function ToursSection({limit, className = ""}: ToursSectionProps) {
 
   if (!tours.length) {
     return (
-      <section className={`${styles.wrap} ${className}`}>
+      <section className={clsx(styles.wrap, className)}>
         <div className={styles.state}>
           No tours yet.
         </div>
@@ -56,17 +56,15 @@ export function ToursSection({limit, className = ""}: ToursSectionProps) {
   }
 
   return (
-    <Container>
-      <section className={`${styles.wrap} ${className}`}>
-        <div className={styles.grid}>
-          {tours.map((t) => (
-            <TourCard
-              key={t.id}
-              tour={t}
-            />
-          ))}
-        </div>
-      </section>
-    </Container>
+    <section className={`${styles.wrap} ${className}`}>
+      <div className={styles.grid}>
+        {tours.map((tour) => (
+          <TourCard
+            key={tour.id}
+            tour={tour}
+          />
+        ))}
+      </div>
+    </section>
   );
 }

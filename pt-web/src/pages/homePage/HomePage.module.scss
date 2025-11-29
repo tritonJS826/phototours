@@ -98,7 +98,7 @@
   border-radius: 20px;
 }
 
-.popularDestinationsBlock {
+.blockWrapper {
   max-width: 1490px;
   margin: auto;
 }
@@ -108,4 +108,154 @@
   text-align: center;
   font-weight: 700;
   font-size: 25px;
+}
+
+.topDestinationsSelectionTitle {
+  font-size: 45px;
+  margin: 70px 0 17px auto;
+}
+
+.topDestinationsSelectionSubTitle {
+  font-size: 20px;
+  line-height: 1.35;
+  max-width: 644px;
+  margin-bottom: 40px;
+}
+
+.wantMoreBlock {
+  margin-top: 40px;
+  background: linear-gradient(101.01deg, #3E61ED -83.91%, #233787 167.82%);
+  color: #fff;
+  padding: 20px;
+  gap: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wantMoreHeader {
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.wantMoreButton {
+  font-weight: 700;
+  font-size: 16px;
+  padding: 19px 34px;
+  border-radius: 10px;
+  color: #2F53DE;
+}
+
+
+.reviewsTitle {
+  font-size: 45px;
+  margin: 70px 0 17px auto;
+}
+
+.reviewsSubTitle {
+  font-size: 20px;
+  line-height: 1.35;
+  max-width: 644px;
+  margin-bottom: 40px;
+}
+
+.faqBlock {
+  margin-top: 40px;
+  background: linear-gradient(101.01deg, #3E61ED -83.91%, #233787 167.82%);
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.faqTitle {
+  font-size: 45px;
+  font-weight: 700;
+  font-style: bold;
+  margin-bottom: 25px;
+}
+
+.faqSubtitle {
+  max-width: 490px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.accordions {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1490px;
+  margin: 60px 0;
+
+}
+
+.accordion {
+  flex: 1;
+}
+
+.feedBackBlock {
+  background-image: url("public/images/homeHero.avif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 30px 30px 15px 30px;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.feedBackContent {
+  display: flex;
+  flex-direction: column;
+  margin: 60px auto;
+  color: #fff;
+  align-items: center;
+}
+
+.feedBackTitle {
+  font-weight: 700px;
+  font-size: 37px;
+  font-style: bold;
+}
+
+.feedBackDescription {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.35;
+  text-align: center;
+  max-width: 650px;
+  margin-top: 15px;
+}
+
+.feedBackForm {
+  margin-top: 30px;
+  display: flex;
+  gap: 5px
+}
+
+.feedBackInput {
+  padding: 18px 21px;
+  border-radius: 10px;
+  font-size: 16px;
+  width: 360px;
+}
+.feedBackButton {
+  color: #fff;
+  background-color: #2F53DE;
+  padding: 20px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  width: auto;
+}
+
+.privacyPolicyText {
+}
+
+.privacyLink {
+  text-decoration: underline;
 }

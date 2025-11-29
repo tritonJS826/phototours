@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+// Import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import cart from "/images/cart.svg";
 import email from "/images/email.svg";
@@ -13,19 +13,19 @@ import user from "/images/user.svg";
 import viator from "/images/viator.svg";
 import whatsapp from "/images/whatsapp.svg";
 import clsx from "clsx";
-import {Container} from "src/components/Container/Container";
+import {Accordion, accordionTypes} from "src/components/Accordion/Accordion";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
+import {Footer} from "src/components/Footer/Footer";
 import {HeroTextSection} from "src/components/HeroSection/HeroSection";
 import {PopularDestinations} from "src/components/PopularDestinations/PopularDestinations";
-import {SectionHeader} from "src/components/SectionHeader/SectionHeader";
+import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
 import {ToursSection} from "src/components/ToursSection/ToursSection";
-import {ArticlesShowcase} from "src/pages/homePage/ArticlesShowcase/ArticlesShowcase";
 import {PATHS} from "src/routes/routes";
-import {listTours} from "src/services/toursService";
-import type {TourView} from "src/types/tour";
+// Import {listTours} from "src/services/toursService";
+// import type {TourView} from "src/types/tour";
 import styles from "src/pages/homePage/HomePage.module.scss";
 
-const FEATURED_TOURS_LIMIT = 3;
+// Const FEATURED_TOURS_LIMIT = 3;
 
 const COPY = {
   hero: {
@@ -34,13 +34,15 @@ const COPY = {
       "As Iceland’s leading photo tour operator, we offer expert tours\n" +
       "to help you capture breathtaking images at the best photo locations.",
   },
-  popular: {
-    title: "Top Tuscany Photo Destinations",
-    // Subtitle: "Travel the world to capture the most incredible landscapes",
+  topPopularDestinations: {title: "Top Tuscany Photo Destinations"},
+  topSelections: {
+    title: "Top Destinations Selection",
+    // eslint-disable-next-line max-len
+    subtitle: "Small groups • Iconic locations • Professional photo mentoring to help you create award-winning shots on cinematic Tuscan routes.",
   },
-  bestWinter: {
-    title: "Best Winter Photo Tours & Workshops in Iceland",
-    subtitle: "Best photography tours",
+  reviews: {
+    title: "Reviews",
+    subtitle: "Insights, tips, and stories to help you elevate your photography and explore Tuscany with confidence.",
   },
   articles: {
     title: "Best travel tips for Iceland",
@@ -48,28 +50,57 @@ const COPY = {
   },
 };
 
+const accordionItemsLeft = [
+  {
+    trigger: {child: "What experience level is required for this tour?"},
+    content: {child: "Lorem ipsum dolor, lorem ipsum"},
+  },
+  {
+    trigger: {child: "What kind of equipment should I bring?"},
+    content: {child: "Lorem ipsum dolor, lorem ipsum"},
+  },
+  {
+    trigger: {child: "How physically demanding is the tour?"},
+    content: {child: "Lorem ipsum dolor, lorem ipsum"},
+  },
+];
+const accordionItemsRight = [
+  {
+    trigger: {child: "What weather can I expect in spring?"},
+    content: {child: "Lorem ipsum dolor, lorem ipsum"},
+  },
+  {
+    trigger: {child: "How many people are in the group?"},
+    content: {child: "Lorem ipsum dolor, lorem ipsum"},
+  },
+  {
+    trigger: {child: "Are accommodations and meals included?"},
+    content: {child: "Lorem ipsum dolor, lorem ipsum"},
+  },
+];
+
 export function HomePage() {
-  const [tours, setTours] = useState<TourView[]>([]);
+  // Const [tours, setTours] = useState<TourView[]>([]);
 
-  useEffect(() => {
-    let mounted = true;
-    (async () => {
-      try {
-        const data = await listTours();
-        if (mounted) {
-          setTours((data ?? []).slice(0, FEATURED_TOURS_LIMIT));
-        }
-      } catch {
-        if (mounted) {
-          setTours([]);
-        }
-      }
-    })();
+  // useEffect(() => {
+  //   // let mounted = true;
+  //   // (async () => {
+  //   //   try {
+  //   //     const data = await listTours();
+  //   //     if (mounted) {
+  //   //       setTours((data ?? []).slice(0, FEATURED_TOURS_LIMIT));
+  //   //     }
+  //   //   } catch {
+  //   //     if (mounted) {
+  //   //       setTours([]);
+  //   //     }
+  //   //   }
+  //   // })();
 
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  //   // return () => {
+  //   //   mounted = false;
+  //   // };
+  // }, []);
 
   return (
     <div>
@@ -231,22 +262,106 @@ export function HomePage() {
         />
       </div>
 
-      <div className={styles.popularDestinationsBlock}>
+      <div className={styles.blockWrapper}>
         <h2 className={styles.popularDestinationsTitle}>
-          {COPY.popular.title}
+          {COPY.topPopularDestinations.title}
         </h2>
         <PopularDestinations />
       </div>
 
-      <Container>
-        <SectionHeader
-          title={COPY.bestWinter.title}
-          subtitle={COPY.bestWinter.subtitle}
-        />
+      <div className={styles.blockWrapper}>
+        <h2 className={styles.topDestinationsSelectionTitle}>
+          {COPY.topSelections.title}
+        </h2>
+        <p className={styles.topDestinationsSelectionSubTitle}>
+          {COPY.topSelections.subtitle}
+        </p>
         <ToursSection />
-      </Container>
+      </div>
 
-      <Container>
+      <div className={styles.wantMoreBlock}>
+        <h3 className={styles.wantMoreHeader}>
+          Want more options?
+        </h3>
+        <button className={styles.wantMoreButton}>
+          Explore all tours ↓
+        </button>
+      </div>
+
+      <div className={styles.blockWrapper}>
+        <h2 className={styles.reviewsTitle}>
+          {COPY.reviews.title}
+        </h2>
+        <p className={styles.reviewsSubTitle}>
+          {COPY.reviews.subtitle}
+        </p>
+        <ReviewsSection />
+      </div>
+
+      <div className={styles.faqBlock}>
+        <h3 className={styles.faqTitle}>
+          FAQ
+        </h3>
+        <p className={styles.faqSubtitle}>
+          Insights, tips, and stories to help you elevate your photography and explore Tuscany with confidence.
+        </p>
+        <div className={styles.accordions}>
+          <Accordion
+            items={accordionItemsLeft}
+            type={accordionTypes.MULTIPLE}
+            className={styles.accordion}
+          />
+          <Accordion
+            items={accordionItemsRight}
+            type={accordionTypes.MULTIPLE}
+            className={styles.accordion}
+          />
+        </div>
+      </div>
+
+      <div className={styles.feedBackBlock}>
+        <div className={styles.feedBackContent}>
+          <h2 className={styles.feedBackTitle}>
+            Book Your Spring Tuscany Experience
+          </h2>
+          <p className={styles.feedBackDescription}>
+            Small groups • Iconic locations • Professional photo mentoring to help you create award-winning shots on
+            cinematic Tuscan routes.
+          </p>
+          <div className="">
+            <div className={styles.feedBackForm}>
+              <input
+                type="text"
+                className={styles.feedBackInput}
+                placeholder="Name"
+              />
+              <input
+                type="tel"
+                className={styles.feedBackInput}
+                placeholder="+1 000 000-000"
+              />
+              <button className={styles.feedBackButton}>
+                Sent
+              </button>
+            </div>
+            <span className={styles.privacyPolicyText}>
+              By submitting, you agree to our
+              {" "}
+              <Link
+                to="#"
+                className={styles.privacyLink}
+              >
+                Privacy Policy
+              </Link>
+              .
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <Footer />
+
+      {/* <Container>
         <SectionHeader
           title={COPY.articles.title}
           subtitle={COPY.articles.subtitle}
@@ -255,7 +370,7 @@ export function HomePage() {
           title={COPY.articles.title}
           subtitle={COPY.articles.subtitle}
         />
-      </Container>
+      </Container> */}
     </div>
   );
 }

@@ -1,0 +1,93 @@
+import {useId} from "react";
+import {Root as RadixAccordionRoot} from "@radix-ui/react-accordion";
+import clsx from "clsx";
+import {AccordionContentProps} from "src/components/Accordion/AccordionContent/AccordionContent";
+import {AccordionItem} from "src/components/Accordion/AccordionItem/AccordionItem";
+import {AccordionTriggerProps} from "src/components/Accordion/AccordionTrigger/AccordionTrigger";
+
+/**
+ * Enum defines the available modes of operation for the accordion component.
+ */
+export enum accordionTypes {
+
+  /**
+   * Single mode (`"single"`) - In this mode, only one accordion item can be open at a time.
+   * If a user opens one item, any previously open item will automatically close.
+   */
+  SINGLE = "single",
+
+  /**
+   * Multiple mode (`"multiple"`) - In this mode, multiple accordion items can be open simultaneously.
+   * Previously open items remain open when the user opens additional items.
+   */
+  MULTIPLE = "multiple",
+}
+
+/**
+ * Accordion item data
+ */
+interface AccordionItemData {
+
+  /**
+   * The trigger element that users can interact with to expand or collapse the item.
+   */
+  trigger: AccordionTriggerProps;
+
+  /**
+   * The content element that becomes visible when the item is expanded.
+   */
+  content: AccordionContentProps;
+}
+
+/**
+ * Accordion props
+ */
+interface AccordionProps {
+
+  /**
+   * An array of objects representing the accordion items, each containing a trigger (ReactNode) and content (ReactNode) element.
+   */
+  items: AccordionItemData[];
+
+  /**
+   * The mode of operation for the accordion. (Optional)
+   * @type {accordionTypes}
+   * @default "single"
+   */
+  type?: accordionTypes;
+
+  /**
+   * Additional custom class name for the component (Optional)
+   */
+  className?: string;
+}
+
+/**
+ * Accordion item component
+ */
+const renderAccordionItem = (item: AccordionItemData, uniqueId: string) => (
+  <AccordionItem
+    trigger={item.trigger}
+    content={item.content}
+    itemKey={uniqueId}
+    key={uniqueId}
+  />
+);
+
+/**
+ * This component renders a vertically stacked set of interactive headings that each reveal an associated section of content.
+ */
+export const Accordion = (props: AccordionProps) => {
+  return (
+    <RadixAccordionRoot
+      className={clsx(props.className)}
+      type={props.type ?? accordionTypes.SINGLE}
+    >
+      {props.items.map((item) => {
+        const uniqueId = useId();
+
+        return renderAccordionItem(item, uniqueId);
+      })}
+    </RadixAccordionRoot>
+  );
+};

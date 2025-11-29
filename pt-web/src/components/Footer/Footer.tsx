@@ -1,4 +1,4 @@
-import {memo} from "react";
+import {Link} from "react-router-dom";
 import {Facebook, Instagram, Youtube} from "lucide-react";
 import {Container} from "src/components/Container/Container";
 import {Logo} from "src/components/Logo/Logo";
@@ -73,18 +73,16 @@ const SOCIAL_LINKS: SocialLink[] = [
   },
 ];
 
-export const Footer = memo(function Footer() {
+export const Footer = function Footer() {
   const renderFooterLink = (link: FooterLink) => (
     <li key={link.id}>
-      <a
-        href={link.href}
+      <Link
+        to={link.href}
         className={styles.footerLink}
-        target={link.href.startsWith("http") ? "_blank" : undefined}
-        rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
         aria-label={link.text}
       >
         {link.text}
-      </a>
+      </Link>
     </li>
   );
 
@@ -148,7 +146,7 @@ export const Footer = memo(function Footer() {
         <Container>
           <div className={styles.copyrightContent}>
             <p className={styles.copyrightText}>
-              © 2005 Tuscany Photo Tours. All rights reserved.
+              © 2026 Tuscany Photo Tours. All rights reserved.
             </p>
             <div className={styles.socialIcons}>
               {SOCIAL_LINKS.map(renderSocialIcon)}
@@ -158,5 +156,5 @@ export const Footer = memo(function Footer() {
       </section>
     </footer>
   );
-});
+};
 

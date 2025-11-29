@@ -1,0 +1,86 @@
+@import "src/styles/variables";
+
+.accordionHeader {
+  display: flex;
+  align-items: flex-end;
+}
+
+.icon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  color: #000;
+  flex-shrink: 0;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  background-color: #fff;
+  margin: 13px; 
+}
+
+.accordionTrigger {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  padding: auto 0;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 800;
+  gap: 8px;
+  text-align: left;
+  transition: all 650ms ease;
+
+  &:hover {
+    padding-left: 0;
+    // background-color: var(--hoverBgColor);
+  }
+
+  &[data-state="open"] > .minusIcon {
+    display: block;
+  }
+
+  &[data-state="open"] > .plusIcon {
+    display: none;
+  }
+
+  &[data-state="closed"] > .minusIcon {
+    display: none;
+  }
+
+  &[data-state="closed"] > .plusIcon {
+    display: block;
+  }
+}
+
+
+// below css-icons
+.icon::before,
+.icon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+}
+
+/* Horizontal line */
+.icon::before {
+  width: 70%;
+  height: 3px;
+}
+
+/* Vertical line ONLY for plus */
+.plus::after {
+  width: 3px;
+  height: 70%;
+}
+
+/* Minus: disable the vertical line */
+.minus::after {
+  display: none;
+}

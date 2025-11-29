@@ -1,4 +1,7 @@
 import {Link} from "react-router-dom";
+import reviews from "public/images/reviews.svg";
+import spotsLeft from "public/images/spotsLeft.svg";
+import star from "public/images/star.svg";
 import {Button} from "src/components/Button/Button";
 import type {TourView} from "src/types/tour";
 import styles from "src/components/Tour/Tour.module.scss";
@@ -28,85 +31,90 @@ export function TourCard({tour}: Props) {
               loading="lazy"
             />
           )}
-          <span className={styles.quick}>
-            Quick view
-          </span>
+          <div className={styles.stars}>
+            <span className={styles.starsAmount}>
+              {tour.stars}
+            </span>
+            <img
+              src={star}
+              alt="stars"
+              className={styles.img}
+              loading="lazy"
+            />
+          </div>
         </div>
       </Link>
+
+      <div className={styles.reviewsBlock}>
+        <div className={styles.reviewsTag}>
+          <img
+            src={spotsLeft}
+            alt="stars"
+            className={styles.tagIcon}
+            loading="lazy"
+          />
+          <span>
+            2 spots left
+          </span>
+        </div>
+
+        <div className={styles.reviewsTag}>
+          <img
+            src={reviews}
+            alt="stars"
+            className={styles.tagIcon}
+            loading="lazy"
+          />
+          <span>
+            3 reviews
+          </span>
+        </div>
+      </div>
 
       <div className={styles.body}>
         <h3 className={styles.title}>
           {tour.title}
         </h3>
 
-        <div className={styles.meta}>
-          {tour.startLocation && (
-            <div className={styles.metaRow}>
-              <span className={styles.metaKey}>
-                Tour starts:
-              </span>
-              <span className={styles.metaVal}>
-                {tour.startLocation}
-              </span>
-            </div>
-          )}
-          {tour.endLocation && (
-            <div className={styles.metaRow}>
-              <span className={styles.metaKey}>
-                Ending place:
-              </span>
-              <span className={styles.metaVal}>
-                {tour.endLocation}
-              </span>
-            </div>
-          )}
-          {tour.durationDays && (
-            <div className={styles.metaRow}>
-              <span className={styles.metaKey}>
-                Duration:
-              </span>
-              <span className={styles.metaVal}>
-                {tour.durationDays}
-                {" "}
-                days
-              </span>
-            </div>
-          )}
-          {tour.languages?.length
-            ? (
-              <div className={styles.metaRow}>
-                <span className={styles.metaKey}>
-                  Languages:
-                </span>
-                <span className={styles.metaVal}>
-                  {tour.languages.join(", ")}
-                </span>
-              </div>
-            )
-            : null}
-        </div>
+        <p className={styles.description}>
+          {tour.description}
+        </p>
 
-        <div className={styles.priceRow}>
+        <div className={styles.priceBlock}>
           <span className={styles.from}>
             From
           </span>
+          &nbsp;
           <span className={styles.price}>
             {price}
           </span>
+          &nbsp;
           <span className={styles.currency}>
             USD
           </span>
         </div>
 
-        <Button
-          as={Link}
-          to={tourUrl}
-          className={styles.cta}
-          size="md"
-          variant="primary"
-        >
-          See More
-        </Button>
+        <div className={styles.buttonsBlock}>
+          <Button
+            as={Link}
+            to={tourUrl}
+            className={styles.primaryButton}
+            size="md"
+            variant="primary"
+          >
+            Book now
+          </Button>
+
+          <Button
+            as={Link}
+            to={tourUrl}
+            className={styles.secondaryButton}
+            size="md"
+            variant="primary"
+          >
+            Read more
+          </Button>
+        </div>
       </div>
     </article>
   );
