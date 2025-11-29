@@ -2,19 +2,22 @@ import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import cart from "/images/cart.svg";
 import email from "/images/email.svg";
+import getYourGuide from "/images/getYourGuide.svg";
 import instagram from "/images/instagram.svg";
 import logo from "/images/logo.svg";
 import phone from "/images/phone.svg";
 import telegram from "/images/telegram.svg";
+import tripAdvisor from "/images/tripAdvisor.svg";
+import trustPilot from "/images/trustPilot.svg";
 import user from "/images/user.svg";
+import viator from "/images/viator.svg";
 import whatsapp from "/images/whatsapp.svg";
 import clsx from "clsx";
 import {Container} from "src/components/Container/Container";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
 import {HeroTextSection} from "src/components/HeroSection/HeroSection";
-import {PopularWorkshops} from "src/components/PopularWorkshops/PopularWorkshops";
+import {PopularDestinations} from "src/components/PopularDestinations/PopularDestinations";
 import {SectionHeader} from "src/components/SectionHeader/SectionHeader";
-import {TourSearchForm} from "src/components/TourSearchForm/TourSearchForm";
 import {ToursSection} from "src/components/ToursSection/ToursSection";
 import {ArticlesShowcase} from "src/pages/homePage/ArticlesShowcase/ArticlesShowcase";
 import {PATHS} from "src/routes/routes";
@@ -32,8 +35,8 @@ const COPY = {
       "to help you capture breathtaking images at the best photo locations.",
   },
   popular: {
-    title: "Popular photo tours & workshops",
-    subtitle: "Travel the world to capture the most incredible landscapes",
+    title: "Top Tuscany Photo Destinations",
+    // Subtitle: "Travel the world to capture the most incredible landscapes",
   },
   bestWinter: {
     title: "Best Winter Photo Tours & Workshops in Iceland",
@@ -204,36 +207,44 @@ export function HomePage() {
           </div>
 
           <div className={styles.heroText}>
-            <HeroTextSection
-              title={COPY.hero.title}
-              subtitle={COPY.hero.subtitle}
-            />
-            {" "}
-            <div className={styles.heroForm}>
-              <TourSearchForm />
-            </div>
+            <HeroTextSection />
           </div>
-
         </div>
+      </div>
+
+      <div className={styles.partners}>
+        <img
+          src={tripAdvisor}
+          alt="tripAdvisor logo"
+        />
+        <img
+          src={viator}
+          alt="viator logo"
+        />
+        <img
+          src={getYourGuide}
+          alt="getYourGuide Logo"
+        />
+        <img
+          src={trustPilot}
+          alt="trustPilot Logo"
+        />
+      </div>
+
+      <div className={styles.popularDestinationsBlock}>
+        <h2 className={styles.popularDestinationsTitle}>
+          {COPY.popular.title}
+        </h2>
+        <PopularDestinations />
       </div>
 
       <Container>
         <SectionHeader
-          title={COPY.popular.title}
-          subtitle={COPY.popular.subtitle}
+          title={COPY.bestWinter.title}
+          subtitle={COPY.bestWinter.subtitle}
         />
-        <PopularWorkshops />
+        <ToursSection />
       </Container>
-
-      {tours.length > 0 && (
-        <Container>
-          <SectionHeader
-            title={COPY.bestWinter.title}
-            subtitle={COPY.bestWinter.subtitle}
-          />
-          <ToursSection />
-        </Container>
-      )}
 
       <Container>
         <SectionHeader

@@ -47,7 +47,7 @@
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
 }
 
 .primaryHeaderLink {
@@ -73,6 +73,7 @@
   border-radius: 8px;
   border: 1px solid #fff;
   color: #fff;
+  margin-left: 20px;
 }
 
 .contactUsItem {
@@ -84,4 +85,27 @@
   &.lastChild {
     border-bottom: none;
   }
+}
+
+.partners {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 55px;
+  background-color: #F8F8F8;
+  padding: 36px 8px;
+  margin: 15px 30px;
+  border-radius: 20px;
+}
+
+.popularDestinationsBlock {
+  max-width: 1490px;
+  margin: auto;
+}
+
+.popularDestinationsTitle {
+  margin: 45px auto 20px auto;
+  text-align: center;
+  font-weight: 700;
+  font-size: 25px;
 }

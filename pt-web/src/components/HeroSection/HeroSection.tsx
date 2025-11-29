@@ -1,9 +1,8 @@
 import clsx from "clsx";
+import {TourSearchForm} from "src/components/TourSearchForm/TourSearchForm";
 import styles from "src/components/HeroSection/HeroSection.module.scss";
 
 interface HeroSectionProps {
-  title: string;
-  subtitle?: string;
   className?: string;
 }
 
@@ -21,12 +20,11 @@ export function HeroTextSection(props: HeroSectionProps) {
           Capture breathtaking landscapes with expert guidance
         </b>
       </h1>
-      {props.subtitle && (
-        <p className={styles.subtitle}>
-          Small groups • Iconic locations • Professional photo mentoring to
-          help you create award-winning shots on cinematic Tuscan routes.
-        </p>
-      )}
+      <p className={styles.subtitle}>
+        Small groups • Iconic locations • Professional photo mentoring to
+        help you create award-winning shots on cinematic Tuscan routes.
+      </p>
+      <TourSearchForm />
     </section>
   );
 }
