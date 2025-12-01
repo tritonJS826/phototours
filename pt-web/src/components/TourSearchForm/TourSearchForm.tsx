@@ -156,7 +156,7 @@ export function TourSearchForm() {
                 id: "start-1",
                 isPreventDefaultUsed: true,
                 value: <div className={styles.tourLocationItem}>
-                  1. Start date - End date
+                  1. 1 traveler
                 </div>,
                 isVisible: true,
               },
@@ -164,7 +164,7 @@ export function TourSearchForm() {
                 id: "Email",
                 isPreventDefaultUsed: true,
                 value: <div className={styles.tourLocationItem}>
-                  2. Start date - End date
+                  2. 2 travelers
                 </div>,
                 isVisible: true,
               },
@@ -172,7 +172,7 @@ export function TourSearchForm() {
                 id: "Instagram",
                 isPreventDefaultUsed: true,
                 value: <div className={styles.tourLocationItem}>
-                  3. Start date - End date
+                  3. 3 travelers
                 </div>,
                 isVisible: true,
               },

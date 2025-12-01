@@ -1,5 +1,5 @@
 import {memo, useState} from "react";
-import {Mail} from "lucide-react";
+import {Link} from "react-router-dom";
 import {subscribeToNewsletter} from "src/services/newsletterService";
 import styles from "src/components/NewsletterForm/NewsletterForm.module.scss";
 
@@ -70,7 +70,6 @@ export const NewsletterForm = memo(function NewsletterForm() {
     >
       <div className={styles.inputGroup}>
         <div className={styles.inputWrapper}>
-          <Mail className={styles.emailIcon} />
           <input
             type="email"
             value={email}
@@ -91,6 +90,17 @@ export const NewsletterForm = memo(function NewsletterForm() {
           {isSubmitting ? BUTTON_TEXT.SUBSCRIBING : BUTTON_TEXT.SUBSCRIBE}
         </button>
       </div>
+      <span className={styles.privacyPolicyText}>
+        By submitting, you agree to our
+        {" "}
+        <Link
+          to="#"
+          className={styles.privacyLink}
+        >
+          Privacy Policy
+        </Link>
+        .
+      </span>
 
       {message && (
         <div className={`${styles.message} ${isSuccessMessage(message) ? styles.successMessage : styles.errorMessage}`}>

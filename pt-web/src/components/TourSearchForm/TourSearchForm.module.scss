@@ -26,6 +26,22 @@
   margin: 10px;
 }
 
+.tourLocationItem {
+  display: flex;
+  gap: 8px;
+  padding: 12px 10px;
+  border-bottom: 1px solid #D9D9D9;
+  min-width: 220px;
+
+  &:hover {
+    background-color: #E9EEFF;
+  }
+
+  &.lastChild {
+    border-bottom: none;
+  }
+}
+
 .currentValue {
   border: none;
   background: none;

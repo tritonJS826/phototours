@@ -124,7 +124,7 @@ export function HomePage() {
                     to={PATHS.TOURS}
                     className={styles.primaryHeaderLink}
                   >
-                    Explore Tours
+                    Explore&nbsp;Tours
                   </Link>
                 </li>
                 &#9675;
@@ -361,16 +361,6 @@ export function HomePage() {
 
       <Footer />
 
-      {/* <Container>
-        <SectionHeader
-          title={COPY.articles.title}
-          subtitle={COPY.articles.subtitle}
-        />
-        <ArticlesShowcase
-          title={COPY.articles.title}
-          subtitle={COPY.articles.subtitle}
-        />
-      </Container> */}
     </div>
   );
 }

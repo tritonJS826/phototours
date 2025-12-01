@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
-import {Facebook, Instagram, Youtube} from "lucide-react";
-import {Container} from "src/components/Container/Container";
+import mastercardLogo from "public/images/mastercardLogo.avif";
+import stripeLogo from "public/images/stripeLogo.avif";
+import visaLogo from "public/images/visaLogo.avif";
 import {Logo} from "src/components/Logo/Logo";
 import {NewsletterForm} from "src/components/NewsletterForm/NewsletterForm";
 import styles from "src/components/Footer/Footer.module.scss";
@@ -19,56 +20,61 @@ interface FooterColumn {
 
 interface SocialLink {
   id: string;
-  icon: React.ComponentType<{className?: string}>;
+  img: string;
   href: string;
   title: string;
 }
 
 const FOOTER_COLUMNS: FooterColumn[] = [
   {
-    id: "information",
-    title: "Information",
+    id: "pages",
+    title: "Pages",
     links: [
+      {id: "explore-tours", text: "Explore Tours", href: "/tours"},
       {id: "about", text: "About Us", href: "/about"},
-      {id: "terms", text: "Terms & Conditions", href: "/terms"},
+      {id: "blog", text: "Blog", href: "/articles"},
+      {id: "contacts", text: "Contacts", href: "/contact"},
+    ],
+  },
+  {
+    id: "contacts",
+    title: "Contacts",
+    links: [
+      {id: "email-us", text: "Email us", href: "/contact"},
+      {id: "getInTouch", text: "Get in touch", href: "/contact"},
+      {id: "getInTouch", text: "Work with us", href: "/contact"},
+    ],
+  },
+  {
+    id: "legal",
+    title: "Legal",
+    links: [
       {id: "privacy", text: "Privacy Policy", href: "/privacy"},
+      {id: "terms", text: "Terms & Conditions", href: "/terms"},
+      {id: "privacy", text: "Refund Policy", href: "/privacy"},
+      {id: "privacy", text: "Cookies Policy", href: "/privacy"},
     ],
-  },
-  {
-    id: "support",
-    title: "Support",
-    links: [
-      {id: "faq", text: "FAQ", href: "/faq"},
-      {id: "contact", text: "Contact Us", href: "/contact"},
-    ],
-  },
-  {
-    id: "explore",
-    title: "Explore",
-    links: [
-      {id: "book-tours", text: "Book Photo Tours", href: "/tours"},
-      {id: "articles", text: "Explore Articles", href: "/articles"},
-    ],
+
   },
 ];
 
 const SOCIAL_LINKS: SocialLink[] = [
   {
-    id: "instagram",
-    icon: Instagram,
-    href: "https://instagram.com",
+    id: "mastercardLogo",
+    img: mastercardLogo,
+    href: "#",
     title: "Visit Instagram",
   },
   {
-    id: "facebook",
-    icon: Facebook,
-    href: "https://facebook.com",
+    id: "stripeLogo",
+    img: stripeLogo,
+    href: "#",
     title: "Visit Facebook",
   },
   {
-    id: "youtube",
-    icon: Youtube,
-    href: "https://youtube.com",
+    id: "visaLogo",
+    img: visaLogo,
+    href: "#",
     title: "Visit YouTube",
   },
 ];
@@ -87,7 +93,6 @@ export const Footer = function Footer() {
   );
 
   const renderSocialIcon = (social: SocialLink) => {
-    const IconComponent = social.icon;
 
     return (
       <a
@@ -99,7 +104,11 @@ export const Footer = function Footer() {
         title={social.title}
         aria-label={social.title}
       >
-        <IconComponent className={styles.icon} />
+        <img
+          src={social.img}
+          alt={social.title}
+          className={styles.icon}
+        />
       </a>
     );
   };
@@ -110,49 +119,45 @@ export const Footer = function Footer() {
       role="contentinfo"
     >
       <section className={styles.mainSection}>
-        <Container>
-          <div className={styles.mainContent}>
-            <div className={styles.logoColumn}>
-              <Logo showTagline={false} />
-            </div>
+        <div className={styles.mainContent}>
+          <div className={styles.logoColumn}>
+            <Logo showTagline={false} />
+          </div>
 
-            {FOOTER_COLUMNS.map((column) => (
-              <div
-                key={column.id}
-                className={styles.footerColumn}
-              >
-                <h3 className={styles.columnTitle}>
-                  {column.title}
-                </h3>
-                <ul className={styles.footerLinks}>
-                  {column.links.map(renderFooterLink)}
-                </ul>
-              </div>
-            ))}
-
-            <div className={styles.subscribeColumn}>
+          {FOOTER_COLUMNS.map((column) => (
+            <div
+              key={column.id}
+              className={styles.footerColumn}
+            >
               <h3 className={styles.columnTitle}>
-                Subscribe
+                {column.title}
               </h3>
-              <div className={styles.subscribeForm}>
-                <NewsletterForm />
-              </div>
+              <ul className={styles.footerLinks}>
+                {column.links.map(renderFooterLink)}
+              </ul>
+            </div>
+          ))}
+
+          <div className={styles.subscribeColumn}>
+            <h3 className={styles.columnTitle}>
+              Join Our Newsletter
+            </h3>
+            <div className={styles.subscribeForm}>
+              <NewsletterForm />
             </div>
           </div>
-        </Container>
+        </div>
       </section>
 
       <section className={styles.copyrightSection}>
-        <Container>
-          <div className={styles.copyrightContent}>
-            <p className={styles.copyrightText}>
-              © 2026 Tuscany Photo Tours. All rights reserved.
-            </p>
-            <div className={styles.socialIcons}>
-              {SOCIAL_LINKS.map(renderSocialIcon)}
-            </div>
+        <div className={styles.copyrightContent}>
+          <p className={styles.copyrightText}>
+            © 2026 Tuscany Photo Tours. All rights reserved.
+          </p>
+          <div className={styles.socialIcons}>
+            {SOCIAL_LINKS.map(renderSocialIcon)}
           </div>
-        </Container>
+        </div>
       </section>
     </footer>
   );

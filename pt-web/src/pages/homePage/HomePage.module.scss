@@ -79,8 +79,12 @@
 .contactUsItem {
   display: flex;
   gap: 8px;
-  padding: 0 0 8px 0;
+  padding: 12px 10px;
   border-bottom: 1px solid #D9D9D9;
+
+  &:hover {
+    background-color: #E9EEFF;
+  }
 
   &.lastChild {
     border-bottom: none;
@@ -234,6 +238,7 @@
 .feedBackForm {
   margin-top: 30px;
   display: flex;
+  flex-wrap: wrap;
   gap: 5px
 }
 
