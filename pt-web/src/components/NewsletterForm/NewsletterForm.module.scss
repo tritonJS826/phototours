@@ -20,9 +20,9 @@
   }
 
   .inputWrapper {
-    flex: 1;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
 
     .emailInput {
       padding: 18px 21px;
@@ -42,11 +42,20 @@
   .subscribeButton {
     color: #fff;
     background-color: #2F53DE;
-    padding: 20px;
+    padding: 18px;
     border-radius: 10px;
     border: none;
     font-size: 16px;
     width: auto;
+
+    &:hover {
+      background-color: #0E2EAD;
+      color: #fff;
+    }
+
+    &:active {
+      background-color: #092388;
+    }
   }
   
 .privacyLink {

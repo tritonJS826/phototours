@@ -10,6 +10,8 @@ type Props = {
   tour: TourView;
 };
 
+const STARS_FRACTIONAL_DIGITS = 1;
+
 export function TourCard({tour}: Props) {
   const price = Number(tour.price ?? 0).toLocaleString();
   const cover = tour.coverUrl || tour.photos?.[0] || "";
@@ -33,7 +35,7 @@ export function TourCard({tour}: Props) {
           )}
           <div className={styles.stars}>
             <span className={styles.starsAmount}>
-              {tour.stars}
+              {tour.stars.toFixed(STARS_FRACTIONAL_DIGITS)}
             </span>
             <img
               src={star}

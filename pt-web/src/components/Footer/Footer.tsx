@@ -1,9 +1,10 @@
 import {Link} from "react-router-dom";
+import logoBlack from "public/images/logoBlack.svg";
 import mastercardLogo from "public/images/mastercardLogo.avif";
 import stripeLogo from "public/images/stripeLogo.avif";
 import visaLogo from "public/images/visaLogo.avif";
-import {Logo} from "src/components/Logo/Logo";
 import {NewsletterForm} from "src/components/NewsletterForm/NewsletterForm";
+import {PATHS} from "src/routes/routes";
 import styles from "src/components/Footer/Footer.module.scss";
 
 interface FooterLink {
@@ -121,7 +122,16 @@ export const Footer = function Footer() {
       <section className={styles.mainSection}>
         <div className={styles.mainContent}>
           <div className={styles.logoColumn}>
-            <Logo showTagline={false} />
+            {/* <Logo showTagline={false} /> */}
+            <Link
+              to={PATHS.HOME}
+              aria-label="Homepage"
+            >
+              <img
+                src={logoBlack}
+                alt="Photo Tour Logo"
+              />
+            </Link>
           </div>
 
           {FOOTER_COLUMNS.map((column) => (

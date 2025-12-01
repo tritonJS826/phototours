@@ -37,7 +37,8 @@ export function useTours() {
   }, [load]);
 
   return {
-    data: state.data,
+    // TODO: remove this workaround with stars, should be fetched from server
+    data: state.data?.map(item => ({...item, stars: 5.0})),
     loading: state.loading,
     error: state.error,
     reload: load,

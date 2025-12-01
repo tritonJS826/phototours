@@ -1,4 +1,3 @@
-import {memo} from "react";
 import logo from "/logo.png";
 import styles from "src/components/Logo/Logo.module.scss";
 
@@ -7,7 +6,7 @@ interface LogoProps {
   showTagline?: boolean;
 }
 
-export const Logo = memo(function Logo({className = "", showTagline = false}: LogoProps) {
+export const Logo = function Logo({className = "", showTagline = false}: LogoProps) {
   return (
     <div className={`${styles.logo} ${className}`}>
       <div className={styles.logoIcon}>
@@ -26,4 +25,4 @@ export const Logo = memo(function Logo({className = "", showTagline = false}: Lo
       )}
     </div>
   );
-});
+};

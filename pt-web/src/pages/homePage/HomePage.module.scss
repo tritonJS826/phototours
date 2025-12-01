@@ -98,13 +98,13 @@
   gap: 55px;
   background-color: #F8F8F8;
   padding: 36px 8px;
-  margin: 15px 30px;
+  margin: 15px 30px 0 15px;
   border-radius: 20px;
 }
 
 .blockWrapper {
-  max-width: 1490px;
-  padding: 20px;
+  max-width: 1530px;
+  padding: 0 20px;
   margin: auto;
 }
 
@@ -148,7 +148,17 @@
   font-size: 16px;
   padding: 19px 34px;
   border-radius: 10px;
+  border: 1px solid #2F53DE;
   color: #2F53DE;
+
+  &:hover {
+    background-color: #0E2EAD;
+    color: #fff;
+  }
+
+  &:active {
+    background-color: #092388;
+  }
 }
 
 .blogAndPhotographyGuides {
@@ -192,6 +202,16 @@
   border: 1px solid #000;
   font-size: 16px;
   max-width: 160px;
+
+  &:hover {
+    background-color: #212121;
+    color: #fff;
+  }
+
+  &:active {
+    background-color: #fff;
+    color: #000;
+  }
 }
 
 
@@ -304,6 +324,15 @@
   border: none;
   font-size: 16px;
   width: auto;
+
+  &:hover {
+    background-color: #0E2EAD;
+    color: #fff;
+  }
+
+  &:active {
+    background-color: #092388;
+  }
 }
 
 .privacyPolicyText {

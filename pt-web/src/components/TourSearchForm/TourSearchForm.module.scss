@@ -66,4 +66,13 @@
   border-radius: 10px;
   border: none;
   font-size: 16px;
+
+  &:hover {
+    background-color: #0E2EAD;
+    color: #fff;
+  }
+
+  &:active {
+    background-color: #092388;
+  }
 }
