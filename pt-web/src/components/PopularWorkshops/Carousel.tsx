@@ -1,21 +1,25 @@
 import "swiper/css/navigation";
+import clsx from "clsx";
 import {Navigation} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 
 type Slide = {
+  id: string;
   image: string;
   title: string;
   subtitle?: string;
+  link: string;
 }
 
 interface CarouselProps {
   slides: Slide[];
+  className?: string;
 }
 
-export function Carousel({slides}: CarouselProps) {
+export function Carousel(props: CarouselProps) {
   return (
-    <div className="carousel-container">
+    <div className={clsx("carousel-container", props.className)}>
       <Swiper
         modules={[Navigation]}
         navigation
@@ -27,8 +31,8 @@ export function Carousel({slides}: CarouselProps) {
           1024: {slidesPerView: 4},
         }}
       >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index}>
+        {props.slides.map((slide) => (
+          <SwiperSlide key={slide.id}>
             <div className="slide">
               <img
                 src={slide.image}

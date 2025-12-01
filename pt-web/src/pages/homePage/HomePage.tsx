@@ -18,11 +18,10 @@ import {Dropdown} from "src/components/Dropdown/Dropdown";
 import {Footer} from "src/components/Footer/Footer";
 import {HeroTextSection} from "src/components/HeroSection/HeroSection";
 import {PopularDestinations} from "src/components/PopularDestinations/PopularDestinations";
+import {PopularWorkshops} from "src/components/PopularWorkshops/PopularWorkshops";
 import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
 import {ToursSection} from "src/components/ToursSection/ToursSection";
 import {PATHS} from "src/routes/routes";
-// Import {listTours} from "src/services/toursService";
-// import type {TourView} from "src/types/tour";
 import styles from "src/pages/homePage/HomePage.module.scss";
 
 // Const FEATURED_TOURS_LIMIT = 3;
@@ -37,7 +36,7 @@ const COPY = {
   topPopularDestinations: {title: "Top Tuscany Photo Destinations"},
   topSelections: {
     title: "Top Destinations Selection",
-    // eslint-disable-next-line max-len
+
     subtitle: "Small groups • Iconic locations • Professional photo mentoring to help you create award-winning shots on cinematic Tuscan routes.",
   },
   reviews: {
@@ -286,6 +285,36 @@ export function HomePage() {
         <button className={styles.wantMoreButton}>
           Explore all tours ↓
         </button>
+      </div>
+
+      <div className={styles.blockWrapper}>
+        <div className={styles.blogAndPhotographyGuides}>
+          <div className={styles.blogAndPhotographyFirstContainer}>
+            <h3 className={styles.blogAndPhotographyTitle}>
+              <b>
+                Blog &
+              </b>
+              {" "}
+              <i>
+                Photography Guides
+              </i>
+            </h3>
+            <p className={styles.blogAndPhotographyText}>
+              Insights, tips, and stories to help you elevate your photography and explore Tuscany with confidence.
+            </p>
+            <Link
+              to={PATHS.TOURS}
+              className={styles.blogAndPhotographyButton}
+            >
+              Read more
+            </Link>
+          </div>
+
+          <div className={styles.carouselContainer}>
+            <PopularWorkshops />
+          </div>
+        </div>
+
       </div>
 
       <div className={styles.blockWrapper}>

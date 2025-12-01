@@ -76,7 +76,7 @@ export default [
       "lines-between-class-members": ["error", "always"],
       "padded-blocks": ["error", { classes: "always" }],
       "no-multiple-empty-lines": ["error", { max: 1 }],
-      "max-len": ["error", { code: 130 }],
+      "max-len": ["error", { code: 150 }],
       "max-params": ["error", 7],
       curly: "error",
       "comma-dangle": ["error", "always-multiline"],

@@ -104,6 +104,7 @@
 
 .blockWrapper {
   max-width: 1490px;
+  padding: 20px;
   margin: auto;
 }
 
@@ -150,6 +151,53 @@
   color: #2F53DE;
 }
 
+.blogAndPhotographyGuides {
+  max-width: 1490px;
+  display: flex;
+  margin-top: 70px;
+  gap: 20px;
+}
+
+.blogAndPhotographyFirstContainer {
+  min-width: 495px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #F8F8F8;
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.blogAndPhotographyTitle {
+  font-weight: 700;
+  font-size: 45px;
+
+  i {
+    font-weight: 300;
+  }
+}
+
+.blogAndPhotographyText {
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.blogAndPhotographyButton {
+  margin: 12px 20px 12px 0;
+  color: #000;
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  font-size: 16px;
+  max-width: 160px;
+}
+
+
+.carouselContainer {
+  min-width: 300px;
+}
 
 .reviewsTitle {
   font-size: 45px;
