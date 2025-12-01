@@ -21,6 +21,11 @@ export const defaultMetadata: Metadata = {
 };
 
 export const fetchMetadata = async (url: string): Promise<Metadata> => {
+  // eslint-disable-next-line no-console
+  console.warn("fetch metadata from server is not implemented");
+
+  return defaultMetadata;
+
   try {
     const response = await fetch(`${API_BASE_URL}/metadata?url=${url}`);
     if (!response.ok) {
@@ -30,6 +35,7 @@ export const fetchMetadata = async (url: string): Promise<Metadata> => {
 
     return data || defaultMetadata;
   } catch (error) {
+
     // eslint-disable-next-line no-console
     console.error("Failed to fetch metadata, settled default metadata:", error);
 

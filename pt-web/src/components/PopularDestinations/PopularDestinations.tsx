@@ -26,6 +26,7 @@ function renderPopularDestination(params: {image: string; title: string; href: s
     <Link
       to={params.href}
       className={styles.popularDestinationCard}
+      key={params.image}
     >
       <div className={styles.imageWrapper}>
         <img

@@ -42,7 +42,7 @@ const FOOTER_COLUMNS: FooterColumn[] = [
     links: [
       {id: "email-us", text: "Email us", href: "/contact"},
       {id: "getInTouch", text: "Get in touch", href: "/contact"},
-      {id: "getInTouch", text: "Work with us", href: "/contact"},
+      {id: "workWithUs", text: "Work with us", href: "/contact"},
     ],
   },
   {
@@ -51,8 +51,8 @@ const FOOTER_COLUMNS: FooterColumn[] = [
     links: [
       {id: "privacy", text: "Privacy Policy", href: "/privacy"},
       {id: "terms", text: "Terms & Conditions", href: "/terms"},
-      {id: "privacy", text: "Refund Policy", href: "/privacy"},
-      {id: "privacy", text: "Cookies Policy", href: "/privacy"},
+      {id: "refund", text: "Refund Policy", href: "/privacy"},
+      {id: "cookies", text: "Cookies Policy", href: "/privacy"},
     ],
 
   },

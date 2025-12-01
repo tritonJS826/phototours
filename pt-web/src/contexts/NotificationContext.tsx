@@ -114,20 +114,20 @@ export function NotificationProvider({children}: {children: React.ReactNode}) {
   const [state, dispatch] = useReducer(notificationReducer, initialState);
 
   useEffect(() => {
-    const load = async () => {
-      dispatch({type: TYPE_LOADING, payload: true});
+    // Const load = async () => {
+    //   dispatch({type: TYPE_LOADING, payload: true});
 
-      try {
-        const data = await notificationService.getNotifications();
-        dispatch({type: TYPE_LOAD, payload: data});
-      } catch {
-        dispatch({type: TYPE_LOAD, payload: []});
-      } finally {
-        dispatch({type: TYPE_LOADING, payload: false});
-      }
-    };
+    //   try {
+    //     const data = await notificationService.getNotifications();
+    //     dispatch({type: TYPE_LOAD, payload: data});
+    //   } catch {
+    //     dispatch({type: TYPE_LOAD, payload: []});
+    //   } finally {
+    //     dispatch({type: TYPE_LOADING, payload: false});
+    //   }
+    // };
 
-    load();
+    // load();
   }, []);
 
   const addNotification = async (input: CreateNotificationData) => {
