@@ -1,9 +1,9 @@
+import germanyFlag from "/images/germanyFlag.avif";
+import unitedKingdomFlag from "/images/unitedKingdomFlag.avif";
+import userStub1 from "/images/userStub1.avif";
+import userStub2 from "/images/userStub2.avif";
+import userStub3 from "/images/userStub3.avif";
 import clsx from "clsx";
-import germanyFlag from "public/images/germanyFlag.avif";
-import unitedKingdomFlag from "public/images/unitedKingdomFlag.avif";
-import userStub1 from "public/images/userStub1.avif";
-import userStub2 from "public/images/userStub2.avif";
-import userStub3 from "public/images/userStub3.avif";
 import {ReviewCard, ReviewCardProps} from "src/components/ReviewsSection/ReviewCard/ReviewCard";
 import styles from "src/components/ToursSection/ToursSection.module.scss";
 

@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
-import reviews from "public/images/reviews.svg";
-import spotsLeft from "public/images/spotsLeft.svg";
-import star from "public/images/star.svg";
+import reviews from "/images/reviews.svg";
+import spotsLeft from "/images/spotsLeft.svg";
+import star from "/images/star.svg";
 import {Button} from "src/components/Button/Button";
 import type {TourView} from "src/types/tour";
 import styles from "src/components/Tour/Tour.module.scss";

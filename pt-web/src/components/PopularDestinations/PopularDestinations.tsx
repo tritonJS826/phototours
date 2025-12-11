@@ -1,11 +1,11 @@
 import {Link} from "react-router-dom";
+import destination1 from "/images/popularDestination1.avif";
+import destination2 from "/images/popularDestination2.avif";
+import destination3 from "/images/popularDestination3.avif";
+import destination4 from "/images/popularDestination4.avif";
+import destination5 from "/images/popularDestination5.avif";
+import destination6 from "/images/popularDestination6.avif";
 import clsx from "clsx";
-import destination1 from "public/images/popularDestination1.avif";
-import destination2 from "public/images/popularDestination2.avif";
-import destination3 from "public/images/popularDestination3.avif";
-import destination4 from "public/images/popularDestination4.avif";
-import destination5 from "public/images/popularDestination5.avif";
-import destination6 from "public/images/popularDestination6.avif";
 import styles from "src/components/PopularDestinations/PoplarDestinations.module.scss";
 
 type PopularWorkshopsProps = {

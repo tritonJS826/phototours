@@ -17,6 +17,7 @@ import {Accordion, accordionTypes} from "src/components/Accordion/Accordion";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
 import {Footer} from "src/components/Footer/Footer";
 import {HeroTextSection} from "src/components/HeroSection/HeroSection";
+import {InputPhone} from "src/components/InputPhone/InputPhone";
 import {PopularDestinations} from "src/components/PopularDestinations/PopularDestinations";
 import {PopularWorkshops} from "src/components/PopularWorkshops/PopularWorkshops";
 import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
@@ -364,11 +365,15 @@ export function HomePage() {
                 className={styles.feedBackInput}
                 placeholder="Name"
               />
-              <input
+              <InputPhone
+                onChange={() => {}}
+                className={styles.feedBackPhoneInput}
+              />
+              {/* <input
                 type="tel"
                 className={styles.feedBackInput}
                 placeholder="+1 000 000-000"
-              />
+              /> */}
               <button className={styles.feedBackButton}>
                 Sent
               </button>
