@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import email from "/images/email.svg";
 import instagram from "/images/instagram.svg";
-import logoDark from "/images/logo-dark.svg";
+import logoDark from "/images/logoBlack.svg";
 import phone from "/images/phone.svg";
 import telegram from "/images/telegram.svg";
 import whatsapp from "/images/whatsapp.svg";

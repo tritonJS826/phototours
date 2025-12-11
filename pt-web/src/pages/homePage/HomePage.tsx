@@ -26,6 +26,53 @@ import {PATHS} from "src/routes/routes";
 import styles from "src/pages/homePage/HomePage.module.scss";
 
 // Const FEATURED_TOURS_LIMIT = 3;
+export const FeedbackBlock = () => {
+  return (
+    <div className={styles.feedBackBlock}>
+      <div className={styles.feedBackContent}>
+        <h2 className={styles.feedBackTitle}>
+          Book Your Spring Tuscany Experience
+        </h2>
+        <p className={styles.feedBackDescription}>
+          Small groups • Iconic locations • Professional photo mentoring to help you create award-winning shots on
+          cinematic Tuscan routes.
+        </p>
+        <div className="">
+          <div className={styles.feedBackForm}>
+            <input
+              type="text"
+              className={styles.feedBackInput}
+              placeholder="Name"
+            />
+            <InputPhone
+              onChange={() => {}}
+              className={styles.feedBackPhoneInput}
+            />
+            {/* <input
+                type="tel"
+                className={styles.feedBackInput}
+                placeholder="+1 000 000-000"
+              /> */}
+            <button className={styles.feedBackButton}>
+              Sent
+            </button>
+          </div>
+          <span className={styles.privacyPolicyText}>
+            By submitting, you agree to our
+            {" "}
+            <Link
+              to="#"
+              className={styles.privacyLink}
+            >
+              Privacy Policy
+            </Link>
+            .
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const COPY = {
   hero: {
@@ -356,49 +403,7 @@ export function HomePage() {
         </div>
       </div>
 
-      <div className={styles.feedBackBlock}>
-        <div className={styles.feedBackContent}>
-          <h2 className={styles.feedBackTitle}>
-            Book Your Spring Tuscany Experience
-          </h2>
-          <p className={styles.feedBackDescription}>
-            Small groups • Iconic locations • Professional photo mentoring to help you create award-winning shots on
-            cinematic Tuscan routes.
-          </p>
-          <div className="">
-            <div className={styles.feedBackForm}>
-              <input
-                type="text"
-                className={styles.feedBackInput}
-                placeholder="Name"
-              />
-              <InputPhone
-                onChange={() => {}}
-                className={styles.feedBackPhoneInput}
-              />
-              {/* <input
-                type="tel"
-                className={styles.feedBackInput}
-                placeholder="+1 000 000-000"
-              /> */}
-              <button className={styles.feedBackButton}>
-                Sent
-              </button>
-            </div>
-            <span className={styles.privacyPolicyText}>
-              By submitting, you agree to our
-              {" "}
-              <Link
-                to="#"
-                className={styles.privacyLink}
-              >
-                Privacy Policy
-              </Link>
-              .
-            </span>
-          </div>
-        </div>
-      </div>
+      <FeedbackBlock />
 
       <Footer />
 

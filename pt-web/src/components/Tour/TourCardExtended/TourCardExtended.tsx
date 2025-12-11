@@ -52,28 +52,31 @@ export function TourCardExtended({tour}: Props) {
       </Link>
 
       <div className={styles.reviewsBlock}>
-        <div className={styles.reviewsTag}>
-          <img
-            src={spotsLeft}
-            alt="stars"
-            className={styles.tagIcon}
-            loading="lazy"
-          />
-          <span>
-            2 spots left
-          </span>
-        </div>
+        <div className={styles.horizontal}>
+          <div className={styles.reviewsTag}>
+            <img
+              src={spotsLeft}
+              alt="stars"
+              className={styles.tagIcon}
+              loading="lazy"
+            />
+            <span>
+              2 spots left
+            </span>
+          </div>
 
-        <div className={styles.reviewsTag}>
-          <img
-            src={reviews}
-            alt="stars"
-            className={styles.tagIcon}
-            loading="lazy"
-          />
-          <span>
-            3 reviews
-          </span>
+          <div className={styles.reviewsTag}>
+            <img
+              src={reviews}
+              alt="stars"
+              className={styles.tagIcon}
+              loading="lazy"
+            />
+            <span>
+              3 reviews
+            </span>
+          </div>
+
         </div>
 
         <div className={styles.starsList}>

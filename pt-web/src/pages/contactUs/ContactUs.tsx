@@ -50,7 +50,7 @@ export const ContactUs = memo(function ContactUs() {
               social media
             </span>
             <span className={styles.infoRightMiniBlockDescription}>
-              A B C D ADD icons
+              social media links
             </span>
           </div>
         </div>
