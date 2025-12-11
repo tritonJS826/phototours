@@ -195,24 +195,25 @@
 
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  // grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
-@media (width: vars.$breakpoint-tablet) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+// @media (width: vars.$breakpoint-tablet) {
+//   .grid {
+//     grid-template-columns: repeat(2, 1fr);
+//   }
+// }
 
-@media (max-width: vars.$breakpoint-phone-sm) {
-  .title {
-    font-size: vars.$font-size-lg;
-  }
+// @media (max-width: vars.$breakpoint-phone-sm) {
+//   .title {
+//     font-size: vars.$font-size-lg;
+//   }
 
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-}
+//   .grid {
+//     grid-template-columns: 1fr;
+//     gap: 16px;
+//   }
+// }

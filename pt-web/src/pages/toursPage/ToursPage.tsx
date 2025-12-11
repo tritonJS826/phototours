@@ -6,7 +6,7 @@ import sun from "/images/sun-solid.svg";
 import {AsyncSection} from "src/components/AsyncSection/AsyncSection";
 import {Container} from "src/components/Container/Container";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
-import {TourCard} from "src/components/Tour/Tour";
+import {TourCardExtended} from "src/components/Tour/TourCardExtended/TourCardExtended";
 import {useTours} from "src/hooks/useTours";
 import styles from "src/pages/toursPage/ToursPage.module.scss";
 
@@ -260,7 +260,7 @@ export function ToursPage() {
               </div>
               <div className={styles.grid}>
                 {(data ?? []).map(tour => (
-                  <TourCard
+                  <TourCardExtended
                     key={tour.id}
                     tour={tour}
                   />))}
