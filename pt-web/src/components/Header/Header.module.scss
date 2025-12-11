@@ -4,7 +4,7 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 5;
   width: 100%;
   background-color: #fff;
   border-bottom: 1px solid #e0e0e0;
@@ -13,10 +13,9 @@
 }
 
 .headerContainer {
-  max-width: 1320px;
+  max-width: 1530px;
   height: 60px;
   margin: 0 auto;
-  padding: 0 50px;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -72,71 +71,81 @@
   min-width: auto;
 }
 
-.headerDivider {
-  width: 1px;
-  height: 24px;
-  background-color: #999;
-}
-
-.searchContainer {
-  position: relative;
+.rightHeaderBlock {
   display: flex;
-  align-items: center;
-}
-
-.searchWrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.searchInput {
-  width: 38px;
-  height: 31px;
-  padding-left: 38px;
-  border: none;
-  border-radius: 17px;
+  justify-content: end;
   font-size: 16px;
-  color: transparent;
-  background: #fff;
-  cursor: pointer;
-  transition:
-    width 0.3s ease,
-    padding 0.3s ease,
-    color 0.3s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
-
-  &::placeholder {
-    color: transparent;
-    transition: color 0.3s ease;
-  }
-
-  &:focus {
-    outline: none;
-  }
+  position: relative;
+  z-index: 10;
 }
 
-.searchWrapper:hover .searchInput,
-.searchWrapper:focus-within .searchInput {
-  width: 300px;
-  color: #000;
-  border: 2px solid #000;
+// gray overlay
+// .rightHeaderBlock::before {
+//   content: "";
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   padding: 5px 10px;
+//   // padding compensation
+//   margin: -5px -10px;
+//   border-radius: 20px;
+//   background-color: rgba(0, 0, 0, 0.3);
+//   z-index: -1;
+// }
 
-  &::placeholder {
-    color: #999;
-  }
+.leftHeaderLinks {
+  margin-right: 50px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+  color: black;
 }
 
-.searchIcon {
-  position: absolute;
-  left: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 24px;
-  height: 24px;
-  color: #333;
-  cursor: pointer;
+.primaryHeaderLink {
+  background: linear-gradient(101.01deg, #3E61ED -83.91%, #233787 167.82%);
+  height: 30px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  color: white;
+}
+
+.rightHeaderLinks {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #1E1E1E;
+}
+
+.contactUsDropdownTrigger {
+  padding: 5px 10px;
+  background: transparent;
+  border-radius: 8px;
+  border: 1px solid #2C44A6;
+  font-size: 16px;
+  color: #2C44A6;
+  margin-left: 20px;
+}
+
+.contactUsItem {
+  display: flex;
+  gap: 8px;
+  padding: 12px 10px;
+  border-bottom: 1px solid #D9D9D9;
+
+  &:hover {
+    background-color: #E9EEFF;
+  }
+
+  &.lastChild {
+    border-bottom: none;
+  }
 }
 
 .iconBtn {
@@ -190,7 +199,7 @@
     border-top: 1px solid #e0e0e0;
 
     ul {
-      max-width: 1320px;
+      max-width: 1530px;
       margin: 0 auto;
       padding: 12px 16px;
       list-style: none;
@@ -209,7 +218,8 @@
 }
 
 .profileDropdown {
-  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .profileBtn {

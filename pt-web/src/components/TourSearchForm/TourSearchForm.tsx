@@ -1,7 +1,9 @@
+import {useNavigate} from "react-router-dom";
 import calendar from "/images/calendar.svg";
 import group from "/images/group.svg";
 import location from "/images/phone.svg";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
+import {PATHS} from "src/routes/routes";
 // Import {CalendarDays, MapPin, Users, X} from "lucide-react";
 // Import {Button} from "src/components/Button/Button";
 import styles from "src/components/TourSearchForm/TourSearchForm.module.scss";
@@ -14,6 +16,7 @@ export function TourSearchForm() {
   // function onSubmit(e: React.FormEvent<HTMLFormElement>) {
   //   e.preventDefault();
   // }
+  const navigate = useNavigate();
 
   return (
     <div className={styles.tourSearchForm}>
@@ -184,7 +187,10 @@ export function TourSearchForm() {
       <div className={styles.verticalSeparator} />
 
       <div className={styles.button}>
-        <button className={styles.searchNowButton}>
+        <button
+          className={styles.searchNowButton}
+          onClick={() => navigate(PATHS.TOURS)}
+        >
           Search now
         </button>
       </div>

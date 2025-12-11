@@ -79,6 +79,130 @@ const accordionItemsRight = [
   },
 ];
 
+const RightBlockDark = () => {
+
+  return (
+    <div className={styles.rightHeaderBlock}>
+      <ul className={styles.leftHeaderLinks}>
+        <li>
+          <Link
+            to={PATHS.TOURS}
+            className={styles.primaryHeaderLink}
+          >
+            Explore&nbsp;Tours
+          </Link>
+        </li>
+        &#9675;
+        <li>
+          <Link to={PATHS.ARTICLES}>
+            Blog
+          </Link>
+        </li>
+        &#9675;
+        <li>
+          <Link to={PATHS.ABOUT}>
+            About Us
+          </Link>
+        </li>
+      </ul>
+      <div className={styles.rightHeaderLinks}>
+
+        <Link to={PATHS.CART}>
+          <img
+            src={cart}
+            alt="cart link"
+          />
+        </Link>
+
+        <Link to={PATHS.HOME}>
+          <img
+            src={user}
+            alt="user link"
+          />
+        </Link>
+
+        <Dropdown
+          trigger={(
+            <button
+              className={styles.contactUsDropdownTrigger}
+              onClick={() => {}}
+            >
+              Contact Us
+            </button>
+          )}
+
+          dropdownMenuItems={[
+            {
+              dropdownSubMenuItems: [
+                {
+                  id: "Phone",
+                  isPreventDefaultUsed: true,
+                  value: <div className={styles.contactUsItem}>
+                    <img
+                      src={phone}
+                      alt="user link"
+                    />
+                    Phone
+                  </div>,
+                  isVisible: true,
+                },
+                {
+                  id: "Telegram",
+                  isPreventDefaultUsed: true,
+                  value: <div className={styles.contactUsItem}>
+                    <img
+                      src={telegram}
+                      alt="user link"
+                    />
+                    Telegram
+                  </div>,
+                  isVisible: true,
+                },
+                {
+                  id: "WhatsApp",
+                  isPreventDefaultUsed: true,
+                  value: <div className={styles.contactUsItem}>
+                    <img
+                      src={whatsapp}
+                      alt="user link"
+                    />
+                    WhatsApp
+                  </div>,
+                  isVisible: true,
+                },
+                {
+                  id: "Email",
+                  isPreventDefaultUsed: true,
+                  value: <div className={styles.contactUsItem}>
+                    <img
+                      src={email}
+                      alt="user link"
+                    />
+                    Email
+                  </div>,
+                  isVisible: true,
+                },
+                {
+                  id: "Instagram",
+                  isPreventDefaultUsed: true,
+                  value: <div className={clsx(styles.contactUsItem, styles.lastChild)}>
+                    <img
+                      src={instagram}
+                      alt="user link"
+                    />
+                    Instagram
+                  </div>,
+                  isVisible: true,
+                },
+              ],
+            },
+          ]}
+        />
+      </div>
+    </div>
+  );
+};
+
 export function HomePage() {
   // Const [tours, setTours] = useState<TourView[]>([]);
 
@@ -117,124 +241,7 @@ export function HomePage() {
               />
             </Link>
 
-            <div className={styles.rightHeaderBlock}>
-              <ul className={styles.leftHeaderLinks}>
-                <li>
-                  <Link
-                    to={PATHS.TOURS}
-                    className={styles.primaryHeaderLink}
-                  >
-                    Explore&nbsp;Tours
-                  </Link>
-                </li>
-                &#9675;
-                <li>
-                  <Link to={PATHS.ARTICLES}>
-                    Blog
-                  </Link>
-                </li>
-                &#9675;
-                <li>
-                  <Link to={PATHS.ABOUT}>
-                    About Us
-                  </Link>
-                </li>
-              </ul>
-              <div className={styles.rightHeaderLinks}>
-
-                <Link to={PATHS.HOME}>
-                  <img
-                    src={cart}
-                    alt="cart link"
-                  />
-                </Link>
-
-                <Link to={PATHS.HOME}>
-                  <img
-                    src={user}
-                    alt="user link"
-                  />
-                </Link>
-
-                <Dropdown
-                  trigger={(
-                    <button
-                      className={styles.contactUsDropdownTrigger}
-                      onClick={() => {}}
-                    >
-                      Contact Us
-                    </button>
-                  )}
-
-                  dropdownMenuItems={[
-                    {
-                      dropdownSubMenuItems: [
-                        {
-                          id: "Phone",
-                          isPreventDefaultUsed: true,
-                          value: <div className={styles.contactUsItem}>
-                            <img
-                              src={phone}
-                              alt="user link"
-                            />
-                            Phone
-                          </div>,
-                          isVisible: true,
-                        },
-                        {
-                          id: "Telegram",
-                          isPreventDefaultUsed: true,
-                          value: <div className={styles.contactUsItem}>
-                            <img
-                              src={telegram}
-                              alt="user link"
-                            />
-                            Telegram
-                          </div>,
-                          isVisible: true,
-                        },
-                        {
-                          id: "WhatsApp",
-                          isPreventDefaultUsed: true,
-                          value: <div className={styles.contactUsItem}>
-                            <img
-                              src={whatsapp}
-                              alt="user link"
-                            />
-                            WhatsApp
-                          </div>,
-                          isVisible: true,
-                        },
-                        {
-                          id: "Email",
-                          isPreventDefaultUsed: true,
-                          value: <div className={styles.contactUsItem}>
-                            <img
-                              src={email}
-                              alt="user link"
-                            />
-                            Email
-                          </div>,
-                          isVisible: true,
-                        },
-                        {
-                          id: "Instagram",
-                          isPreventDefaultUsed: true,
-                          value: <div className={clsx(styles.contactUsItem, styles.lastChild)}>
-                            <img
-                              src={instagram}
-                              alt="user link"
-                            />
-                            Instagram
-                          </div>,
-                          isVisible: true,
-                        },
-                      ],
-                    },
-                  ]}
-                />
-              </div>
-            </div>
+            <RightBlockDark />
           </div>
 
           <div className={styles.heroText}>
