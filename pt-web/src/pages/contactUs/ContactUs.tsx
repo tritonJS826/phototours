@@ -1,17 +1,5 @@
 import {memo} from "react";
-import {ContactForm} from "src/components/ContactForm/ContactForm";
-import {ContactInfo} from "src/components/ContactInfo/ContactInfo";
 import styles from "src/pages/contactUs/ContactUs.module.scss";
-
-interface ContactUsContent {
-  title: string;
-  subtitle: string;
-}
-
-const CONTACT_US_CONTENT: ContactUsContent = {
-  title: "Get in Touch",
-  subtitle: "Have a question about our tours? We're here to help!",
-} as const;
 
 export const ContactUs = memo(function ContactUs() {
   return (
@@ -20,39 +8,54 @@ export const ContactUs = memo(function ContactUs() {
       role="main"
       aria-labelledby="contact-title"
     >
-      <div className={styles.overlay}>
-        <div className={styles.container}>
-          <header className={styles.header}>
-            <h1 id="contact-title">
-              {CONTACT_US_CONTENT.title}
-            </h1>
-            <p className={styles.headerSubtitle}>
-              {CONTACT_US_CONTENT.subtitle}
-            </p>
-          </header>
-
-          <section
-            className={styles.content}
-            aria-label="Contact form and information"
-          >
-            <div
-              className={styles.formSection}
-              role="region"
-              aria-labelledby="contact-title"
-            >
-              <ContactForm />
-            </div>
-
-            <div
-              className={styles.infoSection}
-              role="complementary"
-              aria-label="Contact information and social media"
-            >
-              <ContactInfo />
-            </div>
-          </section>
+      <div className={styles.info}>
+        <div className={styles.infoLeft}>
+          <h1 className={styles.infoHeader}>
+            Get in Touch With Tuscany Photo Tours
+          </h1>
+          <p className={styles.infoSubtitle}>
+            Small-group photo tours | Award-winning locations | Professional mentoring
+          </p>
+        </div>
+        <div className={styles.infoRight}>
+          <div className={styles.infoRightMiniBlock}>
+            <span className={styles.infoRightMiniBlockTitle}>
+              general enquiries
+            </span>
+            <span className={styles.infoRightMiniBlockDescription}>
+              info@tuscanyphototours.com
+            </span>
+          </div>
+          <div className={styles.infoRightMiniBlock}>
+            <span className={styles.infoRightMiniBlockTitle}>
+              collaborations
+            </span>
+            <span className={styles.infoRightMiniBlockDescription}>
+              partners@tuscanyphototours.com
+            </span>
+          </div>
+          <div className={styles.infoRightMiniBlock}>
+            <span className={styles.infoRightMiniBlockTitle}>
+              address
+            </span>
+            <span className={styles.infoRightMiniBlockDescription}>
+              Via della Toscana 12,
+              <br />
+              {" "}
+              53100 Siena, Italy
+            </span>
+          </div>
+          <div className={styles.infoRightMiniBlock}>
+            <span className={styles.infoRightMiniBlockTitle}>
+              social media
+            </span>
+            <span className={styles.infoRightMiniBlockDescription}>
+              A B C D ADD icons
+            </span>
+          </div>
         </div>
       </div>
+      <div className={styles.imageBlock} />
     </main>
   );
 });
