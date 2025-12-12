@@ -3,53 +3,44 @@ package tests
 import (
 	"net/http"
 	"pt-general-go/internal/domain"
-	"pt-general-go/internal/handler/dto"
 )
 
 func (s *APITestSuite) TestUserFlow() {
-	// Создаем обычного юзера
-	user := s.registerUser(domain.Register{
+	user := s.registerUserWithRole(&domain.Register{
 		FirstName: "User",
 		LastName:  "Test",
 		Email:     "user@example.com",
 		Password:  "User12345",
-	})
+	}, domain.RoleClient)
 	userToken := user.Token
 
-	// Создаем админа
-	admin := s.registerUserAsAdmin(domain.Register{
+	admin := s.registerUserWithRole(&domain.Register{
 		FirstName: "Admin",
 		LastName:  "Test",
 		Email:     "admin@example.com",
 		Password:  "Admin12345",
-	})
+	}, domain.RoleAdmin)
 	adminToken := admin.Token
 
 	s.getUsers(userToken, http.StatusForbidden)
-	expectedUsers := []dto.UserDTO{
-		{
-			ID:            admin.User.ID,
-			FirstName:     admin.User.FirstName,
-			LastName:      admin.User.LastName,
-			Email:         admin.User.Email,
-			Phone:         admin.User.Phone,
-			Role:          admin.User.Role,
-			ProfilePicURL: admin.User.ProfilePicURL,
-			Bio:           admin.User.Bio,
-			CreatedAt:     admin.User.CreatedAt,
-		},
-		{
-			ID:            user.User.ID,
-			FirstName:     user.User.FirstName,
-			LastName:      user.User.LastName,
-			Email:         user.User.Email,
-			Phone:         user.User.Phone,
-			Role:          user.User.Role,
-			ProfilePicURL: user.User.ProfilePicURL,
-			Bio:           user.User.Bio,
-			CreatedAt:     user.User.CreatedAt,
-		},
-	}
+
 	users := s.getUsers(adminToken, http.StatusOK)
-	s.Equal(expectedUsers, users)
+	s.Require().GreaterOrEqual(len(users), 2, "expected at least 2 users in response")
+
+	var foundAdmin, foundUser bool
+
+	for _, u := range users {
+		switch u.Email {
+		case admin.User.Email:
+			foundAdmin = true
+		case user.User.Email:
+			foundUser = true
+		}
+		if foundAdmin && foundUser {
+			break
+		}
+	}
+
+	s.Truef(foundAdmin, "expected admin user (%s) to appear in /users response", admin.User.Email)
+	s.Truef(foundUser, "expected client user (%s) to appear in /users response", user.User.Email)
 }

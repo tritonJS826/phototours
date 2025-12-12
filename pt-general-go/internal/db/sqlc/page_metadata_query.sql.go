@@ -41,14 +41,17 @@ func (q *Queries) CreatePageMetadata(ctx context.Context, arg CreatePageMetadata
 	return i, err
 }
 
-const deletePageMetadata = `-- name: DeletePageMetadata :exec
+const deletePageMetadata = `-- name: DeletePageMetadata :execrows
 DELETE FROM page_metadata
 WHERE url = $1
 `
 
-func (q *Queries) DeletePageMetadata(ctx context.Context, url string) error {
-	_, err := q.db.Exec(ctx, deletePageMetadata, url)
-	return err
+func (q *Queries) DeletePageMetadata(ctx context.Context, url string) (int64, error) {
+	result, err := q.db.Exec(ctx, deletePageMetadata, url)
+	if err != nil {
+		return 0, err
+	}
+	return result.RowsAffected(), nil
 }
 
 const getPageMetadata = `-- name: GetPageMetadata :one

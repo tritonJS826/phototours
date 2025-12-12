@@ -30,20 +30,20 @@ services:
     networks:
       - app-network
 
-  grafana:
-    image: grafana/grafana:11.5.2
-    container_name: grafana
-    env_file:
-      - ./grafana/.env
-    volumes:
-      - grafana-data:/var/lib/grafana
-      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
-    networks:
-      - app-network
+  # grafana:
+  #   image: grafana/grafana:11.5.2
+  #   container_name: grafana
+  #   env_file:
+  #     - ./grafana/.env
+  #   volumes:
+  #     - grafana-data:/var/lib/grafana
+  #     - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+  #   networks:
+  #     - app-network
 
 volumes:
   postgres-general:
-  grafana-data:
+  # grafana-data:
 
 networks:
   app-network:

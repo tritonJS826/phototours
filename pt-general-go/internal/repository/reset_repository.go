@@ -3,6 +3,7 @@ package repository
 import (
 	"context"
 	"os"
+	"pt-general-go/internal/config"
 	db "pt-general-go/internal/db/sqlc"
 
 	"github.com/jackc/pgx/v5/pgxpool"
@@ -11,15 +12,15 @@ import (
 type ResetRepository struct {
 	db   db.Querier
 	pool *pgxpool.Pool
+	cfg  *config.Config
 }
 
-func NewResetRepository(db db.Querier, pool *pgxpool.Pool) *ResetRepository {
-	return &ResetRepository{db, pool}
+func NewResetRepository(db db.Querier, pool *pgxpool.Pool, cfg *config.Config) *ResetRepository {
+	return &ResetRepository{db, pool, cfg}
 }
 
 func (r *ResetRepository) ResetSchema(ctx context.Context) error {
-	// TODO: move path to config
-	migration, err := os.ReadFile("../internal/db/migration/000001_init_schema.up.sql")
+	migration, err := os.ReadFile(r.cfg.DBSchemaPath)
 	if err != nil {
 		return err
 	}
@@ -37,5 +38,17 @@ func (r *ResetRepository) ResetSchema(ctx context.Context) error {
 
 	r.pool.Reset()
 
+	return nil
+}
+
+func (r *ResetRepository) PopulateDB(ctx context.Context) error {
+	testData, err := os.ReadFile(r.cfg.TestDataPath)
+	if err != nil {
+		return err
+	}
+	_, err = r.pool.Exec(ctx, string(testData))
+	if err != nil {
+		return err
+	}
 	return nil
 }

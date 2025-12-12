@@ -7,16 +7,16 @@ import (
 )
 
 type ArticleDetailDTO struct {
-	ID          int32  `json:"id"`
-	Featured    bool   `json:"featured"`
-	Slug        string `json:"slug"`
-	Title       string `json:"title"`
-	Excerpt     string `json:"excerpt"`
-	Content     string `json:"content"`
-	CoverURL    string `json:"coverUrl"`
-	Alt         string `json:"alt"`
-	Author      string `json:"author"`
-	PublishedAt string `json:"publishedAt"`
+	Alt         *string `json:"alt"`
+	Author      *string `json:"author"`
+	Slug        string  `json:"slug"`
+	Title       string  `json:"title"`
+	Excerpt     string  `json:"excerpt"`
+	Content     string  `json:"content"`
+	CoverURL    string  `json:"coverUrl"`
+	PublishedAt string  `json:"publishedAt"`
+	ID          int32   `json:"id"`
+	Featured    bool    `json:"featured"`
 }
 
 func MapToArticleDetailDTO(a *domain.Article) ArticleDetailDTO {
@@ -35,15 +35,15 @@ func MapToArticleDetailDTO(a *domain.Article) ArticleDetailDTO {
 }
 
 type ArticleSummaryDTO struct {
-	ID          int32  `json:"id"`
-	Slug        string `json:"slug"`
-	Title       string `json:"title"`
-	Excerpt     string `json:"excerpt"`
-	CoverURL    string `json:"coverUrl"`
-	Alt         string `json:"alt"`
-	Author      string `json:"author"`
-	Featured    bool   `json:"featured"`
-	PublishedAt string `json:"publishedAt"`
+	Alt         *string `json:"alt"`
+	Author      *string `json:"author"`
+	Slug        string  `json:"slug"`
+	Title       string  `json:"title"`
+	Excerpt     string  `json:"excerpt"`
+	CoverURL    string  `json:"coverUrl"`
+	PublishedAt string  `json:"publishedAt"`
+	ID          int32   `json:"id"`
+	Featured    bool    `json:"featured"`
 }
 
 func MapToArticleSummaryDTOs(a []domain.Article) []ArticleSummaryDTO {

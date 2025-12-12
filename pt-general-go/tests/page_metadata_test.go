@@ -1,35 +1,33 @@
 package tests
 
 import (
-	"context"
 	"encoding/json"
 	"net/http"
 	"net/url"
 	"pt-general-go/internal/domain"
-	"pt-general-go/internal/handler/dto"
 )
 
 const (
-	PageMetadataEndpoint = "/page-metadata"
+	PageMetadataEndpoint = GeneralEndpoint + "/page-metadata"
 )
 
 func (s *APITestSuite) TestPageMetadataFlow() {
 	// Создаем обычного юзера
-	user := s.registerUser(domain.Register{
+	user := s.registerUserWithRole(&domain.Register{
 		FirstName: "User",
 		LastName:  "Test",
 		Email:     "user@example.com",
 		Password:  "User12345",
-	})
+	}, domain.RoleClient)
 	userToken := user.Token
 
 	// Создаем админа
-	admin := s.registerUserAsAdmin(domain.Register{
+	admin := s.registerUserWithRole(&domain.Register{
 		FirstName: "Admin",
 		LastName:  "Test",
 		Email:     "admin@example.com",
 		Password:  "Admin12345",
-	})
+	}, domain.RoleAdmin)
 	adminToken := admin.Token
 
 	// POST — только админ
@@ -110,15 +108,4 @@ func (s *APITestSuite) deletePageMetadataForbidden(token string, page string) {
 	s.Require().NoError(err)
 	req.Header.Set("Authorization", "Bearer "+token)
 	s.doRequest(req, http.StatusForbidden)
-}
-
-func (s *APITestSuite) registerUserAsAdmin(payload domain.Register) dto.AuthResponse {
-	s.registerUser(payload)
-
-	_, err := s.pgPool.Exec(context.TODO(), "UPDATE users SET role = $1 WHERE email = $2", domain.RoleAdmin, payload.Email)
-	s.Require().NoError(err)
-
-	login := s.loginUser(payload.Email, payload.Password)
-
-	return login
 }

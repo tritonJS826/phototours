@@ -7,6 +7,10 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
+
+	_ "pt-general-go/docs"
 )
 
 func (h *Handler) SetupRoutes() *gin.Engine {
@@ -24,19 +28,23 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 		MaxAge:           12 * time.Hour,
 	}))
 
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
+	general := router.Group("/general")
+
 	// Health check
-	router.GET("/health", func(c *gin.Context) {
+	general.GET("/health", func(c *gin.Context) {
 		c.String(http.StatusOK, "OK")
 	})
 
 	if h.cfg.EnvType == "dev" {
-		dev := router.Group("/dev")
+		dev := general.Group("/dev")
 		{
 			dev.GET("/reset-db", h.ResetSchema)
 		}
 	}
 
-	auth := router.Group("/auth")
+	auth := general.Group("/auth")
 	{
 		auth.POST("/register", h.Register)
 		auth.POST("/login", h.Login)
@@ -49,11 +57,10 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 		}
 	}
 
-	pageMetadata := router.Group("/page-metadata", h.AuthMiddleware())
+	pageMetadata := general.Group("/page-metadata")
 	{
 		pageMetadata.GET("", h.GetPageMetadata)
-
-		pageMetadataAdmin := pageMetadata.Group("", RequireRole(domain.RoleAdmin))
+		pageMetadataAdmin := pageMetadata.Group("", h.AuthMiddleware(), RequireRole(domain.RoleAdmin))
 		{
 			pageMetadataAdmin.POST("", h.CreatePageMetadata)
 			pageMetadataAdmin.PATCH("", h.UpdatePageMetadata)
@@ -61,16 +68,33 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 		}
 	}
 
-	users := router.Group("/users")
+	users := general.Group("/users")
 	{
 		users.GET("/:id/public", h.GetPublicProfile)
 		users.GET("", h.AuthMiddleware(), RequireRole(domain.RoleAdmin), h.GetAllUsers)
 	}
 
-	articles := router.Group("/articles")
+	articles := general.Group("/articles")
 	{
 		articles.GET("", h.GetArticles)
 		articles.GET("/:slug", h.GetArticleBySlug)
+	}
+
+	// Guides
+	// Material
+	// Categories
+
+	tours := general.Group("/tours")
+	{
+		tours.GET("", h.GetAllTours)
+		tours.GET("/:id", h.GetTourByID)
+		tours.GET("/slug/:slug", h.GetTourBySlug)
+		toursAdmin := tours.Group("", h.AuthMiddleware(), RequireRole(domain.RoleGuide, domain.RoleAdmin))
+		{
+			toursAdmin.POST("", h.CreateTour)
+			toursAdmin.PATCH("/:id", h.UpdateTourByID)
+			toursAdmin.DELETE("/:id", h.DeleteTourByID)
+		}
 	}
 
 	return router

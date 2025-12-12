@@ -22,10 +22,7 @@ func (r *PageMetadataService) GetPageMetadata(ctx context.Context, url string) (
 	return r.pageMetadataRepository.GetPageMetadata(ctx, url)
 }
 
-func (r *PageMetadataService) UpdatePageMetadata(ctx context.Context, update *domain.UpdatePageMetadata) (*domain.PageMetadata, error) {
-	if err := update.Validate(); err != nil {
-		return nil, err
-	}
+func (r *PageMetadataService) UpdatePageMetadata(ctx context.Context, update *domain.UpdatePageMetadataParams) (*domain.PageMetadata, error) {
 	return r.pageMetadataRepository.UpdatePageMetadata(ctx, update)
 }
 
