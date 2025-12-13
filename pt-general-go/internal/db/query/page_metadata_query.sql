@@ -25,6 +25,6 @@ SET
 WHERE url = sqlc.arg('url')
 RETURNING url, tags;
 
--- name: DeletePageMetadata :exec
+-- name: DeletePageMetadata :execrows
 DELETE FROM page_metadata
 WHERE url = $1;

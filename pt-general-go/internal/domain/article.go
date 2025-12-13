@@ -3,14 +3,14 @@ package domain
 import "time"
 
 type Article struct {
-	ID          int32
+	PublishedAt time.Time
+	Alt         *string
+	Author      *string
 	Slug        string
 	Title       string
 	Excerpt     string
 	Content     string
 	CoverURL    string
-	Alt         string
-	Author      string
+	ID          int32
 	Featured    bool
-	PublishedAt time.Time
 }

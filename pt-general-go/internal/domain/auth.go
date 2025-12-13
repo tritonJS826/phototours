@@ -12,11 +12,11 @@ const MinimalPasswordLength = 6
 var emailRegex = regexp.MustCompile(`^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$`)
 
 type Register struct {
+	Phone     *string `json:"phone"`
 	FirstName string  `json:"firstName" binding:"required,min=1"`
 	LastName  string  `json:"lastName" binding:"required,min=1"`
 	Email     string  `json:"email" binding:"required,email"`
 	Password  string  `json:"password" binding:"required,min=6"`
-	Phone     *string `json:"phone"`
 }
 
 func (r *Register) Validate() error {
@@ -57,9 +57,9 @@ type AuthResult struct {
 }
 
 type ChangePassword struct {
-	ID              int32
 	CurrentPassword string
 	NewPassword     string
+	ID              int32
 }
 
 func (cp *ChangePassword) Validate() error {
@@ -99,24 +99,24 @@ func (l *Login) Validate() error {
 }
 
 type UpdateProfile struct {
-	ID           int32
 	FirstName    *string
 	LastName     *string
 	Phone        *string
 	Bio          *string
 	UploadedPath *string
+	ID           int32
 }
 
-type UpdateProfileInput struct {
-	ID        int32
+type UpdateProfileParams struct {
 	FirstName *string
 	LastName  *string
 	Phone     *string
 	Bio       *string
 	File      *multipart.FileHeader
+	ID        int32
 }
 
-func (d *UpdateProfileInput) Validate() error {
+func (d *UpdateProfileParams) Validate() error {
 	if d.FirstName == nil &&
 		d.LastName == nil &&
 		d.Phone == nil &&

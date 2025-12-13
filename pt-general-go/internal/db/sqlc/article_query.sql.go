@@ -7,6 +7,8 @@ package db
 
 import (
 	"context"
+
+	"github.com/jackc/pgx/v5/pgtype"
 )
 
 const getArticleBySlug = `-- name: GetArticleBySlug :one
@@ -25,9 +27,22 @@ FROM articles
 WHERE slug = $1
 `
 
-func (q *Queries) GetArticleBySlug(ctx context.Context, slug string) (Article, error) {
+type GetArticleBySlugRow struct {
+	ID          int32
+	Slug        string
+	Title       string
+	Excerpt     string
+	Content     string
+	CoverUrl    string
+	Alt         pgtype.Text
+	Author      pgtype.Text
+	Featured    bool
+	PublishedAt pgtype.Timestamp
+}
+
+func (q *Queries) GetArticleBySlug(ctx context.Context, slug string) (GetArticleBySlugRow, error) {
 	row := q.db.QueryRow(ctx, getArticleBySlug, slug)
-	var i Article
+	var i GetArticleBySlugRow
 	err := row.Scan(
 		&i.ID,
 		&i.Slug,
@@ -65,15 +80,28 @@ type GetArticlesParams struct {
 	Offset int32
 }
 
-func (q *Queries) GetArticles(ctx context.Context, arg GetArticlesParams) ([]Article, error) {
+type GetArticlesRow struct {
+	ID          int32
+	Slug        string
+	Title       string
+	Excerpt     string
+	Content     string
+	CoverUrl    string
+	Alt         pgtype.Text
+	Author      pgtype.Text
+	Featured    bool
+	PublishedAt pgtype.Timestamp
+}
+
+func (q *Queries) GetArticles(ctx context.Context, arg GetArticlesParams) ([]GetArticlesRow, error) {
 	rows, err := q.db.Query(ctx, getArticles, arg.Limit, arg.Offset)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	items := []Article{}
+	items := []GetArticlesRow{}
 	for rows.Next() {
-		var i Article
+		var i GetArticlesRow
 		if err := rows.Scan(
 			&i.ID,
 			&i.Slug,

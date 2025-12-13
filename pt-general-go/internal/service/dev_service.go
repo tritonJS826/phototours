@@ -16,5 +16,9 @@ func NewDevService(resetRepository *repository.ResetRepository) *DevService {
 }
 
 func (s *DevService) ResetSchema(ctx context.Context) error {
-	return s.resetRepository.ResetSchema(ctx)
+	err := s.resetRepository.ResetSchema(ctx)
+	if err != nil {
+		return err
+	}
+	return s.resetRepository.PopulateDB(ctx)
 }

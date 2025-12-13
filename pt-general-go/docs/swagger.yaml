@@ -1,0 +1,1402 @@
+basePath: /general
+definitions:
+  domain.Category:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  domain.DifficultyLevel:
+    enum:
+    - EASY
+    - MEDIUM
+    - HARD
+    type: string
+    x-enum-varnames:
+    - DifficultyLevelEASY
+    - DifficultyLevelMEDIUM
+    - DifficultyLevelHARD
+  domain.Guide:
+    properties:
+      createdAt:
+        type: string
+      experience:
+        type: string
+      id:
+        type: integer
+      specializations:
+        items:
+          type: string
+        type: array
+      updatedAt:
+        type: string
+      user:
+        $ref: '#/definitions/domain.User'
+      userId:
+        type: integer
+    type: object
+  domain.Login:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  domain.MaterialType:
+    enum:
+    - PDF
+    - IMAGE
+    - VIDEO
+    - LINK
+    - AUDIO
+    type: string
+    x-enum-varnames:
+    - MaterialTypePDF
+    - MaterialTypeImage
+    - MaterialTypeVideo
+    - MaterialTypeLink
+    - MaterialTypeAudio
+  domain.PageMetadata:
+    properties:
+      tags:
+        type: string
+      url:
+        type: string
+    type: object
+  domain.Photo:
+    properties:
+      createdAt:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      tourId:
+        type: integer
+      url:
+        type: string
+    type: object
+  domain.Register:
+    properties:
+      email:
+        type: string
+      firstName:
+        minLength: 1
+        type: string
+      lastName:
+        minLength: 1
+        type: string
+      password:
+        minLength: 6
+        type: string
+      phone:
+        type: string
+    required:
+    - email
+    - firstName
+    - lastName
+    - password
+    type: object
+  domain.Role:
+    enum:
+    - ADMIN
+    - CLIENT
+    - GUIDE
+    type: string
+    x-enum-varnames:
+    - RoleAdmin
+    - RoleClient
+    - RoleGuide
+  domain.Tag:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  domain.Tour:
+    properties:
+      availableMonths:
+        items:
+          type: string
+        type: array
+      coverUrl:
+        type: string
+      createdAt:
+        type: string
+      description:
+        type: string
+      difficulty:
+        $ref: '#/definitions/domain.DifficultyLevel'
+      durationDays:
+        type: integer
+      endLocation:
+        type: string
+      guideId:
+        type: integer
+      id:
+        type: integer
+      languages:
+        items:
+          type: string
+        type: array
+      minAge:
+        type: integer
+      price:
+        type: number
+      program:
+        type: object
+      slug:
+        type: string
+      startLocation:
+        type: string
+      title:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  domain.TourDate:
+    properties:
+      createdAt:
+        type: string
+      date:
+        type: string
+      groupSize:
+        type: integer
+      id:
+        type: integer
+      isAvailable:
+        type: boolean
+      tourId:
+        type: integer
+      updatedAt:
+        type: string
+    type: object
+  domain.TourFull:
+    properties:
+      availableMonths:
+        items:
+          type: string
+        type: array
+      categories:
+        items:
+          $ref: '#/definitions/domain.Category'
+        type: array
+      coverUrl:
+        type: string
+      createdAt:
+        type: string
+      dates:
+        items:
+          $ref: '#/definitions/domain.TourDate'
+        type: array
+      description:
+        type: string
+      difficulty:
+        $ref: '#/definitions/domain.DifficultyLevel'
+      durationDays:
+        type: integer
+      endLocation:
+        type: string
+      guide:
+        $ref: '#/definitions/domain.Guide'
+      guideId:
+        type: integer
+      id:
+        type: integer
+      languages:
+        items:
+          type: string
+        type: array
+      materials:
+        items:
+          $ref: '#/definitions/domain.TourMaterial'
+        type: array
+      minAge:
+        type: integer
+      photos:
+        items:
+          $ref: '#/definitions/domain.Photo'
+        type: array
+      price:
+        type: number
+      program:
+        type: object
+      slug:
+        type: string
+      startLocation:
+        type: string
+      tags:
+        items:
+          $ref: '#/definitions/domain.Tag'
+        type: array
+      title:
+        type: string
+      updatedAt:
+        type: string
+      videos:
+        items:
+          $ref: '#/definitions/domain.Video'
+        type: array
+    type: object
+  domain.TourMaterial:
+    properties:
+      createdAt:
+        type: string
+      id:
+        type: integer
+      title:
+        type: string
+      tourId:
+        type: integer
+      type:
+        $ref: '#/definitions/domain.MaterialType'
+      url:
+        type: string
+    type: object
+  domain.User:
+    properties:
+      bio:
+        type: string
+      createdAt:
+        type: string
+      email:
+        type: string
+      firstName:
+        type: string
+      id:
+        type: integer
+      lastName:
+        type: string
+      phone:
+        type: string
+      profilePicUrl:
+        type: string
+      role:
+        $ref: '#/definitions/domain.Role'
+      updatedAt:
+        type: string
+    type: object
+  domain.Video:
+    properties:
+      createdAt:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      tourId:
+        type: integer
+      url:
+        type: string
+    type: object
+  dto.ArticleDetailDTO:
+    properties:
+      alt:
+        type: string
+      author:
+        type: string
+      content:
+        type: string
+      coverUrl:
+        type: string
+      excerpt:
+        type: string
+      featured:
+        type: boolean
+      id:
+        type: integer
+      publishedAt:
+        type: string
+      slug:
+        type: string
+      title:
+        type: string
+    type: object
+  dto.ArticleSummaryDTO:
+    properties:
+      alt:
+        type: string
+      author:
+        type: string
+      coverUrl:
+        type: string
+      excerpt:
+        type: string
+      featured:
+        type: boolean
+      id:
+        type: integer
+      publishedAt:
+        type: string
+      slug:
+        type: string
+      title:
+        type: string
+    type: object
+  dto.AuthResponse:
+    properties:
+      token:
+        type: string
+      user:
+        $ref: '#/definitions/dto.UserDTO'
+    type: object
+  dto.ChangePasswordDTO:
+    properties:
+      currentPassword:
+        type: string
+      newPassword:
+        minLength: 6
+        type: string
+    required:
+    - currentPassword
+    - newPassword
+    type: object
+  dto.CreateTourRequest:
+    properties:
+      availableMonths:
+        example:
+        - June
+        - July
+        - August
+        items:
+          type: string
+        type: array
+      coverUrl:
+        example: https://example.com/cover.jpg
+        type: string
+      description:
+        example: An exciting mountain tour
+        type: string
+      difficulty:
+        example: MEDIUM
+        type: string
+      durationDays:
+        example: 7
+        type: integer
+      endLocation:
+        example: Astana
+        type: string
+      guideId:
+        example: 1
+        type: integer
+      languages:
+        example:
+        - English
+        - Russian
+        items:
+          type: string
+        type: array
+      minAge:
+        example: 18
+        type: integer
+      price:
+        example: 1500
+        type: number
+      program:
+        type: object
+      slug:
+        example: mountain-adventure
+        type: string
+      startLocation:
+        example: Almaty
+        type: string
+      title:
+        example: Mountain Adventure
+        type: string
+    required:
+    - description
+    - difficulty
+    - title
+    type: object
+  dto.PublicProfileDTO:
+    properties:
+      bio:
+        type: string
+      firstName:
+        type: string
+      id:
+        type: integer
+      lastName:
+        type: string
+      profilePicUrl:
+        type: string
+    type: object
+  dto.UpdatePageMetadataRequest:
+    properties:
+      newUrl:
+        example: /new-tours
+        type: string
+      tags:
+        example: title:New Tours | description:Browse new tours
+        type: string
+      url:
+        example: /tours
+        type: string
+    required:
+    - url
+    type: object
+  dto.UpdateTourRequest:
+    properties:
+      availableMonths:
+        example:
+        - May
+        - June
+        - July
+        - August
+        - September
+        items:
+          type: string
+        type: array
+      coverUrl:
+        example: https://example.com/new-cover.jpg
+        type: string
+      description:
+        example: An updated exciting mountain tour
+        type: string
+      difficulty:
+        example: HARD
+        type: string
+      durationDays:
+        example: 10
+        type: integer
+      endLocation:
+        example: Osh
+        type: string
+      guideId:
+        example: 2
+        type: integer
+      languages:
+        example:
+        - English
+        - Russian
+        - Kazakh
+        items:
+          type: string
+        type: array
+      minAge:
+        example: 21
+        type: integer
+      price:
+        example: 2000
+        type: number
+      program:
+        type: object
+      slug:
+        example: mountain-adventure-updated
+        type: string
+      startLocation:
+        example: Bishkek
+        type: string
+      title:
+        example: Mountain Adventure Updated
+        type: string
+    type: object
+  dto.UserDTO:
+    properties:
+      bio:
+        type: string
+      createdAt:
+        type: string
+      email:
+        type: string
+      firstName:
+        type: string
+      id:
+        type: integer
+      lastName:
+        type: string
+      phone:
+        type: string
+      profilePicUrl:
+        type: string
+      role:
+        type: string
+    type: object
+host: localhost:8000
+info:
+  contact: {}
+  description: API for PhotoTours platform
+  title: PhotoTours API
+  version: "1.0"
+paths:
+  /articles:
+    get:
+      consumes:
+      - application/json
+      description: Get a paginated list of articles
+      parameters:
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 20
+        description: Items per page (max 100)
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/dto.ArticleSummaryDTO'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get all articles
+      tags:
+      - articles
+  /articles/{slug}:
+    get:
+      consumes:
+      - application/json
+      description: Get detailed article information by slug
+      parameters:
+      - description: Article slug
+        in: path
+        name: slug
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ArticleDetailDTO'
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get article by slug
+      tags:
+      - articles
+  /auth/change-password:
+    post:
+      consumes:
+      - application/json
+      description: Change the authenticated user's password
+      parameters:
+      - description: Password change data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ChangePasswordDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.UserDTO'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Change user password
+      tags:
+      - auth
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Authenticate user and return JWT token
+      parameters:
+      - description: Login credentials
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Login'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.AuthResponse'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Login user
+      tags:
+      - auth
+  /auth/profile:
+    get:
+      consumes:
+      - application/json
+      description: Get the authenticated user's profile
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.UserDTO'
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get user profile
+      tags:
+      - auth
+    put:
+      consumes:
+      - multipart/form-data
+      description: Update the authenticated user's profile (multipart/form-data for
+        avatar upload)
+      parameters:
+      - description: First name
+        in: formData
+        name: firstName
+        type: string
+      - description: Last name
+        in: formData
+        name: lastName
+        type: string
+      - description: Phone number
+        in: formData
+        name: phone
+        type: string
+      - description: Biography
+        in: formData
+        name: bio
+        type: string
+      - description: Profile picture (max 5MB, jpeg/png/gif/webp)
+        in: formData
+        name: avatar
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.UserDTO'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Update user profile
+      tags:
+      - auth
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      description: Create a new user account
+      parameters:
+      - description: Registration data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Register'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.AuthResponse'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Register a new user
+      tags:
+      - auth
+  /page-metadata:
+    delete:
+      consumes:
+      - application/json
+      description: Delete metadata for a page URL (requires admin role)
+      parameters:
+      - description: Page URL
+        in: query
+        name: url
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Delete page metadata (Admin only)
+      tags:
+      - page-metadata
+    get:
+      consumes:
+      - application/json
+      description: Get metadata for a specific page URL
+      parameters:
+      - description: Page URL
+        in: query
+        name: url
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.PageMetadata'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get page metadata
+      tags:
+      - page-metadata
+    patch:
+      consumes:
+      - application/json
+      description: Update metadata for a page URL (requires admin role)
+      parameters:
+      - description: Update data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UpdatePageMetadataRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.PageMetadata'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Update page metadata (Admin only)
+      tags:
+      - page-metadata
+    post:
+      consumes:
+      - application/json
+      description: Create metadata for a page URL (requires admin role)
+      parameters:
+      - description: Page metadata
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/domain.PageMetadata'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/domain.PageMetadata'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Create page metadata (Admin only)
+      tags:
+      - page-metadata
+  /tours:
+    get:
+      consumes:
+      - application/json
+      description: Get a paginated list of tours with optional filters (location,
+        date range, group size, price range, season)
+      parameters:
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 20
+        description: Items per page (max 100)
+        in: query
+        name: limit
+        type: integer
+      - description: Filter by location
+        in: query
+        name: location
+        type: string
+      - description: Filter by start date (YYYY-MM-DD)
+        in: query
+        name: dateFrom
+        type: string
+      - description: Filter by end date (YYYY-MM-DD)
+        in: query
+        name: dateTo
+        type: string
+      - description: Filter by minimum group size
+        in: query
+        name: groupSize
+        type: integer
+      - description: Filter by minimum price
+        in: query
+        name: priceMin
+        type: number
+      - description: Filter by maximum price
+        in: query
+        name: priceMax
+        type: number
+      - description: Filter by season (winter, spring, summer, autumn)
+        in: query
+        name: season
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/domain.Tour'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get all tours
+      tags:
+      - tours
+    post:
+      consumes:
+      - application/json
+      description: Create a new tour (requires guide or admin role)
+      parameters:
+      - description: Tour data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CreateTourRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/domain.Tour'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Create a new tour (Guide/Admin only)
+      tags:
+      - tours
+  /tours/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a tour by ID (requires guide or admin role)
+      parameters:
+      - description: Tour ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Delete tour by ID (Guide/Admin only)
+      tags:
+      - tours
+    get:
+      consumes:
+      - application/json
+      description: Get full tour information by ID including guide, dates, photos,
+        videos, materials, tags, and categories
+      parameters:
+      - description: Tour ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.TourFull'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get tour by ID
+      tags:
+      - tours
+    patch:
+      consumes:
+      - application/json
+      description: Update tour information by ID (requires guide or admin role)
+      parameters:
+      - description: Tour ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Update data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UpdateTourRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.Tour'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Update tour by ID (Guide/Admin only)
+      tags:
+      - tours
+  /tours/slug/{slug}:
+    get:
+      consumes:
+      - application/json
+      description: Get full tour information by slug including guide, dates, photos,
+        videos, materials, tags, and categories
+      parameters:
+      - description: Tour slug
+        in: path
+        name: slug
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.TourFull'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get tour by slug
+      tags:
+      - tours
+  /users:
+    get:
+      consumes:
+      - application/json
+      description: Get a paginated list of all users (requires admin role)
+      parameters:
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 20
+        description: Items per page (max 100)
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/dto.UserDTO'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get all users (Admin only)
+      tags:
+      - users
+  /users/{id}/public:
+    get:
+      consumes:
+      - application/json
+      description: Get public profile information for a user by ID
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.PublicProfileDTO'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get public user profile
+      tags:
+      - users
+schemes:
+- http
+- https
+securityDefinitions:
+  BearerAuth:
+    description: Type "Bearer" followed by a space and JWT token.
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

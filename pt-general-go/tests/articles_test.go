@@ -10,6 +10,14 @@ import (
 	"time"
 )
 
+const (
+	ArticlesEndpoint = GeneralEndpoint + "/articles"
+)
+
+func getArticleBySlugEndpoint(slug string) string {
+	return fmt.Sprintf("%s/%s", ArticlesEndpoint, slug)
+}
+
 func (s *APITestSuite) createArticle(slug, title string) {
 	_, err := s.pgPool.Exec(
 		context.TODO(),
@@ -26,7 +34,7 @@ func (s *APITestSuite) TestArticlesRoutes() {
 	s.createArticle("second-article", "Second article")
 
 	// --- GET /articles list (public endpoint) ---
-	listURL, err := url.Parse(s.basePath + "/articles?page=1&limit=10")
+	listURL, err := url.Parse(s.basePath + ArticlesEndpoint + "?page=1&limit=10")
 	s.Require().NoError(err)
 	reqList, err := http.NewRequest(http.MethodGet, listURL.String(), nil)
 	s.Require().NoError(err)
@@ -39,7 +47,7 @@ func (s *APITestSuite) TestArticlesRoutes() {
 	s.Equal("first-article", articles[1].Slug)
 
 	// --- GET /articles/:slug valid ---
-	req, err := http.NewRequest(http.MethodGet, s.basePath+"/articles/first-article", nil)
+	req, err := http.NewRequest(http.MethodGet, s.basePath+getArticleBySlugEndpoint("first-article"), nil)
 	s.Require().NoError(err)
 	resp := s.doRequest(req, http.StatusOK)
 
@@ -49,7 +57,7 @@ func (s *APITestSuite) TestArticlesRoutes() {
 	s.Equal("First article", article.Title)
 
 	// --- GET /articles/:slug invalid ---
-	req404, err := http.NewRequest(http.MethodGet, s.basePath+"/articles/not-found", nil)
+	req404, err := http.NewRequest(http.MethodGet, s.basePath+getArticleBySlugEndpoint("not-found"), nil)
 	s.Require().NoError(err)
 	s.doRequest(req404, http.StatusNotFound)
 }

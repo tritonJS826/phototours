@@ -3,6 +3,7 @@ package handler
 import (
 	"net/http"
 	"pt-general-go/internal/domain"
+	"slices"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -10,8 +11,8 @@ import (
 )
 
 type UserClaims struct {
-	UserID int32       `json:"sub"`
 	Role   domain.Role `json:"role"`
+	UserID int32       `json:"sub"`
 }
 
 func GetUserClaimsFromContext(ctx *gin.Context) (*UserClaims, error) {
@@ -80,20 +81,24 @@ func (h *Handler) AuthMiddleware() gin.HandlerFunc {
 	}
 }
 
-func RequireRole(role domain.Role) gin.HandlerFunc {
+func RequireRole(roles ...domain.Role) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		val, ok := c.Get("user")
 		if !ok {
 			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
 			return
 		}
-
 		user, ok := val.(*UserClaims)
-		if !ok || user.Role != role {
+		if !ok {
 			c.AbortWithStatusJSON(http.StatusForbidden, gin.H{"error": "insufficient permissions"})
 			return
 		}
 
-		c.Next()
+		if slices.Contains(roles, user.Role) {
+			c.Next()
+			return
+		}
+
+		c.AbortWithStatusJSON(http.StatusForbidden, gin.H{"error": "insufficient permissions"})
 	}
 }

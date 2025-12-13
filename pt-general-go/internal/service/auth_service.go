@@ -33,10 +33,6 @@ func NewAuthService(
 }
 
 func (s *AuthService) Register(ctx context.Context, register *domain.Register) (*domain.AuthResult, error) {
-	if err := register.Validate(); err != nil {
-		return nil, err
-	}
-
 	hashedPassword, err := utils.HashPassword(register.Password)
 	if err != nil {
 		s.logger.Error("Password hashing failed", zap.Error(err))
@@ -63,10 +59,6 @@ func (s *AuthService) Register(ctx context.Context, register *domain.Register) (
 }
 
 func (s *AuthService) Login(ctx context.Context, login *domain.Login) (*domain.AuthResult, error) {
-	if err := login.Validate(); err != nil {
-		return nil, err
-	}
-
 	user, err := s.userRepository.GetUserByEmail(ctx, login.Email)
 	if err != nil {
 		s.logger.Error("Failed to get user", zap.Error(err), zap.String("email", login.Email))
@@ -93,10 +85,6 @@ func (s *AuthService) Login(ctx context.Context, login *domain.Login) (*domain.A
 }
 
 func (s *AuthService) ChangePassword(ctx context.Context, changePassword *domain.ChangePassword) (*domain.User, error) {
-	if err := changePassword.Validate(); err != nil {
-		return nil, err
-	}
-
 	user, err := s.userRepository.GetUserByID(ctx, changePassword.ID)
 	if err != nil {
 		s.logger.Error("Failed to get user", zap.Error(err), zap.Int32("user_id", changePassword.ID))
@@ -120,10 +108,7 @@ func (s *AuthService) ChangePassword(ctx context.Context, changePassword *domain
 	return s.userRepository.UpdateUserPassword(ctx, user.ID, hashedPassword)
 }
 
-func (s *AuthService) UpdateProfile(ctx context.Context, input *domain.UpdateProfileInput) (*domain.User, error) {
-	if err := input.Validate(); err != nil {
-		return nil, err
-	}
+func (s *AuthService) UpdateProfile(ctx context.Context, input *domain.UpdateProfileParams) (*domain.User, error) {
 
 	var uploadedAvatarURL *string
 	if input.File != nil {
