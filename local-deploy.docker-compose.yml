@@ -5,7 +5,7 @@ services:
       dockerfile: ./postgres/postgres-general.Dockerfile
     container_name: postgres-pt-general
     ports:
-      - "5432:5432"
+      - 5432:5432
     env_file:
       - ./pt-general/.env
     volumes:
