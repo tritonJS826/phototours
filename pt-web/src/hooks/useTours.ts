@@ -12,6 +12,7 @@ export function useTours() {
   const [state, setState] = useState<State>({data: null, loading: true, error: null});
   const mounted = useRef(true);
 
+  // Wtf, it is a errored callback - used for preven infinite rerenders
   const load = useCallback(async () => {
     setState(s => ({...s, loading: true, error: null}));
     try {

@@ -17,6 +17,8 @@ type UrlObj = { url: string };
 type DateObj = { date: string; isAvailable?: boolean };
 
 type TourDTO = {
+  reviewAmount: number;
+  start: number;
   id: number;
   slug?: string;
   title: string;
@@ -72,7 +74,6 @@ function mapTourToView(dto: TourDTO): TourView {
     .map(toIsoDate);
   const tags = (dto.tags ?? []).map(toName).filter(Boolean);
   const categories = (dto.categories ?? []).map(toName).filter(Boolean);
-  const coverUrl = dto.coverUrl ? fileUrl(dto.coverUrl) : photoUrls[0];
   const dailyItinerary =
     dto.program?.days?.map(d => ({
       day: d.day,
@@ -86,7 +87,11 @@ function mapTourToView(dto: TourDTO): TourView {
   const priceNum = typeof priceRaw === "number" ? priceRaw : priceRaw ? Number(priceRaw) : undefined;
   const price = Number.isFinite(priceNum) && (priceNum as number) > 0 ? (priceNum as number) : undefined;
 
+  const STUB_NUMBER = 5;
+
   return {
+    reviewAmount: dto.reviewAmount ?? STUB_NUMBER,
+    stars: dto.start ?? STUB_NUMBER,
     id: dto.id,
     slug: dto.slug,
     title: dto.title,
@@ -99,7 +104,7 @@ function mapTourToView(dto: TourDTO): TourView {
     difficulty: dto.difficulty,
     minAge: dto.minAge ?? null,
     availableMonths: dto.availableMonths ?? [],
-    coverUrl,
+    coverUrl: dto.coverUrl,
     photos: photoUrls,
     videos: videoUrls,
     included,

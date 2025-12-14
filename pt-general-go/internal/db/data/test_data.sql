@@ -36,7 +36,7 @@ VALUES
    'MEDIUM', 1250.00,
    '{"days":[{"day":1,"plan":"Arrival at South Rim and orientation"},{"day":2,"plan":"Bright Angel Trail hike"},{"day":3,"plan":"Rim-to-Rim preparation"},{"day":4,"plan":"North Kaibab Trail exploration"},{"day":5,"plan":"Sunrise hike and departure"}]}',
    1,
-   'https://example.com/grand-canyon-cover.jpg', 5, 'North Rim', 'South Rim',
+   '/images/1.avif', 5, 'North Rim', 'South Rim',
    ARRAY['March','April','May','September','October'], ARRAY['English','Spanish'], 16),
 
   (2, 'new-york-history-tour', 'Historic Walk Through New York City',
@@ -44,7 +44,7 @@ VALUES
    'EASY', 180.00,
    '{"days":[{"day":1,"plan":"Statue of Liberty and Ellis Island"},{"day":2,"plan":"Lower Manhattan and 9/11 Memorial"}]}',
    2,
-   'https://example.com/nyc-cover.jpg', 2, 'Times Square', 'Battery Park',
+   '/images/2.avif', 2, 'Times Square', 'Battery Park',
    ARRAY['April','May','September','October','November'], ARRAY['English','Spanish','French'], 12),
 
   (3, 'colorado-river-rafting', 'Colorado River Whitewater Rafting',
@@ -52,7 +52,7 @@ VALUES
    'HARD', 650.00,
    '{"days":[{"day":1,"plan":"Arrival and safety training"},{"day":2,"plan":"Class III-IV rapids adventure"},{"day":3,"plan":"Canyon exploration and departure"}]}',
    4,
-   'https://example.com/colorado-rafting-cover.jpg', 3, 'Moab', 'Grand Junction',
+   '/images/3.avif', 3, 'Moab', 'Grand Junction',
    ARRAY['May','June','July','August'], ARRAY['English','Spanish'], 18),
 
   (4, 'yellowstone-photo-tour', 'Yellowstone Photo Expedition',
@@ -60,7 +60,7 @@ VALUES
    'MEDIUM', 1800.00,
    '{"days":[{"day":1,"plan":"Arrival in Jackson Hole"},{"day":2,"plan":"Old Faithful and geyser basins"},{"day":3,"plan":"Grand Prismatic Spring sunrise"},{"day":4,"plan":"Lamar Valley wildlife"},{"day":5,"plan":"Mammoth Hot Springs"},{"day":6,"plan":"Yellowstone Lake"},{"day":7,"plan":"Final shots and departure"}]}',
    3,
-   'https://example.com/yellowstone-cover.jpg', 7, 'West Yellowstone', 'Jackson Hole',
+   '/images/4.avif', 7, 'West Yellowstone', 'Jackson Hole',
    ARRAY['May','June','September'], ARRAY['English','Japanese'], 18),
 
   (5, 'napa-valley-wine-road', 'Napa Valley Wine and Culinary Tour',
@@ -68,7 +68,7 @@ VALUES
    'EASY', 950.00,
    '{"days":[{"day":1,"plan":"Arrival in San Francisco"},{"day":2,"plan":"Napa Valley vineyard tours"},{"day":3,"plan":"Sonoma County exploration"},{"day":4,"plan":"Farm-to-table experience and departure"}]}',
    5,
-   'https://example.com/napa-cover.jpg', 4, 'Sonoma', 'San Francisco',
+   '/images/5.avif', 4, 'Sonoma', 'San Francisco',
    ARRAY['April','May','September','October','November'], ARRAY['English','Spanish'], 21);
 
 -- TOUR DATES
