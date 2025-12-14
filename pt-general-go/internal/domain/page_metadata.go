@@ -20,13 +20,13 @@ func (p *PageMetadata) Validate() error {
 	return nil
 }
 
-type UpdatePageMetadata struct {
-	URL    string  `json:"url"`
-	NewURL *string `json:"new_url"`
+type UpdatePageMetadataParams struct {
+	NewURL *string `json:"newUrl"`
 	Tags   *string `json:"tags"`
+	URL    string  `json:"url"`
 }
 
-func (u *UpdatePageMetadata) Validate() error {
+func (u *UpdatePageMetadataParams) Validate() error {
 	if u.URL == "" {
 		return fmt.Errorf("%w: url is required", ErrValidation)
 	}

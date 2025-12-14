@@ -26,11 +26,15 @@ type CloudinaryConfig struct {
 	UploadFolder string `env:"CLOUDINARY_UPLOAD_FOLDER,required"`
 }
 
+const EnvTypeProd = "prod"
+
 type Config struct {
 	ServerPort       string `env:"SERVER_PORT,required"`
 	EnvType          string `env:"ENV_TYPE,required"`
 	CORSOrigins      string `env:"CORS_ORIGIN,required"`
 	DatabaseURL      string `env:"DATABASE_URL,required"`
+	DBSchemaPath     string `env:"DB_SCHEMA_PATH"`
+	TestDataPath     string `env:"TEST_DATA_PATH"`
 	ZohoConfig       ZohoConfig
 	JWTConfig        JWTConfig
 	CloudinaryConfig CloudinaryConfig

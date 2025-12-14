@@ -41,7 +41,7 @@ func (r *PageMetadataRepository) GetPageMetadata(ctx context.Context, url string
 	}, nil
 }
 
-func (r *PageMetadataRepository) UpdatePageMetadata(ctx context.Context, update *domain.UpdatePageMetadata) (*domain.PageMetadata, error) {
+func (r *PageMetadataRepository) UpdatePageMetadata(ctx context.Context, update *domain.UpdatePageMetadataParams) (*domain.PageMetadata, error) {
 	var newURL, tags pgtype.Text
 
 	if update.NewURL != nil && *update.NewURL != "" {
@@ -69,5 +69,12 @@ func (r *PageMetadataRepository) UpdatePageMetadata(ctx context.Context, update 
 }
 
 func (r *PageMetadataRepository) DeletePageMetadata(ctx context.Context, url string) error {
-	return r.db.DeletePageMetadata(ctx, url)
+	rowsAffected, err := r.db.DeletePageMetadata(ctx, url)
+	if err != nil {
+		return handleDBError(err)
+	}
+	if rowsAffected == 0 {
+		return domain.ErrNotFound
+	}
+	return nil
 }

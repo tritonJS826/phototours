@@ -9,19 +9,19 @@ import (
 )
 
 const (
-	RegisterEndpoint   = "/auth/register"
-	LoginEndpoint      = "/auth/login"
-	GetProfileEndpoint = "/auth/profile"
-	GetUsersEndpoint   = "/users"
+	RegisterEndpoint   = GeneralEndpoint + "/auth/register"
+	LoginEndpoint      = GeneralEndpoint + "/auth/login"
+	GetProfileEndpoint = GeneralEndpoint + "/auth/profile"
+	GetUsersEndpoint   = GeneralEndpoint + "/users"
 )
 
 func getPublicProfileEndpoint(id int32) string {
-	return fmt.Sprintf("/users/%d/public", id)
+	return fmt.Sprintf("%v/%d/public", GetUsersEndpoint, id)
 }
 
 func (s *APITestSuite) TestAuthFlow() {
 	phone := "+1 111 555 9999"
-	registerPayload := domain.Register{
+	registerPayload := &domain.Register{
 		FirstName: "John",
 		LastName:  "Smith",
 		Email:     "john.smith@example.com",
@@ -30,7 +30,7 @@ func (s *APITestSuite) TestAuthFlow() {
 	}
 
 	// Регистрация
-	authResp := s.registerUser(registerPayload)
+	authResp := s.registerUserWithRole(registerPayload, domain.RoleClient)
 
 	// Получить профиль
 	user := s.getProfile(authResp.Token)
@@ -55,16 +55,7 @@ func (s *APITestSuite) TestAuthFlow() {
 	s.getProfileUnauthorized("invalid_token")
 }
 
-func (s *APITestSuite) registerUser(payload domain.Register) dto.AuthResponse {
-	url := s.basePath + RegisterEndpoint
-	body := s.postJSON(url, payload, http.StatusCreated)
-
-	var resp dto.AuthResponse
-	s.Require().NoError(json.Unmarshal(body, &resp))
-	return resp
-}
-
-func (s *APITestSuite) registerUserConflict(payload domain.Register) {
+func (s *APITestSuite) registerUserConflict(payload *domain.Register) {
 	url := s.basePath + RegisterEndpoint
 	s.postJSON(url, payload, http.StatusConflict)
 }

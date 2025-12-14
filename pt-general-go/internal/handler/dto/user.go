@@ -7,7 +7,6 @@ import (
 )
 
 type UserDTO struct {
-	ID            int32  `json:"id"`
 	FirstName     string `json:"firstName"`
 	LastName      string `json:"lastName"`
 	Email         string `json:"email"`
@@ -16,6 +15,7 @@ type UserDTO struct {
 	ProfilePicURL string `json:"profilePicUrl"`
 	Bio           string `json:"bio"`
 	CreatedAt     string `json:"createdAt"`
+	ID            int32  `json:"id"`
 }
 
 func MapToUserDTO(u *domain.User) UserDTO {
@@ -51,11 +51,11 @@ func MapToUserDTOs(domainUsers []domain.User) []UserDTO {
 }
 
 type PublicProfileDTO struct {
-	ID            int32  `json:"id"`
 	FirstName     string `json:"firstName"`
 	LastName      string `json:"lastName"`
 	ProfilePicURL string `json:"profilePicUrl"`
 	Bio           string `json:"bio"`
+	ID            int32  `json:"id"`
 }
 
 func MapToPublicProfileDTO(dUser *domain.User) PublicProfileDTO {

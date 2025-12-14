@@ -1,17 +1,12 @@
 package tests
 
 import (
-	"bytes"
 	"context"
-	"encoding/json"
+	"errors"
 	"flag"
 	"fmt"
-	"io"
 	"net/http"
 	"os"
-	"testing"
-	"time"
-
 	"pt-general-go/internal/config"
 	"pt-general-go/internal/handler"
 	"pt-general-go/internal/repository"
@@ -19,6 +14,8 @@ import (
 	"pt-general-go/internal/service"
 	"pt-general-go/pkg/database"
 	"pt-general-go/pkg/logger"
+	"testing"
+	"time"
 
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/stretchr/testify/suite"
@@ -26,17 +23,20 @@ import (
 	"go.uber.org/zap/zapcore"
 )
 
+const (
+	GeneralEndpoint  = "/general"
+	HealthEndpoint   = GeneralEndpoint + "/health"
+	DevResetEndpoint = GeneralEndpoint + "/dev/reset-db"
+)
+
 type APITestSuite struct {
 	suite.Suite
-
+	pgPool   *pgxpool.Pool
+	repo     *repository.Repository
+	serv     *server.Server
+	logger   *zap.Logger
+	config   *config.Config
 	basePath string
-
-	pgPool *pgxpool.Pool
-	repo   *repository.Repository
-
-	serv   *server.Server
-	logger *zap.Logger
-	config *config.Config
 }
 
 func TestAPISuite(t *testing.T) {
@@ -116,7 +116,7 @@ func (s *APITestSuite) startTestServer(ready chan<- bool) {
 			}
 		}()
 
-		if err := serv.Start(handlers.SetupRoutes(), s.config.ServerPort); err != nil && err != http.ErrServerClosed {
+		if err := serv.Start(handlers.SetupRoutes(), s.config.ServerPort); err != nil && !errors.Is(err, http.ErrServerClosed) {
 			s.logger.Error("Error starting server", zap.Error(err))
 			ready <- false
 			return
@@ -128,7 +128,7 @@ func (s *APITestSuite) startTestServer(ready chan<- bool) {
 		start := time.Now()
 
 		for time.Since(start) < 30*time.Second {
-			resp, err := client.Get(fmt.Sprintf("http://localhost:%s/health", s.config.ServerPort))
+			resp, err := client.Get(fmt.Sprintf("http://localhost:%s%s", s.config.ServerPort, HealthEndpoint))
 			if err == nil {
 				func() {
 					defer func() {
@@ -166,7 +166,7 @@ func (s *APITestSuite) initDBConnections() {
 }
 
 func (s *APITestSuite) cleanupDB() {
-	resp, err := http.Get(fmt.Sprintf("http://localhost:%s/dev/reset-db", s.config.ServerPort))
+	resp, err := http.Get(fmt.Sprintf("http://localhost:%s%s", s.config.ServerPort, DevResetEndpoint))
 	if err != nil {
 		s.FailNow("Request to reset DB failed", zap.Error(err))
 	}
@@ -179,65 +179,4 @@ func (s *APITestSuite) cleanupDB() {
 	if resp.StatusCode != http.StatusOK {
 		s.FailNow(fmt.Sprintf("Unexpected status: %d", resp.StatusCode))
 	}
-}
-
-// Requests
-
-func (s *APITestSuite) postJSON(url string, payload any, expectedStatus int) []byte {
-	jsonData, err := json.Marshal(payload)
-	s.Require().NoError(err)
-
-	req, err := http.NewRequest(http.MethodPost, url, bytes.NewBuffer(jsonData))
-	s.Require().NoError(err)
-	req.Header.Set("Content-Type", "application/json")
-
-	return s.doRequest(req, expectedStatus)
-}
-
-func (s *APITestSuite) doRequest(req *http.Request, expectedStatus int) []byte {
-	resp, err := http.DefaultClient.Do(req)
-	if err != nil {
-		s.FailNow("Request failed:", zap.Error(err))
-	}
-	defer func() {
-		if resp != nil && resp.Body != nil {
-			_ = resp.Body.Close()
-		}
-	}()
-
-	body, err := io.ReadAll(resp.Body)
-	s.Require().NoError(err)
-	bodyStr := string(body)
-
-	if resp.StatusCode != expectedStatus {
-		s.T().Logf(
-			"Unexpected status %d (expected %d). URL: %s %s\nResponse: %s\n",
-			resp.StatusCode, expectedStatus, req.Method, req.URL.String(), bodyStr,
-		)
-	}
-
-	// Проверяем, что статус совпадает, показывая тело в случае неудачи
-	s.Require().Equal(expectedStatus, resp.StatusCode, "Response body: %s", bodyStr)
-
-	return body
-}
-
-func (s *APITestSuite) postJSONAuth(url, token string, payload any, expectedStatus int) {
-	jsonData, err := json.Marshal(payload)
-	s.Require().NoError(err)
-	req, err := http.NewRequest(http.MethodPost, url, bytes.NewBuffer(jsonData))
-	s.Require().NoError(err)
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "Bearer "+token)
-	s.doRequest(req, expectedStatus)
-}
-
-func (s *APITestSuite) patchJSONAuth(url, token string, payload any, expectedStatus int) {
-	jsonData, err := json.Marshal(payload)
-	s.Require().NoError(err)
-	req, err := http.NewRequest(http.MethodPatch, url, bytes.NewBuffer(jsonData))
-	s.Require().NoError(err)
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "Bearer "+token)
-	s.doRequest(req, expectedStatus)
 }

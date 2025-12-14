@@ -23,12 +23,7 @@ func (r *ArticleRepository) GetArticles(ctx context.Context, limit, offset int32
 	if err != nil {
 		return nil, handleDBError(err)
 	}
-
-	articles := make([]domain.Article, 0, len(dbArticles))
-	for _, dbArticle := range dbArticles {
-		articles = append(articles, *mapper.MapToDomainArticle(&dbArticle))
-	}
-	return articles, nil
+	return mapper.MapToDomainArticles(dbArticles), nil
 }
 
 func (r *ArticleRepository) GetArticlesBySlug(ctx context.Context, slug string) (*domain.Article, error) {

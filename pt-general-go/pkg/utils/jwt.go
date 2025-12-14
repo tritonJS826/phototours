@@ -33,8 +33,8 @@ func GenerateToken(userID int32, role, jwtSecret, expiresIn string) (string, err
 
 func parseDuration(s string) (time.Duration, error) {
 	s = strings.TrimSpace(s)
-	if strings.HasSuffix(s, "d") {
-		daysStr := strings.TrimSuffix(s, "d")
+	if before, ok := strings.CutSuffix(s, "d"); ok {
+		daysStr := before
 		days, err := strconv.Atoi(daysStr)
 		if err != nil {
 			return 0, errors.New("invalid duration format")
@@ -45,7 +45,7 @@ func parseDuration(s string) (time.Duration, error) {
 }
 
 func ParseToken(tokenStr string, jwtSecret string) (int64, error) {
-	token, err := jwt.Parse(tokenStr, func(token *jwt.Token) (interface{}, error) {
+	token, err := jwt.Parse(tokenStr, func(token *jwt.Token) (any, error) {
 		return []byte(jwtSecret), nil
 	})
 	if err != nil {
@@ -53,9 +53,12 @@ func ParseToken(tokenStr string, jwtSecret string) (int64, error) {
 	}
 
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
-		id := int64(claims["sub"].(float64))
-		return id, nil
+		sub, ok := claims["sub"].(float64)
+		if !ok {
+			return 0, errors.New("invalid token: sub claim is not a number")
+		}
+		return int64(sub), nil
 	}
 
-	return 0, err
+	return 0, errors.New("invalid token")
 }

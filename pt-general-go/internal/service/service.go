@@ -12,6 +12,7 @@ type Service struct {
 	AuthService         *AuthService
 	DevService          *DevService
 	PageMetadataService *PageMetadataService
+	TourService         *TourService
 	UserService         *UserService
 }
 
@@ -21,6 +22,17 @@ func NewService(repo *repository.Repository, cfg *config.Config, logger *zap.Log
 		AuthService:         NewAuthService(repo.UserRepository, repo.UploadRepository, cfg, logger),
 		DevService:          NewDevService(repo.ResetRepository),
 		PageMetadataService: NewPageMetadataService(repo.PageMetadataRepository),
-		UserService:         NewUserService(repo.UserRepository, logger),
+		TourService: NewTourService(
+			repo.CategoryRepository,
+			repo.GuideRepository,
+			repo.PhotoRepository,
+			repo.TagRepository,
+			repo.TourRepository,
+			repo.TourDateRepository,
+			repo.TourMaterialRepository,
+			repo.VideoRepository,
+			logger,
+		),
+		UserService: NewUserService(repo.UserRepository, logger),
 	}
 }

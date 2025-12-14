@@ -10,16 +10,29 @@ import (
 
 type Querier interface {
 	CreatePageMetadata(ctx context.Context, arg CreatePageMetadataParams) (CreatePageMetadataRow, error)
+	CreateTour(ctx context.Context, arg CreateTourParams) (Tour, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
-	DeletePageMetadata(ctx context.Context, url string) error
-	GetArticleBySlug(ctx context.Context, slug string) (Article, error)
-	GetArticles(ctx context.Context, arg GetArticlesParams) ([]Article, error)
+	DeletePageMetadata(ctx context.Context, url string) (int64, error)
+	DeleteTourByID(ctx context.Context, id int32) (int64, error)
+	GetArticleBySlug(ctx context.Context, slug string) (GetArticleBySlugRow, error)
+	GetArticles(ctx context.Context, arg GetArticlesParams) ([]GetArticlesRow, error)
+	GetCategoriesByTourID(ctx context.Context, tourID int32) ([]Category, error)
+	GetGuideWithUserByID(ctx context.Context, id int32) (GetGuideWithUserByIDRow, error)
 	GetPageMetadata(ctx context.Context, url string) (GetPageMetadataRow, error)
+	GetPhotosByTourID(ctx context.Context, tourID int32) ([]Photo, error)
+	GetTagsByTourID(ctx context.Context, tourID int32) ([]Tag, error)
+	GetTourByID(ctx context.Context, id int32) (Tour, error)
+	GetTourBySlug(ctx context.Context, slug string) (Tour, error)
+	GetTourDatesByTourID(ctx context.Context, tourID int32) ([]TourDate, error)
+	GetTourMaterialsByTourID(ctx context.Context, tourID int32) ([]TourMaterial, error)
+	GetTours(ctx context.Context, arg GetToursParams) ([]Tour, error)
 	GetUserByEmail(ctx context.Context, email string) (User, error)
 	GetUserByID(ctx context.Context, id int32) (User, error)
 	GetUsers(ctx context.Context, arg GetUsersParams) ([]User, error)
+	GetVideosByTourID(ctx context.Context, tourID int32) ([]Video, error)
 	ResetSchema(ctx context.Context) error
 	UpdatePageMetadata(ctx context.Context, arg UpdatePageMetadataParams) (UpdatePageMetadataRow, error)
+	UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) (Tour, error)
 	UpdateUser(ctx context.Context, arg UpdateUserParams) (User, error)
 	UpdateUserPassword(ctx context.Context, arg UpdateUserPasswordParams) (User, error)
 }
