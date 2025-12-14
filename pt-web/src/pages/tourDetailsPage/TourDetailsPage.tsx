@@ -204,7 +204,7 @@ export function TourDetailsPage() {
               </p>
             </div>
             <div className={styles.tourSummary}>
-              <h2>
+              <h2 className={styles.tourSummaryTitle}>
                 Summary
               </h2>
               <div className={styles.summaryTagsHorizontalPair}>
