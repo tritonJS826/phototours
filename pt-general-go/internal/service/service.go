@@ -26,6 +26,7 @@ func NewService(repo *repository.Repository, cfg *config.Config, logger *zap.Log
 			repo.CategoryRepository,
 			repo.GuideRepository,
 			repo.PhotoRepository,
+			repo.ReviewRepository,
 			repo.TagRepository,
 			repo.TourRepository,
 			repo.TourDateRepository,

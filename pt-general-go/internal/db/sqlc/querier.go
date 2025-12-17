@@ -20,6 +20,8 @@ type Querier interface {
 	GetGuideWithUserByID(ctx context.Context, id int32) (GetGuideWithUserByIDRow, error)
 	GetPageMetadata(ctx context.Context, url string) (GetPageMetadataRow, error)
 	GetPhotosByTourID(ctx context.Context, tourID int32) ([]Photo, error)
+	GetReviewAmountAndStarAmount(ctx context.Context, tourID int32) (GetReviewAmountAndStarAmountRow, error)
+	GetReviewsByTourID(ctx context.Context, tourID int32) ([]Review, error)
 	GetTagsByTourID(ctx context.Context, tourID int32) ([]Tag, error)
 	GetTourByID(ctx context.Context, id int32) (Tour, error)
 	GetTourBySlug(ctx context.Context, slug string) (Tour, error)

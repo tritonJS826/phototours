@@ -1483,6 +1483,29 @@ const docTemplate = `{
                 }
             }
         },
+        "domain.Review": {
+            "type": "object",
+            "properties": {
+                "comment": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "rating": {
+                    "type": "integer"
+                },
+                "tourId": {
+                    "type": "integer"
+                },
+                "userId": {
+                    "type": "integer"
+                }
+            }
+        },
         "domain.Role": {
             "type": "string",
             "enum": [
@@ -1670,8 +1693,20 @@ const docTemplate = `{
                 "program": {
                     "type": "object"
                 },
+                "reviewAmount": {
+                    "type": "integer"
+                },
+                "reviews": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/domain.Review"
+                    }
+                },
                 "slug": {
                     "type": "string"
+                },
+                "starAmount": {
+                    "type": "number"
                 },
                 "startLocation": {
                     "type": "string"

@@ -174,11 +174,38 @@ VALUES
   (4, 3600.00, 'CARD', 'REFUNDED', 'TXN444RTY'),
   (5, 950.00, 'CARD', 'COMPLETED', 'TXN999BNM');
 
+-- REVIEWS
+INSERT INTO reviews (tour_id, user_id, rating, comment)
+VALUES
+  -- Tour 1: Grand Canyon Hiking (3 reviews)
+  (1, 3, 5, 'Absolutely breathtaking views! John was an amazing guide.'),
+  (1, 4, 4, 'Great experience, though the hike was more challenging than expected.'),
+  (1, 7, 5, 'Best hiking trip of my life. Highly recommend!'),
+
+  -- Tour 2: NYC History Tour (2 reviews)
+  (2, 3, 4, 'Sarah knows so much about NYC history. Learned a lot!'),
+  (2, 10, 5, 'Perfect tour for history lovers. Well organized.'),
+
+  -- Tour 3: Colorado River Rafting (4 reviews)
+  (3, 4, 5, 'Adrenaline rush! The rapids were incredible.'),
+  (3, 7, 5, 'Professional guides and top-notch safety equipment.'),
+  (3, 8, 4, 'Amazing adventure, but bring waterproof bags for your stuff.'),
+  (3, 10, 5, 'Worth every penny. Cant wait to do it again!'),
+
+  -- Tour 4: Yellowstone Photo Tour (1 review)
+  (4, 3, 5, 'Jake helped me capture shots I never thought possible.'),
+
+  -- Tour 5: Napa Valley Wine Tour (3 reviews)
+  (5, 4, 4, 'Delicious wines and beautiful scenery.'),
+  (5, 7, 5, 'The farm-to-table dinner was unforgettable!'),
+  (5, 8, 4, 'Great tour, wish it was a bit longer.');
+
 -- Update sequences to avoid conflicts
 PERFORM setval(pg_get_serial_sequence('users', 'id'), COALESCE((SELECT MAX(id) FROM users), 1));
 PERFORM setval(pg_get_serial_sequence('guides', 'id'), COALESCE((SELECT MAX(id) FROM guides), 1));
 PERFORM setval(pg_get_serial_sequence('tours', 'id'), COALESCE((SELECT MAX(id) FROM tours), 1));
 PERFORM setval(pg_get_serial_sequence('bookings', 'id'), COALESCE((SELECT MAX(id) FROM bookings), 1));
 PERFORM setval(pg_get_serial_sequence('payments', 'id'), COALESCE((SELECT MAX(id) FROM payments), 1));
+PERFORM setval(pg_get_serial_sequence('reviews', 'id'), COALESCE((SELECT MAX(id) FROM reviews), 1));
 
 END $$;

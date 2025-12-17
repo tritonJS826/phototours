@@ -21,6 +21,7 @@ type Repository struct {
 	PageMetadataRepository *PageMetadataRepository
 	PhotoRepository        *PhotoRepository
 	ResetRepository        *ResetRepository
+	ReviewRepository       *ReviewRepository
 	TagRepository          *TagRepository
 	TourRepository         *TourRepository
 	TourDateRepository     *TourDateRepository
@@ -39,6 +40,7 @@ func NewRepository(cfg *config.Config, dbPool *pgxpool.Pool, cld *cloudinary.Clo
 		PageMetadataRepository: NewPageMetadataRepository(queries),
 		PhotoRepository:        NewPhotoRepository(queries),
 		ResetRepository:        NewResetRepository(queries, dbPool, cfg),
+		ReviewRepository:       NewReviewRepository(queries),
 		TagRepository:          NewTagRepository(queries),
 		TourRepository:         NewTourRepository(queries),
 		TourDateRepository:     NewTourDateRepository(queries),

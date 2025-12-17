@@ -6,12 +6,14 @@ import (
 	"pt-general-go/internal/repository"
 
 	"go.uber.org/zap"
+	"golang.org/x/sync/errgroup"
 )
 
 type TourService struct {
 	categoryRepository     *repository.CategoryRepository
 	guideRepository        *repository.GuideRepository
 	photoRepository        *repository.PhotoRepository
+	reviewRepository       *repository.ReviewRepository
 	tagRepository          *repository.TagRepository
 	tourRepository         *repository.TourRepository
 	tourDateRepository     *repository.TourDateRepository
@@ -24,6 +26,7 @@ func NewTourService(
 	categoryRepository *repository.CategoryRepository,
 	guideRepository *repository.GuideRepository,
 	photoRepository *repository.PhotoRepository,
+	reviewRepository *repository.ReviewRepository,
 	tagRepository *repository.TagRepository,
 	tourRepository *repository.TourRepository,
 	tourDateRepository *repository.TourDateRepository,
@@ -35,6 +38,7 @@ func NewTourService(
 		categoryRepository:     categoryRepository,
 		guideRepository:        guideRepository,
 		photoRepository:        photoRepository,
+		reviewRepository:       reviewRepository,
 		tagRepository:          tagRepository,
 		tourDateRepository:     tourDateRepository,
 		tourRepository:         tourRepository,
@@ -70,26 +74,32 @@ func (s *TourService) GetAllTours(ctx context.Context, limit, offset int32, filt
 		return nil, err
 	}
 
-	result := make([]domain.TourFull, 0, len(tours))
-	for _, tour := range tours {
-		tourFull, err := s.buildTourFull(ctx, &tour)
-		if err != nil {
-			return nil, err
-		}
-		result = append(result, *tourFull)
+	errGroup, ctx := errgroup.WithContext(ctx)
+	errGroup.SetLimit(10)
+	result := make([]domain.TourFull, len(tours))
+
+	for i, tour := range tours {
+		errGroup.Go(func() error {
+			tourFull, err := s.buildTourFull(ctx, &tour)
+			if err != nil {
+				return err
+			}
+			result[i] = *tourFull
+			return nil
+		})
+	}
+
+	if err := errGroup.Wait(); err != nil {
+		return nil, err
 	}
 
 	return result, nil
 }
 
 func (s *TourService) buildTourFull(ctx context.Context, tour *domain.Tour) (*domain.TourFull, error) {
-	var guide domain.Guide
-	if tour.GuideID != nil {
-		g, err := s.guideRepository.GetGuidesByTourID(ctx, *tour.GuideID)
-		if err != nil {
-			return nil, err
-		}
-		guide = *g
+	guide, err := s.guideRepository.GetGuidesByTourID(ctx, *tour.GuideID)
+	if err != nil {
+		return nil, err
 	}
 
 	videos, err := s.videoRepository.GetVideosByTourID(ctx, tour.ID)
@@ -122,15 +132,28 @@ func (s *TourService) buildTourFull(ctx context.Context, tour *domain.Tour) (*do
 		return nil, err
 	}
 
+	reviews, err := s.reviewRepository.GetReviewsByTourID(ctx, tour.ID)
+	if err != nil {
+		return nil, err
+	}
+
+	reviewInfo, err := s.reviewRepository.GetReviewInfo(ctx, tour.ID)
+	if err != nil {
+		return nil, err
+	}
+
 	return &domain.TourFull{
-		Tour:       *tour,
-		Videos:     videos,
-		Photos:     photos,
-		Dates:      tourDates,
-		Materials:  tourMaterials,
-		Tags:       tags,
-		Categories: categories,
-		Guide:      guide,
+		Tour:         *tour,
+		Videos:       videos,
+		Photos:       photos,
+		Dates:        tourDates,
+		Materials:    tourMaterials,
+		Tags:         tags,
+		Categories:   categories,
+		Guide:        guide,
+		Reviews:      reviews,
+		StarAmount:   reviewInfo.StarAmount,
+		ReviewAmount: reviewInfo.ReviewAmount,
 	}, nil
 }
 
