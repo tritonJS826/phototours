@@ -23,3 +23,21 @@ func MapToDomainVideos(dbTours []db.Video) []domain.Video {
 	}
 	return videos
 }
+
+func MapToDomainVideosByTourIDs(dbVideos []db.Video) map[int32][]domain.Video {
+	result := make(map[int32][]domain.Video)
+	for _, dbVideo := range dbVideos {
+		videos := result[dbVideo.TourID]
+		video := domain.Video{
+			ID:        dbVideo.ID,
+			TourID:    dbVideo.TourID,
+			URL:       dbVideo.Url,
+			CreatedAt: dbVideo.CreatedAt.Time,
+		}
+		if dbVideo.Description.Valid {
+			video.Description = &dbVideo.Description.String
+		}
+		result[dbVideo.TourID] = append(videos, video)
+	}
+	return result
+}

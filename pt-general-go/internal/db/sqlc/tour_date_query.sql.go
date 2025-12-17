@@ -49,3 +49,44 @@ func (q *Queries) GetTourDatesByTourID(ctx context.Context, tourID int32) ([]Tou
 	}
 	return items, nil
 }
+
+const getTourDatesByTourIDs = `-- name: GetTourDatesByTourIDs :many
+SELECT
+    id,
+    tour_id,
+    date,
+    group_size,
+    is_available,
+    created_at,
+    updated_at
+FROM tour_dates
+WHERE tour_id = ANY($1::int[])
+`
+
+func (q *Queries) GetTourDatesByTourIDs(ctx context.Context, dollar_1 []int32) ([]TourDate, error) {
+	rows, err := q.db.Query(ctx, getTourDatesByTourIDs, dollar_1)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []TourDate{}
+	for rows.Next() {
+		var i TourDate
+		if err := rows.Scan(
+			&i.ID,
+			&i.TourID,
+			&i.Date,
+			&i.GroupSize,
+			&i.IsAvailable,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}

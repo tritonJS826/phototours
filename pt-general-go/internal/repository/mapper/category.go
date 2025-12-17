@@ -15,3 +15,15 @@ func MapToDomainCategories(dbCategories []db.Category) []domain.Category {
 	}
 	return categories
 }
+
+func MapToDomainCategoriesByTourIDs(dbCategories []db.GetCategoriesByTourIDsRow) map[int32][]domain.Category {
+	result := make(map[int32][]domain.Category)
+	for _, dbCategory := range dbCategories {
+		categories := result[dbCategory.TourID]
+		result[dbCategory.TourID] = append(categories, domain.Category{
+			ID:   dbCategory.ID,
+			Name: dbCategory.Name,
+		})
+	}
+	return result
+}

@@ -22,3 +22,11 @@ func (r *TourDateRepository) GetTourDatesByTourID(ctx context.Context, tourID in
 	}
 	return mapper.MapToDomainTourDates(dbTourDates), nil
 }
+
+func (r *TourDateRepository) GetTourDatesByTourIDs(ctx context.Context, tourIDs []int32) (map[int32][]domain.TourDate, error) {
+	dbTourDates, err := r.db.GetTourDatesByTourIDs(ctx, tourIDs)
+	if err != nil {
+		return nil, handleDBError(err)
+	}
+	return mapper.MapToDomainTourDatesByTourIDs(dbTourDates), nil
+}

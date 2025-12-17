@@ -20,3 +20,20 @@ func MapToDomainTourDates(dbTourDates []db.TourDate) []domain.TourDate {
 	}
 	return tourDates
 }
+
+func MapToDomainTourDatesByTourIDs(dbTourDates []db.TourDate) map[int32][]domain.TourDate {
+	result := make(map[int32][]domain.TourDate)
+	for _, dbTourDate := range dbTourDates {
+		dates := result[dbTourDate.TourID]
+		result[dbTourDate.TourID] = append(dates, domain.TourDate{
+			ID:          dbTourDate.ID,
+			TourID:      dbTourDate.TourID,
+			Date:        dbTourDate.Date.Time,
+			IsAvailable: dbTourDate.IsAvailable,
+			CreatedAt:   dbTourDate.CreatedAt.Time,
+			UpdatedAt:   dbTourDate.UpdatedAt.Time,
+			GroupSize:   dbTourDate.GroupSize,
+		})
+	}
+	return result
+}

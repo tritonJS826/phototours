@@ -29,6 +29,42 @@ func (q *Queries) GetReviewAmountAndStarAmount(ctx context.Context, tourID int32
 	return i, err
 }
 
+const getReviewAmountAndStarAmountByTourIDs = `-- name: GetReviewAmountAndStarAmountByTourIDs :many
+SELECT
+    tour_id,
+    COUNT(*) as review_amount,
+    COALESCE(ROUND(AVG(rating)::numeric, 1), 0)::float8 as star_amount
+FROM reviews
+WHERE tour_id = ANY($1::int[])
+GROUP BY tour_id
+`
+
+type GetReviewAmountAndStarAmountByTourIDsRow struct {
+	TourID       int32
+	ReviewAmount int64
+	StarAmount   float64
+}
+
+func (q *Queries) GetReviewAmountAndStarAmountByTourIDs(ctx context.Context, dollar_1 []int32) ([]GetReviewAmountAndStarAmountByTourIDsRow, error) {
+	rows, err := q.db.Query(ctx, getReviewAmountAndStarAmountByTourIDs, dollar_1)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []GetReviewAmountAndStarAmountByTourIDsRow{}
+	for rows.Next() {
+		var i GetReviewAmountAndStarAmountByTourIDsRow
+		if err := rows.Scan(&i.TourID, &i.ReviewAmount, &i.StarAmount); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const getReviewsByTourID = `-- name: GetReviewsByTourID :many
 SELECT
     id,
@@ -44,6 +80,46 @@ ORDER BY created_at DESC
 
 func (q *Queries) GetReviewsByTourID(ctx context.Context, tourID int32) ([]Review, error) {
 	rows, err := q.db.Query(ctx, getReviewsByTourID, tourID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []Review{}
+	for rows.Next() {
+		var i Review
+		if err := rows.Scan(
+			&i.ID,
+			&i.TourID,
+			&i.UserID,
+			&i.Rating,
+			&i.Comment,
+			&i.CreatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const getReviewsByTourIDs = `-- name: GetReviewsByTourIDs :many
+SELECT
+    id,
+    tour_id,
+    user_id,
+    rating,
+    comment,
+    created_at
+FROM reviews
+WHERE tour_id = ANY($1::int[])
+ORDER BY tour_id, created_at DESC
+`
+
+func (q *Queries) GetReviewsByTourIDs(ctx context.Context, dollar_1 []int32) ([]Review, error) {
+	rows, err := q.db.Query(ctx, getReviewsByTourIDs, dollar_1)
 	if err != nil {
 		return nil, err
 	}

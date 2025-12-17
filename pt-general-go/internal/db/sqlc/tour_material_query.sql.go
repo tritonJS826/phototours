@@ -47,3 +47,42 @@ func (q *Queries) GetTourMaterialsByTourID(ctx context.Context, tourID int32) ([
 	}
 	return items, nil
 }
+
+const getTourMaterialsByTourIDs = `-- name: GetTourMaterialsByTourIDs :many
+SELECT
+    id,
+    tour_id,
+    title,
+    url,
+    type,
+    created_at
+FROM tour_materials
+WHERE tour_id = ANY($1::int[])
+`
+
+func (q *Queries) GetTourMaterialsByTourIDs(ctx context.Context, dollar_1 []int32) ([]TourMaterial, error) {
+	rows, err := q.db.Query(ctx, getTourMaterialsByTourIDs, dollar_1)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []TourMaterial{}
+	for rows.Next() {
+		var i TourMaterial
+		if err := rows.Scan(
+			&i.ID,
+			&i.TourID,
+			&i.Title,
+			&i.Url,
+			&i.Type,
+			&i.CreatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}

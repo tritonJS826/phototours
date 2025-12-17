@@ -22,3 +22,11 @@ func (r *TagRepository) GetTagsByTourID(ctx context.Context, tourID int32) ([]do
 	}
 	return mapper.MapToDomainTags(dbTags), nil
 }
+
+func (r *TagRepository) GetTagsByTourIDs(ctx context.Context, tourIDs []int32) (map[int32][]domain.Tag, error) {
+	dbTags, err := r.db.GetTagsByTourIDs(ctx, tourIDs)
+	if err != nil {
+		return nil, handleDBError(err)
+	}
+	return mapper.MapToDomainTagsByTourIDs(dbTags), nil
+}

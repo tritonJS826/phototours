@@ -19,3 +19,19 @@ func MapToDomainReviews(dbReviews []db.Review) []domain.Review {
 	}
 	return reviews
 }
+
+func MapToDomainReviewsByTourIDs(dbReviews []db.Review) map[int32][]domain.Review {
+	result := make(map[int32][]domain.Review)
+	for _, dbReview := range dbReviews {
+		reviews := result[dbReview.TourID]
+		result[dbReview.TourID] = append(reviews, domain.Review{
+			ID:        dbReview.ID,
+			TourID:    dbReview.TourID,
+			UserID:    dbReview.UserID,
+			Rating:    dbReview.Rating,
+			Comment:   dbReview.Comment.String,
+			CreatedAt: dbReview.CreatedAt.Time,
+		})
+	}
+	return result
+}

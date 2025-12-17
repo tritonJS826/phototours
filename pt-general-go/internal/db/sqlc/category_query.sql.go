@@ -37,3 +37,39 @@ func (q *Queries) GetCategoriesByTourID(ctx context.Context, tourID int32) ([]Ca
 	}
 	return items, nil
 }
+
+const getCategoriesByTourIDs = `-- name: GetCategoriesByTourIDs :many
+SELECT
+  tc.tour_id,
+  c.id,
+  c.name
+FROM tour_categories tc
+  JOIN categories c ON tc.category_id = c.id
+WHERE tc.tour_id = ANY($1::int[])
+`
+
+type GetCategoriesByTourIDsRow struct {
+	TourID int32
+	ID     int32
+	Name   string
+}
+
+func (q *Queries) GetCategoriesByTourIDs(ctx context.Context, dollar_1 []int32) ([]GetCategoriesByTourIDsRow, error) {
+	rows, err := q.db.Query(ctx, getCategoriesByTourIDs, dollar_1)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []GetCategoriesByTourIDsRow{}
+	for rows.Next() {
+		var i GetCategoriesByTourIDsRow
+		if err := rows.Scan(&i.TourID, &i.ID, &i.Name); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
