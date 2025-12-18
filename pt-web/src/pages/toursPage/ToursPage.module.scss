@@ -25,6 +25,8 @@
 }
 
 .filters {
+  position: sticky;
+  top: 80px; 
   display: flex;
   flex-direction: column;
   min-width: 354px;
