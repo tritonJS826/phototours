@@ -9,20 +9,119 @@ import photoRoundBlue from "/images/photoRoundBlue.svg";
 import reviews from "/images/reviews.svg";
 import spotsLeft from "/images/spotsLeft.svg";
 import starYellow from "/images/star-yellow.png";
+import {Accordion, accordionTypes} from "src/components/Accordion/Accordion";
 import {Button} from "src/components/Button/Button";
 import {Container} from "src/components/Container/Container";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
-import {Select} from "src/components/Select/Select";
+// Import {Select} from "src/components/Select/Select";
 import {FeedbackBlock} from "src/pages/homePage/HomePage";
 import {getTour} from "src/services/toursService";
 import type {TourView} from "src/types/tour";
 import styles from "src/pages/tourDetailsPage/TourDetailsPage.module.scss";
 
-const ONE = 1;
+interface ScheduleAccordionItemProps {
+  description: string;
+  image?: string;
+  className?: string;
+}
 
-// Function splitToParagraphs(text: string) {
-//   return text.split(/\n{2,}/g).map(s => s.trim()).filter(Boolean);
-// }
+const ScheduleAccordionItem = (props: ScheduleAccordionItemProps) => {
+  return (
+    <div className={props.className}>
+      <p>
+        {props.description}
+      </p>
+      <br />
+      {props.image && (
+        <img
+          src={props.image}
+          alt="dayImage"
+        />
+      )}
+    </div>
+  );
+};
+
+const scheduleAccordionItemsStub = [
+  {
+    trigger: {child: "Day 1. Arrival and meet-up with the group"},
+    content: {
+      child: (
+        <ScheduleAccordionItem
+          className={styles.scheduleAccordionItem}
+          image="/images/1.avif"
+          // eslint-disable-next-line max-len
+          description="Upon arrival, our coordinator will greet you at the meeting point. Check-in at the hotel, time to rest, and a welcome briefing in the evening. We’ll go over the tour program, shooting locations, weather conditions, and plans for the next morning."
+        />
+      ),
+    },
+  },
+  {
+    trigger: {child: "Day 2. Sunrise shoot and exploring the surroundings"},
+    content: {
+      child: (
+        <ScheduleAccordionItem
+          className={styles.scheduleAccordionItem}
+          image="/images/1.avif"
+          // eslint-disable-next-line max-len
+          description="Upon arrival, our coordinator will greet you at the meeting point. Check-in at the hotel, time to rest, and a welcome briefing in the evening. We’ll go over the tour program, shooting locations, weather conditions, and plans for the next morning."
+        />
+      ),
+    },
+  },
+  {
+    trigger: {child: "Day 3. Iconic landmarks and guided photography session"},
+    content: {
+      child: (
+        <ScheduleAccordionItem
+          className={styles.scheduleAccordionItem}
+          image="/images/1.avif"
+          // eslint-disable-next-line max-len
+          description="Upon arrival, our coordinator will greet you at the meeting point. Check-in at the hotel, time to rest, and a welcome briefing in the evening. We’ll go over the tour program, shooting locations, weather conditions, and plans for the next morning."
+        />
+      ),
+    },
+  },
+];
+
+const faqAccordionItemsStub = [
+  {
+    trigger: {child: "Day 1. Arrival and meet-up with the group"},
+    content: {
+      child: (
+        <ScheduleAccordionItem
+          className={styles.scheduleAccordionItem}
+          // eslint-disable-next-line max-len
+          description="Upon arrival, our coordinator will greet you at the meeting point. Check-in at the hotel, time to rest, and a welcome briefing in the evening. We’ll go over the tour program, shooting locations, weather conditions, and plans for the next morning."
+        />
+      ),
+    },
+  },
+  {
+    trigger: {child: "Day 2. Sunrise shoot and exploring the surroundings"},
+    content: {
+      child: (
+        <ScheduleAccordionItem
+          className={styles.scheduleAccordionItem}
+          // eslint-disable-next-line max-len
+          description="Upon arrival, our coordinator will greet you at the meeting point. Check-in at the hotel, time to rest, and a welcome briefing in the evening. We’ll go over the tour program, shooting locations, weather conditions, and plans for the next morning."
+        />
+      ),
+    },
+  },
+  {
+    trigger: {child: "Day 3. Iconic landmarks and guided photography session"},
+    content: {
+      child: (
+        <ScheduleAccordionItem
+          className={styles.scheduleAccordionItem}
+          // eslint-disable-next-line max-len
+          description="Upon arrival, our coordinator will greet you at the meeting point. Check-in at the hotel, time to rest, and a welcome briefing in the evening. We’ll go over the tour program, shooting locations, weather conditions, and plans for the next morning."
+        />
+      ),
+    },
+  },
+];
 
 export function TourDetailsPage() {
   const {id} = useParams<{ id: string }>();
@@ -69,7 +168,6 @@ export function TourDetailsPage() {
   }, [id]);
 
   const cover = tour?.coverUrl || tour?.photos?.[0];
-  const priceText = Number(tour?.price || 0).toLocaleString();
 
   if (loading) {
     return (
@@ -398,11 +496,32 @@ export function TourDetailsPage() {
 
           <hr />
 
-          <h2 className={styles.faqTitle}>
-            FAQ
-          </h2>
+          <div className={styles.schedule}>
+            <h2 className={styles.scheduleTitle}>
+              Schedule
+            </h2>
 
-          <div className={styles.grid}>
+            <Accordion
+              items={scheduleAccordionItemsStub}
+              type={accordionTypes.MULTIPLE}
+              className={styles.accordion}
+            />
+          </div>
+
+          <div className={styles.faq}>
+            <h2 className={styles.faqTitle}>
+              FAQ
+            </h2>
+
+            <Accordion
+              items={faqAccordionItemsStub}
+              type={accordionTypes.MULTIPLE}
+              className={styles.accordion}
+            />
+
+          </div>
+
+          {/* <div className={styles.grid}>
             <div className={styles.main}>
               <div className={styles.meta}>
                 {tour.durationDays && (
@@ -540,7 +659,7 @@ export function TourDetailsPage() {
                 Continue Now
               </button>
             </aside>
-          </div>
+          </div> */}
         </div>
         <div className={styles.calcBackStub}>
           <div className={styles.buyTravelBlock}>
