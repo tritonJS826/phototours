@@ -218,7 +218,7 @@ export function Header() {
                     className={styles.contactUsDropdownTrigger}
                     onClick={() => {}}
                   >
-                    Contact Us
+                    Contact&nbsp;Us
                   </button>
                 )}
 
@@ -298,6 +298,11 @@ export function Header() {
       {isMobileMenuOpen && (
         <nav className={styles.mobileMenu}>
           <ul>
+            <li>
+              <Link to={PATHS.HOME}>
+                Home
+              </Link>
+            </li>
             <li>
               <Link to={PATHS.TOURS}>
                 Book Photo Tours
