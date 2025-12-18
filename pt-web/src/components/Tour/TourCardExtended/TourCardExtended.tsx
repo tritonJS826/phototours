@@ -6,23 +6,25 @@ import spotsLeft from "/images/spotsLeft.svg";
 import star from "/images/star.svg";
 import starYellow from "/images/star-yellow.png";
 import timer from "/images/timer.svg";
+import clsx from "clsx";
 import {Button} from "src/components/Button/Button";
 import type {TourView} from "src/types/tour";
 import styles from "src/components/Tour/TourCardExtended/TourCardExtended.module.scss";
 
 type Props = {
   tour: TourView;
+  className: string;
 };
 
 const STARS_FRACTIONAL_DIGITS = 1;
 
-export function TourCardExtended({tour}: Props) {
+export function TourCardExtended({tour, className}: Props) {
   const price = Number(tour.price ?? 0).toLocaleString();
   const cover = tour.coverUrl || tour.photos?.[0] || "";
   const tourUrl = `/tours/${tour.slug ?? tour.id}`;
 
   return (
-    <article className={styles.card}>
+    <article className={clsx(styles.card, className)}>
       <Link
         to={tourUrl}
         className={styles.link}

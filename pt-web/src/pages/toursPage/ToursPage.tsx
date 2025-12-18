@@ -261,6 +261,7 @@ export function ToursPage() {
                 <TourCardExtended
                   key={tour.id}
                   tour={tour}
+                  className={styles.tourCard}
                 />))}
             </div>
 
