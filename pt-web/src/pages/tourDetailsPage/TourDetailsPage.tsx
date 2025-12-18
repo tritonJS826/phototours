@@ -13,6 +13,7 @@ import {Accordion, accordionTypes} from "src/components/Accordion/Accordion";
 import {Button} from "src/components/Button/Button";
 import {Container} from "src/components/Container/Container";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
+import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
 // Import {Select} from "src/components/Select/Select";
 import {FeedbackBlock} from "src/pages/homePage/HomePage";
 import {getTour} from "src/services/toursService";
@@ -506,6 +507,16 @@ export function TourDetailsPage() {
               type={accordionTypes.MULTIPLE}
               className={styles.accordion}
             />
+          </div>
+
+          <div className={styles.whyLove}>
+            <div className={styles.whyLovePlaceholder} />
+            <h2 className={styles.whyLoveTitle}>
+              Why travelers love this
+            </h2>
+
+            <ReviewsSection />
+
           </div>
 
           <div className={styles.faq}>

@@ -22,11 +22,11 @@ export function ReviewCard(props: ReviewCardProps) {
         <h3 className={styles.title}>
           {props.title}
         </h3>
-        <img
+        {/* <img
           src={props.flagImg}
           alt="flag image"
           className={styles.flagImage}
-        />
+        /> */}
 
       </div>
       <h4 className={styles.subtitle}>

@@ -42,34 +42,6 @@ const commentsDataStub: ReviewCardProps[] = [
 ];
 
 export function ReviewsSection(props: ToursSectionProps) {
-  // If (loading) {
-  //   return (
-  //     <section className={clsx(styles.wrap, props.className)}>
-  //       <div className={styles.state}>
-  //         Loading…
-  //       </div>
-  //     </section>
-  //   );
-  // }
-
-  // if (error) {
-  //   return (
-  //     <section className={`${styles.wrap} ${props.className}`}>
-  //       <div className={styles.state}>
-  //         <div>
-  //           Failed to load tours
-  //         </div>
-  //         <button
-  //           type="button"
-  //           className={styles.retry}
-  //           onClick={reload}
-  //         >
-  //           Retry
-  //         </button>
-  //       </div>
-  //     </section>
-  //   );
-  // }
 
   return (
     <section className={clsx(styles.wrap, props.className)}>
