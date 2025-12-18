@@ -203,3 +203,43 @@
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 20px;
 }
+
+.floatingFilterButton {
+  display: none;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #2F53DE;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: #0E2EAD;
+  }
+
+  @media (max-width: 750px) {
+    display: flex;
+  }
+}
+
+.modalFiltersWrapper {
+  padding: 10px 0;
+}
+
+@media (max-width: 750px) {
+  .filters {
+    display: none;
+  }
+
+  .horizontal {
+    padding: 0 16px;
+  }
+}
