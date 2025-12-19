@@ -3,7 +3,7 @@ export const PATHS = {
   ABOUT: "/about",
 
   TOURS: "/tours",
-  TOUR_DETAILS: "/tours/:id",
+  TOUR_DETAILS: "/tours/:slug",
 
   CART: "/cart",
   CONTACT: "/contact",
@@ -32,7 +32,7 @@ export const PATHS = {
 } as const;
 
 export const buildPath = {
-  tourDetails: (idOrSlug: string | number) => `/tours/${idOrSlug}`,
+  tourDetails: (slug: string | number) => `/tours/${slug}`,
   article: (slug: string) => `/articles/${slug}`,
   adminEditTour: (id: string | number) => `/admin/tours/${id}`,
   adminContinueTour: (id: string | number) => `/admin/tour/${id}/continue`,

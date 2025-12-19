@@ -15,7 +15,7 @@ import {Container} from "src/components/Container/Container";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
 import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
 import {FeedbackBlock} from "src/pages/homePage/HomePage";
-import {getTourBySlag} from "src/services/toursService";
+import {getTourBySlag as getTourBySlug} from "src/services/toursService";
 import type {TourView} from "src/types/tour";
 import styles from "src/pages/tourDetailsPage/TourDetailsPage.module.scss";
 
@@ -124,7 +124,7 @@ const faqAccordionItemsStub = [
 ];
 
 export function TourDetailsPage() {
-  const {id} = useParams<{ id: string }>();
+  const {slug} = useParams<{ slug: string }>();
   const navigate = useNavigate();
 
   const [tour, setTour] = useState<TourView | null>(null);
@@ -132,7 +132,7 @@ export function TourDetailsPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!id) {
+    if (!slug) {
       setError("Missing tour id");
       setLoading(false);
 
@@ -144,7 +144,7 @@ export function TourDetailsPage() {
       try {
         setLoading(true);
         setError(null);
-        const t = await getTourBySlag(id);
+        const t = await getTourBySlug(slug);
         if (!alive) {
           return;
         }
@@ -165,7 +165,7 @@ export function TourDetailsPage() {
     return () => {
       alive = false;
     };
-  }, [id]);
+  }, [slug]);
 
   const cover = tour?.coverUrl || tour?.photos?.[0];
 

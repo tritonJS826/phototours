@@ -149,7 +149,7 @@ export async function listTours(filter?: ToursFilter): Promise<TourView[]> {
 }
 
 export async function getTourBySlag(slug: string): Promise<TourView> {
-  const raw = await fetchData<TourDTO>(`${TOURS_PATH}/slag/${slug}`);
+  const raw = await fetchData<TourDTO>(`${TOURS_PATH}/slug/${slug}`);
 
   return mapTourToView(raw);
 }
