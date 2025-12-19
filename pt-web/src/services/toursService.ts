@@ -148,8 +148,8 @@ export async function listTours(filter?: ToursFilter): Promise<TourView[]> {
   return (raw ?? []).map(mapTourToView);
 }
 
-export async function getTour(idOrSlug: string): Promise<TourView> {
-  const raw = await fetchData<TourDTO>(`${TOURS_PATH}/${idOrSlug}`);
+export async function getTourBySlag(slug: string): Promise<TourView> {
+  const raw = await fetchData<TourDTO>(`${TOURS_PATH}/slag/${slug}`);
 
   return mapTourToView(raw);
 }

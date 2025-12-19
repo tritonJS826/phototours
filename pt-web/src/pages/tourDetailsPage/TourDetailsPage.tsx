@@ -14,9 +14,8 @@ import {Button} from "src/components/Button/Button";
 import {Container} from "src/components/Container/Container";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
 import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
-// Import {Select} from "src/components/Select/Select";
 import {FeedbackBlock} from "src/pages/homePage/HomePage";
-import {getTour} from "src/services/toursService";
+import {getTourBySlag} from "src/services/toursService";
 import type {TourView} from "src/types/tour";
 import styles from "src/pages/tourDetailsPage/TourDetailsPage.module.scss";
 
@@ -145,7 +144,7 @@ export function TourDetailsPage() {
       try {
         setLoading(true);
         setError(null);
-        const t = await getTour(id);
+        const t = await getTourBySlag(id);
         if (!alive) {
           return;
         }
