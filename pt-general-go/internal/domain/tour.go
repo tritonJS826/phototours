@@ -125,14 +125,17 @@ type Tour struct {
 }
 
 type TourFull struct {
+	Guide      *Guide         `json:"guide"`
 	Dates      []TourDate     `json:"dates"`
 	Photos     []Photo        `json:"photos"`
 	Videos     []Video        `json:"videos"`
 	Materials  []TourMaterial `json:"materials"`
 	Tags       []Tag          `json:"tags"`
 	Categories []Category     `json:"categories"`
+	Reviews    []Review       `json:"reviews"`
 	Tour
-	Guide Guide `json:"guide"`
+	StarAmount   float64 `json:"starAmount"`
+	ReviewAmount int64   `json:"reviewAmount"`
 }
 
 type BookingStatus string
@@ -220,6 +223,11 @@ type Review struct {
 	TourID    int32     `json:"tourId"`
 	UserID    int32     `json:"userId"`
 	Rating    int32     `json:"rating"`
+}
+
+type ReviewInfo struct {
+	ReviewAmount int64
+	StarAmount   float64
 }
 
 type Tag struct {

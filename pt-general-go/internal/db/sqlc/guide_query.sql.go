@@ -77,3 +77,83 @@ func (q *Queries) GetGuideWithUserByID(ctx context.Context, id int32) (GetGuideW
 	)
 	return i, err
 }
+
+const getGuidesWithUserByIDs = `-- name: GetGuidesWithUserByIDs :many
+SELECT
+  g.id                 AS guide_id,
+  g.user_id            AS guide_user_id,
+  g.experience         AS guide_experience,
+  g.specializations    AS guide_specializations,
+  g.created_at         AS guide_created_at,
+  g.updated_at         AS guide_updated_at,
+
+  u.id                 AS user_id,
+  u.email              AS user_email,
+  u.first_name         AS user_first_name,
+  u.last_name          AS user_last_name,
+  u.phone              AS user_phone,
+  u.bio                AS user_bio,
+  u.profile_pic_url    AS user_profile_pic_url,
+  u.role               AS user_role,
+  u.created_at         AS user_created_at,
+  u.updated_at         AS user_updated_at
+FROM guides g
+JOIN users u ON g.user_id = u.id
+WHERE g.id = ANY($1::int[])
+`
+
+type GetGuidesWithUserByIDsRow struct {
+	GuideID              int32
+	GuideUserID          int32
+	GuideExperience      pgtype.Text
+	GuideSpecializations []string
+	GuideCreatedAt       pgtype.Timestamp
+	GuideUpdatedAt       pgtype.Timestamp
+	UserID               int32
+	UserEmail            string
+	UserFirstName        string
+	UserLastName         string
+	UserPhone            pgtype.Text
+	UserBio              pgtype.Text
+	UserProfilePicUrl    pgtype.Text
+	UserRole             Role
+	UserCreatedAt        pgtype.Timestamp
+	UserUpdatedAt        pgtype.Timestamp
+}
+
+func (q *Queries) GetGuidesWithUserByIDs(ctx context.Context, dollar_1 []int32) ([]GetGuidesWithUserByIDsRow, error) {
+	rows, err := q.db.Query(ctx, getGuidesWithUserByIDs, dollar_1)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []GetGuidesWithUserByIDsRow{}
+	for rows.Next() {
+		var i GetGuidesWithUserByIDsRow
+		if err := rows.Scan(
+			&i.GuideID,
+			&i.GuideUserID,
+			&i.GuideExperience,
+			&i.GuideSpecializations,
+			&i.GuideCreatedAt,
+			&i.GuideUpdatedAt,
+			&i.UserID,
+			&i.UserEmail,
+			&i.UserFirstName,
+			&i.UserLastName,
+			&i.UserPhone,
+			&i.UserBio,
+			&i.UserProfilePicUrl,
+			&i.UserRole,
+			&i.UserCreatedAt,
+			&i.UserUpdatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}

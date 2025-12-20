@@ -22,3 +22,11 @@ func (r *PhotoRepository) GetPhotosByTourID(ctx context.Context, tourID int32) (
 	}
 	return mapper.MapToDomainPhotos(dbPhotos), nil
 }
+
+func (r *PhotoRepository) GetPhotosByTourIDs(ctx context.Context, tourIDs []int32) (map[int32][]domain.Photo, error) {
+	dbPhotos, err := r.db.GetPhotosByTourIDs(ctx, tourIDs)
+	if err != nil {
+		return nil, handleDBError(err)
+	}
+	return mapper.MapToDomainPhotosByTourIDs(dbPhotos), nil
+}

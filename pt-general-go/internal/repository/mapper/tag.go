@@ -15,3 +15,15 @@ func MapToDomainTags(dbTags []db.Tag) []domain.Tag {
 	}
 	return tags
 }
+
+func MapToDomainTagsByTourIDs(dbTags []db.GetTagsByTourIDsRow) map[int32][]domain.Tag {
+	result := make(map[int32][]domain.Tag)
+	for _, dbTag := range dbTags {
+		tags := result[dbTag.TourID]
+		result[dbTag.TourID] = append(tags, domain.Tag{
+			ID:   dbTag.ID,
+			Name: dbTag.Name,
+		})
+	}
+	return result
+}

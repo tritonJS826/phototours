@@ -45,3 +45,40 @@ func (q *Queries) GetPhotosByTourID(ctx context.Context, tourID int32) ([]Photo,
 	}
 	return items, nil
 }
+
+const getPhotosByTourIDs = `-- name: GetPhotosByTourIDs :many
+SELECT
+	id,
+	tour_id,
+	url,
+	description,
+	created_at
+FROM photos
+WHERE tour_id = ANY($1::int[])
+`
+
+func (q *Queries) GetPhotosByTourIDs(ctx context.Context, dollar_1 []int32) ([]Photo, error) {
+	rows, err := q.db.Query(ctx, getPhotosByTourIDs, dollar_1)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []Photo{}
+	for rows.Next() {
+		var i Photo
+		if err := rows.Scan(
+			&i.ID,
+			&i.TourID,
+			&i.Url,
+			&i.Description,
+			&i.CreatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
