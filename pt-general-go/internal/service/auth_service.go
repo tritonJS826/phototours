@@ -48,7 +48,7 @@ func (s *AuthService) Register(ctx context.Context, register *domain.Register) (
 
 	token, err := utils.GenerateToken(user.ID, string(user.Role), s.cfg.JWTConfig.Secret, s.cfg.JWTConfig.ExpiresIn)
 	if err != nil {
-		s.logger.Error("Token generation failed", zap.Error(err), zap.Int32("user_id", user.ID))
+		s.logger.Error("Token generation failed", zap.Error(err), zap.String("user_id", user.ID.String()))
 		return nil, fmt.Errorf("failed to generate token: %w", err)
 	}
 
@@ -87,7 +87,7 @@ func (s *AuthService) Login(ctx context.Context, login *domain.Login) (*domain.A
 func (s *AuthService) ChangePassword(ctx context.Context, changePassword *domain.ChangePassword) (*domain.User, error) {
 	user, err := s.userRepository.GetUserByID(ctx, changePassword.ID)
 	if err != nil {
-		s.logger.Error("Failed to get user", zap.Error(err), zap.Int32("user_id", changePassword.ID))
+		s.logger.Error("Failed to get user", zap.Error(err), zap.String("user_id", changePassword.ID.String()))
 		return nil, err
 	}
 	if user == nil {

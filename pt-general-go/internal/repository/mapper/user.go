@@ -7,7 +7,7 @@ import (
 
 func MapToDomainUser(dbUser sqlc.User) *domain.User {
 	user := &domain.User{
-		ID:        dbUser.ID,
+		ID:        PgUUIDToUUID(dbUser.ID),
 		FirstName: dbUser.FirstName,
 		LastName:  dbUser.LastName,
 		Email:     dbUser.Email,

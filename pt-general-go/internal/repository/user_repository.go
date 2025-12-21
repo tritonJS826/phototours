@@ -6,6 +6,7 @@ import (
 	"pt-general-go/internal/domain"
 	"pt-general-go/internal/repository/mapper"
 
+	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
@@ -37,8 +38,8 @@ func (r *UserRepository) CreateUser(ctx context.Context, register *domain.Regist
 	return mapper.MapToDomainUser(dbUser), nil
 }
 
-func (r *UserRepository) GetUserByID(ctx context.Context, id int32) (*domain.User, error) {
-	dbUser, err := r.db.GetUserByID(ctx, id)
+func (r *UserRepository) GetUserByID(ctx context.Context, id uuid.UUID) (*domain.User, error) {
+	dbUser, err := r.db.GetUserByID(ctx, mapper.UUIDToPgUUID(id))
 	if err != nil {
 		return nil, handleDBError(err)
 	}
@@ -55,8 +56,8 @@ func (r *UserRepository) GetUserByEmail(ctx context.Context, email string) (*dom
 
 func (r *UserRepository) GetUsers(ctx context.Context, limit, offset int32) ([]domain.User, error) {
 	dbUsers, err := r.db.GetUsers(ctx, db.GetUsersParams{
-		Limit:  limit,
-		Offset: offset,
+		OffsetCount: offset,
+		LimitCount:  limit,
 	})
 	if err != nil {
 		return nil, handleDBError(err)
@@ -94,7 +95,7 @@ func (r *UserRepository) UpdateUserByID(ctx context.Context, updateUser *domain.
 	}
 
 	params := db.UpdateUserParams{
-		ID:            updateUser.ID,
+		ID:            mapper.UUIDToPgUUID(updateUser.ID),
 		FirstName:     firstName,
 		LastName:      lastName,
 		Phone:         phone,
@@ -109,9 +110,9 @@ func (r *UserRepository) UpdateUserByID(ctx context.Context, updateUser *domain.
 	return mapper.MapToDomainUser(dbUser), nil
 }
 
-func (r *UserRepository) UpdateUserPassword(ctx context.Context, userID int32, password string) (*domain.User, error) {
+func (r *UserRepository) UpdateUserPassword(ctx context.Context, userID uuid.UUID, password string) (*domain.User, error) {
 	params := db.UpdateUserPasswordParams{
-		ID:       userID,
+		ID:       mapper.UUIDToPgUUID(userID),
 		Password: password,
 	}
 	dbUser, err := r.db.UpdateUserPassword(ctx, params)

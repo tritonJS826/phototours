@@ -12,7 +12,7 @@ SELECT
     published_at
 FROM articles
 ORDER BY featured DESC, published_at DESC
-LIMIT $1 OFFSET $2;
+LIMIT @limit_count OFFSET @offset_count;
 
 -- name: GetArticleBySlug :one
 SELECT
@@ -27,4 +27,4 @@ SELECT
     featured,
     published_at
 FROM articles
-WHERE slug = $1;
+WHERE slug = @slug;

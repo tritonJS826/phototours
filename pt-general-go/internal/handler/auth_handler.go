@@ -117,7 +117,7 @@ func (h *Handler) GetProfile(ctx *gin.Context) {
 
 	user, err := h.services.UserService.GetUserByID(ctx, userClaims.UserID)
 	if err != nil {
-		h.logger.Error("failed to get user profile", zap.Int32("user_id", userClaims.UserID), zap.Error(err))
+		h.logger.Error("failed to get user profile", zap.String("user_id", userClaims.UserID.String()), zap.Error(err))
 		h.handleError(ctx, err)
 		return
 	}
@@ -147,7 +147,7 @@ func (h *Handler) ChangePassword(ctx *gin.Context) {
 
 	var changePasswordDTO dto.ChangePasswordDTO
 	if err := ctx.ShouldBindJSON(&changePasswordDTO); err != nil {
-		h.logger.Error("failed to bind change password data", zap.Int32("user_id", userClaims.UserID), zap.Error(err))
+		h.logger.Error("failed to bind change password data", zap.String("user_id", userClaims.UserID.String()), zap.Error(err))
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request data"})
 		return
 	}
@@ -155,14 +155,14 @@ func (h *Handler) ChangePassword(ctx *gin.Context) {
 	changePassword := changePasswordDTO.ToDomain(userClaims.UserID)
 
 	if err := changePassword.Validate(); err != nil {
-		h.logger.Error("validation error", zap.Int32("user_id", userClaims.UserID), zap.Error(err))
+		h.logger.Error("validation error", zap.String("user_id", userClaims.UserID.String()), zap.Error(err))
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request data"})
 		return
 	}
 
 	user, err := h.services.AuthService.ChangePassword(ctx, changePassword)
 	if err != nil {
-		h.logger.Error("failed to change password", zap.Int32("user_id", userClaims.UserID), zap.Error(err))
+		h.logger.Error("failed to change password", zap.String("user_id", userClaims.UserID.String()), zap.Error(err))
 		h.handleError(ctx, err)
 		return
 	}
@@ -201,20 +201,20 @@ func (h *Handler) UpdateProfile(ctx *gin.Context) {
 
 	file, err := ctx.FormFile("avatar")
 	if err != nil && !errors.Is(err, http.ErrMissingFile) {
-		h.logger.Error("failed to process avatar file", zap.Int32("user_id", userClaims.UserID), zap.Error(err))
+		h.logger.Error("failed to process avatar file", zap.String("user_id", userClaims.UserID.String()), zap.Error(err))
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "failed to process avatar"})
 		return
 	}
 	if file != nil {
 		if file.Size > MaxAvatarSize {
-			h.logger.Error("avatar file too large", zap.Int32("user_id", userClaims.UserID), zap.Int64("size", file.Size), zap.Int("max_size", MaxAvatarSize))
+			h.logger.Error("avatar file too large", zap.String("user_id", userClaims.UserID.String()), zap.Int64("size", file.Size), zap.Int("max_size", MaxAvatarSize))
 			ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "file too large (max 5MB)"})
 			return
 		}
 
 		contentType := file.Header.Get("Content-Type")
 		if !strings.Contains(AllowedImageTypes, contentType) {
-			h.logger.Error("invalid avatar file type", zap.Int32("user_id", userClaims.UserID), zap.String("content_type", contentType))
+			h.logger.Error("invalid avatar file type", zap.String("user_id", userClaims.UserID.String()), zap.String("content_type", contentType))
 			ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "invalid file type"})
 			return
 		}
@@ -235,7 +235,7 @@ func (h *Handler) UpdateProfile(ctx *gin.Context) {
 	}
 
 	if err := updateProfileInput.Validate(); err != nil {
-		h.logger.Error("update profile validation error", zap.Int32("user_id", userClaims.UserID), zap.Error(err))
+		h.logger.Error("update profile validation error", zap.String("user_id", userClaims.UserID.String()), zap.Error(err))
 		ctx.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
@@ -243,7 +243,7 @@ func (h *Handler) UpdateProfile(ctx *gin.Context) {
 	// TODO: If user adds new profile image, we should delete the old image
 	user, err := h.services.AuthService.UpdateProfile(ctx, updateProfileInput)
 	if err != nil {
-		h.logger.Error("failed to update profile", zap.Int32("user_id", userClaims.UserID), zap.Error(err))
+		h.logger.Error("failed to update profile", zap.String("user_id", userClaims.UserID.String()), zap.Error(err))
 		h.handleError(ctx, err)
 		return
 	}

@@ -1,16 +1,16 @@
 -- name: GetTagsByTourID :many
 SELECT
-  t.id,
-  t.name
-FROM tour_tags tt
-  JOIN tags t ON tt.tag_id = t.id
-WHERE tt.tour_id = $1;
+  tags.id,
+  tags.name
+FROM tour_tags
+  JOIN tags ON tour_tags.tag_id = tags.id
+WHERE tour_tags.tour_id = @tour_id;
 
 -- name: GetTagsByTourIDs :many
 SELECT
-  tt.tour_id,
-  t.id,
-  t.name
-FROM tour_tags tt
-  JOIN tags t ON tt.tag_id = t.id
-WHERE tt.tour_id = ANY($1::int[]);
+  tour_tags.tour_id,
+  tags.id,
+  tags.name
+FROM tour_tags
+  JOIN tags ON tour_tags.tag_id = tags.id
+WHERE tour_tags.tour_id = ANY(@tour_ids::uuid[]);

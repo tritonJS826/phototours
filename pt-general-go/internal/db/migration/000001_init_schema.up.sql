@@ -9,7 +9,7 @@ RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     first_name VARCHAR(50) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE page_metadata (
 CREATE TRIGGER set_updated_at_trigger_page_metadata BEFORE
 UPDATE ON page_metadata FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 CREATE TABLE articles (
-    id SERIAL PRIMARY KEY,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     slug TEXT NOT NULL UNIQUE,
     title TEXT NOT NULL,
     excerpt TEXT NOT NULL,
@@ -47,8 +47,8 @@ CREATE TABLE articles (
 CREATE TRIGGER set_updated_at_trigger_article BEFORE
 UPDATE ON articles FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 CREATE TABLE guides (
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL UNIQUE,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID NOT NULL UNIQUE,
     experience TEXT,
     specializations TEXT [],
     created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
@@ -58,14 +58,14 @@ CREATE TABLE guides (
 CREATE TRIGGER set_updated_at_trigger_guides BEFORE
 UPDATE ON guides FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 CREATE TABLE tours (
-    id SERIAL PRIMARY KEY,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     slug TEXT NOT NULL UNIQUE DEFAULT gen_random_uuid()::text,
     title TEXT NOT NULL,
     description TEXT NOT NULL,
     difficulty difficulty_level NOT NULL,
     price DOUBLE PRECISION,
     program JSONB NOT NULL,
-    guide_id INTEGER,
+    guide_id UUID,
     cover_url TEXT,
     duration_days INTEGER,
     end_location TEXT,
@@ -81,20 +81,22 @@ CREATE TABLE tours (
 CREATE TRIGGER set_updated_at_trigger_tours BEFORE
 UPDATE ON tours FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 CREATE TABLE tour_dates (
-    id SERIAL PRIMARY KEY,
-    tour_id INTEGER NOT NULL,
-    date TIMESTAMP(3) NOT NULL,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    tour_id UUID NOT NULL,
+    date_from TIMESTAMP(3) NOT NULL,
+    date_to TIMESTAMP(3) NOT NULL,
     group_size INTEGER NOT NULL,
     is_available BOOLEAN NOT NULL DEFAULT TRUE,
     created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    CONSTRAINT tour_date_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE
+    CONSTRAINT tour_date_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT check_dates CHECK (date_to >= date_from)
 );
 CREATE TRIGGER set_updated_at_trigger_tour_dates BEFORE
 UPDATE ON tour_dates FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 CREATE TABLE tour_materials (
-    id SERIAL PRIMARY KEY,
-    tour_id INTEGER NOT NULL,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    tour_id UUID NOT NULL,
     title TEXT NOT NULL,
     url TEXT NOT NULL,
     type material_type NOT NULL,
@@ -102,25 +104,25 @@ CREATE TABLE tour_materials (
     CONSTRAINT tour_material_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 CREATE TABLE photos (
-    id SERIAL PRIMARY KEY,
-    tour_id INTEGER NOT NULL,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    tour_id UUID NOT NULL,
     url TEXT NOT NULL,
     description TEXT,
     created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     CONSTRAINT photo_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 CREATE TABLE videos (
-    id SERIAL PRIMARY KEY,
-    tour_id INTEGER NOT NULL,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    tour_id UUID NOT NULL,
     url TEXT NOT NULL,
     description TEXT,
     created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     CONSTRAINT video_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 CREATE TABLE reviews (
-    id SERIAL PRIMARY KEY,
-    tour_id INTEGER NOT NULL,
-    user_id INTEGER NOT NULL,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID NOT NULL,
+    tour_id UUID NOT NULL,
     rating INTEGER NOT NULL,
     comment TEXT,
     created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
@@ -128,44 +130,44 @@ CREATE TABLE reviews (
     CONSTRAINT review_user_id_fk FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 CREATE TABLE tags (
-    id SERIAL PRIMARY KEY,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name TEXT NOT NULL UNIQUE
 );
 CREATE TABLE tour_tags (
-    tag_id INTEGER NOT NULL,
-    tour_id INTEGER NOT NULL,
+    tag_id UUID NOT NULL,
+    tour_id UUID NOT NULL,
     PRIMARY KEY (tag_id, tour_id),
     CONSTRAINT tour_tags_tag_id_fk FOREIGN KEY (tag_id) REFERENCES tags(id) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT tour_tags_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 CREATE TABLE categories (
-    id SERIAL PRIMARY KEY,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name TEXT NOT NULL UNIQUE
 );
 CREATE TABLE tour_categories (
-    category_id INTEGER NOT NULL,
-    tour_id INTEGER NOT NULL,
+    category_id UUID NOT NULL,
+    tour_id UUID NOT NULL,
     PRIMARY KEY (category_id, tour_id),
     CONSTRAINT tour_categories_category_id_fk FOREIGN KEY (category_id) REFERENCES categories(id) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT tour_categories_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 CREATE TABLE bookings (
-    id SERIAL PRIMARY KEY,
-    tour_id INTEGER NOT NULL,
-    user_id INTEGER NOT NULL,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID NOT NULL,
+    tour_date_id UUID NOT NULL,
     status booking_status NOT NULL DEFAULT 'PENDING',
     participants INTEGER NOT NULL,
     total_price DOUBLE PRECISION NOT NULL,
     created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    CONSTRAINT booking_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT booking_tour_date_id_fk FOREIGN KEY (tour_date_id) REFERENCES tour_dates(id) ON UPDATE CASCADE ON DELETE RESTRICT,
     CONSTRAINT booking_user_id_fk FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 CREATE TRIGGER set_updated_at_trigger_bookings BEFORE
 UPDATE ON bookings FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 CREATE TABLE payments (
-    id SERIAL PRIMARY KEY,
-    booking_id INTEGER NOT NULL,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    booking_id UUID NOT NULL,
     amount DOUBLE PRECISION NOT NULL,
     payment_method payment_method NOT NULL,
     status payment_status NOT NULL DEFAULT 'PENDING',

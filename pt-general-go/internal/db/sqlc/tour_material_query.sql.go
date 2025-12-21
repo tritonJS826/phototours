@@ -7,6 +7,8 @@ package db
 
 import (
 	"context"
+
+	"github.com/jackc/pgx/v5/pgtype"
 )
 
 const getTourMaterialsByTourID = `-- name: GetTourMaterialsByTourID :many
@@ -21,7 +23,7 @@ FROM tour_materials
 WHERE tour_id = $1
 `
 
-func (q *Queries) GetTourMaterialsByTourID(ctx context.Context, tourID int32) ([]TourMaterial, error) {
+func (q *Queries) GetTourMaterialsByTourID(ctx context.Context, tourID pgtype.UUID) ([]TourMaterial, error) {
 	rows, err := q.db.Query(ctx, getTourMaterialsByTourID, tourID)
 	if err != nil {
 		return nil, err
@@ -57,11 +59,11 @@ SELECT
     type,
     created_at
 FROM tour_materials
-WHERE tour_id = ANY($1::int[])
+WHERE tour_id = ANY($1::uuid[])
 `
 
-func (q *Queries) GetTourMaterialsByTourIDs(ctx context.Context, dollar_1 []int32) ([]TourMaterial, error) {
-	rows, err := q.db.Query(ctx, getTourMaterialsByTourIDs, dollar_1)
+func (q *Queries) GetTourMaterialsByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]TourMaterial, error) {
+	rows, err := q.db.Query(ctx, getTourMaterialsByTourIDs, tourIds)
 	if err != nil {
 		return nil, err
 	}

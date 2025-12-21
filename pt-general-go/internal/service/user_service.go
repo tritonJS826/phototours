@@ -5,6 +5,7 @@ import (
 	"pt-general-go/internal/domain"
 	"pt-general-go/internal/repository"
 
+	"github.com/google/uuid"
 	"go.uber.org/zap"
 )
 
@@ -23,7 +24,7 @@ func NewUserService(
 	}
 }
 
-func (s *UserService) GetUserByID(ctx context.Context, userID int32) (*domain.User, error) {
+func (s *UserService) GetUserByID(ctx context.Context, userID uuid.UUID) (*domain.User, error) {
 	return s.userRepository.GetUserByID(ctx, userID)
 }
 

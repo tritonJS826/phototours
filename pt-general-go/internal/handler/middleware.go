@@ -8,11 +8,12 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
+	"github.com/google/uuid"
 )
 
 type UserClaims struct {
 	Role   domain.Role `json:"role"`
-	UserID int32       `json:"sub"`
+	UserID uuid.UUID   `json:"sub"`
 }
 
 func GetUserClaimsFromContext(ctx *gin.Context) (*UserClaims, error) {
@@ -62,12 +63,17 @@ func (h *Handler) AuthMiddleware() gin.HandlerFunc {
 
 		user := &UserClaims{}
 
-		sub, ok := claims["sub"].(float64)
+		subStr, ok := claims["sub"].(string)
 		if !ok {
 			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "missing user id"})
 			return
 		}
-		user.UserID = int32(sub)
+		userID, err := uuid.Parse(subStr)
+		if err != nil {
+			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "invalid user id format"})
+			return
+		}
+		user.UserID = userID
 
 		roleStr, ok := claims["role"].(string)
 		if !ok || !domain.IsValidRole(roleStr) {

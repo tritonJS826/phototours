@@ -7,13 +7,16 @@ package db
 
 import (
 	"context"
+
+	"github.com/jackc/pgx/v5/pgtype"
 )
 
 const getTourDatesByTourID = `-- name: GetTourDatesByTourID :many
 SELECT
     id,
     tour_id,
-    date,
+    date_from,
+    date_to,
     group_size,
     is_available,
     created_at,
@@ -22,7 +25,7 @@ FROM tour_dates
 WHERE tour_id = $1
 `
 
-func (q *Queries) GetTourDatesByTourID(ctx context.Context, tourID int32) ([]TourDate, error) {
+func (q *Queries) GetTourDatesByTourID(ctx context.Context, tourID pgtype.UUID) ([]TourDate, error) {
 	rows, err := q.db.Query(ctx, getTourDatesByTourID, tourID)
 	if err != nil {
 		return nil, err
@@ -34,7 +37,8 @@ func (q *Queries) GetTourDatesByTourID(ctx context.Context, tourID int32) ([]Tou
 		if err := rows.Scan(
 			&i.ID,
 			&i.TourID,
-			&i.Date,
+			&i.DateFrom,
+			&i.DateTo,
 			&i.GroupSize,
 			&i.IsAvailable,
 			&i.CreatedAt,
@@ -54,17 +58,18 @@ const getTourDatesByTourIDs = `-- name: GetTourDatesByTourIDs :many
 SELECT
     id,
     tour_id,
-    date,
+    date_from,
+    date_to,
     group_size,
     is_available,
     created_at,
     updated_at
 FROM tour_dates
-WHERE tour_id = ANY($1::int[])
+WHERE tour_id = ANY($1::uuid[])
 `
 
-func (q *Queries) GetTourDatesByTourIDs(ctx context.Context, dollar_1 []int32) ([]TourDate, error) {
-	rows, err := q.db.Query(ctx, getTourDatesByTourIDs, dollar_1)
+func (q *Queries) GetTourDatesByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]TourDate, error) {
+	rows, err := q.db.Query(ctx, getTourDatesByTourIDs, tourIds)
 	if err != nil {
 		return nil, err
 	}
@@ -75,7 +80,8 @@ func (q *Queries) GetTourDatesByTourIDs(ctx context.Context, dollar_1 []int32) (
 		if err := rows.Scan(
 			&i.ID,
 			&i.TourID,
-			&i.Date,
+			&i.DateFrom,
+			&i.DateTo,
 			&i.GroupSize,
 			&i.IsAvailable,
 			&i.CreatedAt,

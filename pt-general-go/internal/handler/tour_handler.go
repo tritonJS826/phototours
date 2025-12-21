@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 	"go.uber.org/zap"
 )
 
@@ -55,23 +56,23 @@ func (h *Handler) CreateTour(ctx *gin.Context) {
 // @Tags tours
 // @Accept json
 // @Produce json
-// @Param id path int true "Tour ID"
+// @Param id path string true "Tour ID (UUID)"
 // @Success 200 {object} domain.TourFull
 // @Failure 400 {object} map[string]string
 // @Failure 404 {object} map[string]string
 // @Failure 500 {object} map[string]string
 // @Router /tours/{id} [get]
 func (h *Handler) GetTourByID(ctx *gin.Context) {
-	idVal, err := strconv.ParseInt(ctx.Param("id"), 10, 32)
+	tourID, err := uuid.Parse(ctx.Param("id"))
 	if err != nil {
 		h.logger.Error("failed to parse tour ID", zap.String("id", ctx.Param("id")), zap.Error(err))
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": fmt.Sprintf("Invalid tour ID: %v", err)})
 		return
 	}
 
-	tour, err := h.services.TourService.GetTourFullByID(ctx, int32(idVal))
+	tour, err := h.services.TourService.GetTourFullByID(ctx, tourID)
 	if err != nil {
-		h.logger.Error("failed to get tour by ID", zap.Int32("tour_id", int32(idVal)), zap.Error(err))
+		h.logger.Error("failed to get tour by ID", zap.String("tour_id", tourID.String()), zap.Error(err))
 		h.handleError(ctx, err)
 		return
 	}
@@ -236,7 +237,7 @@ func (h *Handler) parseTourFilter(ctx *gin.Context) (*domain.TourFilter, error) 
 // @Accept json
 // @Produce json
 // @Security BearerAuth
-// @Param id path int true "Tour ID"
+// @Param id path string true "Tour ID (UUID)"
 // @Param request body dto.UpdateTourRequest true "Update data"
 // @Success 200 {object} domain.Tour
 // @Failure 400 {object} map[string]string
@@ -246,7 +247,7 @@ func (h *Handler) parseTourFilter(ctx *gin.Context) (*domain.TourFilter, error) 
 // @Failure 500 {object} map[string]string
 // @Router /tours/{id} [patch]
 func (h *Handler) UpdateTourByID(ctx *gin.Context) {
-	idVal, err := strconv.ParseInt(ctx.Param("id"), 10, 32)
+	tourID, err := uuid.Parse(ctx.Param("id"))
 	if err != nil {
 		h.logger.Error("failed to parse tour ID", zap.String("id", ctx.Param("id")), zap.Error(err))
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": fmt.Sprintf("Invalid tour ID: %v", err)})
@@ -261,14 +262,14 @@ func (h *Handler) UpdateTourByID(ctx *gin.Context) {
 	}
 
 	if err := update.Validate(); err != nil {
-		h.logger.Error("validation error", zap.Int32("tour_id", int32(idVal)), zap.Error(err))
+		h.logger.Error("validation error", zap.String("tour_id", tourID.String()), zap.Error(err))
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	tour, err := h.services.TourService.UpdateTourByID(ctx, int32(idVal), &update)
+	tour, err := h.services.TourService.UpdateTourByID(ctx, tourID, &update)
 	if err != nil {
-		h.logger.Error("failed to update tour", zap.Int32("tour_id", int32(idVal)), zap.Error(err))
+		h.logger.Error("failed to update tour", zap.String("tour_id", tourID.String()), zap.Error(err))
 		h.handleError(ctx, err)
 		return
 	}
@@ -283,7 +284,7 @@ func (h *Handler) UpdateTourByID(ctx *gin.Context) {
 // @Accept json
 // @Produce json
 // @Security BearerAuth
-// @Param id path int true "Tour ID"
+// @Param id path string true "Tour ID (UUID)"
 // @Success 204 "No Content"
 // @Failure 400 {object} map[string]string
 // @Failure 401 {object} map[string]string
@@ -292,16 +293,16 @@ func (h *Handler) UpdateTourByID(ctx *gin.Context) {
 // @Failure 500 {object} map[string]string
 // @Router /tours/{id} [delete]
 func (h *Handler) DeleteTourByID(ctx *gin.Context) {
-	idVal, err := strconv.ParseInt(ctx.Param("id"), 10, 32)
+	tourID, err := uuid.Parse(ctx.Param("id"))
 	if err != nil {
 		h.logger.Error("failed to parse tour ID", zap.String("id", ctx.Param("id")), zap.Error(err))
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": fmt.Sprintf("Invalid tour ID: %v", err)})
 		return
 	}
 
-	err = h.services.TourService.DeleteTourByID(ctx, int32(idVal))
+	err = h.services.TourService.DeleteTourByID(ctx, tourID)
 	if err != nil {
-		h.logger.Error("failed to delete tour", zap.Int32("tour_id", int32(idVal)), zap.Error(err))
+		h.logger.Error("failed to delete tour", zap.String("tour_id", tourID.String()), zap.Error(err))
 		h.handleError(ctx, err)
 		return
 	}

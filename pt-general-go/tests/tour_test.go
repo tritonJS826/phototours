@@ -8,6 +8,8 @@ import (
 	"net/http"
 	"pt-general-go/internal/domain"
 	"pt-general-go/internal/handler/dto"
+
+	"github.com/google/uuid"
 )
 
 const (
@@ -18,23 +20,23 @@ const (
 	DeleteTourByIDPrefix = GeneralEndpoint + "/tours"
 )
 
-func getTourByIDEndpoint(id int32) string {
-	return fmt.Sprintf("%s/%d", GetToursEndpoint, id)
+func getTourByIDEndpoint(id uuid.UUID) string {
+	return fmt.Sprintf("%s/%s", GetToursEndpoint, id.String())
 }
 
 func getTourBySlugEndpoint(slug string) string {
 	return fmt.Sprintf("%s/%s", GetTourBySlugPrefix, slug)
 }
 
-func updateTourByIDEndpoint(id int32) string {
-	return fmt.Sprintf("%s/%d", UpdateTourByIDPrefix, id)
+func updateTourByIDEndpoint(id uuid.UUID) string {
+	return fmt.Sprintf("%s/%s", UpdateTourByIDPrefix, id.String())
 }
 
-func deleteTourByIDEndpoint(id int32) string {
-	return fmt.Sprintf("%s/%d", DeleteTourByIDPrefix, id)
+func deleteTourByIDEndpoint(id uuid.UUID) string {
+	return fmt.Sprintf("%s/%s", DeleteTourByIDPrefix, id.String())
 }
 
-func (s *APITestSuite) createGuide() (*dto.AuthResponse, int32) {
+func (s *APITestSuite) createGuide() (*dto.AuthResponse, uuid.UUID) {
 	res := s.registerUserWithRole(&domain.Register{
 		FirstName: "John",
 		LastName:  "Guide",
@@ -42,7 +44,7 @@ func (s *APITestSuite) createGuide() (*dto.AuthResponse, int32) {
 		Password:  "Guide123",
 	}, domain.RoleGuide)
 
-	var guideID int32
+	var guideID uuid.UUID
 	err := s.pgPool.QueryRow(
 		context.Background(),
 		`INSERT INTO guides (user_id, experience, specializations, created_at, updated_at)
@@ -74,8 +76,8 @@ func (s *APITestSuite) TestCreateTour() {
 		GuideID:         &guideID,
 	}
 
-	body, _ := json.Marshal(t)
-
+	body, err := json.Marshal(t)
+	s.Require().NoError(err)
 	req, err := http.NewRequest(http.MethodPost, s.basePath+CreateTourEndpoint, bytes.NewBuffer(body))
 	s.Require().NoError(err)
 	req.Header.Set("Content-Type", "application/json")
@@ -106,7 +108,7 @@ func (s *APITestSuite) TestCreateTour_Invalid() {
 	_ = s.doRequest(req, http.StatusBadRequest)
 }
 
-func (s *APITestSuite) createTourWithGuide() (*dto.AuthResponse, int32, int32) {
+func (s *APITestSuite) createTourWithGuide() (*dto.AuthResponse, uuid.UUID, uuid.UUID) {
 	res, guideID := s.createGuide()
 
 	t := domain.CreateTourParams{
@@ -125,7 +127,8 @@ func (s *APITestSuite) createTourWithGuide() (*dto.AuthResponse, int32, int32) {
 		GuideID:         &guideID,
 	}
 
-	body, _ := json.Marshal(t)
+	body, err := json.Marshal(t)
+	s.Require().NoError(err)
 	req, err := http.NewRequest(http.MethodPost, s.basePath+CreateTourEndpoint, bytes.NewBuffer(body))
 	s.Require().NoError(err)
 	req.Header.Set("Content-Type", "application/json")
@@ -170,7 +173,8 @@ func (s *APITestSuite) TestGetTourByID() {
 }
 
 func (s *APITestSuite) TestGetTourByID_NotFound() {
-	req, err := http.NewRequest(http.MethodGet, s.basePath+getTourByIDEndpoint(99999), nil)
+	nonExistentID := uuid.New()
+	req, err := http.NewRequest(http.MethodGet, s.basePath+getTourByIDEndpoint(nonExistentID), nil)
 	s.Require().NoError(err)
 
 	_ = s.doRequest(req, http.StatusNotFound)
@@ -229,7 +233,7 @@ func (s *APITestSuite) TestUpdateTourByID_AllFields() {
 	}, domain.RoleGuide)
 
 	// Создаем второго гида
-	var newGuideID int32
+	var newGuideID uuid.UUID
 	err := s.pgPool.QueryRow(
 		context.Background(),
 		`INSERT INTO guides (user_id, experience, specializations, created_at, updated_at)
@@ -262,7 +266,8 @@ func (s *APITestSuite) TestUpdateTourByID_AllFields() {
 		GuideID:         &newGuideID,
 	}
 
-	body, _ := json.Marshal(update)
+	body, err := json.Marshal(update)
+	s.Require().NoError(err)
 	req, err := http.NewRequest(http.MethodPatch, s.basePath+updateTourByIDEndpoint(tourID), bytes.NewBuffer(body))
 	s.Require().NoError(err)
 	req.Header.Set("Content-Type", "application/json")
@@ -297,7 +302,8 @@ func (s *APITestSuite) TestUpdateTourByID_TitleAndSlug() {
 		Slug:  strPtr("new-slug"),
 	}
 
-	body, _ := json.Marshal(update)
+	body, err := json.Marshal(update)
+	s.Require().NoError(err)
 	req, err := http.NewRequest(http.MethodPatch, s.basePath+updateTourByIDEndpoint(tourID), bytes.NewBuffer(body))
 	s.Require().NoError(err)
 	req.Header.Set("Content-Type", "application/json")
@@ -321,7 +327,8 @@ func (s *APITestSuite) TestUpdateTourByID_DescriptionAndDifficulty() {
 		Difficulty:  &hard,
 	}
 
-	body, _ := json.Marshal(update)
+	body, err := json.Marshal(update)
+	s.Require().NoError(err)
 	req, err := http.NewRequest(http.MethodPatch, s.basePath+updateTourByIDEndpoint(tourID), bytes.NewBuffer(body))
 	s.Require().NoError(err)
 	req.Header.Set("Content-Type", "application/json")
@@ -343,7 +350,8 @@ func (s *APITestSuite) TestUpdateTourByID_PriceAndDurationDays() {
 		DurationDays: int32Ptr(14),
 	}
 
-	body, _ := json.Marshal(update)
+	body, err := json.Marshal(update)
+	s.Require().NoError(err)
 	req, err := http.NewRequest(http.MethodPatch, s.basePath+updateTourByIDEndpoint(tourID), bytes.NewBuffer(body))
 	s.Require().NoError(err)
 	req.Header.Set("Content-Type", "application/json")
@@ -366,7 +374,8 @@ func (s *APITestSuite) TestUpdateTourByID_LocationsAndMinAge() {
 		MinAge:        int32Ptr(21),
 	}
 
-	body, _ := json.Marshal(update)
+	body, err := json.Marshal(update)
+	s.Require().NoError(err)
 	req, err := http.NewRequest(http.MethodPatch, s.basePath+updateTourByIDEndpoint(tourID), bytes.NewBuffer(body))
 	s.Require().NoError(err)
 	req.Header.Set("Content-Type", "application/json")
@@ -390,7 +399,8 @@ func (s *APITestSuite) TestUpdateTourByID_CoverURLAndProgram() {
 		Program:  &newProgram,
 	}
 
-	body, _ := json.Marshal(update)
+	body, err := json.Marshal(update)
+	s.Require().NoError(err)
 	req, err := http.NewRequest(http.MethodPatch, s.basePath+updateTourByIDEndpoint(tourID), bytes.NewBuffer(body))
 	s.Require().NoError(err)
 	req.Header.Set("Content-Type", "application/json")
@@ -414,7 +424,8 @@ func (s *APITestSuite) TestUpdateTourByID_ArrayFields() {
 		AvailableMonths: &newMonths,
 	}
 
-	body, _ := json.Marshal(update)
+	body, err := json.Marshal(update)
+	s.Require().NoError(err)
 	req, err := http.NewRequest(http.MethodPatch, s.basePath+updateTourByIDEndpoint(tourID), bytes.NewBuffer(body))
 	s.Require().NoError(err)
 	req.Header.Set("Content-Type", "application/json")
@@ -447,7 +458,8 @@ func (s *APITestSuite) TestDeleteTourByID() {
 func (s *APITestSuite) TestDeleteTourByID_NotFound() {
 	res, _ := s.createGuide()
 
-	req, err := http.NewRequest(http.MethodDelete, s.basePath+deleteTourByIDEndpoint(99999), nil)
+	nonExistentID := uuid.New()
+	req, err := http.NewRequest(http.MethodDelete, s.basePath+deleteTourByIDEndpoint(nonExistentID), nil)
 	s.Require().NoError(err)
 	req.Header.Set("Authorization", "Bearer "+res.Token)
 
@@ -502,7 +514,8 @@ func (s *APITestSuite) TestCreateTour_AdminCanCreate() {
 		AvailableMonths: []string{"August"},
 	}
 
-	body, _ := json.Marshal(t)
+	body, err := json.Marshal(t)
+	s.Require().NoError(err)
 	req, err := http.NewRequest(http.MethodPost, s.basePath+CreateTourEndpoint, bytes.NewBuffer(body))
 	s.Require().NoError(err)
 	req.Header.Set("Content-Type", "application/json")

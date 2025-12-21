@@ -23,7 +23,14 @@ INSERT INTO users (
     role
 )
 VALUES (
-    $1, $2, $3, $4, $5, $6, $7, $8
+    $1,
+    $2,
+    $3,
+    $4,
+    $5,
+    $6,
+    $7,
+    $8
 )
 RETURNING
   id,
@@ -131,7 +138,7 @@ FROM users
 WHERE id = $1
 `
 
-func (q *Queries) GetUserByID(ctx context.Context, id int32) (User, error) {
+func (q *Queries) GetUserByID(ctx context.Context, id pgtype.UUID) (User, error) {
 	row := q.db.QueryRow(ctx, getUserByID, id)
 	var i User
 	err := row.Scan(
@@ -165,16 +172,16 @@ SELECT
     updated_at
 FROM users
 ORDER BY created_at DESC
-LIMIT $1 OFFSET $2
+LIMIT $2 OFFSET $1
 `
 
 type GetUsersParams struct {
-	Limit  int32
-	Offset int32
+	OffsetCount int32
+	LimitCount  int32
 }
 
 func (q *Queries) GetUsers(ctx context.Context, arg GetUsersParams) ([]User, error) {
-	rows, err := q.db.Query(ctx, getUsers, arg.Limit, arg.Offset)
+	rows, err := q.db.Query(ctx, getUsers, arg.OffsetCount, arg.LimitCount)
 	if err != nil {
 		return nil, err
 	}
@@ -208,12 +215,12 @@ func (q *Queries) GetUsers(ctx context.Context, arg GetUsersParams) ([]User, err
 const updateUser = `-- name: UpdateUser :one
 UPDATE users
 SET
-    first_name = COALESCE($2, first_name),
-    last_name = COALESCE($3, last_name),
-    phone = COALESCE($4, phone),
-    bio = COALESCE($5, bio),
-    profile_pic_url = COALESCE($6, profile_pic_url)
-WHERE id = $1
+    first_name = COALESCE($1, first_name),
+    last_name = COALESCE($2, last_name),
+    phone = COALESCE($3, phone),
+    bio = COALESCE($4, bio),
+    profile_pic_url = COALESCE($5, profile_pic_url)
+WHERE id = $6
 RETURNING
   id,
   email,
@@ -229,22 +236,22 @@ RETURNING
 `
 
 type UpdateUserParams struct {
-	ID            int32
 	FirstName     pgtype.Text
 	LastName      pgtype.Text
 	Phone         pgtype.Text
 	Bio           pgtype.Text
 	ProfilePicUrl pgtype.Text
+	ID            pgtype.UUID
 }
 
 func (q *Queries) UpdateUser(ctx context.Context, arg UpdateUserParams) (User, error) {
 	row := q.db.QueryRow(ctx, updateUser,
-		arg.ID,
 		arg.FirstName,
 		arg.LastName,
 		arg.Phone,
 		arg.Bio,
 		arg.ProfilePicUrl,
+		arg.ID,
 	)
 	var i User
 	err := row.Scan(
@@ -283,7 +290,7 @@ RETURNING
 
 type UpdateUserPasswordParams struct {
 	Password string
-	ID       int32
+	ID       pgtype.UUID
 }
 
 func (q *Queries) UpdateUserPassword(ctx context.Context, arg UpdateUserPasswordParams) (User, error) {

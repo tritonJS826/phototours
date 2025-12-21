@@ -17,8 +17,8 @@ func NewArticleRepository(db db.Querier) *ArticleRepository {
 
 func (r *ArticleRepository) GetArticles(ctx context.Context, limit, offset int32) ([]domain.Article, error) {
 	dbArticles, err := r.db.GetArticles(ctx, db.GetArticlesParams{
-		Limit:  limit,
-		Offset: offset,
+		OffsetCount: offset,
+		LimitCount:  limit,
 	})
 	if err != nil {
 		return nil, handleDBError(err)

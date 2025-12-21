@@ -3,14 +3,16 @@ package mapper
 import (
 	db "pt-general-go/internal/db/sqlc"
 	"pt-general-go/internal/domain"
+
+	"github.com/google/uuid"
 )
 
 func MapToDomainVideos(dbTours []db.Video) []domain.Video {
 	videos := make([]domain.Video, 0, len(dbTours))
 	for _, dbTour := range dbTours {
 		video := domain.Video{
-			ID:        dbTour.ID,
-			TourID:    dbTour.TourID,
+			ID:        PgUUIDToUUID(dbTour.ID),
+			TourID:    PgUUIDToUUID(dbTour.TourID),
 			URL:       dbTour.Url,
 			CreatedAt: dbTour.CreatedAt.Time,
 		}
@@ -24,20 +26,21 @@ func MapToDomainVideos(dbTours []db.Video) []domain.Video {
 	return videos
 }
 
-func MapToDomainVideosByTourIDs(dbVideos []db.Video) map[int32][]domain.Video {
-	result := make(map[int32][]domain.Video)
+func MapToDomainVideosByTourIDs(dbVideos []db.Video) map[uuid.UUID][]domain.Video {
+	result := make(map[uuid.UUID][]domain.Video)
 	for _, dbVideo := range dbVideos {
-		videos := result[dbVideo.TourID]
+		tourID := PgUUIDToUUID(dbVideo.TourID)
+		videos := result[tourID]
 		video := domain.Video{
-			ID:        dbVideo.ID,
-			TourID:    dbVideo.TourID,
+			ID:        PgUUIDToUUID(dbVideo.ID),
+			TourID:    tourID,
 			URL:       dbVideo.Url,
 			CreatedAt: dbVideo.CreatedAt.Time,
 		}
 		if dbVideo.Description.Valid {
 			video.Description = &dbVideo.Description.String
 		}
-		result[dbVideo.TourID] = append(videos, video)
+		result[tourID] = append(videos, video)
 	}
 	return result
 }

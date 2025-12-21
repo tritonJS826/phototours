@@ -28,7 +28,7 @@ WHERE slug = $1
 `
 
 type GetArticleBySlugRow struct {
-	ID          int32
+	ID          pgtype.UUID
 	Slug        string
 	Title       string
 	Excerpt     string
@@ -72,16 +72,16 @@ SELECT
     published_at
 FROM articles
 ORDER BY featured DESC, published_at DESC
-LIMIT $1 OFFSET $2
+LIMIT $2 OFFSET $1
 `
 
 type GetArticlesParams struct {
-	Limit  int32
-	Offset int32
+	OffsetCount int32
+	LimitCount  int32
 }
 
 type GetArticlesRow struct {
-	ID          int32
+	ID          pgtype.UUID
 	Slug        string
 	Title       string
 	Excerpt     string
@@ -94,7 +94,7 @@ type GetArticlesRow struct {
 }
 
 func (q *Queries) GetArticles(ctx context.Context, arg GetArticlesParams) ([]GetArticlesRow, error) {
-	rows, err := q.db.Query(ctx, getArticles, arg.Limit, arg.Offset)
+	rows, err := q.db.Query(ctx, getArticles, arg.OffsetCount, arg.LimitCount)
 	if err != nil {
 		return nil, err
 	}

@@ -7,6 +7,7 @@ import (
 	"pt-general-go/internal/repository/mapper"
 	"strings"
 
+	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
@@ -53,7 +54,7 @@ func (r *TourRepository) CreateTour(ctx context.Context, createTour *domain.Crea
 	}
 
 	if createTour.GuideID != nil {
-		params.GuideID = pgtype.Int4{Int32: *createTour.GuideID, Valid: true}
+		params.GuideID = mapper.UUIDPtrToPgUUID(createTour.GuideID)
 	}
 
 	tour, err := r.db.CreateTour(ctx, params)
@@ -64,8 +65,8 @@ func (r *TourRepository) CreateTour(ctx context.Context, createTour *domain.Crea
 	return mapper.MapToDomainTour(&tour), nil
 }
 
-func (r *TourRepository) GetTourByID(ctx context.Context, id int32) (*domain.Tour, error) {
-	tour, err := r.db.GetTourByID(ctx, id)
+func (r *TourRepository) GetTourByID(ctx context.Context, id uuid.UUID) (*domain.Tour, error) {
+	tour, err := r.db.GetTourByID(ctx, mapper.UUIDToPgUUID(id))
 	if err != nil {
 		return nil, handleDBError(err)
 	}
@@ -82,8 +83,8 @@ func (r *TourRepository) GetTourBySlug(ctx context.Context, slug string) (*domai
 
 func (r *TourRepository) GetTours(ctx context.Context, limit, offset int32, filters *domain.TourFilter) ([]domain.Tour, error) {
 	params := db.GetToursParams{
-		Limit:  limit,
-		Offset: offset,
+		OffsetCount: offset,
+		LimitCount:  limit,
 	}
 
 	if filters != nil {
@@ -119,9 +120,9 @@ func (r *TourRepository) GetTours(ctx context.Context, limit, offset int32, filt
 	return mapper.MapToDomainTours(tours), nil
 }
 
-func (r *TourRepository) UpdateTourByID(ctx context.Context, id int32, req *domain.UpdateTourParams) (*domain.Tour, error) {
+func (r *TourRepository) UpdateTourByID(ctx context.Context, id uuid.UUID, req *domain.UpdateTourParams) (*domain.Tour, error) {
 	params := db.UpdateTourByIDParams{
-		ID: id,
+		ID: mapper.UUIDToPgUUID(id),
 	}
 
 	if req.Title != nil {
@@ -161,7 +162,7 @@ func (r *TourRepository) UpdateTourByID(ctx context.Context, id int32, req *doma
 		params.CoverUrl = pgtype.Text{String: *req.CoverURL, Valid: true}
 	}
 	if req.GuideID != nil {
-		params.GuideID = pgtype.Int4{Int32: *req.GuideID, Valid: true}
+		params.GuideID = mapper.UUIDPtrToPgUUID(req.GuideID)
 	}
 	if req.Languages != nil {
 		params.Languages = *req.Languages
@@ -177,8 +178,8 @@ func (r *TourRepository) UpdateTourByID(ctx context.Context, id int32, req *doma
 	return mapper.MapToDomainTour(&tour), nil
 }
 
-func (r *TourRepository) DeleteTourByID(ctx context.Context, id int32) error {
-	rowsAffected, err := r.db.DeleteTourByID(ctx, id)
+func (r *TourRepository) DeleteTourByID(ctx context.Context, id uuid.UUID) error {
+	rowsAffected, err := r.db.DeleteTourByID(ctx, mapper.UUIDToPgUUID(id))
 	if err != nil {
 		return handleDBError(err)
 	}

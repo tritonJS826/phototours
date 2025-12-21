@@ -3,31 +3,34 @@ package mapper
 import (
 	db "pt-general-go/internal/db/sqlc"
 	"pt-general-go/internal/domain"
+
+	"github.com/google/uuid"
 )
 
-func MapToDomainReviews(dbReviews []db.Review) []domain.Review {
+func MapToDomainReviews(dbReviews []db.GetReviewsByTourIDRow) []domain.Review {
 	reviews := make([]domain.Review, 0, len(dbReviews))
 	for _, dbReview := range dbReviews {
 		reviews = append(reviews, domain.Review{
 			CreatedAt: dbReview.CreatedAt.Time,
 			Comment:   dbReview.Comment.String,
-			ID:        dbReview.ID,
-			TourID:    dbReview.TourID,
-			UserID:    dbReview.UserID,
+			ID:        PgUUIDToUUID(dbReview.ID),
+			TourID:    PgUUIDToUUID(dbReview.TourID),
+			UserID:    PgUUIDToUUID(dbReview.UserID),
 			Rating:    dbReview.Rating,
 		})
 	}
 	return reviews
 }
 
-func MapToDomainReviewsByTourIDs(dbReviews []db.Review) map[int32][]domain.Review {
-	result := make(map[int32][]domain.Review)
+func MapToDomainReviewsByTourIDs(dbReviews []db.GetReviewsByTourIDsRow) map[uuid.UUID][]domain.Review {
+	result := make(map[uuid.UUID][]domain.Review)
 	for _, dbReview := range dbReviews {
-		reviews := result[dbReview.TourID]
-		result[dbReview.TourID] = append(reviews, domain.Review{
-			ID:        dbReview.ID,
-			TourID:    dbReview.TourID,
-			UserID:    dbReview.UserID,
+		tourID := PgUUIDToUUID(dbReview.TourID)
+		reviews := result[tourID]
+		result[tourID] = append(reviews, domain.Review{
+			ID:        PgUUIDToUUID(dbReview.ID),
+			TourID:    tourID,
+			UserID:    PgUUIDToUUID(dbReview.UserID),
 			Rating:    dbReview.Rating,
 			Comment:   dbReview.Comment.String,
 			CreatedAt: dbReview.CreatedAt.Time,

@@ -1,6 +1,10 @@
 package domain
 
-import "time"
+import (
+	"time"
+
+	"github.com/google/uuid"
+)
 
 type Article struct {
 	PublishedAt time.Time
@@ -11,6 +15,6 @@ type Article struct {
 	Excerpt     string
 	Content     string
 	CoverURL    string
-	ID          int32
+	ID          uuid.UUID
 	Featured    bool
 }

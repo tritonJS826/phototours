@@ -7,18 +7,20 @@ package db
 
 import (
 	"context"
+
+	"github.com/jackc/pgx/v5/pgtype"
 )
 
 const getCategoriesByTourID = `-- name: GetCategoriesByTourID :many
 SELECT
-  c.id,
-  c.name
-FROM tour_categories tc
-  JOIN categories c ON tc.category_id = c.id
-WHERE tc.tour_id = $1
+  categories.id,
+  categories.name
+FROM tour_categories
+  JOIN categories ON tour_categories.category_id = categories.id
+WHERE tour_categories.tour_id = $1
 `
 
-func (q *Queries) GetCategoriesByTourID(ctx context.Context, tourID int32) ([]Category, error) {
+func (q *Queries) GetCategoriesByTourID(ctx context.Context, tourID pgtype.UUID) ([]Category, error) {
 	rows, err := q.db.Query(ctx, getCategoriesByTourID, tourID)
 	if err != nil {
 		return nil, err
@@ -40,22 +42,22 @@ func (q *Queries) GetCategoriesByTourID(ctx context.Context, tourID int32) ([]Ca
 
 const getCategoriesByTourIDs = `-- name: GetCategoriesByTourIDs :many
 SELECT
-  tc.tour_id,
-  c.id,
-  c.name
-FROM tour_categories tc
-  JOIN categories c ON tc.category_id = c.id
-WHERE tc.tour_id = ANY($1::int[])
+  tour_categories.tour_id,
+  categories.id,
+  categories.name
+FROM tour_categories
+  JOIN categories ON tour_categories.category_id = categories.id
+WHERE tour_categories.tour_id = ANY($1::uuid[])
 `
 
 type GetCategoriesByTourIDsRow struct {
-	TourID int32
-	ID     int32
+	TourID pgtype.UUID
+	ID     pgtype.UUID
 	Name   string
 }
 
-func (q *Queries) GetCategoriesByTourIDs(ctx context.Context, dollar_1 []int32) ([]GetCategoriesByTourIDsRow, error) {
-	rows, err := q.db.Query(ctx, getCategoriesByTourIDs, dollar_1)
+func (q *Queries) GetCategoriesByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]GetCategoriesByTourIDsRow, error) {
+	rows, err := q.db.Query(ctx, getCategoriesByTourIDs, tourIds)
 	if err != nil {
 		return nil, err
 	}

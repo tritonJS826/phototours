@@ -3,17 +3,18 @@ package mapper
 import (
 	db "pt-general-go/internal/db/sqlc"
 	"pt-general-go/internal/domain"
-	"time"
+
+	"github.com/google/uuid"
 )
 
 func MapToDomainPhotos(dbTours []db.Photo) []domain.Photo {
 	Photos := make([]domain.Photo, 0, len(dbTours))
 	for _, dbTour := range dbTours {
 		Photo := domain.Photo{
-			ID:        0,
-			TourID:    0,
-			URL:       "",
-			CreatedAt: time.Time{},
+			ID:        PgUUIDToUUID(dbTour.ID),
+			TourID:    PgUUIDToUUID(dbTour.TourID),
+			URL:       dbTour.Url,
+			CreatedAt: dbTour.CreatedAt.Time,
 		}
 
 		if dbTour.Description.Valid {
@@ -25,20 +26,21 @@ func MapToDomainPhotos(dbTours []db.Photo) []domain.Photo {
 	return Photos
 }
 
-func MapToDomainPhotosByTourIDs(dbPhotos []db.Photo) map[int32][]domain.Photo {
-	result := make(map[int32][]domain.Photo)
+func MapToDomainPhotosByTourIDs(dbPhotos []db.Photo) map[uuid.UUID][]domain.Photo {
+	result := make(map[uuid.UUID][]domain.Photo)
 	for _, dbPhoto := range dbPhotos {
-		photos := result[dbPhoto.TourID]
+		tourID := PgUUIDToUUID(dbPhoto.TourID)
+		photos := result[tourID]
 		photo := domain.Photo{
-			ID:        dbPhoto.ID,
-			TourID:    dbPhoto.TourID,
+			ID:        PgUUIDToUUID(dbPhoto.ID),
+			TourID:    tourID,
 			URL:       dbPhoto.Url,
 			CreatedAt: dbPhoto.CreatedAt.Time,
 		}
 		if dbPhoto.Description.Valid {
 			photo.Description = &dbPhoto.Description.String
 		}
-		result[dbPhoto.TourID] = append(photos, photo)
+		result[tourID] = append(photos, photo)
 	}
 	return result
 }

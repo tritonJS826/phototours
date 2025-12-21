@@ -274,7 +274,7 @@ func (ns NullRole) Value() (driver.Value, error) {
 }
 
 type Article struct {
-	ID          int32
+	ID          pgtype.UUID
 	Slug        string
 	Title       string
 	Excerpt     string
@@ -288,9 +288,9 @@ type Article struct {
 }
 
 type Booking struct {
-	ID           int32
-	TourID       int32
-	UserID       int32
+	ID           pgtype.UUID
+	UserID       pgtype.UUID
+	TourDateID   pgtype.UUID
 	Status       BookingStatus
 	Participants int32
 	TotalPrice   float64
@@ -299,13 +299,13 @@ type Booking struct {
 }
 
 type Category struct {
-	ID   int32
+	ID   pgtype.UUID
 	Name string
 }
 
 type Guide struct {
-	ID              int32
-	UserID          int32
+	ID              pgtype.UUID
+	UserID          pgtype.UUID
 	Experience      pgtype.Text
 	Specializations []string
 	CreatedAt       pgtype.Timestamp
@@ -320,8 +320,8 @@ type PageMetadatum struct {
 }
 
 type Payment struct {
-	ID            int32
-	BookingID     int32
+	ID            pgtype.UUID
+	BookingID     pgtype.UUID
 	Amount        float64
 	PaymentMethod PaymentMethod
 	Status        PaymentStatus
@@ -331,36 +331,36 @@ type Payment struct {
 }
 
 type Photo struct {
-	ID          int32
-	TourID      int32
+	ID          pgtype.UUID
+	TourID      pgtype.UUID
 	Url         string
 	Description pgtype.Text
 	CreatedAt   pgtype.Timestamp
 }
 
 type Review struct {
-	ID        int32
-	TourID    int32
-	UserID    int32
+	ID        pgtype.UUID
+	UserID    pgtype.UUID
+	TourID    pgtype.UUID
 	Rating    int32
 	Comment   pgtype.Text
 	CreatedAt pgtype.Timestamp
 }
 
 type Tag struct {
-	ID   int32
+	ID   pgtype.UUID
 	Name string
 }
 
 type Tour struct {
-	ID              int32
+	ID              pgtype.UUID
 	Slug            string
 	Title           string
 	Description     string
 	Difficulty      DifficultyLevel
 	Price           pgtype.Float8
 	Program         []byte
-	GuideID         pgtype.Int4
+	GuideID         pgtype.UUID
 	CoverUrl        pgtype.Text
 	DurationDays    pgtype.Int4
 	EndLocation     pgtype.Text
@@ -373,14 +373,15 @@ type Tour struct {
 }
 
 type TourCategory struct {
-	CategoryID int32
-	TourID     int32
+	CategoryID pgtype.UUID
+	TourID     pgtype.UUID
 }
 
 type TourDate struct {
-	ID          int32
-	TourID      int32
-	Date        pgtype.Timestamp
+	ID          pgtype.UUID
+	TourID      pgtype.UUID
+	DateFrom    pgtype.Timestamp
+	DateTo      pgtype.Timestamp
 	GroupSize   int32
 	IsAvailable bool
 	CreatedAt   pgtype.Timestamp
@@ -388,8 +389,8 @@ type TourDate struct {
 }
 
 type TourMaterial struct {
-	ID        int32
-	TourID    int32
+	ID        pgtype.UUID
+	TourID    pgtype.UUID
 	Title     string
 	Url       string
 	Type      MaterialType
@@ -397,12 +398,12 @@ type TourMaterial struct {
 }
 
 type TourTag struct {
-	TagID  int32
-	TourID int32
+	TagID  pgtype.UUID
+	TourID pgtype.UUID
 }
 
 type User struct {
-	ID            int32
+	ID            pgtype.UUID
 	Email         string
 	Password      string
 	FirstName     string
@@ -416,8 +417,8 @@ type User struct {
 }
 
 type Video struct {
-	ID          int32
-	TourID      int32
+	ID          pgtype.UUID
+	TourID      pgtype.UUID
 	Url         string
 	Description pgtype.Text
 	CreatedAt   pgtype.Timestamp

@@ -16,7 +16,7 @@ INSERT INTO tours (
 ) VALUES (
     @title,
     @description,
-    sqlc.arg(difficulty)::difficulty_level,
+    @difficulty::difficulty_level,
     @program,
     sqlc.narg(price),
     sqlc.narg(start_location),
@@ -66,7 +66,7 @@ SELECT
     created_at,
     updated_at
 FROM tours
-WHERE id = $1;
+WHERE id = @id;
 
 -- name: GetTourBySlug :one
 SELECT
@@ -88,41 +88,41 @@ SELECT
     created_at,
     updated_at
 FROM tours
-WHERE slug = $1;
+WHERE slug = @slug;
 
 -- name: GetTours :many
 SELECT DISTINCT
-    t.id,
-    t.slug,
-    t.title,
-    t.description,
-    t.difficulty,
-    t.price,
-    t.program,
-    t.guide_id,
-    t.cover_url,
-    t.duration_days,
-    t.end_location,
-    t.available_months,
-    t.languages,
-    t.min_age,
-    t.start_location,
-    t.created_at,
-    t.updated_at
-FROM tours t
-LEFT JOIN tour_dates td ON t.id = td.tour_id AND td.is_available = TRUE
+    tours.id,
+    tours.slug,
+    tours.title,
+    tours.description,
+    tours.difficulty,
+    tours.price,
+    tours.program,
+    tours.guide_id,
+    tours.cover_url,
+    tours.duration_days,
+    tours.end_location,
+    tours.available_months,
+    tours.languages,
+    tours.min_age,
+    tours.start_location,
+    tours.created_at,
+    tours.updated_at
+FROM tours
+LEFT JOIN tour_dates ON tours.id = tour_dates.tour_id AND tour_dates.is_available = TRUE
 WHERE
     (sqlc.narg('location')::text IS NULL
-        OR t.start_location ILIKE '%' || sqlc.narg('location')::text || '%'
-        OR t.end_location ILIKE '%' || sqlc.narg('location')::text || '%')
-    AND (sqlc.narg('date_from')::timestamp IS NULL OR td.date >= sqlc.narg('date_from')::timestamp)
-    AND (sqlc.narg('date_to')::timestamp IS NULL OR td.date <= sqlc.narg('date_to')::timestamp)
-    AND (sqlc.narg('group_size')::int IS NULL OR td.group_size >= sqlc.narg('group_size')::int)
-    AND (sqlc.narg('price_min')::float IS NULL OR t.price >= sqlc.narg('price_min')::float)
-    AND (sqlc.narg('price_max')::float IS NULL OR t.price <= sqlc.narg('price_max')::float)
-    AND (sqlc.narg('season_months')::int[] IS NULL OR EXTRACT(MONTH FROM td.date)::int = ANY(sqlc.narg('season_months')::int[]))
-ORDER BY t.created_at DESC
-LIMIT $1 OFFSET $2;
+        OR tours.start_location ILIKE '%' || sqlc.narg('location')::text || '%'
+        OR tours.end_location ILIKE '%' || sqlc.narg('location')::text || '%')
+    AND (sqlc.narg('date_from')::timestamp IS NULL OR tour_dates.date_to >= sqlc.narg('date_from')::timestamp)
+    AND (sqlc.narg('date_to')::timestamp IS NULL OR tour_dates.date_from <= sqlc.narg('date_to')::timestamp)
+    AND (sqlc.narg('group_size')::int IS NULL OR tour_dates.group_size >= sqlc.narg('group_size')::int)
+    AND (sqlc.narg('price_min')::float IS NULL OR tours.price >= sqlc.narg('price_min')::float)
+    AND (sqlc.narg('price_max')::float IS NULL OR tours.price <= sqlc.narg('price_max')::float)
+    AND (sqlc.narg('season_months')::int[] IS NULL OR EXTRACT(MONTH FROM tour_dates.date_from)::int = ANY(sqlc.narg('season_months')::int[]))
+ORDER BY tours.created_at DESC
+LIMIT @limit_count OFFSET @offset_count;
 
 -- name: UpdateTourByID :one
 UPDATE tours
@@ -164,4 +164,4 @@ RETURNING
 
 -- name: DeleteTourByID :execrows
 DELETE FROM tours
-WHERE id = $1;
+WHERE id = @id;

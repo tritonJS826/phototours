@@ -7,18 +7,20 @@ package db
 
 import (
 	"context"
+
+	"github.com/jackc/pgx/v5/pgtype"
 )
 
 const getTagsByTourID = `-- name: GetTagsByTourID :many
 SELECT
-  t.id,
-  t.name
-FROM tour_tags tt
-  JOIN tags t ON tt.tag_id = t.id
-WHERE tt.tour_id = $1
+  tags.id,
+  tags.name
+FROM tour_tags
+  JOIN tags ON tour_tags.tag_id = tags.id
+WHERE tour_tags.tour_id = $1
 `
 
-func (q *Queries) GetTagsByTourID(ctx context.Context, tourID int32) ([]Tag, error) {
+func (q *Queries) GetTagsByTourID(ctx context.Context, tourID pgtype.UUID) ([]Tag, error) {
 	rows, err := q.db.Query(ctx, getTagsByTourID, tourID)
 	if err != nil {
 		return nil, err
@@ -40,22 +42,22 @@ func (q *Queries) GetTagsByTourID(ctx context.Context, tourID int32) ([]Tag, err
 
 const getTagsByTourIDs = `-- name: GetTagsByTourIDs :many
 SELECT
-  tt.tour_id,
-  t.id,
-  t.name
-FROM tour_tags tt
-  JOIN tags t ON tt.tag_id = t.id
-WHERE tt.tour_id = ANY($1::int[])
+  tour_tags.tour_id,
+  tags.id,
+  tags.name
+FROM tour_tags
+  JOIN tags ON tour_tags.tag_id = tags.id
+WHERE tour_tags.tour_id = ANY($1::uuid[])
 `
 
 type GetTagsByTourIDsRow struct {
-	TourID int32
-	ID     int32
+	TourID pgtype.UUID
+	ID     pgtype.UUID
 	Name   string
 }
 
-func (q *Queries) GetTagsByTourIDs(ctx context.Context, dollar_1 []int32) ([]GetTagsByTourIDsRow, error) {
-	rows, err := q.db.Query(ctx, getTagsByTourIDs, dollar_1)
+func (q *Queries) GetTagsByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]GetTagsByTourIDsRow, error) {
+	rows, err := q.db.Query(ctx, getTagsByTourIDs, tourIds)
 	if err != nil {
 		return nil, err
 	}
