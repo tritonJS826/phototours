@@ -8,7 +8,7 @@ import (
 
 func MapToDomainGuide(dbGuide *db.GetGuideWithUserByIDRow) *domain.Guide {
 	user := &domain.User{
-		ID:        dbGuide.UserID,
+		ID:        PgUUIDToUUID(dbGuide.UserID),
 		FirstName: dbGuide.UserFirstName,
 		LastName:  dbGuide.UserLastName,
 		Email:     dbGuide.UserEmail,
@@ -31,8 +31,8 @@ func MapToDomainGuide(dbGuide *db.GetGuideWithUserByIDRow) *domain.Guide {
 	}
 
 	guide := &domain.Guide{
-		ID:              dbGuide.GuideID,
-		UserID:          dbGuide.UserID,
+		ID:              PgUUIDToUUID(dbGuide.GuideID),
+		UserID:          PgUUIDToUUID(dbGuide.UserID),
 		Specializations: dbGuide.GuideSpecializations,
 		CreatedAt:       dbGuide.GuideCreatedAt.Time,
 		UpdatedAt:       dbGuide.GuideUpdatedAt.Time,
@@ -48,7 +48,7 @@ func MapToDomainGuide(dbGuide *db.GetGuideWithUserByIDRow) *domain.Guide {
 
 func MapToDomainGuideFromBatch(dbGuide *db.GetGuidesWithUserByIDsRow) *domain.Guide {
 	user := &domain.User{
-		ID:        dbGuide.UserID,
+		ID:        PgUUIDToUUID(dbGuide.UserID),
 		FirstName: dbGuide.UserFirstName,
 		LastName:  dbGuide.UserLastName,
 		Email:     dbGuide.UserEmail,
@@ -70,8 +70,8 @@ func MapToDomainGuideFromBatch(dbGuide *db.GetGuidesWithUserByIDsRow) *domain.Gu
 	}
 
 	guide := &domain.Guide{
-		ID:              dbGuide.GuideID,
-		UserID:          dbGuide.UserID,
+		ID:              PgUUIDToUUID(dbGuide.GuideID),
+		UserID:          PgUUIDToUUID(dbGuide.UserID),
 		Specializations: dbGuide.GuideSpecializations,
 		CreatedAt:       dbGuide.GuideCreatedAt.Time,
 		UpdatedAt:       dbGuide.GuideUpdatedAt.Time,

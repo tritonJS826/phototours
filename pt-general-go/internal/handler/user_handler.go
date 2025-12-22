@@ -8,6 +8,7 @@ import (
 	"pt-general-go/internal/handler/dto"
 
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 	"go.uber.org/zap"
 )
 
@@ -17,24 +18,23 @@ import (
 // @Tags users
 // @Accept json
 // @Produce json
-// @Param id path int true "User ID"
+// @Param id path string true "User ID (UUID)"
 // @Success 200 {object} dto.PublicProfileDTO
 // @Failure 400 {object} map[string]string
 // @Failure 404 {object} map[string]string
 // @Failure 500 {object} map[string]string
 // @Router /users/{id}/public [get]
 func (h *Handler) GetPublicProfile(ctx *gin.Context) {
-	idString := ctx.Param("id")
-	idVal, err := strconv.ParseInt(idString, 10, 32)
+	userID, err := uuid.Parse(ctx.Param("id"))
 	if err != nil {
-		h.logger.Error("failed to parse user ID", zap.String("id", idString), zap.Error(err))
+		h.logger.Error("failed to parse user ID", zap.String("id", ctx.Param("id")), zap.Error(err))
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": fmt.Sprintf("Invalid user ID: %v", err)})
 		return
 	}
-	id := int32(idVal)
-	user, err := h.services.UserService.GetUserByID(ctx, id)
+
+	user, err := h.services.UserService.GetUserByID(ctx, userID)
 	if err != nil {
-		h.logger.Error("failed to get user by ID", zap.Int32("user_id", id), zap.Error(err))
+		h.logger.Error("failed to get user by ID", zap.String("user_id", userID.String()), zap.Error(err))
 		h.handleError(ctx, err)
 		return
 	}

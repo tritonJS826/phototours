@@ -7,6 +7,8 @@ package db
 
 import (
 	"context"
+
+	"github.com/jackc/pgx/v5/pgtype"
 )
 
 const getVideosByTourID = `-- name: GetVideosByTourID :many
@@ -20,7 +22,7 @@ FROM videos
 WHERE tour_id = $1
 `
 
-func (q *Queries) GetVideosByTourID(ctx context.Context, tourID int32) ([]Video, error) {
+func (q *Queries) GetVideosByTourID(ctx context.Context, tourID pgtype.UUID) ([]Video, error) {
 	rows, err := q.db.Query(ctx, getVideosByTourID, tourID)
 	if err != nil {
 		return nil, err
@@ -54,11 +56,11 @@ SELECT
   description,
   created_at
 FROM videos
-WHERE tour_id = ANY($1::int[])
+WHERE tour_id = ANY($1::uuid[])
 `
 
-func (q *Queries) GetVideosByTourIDs(ctx context.Context, dollar_1 []int32) ([]Video, error) {
-	rows, err := q.db.Query(ctx, getVideosByTourIDs, dollar_1)
+func (q *Queries) GetVideosByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]Video, error) {
+	rows, err := q.db.Query(ctx, getVideosByTourIDs, tourIds)
 	if err != nil {
 		return nil, err
 	}

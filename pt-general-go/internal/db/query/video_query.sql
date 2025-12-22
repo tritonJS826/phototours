@@ -6,7 +6,7 @@ SELECT
   description,
   created_at
 FROM videos
-WHERE tour_id = $1;
+WHERE tour_id = @tour_id;
 
 -- name: GetVideosByTourIDs :many
 SELECT
@@ -16,4 +16,4 @@ SELECT
   description,
   created_at
 FROM videos
-WHERE tour_id = ANY($1::int[]);
+WHERE tour_id = ANY(@tour_ids::uuid[]);

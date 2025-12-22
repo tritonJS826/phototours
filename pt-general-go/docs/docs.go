@@ -984,8 +984,8 @@ const docTemplate = `{
                 "summary": "Get tour by ID",
                 "parameters": [
                     {
-                        "type": "integer",
-                        "description": "Tour ID",
+                        "type": "string",
+                        "description": "Tour ID (UUID)",
                         "name": "id",
                         "in": "path",
                         "required": true
@@ -1046,8 +1046,8 @@ const docTemplate = `{
                 "summary": "Delete tour by ID (Guide/Admin only)",
                 "parameters": [
                     {
-                        "type": "integer",
-                        "description": "Tour ID",
+                        "type": "string",
+                        "description": "Tour ID (UUID)",
                         "name": "id",
                         "in": "path",
                         "required": true
@@ -1123,8 +1123,8 @@ const docTemplate = `{
                 "summary": "Update tour by ID (Guide/Admin only)",
                 "parameters": [
                     {
-                        "type": "integer",
-                        "description": "Tour ID",
+                        "type": "string",
+                        "description": "Tour ID (UUID)",
                         "name": "id",
                         "in": "path",
                         "required": true
@@ -1292,8 +1292,8 @@ const docTemplate = `{
                 "summary": "Get public user profile",
                 "parameters": [
                     {
-                        "type": "integer",
-                        "description": "User ID",
+                        "type": "string",
+                        "description": "User ID (UUID)",
                         "name": "id",
                         "in": "path",
                         "required": true
@@ -1342,7 +1342,7 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "name": {
                     "type": "string"
@@ -1372,7 +1372,7 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "specializations": {
                     "type": "array",
@@ -1387,7 +1387,7 @@ const docTemplate = `{
                     "$ref": "#/definitions/domain.User"
                 },
                 "userId": {
-                    "type": "integer"
+                    "type": "string"
                 }
             }
         },
@@ -1444,10 +1444,10 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "tourId": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "url": {
                     "type": "string"
@@ -1493,16 +1493,16 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "rating": {
                     "type": "integer"
                 },
                 "tourId": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "userId": {
-                    "type": "integer"
+                    "type": "string"
                 }
             }
         },
@@ -1523,7 +1523,7 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "name": {
                     "type": "string"
@@ -1558,10 +1558,10 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "guideId": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "languages": {
                     "type": "array",
@@ -1598,20 +1598,23 @@ const docTemplate = `{
                 "createdAt": {
                     "type": "string"
                 },
-                "date": {
+                "dateFrom": {
+                    "type": "string"
+                },
+                "dateTo": {
                     "type": "string"
                 },
                 "groupSize": {
                     "type": "integer"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "isAvailable": {
                     "type": "boolean"
                 },
                 "tourId": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "updatedAt": {
                     "type": "string"
@@ -1661,10 +1664,10 @@ const docTemplate = `{
                     "$ref": "#/definitions/domain.Guide"
                 },
                 "guideId": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "languages": {
                     "type": "array",
@@ -1738,13 +1741,13 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "title": {
                     "type": "string"
                 },
                 "tourId": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "type": {
                     "$ref": "#/definitions/domain.MaterialType"
@@ -1770,7 +1773,7 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "lastName": {
                     "type": "string"
@@ -1799,10 +1802,10 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "tourId": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "url": {
                     "type": "string"
@@ -1831,7 +1834,7 @@ const docTemplate = `{
                     "type": "boolean"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "publishedAt": {
                     "type": "string"
@@ -1863,7 +1866,7 @@ const docTemplate = `{
                     "type": "boolean"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "publishedAt": {
                     "type": "string"
@@ -1943,8 +1946,8 @@ const docTemplate = `{
                     "example": "Astana"
                 },
                 "guideId": {
-                    "type": "integer",
-                    "example": 1
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614174000"
                 },
                 "languages": {
                     "type": "array",
@@ -1991,7 +1994,7 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "lastName": {
                     "type": "string"
@@ -2058,8 +2061,8 @@ const docTemplate = `{
                     "example": "Osh"
                 },
                 "guideId": {
-                    "type": "integer",
-                    "example": 2
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614174000"
                 },
                 "languages": {
                     "type": "array",
@@ -2113,7 +2116,7 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "lastName": {
                     "type": "string"

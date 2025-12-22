@@ -15,8 +15,8 @@ const (
 	GetUsersEndpoint   = GeneralEndpoint + "/users"
 )
 
-func getPublicProfileEndpoint(id int32) string {
-	return fmt.Sprintf("%v/%d/public", GetUsersEndpoint, id)
+func getPublicProfileEndpoint(id string) string {
+	return fmt.Sprintf("%v/%s/public", GetUsersEndpoint, id)
 }
 
 func (s *APITestSuite) TestAuthFlow() {
@@ -87,7 +87,7 @@ func (s *APITestSuite) getProfile(token string) dto.UserDTO {
 	return user
 }
 
-func (s *APITestSuite) getPublicProfile(id int32) dto.PublicProfileDTO {
+func (s *APITestSuite) getPublicProfile(id string) dto.PublicProfileDTO {
 	url := s.basePath + getPublicProfileEndpoint(id)
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	s.Require().NoError(err)

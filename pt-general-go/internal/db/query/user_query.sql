@@ -10,7 +10,14 @@ INSERT INTO users (
     role
 )
 VALUES (
-    $1, $2, $3, $4, $5, $6, $7, $8
+    @email,
+    @password,
+    @first_name,
+    @last_name,
+    @phone,
+    @bio,
+    @profile_pic_url,
+    @role
 )
 RETURNING
   id,
@@ -39,7 +46,7 @@ SELECT
     created_at,
     updated_at
 FROM users
-WHERE id = $1;
+WHERE id = @id;
 
 -- name: GetUserByEmail :one
 SELECT
@@ -55,7 +62,7 @@ SELECT
     created_at,
     updated_at
 FROM users
-WHERE email = $1;
+WHERE email = @email;
 
 -- name: GetUsers :many
 SELECT
@@ -72,7 +79,7 @@ SELECT
     updated_at
 FROM users
 ORDER BY created_at DESC
-LIMIT $1 OFFSET $2;
+LIMIT @limit_count OFFSET @offset_count;
 
 -- name: UpdateUser :one
 UPDATE users
@@ -82,7 +89,7 @@ SET
     phone = COALESCE(sqlc.narg('phone'), phone),
     bio = COALESCE(sqlc.narg('bio'), bio),
     profile_pic_url = COALESCE(sqlc.narg('profile_pic_url'), profile_pic_url)
-WHERE id = $1
+WHERE id = @id
 RETURNING
   id,
   email,
@@ -98,8 +105,8 @@ RETURNING
 
 -- name: UpdateUserPassword :one
 UPDATE users
-SET password = $1
-WHERE id = $2
+SET password = @password
+WHERE id = @id
 RETURNING
   id,
   email,

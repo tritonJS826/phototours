@@ -13,36 +13,36 @@ import (
 
 const getGuideWithUserByID = `-- name: GetGuideWithUserByID :one
 SELECT
-  g.id                 AS guide_id,
-  g.user_id            AS guide_user_id,
-  g.experience         AS guide_experience,
-  g.specializations    AS guide_specializations,
-  g.created_at         AS guide_created_at,
-  g.updated_at         AS guide_updated_at,
+  guides.id                 AS guide_id,
+  guides.user_id            AS guide_user_id,
+  guides.experience         AS guide_experience,
+  guides.specializations    AS guide_specializations,
+  guides.created_at         AS guide_created_at,
+  guides.updated_at         AS guide_updated_at,
 
-  u.id                 AS user_id,
-  u.email              AS user_email,
-  u.first_name         AS user_first_name,
-  u.last_name          AS user_last_name,
-  u.phone              AS user_phone,
-  u.bio                AS user_bio,
-  u.profile_pic_url    AS user_profile_pic_url,
-  u.role               AS user_role,
-  u.created_at         AS user_created_at,
-  u.updated_at         AS user_updated_at
-FROM guides g
-JOIN users u ON g.user_id = u.id
-WHERE g.id = $1
+  users.id                 AS user_id,
+  users.email              AS user_email,
+  users.first_name         AS user_first_name,
+  users.last_name          AS user_last_name,
+  users.phone              AS user_phone,
+  users.bio                AS user_bio,
+  users.profile_pic_url    AS user_profile_pic_url,
+  users.role               AS user_role,
+  users.created_at         AS user_created_at,
+  users.updated_at         AS user_updated_at
+FROM guides
+JOIN users ON guides.user_id = users.id
+WHERE guides.id = $1
 `
 
 type GetGuideWithUserByIDRow struct {
-	GuideID              int32
-	GuideUserID          int32
+	GuideID              pgtype.UUID
+	GuideUserID          pgtype.UUID
 	GuideExperience      pgtype.Text
 	GuideSpecializations []string
 	GuideCreatedAt       pgtype.Timestamp
 	GuideUpdatedAt       pgtype.Timestamp
-	UserID               int32
+	UserID               pgtype.UUID
 	UserEmail            string
 	UserFirstName        string
 	UserLastName         string
@@ -54,7 +54,7 @@ type GetGuideWithUserByIDRow struct {
 	UserUpdatedAt        pgtype.Timestamp
 }
 
-func (q *Queries) GetGuideWithUserByID(ctx context.Context, id int32) (GetGuideWithUserByIDRow, error) {
+func (q *Queries) GetGuideWithUserByID(ctx context.Context, id pgtype.UUID) (GetGuideWithUserByIDRow, error) {
 	row := q.db.QueryRow(ctx, getGuideWithUserByID, id)
 	var i GetGuideWithUserByIDRow
 	err := row.Scan(
@@ -80,36 +80,36 @@ func (q *Queries) GetGuideWithUserByID(ctx context.Context, id int32) (GetGuideW
 
 const getGuidesWithUserByIDs = `-- name: GetGuidesWithUserByIDs :many
 SELECT
-  g.id                 AS guide_id,
-  g.user_id            AS guide_user_id,
-  g.experience         AS guide_experience,
-  g.specializations    AS guide_specializations,
-  g.created_at         AS guide_created_at,
-  g.updated_at         AS guide_updated_at,
+  guides.id                 AS guide_id,
+  guides.user_id            AS guide_user_id,
+  guides.experience         AS guide_experience,
+  guides.specializations    AS guide_specializations,
+  guides.created_at         AS guide_created_at,
+  guides.updated_at         AS guide_updated_at,
 
-  u.id                 AS user_id,
-  u.email              AS user_email,
-  u.first_name         AS user_first_name,
-  u.last_name          AS user_last_name,
-  u.phone              AS user_phone,
-  u.bio                AS user_bio,
-  u.profile_pic_url    AS user_profile_pic_url,
-  u.role               AS user_role,
-  u.created_at         AS user_created_at,
-  u.updated_at         AS user_updated_at
-FROM guides g
-JOIN users u ON g.user_id = u.id
-WHERE g.id = ANY($1::int[])
+  users.id                 AS user_id,
+  users.email              AS user_email,
+  users.first_name         AS user_first_name,
+  users.last_name          AS user_last_name,
+  users.phone              AS user_phone,
+  users.bio                AS user_bio,
+  users.profile_pic_url    AS user_profile_pic_url,
+  users.role               AS user_role,
+  users.created_at         AS user_created_at,
+  users.updated_at         AS user_updated_at
+FROM guides
+JOIN users ON guides.user_id = users.id
+WHERE guides.id = ANY($1::uuid[])
 `
 
 type GetGuidesWithUserByIDsRow struct {
-	GuideID              int32
-	GuideUserID          int32
+	GuideID              pgtype.UUID
+	GuideUserID          pgtype.UUID
 	GuideExperience      pgtype.Text
 	GuideSpecializations []string
 	GuideCreatedAt       pgtype.Timestamp
 	GuideUpdatedAt       pgtype.Timestamp
-	UserID               int32
+	UserID               pgtype.UUID
 	UserEmail            string
 	UserFirstName        string
 	UserLastName         string
@@ -121,8 +121,8 @@ type GetGuidesWithUserByIDsRow struct {
 	UserUpdatedAt        pgtype.Timestamp
 }
 
-func (q *Queries) GetGuidesWithUserByIDs(ctx context.Context, dollar_1 []int32) ([]GetGuidesWithUserByIDsRow, error) {
-	rows, err := q.db.Query(ctx, getGuidesWithUserByIDs, dollar_1)
+func (q *Queries) GetGuidesWithUserByIDs(ctx context.Context, ids []pgtype.UUID) ([]GetGuidesWithUserByIDsRow, error) {
+	rows, err := q.db.Query(ctx, getGuidesWithUserByIDs, ids)
 	if err != nil {
 		return nil, err
 	}

@@ -2,6 +2,8 @@ package dto
 
 import (
 	"pt-general-go/internal/domain"
+
+	"github.com/google/uuid"
 )
 
 type AuthResponse struct {
@@ -14,7 +16,7 @@ type ChangePasswordDTO struct {
 	NewPassword     string `json:"newPassword" binding:"required,min=6"`
 }
 
-func (dto *ChangePasswordDTO) ToDomain(userID int32) *domain.ChangePassword {
+func (dto *ChangePasswordDTO) ToDomain(userID uuid.UUID) *domain.ChangePassword {
 	return &domain.ChangePassword{
 		ID:              userID,
 		CurrentPassword: dto.CurrentPassword,

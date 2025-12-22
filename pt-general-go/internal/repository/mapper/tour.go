@@ -7,7 +7,7 @@ import (
 
 func MapToDomainTour(row *db.Tour) *domain.Tour {
 	tour := &domain.Tour{
-		ID:              row.ID,
+		ID:              PgUUIDToUUID(row.ID),
 		Slug:            row.Slug,
 		Title:           row.Title,
 		Description:     row.Description,
@@ -43,9 +43,7 @@ func MapToDomainTour(row *db.Tour) *domain.Tour {
 		tour.CoverURL = &row.CoverUrl.String
 	}
 
-	if row.GuideID.Valid {
-		tour.GuideID = &row.GuideID.Int32
-	}
+	tour.GuideID = PgUUIDToUUIDPtr(row.GuideID)
 
 	return tour
 }
@@ -54,7 +52,7 @@ func MapToDomainTours(rows []db.Tour) []domain.Tour {
 	tours := make([]domain.Tour, 0, len(rows))
 	for _, row := range rows {
 		tour := domain.Tour{
-			ID:              row.ID,
+			ID:              PgUUIDToUUID(row.ID),
 			Slug:            row.Slug,
 			Title:           row.Title,
 			Description:     row.Description,
@@ -90,9 +88,7 @@ func MapToDomainTours(rows []db.Tour) []domain.Tour {
 			tour.CoverURL = &row.CoverUrl.String
 		}
 
-		if row.GuideID.Valid {
-			tour.GuideID = &row.GuideID.Int32
-		}
+		tour.GuideID = PgUUIDToUUIDPtr(row.GuideID)
 
 		tours = append(tours, tour)
 	}

@@ -7,7 +7,7 @@ import (
 
 func MapToDomainArticle(dbArticle *sqlc.GetArticleBySlugRow) *domain.Article {
 	article := &domain.Article{
-		ID:          dbArticle.ID,
+		ID:          PgUUIDToUUID(dbArticle.ID),
 		Slug:        dbArticle.Slug,
 		Title:       dbArticle.Title,
 		Excerpt:     dbArticle.Excerpt,
@@ -32,7 +32,7 @@ func MapToDomainArticles(dbArticles []sqlc.GetArticlesRow) []domain.Article {
 	articles := make([]domain.Article, 0, len(dbArticles))
 	for _, dbArticle := range dbArticles {
 		article := domain.Article{
-			ID:          dbArticle.ID,
+			ID:          PgUUIDToUUID(dbArticle.ID),
 			Slug:        dbArticle.Slug,
 			Title:       dbArticle.Title,
 			Excerpt:     dbArticle.Excerpt,

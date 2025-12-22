@@ -15,12 +15,12 @@ type UserDTO struct {
 	ProfilePicURL string `json:"profilePicUrl"`
 	Bio           string `json:"bio"`
 	CreatedAt     string `json:"createdAt"`
-	ID            int32  `json:"id"`
+	ID            string `json:"id"`
 }
 
 func MapToUserDTO(u *domain.User) UserDTO {
 	return UserDTO{
-		ID:            u.ID,
+		ID:            u.ID.String(),
 		FirstName:     u.FirstName,
 		LastName:      u.LastName,
 		Email:         u.Email,
@@ -36,7 +36,7 @@ func MapToUserDTOs(domainUsers []domain.User) []UserDTO {
 	dtos := make([]UserDTO, 0, len(domainUsers))
 	for _, dUser := range domainUsers {
 		dtos = append(dtos, UserDTO{
-			ID:            dUser.ID,
+			ID:            dUser.ID.String(),
 			FirstName:     dUser.FirstName,
 			LastName:      dUser.LastName,
 			Email:         dUser.Email,
@@ -55,12 +55,12 @@ type PublicProfileDTO struct {
 	LastName      string `json:"lastName"`
 	ProfilePicURL string `json:"profilePicUrl"`
 	Bio           string `json:"bio"`
-	ID            int32  `json:"id"`
+	ID            string `json:"id"`
 }
 
 func MapToPublicProfileDTO(dUser *domain.User) PublicProfileDTO {
 	return PublicProfileDTO{
-		ID:            dUser.ID,
+		ID:            dUser.ID.String(),
 		FirstName:     dUser.FirstName,
 		LastName:      dUser.LastName,
 		ProfilePicURL: utils.StringPtrToString(dUser.ProfilePicURL),

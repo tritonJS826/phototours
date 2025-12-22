@@ -7,6 +7,8 @@ package db
 
 import (
 	"context"
+
+	"github.com/jackc/pgx/v5/pgtype"
 )
 
 const getReviewAmountAndStarAmount = `-- name: GetReviewAmountAndStarAmount :one
@@ -22,7 +24,7 @@ type GetReviewAmountAndStarAmountRow struct {
 	StarAmount   float64
 }
 
-func (q *Queries) GetReviewAmountAndStarAmount(ctx context.Context, tourID int32) (GetReviewAmountAndStarAmountRow, error) {
+func (q *Queries) GetReviewAmountAndStarAmount(ctx context.Context, tourID pgtype.UUID) (GetReviewAmountAndStarAmountRow, error) {
 	row := q.db.QueryRow(ctx, getReviewAmountAndStarAmount, tourID)
 	var i GetReviewAmountAndStarAmountRow
 	err := row.Scan(&i.ReviewAmount, &i.StarAmount)
@@ -35,18 +37,18 @@ SELECT
     COUNT(*) as review_amount,
     COALESCE(ROUND(AVG(rating)::numeric, 1), 0)::float8 as star_amount
 FROM reviews
-WHERE tour_id = ANY($1::int[])
+WHERE tour_id = ANY($1::uuid[])
 GROUP BY tour_id
 `
 
 type GetReviewAmountAndStarAmountByTourIDsRow struct {
-	TourID       int32
+	TourID       pgtype.UUID
 	ReviewAmount int64
 	StarAmount   float64
 }
 
-func (q *Queries) GetReviewAmountAndStarAmountByTourIDs(ctx context.Context, dollar_1 []int32) ([]GetReviewAmountAndStarAmountByTourIDsRow, error) {
-	rows, err := q.db.Query(ctx, getReviewAmountAndStarAmountByTourIDs, dollar_1)
+func (q *Queries) GetReviewAmountAndStarAmountByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]GetReviewAmountAndStarAmountByTourIDsRow, error) {
+	rows, err := q.db.Query(ctx, getReviewAmountAndStarAmountByTourIDs, tourIds)
 	if err != nil {
 		return nil, err
 	}
@@ -78,15 +80,24 @@ WHERE tour_id = $1
 ORDER BY created_at DESC
 `
 
-func (q *Queries) GetReviewsByTourID(ctx context.Context, tourID int32) ([]Review, error) {
+type GetReviewsByTourIDRow struct {
+	ID        pgtype.UUID
+	TourID    pgtype.UUID
+	UserID    pgtype.UUID
+	Rating    int32
+	Comment   pgtype.Text
+	CreatedAt pgtype.Timestamp
+}
+
+func (q *Queries) GetReviewsByTourID(ctx context.Context, tourID pgtype.UUID) ([]GetReviewsByTourIDRow, error) {
 	rows, err := q.db.Query(ctx, getReviewsByTourID, tourID)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	items := []Review{}
+	items := []GetReviewsByTourIDRow{}
 	for rows.Next() {
-		var i Review
+		var i GetReviewsByTourIDRow
 		if err := rows.Scan(
 			&i.ID,
 			&i.TourID,
@@ -114,19 +125,28 @@ SELECT
     comment,
     created_at
 FROM reviews
-WHERE tour_id = ANY($1::int[])
+WHERE tour_id = ANY($1::uuid[])
 ORDER BY tour_id, created_at DESC
 `
 
-func (q *Queries) GetReviewsByTourIDs(ctx context.Context, dollar_1 []int32) ([]Review, error) {
-	rows, err := q.db.Query(ctx, getReviewsByTourIDs, dollar_1)
+type GetReviewsByTourIDsRow struct {
+	ID        pgtype.UUID
+	TourID    pgtype.UUID
+	UserID    pgtype.UUID
+	Rating    int32
+	Comment   pgtype.Text
+	CreatedAt pgtype.Timestamp
+}
+
+func (q *Queries) GetReviewsByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]GetReviewsByTourIDsRow, error) {
+	rows, err := q.db.Query(ctx, getReviewsByTourIDs, tourIds)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	items := []Review{}
+	items := []GetReviewsByTourIDsRow{}
 	for rows.Next() {
-		var i Review
+		var i GetReviewsByTourIDsRow
 		if err := rows.Scan(
 			&i.ID,
 			&i.TourID,

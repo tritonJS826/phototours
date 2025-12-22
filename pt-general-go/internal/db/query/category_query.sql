@@ -1,16 +1,16 @@
 -- name: GetCategoriesByTourID :many
 SELECT
-  c.id,
-  c.name
-FROM tour_categories tc
-  JOIN categories c ON tc.category_id = c.id
-WHERE tc.tour_id = $1;
+  categories.id,
+  categories.name
+FROM tour_categories
+  JOIN categories ON tour_categories.category_id = categories.id
+WHERE tour_categories.tour_id = @tour_id;
 
 -- name: GetCategoriesByTourIDs :many
 SELECT
-  tc.tour_id,
-  c.id,
-  c.name
-FROM tour_categories tc
-  JOIN categories c ON tc.category_id = c.id
-WHERE tc.tour_id = ANY($1::int[]);
+  tour_categories.tour_id,
+  categories.id,
+  categories.name
+FROM tour_categories
+  JOIN categories ON tour_categories.category_id = categories.id
+WHERE tour_categories.tour_id = ANY(@tour_ids::uuid[]);

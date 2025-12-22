@@ -15,13 +15,13 @@ type ArticleDetailDTO struct {
 	Content     string  `json:"content"`
 	CoverURL    string  `json:"coverUrl"`
 	PublishedAt string  `json:"publishedAt"`
-	ID          int32   `json:"id"`
+	ID          string  `json:"id"`
 	Featured    bool    `json:"featured"`
 }
 
 func MapToArticleDetailDTO(a *domain.Article) ArticleDetailDTO {
 	return ArticleDetailDTO{
-		ID:          a.ID,
+		ID:          a.ID.String(),
 		Slug:        a.Slug,
 		Title:       a.Title,
 		Excerpt:     a.Excerpt,
@@ -42,7 +42,7 @@ type ArticleSummaryDTO struct {
 	Excerpt     string  `json:"excerpt"`
 	CoverURL    string  `json:"coverUrl"`
 	PublishedAt string  `json:"publishedAt"`
-	ID          int32   `json:"id"`
+	ID          string  `json:"id"`
 	Featured    bool    `json:"featured"`
 }
 
@@ -50,7 +50,7 @@ func MapToArticleSummaryDTOs(a []domain.Article) []ArticleSummaryDTO {
 	articles := make([]ArticleSummaryDTO, 0, len(a))
 	for _, dArticle := range a {
 		articles = append(articles, ArticleSummaryDTO{
-			ID:          dArticle.ID,
+			ID:          dArticle.ID.String(),
 			Slug:        dArticle.Slug,
 			Title:       dArticle.Title,
 			Excerpt:     dArticle.Excerpt,

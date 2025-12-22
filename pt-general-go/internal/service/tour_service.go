@@ -5,6 +5,7 @@ import (
 	"pt-general-go/internal/domain"
 	"pt-general-go/internal/repository"
 
+	"github.com/google/uuid"
 	"go.uber.org/zap"
 	"golang.org/x/sync/errgroup"
 )
@@ -52,7 +53,7 @@ func (s *TourService) CreateTour(ctx context.Context, createTour *domain.CreateT
 	return s.tourRepository.CreateTour(ctx, createTour)
 }
 
-func (s *TourService) GetTourFullByID(ctx context.Context, id int32) (*domain.TourFull, error) {
+func (s *TourService) GetTourFullByID(ctx context.Context, id uuid.UUID) (*domain.TourFull, error) {
 	tour, err := s.tourRepository.GetTourByID(ctx, id)
 	if err != nil {
 		return nil, err
@@ -78,8 +79,8 @@ func (s *TourService) GetAllTours(ctx context.Context, limit, offset int32, filt
 		return []domain.TourFull{}, nil
 	}
 
-	tourIDs := make([]int32, len(tours))
-	guideIDsMap := make(map[int32]bool)
+	tourIDs := make([]uuid.UUID, len(tours))
+	guideIDsMap := make(map[uuid.UUID]bool)
 	for i, tour := range tours {
 		tourIDs[i] = tour.ID
 		if tour.GuideID != nil {
@@ -87,22 +88,22 @@ func (s *TourService) GetAllTours(ctx context.Context, limit, offset int32, filt
 		}
 	}
 
-	guideIDs := make([]int32, 0, len(guideIDsMap))
+	guideIDs := make([]uuid.UUID, 0, len(guideIDsMap))
 	for guideID := range guideIDsMap {
 		guideIDs = append(guideIDs, guideID)
 	}
 
 	errGroup, ctx := errgroup.WithContext(ctx)
 	var (
-		guidesMap        map[int32]*domain.Guide
-		videosMap        map[int32][]domain.Video
-		photosMap        map[int32][]domain.Photo
-		tourDatesMap     map[int32][]domain.TourDate
-		tourMaterialsMap map[int32][]domain.TourMaterial
-		tagsMap          map[int32][]domain.Tag
-		categoriesMap    map[int32][]domain.Category
-		reviewsMap       map[int32][]domain.Review
-		reviewInfoMap    map[int32]*domain.ReviewInfo
+		guidesMap        map[uuid.UUID]*domain.Guide
+		videosMap        map[uuid.UUID][]domain.Video
+		photosMap        map[uuid.UUID][]domain.Photo
+		tourDatesMap     map[uuid.UUID][]domain.TourDate
+		tourMaterialsMap map[uuid.UUID][]domain.TourMaterial
+		tagsMap          map[uuid.UUID][]domain.Tag
+		categoriesMap    map[uuid.UUID][]domain.Category
+		reviewsMap       map[uuid.UUID][]domain.Review
+		reviewInfoMap    map[uuid.UUID]*domain.ReviewInfo
 	)
 
 	errGroup.Go(func() error {
@@ -257,7 +258,7 @@ func (s *TourService) buildTourFull(ctx context.Context, tour *domain.Tour) (*do
 	}, nil
 }
 
-func (s *TourService) UpdateTourByID(ctx context.Context, id int32, updateTourRequest *domain.UpdateTourParams) (*domain.TourFull, error) {
+func (s *TourService) UpdateTourByID(ctx context.Context, id uuid.UUID, updateTourRequest *domain.UpdateTourParams) (*domain.TourFull, error) {
 	tour, err := s.tourRepository.UpdateTourByID(ctx, id, updateTourRequest)
 	if err != nil {
 		return nil, err
@@ -265,6 +266,6 @@ func (s *TourService) UpdateTourByID(ctx context.Context, id int32, updateTourRe
 	return s.buildTourFull(ctx, tour)
 }
 
-func (s *TourService) DeleteTourByID(ctx context.Context, id int32) error {
+func (s *TourService) DeleteTourByID(ctx context.Context, id uuid.UUID) error {
 	return s.tourRepository.DeleteTourByID(ctx, id)
 }

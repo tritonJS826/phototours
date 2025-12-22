@@ -8,16 +8,17 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
+	"github.com/google/uuid"
 )
 
-func GenerateToken(userID int32, role, jwtSecret, expiresIn string) (string, error) {
+func GenerateToken(userID uuid.UUID, role, jwtSecret, expiresIn string) (string, error) {
 	duration, err := parseDuration(expiresIn)
 	if err != nil {
 		return "", fmt.Errorf("invalid expiresIn format: %w", err)
 	}
 
 	claims := jwt.MapClaims{
-		"sub":  userID,
+		"sub":  userID.String(),
 		"role": role,
 		"exp":  time.Now().Add(duration).Unix(),
 	}
@@ -44,21 +45,25 @@ func parseDuration(s string) (time.Duration, error) {
 	return time.ParseDuration(s) // поддерживает "1h", "30m", "15s" и т.д.
 }
 
-func ParseToken(tokenStr string, jwtSecret string) (int64, error) {
+func ParseToken(tokenStr string, jwtSecret string) (uuid.UUID, error) {
 	token, err := jwt.Parse(tokenStr, func(token *jwt.Token) (any, error) {
 		return []byte(jwtSecret), nil
 	})
 	if err != nil {
-		return 0, err
+		return uuid.Nil, err
 	}
 
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
-		sub, ok := claims["sub"].(float64)
+		sub, ok := claims["sub"].(string)
 		if !ok {
-			return 0, errors.New("invalid token: sub claim is not a number")
+			return uuid.Nil, errors.New("invalid token: sub claim is not a string")
 		}
-		return int64(sub), nil
+		userID, err := uuid.Parse(sub)
+		if err != nil {
+			return uuid.Nil, fmt.Errorf("invalid token: sub claim is not a valid UUID: %w", err)
+		}
+		return userID, nil
 	}
 
-	return 0, errors.New("invalid token")
+	return uuid.Nil, errors.New("invalid token")
 }

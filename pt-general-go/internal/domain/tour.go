@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"strings"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 type DifficultyLevel string
@@ -22,7 +24,7 @@ type CreateTourParams struct {
 	StartLocation   *string         `json:"startLocation"`
 	Price           *float64        `json:"price"`
 	DurationDays    *int32          `json:"durationDays"`
-	GuideID         *int32          `json:"guideId"`
+	GuideID         *uuid.UUID      `json:"guideId"`
 	Slug            *string         `json:"slug"`
 	CoverURL        *string         `json:"coverUrl"`
 	Description     string          `json:"description"`
@@ -55,7 +57,7 @@ type UpdateTourParams struct {
 	EndLocation     *string          `json:"endLocation"`
 	Price           *float64         `json:"price"`
 	StartLocation   *string          `json:"startLocation"`
-	GuideID         *int32           `json:"guideId"`
+	GuideID         *uuid.UUID       `json:"guideId"`
 	CoverURL        *string          `json:"coverUrl"`
 	Difficulty      *DifficultyLevel `json:"difficulty"`
 	Description     *string          `json:"description"`
@@ -112,7 +114,7 @@ type Tour struct {
 	EndLocation     *string         `json:"endLocation"`
 	Price           *float64        `json:"price"`
 	StartLocation   *string         `json:"startLocation"`
-	GuideID         *int32          `json:"guideId"`
+	GuideID         *uuid.UUID      `json:"guideId"`
 	CoverURL        *string         `json:"coverUrl"`
 	Difficulty      DifficultyLevel `json:"difficulty"`
 	Description     string          `json:"description"`
@@ -121,7 +123,7 @@ type Tour struct {
 	Program         json.RawMessage `json:"program" swaggertype:"object"`
 	Languages       []string        `json:"languages"`
 	AvailableMonths []string        `json:"availableMonths"`
-	ID              int32           `json:"id"`
+	ID              uuid.UUID       `json:"id"`
 }
 
 type TourFull struct {
@@ -151,15 +153,15 @@ type Booking struct {
 	UpdatedAt    time.Time     `json:"updatedAt"`
 	Status       BookingStatus `json:"status"`
 	TotalPrice   float64       `json:"totalPrice"`
-	ID           int32         `json:"id"`
-	TourID       int32         `json:"tourId"`
-	UserID       int32         `json:"userId"`
+	ID           uuid.UUID     `json:"id"`
+	TourID       uuid.UUID     `json:"tourId"`
+	UserID       uuid.UUID     `json:"userId"`
 	Participants int32         `json:"participants"`
 }
 
 type Category struct {
-	Name string `json:"name"`
-	ID   int32  `json:"id"`
+	Name string    `json:"name"`
+	ID   uuid.UUID `json:"id"`
 }
 
 type Guide struct {
@@ -168,8 +170,8 @@ type Guide struct {
 	Experience      *string   `json:"experience"`
 	User            *User     `json:"user"`
 	Specializations []string  `json:"specializations"`
-	ID              int32     `json:"id"`
-	UserID          int32     `json:"userId"`
+	ID              uuid.UUID `json:"id"`
+	UserID          uuid.UUID `json:"userId"`
 }
 
 type PageMetadatum struct {
@@ -204,24 +206,24 @@ type Payment struct {
 	Status        PaymentStatus `json:"status"`
 	TransactionID string        `json:"transactionId"`
 	Amount        float64       `json:"amount"`
-	ID            int32         `json:"id"`
-	BookingID     int32         `json:"bookingId"`
+	ID            uuid.UUID     `json:"id"`
+	BookingID     uuid.UUID     `json:"bookingId"`
 }
 
 type Photo struct {
 	CreatedAt   time.Time `json:"createdAt"`
 	Description *string   `json:"description"`
 	URL         string    `json:"url"`
-	ID          int32     `json:"id"`
-	TourID      int32     `json:"tourId"`
+	ID          uuid.UUID `json:"id"`
+	TourID      uuid.UUID `json:"tourId"`
 }
 
 type Review struct {
 	CreatedAt time.Time `json:"createdAt"`
 	Comment   string    `json:"comment"`
-	ID        int32     `json:"id"`
-	TourID    int32     `json:"tourId"`
-	UserID    int32     `json:"userId"`
+	ID        uuid.UUID `json:"id"`
+	TourID    uuid.UUID `json:"tourId"`
+	UserID    uuid.UUID `json:"userId"`
 	Rating    int32     `json:"rating"`
 }
 
@@ -231,22 +233,23 @@ type ReviewInfo struct {
 }
 
 type Tag struct {
-	Name string `json:"name"`
-	ID   int32  `json:"id"`
+	Name string    `json:"name"`
+	ID   uuid.UUID `json:"id"`
 }
 
 type TourCategory struct {
-	CategoryID int32 `json:"categoryId"`
-	TourID     int32 `json:"tourId"`
+	CategoryID uuid.UUID `json:"categoryId"`
+	TourID     uuid.UUID `json:"tourId"`
 }
 
 type TourDate struct {
-	Date        time.Time `json:"date"`
+	DateFrom    time.Time `json:"dateFrom"`
+	DateTo      time.Time `json:"dateTo"`
 	CreatedAt   time.Time `json:"createdAt"`
 	UpdatedAt   time.Time `json:"updatedAt"`
-	ID          int32     `json:"id"`
+	ID          uuid.UUID `json:"id"`
 	GroupSize   int32     `json:"groupSize"`
-	TourID      int32     `json:"tourId"`
+	TourID      uuid.UUID `json:"tourId"`
 	IsAvailable bool      `json:"isAvailable"`
 }
 
@@ -321,19 +324,19 @@ type TourMaterial struct {
 	Title     string       `json:"title"`
 	URL       string       `json:"url"`
 	Type      MaterialType `json:"type"`
-	ID        int32        `json:"id"`
-	TourID    int32        `json:"tourId"`
+	ID        uuid.UUID    `json:"id"`
+	TourID    uuid.UUID    `json:"tourId"`
 }
 
 type TourTag struct {
-	TagID  int32 `json:"tagId"`
-	TourID int32 `json:"tourId"`
+	TagID  uuid.UUID `json:"tagId"`
+	TourID uuid.UUID `json:"tourId"`
 }
 
 type Video struct {
 	CreatedAt   time.Time `json:"createdAt"`
 	Description *string   `json:"description"`
 	URL         string    `json:"url"`
-	ID          int32     `json:"id"`
-	TourID      int32     `json:"tourId"`
+	ID          uuid.UUID `json:"id"`
+	TourID      uuid.UUID `json:"tourId"`
 }

@@ -1,6 +1,10 @@
 package domain
 
-import "time"
+import (
+	"time"
+
+	"github.com/google/uuid"
+)
 
 type Role string
 
@@ -30,5 +34,5 @@ type User struct {
 	Email         string    `json:"email"`
 	Password      string    `json:"-"`
 	Role          Role      `json:"role"`
-	ID            int32     `json:"id"`
+	ID            uuid.UUID `json:"id"`
 }

@@ -3,7 +3,7 @@ definitions:
   domain.Category:
     properties:
       id:
-        type: integer
+        type: string
       name:
         type: string
     type: object
@@ -24,7 +24,7 @@ definitions:
       experience:
         type: string
       id:
-        type: integer
+        type: string
       specializations:
         items:
           type: string
@@ -34,7 +34,7 @@ definitions:
       user:
         $ref: '#/definitions/domain.User'
       userId:
-        type: integer
+        type: string
     type: object
   domain.Login:
     properties:
@@ -74,9 +74,9 @@ definitions:
       description:
         type: string
       id:
-        type: integer
+        type: string
       tourId:
-        type: integer
+        type: string
       url:
         type: string
     type: object
@@ -108,13 +108,13 @@ definitions:
       createdAt:
         type: string
       id:
-        type: integer
+        type: string
       rating:
         type: integer
       tourId:
-        type: integer
+        type: string
       userId:
-        type: integer
+        type: string
     type: object
   domain.Role:
     enum:
@@ -129,7 +129,7 @@ definitions:
   domain.Tag:
     properties:
       id:
-        type: integer
+        type: string
       name:
         type: string
     type: object
@@ -152,9 +152,9 @@ definitions:
       endLocation:
         type: string
       guideId:
-        type: integer
+        type: string
       id:
-        type: integer
+        type: string
       languages:
         items:
           type: string
@@ -178,16 +178,18 @@ definitions:
     properties:
       createdAt:
         type: string
-      date:
+      dateFrom:
+        type: string
+      dateTo:
         type: string
       groupSize:
         type: integer
       id:
-        type: integer
+        type: string
       isAvailable:
         type: boolean
       tourId:
-        type: integer
+        type: string
       updatedAt:
         type: string
     type: object
@@ -220,9 +222,9 @@ definitions:
       guide:
         $ref: '#/definitions/domain.Guide'
       guideId:
-        type: integer
+        type: string
       id:
-        type: integer
+        type: string
       languages:
         items:
           type: string
@@ -271,11 +273,11 @@ definitions:
       createdAt:
         type: string
       id:
-        type: integer
+        type: string
       title:
         type: string
       tourId:
-        type: integer
+        type: string
       type:
         $ref: '#/definitions/domain.MaterialType'
       url:
@@ -292,7 +294,7 @@ definitions:
       firstName:
         type: string
       id:
-        type: integer
+        type: string
       lastName:
         type: string
       phone:
@@ -311,9 +313,9 @@ definitions:
       description:
         type: string
       id:
-        type: integer
+        type: string
       tourId:
-        type: integer
+        type: string
       url:
         type: string
     type: object
@@ -332,7 +334,7 @@ definitions:
       featured:
         type: boolean
       id:
-        type: integer
+        type: string
       publishedAt:
         type: string
       slug:
@@ -353,7 +355,7 @@ definitions:
       featured:
         type: boolean
       id:
-        type: integer
+        type: string
       publishedAt:
         type: string
       slug:
@@ -405,8 +407,8 @@ definitions:
         example: Astana
         type: string
       guideId:
-        example: 1
-        type: integer
+        example: 123e4567-e89b-12d3-a456-426614174000
+        type: string
       languages:
         example:
         - English
@@ -443,7 +445,7 @@ definitions:
       firstName:
         type: string
       id:
-        type: integer
+        type: string
       lastName:
         type: string
       profilePicUrl:
@@ -491,8 +493,8 @@ definitions:
         example: Osh
         type: string
       guideId:
-        example: 2
-        type: integer
+        example: 123e4567-e89b-12d3-a456-426614174000
+        type: string
       languages:
         example:
         - English
@@ -530,7 +532,7 @@ definitions:
       firstName:
         type: string
       id:
-        type: integer
+        type: string
       lastName:
         type: string
       phone:
@@ -1138,11 +1140,11 @@ paths:
       - application/json
       description: Delete a tour by ID (requires guide or admin role)
       parameters:
-      - description: Tour ID
+      - description: Tour ID (UUID)
         in: path
         name: id
         required: true
-        type: integer
+        type: string
       produces:
       - application/json
       responses:
@@ -1189,11 +1191,11 @@ paths:
       description: Get full tour information by ID including guide, dates, photos,
         videos, materials, tags, and categories
       parameters:
-      - description: Tour ID
+      - description: Tour ID (UUID)
         in: path
         name: id
         required: true
-        type: integer
+        type: string
       produces:
       - application/json
       responses:
@@ -1227,11 +1229,11 @@ paths:
       - application/json
       description: Update tour information by ID (requires guide or admin role)
       parameters:
-      - description: Tour ID
+      - description: Tour ID (UUID)
         in: path
         name: id
         required: true
-        type: integer
+        type: string
       - description: Update data
         in: body
         name: request
@@ -1380,11 +1382,11 @@ paths:
       - application/json
       description: Get public profile information for a user by ID
       parameters:
-      - description: User ID
+      - description: User ID (UUID)
         in: path
         name: id
         required: true
-        type: integer
+        type: string
       produces:
       - application/json
       responses:

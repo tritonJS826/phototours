@@ -73,7 +73,7 @@ type CreateTourParams struct {
 	CoverUrl        pgtype.Text
 	Languages       []string
 	AvailableMonths []string
-	GuideID         pgtype.Int4
+	GuideID         pgtype.UUID
 }
 
 func (q *Queries) CreateTour(ctx context.Context, arg CreateTourParams) (Tour, error) {
@@ -120,7 +120,7 @@ DELETE FROM tours
 WHERE id = $1
 `
 
-func (q *Queries) DeleteTourByID(ctx context.Context, id int32) (int64, error) {
+func (q *Queries) DeleteTourByID(ctx context.Context, id pgtype.UUID) (int64, error) {
 	result, err := q.db.Exec(ctx, deleteTourByID, id)
 	if err != nil {
 		return 0, err
@@ -151,7 +151,7 @@ FROM tours
 WHERE id = $1
 `
 
-func (q *Queries) GetTourByID(ctx context.Context, id int32) (Tour, error) {
+func (q *Queries) GetTourByID(ctx context.Context, id pgtype.UUID) (Tour, error) {
 	row := q.db.QueryRow(ctx, getTourByID, id)
 	var i Tour
 	err := row.Scan(
@@ -226,42 +226,40 @@ func (q *Queries) GetTourBySlug(ctx context.Context, slug string) (Tour, error) 
 
 const getTours = `-- name: GetTours :many
 SELECT DISTINCT
-    t.id,
-    t.slug,
-    t.title,
-    t.description,
-    t.difficulty,
-    t.price,
-    t.program,
-    t.guide_id,
-    t.cover_url,
-    t.duration_days,
-    t.end_location,
-    t.available_months,
-    t.languages,
-    t.min_age,
-    t.start_location,
-    t.created_at,
-    t.updated_at
-FROM tours t
-LEFT JOIN tour_dates td ON t.id = td.tour_id AND td.is_available = TRUE
+    tours.id,
+    tours.slug,
+    tours.title,
+    tours.description,
+    tours.difficulty,
+    tours.price,
+    tours.program,
+    tours.guide_id,
+    tours.cover_url,
+    tours.duration_days,
+    tours.end_location,
+    tours.available_months,
+    tours.languages,
+    tours.min_age,
+    tours.start_location,
+    tours.created_at,
+    tours.updated_at
+FROM tours
+LEFT JOIN tour_dates ON tours.id = tour_dates.tour_id AND tour_dates.is_available = TRUE
 WHERE
-    ($3::text IS NULL
-        OR t.start_location ILIKE '%' || $3::text || '%'
-        OR t.end_location ILIKE '%' || $3::text || '%')
-    AND ($4::timestamp IS NULL OR td.date >= $4::timestamp)
-    AND ($5::timestamp IS NULL OR td.date <= $5::timestamp)
-    AND ($6::int IS NULL OR td.group_size >= $6::int)
-    AND ($7::float IS NULL OR t.price >= $7::float)
-    AND ($8::float IS NULL OR t.price <= $8::float)
-    AND ($9::int[] IS NULL OR EXTRACT(MONTH FROM td.date)::int = ANY($9::int[]))
-ORDER BY t.created_at DESC
-LIMIT $1 OFFSET $2
+    ($1::text IS NULL
+        OR tours.start_location ILIKE '%' || $1::text || '%'
+        OR tours.end_location ILIKE '%' || $1::text || '%')
+    AND ($2::timestamp IS NULL OR tour_dates.date_to >= $2::timestamp)
+    AND ($3::timestamp IS NULL OR tour_dates.date_from <= $3::timestamp)
+    AND ($4::int IS NULL OR tour_dates.group_size >= $4::int)
+    AND ($5::float IS NULL OR tours.price >= $5::float)
+    AND ($6::float IS NULL OR tours.price <= $6::float)
+    AND ($7::int[] IS NULL OR EXTRACT(MONTH FROM tour_dates.date_from)::int = ANY($7::int[]))
+ORDER BY tours.created_at DESC
+LIMIT $9 OFFSET $8
 `
 
 type GetToursParams struct {
-	Limit        int32
-	Offset       int32
 	Location     pgtype.Text
 	DateFrom     pgtype.Timestamp
 	DateTo       pgtype.Timestamp
@@ -269,12 +267,12 @@ type GetToursParams struct {
 	PriceMin     pgtype.Float8
 	PriceMax     pgtype.Float8
 	SeasonMonths []int32
+	OffsetCount  int32
+	LimitCount   int32
 }
 
 func (q *Queries) GetTours(ctx context.Context, arg GetToursParams) ([]Tour, error) {
 	rows, err := q.db.Query(ctx, getTours,
-		arg.Limit,
-		arg.Offset,
 		arg.Location,
 		arg.DateFrom,
 		arg.DateTo,
@@ -282,6 +280,8 @@ func (q *Queries) GetTours(ctx context.Context, arg GetToursParams) ([]Tour, err
 		arg.PriceMin,
 		arg.PriceMax,
 		arg.SeasonMonths,
+		arg.OffsetCount,
+		arg.LimitCount,
 	)
 	if err != nil {
 		return nil, err
@@ -372,8 +372,8 @@ type UpdateTourByIDParams struct {
 	CoverUrl        pgtype.Text
 	Languages       []string
 	AvailableMonths []string
-	GuideID         pgtype.Int4
-	ID              int32
+	GuideID         pgtype.UUID
+	ID              pgtype.UUID
 }
 
 func (q *Queries) UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) (Tour, error) {

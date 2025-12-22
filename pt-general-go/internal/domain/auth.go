@@ -5,6 +5,8 @@ import (
 	"mime/multipart"
 	"regexp"
 	"strings"
+
+	"github.com/google/uuid"
 )
 
 const MinimalPasswordLength = 6
@@ -59,7 +61,7 @@ type AuthResult struct {
 type ChangePassword struct {
 	CurrentPassword string
 	NewPassword     string
-	ID              int32
+	ID              uuid.UUID
 }
 
 func (cp *ChangePassword) Validate() error {
@@ -104,7 +106,7 @@ type UpdateProfile struct {
 	Phone        *string
 	Bio          *string
 	UploadedPath *string
-	ID           int32
+	ID           uuid.UUID
 }
 
 type UpdateProfileParams struct {
@@ -113,7 +115,7 @@ type UpdateProfileParams struct {
 	Phone     *string
 	Bio       *string
 	File      *multipart.FileHeader
-	ID        int32
+	ID        uuid.UUID
 }
 
 func (d *UpdateProfileParams) Validate() error {
