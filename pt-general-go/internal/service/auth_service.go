@@ -14,6 +14,7 @@ import (
 type AuthService struct {
 	userRepository   *repository.UserRepository
 	uploadRepository *repository.UploadRepository
+	zohoRepository   *repository.ZohoRepository
 	cfg              *config.Config
 	logger           *zap.Logger
 }
@@ -21,12 +22,14 @@ type AuthService struct {
 func NewAuthService(
 	userRepository *repository.UserRepository,
 	uploadRepository *repository.UploadRepository,
+	zohoRepository *repository.ZohoRepository,
 	cfg *config.Config,
 	logger *zap.Logger,
 ) *AuthService {
 	return &AuthService{
 		userRepository:   userRepository,
 		uploadRepository: uploadRepository,
+		zohoRepository:   zohoRepository,
 		cfg:              cfg,
 		logger:           logger,
 	}
@@ -45,6 +48,21 @@ func (s *AuthService) Register(ctx context.Context, register *domain.Register) (
 		s.logger.Error("Failed to create user", zap.Error(err), zap.String("email", register.Email))
 		return nil, err
 	}
+
+	go func() {
+		result, err := s.zohoRepository.CreateLead(context.Background(), &domain.Lead{
+			Company:   "test",
+			LastName:  user.LastName,
+			FirstName: user.FirstName,
+			Email:     user.Email,
+			Phone:     utils.StringPtrToString(user.Phone),
+		})
+		if err != nil {
+			s.logger.Error("Failed to create lead", zap.Error(err), zap.String("email", user.Email))
+			return
+		}
+		s.logger.Debug("Create lead result", zap.Any("result", *result))
+	}()
 
 	token, err := utils.GenerateToken(user.ID, string(user.Role), s.cfg.JWTConfig.Secret, s.cfg.JWTConfig.ExpiresIn)
 	if err != nil {

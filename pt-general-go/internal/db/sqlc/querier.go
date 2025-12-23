@@ -11,6 +11,7 @@ import (
 )
 
 type Querier interface {
+	CreateBookingRequest(ctx context.Context, arg CreateBookingRequestParams) (BookingRequest, error)
 	CreatePageMetadata(ctx context.Context, arg CreatePageMetadataParams) (CreatePageMetadataRow, error)
 	CreateTour(ctx context.Context, arg CreateTourParams) (Tour, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)

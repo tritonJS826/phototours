@@ -444,6 +444,58 @@ const docTemplate = `{
                 }
             }
         },
+        "/bookings": {
+            "post": {
+                "description": "Create a new booking request and get redirect URL for payment",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "bookings"
+                ],
+                "summary": "Create a new booking request",
+                "parameters": [
+                    {
+                        "description": "Booking request data",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.BookingRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/dto.CreateBookingResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/page-metadata": {
             "get": {
                 "description": "Get metadata for a specific page URL",
@@ -1338,6 +1390,23 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "domain.BookingRequest": {
+            "type": "object",
+            "required": [
+                "name",
+                "phone"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "phone": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
         "domain.Category": {
             "type": "object",
             "properties": {
@@ -1903,6 +1972,15 @@ const docTemplate = `{
                 "newPassword": {
                     "type": "string",
                     "minLength": 6
+                }
+            }
+        },
+        "dto.CreateBookingResponse": {
+            "type": "object",
+            "properties": {
+                "redirect_url": {
+                    "type": "string",
+                    "example": "https://stripe.com"
                 }
             }
         },

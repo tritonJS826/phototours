@@ -97,5 +97,10 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 		}
 	}
 
+	bookings := general.Group("/bookings")
+	{
+		bookings.POST("", h.CreateBookingRequest)
+	}
+
 	return router
 }

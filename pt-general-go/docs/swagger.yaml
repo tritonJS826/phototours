@@ -1,5 +1,17 @@
 basePath: /general
 definitions:
+  domain.BookingRequest:
+    properties:
+      name:
+        minLength: 1
+        type: string
+      phone:
+        minLength: 1
+        type: string
+    required:
+    - name
+    - phone
+    type: object
   domain.Category:
     properties:
       id:
@@ -380,6 +392,12 @@ definitions:
     required:
     - currentPassword
     - newPassword
+    type: object
+  dto.CreateBookingResponse:
+    properties:
+      redirect_url:
+        example: https://stripe.com
+        type: string
     type: object
   dto.CreateTourRequest:
     properties:
@@ -829,6 +847,40 @@ paths:
       summary: Register a new user
       tags:
       - auth
+  /bookings:
+    post:
+      consumes:
+      - application/json
+      description: Create a new booking request and get redirect URL for payment
+      parameters:
+      - description: Booking request data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/domain.BookingRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.CreateBookingResponse'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create a new booking request
+      tags:
+      - bookings
   /page-metadata:
     delete:
       consumes:

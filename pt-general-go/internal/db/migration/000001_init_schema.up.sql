@@ -178,3 +178,12 @@ CREATE TABLE payments (
 );
 CREATE TRIGGER set_updated_at_trigger_payments BEFORE
 UPDATE ON payments FOR EACH ROW EXECUTE FUNCTION set_updated_at();
+CREATE TABLE booking_requests (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+CREATE TRIGGER set_updated_at_trigger_booking_requests BEFORE
+UPDATE ON booking_requests FOR EACH ROW EXECUTE FUNCTION set_updated_at();
