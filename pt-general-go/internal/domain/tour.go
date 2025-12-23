@@ -140,25 +140,6 @@ type TourFull struct {
 	ReviewAmount int64   `json:"reviewAmount"`
 }
 
-type BookingStatus string
-
-const (
-	BookingStatusPending   BookingStatus = "PENDING"
-	BookingStatusConfirmed BookingStatus = "CONFIRMED"
-	BookingStatusCancelled BookingStatus = "CANCELLED"
-)
-
-type Booking struct {
-	CreatedAt    time.Time     `json:"createdAt"`
-	UpdatedAt    time.Time     `json:"updatedAt"`
-	Status       BookingStatus `json:"status"`
-	TotalPrice   float64       `json:"totalPrice"`
-	ID           uuid.UUID     `json:"id"`
-	TourID       uuid.UUID     `json:"tourId"`
-	UserID       uuid.UUID     `json:"userId"`
-	Participants int32         `json:"participants"`
-}
-
 type Category struct {
 	Name string    `json:"name"`
 	ID   uuid.UUID `json:"id"`

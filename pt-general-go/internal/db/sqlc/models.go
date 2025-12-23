@@ -298,6 +298,14 @@ type Booking struct {
 	UpdatedAt    pgtype.Timestamp
 }
 
+type BookingRequest struct {
+	ID        pgtype.UUID
+	Name      string
+	Phone     string
+	CreatedAt pgtype.Timestamp
+	UpdatedAt pgtype.Timestamp
+}
+
 type Category struct {
 	ID   pgtype.UUID
 	Name string

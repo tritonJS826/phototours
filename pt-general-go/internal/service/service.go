@@ -10,6 +10,7 @@ import (
 type Service struct {
 	ArticleService      *ArticleService
 	AuthService         *AuthService
+	BookingService      *BookingService
 	DevService          *DevService
 	PageMetadataService *PageMetadataService
 	TourService         *TourService
@@ -19,7 +20,8 @@ type Service struct {
 func NewService(repo *repository.Repository, cfg *config.Config, logger *zap.Logger) *Service {
 	return &Service{
 		ArticleService:      NewArticleService(repo.ArticleRepository, logger),
-		AuthService:         NewAuthService(repo.UserRepository, repo.UploadRepository, cfg, logger),
+		AuthService:         NewAuthService(repo.UserRepository, repo.UploadRepository, repo.ZohoRepository, cfg, logger),
+		BookingService:      NewBookingService(repo.BookingRequestRepository, repo.ZohoRepository, logger),
 		DevService:          NewDevService(repo.ResetRepository),
 		PageMetadataService: NewPageMetadataService(repo.PageMetadataRepository),
 		TourService: NewTourService(

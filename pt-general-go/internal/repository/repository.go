@@ -15,39 +15,43 @@ import (
 )
 
 type Repository struct {
-	ArticleRepository      *ArticleRepository
-	CategoryRepository     *CategoryRepository
-	GuideRepository        *GuideRepository
-	PageMetadataRepository *PageMetadataRepository
-	PhotoRepository        *PhotoRepository
-	ResetRepository        *ResetRepository
-	ReviewRepository       *ReviewRepository
-	TagRepository          *TagRepository
-	TourRepository         *TourRepository
-	TourDateRepository     *TourDateRepository
-	TourMaterialRepository *TourMaterialRepository
-	UploadRepository       *UploadRepository
-	UserRepository         *UserRepository
-	VideoRepository        *VideoRepository
+	ArticleRepository        *ArticleRepository
+	BookingRequestRepository *BookingRequestRepository
+	CategoryRepository       *CategoryRepository
+	GuideRepository          *GuideRepository
+	PageMetadataRepository   *PageMetadataRepository
+	PhotoRepository          *PhotoRepository
+	ResetRepository          *ResetRepository
+	ReviewRepository         *ReviewRepository
+	TagRepository            *TagRepository
+	TourRepository           *TourRepository
+	TourDateRepository       *TourDateRepository
+	TourMaterialRepository   *TourMaterialRepository
+	UploadRepository         *UploadRepository
+	UserRepository           *UserRepository
+	VideoRepository          *VideoRepository
+	ZohoRepository           *ZohoRepository
 }
 
 func NewRepository(cfg *config.Config, dbPool *pgxpool.Pool, cld *cloudinary.Cloudinary) *Repository {
 	queries := db.New(dbPool)
 	return &Repository{
-		ArticleRepository:      NewArticleRepository(queries),
-		CategoryRepository:     NewCategoryRepository(queries),
-		GuideRepository:        NewGuideRepository(queries),
-		PageMetadataRepository: NewPageMetadataRepository(queries),
-		PhotoRepository:        NewPhotoRepository(queries),
-		ResetRepository:        NewResetRepository(queries, dbPool, cfg),
-		ReviewRepository:       NewReviewRepository(queries),
-		TagRepository:          NewTagRepository(queries),
-		TourRepository:         NewTourRepository(queries),
-		TourDateRepository:     NewTourDateRepository(queries),
-		TourMaterialRepository: NewTourMaterialRepository(queries),
-		UserRepository:         NewUserRepository(queries),
-		UploadRepository:       NewUploadRepository(cld, cfg.CloudinaryConfig.UploadFolder),
-		VideoRepository:        NewVideoRepository(queries),
+		ArticleRepository:        NewArticleRepository(queries),
+		BookingRequestRepository: NewBookingRequestRepository(queries),
+		CategoryRepository:       NewCategoryRepository(queries),
+		GuideRepository:          NewGuideRepository(queries),
+		PageMetadataRepository:   NewPageMetadataRepository(queries),
+		PhotoRepository:          NewPhotoRepository(queries),
+		ResetRepository:          NewResetRepository(queries, dbPool, cfg),
+		ReviewRepository:         NewReviewRepository(queries),
+		TagRepository:            NewTagRepository(queries),
+		TourRepository:           NewTourRepository(queries),
+		TourDateRepository:       NewTourDateRepository(queries),
+		TourMaterialRepository:   NewTourMaterialRepository(queries),
+		UserRepository:           NewUserRepository(queries),
+		UploadRepository:         NewUploadRepository(cld, cfg.CloudinaryConfig.UploadFolder),
+		VideoRepository:          NewVideoRepository(queries),
+		ZohoRepository:           NewZohoRepository(&cfg.ZohoConfig),
 	}
 }
 
