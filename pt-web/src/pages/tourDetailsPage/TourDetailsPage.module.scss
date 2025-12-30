@@ -184,6 +184,12 @@
   border-radius: 10px;
 }
 
+.faq {
+  max-width: 1530px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
 .faqTitle {
   font-weight: 600;
   font-size: 25px;
@@ -194,6 +200,10 @@
   width: 100%;
   padding: 30px 0;
   z-index: 0;
+  max-width: 1530px;
+  margin: auto;
+  // 30px - top&bottom margin compensation
+  padding: 30px 20px;
 }
 
 // gray overlay
@@ -212,7 +222,6 @@
 .whyLoveTitle {
   font-weight: 600;
   font-size: 25px;
-  margin-bottom: 30px;
 }
 
 .calcBackStub {
@@ -220,6 +229,7 @@
   width: 480px;
   margin-right: 20px;
   min-width: 480px;
+  margin-bottom: 40px;
 }
 
 .buyTravelBlock {

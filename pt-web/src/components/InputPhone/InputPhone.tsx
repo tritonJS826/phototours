@@ -1,20 +1,19 @@
 import {useState} from "react";
-import PhoneInput, {Value} from "react-phone-number-input";
+import {PhoneInput} from "react-international-phone";
 import clsx from "clsx";
-import "react-phone-number-input/style.css";
 import styles from "src/components/InputPhone/InputPhone.module.scss";
 
 interface InputPhoneProps {
-    onChange: (value: Value) => void;
+    onChange: (value: string) => void;
     className?: string;
+    defaultCountry: string;
+    value: string;
 }
 
 export function InputPhone(props: InputPhoneProps) {
-  // `value` will be the parsed phone number in E.164 format.
-  // Example: "+12133734253".
-  const [value, setValue] = useState<Value>();
+  const [value, setValue] = useState<string>(props.value);
 
-  const onInputCHange = (newValue: Value) => {
+  const onInputCHange = (newValue: string) => {
     if (newValue) {
       props.onChange(newValue);
       setValue(newValue);
@@ -23,6 +22,7 @@ export function InputPhone(props: InputPhoneProps) {
 
   return (
     <PhoneInput
+      defaultCountry={props.defaultCountry}
       placeholder="+1 000 000-000"
       value={value}
       onChange={onInputCHange}

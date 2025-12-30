@@ -508,29 +508,6 @@ export function TourDetailsPage() {
             />
           </div>
 
-          <div className={styles.whyLove}>
-            <div className={styles.whyLovePlaceholder} />
-            <h2 className={styles.whyLoveTitle}>
-              Why travelers love this
-            </h2>
-
-            <ReviewsSection />
-
-          </div>
-
-          <div className={styles.faq}>
-            <h2 className={styles.faqTitle}>
-              FAQ
-            </h2>
-
-            <Accordion
-              items={faqAccordionItemsStub}
-              type={accordionTypes.MULTIPLE}
-              className={styles.accordion}
-            />
-
-          </div>
-
           {/* <div className={styles.grid}>
             <div className={styles.main}>
               <div className={styles.meta}>
@@ -671,6 +648,7 @@ export function TourDetailsPage() {
             </aside>
           </div> */}
         </div>
+
         <div className={styles.calcBackStub}>
           <div className={styles.buyTravelBlock}>
             <div className={styles.buyTravelBlockTitle}>
@@ -862,6 +840,29 @@ export function TourDetailsPage() {
         </div>
 
       </section>
+
+      <div className={styles.whyLove}>
+        <div className={styles.whyLovePlaceholder} />
+        <h2 className={styles.whyLoveTitle}>
+          Why travelers love this
+        </h2>
+
+        <ReviewsSection />
+
+      </div>
+
+      <div className={styles.faq}>
+        <h2 className={styles.faqTitle}>
+          FAQ
+        </h2>
+
+        <Accordion
+          items={faqAccordionItemsStub}
+          type={accordionTypes.MULTIPLE}
+          className={styles.accordion}
+        />
+
+      </div>
       <FeedbackBlock />
     </div>
   );

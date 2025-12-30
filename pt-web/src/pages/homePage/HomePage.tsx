@@ -1,4 +1,5 @@
 // Import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 // Import cart from "/images/cart.svg";
 import email from "/images/email.svg";
@@ -23,10 +24,13 @@ import {PopularWorkshops} from "src/components/PopularWorkshops/PopularWorkshops
 import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
 import {ToursSection} from "src/components/ToursSection/ToursSection";
 import {PATHS} from "src/routes/routes";
+import "react-international-phone/style.css";
 import styles from "src/pages/homePage/HomePage.module.scss";
 
 // Const FEATURED_TOURS_LIMIT = 3;
 export const FeedbackBlock = () => {
+  const [phoneNumber, setPhoneNumber] = useState<string>("");
+
   return (
     <div className={styles.feedBackBlock}>
       <div className={styles.feedBackContent}>
@@ -45,8 +49,10 @@ export const FeedbackBlock = () => {
               placeholder="Name"
             />
             <InputPhone
-              onChange={() => {}}
+              defaultCountry="us"
+              value={phoneNumber}
               className={styles.feedBackPhoneInput}
+              onChange={setPhoneNumber}
             />
             {/* <input
                 type="tel"
