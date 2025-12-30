@@ -15,8 +15,13 @@
 
   .inputGroup {
     display: flex;
-    gap: vars.$gap-sm;
-    width: 100%;
+    gap: 20px;
+    width: 420px;
+
+    @media (max-width: 1340px) {
+      flex-direction: column;
+      width: 280px;
+    }
   }
 
   .inputWrapper {
@@ -28,14 +33,13 @@
       padding: 18px 21px;
       border-radius: 10px;
       font-size: 16px;
-      width: 300px;
+      // width: 100%;
       border: none;
 
       &::placeholder {
         color: vars.$contact-placeholder-color;
         font-size: vars.$font-size-md;
       }
-
     }
   }
 
@@ -46,7 +50,7 @@
     border-radius: 10px;
     border: none;
     font-size: 16px;
-    width: auto;
+    width: 110px;
 
     &:hover {
       background-color: #0E2EAD;

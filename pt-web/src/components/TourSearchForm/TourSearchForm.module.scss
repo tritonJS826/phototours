@@ -9,6 +9,16 @@
   max-width: 1000px;
   margin: 35px auto;
   color: #000;
+
+
+  // оставлю только кнопку, все остальное скрываем
+  @media (max-width: 830px) {
+    background-color: transparent;
+
+    > *:not(.button) {
+      display: none;
+    }
+  }
 }
 
 .verticalSeparator {

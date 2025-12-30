@@ -1,6 +1,6 @@
 // Import {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
-import cart from "/images/cart.svg";
+import {Link, useNavigate} from "react-router-dom";
+// Import cart from "/images/cart.svg";
 import email from "/images/email.svg";
 import getYourGuide from "/images/getYourGuide.svg";
 import instagram from "/images/instagram.svg";
@@ -9,7 +9,7 @@ import phone from "/images/phone.svg";
 import telegram from "/images/telegram.svg";
 import tripAdvisor from "/images/tripAdvisor.svg";
 import trustPilot from "/images/trustPilot.svg";
-import user from "/images/user.svg";
+// Import user from "/images/user.svg";
 import viator from "/images/viator.svg";
 import whatsapp from "/images/whatsapp.svg";
 import clsx from "clsx";
@@ -154,19 +154,18 @@ const RightBlockDark = () => {
       </ul>
       <div className={styles.rightHeaderLinks}>
 
-        <Link to={PATHS.CART}>
+        {/* <Link to={PATHS.CART}>
           <img
             src={cart}
             alt="cart link"
           />
         </Link>
-
         <Link to={PATHS.HOME}>
           <img
             src={user}
             alt="user link"
           />
-        </Link>
+        </Link> */}
 
         <Dropdown
           trigger={(
@@ -273,6 +272,8 @@ export function HomePage() {
   //   // };
   // }, []);
 
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className={styles.heroSectionBg}>
@@ -285,6 +286,7 @@ export function HomePage() {
               <img
                 src={logo}
                 alt="Photo Tour Logo"
+                className={styles.heroLogo}
               />
             </Link>
 
@@ -337,8 +339,11 @@ export function HomePage() {
         <h3 className={styles.wantMoreHeader}>
           Want more options?
         </h3>
-        <button className={styles.wantMoreButton}>
-          Explore all tours ↓
+        <button
+          onClick={() => navigate(PATHS.TOURS)}
+          className={styles.wantMoreButton}
+        >
+          Explore all tours
         </button>
       </div>
 
