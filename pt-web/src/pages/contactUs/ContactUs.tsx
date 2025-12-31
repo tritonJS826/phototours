@@ -1,7 +1,6 @@
-import {memo} from "react";
 import styles from "src/pages/contactUs/ContactUs.module.scss";
 
-export const ContactUs = memo(function ContactUs() {
+export const ContactUs = () => {
   return (
     <main
       className={styles.contactUs}
@@ -58,5 +57,5 @@ export const ContactUs = memo(function ContactUs() {
       <div className={styles.imageBlock} />
     </main>
   );
-});
+};
 
