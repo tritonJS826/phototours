@@ -6,7 +6,6 @@ import blueTelegramAbout from "/images/blueTelegramAbout.svg";
 import blueTravelBags from "/images/blueTravelBags.svg";
 import ourHistoryLeft from "/images/ourHistoryLeft.avif";
 import ourHistoryRight from "/images/ourHistoryRight.avif";
-import {Link} from "src/components/ui/link/Link";
 import {FeedbackBlock} from "src/pages/homePage/HomePage";
 import styles from "src/pages/aboutUs/AboutUsPage.module.scss";
 
@@ -191,8 +190,60 @@ export function AboutUs() {
             </div>
           </div>
         </div>
-
       </main>
+
+      <div className={styles.ourMission}>
+        <div className={styles.ourMissionPlaceholder} />
+        <div className={styles.ourMissionContent}>
+          <h2 className={styles.ourMissionTitle}>
+            Our Mission
+          </h2>
+          <p className={styles.ourMissionDescription}>
+            We believe unforgettable photographs are born where passion meets guidance.
+            Our mission is to inspire, support, and empower every traveler to grow creatively and enjoy Tuscany through a new perspective.
+          </p>
+        </div>
+      </div>
+
+      <div className={styles.ourValuesBlock}>
+        <h2 className={styles.ourValuesTitle}>
+          Our Values
+        </h2>
+        <div className={styles.ourValuesCards}>
+          <div className={styles.ourValuesCard}>
+            <h3 className={styles.ourValuesCardTitle}>
+              Creativity
+            </h3>
+            <p className={styles.ourValuesCardDescription}>
+              helping guests discover their unique visual style
+            </p>
+          </div>
+          <div className={styles.ourValuesCard}>
+            <h3 className={styles.ourValuesCardTitle}>
+              Authenticity
+            </h3>
+            <p className={styles.ourValuesCardDescription}>
+              showing the true, untouched Tuscany
+            </p>
+          </div>
+          <div className={styles.ourValuesCard}>
+            <h3 className={styles.ourValuesCardTitle}>
+              Community
+            </h3>
+            <p className={styles.ourValuesCardDescription}>
+              building an inspiring and friendly atmosphere
+            </p>
+          </div>
+          <div className={styles.ourValuesCard}>
+            <h3 className={styles.ourValuesCardTitle}>
+              Sustainability
+            </h3>
+            <p className={styles.ourValuesCardDescription}>
+              respecting nature and supporting local businesses
+            </p>
+          </div>
+        </div>
+      </div>
 
       <FeedbackBlock />
     </div>
