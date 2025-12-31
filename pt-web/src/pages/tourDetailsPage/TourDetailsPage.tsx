@@ -1,22 +1,33 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import arrowsToRight from "/images/arrowsToRight.svg";
+import blogAndPhotography1 from "/images/blogAndPhotography1.avif";
+import blogAndPhotography2 from "/images/blogAndPhotography2.avif";
+import blogAndPhotography3 from "/images/blogAndPhotography3.avif";
+import blueArrowCircleRight from "/images/blueArrowCircleRight.svg";
 import calendar from "/images/calendar-blue.svg";
 import checkboxAccepted from "/images/checkboxAccepted.svg";
 import flagRoundBlue from "/images/flagRoundBlue.svg";
+import grayArrowRightCircle from "/images/grayArrowRightCircle.svg";
 import people from "/images/people.svg";
 import photoRoundBlue from "/images/photoRoundBlue.svg";
 import reviews from "/images/reviews.svg";
 import spotsLeft from "/images/spotsLeft.svg";
 import starYellow from "/images/star-yellow.png";
+import clsx from "clsx";
 import {Accordion, accordionTypes} from "src/components/Accordion/Accordion";
 import {Button} from "src/components/Button/Button";
 import {Container} from "src/components/Container/Container";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
 import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
+import {TourCardExtended} from "src/components/Tour/TourCardExtended/TourCardExtended";
 import {FeedbackBlock} from "src/pages/homePage/HomePage";
 import {getTourBySlag as getTourBySlug} from "src/services/toursService";
 import type {TourView} from "src/types/tour";
+import type {Swiper as SwiperType} from "swiper";
+import {A11y, Keyboard} from "swiper/modules";
+import {Swiper, SwiperSlide} from "swiper/react";
+import "swiper/css";
 import styles from "src/pages/tourDetailsPage/TourDetailsPage.module.scss";
 
 interface ScheduleAccordionItemProps {
@@ -123,6 +134,71 @@ const faqAccordionItemsStub = [
   },
 ];
 
+const slidesForExtraTours = [
+  {
+    id: "1",
+    image: blogAndPhotography1,
+    link: "#",
+    title: "Chianti Hills & Vineyards",
+    subtitle: "Capture golden vineyards, rustic hilltop villages, and soft evening light across the legendary rolling hills of Chianti.",
+  },
+  {
+    id: "2",
+    image: blogAndPhotography2,
+    link: "#",
+    title: "Your Guide to Iconic Tuscany Shots",
+    // eslint-disable-next-line max-len
+    subtitle: "Explore essential techniques and hidden locations for creating cinematic images in Tuscany. Explore essential techniques and hidden locations for creating cinematic images in Tuscany.",
+  },
+  {
+    id: "3",
+    image: blogAndPhotography3,
+    link: "#",
+    title: "Inspiration for Your Next Photo Adventure",
+    subtitle: "A curated blend of tips, stories, and expert advice for photographing Tuscany at its best.",
+  },
+  {
+    id: "4",
+    image: blogAndPhotography1,
+    link: "#",
+    title: "Chianti Hills & Vineyards",
+    subtitle: "Capture golden vineyards, rustic hilltop villages, and soft evening light across the legendary rolling hills of Chianti.",
+  },
+  {
+    id: "5",
+    image: blogAndPhotography2,
+    link: "#",
+    title: "Your Guide to Iconic Tuscany Shots",
+    // eslint-disable-next-line max-len
+    subtitle: "Explore essential techniques and hidden locations for creating cinematic images in Tuscany. Explore essential techniques and hidden locations for creating cinematic images in Tuscany.",
+  },
+  {
+    id: "6",
+    image: blogAndPhotography3,
+    link: "#",
+    title: "Inspiration for Your Next Photo Adventure",
+    subtitle: "A curated blend of tips, stories, and expert advice for photographing Tuscany at its best.",
+  },
+];
+
+const MOBILE_BREAKPOINT = 640;
+const TABLET_BREAKPOINT = 920;
+const DESKTOP_BREAKPOINT = 1224;
+
+const MOBILE_SLIDES_PER_VIEW = 1;
+const TABLET_SLIDES_PER_VIEW = 2;
+const DESKTOP_SLIDES_PER_VIEW = 3;
+const LARGE_DESKTOP_SLIDES_PER_VIEW = 4;
+
+const MOBILE_BREAKPOINT_GALLERY_SLIDER = 640;
+const TABLET_BREAKPOINT_GALLERY_SLIDER = 920;
+const DESKTOP_BREAKPOINT_GALLERY_SLIDER = 1224;
+
+const MOBILE_SLIDES_PER_VIEW_GALLERY_SLIDER = 1;
+const TABLET_SLIDES_PER_VIEW_GALLERY_SLIDER = 2;
+const DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER = 3;
+const LARGE_DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER = 8;
+
 export function TourDetailsPage() {
   const {slug} = useParams<{ slug: string }>();
   const navigate = useNavigate();
@@ -130,6 +206,9 @@ export function TourDetailsPage() {
   const [tour, setTour] = useState<TourView | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const swiperExtraToursRef = useRef<SwiperType | null>(null);
+  const swiperGalleryRef = useRef<SwiperType | null>(null);
 
   useEffect(() => {
     if (!slug) {
@@ -227,6 +306,74 @@ export function TourDetailsPage() {
               src={cover}
               alt={tour.title}
             />
+
+            <button
+              type="button"
+              aria-label="Previous"
+              className={clsx(styles.galleryArrow, styles.galleryArrowLeft)}
+              onClick={() => swiperGalleryRef.current?.slidePrev()}
+            >
+              <img
+                src={grayArrowRightCircle}
+                alt="left slider button"
+                loading="lazy"
+              />
+            </button>
+            <button
+              type="button"
+              aria-label="Next"
+              className={clsx(styles.galleryArrow, styles.galleryArrowRight)}
+              onClick={() => swiperGalleryRef.current?.slideNext()}
+            >
+              <img
+                src={grayArrowRightCircle}
+                alt="right slider button"
+                loading="lazy"
+              />
+            </button>
+            <div className={styles.gallerySlider}>
+              <Swiper
+                modules={[Keyboard, A11y]}
+                onSwiper={(s) => (swiperGalleryRef.current = s)}
+                loop={slidesForExtraTours.length > LARGE_DESKTOP_SLIDES_PER_VIEW}
+                loopAdditionalSlides={6}
+                slidesPerView={MOBILE_SLIDES_PER_VIEW_GALLERY_SLIDER}
+                spaceBetween={24}
+                speed={500}
+                allowTouchMove
+                keyboard={{enabled: true}}
+                className={styles.swiper}
+                breakpoints={{
+                  [MOBILE_BREAKPOINT_GALLERY_SLIDER]: {
+                    slidesPerView: TABLET_SLIDES_PER_VIEW_GALLERY_SLIDER,
+                    loop: slidesForExtraTours.length > TABLET_SLIDES_PER_VIEW_GALLERY_SLIDER,
+                  },
+                  [TABLET_BREAKPOINT_GALLERY_SLIDER]: {
+                    slidesPerView: DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER,
+                    loop: slidesForExtraTours.length > DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER,
+                  },
+                  [DESKTOP_BREAKPOINT_GALLERY_SLIDER]: {
+                    slidesPerView: LARGE_DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER,
+                    loop: slidesForExtraTours.length > LARGE_DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER,
+                  },
+                }}
+              >
+                {slidesForExtraTours.concat(slidesForExtraTours).map((s, i) => (
+                  <SwiperSlide
+                    key={i}
+                    className={styles.gallerySlide}
+                  >
+                    <button className={styles.gallerySlideButton}>
+                      <img
+                        src={s.image}
+                        alt="gallery image"
+                      />
+                    </button>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+
+            </div>
           </div>
 
           <div className={styles.reviewsBlock}>
@@ -861,6 +1008,79 @@ export function TourDetailsPage() {
           type={accordionTypes.MULTIPLE}
           className={styles.accordion}
         />
+
+      </div>
+
+      <div className={styles.toursSlider}>
+        <div className={styles.toursSliderPlaceholder} />
+
+        <button
+          type="button"
+          aria-label="Previous"
+          className={`${styles.arrow} ${styles.arrowLeft}`}
+          onClick={() => swiperExtraToursRef.current?.slidePrev()}
+        >
+          <span>
+            <img
+              src={blueArrowCircleRight}
+              alt="right slider button"
+              loading="lazy"
+            />
+          </span>
+        </button>
+        <button
+          type="button"
+          aria-label="Next"
+          className={`${styles.arrow} ${styles.arrowRight}`}
+          onClick={() => swiperExtraToursRef.current?.slideNext()}
+        >
+          <span>
+            <img
+              src={blueArrowCircleRight}
+              alt="right slider button"
+              loading="lazy"
+            />
+          </span>
+        </button>
+        <Swiper
+          modules={[Keyboard, A11y]}
+          onSwiper={(s) => (swiperExtraToursRef.current = s)}
+          loop={slidesForExtraTours.length > LARGE_DESKTOP_SLIDES_PER_VIEW}
+          loopAdditionalSlides={6}
+          slidesPerView={MOBILE_SLIDES_PER_VIEW}
+          spaceBetween={24}
+          speed={500}
+          allowTouchMove
+          keyboard={{enabled: true}}
+          className={styles.swiper}
+          breakpoints={{
+            [MOBILE_BREAKPOINT]: {
+              slidesPerView: TABLET_SLIDES_PER_VIEW,
+              loop: slidesForExtraTours.length > TABLET_SLIDES_PER_VIEW,
+            },
+            [TABLET_BREAKPOINT]: {
+              slidesPerView: DESKTOP_SLIDES_PER_VIEW,
+              loop: slidesForExtraTours.length > DESKTOP_SLIDES_PER_VIEW,
+            },
+            [DESKTOP_BREAKPOINT]: {
+              slidesPerView: LARGE_DESKTOP_SLIDES_PER_VIEW,
+              loop: slidesForExtraTours.length > LARGE_DESKTOP_SLIDES_PER_VIEW,
+            },
+          }}
+        >
+          {slidesForExtraTours.concat(slidesForExtraTours).map((s, i) => (
+            <SwiperSlide
+              key={i}
+              className={styles.slide}
+            >
+              <TourCardExtended
+                key={s.id}
+                tour={tour}
+                className={styles.tourCard}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
       </div>
       <FeedbackBlock />

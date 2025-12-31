@@ -70,9 +70,8 @@ export const FeedbackBlock = () => {
               to="#"
               className={styles.privacyLink}
             >
-              Privacy Policy
+              Privacy Policy.
             </Link>
-            .
           </span>
         </div>
       </div>

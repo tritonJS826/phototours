@@ -19,14 +19,97 @@
 
 .gallery {
   // max-width: 100%;
-  overflow: hidden;
+  // overflow: hidden;
   border-radius: 20px;
+  position: relative;
+  height: 500px;
 }
 
 .galleryImage {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 500px;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  border-radius: 18px;
 }
+
+.gallerySlider {
+  position: absolute;
+  width: 94%;
+  z-index: 3;
+  bottom: 0;
+  margin: 3%;
+}
+
+.gallerySlide {
+  width: 90px;
+  height: 84px;
+}
+
+.gallerySlideButton {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.gallerySlideButton img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.galleryArrow {
+  // we don't need arrows for now but probably it will be helpful in future
+  // visibility: hidden;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  z-index: 3;
+  background: transparent;
+  border: none;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+
+}
+
+.galleryArrowLeft {
+  left: 20px;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.galleryArrowRight {
+  right: 20px;
+}
+
+// .gallerySlide {
+//   max-width: 200px;
+//   height: 100px;
+// }
+
+// .gallerySlideButton {
+//   height: 100%;
+//   background: transparent;
+//   // border-radius: 40px;
+//   border: none;
+
+//   img {
+//     border-radius: 40px;
+//     width: 100%;
+//     height: 100%;
+//   }
+// }
 
 .reviewsBlock {
   display: flex;
@@ -222,6 +305,58 @@
 .whyLoveTitle {
   font-weight: 600;
   font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.toursSlider {
+  position: relative;
+  max-width: 1530px;
+  margin: auto;
+  padding: 20px;
+}
+
+.toursSliderPlaceholder {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  // it was hard to center this placeholder, so let's just make it super wide
+  width: 200vw;
+  height: 100%;
+  background: #F0F0F0;
+  z-index: -1;
+}
+
+.arrow {
+  // we don't need arrows for now but probably it will be helpful in future
+  // visibility: hidden;
+  position: absolute;
+  top: 51%;
+  transform: translateY(-50%);
+  z-index: 3;
+  background: transparent;
+  border: none;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+
+  span {
+    font-size: 24px;
+    line-height: 1;
+  }
+}
+
+.arrowLeft {
+  left: 0;
+  transform: rotate(180deg);
+}
+
+.arrowRight {
+  right: 0;
+}
+
+.slide {
+  // max-width: 200px;
 }
 
 .calcBackStub {

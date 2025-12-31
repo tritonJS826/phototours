@@ -97,9 +97,8 @@ export const NewsletterForm = memo(function NewsletterForm() {
           to="#"
           className={styles.privacyLink}
         >
-          Privacy Policy
+          Privacy Policy.
         </Link>
-        .
       </span>
 
       {message && (
