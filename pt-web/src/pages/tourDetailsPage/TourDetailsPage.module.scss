@@ -68,8 +68,6 @@
 }
 
 .galleryArrow {
-  // we don't need arrows for now but probably it will be helpful in future
-  // visibility: hidden;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -81,7 +79,11 @@
   display: grid;
   place-items: center;
   cursor: pointer;
+  opacity: 0.7;
 
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .galleryArrowLeft {
@@ -332,7 +334,6 @@
   // visibility: hidden;
   position: absolute;
   top: 51%;
-  transform: translateY(-50%);
   z-index: 3;
   background: transparent;
   border: none;

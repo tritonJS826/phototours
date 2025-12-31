@@ -136,7 +136,7 @@ export function ToursPage() {
       />
 
       <label className={styles.filtersLabel}>
-        Location
+        Travelers amount
       </label>
       <Dropdown
         trigger={(
