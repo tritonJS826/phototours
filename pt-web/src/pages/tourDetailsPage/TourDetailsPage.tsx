@@ -1,5 +1,5 @@
-import {useEffect, useRef, useState} from "react";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import arrowsToRight from "/images/arrowsToRight.svg";
 import blogAndPhotography1 from "/images/blogAndPhotography1.avif";
 import blogAndPhotography2 from "/images/blogAndPhotography2.avif";
@@ -15,19 +15,19 @@ import reviews from "/images/reviews.svg";
 import spotsLeft from "/images/spotsLeft.svg";
 import starYellow from "/images/star-yellow.png";
 import clsx from "clsx";
-import {Accordion, accordionTypes} from "src/components/Accordion/Accordion";
-import {Button} from "src/components/Button/Button";
-import {Container} from "src/components/Container/Container";
-import {Dropdown} from "src/components/Dropdown/Dropdown";
-import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
-import {TourCardExtended} from "src/components/Tour/TourCardExtended/TourCardExtended";
-import {FeedbackBlock} from "src/pages/homePage/HomePage";
-import {BuyTravelModal} from "src/pages/tourDetailsPage/BuyTravelModal";
-import {getTourBySlag as getTourBySlug} from "src/services/toursService";
-import type {TourView} from "src/types/tour";
-import type {Swiper as SwiperType} from "swiper";
-import {A11y, Keyboard} from "swiper/modules";
-import {Swiper, SwiperSlide} from "swiper/react";
+import { Accordion, accordionTypes } from "src/components/Accordion/Accordion";
+import { Button } from "src/components/Button/Button";
+import { Container } from "src/components/Container/Container";
+import { Dropdown } from "src/components/Dropdown/Dropdown";
+import { ReviewsSection } from "src/components/ReviewsSection/ReviewsSection";
+import { TourCardExtended } from "src/components/Tour/TourCardExtended/TourCardExtended";
+import { FeedbackBlock } from "src/pages/homePage/HomePage";
+import { BuyTravelModal } from "src/pages/tourDetailsPage/BuyTravelModal";
+import { getTourBySlag as getTourBySlug } from "src/services/toursService";
+import type { TourView } from "src/types/tour";
+import type { Swiper as SwiperType } from "swiper";
+import { A11y, Keyboard } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import styles from "src/pages/tourDetailsPage/TourDetailsPage.module.scss";
 
@@ -40,21 +40,16 @@ interface ScheduleAccordionItemProps {
 const ScheduleAccordionItem = (props: ScheduleAccordionItemProps) => {
   return (
     <div className={props.className}>
-      <p>
-        {props.description}
-      </p>
+      <p>{props.description}</p>
       <br />
-      {props.image && <img
-        src={props.image}
-        alt="dayImage"
-                      />}
+      {props.image && <img src={props.image} alt="dayImage" />}
     </div>
   );
 };
 
 const scheduleAccordionItemsStub = [
   {
-    trigger: {child: "Day 1. Arrival and meet-up with the group"},
+    trigger: { child: "Day 1. Arrival and meet-up with the group" },
     content: {
       child: (
         <ScheduleAccordionItem
@@ -67,7 +62,7 @@ const scheduleAccordionItemsStub = [
     },
   },
   {
-    trigger: {child: "Day 2. Sunrise shoot and exploring the surroundings"},
+    trigger: { child: "Day 2. Sunrise shoot and exploring the surroundings" },
     content: {
       child: (
         <ScheduleAccordionItem
@@ -80,7 +75,9 @@ const scheduleAccordionItemsStub = [
     },
   },
   {
-    trigger: {child: "Day 3. Iconic landmarks and guided photography session"},
+    trigger: {
+      child: "Day 3. Iconic landmarks and guided photography session",
+    },
     content: {
       child: (
         <ScheduleAccordionItem
@@ -96,7 +93,7 @@ const scheduleAccordionItemsStub = [
 
 const faqAccordionItemsStub = [
   {
-    trigger: {child: "Day 1. Arrival and meet-up with the group"},
+    trigger: { child: "Day 1. Arrival and meet-up with the group" },
     content: {
       child: (
         <ScheduleAccordionItem
@@ -108,7 +105,7 @@ const faqAccordionItemsStub = [
     },
   },
   {
-    trigger: {child: "Day 2. Sunrise shoot and exploring the surroundings"},
+    trigger: { child: "Day 2. Sunrise shoot and exploring the surroundings" },
     content: {
       child: (
         <ScheduleAccordionItem
@@ -120,7 +117,9 @@ const faqAccordionItemsStub = [
     },
   },
   {
-    trigger: {child: "Day 3. Iconic landmarks and guided photography session"},
+    trigger: {
+      child: "Day 3. Iconic landmarks and guided photography session",
+    },
     content: {
       child: (
         <ScheduleAccordionItem
@@ -206,34 +205,15 @@ const LARGE_DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER = 8;
 
 const buyTravelContent = (
   <>
-    <div className={styles.buyTravelBlockTitle}>
-      Travel details
-    </div>
+    <div className={styles.buyTravelBlockTitle}>Travel details</div>
 
-    <p className={styles.buyTravelLabel}>
-      Your Name
-    </p>
-    <input
-      type="text"
-      className={styles.butTravelInput}
-    />
-    <p className={styles.buyTravelLabel}>
-      Your Email
-    </p>
-    <input
-      type="text"
-      className={styles.butTravelInput}
-    />
-    <p className={styles.buyTravelLabel}>
-      Your Phone
-    </p>
-    <input
-      type="text"
-      className={styles.butTravelInput}
-    />
-    <p className={styles.buyTravelLabel}>
-      Travel dates
-    </p>
+    <p className={styles.buyTravelLabel}>Your Name</p>
+    <input type="text" className={styles.butTravelInput} />
+    <p className={styles.buyTravelLabel}>Your Email</p>
+    <input type="text" className={styles.butTravelInput} />
+    <p className={styles.buyTravelLabel}>Your Phone</p>
+    <input type="text" className={styles.butTravelInput} />
+    <p className={styles.buyTravelLabel}>Travel dates</p>
     <Dropdown
       trigger={
         <div className={styles.locationInputBlock}>
@@ -256,34 +236,26 @@ const buyTravelContent = (
             {
               id: "location-1",
               isPreventDefaultUsed: true,
-              value: <div className={styles.dropdownItem}>
-                Location 1
-              </div>,
+              value: <div className={styles.dropdownItem}>Location 1</div>,
               isVisible: true,
             },
             {
               id: "location-2",
               isPreventDefaultUsed: true,
-              value: <div className={styles.dropdownItem}>
-                Location 2
-              </div>,
+              value: <div className={styles.dropdownItem}>Location 2</div>,
               isVisible: true,
             },
             {
               id: "location-3",
               isPreventDefaultUsed: true,
-              value: <div className={styles.dropdownItem}>
-                Location 3
-              </div>,
+              value: <div className={styles.dropdownItem}>Location 3</div>,
               isVisible: true,
             },
           ],
         },
       ]}
     />
-    <p className={styles.buyTravelLabel}>
-      Travelers
-    </p>
+    <p className={styles.buyTravelLabel}>Travelers</p>
     <Dropdown
       trigger={
         <div className={styles.locationInputBlock}>
@@ -306,25 +278,19 @@ const buyTravelContent = (
             {
               id: "location-1",
               isPreventDefaultUsed: true,
-              value: <div className={styles.dropdownItem}>
-                Location 1
-              </div>,
+              value: <div className={styles.dropdownItem}>Location 1</div>,
               isVisible: true,
             },
             {
               id: "location-2",
               isPreventDefaultUsed: true,
-              value: <div className={styles.dropdownItem}>
-                Location 2
-              </div>,
+              value: <div className={styles.dropdownItem}>Location 2</div>,
               isVisible: true,
             },
             {
               id: "location-3",
               isPreventDefaultUsed: true,
-              value: <div className={styles.dropdownItem}>
-                Location 3
-              </div>,
+              value: <div className={styles.dropdownItem}>Location 3</div>,
               isVisible: true,
             },
           ],
@@ -338,9 +304,7 @@ const buyTravelContent = (
         src={arrowsToRight}
         alt="Photo Tour Logo"
       />
-      <span>
-        Personalize your experience
-      </span>
+      <span>Personalize your experience</span>
       <img
         className={styles.personalizeHrArrowsToLeft}
         src={arrowsToRight}
@@ -349,28 +313,16 @@ const buyTravelContent = (
     </div>
 
     <div className={styles.personalizationBlock}>
+      <span>Number of rooms</span>
       <span>
-        Number of rooms
-      </span>
-      <span>
-        From
-        {" "}
-        <span className={styles.blueText}>
-          100$
-        </span>
+        From <span className={styles.blueText}>100$</span>
       </span>
     </div>
 
     <div className={styles.buyTravelFooter}>
       <div className={styles.buyTravelFooterLeft}>
         <span className={styles.buyTravelFooterLeftTop}>
-          Total
-          {" "}
-          <b className={styles.boldPrice}>
-            2000
-          </b>
-          {" "}
-          USD
+          Total <b className={styles.boldPrice}>2000</b> USD
         </span>
         <span className={styles.buyTravelFooterLeftBottom}>
           Price for 1 traveler
@@ -390,7 +342,7 @@ const buyTravelContent = (
 );
 
 export function TourDetailsPage() {
-  const {slug} = useParams<{ slug: string }>();
+  const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
 
   const [tour, setTour] = useState<TourView | null>(null);
@@ -444,13 +396,17 @@ export function TourDetailsPage() {
   const swiperExtraToursRef = useRef<SwiperType | null>(null);
   const swiperGalleryRef = useRef<SwiperType | null>(null);
 
+  useEffect(() => {
+    if (swiperGalleryRef.current && tour?.photos) {
+      swiperGalleryRef.current.slideTo(selectedPhotoIndex);
+    }
+  }, [selectedPhotoIndex, tour?.photos]);
+
   if (loading) {
     return (
       <section className={styles.wrap}>
         <Container>
-          <div className={styles.state}>
-            Loading…
-          </div>
+          <div className={styles.state}>Loading…</div>
         </Container>
       </section>
     );
@@ -479,9 +435,7 @@ export function TourDetailsPage() {
     return (
       <section className={styles.wrap}>
         <Container>
-          <div className={styles.state}>
-            No data
-          </div>
+          <div className={styles.state}>No data</div>
         </Container>
       </section>
     );
@@ -491,16 +445,10 @@ export function TourDetailsPage() {
     <div>
       <section className={styles.wrap}>
         <div className={styles.leftColumn}>
-          <h1 className={styles.title}>
-            {tour.title}
-          </h1>
+          <h1 className={styles.title}>{tour.title}</h1>
 
           <div className={styles.gallery}>
-            <img
-              className={styles.galleryImage}
-              src={cover}
-              alt={tour.title}
-            />
+            <img className={styles.galleryImage} src={cover} alt={tour.title} />
 
             <button
               type="button"
@@ -553,7 +501,7 @@ export function TourDetailsPage() {
                 spaceBetween={24}
                 speed={500}
                 allowTouchMove
-                keyboard={{enabled: true}}
+                keyboard={{ enabled: true }}
                 className={styles.swiper}
                 breakpoints={{
                   [MOBILE_BREAKPOINT_GALLERY_SLIDER]: {
@@ -577,18 +525,14 @@ export function TourDetailsPage() {
                 }}
               >
                 {tour.photos?.map((photo, i) => (
-                  <SwiperSlide
-                    key={i}
-                    className={styles.gallerySlide}
-                  >
+                  <SwiperSlide key={i} className={styles.gallerySlide}>
                     <button
-                      className={clsx(styles.gallerySlideButton, {[styles.active]: i === selectedPhotoIndex})}
+                      className={clsx(styles.gallerySlideButton, {
+                        [styles.active]: i === selectedPhotoIndex,
+                      })}
                       onClick={() => setSelectedPhotoIndex(i)}
                     >
-                      <img
-                        src={photo}
-                        alt={`gallery image ${i + 1}`}
-                      />
+                      <img src={photo} alt={`gallery image ${i + 1}`} />
                     </button>
                   </SwiperSlide>
                 ))}
@@ -605,9 +549,7 @@ export function TourDetailsPage() {
                   className={styles.tagIcon}
                   loading="lazy"
                 />
-                <span>
-                  2 spots left
-                </span>
+                <span>2 spots left</span>
               </div>
 
               <div className={styles.reviewsTag}>
@@ -617,9 +559,7 @@ export function TourDetailsPage() {
                   className={styles.tagIcon}
                   loading="lazy"
                 />
-                <span>
-                  3 reviews
-                </span>
+                <span>3 reviews</span>
               </div>
             </div>
 
@@ -660,17 +600,13 @@ export function TourDetailsPage() {
           <hr />
           <div className={styles.tourDescriptionBlock}>
             <div className={styles.tourDescription}>
-              <h2 className={styles.tourDescriptionTitle}>
-                Description
-              </h2>
+              <h2 className={styles.tourDescriptionTitle}>Description</h2>
               <p className={styles.tourDescriptionDescription}>
                 {tour.description}
               </p>
             </div>
             <div className={styles.tourSummary}>
-              <h2 className={styles.tourSummaryTitle}>
-                Summary
-              </h2>
+              <h2 className={styles.tourSummaryTitle}>Summary</h2>
               <div className={styles.summaryTagsHorizontalPair}>
                 <div className={styles.summaryTag}>
                   <img
@@ -782,9 +718,7 @@ export function TourDetailsPage() {
 
           <div className={styles.includedActivities}>
             <div className={styles.included}>
-              <h2 className={styles.includedActivitiesTitle}>
-                Included
-              </h2>
+              <h2 className={styles.includedActivitiesTitle}>Included</h2>
               <div className={styles.oneIncludedActivity}>
                 <img
                   src={checkboxAccepted}
@@ -803,9 +737,7 @@ export function TourDetailsPage() {
                   loading="lazy"
                   className={styles.includedImg}
                 />
-                <span className={styles.includedDescription}>
-                  Helmet
-                </span>
+                <span className={styles.includedDescription}>Helmet</span>
               </div>
               <div className={styles.oneIncludedActivity}>
                 <img
@@ -832,9 +764,7 @@ export function TourDetailsPage() {
             </div>
 
             <div className={styles.activities}>
-              <h2 className={styles.includedActivitiesTitle}>
-                Included
-              </h2>
+              <h2 className={styles.includedActivitiesTitle}>Included</h2>
               <div className={styles.oneIncludedActivity}>
                 <img
                   src={photoRoundBlue}
@@ -842,9 +772,7 @@ export function TourDetailsPage() {
                   loading="lazy"
                   className={styles.includedImg}
                 />
-                <span className={styles.includedDescription}>
-                  Caving
-                </span>
+                <span className={styles.includedDescription}>Caving</span>
               </div>
               <div className={styles.oneIncludedActivity}>
                 <img
@@ -853,9 +781,7 @@ export function TourDetailsPage() {
                   loading="lazy"
                   className={styles.includedImg}
                 />
-                <span className={styles.includedDescription}>
-                  Sight Seeing
-                </span>
+                <span className={styles.includedDescription}>Sight Seeing</span>
               </div>
             </div>
           </div>
@@ -863,9 +789,7 @@ export function TourDetailsPage() {
           <hr />
 
           <div className={styles.schedule}>
-            <h2 className={styles.scheduleTitle}>
-              Schedule
-            </h2>
+            <h2 className={styles.scheduleTitle}>Schedule</h2>
 
             <Accordion
               items={scheduleAccordionItemsStub}
@@ -1016,9 +940,7 @@ export function TourDetailsPage() {
         </div>
 
         <div className={styles.calcBackStub}>
-          <div className={styles.buyTravelBlock}>
-            {buyTravelContent}
-          </div>
+          <div className={styles.buyTravelBlock}>{buyTravelContent}</div>
         </div>
 
         <BuyTravelModal
@@ -1039,17 +961,13 @@ export function TourDetailsPage() {
 
       <div className={styles.whyLove}>
         <div className={styles.whyLovePlaceholder} />
-        <h2 className={styles.whyLoveTitle}>
-          Why travelers love this
-        </h2>
+        <h2 className={styles.whyLoveTitle}>Why travelers love this</h2>
 
         <ReviewsSection />
       </div>
 
       <div className={styles.faq}>
-        <h2 className={styles.faqTitle}>
-          FAQ
-        </h2>
+        <h2 className={styles.faqTitle}>FAQ</h2>
 
         <Accordion
           items={faqAccordionItemsStub}
@@ -1098,7 +1016,7 @@ export function TourDetailsPage() {
           spaceBetween={24}
           speed={500}
           allowTouchMove
-          keyboard={{enabled: true}}
+          keyboard={{ enabled: true }}
           className={styles.swiper}
           breakpoints={{
             [MOBILE_BREAKPOINT]: {
@@ -1116,10 +1034,7 @@ export function TourDetailsPage() {
           }}
         >
           {slidesForExtraTours.concat(slidesForExtraTours).map((s, i) => (
-            <SwiperSlide
-              key={i}
-              className={styles.slide}
-            >
+            <SwiperSlide key={i} className={styles.slide}>
               <TourCardExtended
                 key={s.id}
                 tour={tour}
