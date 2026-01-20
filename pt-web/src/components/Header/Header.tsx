@@ -3,7 +3,7 @@ import React, {
   // UseRef,
   useState,
 } from "react";
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import email from "/images/email.svg";
 import instagram from "/images/instagram.svg";
 import logoDark from "/images/logoBlack.svg";
@@ -19,10 +19,10 @@ import {
   // ShoppingCart,
   // User,
 } from "lucide-react";
-import {AuthModal} from "src/components/Auth";
-import {Dropdown} from "src/components/Dropdown/Dropdown";
-import {useAuth} from "src/hooks/useAuth";
-import {PATHS} from "src/routes/routes";
+import { AuthModal } from "src/components/Auth";
+import { Dropdown } from "src/components/Dropdown/Dropdown";
+import { useAuth } from "src/hooks/useAuth";
+import { PATHS } from "src/routes/routes";
 // Import {getProfileImageUrl} from "src/utils/profileImage";
 import styles from "src/components/Header/Header.module.scss";
 
@@ -80,15 +80,12 @@ export function Header() {
         <button
           className={styles.burgerBtn}
           aria-label="Open menu"
-          onClick={() => setIsMobileMenuOpen(prev => !prev)}
+          onClick={() => setIsMobileMenuOpen((prev) => !prev)}
         >
           <Menu />
         </button>
         <div className={styles.headerLogo}>
-          <Link
-            to={PATHS.HOME}
-            aria-label="Homepage"
-          >
+          <Link to={PATHS.HOME} aria-label="Homepage">
             <img
               className={styles["header-logo-img"]}
               src={logoDark}
@@ -97,35 +94,24 @@ export function Header() {
           </Link>
         </div>
 
-        <nav
-          className={styles.headerNav}
-          aria-label="Main Navigation"
-        >
+        <nav className={styles.headerNav} aria-label="Main Navigation">
           <div className={styles.rightHeaderBlock}>
             <ul className={styles.leftHeaderLinks}>
               <li>
-                <Link
-                  to={PATHS.TOURS}
-                  className={styles.primaryHeaderLink}
-                >
+                <Link to={PATHS.TOURS} className={styles.primaryHeaderLink}>
                   Explore&nbsp;Tours
                 </Link>
               </li>
               &#9675;
               <li>
-                <Link to={PATHS.ARTICLES}>
-                  Blog
-                </Link>
+                <Link to={PATHS.ARTICLES}>Blog</Link>
               </li>
               &#9675;
               <li>
-                <Link to={PATHS.ABOUT}>
-                  About Us
-                </Link>
+                <Link to={PATHS.ABOUT}>About Us</Link>
               </li>
             </ul>
             <div className={styles.rightHeaderLinks}>
-
               {/* <div className={styles.topbarRight}>
                 <Link
                   to={PATHS.CART}
@@ -225,76 +211,75 @@ export function Header() {
               </div> */}
 
               <Dropdown
-                trigger={(
+                trigger={
                   <button
                     className={styles.contactUsDropdownTrigger}
                     onClick={() => {}}
                   >
                     Contact&nbsp;Us
                   </button>
-                )}
-
+                }
                 dropdownMenuItems={[
                   {
                     dropdownSubMenuItems: [
                       {
                         id: "Phone",
-                        isPreventDefaultUsed: true,
-                        value: <div className={styles.contactUsItem}>
-                          <img
-                            src={phone}
-                            alt="user link"
-                          />
-                          Phone
-                        </div>,
+                        isPreventDefaultUsed: false,
+                        value: (
+                          <div className={styles.contactUsItem}>
+                            <img src={phone} alt="user link" />
+                            Phone
+                          </div>
+                        ),
                         isVisible: true,
                       },
                       {
                         id: "Telegram",
-                        isPreventDefaultUsed: true,
-                        value: <div className={styles.contactUsItem}>
-                          <img
-                            src={telegram}
-                            alt="user link"
-                          />
-                          Telegram
-                        </div>,
+                        isPreventDefaultUsed: false,
+                        value: (
+                          <div className={styles.contactUsItem}>
+                            <img src={telegram} alt="user link" />
+                            Telegram
+                          </div>
+                        ),
                         isVisible: true,
                       },
                       {
                         id: "WhatsApp",
-                        isPreventDefaultUsed: true,
-                        value: <div className={styles.contactUsItem}>
-                          <img
-                            src={whatsapp}
-                            alt="user link"
-                          />
-                          WhatsApp
-                        </div>,
+                        isPreventDefaultUsed: false,
+                        value: (
+                          <div className={styles.contactUsItem}>
+                            <img src={whatsapp} alt="user link" />
+                            WhatsApp
+                          </div>
+                        ),
                         isVisible: true,
                       },
                       {
                         id: "Email",
-                        isPreventDefaultUsed: true,
-                        value: <div className={styles.contactUsItem}>
-                          <img
-                            src={email}
-                            alt="user link"
-                          />
-                          Email
-                        </div>,
+                        isPreventDefaultUsed: false,
+                        value: (
+                          <div className={styles.contactUsItem}>
+                            <img src={email} alt="user link" />
+                            Email
+                          </div>
+                        ),
                         isVisible: true,
                       },
                       {
                         id: "Instagram",
-                        isPreventDefaultUsed: true,
-                        value: <div className={clsx(styles.contactUsItem, styles.lastChild)}>
-                          <img
-                            src={instagram}
-                            alt="user link"
-                          />
-                          Instagram
-                        </div>,
+                        isPreventDefaultUsed: false,
+                        value: (
+                          <div
+                            className={clsx(
+                              styles.contactUsItem,
+                              styles.lastChild,
+                            )}
+                          >
+                            <img src={instagram} alt="user link" />
+                            Instagram
+                          </div>
+                        ),
                         isVisible: true,
                       },
                     ],
@@ -304,36 +289,25 @@ export function Header() {
             </div>
           </div>
         </nav>
-
       </div>
 
       {isMobileMenuOpen && (
         <nav className={styles.mobileMenu}>
           <ul>
             <li>
-              <Link to={PATHS.HOME}>
-                Home
-              </Link>
+              <Link to={PATHS.HOME}>Home</Link>
             </li>
             <li>
-              <Link to={PATHS.TOURS}>
-                Book Photo Tours
-              </Link>
+              <Link to={PATHS.TOURS}>Book Photo Tours</Link>
             </li>
             <li>
-              <Link to={PATHS.ARTICLES}>
-                Explore Articles
-              </Link>
+              <Link to={PATHS.ARTICLES}>Explore Articles</Link>
             </li>
             <li>
-              <Link to={PATHS.ABOUT}>
-                About Us
-              </Link>
+              <Link to={PATHS.ABOUT}>About Us</Link>
             </li>
             <li>
-              <Link to={PATHS.CONTACT}>
-                Contact Us
-              </Link>
+              <Link to={PATHS.CONTACT}>Contact Us</Link>
             </li>
           </ul>
         </nav>

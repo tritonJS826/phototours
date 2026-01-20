@@ -1,6 +1,6 @@
 // Import {useEffect, useState} from "react";
-import {useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 // Import cart from "/images/cart.svg";
 import email from "/images/email.svg";
 import getYourGuide from "/images/getYourGuide.svg";
@@ -14,16 +14,17 @@ import trustPilot from "/images/trustPilot.svg";
 import viator from "/images/viator.svg";
 import whatsapp from "/images/whatsapp.svg";
 import clsx from "clsx";
-import {Accordion, accordionTypes} from "src/components/Accordion/Accordion";
-import {Dropdown} from "src/components/Dropdown/Dropdown";
-import {Footer} from "src/components/Footer/Footer";
-import {HeroTextSection} from "src/components/HeroSection/HeroSection";
-import {InputPhone} from "src/components/InputPhone/InputPhone";
-import {PopularDestinations} from "src/components/PopularDestinations/PopularDestinations";
-import {PopularWorkshops} from "src/components/PopularWorkshops/PopularWorkshops";
-import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
-import {ToursSection} from "src/components/ToursSection/ToursSection";
-import {PATHS} from "src/routes/routes";
+import { Menu } from "lucide-react";
+import { Accordion, accordionTypes } from "src/components/Accordion/Accordion";
+import { Dropdown } from "src/components/Dropdown/Dropdown";
+import { Footer } from "src/components/Footer/Footer";
+import { HeroTextSection } from "src/components/HeroSection/HeroSection";
+import { InputPhone } from "src/components/InputPhone/InputPhone";
+import { PopularDestinations } from "src/components/PopularDestinations/PopularDestinations";
+import { PopularWorkshops } from "src/components/PopularWorkshops/PopularWorkshops";
+import { ReviewsSection } from "src/components/ReviewsSection/ReviewsSection";
+import { ToursSection } from "src/components/ToursSection/ToursSection";
+import { PATHS } from "src/routes/routes";
 import "react-international-phone/style.css";
 import styles from "src/pages/homePage/HomePage.module.scss";
 
@@ -38,8 +39,8 @@ export const FeedbackBlock = () => {
           Book Your Spring Tuscany Experience
         </h2>
         <p className={styles.feedBackDescription}>
-          Small groups • Iconic locations • Professional photo mentoring to help you create award-winning shots on
-          cinematic Tuscan routes.
+          Small groups • Iconic locations • Professional photo mentoring to help
+          you create award-winning shots on cinematic Tuscan routes.
         </p>
         <div className="">
           <div className={styles.feedBackForm}>
@@ -59,17 +60,11 @@ export const FeedbackBlock = () => {
                 className={styles.feedBackInput}
                 placeholder="+1 000 000-000"
               /> */}
-            <button className={styles.feedBackButton}>
-              Sent
-            </button>
+            <button className={styles.feedBackButton}>Sent</button>
           </div>
           <span className={styles.privacyPolicyText}>
-            By submitting, you agree to our
-            {" "}
-            <Link
-              to="#"
-              className={styles.privacyLink}
-            >
+            By submitting, you agree to our{" "}
+            <Link to="#" className={styles.privacyLink}>
               Privacy Policy.
             </Link>
           </span>
@@ -81,20 +76,23 @@ export const FeedbackBlock = () => {
 
 const COPY = {
   hero: {
-    title: "Everything you need\nfor your dream photography\nadventure in Iceland",
+    title:
+      "Everything you need\nfor your dream photography\nadventure in Iceland",
     subtitle:
       "As Iceland’s leading photo tour operator, we offer expert tours\n" +
       "to help you capture breathtaking images at the best photo locations.",
   },
-  topPopularDestinations: {title: "Top Tuscany Photo Destinations"},
+  topPopularDestinations: { title: "Top Tuscany Photo Destinations" },
   topSelections: {
     title: "Top Destinations Selection",
 
-    subtitle: "Small groups • Iconic locations • Professional photo mentoring to help you create award-winning shots on cinematic Tuscan routes.",
+    subtitle:
+      "Small groups • Iconic locations • Professional photo mentoring to help you create award-winning shots on cinematic Tuscan routes.",
   },
   reviews: {
     title: "Reviews",
-    subtitle: "Insights, tips, and stories to help you elevate your photography and explore Tuscany with confidence.",
+    subtitle:
+      "Insights, tips, and stories to help you elevate your photography and explore Tuscany with confidence.",
   },
   articles: {
     title: "Best travel tips for Iceland",
@@ -104,61 +102,52 @@ const COPY = {
 
 const accordionItemsLeft = [
   {
-    trigger: {child: "What experience level is required for this tour?"},
-    content: {child: "Lorem ipsum dolor, lorem ipsum"},
+    trigger: { child: "What experience level is required for this tour?" },
+    content: { child: "Lorem ipsum dolor, lorem ipsum" },
   },
   {
-    trigger: {child: "What kind of equipment should I bring?"},
-    content: {child: "Lorem ipsum dolor, lorem ipsum"},
+    trigger: { child: "What kind of equipment should I bring?" },
+    content: { child: "Lorem ipsum dolor, lorem ipsum" },
   },
   {
-    trigger: {child: "How physically demanding is the tour?"},
-    content: {child: "Lorem ipsum dolor, lorem ipsum"},
+    trigger: { child: "How physically demanding is the tour?" },
+    content: { child: "Lorem ipsum dolor, lorem ipsum" },
   },
 ];
 const accordionItemsRight = [
   {
-    trigger: {child: "What weather can I expect in spring?"},
-    content: {child: "Lorem ipsum dolor, lorem ipsum"},
+    trigger: { child: "What weather can I expect in spring?" },
+    content: { child: "Lorem ipsum dolor, lorem ipsum" },
   },
   {
-    trigger: {child: "How many people are in the group?"},
-    content: {child: "Lorem ipsum dolor, lorem ipsum"},
+    trigger: { child: "How many people are in the group?" },
+    content: { child: "Lorem ipsum dolor, lorem ipsum" },
   },
   {
-    trigger: {child: "Are accommodations and meals included?"},
-    content: {child: "Lorem ipsum dolor, lorem ipsum"},
+    trigger: { child: "Are accommodations and meals included?" },
+    content: { child: "Lorem ipsum dolor, lorem ipsum" },
   },
 ];
 
 const RightBlockDark = () => {
-
   return (
     <div className={styles.rightHeaderBlock}>
       <ul className={styles.leftHeaderLinks}>
         <li>
-          <Link
-            to={PATHS.TOURS}
-            className={styles.primaryHeaderLink}
-          >
+          <Link to={PATHS.TOURS} className={styles.primaryHeaderLink}>
             Explore&nbsp;Tours
           </Link>
         </li>
         &#9675;
         <li>
-          <Link to={PATHS.ARTICLES}>
-            Blog
-          </Link>
+          <Link to={PATHS.ARTICLES}>Blog</Link>
         </li>
         &#9675;
         <li>
-          <Link to={PATHS.ABOUT}>
-            About Us
-          </Link>
+          <Link to={PATHS.ABOUT}>About Us</Link>
         </li>
       </ul>
       <div className={styles.rightHeaderLinks}>
-
         {/* <Link to={PATHS.CART}>
           <img
             src={cart}
@@ -173,76 +162,72 @@ const RightBlockDark = () => {
         </Link> */}
 
         <Dropdown
-          trigger={(
+          trigger={
             <button
               className={styles.contactUsDropdownTrigger}
               onClick={() => {}}
             >
               Contact Us
             </button>
-          )}
-
+          }
           dropdownMenuItems={[
             {
               dropdownSubMenuItems: [
                 {
                   id: "Phone",
-                  isPreventDefaultUsed: true,
-                  value: <div className={styles.contactUsItem}>
-                    <img
-                      src={phone}
-                      alt="user link"
-                    />
-                    Phone
-                  </div>,
+                  isPreventDefaultUsed: false,
+                  value: (
+                    <div className={styles.contactUsItem}>
+                      <img src={phone} alt="user link" />
+                      Phone
+                    </div>
+                  ),
                   isVisible: true,
                 },
                 {
                   id: "Telegram",
-                  isPreventDefaultUsed: true,
-                  value: <div className={styles.contactUsItem}>
-                    <img
-                      src={telegram}
-                      alt="user link"
-                    />
-                    Telegram
-                  </div>,
+                  isPreventDefaultUsed: false,
+                  value: (
+                    <div className={styles.contactUsItem}>
+                      <img src={telegram} alt="user link" />
+                      Telegram
+                    </div>
+                  ),
                   isVisible: true,
                 },
                 {
                   id: "WhatsApp",
-                  isPreventDefaultUsed: true,
-                  value: <div className={styles.contactUsItem}>
-                    <img
-                      src={whatsapp}
-                      alt="user link"
-                    />
-                    WhatsApp
-                  </div>,
+                  isPreventDefaultUsed: false,
+                  value: (
+                    <div className={styles.contactUsItem}>
+                      <img src={whatsapp} alt="user link" />
+                      WhatsApp
+                    </div>
+                  ),
                   isVisible: true,
                 },
                 {
                   id: "Email",
-                  isPreventDefaultUsed: true,
-                  value: <div className={styles.contactUsItem}>
-                    <img
-                      src={email}
-                      alt="user link"
-                    />
-                    Email
-                  </div>,
+                  isPreventDefaultUsed: false,
+                  value: (
+                    <div className={styles.contactUsItem}>
+                      <img src={email} alt="user link" />
+                      Email
+                    </div>
+                  ),
                   isVisible: true,
                 },
                 {
                   id: "Instagram",
-                  isPreventDefaultUsed: true,
-                  value: <div className={clsx(styles.contactUsItem, styles.lastChild)}>
-                    <img
-                      src={instagram}
-                      alt="user link"
-                    />
-                    Instagram
-                  </div>,
+                  isPreventDefaultUsed: false,
+                  value: (
+                    <div
+                      className={clsx(styles.contactUsItem, styles.lastChild)}
+                    >
+                      <img src={instagram} alt="user link" />
+                      Instagram
+                    </div>
+                  ),
                   isVisible: true,
                 },
               ],
@@ -278,16 +263,21 @@ export function HomePage() {
   // }, []);
 
   const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <div>
       <div className={styles.heroSectionBg}>
         <div className={styles.heroContent}>
           <div className={styles.heroHeader}>
-            <Link
-              to={PATHS.HOME}
-              aria-label="Homepage"
+            <button
+              className={styles.burgerBtn}
+              aria-label="Open menu"
+              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
             >
+              <Menu />
+            </button>
+            <Link to={PATHS.HOME} aria-label="Homepage">
               <img
                 src={logo}
                 alt="Photo Tour Logo"
@@ -304,23 +294,33 @@ export function HomePage() {
         </div>
       </div>
 
+      {isMobileMenuOpen && (
+        <nav className={styles.mobileMenu}>
+          <ul>
+            <li>
+              <Link to={PATHS.HOME}>Home</Link>
+            </li>
+            <li>
+              <Link to={PATHS.TOURS}>Book Photo Tours</Link>
+            </li>
+            <li>
+              <Link to={PATHS.ARTICLES}>Explore Articles</Link>
+            </li>
+            <li>
+              <Link to={PATHS.ABOUT}>About Us</Link>
+            </li>
+            <li>
+              <Link to={PATHS.CONTACT}>Contact Us</Link>
+            </li>
+          </ul>
+        </nav>
+      )}
+
       <div className={styles.partners}>
-        <img
-          src={tripAdvisor}
-          alt="tripAdvisor logo"
-        />
-        <img
-          src={viator}
-          alt="viator logo"
-        />
-        <img
-          src={getYourGuide}
-          alt="getYourGuide Logo"
-        />
-        <img
-          src={trustPilot}
-          alt="trustPilot Logo"
-        />
+        <img src={tripAdvisor} alt="tripAdvisor logo" />
+        <img src={viator} alt="viator logo" />
+        <img src={getYourGuide} alt="getYourGuide Logo" />
+        <img src={trustPilot} alt="trustPilot Logo" />
       </div>
 
       <div className={styles.blockWrapper}>
@@ -341,9 +341,7 @@ export function HomePage() {
       </div>
 
       <div className={styles.wantMoreBlock}>
-        <h3 className={styles.wantMoreHeader}>
-          Want more options?
-        </h3>
+        <h3 className={styles.wantMoreHeader}>Want more options?</h3>
         <button
           onClick={() => navigate(PATHS.TOURS)}
           className={styles.wantMoreButton}
@@ -356,21 +354,13 @@ export function HomePage() {
         <div className={styles.blogAndPhotographyGuides}>
           <div className={styles.blogAndPhotographyFirstContainer}>
             <h3 className={styles.blogAndPhotographyTitle}>
-              <b>
-                Blog &
-              </b>
-              {" "}
-              <i>
-                Photography Guides
-              </i>
+              <b>Blog &</b> <i>Photography Guides</i>
             </h3>
             <p className={styles.blogAndPhotographyText}>
-              Insights, tips, and stories to help you elevate your photography and explore Tuscany with confidence.
+              Insights, tips, and stories to help you elevate your photography
+              and explore Tuscany with confidence.
             </p>
-            <Link
-              to={PATHS.TOURS}
-              className={styles.blogAndPhotographyButton}
-            >
+            <Link to={PATHS.TOURS} className={styles.blogAndPhotographyButton}>
               Read more
             </Link>
           </div>
@@ -379,25 +369,19 @@ export function HomePage() {
             <PopularWorkshops />
           </div>
         </div>
-
       </div>
 
       <div className={styles.blockWrapper}>
-        <h2 className={styles.reviewsTitle}>
-          {COPY.reviews.title}
-        </h2>
-        <p className={styles.reviewsSubTitle}>
-          {COPY.reviews.subtitle}
-        </p>
+        <h2 className={styles.reviewsTitle}>{COPY.reviews.title}</h2>
+        <p className={styles.reviewsSubTitle}>{COPY.reviews.subtitle}</p>
         <ReviewsSection />
       </div>
 
       <div className={styles.faqBlock}>
-        <h3 className={styles.faqTitle}>
-          FAQ
-        </h3>
+        <h3 className={styles.faqTitle}>FAQ</h3>
         <p className={styles.faqSubtitle}>
-          Insights, tips, and stories to help you elevate your photography and explore Tuscany with confidence.
+          Insights, tips, and stories to help you elevate your photography and
+          explore Tuscany with confidence.
         </p>
         <div className={styles.accordions}>
           <Accordion
@@ -416,7 +400,6 @@ export function HomePage() {
       <FeedbackBlock />
 
       <Footer />
-
     </div>
   );
 }
