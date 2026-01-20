@@ -16,13 +16,13 @@
   background-color: white;
   border-radius: 20px;
   width: 100%;
-  max-width: 480px;
+  max-width: 498px;
   max-height: 90vh;
   overflow-y: auto;
 }
 
 .modalHeader {
-  background-color: #de2f4c;
+  background-color: #2f53de;
   color: white;
   padding: 11px 24px;
   display: flex;
@@ -52,5 +52,5 @@
 }
 
 .modalBody {
-  padding: 16px 0;
+  // padding: 16px 0;
 }

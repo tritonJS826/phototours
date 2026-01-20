@@ -44,10 +44,12 @@ const ScheduleAccordionItem = (props: ScheduleAccordionItemProps) => {
         {props.description}
       </p>
       <br />
-      {props.image && <img
-        src={props.image}
-        alt="dayImage"
-                      />}
+      {props.image && (
+        <img
+          src={props.image}
+          alt="dayImage"
+        />
+      )}
     </div>
   );
 };
@@ -1001,6 +1003,7 @@ export function TourDetailsPage() {
         <BuyTravelModal
           isOpen={isBuyTravelModalOpen}
           onClose={() => setIsBuyTravelModalOpen(false)}
+          showHeader={false}
         >
           {buyTravelContent}
         </BuyTravelModal>

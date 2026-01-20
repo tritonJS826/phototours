@@ -540,4 +540,48 @@
   .leftColumn {
     padding: 0 16px;
   }
+
+  .buyTravelLabel {
+    margin: 0 16px;
+  }
+
+  .butTravelInput {
+    margin: 16px;
+    width: calc(100% - 32px);
+    padding: 12px 16px;
+  }
+
+  .locationInputBlock {
+    margin: 8px 16px 16px 16px;
+    padding: 12px 10px;
+  }
+
+  .personalizeHr {
+    padding: 9px 16px;
+    font-size: 13px;
+  }
+
+  .personalizationBlock {
+    padding: 16px;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .buyTravelFooter {
+    padding: 16px;
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .buyTravelFooterLeft {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .primaryButton {
+    width: 100%;
+  }
 }
