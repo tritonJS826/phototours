@@ -20,9 +20,9 @@ export enum MaterialType {
 
 export interface TourDay {
   day: number;
-  title?: string;
+  plan: string;
   description: string;
-  photos: string[];
+  imgUrl?: string;
 }
 
 export interface TourView {

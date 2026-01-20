@@ -38,7 +38,7 @@ type TourDTO = {
   activities?: string[];
   dates?: Array<string | DateObj>;
   program?: {
-    days?: Array<{ day: number; title?: string; description: string; photos?: string[] }>;
+    days?: Array<{ day: number; plan: string; description: string; imgUrl: string }>;
     included?: string[];
     activities?: string[];
   };
@@ -77,9 +77,9 @@ function mapTourToView(dto: TourDTO): TourView {
   const dailyItinerary =
     dto.program?.days?.map(d => ({
       day: d.day,
-      title: d.title,
+      plan: d.plan,
       description: d.description,
-      photos: (d.photos ?? []).map(fileUrl),
+      imgUrl: d.imgUrl,
     })) ?? [];
   const included = dto.included ?? dto.program?.included ?? [];
   const activities = dto.activities ?? dto.program?.activities ?? [];
