@@ -22,6 +22,7 @@ import {Dropdown} from "src/components/Dropdown/Dropdown";
 import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
 import {TourCardExtended} from "src/components/Tour/TourCardExtended/TourCardExtended";
 import {FeedbackBlock} from "src/pages/homePage/HomePage";
+import {BuyTravelModal} from "src/pages/tourDetailsPage/BuyTravelModal";
 import {getTourBySlag as getTourBySlug} from "src/services/toursService";
 import type {TourView} from "src/types/tour";
 import type {Swiper as SwiperType} from "swiper";
@@ -43,12 +44,10 @@ const ScheduleAccordionItem = (props: ScheduleAccordionItemProps) => {
         {props.description}
       </p>
       <br />
-      {props.image && (
-        <img
-          src={props.image}
-          alt="dayImage"
-        />
-      )}
+      {props.image && <img
+        src={props.image}
+        alt="dayImage"
+                      />}
     </div>
   );
 };
@@ -140,44 +139,50 @@ const slidesForExtraTours = [
     image: blogAndPhotography1,
     link: "#",
     title: "Chianti Hills & Vineyards",
-    subtitle: "Capture golden vineyards, rustic hilltop villages, and soft evening light across the legendary rolling hills of Chianti.",
+    subtitle:
+      "Capture golden vineyards, rustic hilltop villages, and soft evening light across the legendary rolling hills of Chianti.",
   },
   {
     id: "2",
     image: blogAndPhotography2,
     link: "#",
     title: "Your Guide to Iconic Tuscany Shots",
-    // eslint-disable-next-line max-len
-    subtitle: "Explore essential techniques and hidden locations for creating cinematic images in Tuscany. Explore essential techniques and hidden locations for creating cinematic images in Tuscany.",
+
+    subtitle:
+      "Explore essential techniques and hidden locations for creating cinematic images in Tuscany. Explore essential techniques and hidden locations for creating cinematic images in Tuscany.",
   },
   {
     id: "3",
     image: blogAndPhotography3,
     link: "#",
     title: "Inspiration for Your Next Photo Adventure",
-    subtitle: "A curated blend of tips, stories, and expert advice for photographing Tuscany at its best.",
+    subtitle:
+      "A curated blend of tips, stories, and expert advice for photographing Tuscany at its best.",
   },
   {
     id: "4",
     image: blogAndPhotography1,
     link: "#",
     title: "Chianti Hills & Vineyards",
-    subtitle: "Capture golden vineyards, rustic hilltop villages, and soft evening light across the legendary rolling hills of Chianti.",
+    subtitle:
+      "Capture golden vineyards, rustic hilltop villages, and soft evening light across the legendary rolling hills of Chianti.",
   },
   {
     id: "5",
     image: blogAndPhotography2,
     link: "#",
     title: "Your Guide to Iconic Tuscany Shots",
-    // eslint-disable-next-line max-len
-    subtitle: "Explore essential techniques and hidden locations for creating cinematic images in Tuscany. Explore essential techniques and hidden locations for creating cinematic images in Tuscany.",
+
+    subtitle:
+      "Explore essential techniques and hidden locations for creating cinematic images in Tuscany. Explore essential techniques and hidden locations for creating cinematic images in Tuscany.",
   },
   {
     id: "6",
     image: blogAndPhotography3,
     link: "#",
     title: "Inspiration for Your Next Photo Adventure",
-    subtitle: "A curated blend of tips, stories, and expert advice for photographing Tuscany at its best.",
+    subtitle:
+      "A curated blend of tips, stories, and expert advice for photographing Tuscany at its best.",
   },
 ];
 
@@ -199,6 +204,191 @@ const TABLET_SLIDES_PER_VIEW_GALLERY_SLIDER = 4;
 const DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER = 6;
 const LARGE_DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER = 8;
 
+const buyTravelContent = (
+  <>
+    <div className={styles.buyTravelBlockTitle}>
+      Travel details
+    </div>
+
+    <p className={styles.buyTravelLabel}>
+      Your Name
+    </p>
+    <input
+      type="text"
+      className={styles.butTravelInput}
+    />
+    <p className={styles.buyTravelLabel}>
+      Your Email
+    </p>
+    <input
+      type="text"
+      className={styles.butTravelInput}
+    />
+    <p className={styles.buyTravelLabel}>
+      Your Phone
+    </p>
+    <input
+      type="text"
+      className={styles.butTravelInput}
+    />
+    <p className={styles.buyTravelLabel}>
+      Travel dates
+    </p>
+    <Dropdown
+      trigger={
+        <div className={styles.locationInputBlock}>
+          <img
+            className={styles.locationInputImg}
+            src={calendar}
+            alt="calendar icon"
+          />
+          <input
+            type="text"
+            id="filters-location"
+            placeholder="Nov 25"
+            className={styles.locationInput}
+          />
+        </div>
+      }
+      dropdownMenuItems={[
+        {
+          dropdownSubMenuItems: [
+            {
+              id: "location-1",
+              isPreventDefaultUsed: true,
+              value: <div className={styles.dropdownItem}>
+                Location 1
+              </div>,
+              isVisible: true,
+            },
+            {
+              id: "location-2",
+              isPreventDefaultUsed: true,
+              value: <div className={styles.dropdownItem}>
+                Location 2
+              </div>,
+              isVisible: true,
+            },
+            {
+              id: "location-3",
+              isPreventDefaultUsed: true,
+              value: <div className={styles.dropdownItem}>
+                Location 3
+              </div>,
+              isVisible: true,
+            },
+          ],
+        },
+      ]}
+    />
+    <p className={styles.buyTravelLabel}>
+      Travelers
+    </p>
+    <Dropdown
+      trigger={
+        <div className={styles.locationInputBlock}>
+          <img
+            className={styles.locationInputImg}
+            src={people}
+            alt="Photo Tour Logo"
+          />
+          <input
+            type="text"
+            id="filters-location"
+            placeholder="1 travaler"
+            className={styles.locationInput}
+          />
+        </div>
+      }
+      dropdownMenuItems={[
+        {
+          dropdownSubMenuItems: [
+            {
+              id: "location-1",
+              isPreventDefaultUsed: true,
+              value: <div className={styles.dropdownItem}>
+                Location 1
+              </div>,
+              isVisible: true,
+            },
+            {
+              id: "location-2",
+              isPreventDefaultUsed: true,
+              value: <div className={styles.dropdownItem}>
+                Location 2
+              </div>,
+              isVisible: true,
+            },
+            {
+              id: "location-3",
+              isPreventDefaultUsed: true,
+              value: <div className={styles.dropdownItem}>
+                Location 3
+              </div>,
+              isVisible: true,
+            },
+          ],
+        },
+      ]}
+    />
+
+    <div className={styles.personalizeHr}>
+      <img
+        className={styles.personalizeHrArrowsToRight}
+        src={arrowsToRight}
+        alt="Photo Tour Logo"
+      />
+      <span>
+        Personalize your experience
+      </span>
+      <img
+        className={styles.personalizeHrArrowsToLeft}
+        src={arrowsToRight}
+        alt="Photo Tour Logo"
+      />
+    </div>
+
+    <div className={styles.personalizationBlock}>
+      <span>
+        Number of rooms
+      </span>
+      <span>
+        From
+        {" "}
+        <span className={styles.blueText}>
+          100$
+        </span>
+      </span>
+    </div>
+
+    <div className={styles.buyTravelFooter}>
+      <div className={styles.buyTravelFooterLeft}>
+        <span className={styles.buyTravelFooterLeftTop}>
+          Total
+          {" "}
+          <b className={styles.boldPrice}>
+            2000
+          </b>
+          {" "}
+          USD
+        </span>
+        <span className={styles.buyTravelFooterLeftBottom}>
+          Price for 1 traveler
+        </span>
+      </div>
+      <Button
+        as={Link}
+        to={"TODO"}
+        className={styles.primaryButton}
+        size="md"
+        variant="primary"
+      >
+        Book now
+      </Button>
+    </div>
+  </>
+);
+
 export function TourDetailsPage() {
   const {slug} = useParams<{ slug: string }>();
   const navigate = useNavigate();
@@ -206,6 +396,7 @@ export function TourDetailsPage() {
   const [tour, setTour] = useState<TourView | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isBuyTravelModalOpen, setIsBuyTravelModalOpen] = useState(false);
 
   const swiperExtraToursRef = useRef<SwiperType | null>(null);
   const swiperGalleryRef = useRef<SwiperType | null>(null);
@@ -293,7 +484,6 @@ export function TourDetailsPage() {
 
   return (
     <div>
-
       <section className={styles.wrap}>
         <div className={styles.leftColumn}>
           <h1 className={styles.title}>
@@ -335,7 +525,9 @@ export function TourDetailsPage() {
               <Swiper
                 modules={[Keyboard, A11y]}
                 onSwiper={(s) => (swiperGalleryRef.current = s)}
-                loop={slidesForExtraTours.length > LARGE_DESKTOP_SLIDES_PER_VIEW}
+                loop={
+                  slidesForExtraTours.length > LARGE_DESKTOP_SLIDES_PER_VIEW
+                }
                 loopAdditionalSlides={6}
                 slidesPerView={MOBILE_SLIDES_PER_VIEW_GALLERY_SLIDER}
                 spaceBetween={24}
@@ -346,15 +538,21 @@ export function TourDetailsPage() {
                 breakpoints={{
                   [MOBILE_BREAKPOINT_GALLERY_SLIDER]: {
                     slidesPerView: TABLET_SLIDES_PER_VIEW_GALLERY_SLIDER,
-                    loop: slidesForExtraTours.length > TABLET_SLIDES_PER_VIEW_GALLERY_SLIDER,
+                    loop:
+                      slidesForExtraTours.length >
+                      TABLET_SLIDES_PER_VIEW_GALLERY_SLIDER,
                   },
                   [TABLET_BREAKPOINT_GALLERY_SLIDER]: {
                     slidesPerView: DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER,
-                    loop: slidesForExtraTours.length > DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER,
+                    loop:
+                      slidesForExtraTours.length >
+                      DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER,
                   },
                   [DESKTOP_BREAKPOINT_GALLERY_SLIDER]: {
                     slidesPerView: LARGE_DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER,
-                    loop: slidesForExtraTours.length > LARGE_DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER,
+                    loop:
+                      slidesForExtraTours.length >
+                      LARGE_DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER,
                   },
                 }}
               >
@@ -372,7 +570,6 @@ export function TourDetailsPage() {
                   </SwiperSlide>
                 ))}
               </Swiper>
-
             </div>
           </div>
 
@@ -401,7 +598,6 @@ export function TourDetailsPage() {
                   3 reviews
                 </span>
               </div>
-
             </div>
 
             <div className={styles.starsList}>
@@ -798,194 +994,23 @@ export function TourDetailsPage() {
 
         <div className={styles.calcBackStub}>
           <div className={styles.buyTravelBlock}>
-            <div className={styles.buyTravelBlockTitle}>
-              Travel details
-            </div>
-
-            <p className={styles.buyTravelLabel}>
-              Your Name
-            </p>
-            <input
-              type="text"
-              className={styles.butTravelInput}
-            />
-            <p className={styles.buyTravelLabel}>
-              Your Email
-            </p>
-            <input
-              type="text"
-              className={styles.butTravelInput}
-            />
-            <p className={styles.buyTravelLabel}>
-              Your Phone
-            </p>
-            <input
-              type="text"
-              className={styles.butTravelInput}
-            />
-            <p className={styles.buyTravelLabel}>
-              Travel dates
-            </p>
-            <Dropdown
-              trigger={(
-                <div className={styles.locationInputBlock}>
-                  <img
-                    className={styles.locationInputImg}
-                    src={calendar}
-                    alt="calendar icon"
-                  />
-                  <input
-                    type="text"
-                    id="filters-location"
-                    placeholder="Nov 25"
-                    className={styles.locationInput}
-                  />
-                </div>
-
-              )}
-
-              dropdownMenuItems={[
-                {
-                  dropdownSubMenuItems: [
-                    {
-                      id: "location-1",
-                      isPreventDefaultUsed: true,
-                      value: <div className={styles.dropdownItem}>
-                        Location 1
-                      </div>,
-                      isVisible: true,
-                    },
-                    {
-                      id: "location-2",
-                      isPreventDefaultUsed: true,
-                      value: <div className={styles.dropdownItem}>
-                        Location 2
-                      </div>,
-                      isVisible: true,
-                    },
-                    {
-                      id: "location-3",
-                      isPreventDefaultUsed: true,
-                      value: <div className={styles.dropdownItem}>
-                        Location 3
-                      </div>,
-                      isVisible: true,
-                    },
-                  ],
-                },
-              ]}
-            />
-            <p className={styles.buyTravelLabel}>
-              Travelers
-            </p>
-            <Dropdown
-              trigger={(
-                <div className={styles.locationInputBlock}>
-                  <img
-                    className={styles.locationInputImg}
-                    src={people}
-                    alt="Photo Tour Logo"
-                  />
-                  <input
-                    type="text"
-                    id="filters-location"
-                    placeholder="1 travaler"
-                    className={styles.locationInput}
-                  />
-                </div>
-
-              )}
-
-              dropdownMenuItems={[
-                {
-                  dropdownSubMenuItems: [
-                    {
-                      id: "location-1",
-                      isPreventDefaultUsed: true,
-                      value: <div className={styles.dropdownItem}>
-                        Location 1
-                      </div>,
-                      isVisible: true,
-                    },
-                    {
-                      id: "location-2",
-                      isPreventDefaultUsed: true,
-                      value: <div className={styles.dropdownItem}>
-                        Location 2
-                      </div>,
-                      isVisible: true,
-                    },
-                    {
-                      id: "location-3",
-                      isPreventDefaultUsed: true,
-                      value: <div className={styles.dropdownItem}>
-                        Location 3
-                      </div>,
-                      isVisible: true,
-                    },
-                  ],
-                },
-              ]}
-            />
-
-            <div className={styles.personalizeHr}>
-              <img
-                className={styles.personalizeHrArrowsToRight}
-                src={arrowsToRight}
-                alt="Photo Tour Logo"
-              />
-              <span>
-                Personalize your experience
-              </span>
-              <img
-                className={styles.personalizeHrArrowsToLeft}
-                src={arrowsToRight}
-                alt="Photo Tour Logo"
-              />
-            </div>
-
-            <div className={styles.personalizationBlock}>
-              <span>
-                Number of rooms
-              </span>
-              <span>
-                From
-                {" "}
-                <span className={styles.blueText}>
-                  100$
-                </span>
-              </span>
-            </div>
-
-            <div className={styles.buyTravelFooter}>
-              <div className={styles.buyTravelFooterLeft}>
-                <span className={styles.buyTravelFooterLeftTop}>
-                  Total
-                  {" "}
-                  <b className={styles.boldPrice}>
-                    2000
-                  </b>
-                  {" "}
-                  USD
-                </span>
-                <span className={styles.buyTravelFooterLeftBottom}>
-                  Price for 1 traveler
-                </span>
-              </div>
-              <Button
-                as={Link}
-                to={"TODO"}
-                className={styles.primaryButton}
-                size="md"
-                variant="primary"
-              >
-                Book now
-              </Button>
-
-            </div>
+            {buyTravelContent}
           </div>
         </div>
 
+        <BuyTravelModal
+          isOpen={isBuyTravelModalOpen}
+          onClose={() => setIsBuyTravelModalOpen(false)}
+        >
+          {buyTravelContent}
+        </BuyTravelModal>
+
+        <button
+          className={styles.floatingBookButton}
+          onClick={() => setIsBuyTravelModalOpen(true)}
+        >
+          Book now
+        </button>
       </section>
 
       <div className={styles.whyLove}>
@@ -995,7 +1020,6 @@ export function TourDetailsPage() {
         </h2>
 
         <ReviewsSection />
-
       </div>
 
       <div className={styles.faq}>
@@ -1008,7 +1032,6 @@ export function TourDetailsPage() {
           type={accordionTypes.MULTIPLE}
           className={styles.accordion}
         />
-
       </div>
 
       <div className={styles.toursSlider}>
@@ -1081,7 +1104,6 @@ export function TourDetailsPage() {
             </SwiperSlide>
           ))}
         </Swiper>
-
       </div>
       <FeedbackBlock />
     </div>
