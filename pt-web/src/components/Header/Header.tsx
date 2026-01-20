@@ -1,4 +1,8 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {
+  useEffect,
+  // UseRef,
+  useState,
+} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import email from "/images/email.svg";
 import instagram from "/images/instagram.svg";
@@ -8,32 +12,40 @@ import telegram from "/images/telegram.svg";
 import whatsapp from "/images/whatsapp.svg";
 import clsx from "clsx";
 import {
-  Bell,
-  CircleUser,
-  LogOut,
+  // Bell,
+  // CircleUser,
+  // LogOut,
   Menu,
-  ShoppingCart,
-  User,
+  // ShoppingCart,
+  // User,
 } from "lucide-react";
 import {AuthModal} from "src/components/Auth";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
 import {useAuth} from "src/hooks/useAuth";
 import {PATHS} from "src/routes/routes";
-import {getProfileImageUrl} from "src/utils/profileImage";
+// Import {getProfileImageUrl} from "src/utils/profileImage";
 import styles from "src/components/Header/Header.module.scss";
 
 const REFRESH_DELAY = 100;
 
 export function Header() {
-  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  // Const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const [authMode, setAuthMode] = useState<"login" | "register">("login");
+  const [
+    authMode,
+    // SetAuthMode,
+  ] = useState<"login" | "register">("login");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const {user, isAuthenticated, logout, refreshFromStorage} = useAuth();
+  const {
+    user,
+    isAuthenticated,
+    // Logout,
+    refreshFromStorage,
+  } = useAuth();
   const navigate = useNavigate();
 
-  const profileDropdownRef = useRef<HTMLDivElement>(null);
+  // Const profileDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isAuthenticated && isAuthModalOpen) {
@@ -45,15 +57,15 @@ export function Header() {
     refreshFromStorage();
   }, [refreshFromStorage]);
 
-  const handleProfileClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (isAuthenticated) {
-      setIsProfileDropdownOpen(!isProfileDropdownOpen);
-    } else {
-      setAuthMode("login");
-      setIsAuthModalOpen(true);
-    }
-  };
+  // Const handleProfileClick = (e: React.MouseEvent) => {
+  //   e.preventDefault();
+  //   if (isAuthenticated) {
+  //     setIsProfileDropdownOpen(!isProfileDropdownOpen);
+  //   } else {
+  //     setAuthMode("login");
+  //     setIsAuthModalOpen(true);
+  //   }
+  // };
 
   const handleAuthSuccess = () => {
     refreshFromStorage();
@@ -114,7 +126,7 @@ export function Header() {
             </ul>
             <div className={styles.rightHeaderLinks}>
 
-              <div className={styles.topbarRight}>
+              {/* <div className={styles.topbarRight}>
                 <Link
                   to={PATHS.CART}
                   className={styles.iconBtn}
@@ -210,7 +222,7 @@ export function Header() {
                       <CircleUser className="icon" />
                     </button>
                   )}
-              </div>
+              </div> */}
 
               <Dropdown
                 trigger={(
