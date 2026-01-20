@@ -44,12 +44,10 @@ const ScheduleAccordionItem = (props: ScheduleAccordionItemProps) => {
         {props.description}
       </p>
       <br />
-      {props.image && (
-        <img
-          src={props.image}
-          alt="dayImage"
-        />
-      )}
+      {props.image && <img
+        src={props.image}
+        alt="dayImage"
+                      />}
     </div>
   );
 };
@@ -399,9 +397,7 @@ export function TourDetailsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isBuyTravelModalOpen, setIsBuyTravelModalOpen] = useState(false);
-
-  const swiperExtraToursRef = useRef<SwiperType | null>(null);
-  const swiperGalleryRef = useRef<SwiperType | null>(null);
+  const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(0);
 
   useEffect(() => {
     if (!slug) {
@@ -421,6 +417,9 @@ export function TourDetailsPage() {
           return;
         }
         setTour(t);
+        if (t.photos && t.photos.length > 0) {
+          setSelectedPhotoIndex(0);
+        }
         document.title = t.title || "Tour";
       } catch {
         if (!alive) {
@@ -439,7 +438,11 @@ export function TourDetailsPage() {
     };
   }, [slug]);
 
-  const cover = tour?.coverUrl || tour?.photos?.[0];
+  const photos = tour?.photos || [];
+  const cover = photos[selectedPhotoIndex] || tour?.coverUrl || photos[0];
+
+  const swiperExtraToursRef = useRef<SwiperType | null>(null);
+  const swiperGalleryRef = useRef<SwiperType | null>(null);
 
   if (loading) {
     return (
@@ -503,7 +506,14 @@ export function TourDetailsPage() {
               type="button"
               aria-label="Previous"
               className={clsx(styles.galleryArrow, styles.galleryArrowLeft)}
-              onClick={() => swiperGalleryRef.current?.slidePrev()}
+              onClick={() => {
+                if (photos.length === 0) {
+                  return;
+                }
+                setSelectedPhotoIndex((prev) =>
+                  prev === 0 ? photos.length - 1 : prev - 1,
+                );
+              }}
             >
               <img
                 src={grayArrowRightCircle}
@@ -515,7 +525,14 @@ export function TourDetailsPage() {
               type="button"
               aria-label="Next"
               className={clsx(styles.galleryArrow, styles.galleryArrowRight)}
-              onClick={() => swiperGalleryRef.current?.slideNext()}
+              onClick={() => {
+                if (photos.length === 0) {
+                  return;
+                }
+                setSelectedPhotoIndex((prev) =>
+                  prev === photos.length - 1 ? 0 : prev + 1,
+                );
+              }}
             >
               <img
                 src={grayArrowRightCircle}
@@ -528,7 +545,8 @@ export function TourDetailsPage() {
                 modules={[Keyboard, A11y]}
                 onSwiper={(s) => (swiperGalleryRef.current = s)}
                 loop={
-                  slidesForExtraTours.length > LARGE_DESKTOP_SLIDES_PER_VIEW
+                  (tour?.photos?.length || 0) >
+                  LARGE_DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER
                 }
                 loopAdditionalSlides={6}
                 slidesPerView={MOBILE_SLIDES_PER_VIEW_GALLERY_SLIDER}
@@ -541,32 +559,35 @@ export function TourDetailsPage() {
                   [MOBILE_BREAKPOINT_GALLERY_SLIDER]: {
                     slidesPerView: TABLET_SLIDES_PER_VIEW_GALLERY_SLIDER,
                     loop:
-                      slidesForExtraTours.length >
+                      (tour?.photos?.length || 0) >
                       TABLET_SLIDES_PER_VIEW_GALLERY_SLIDER,
                   },
                   [TABLET_BREAKPOINT_GALLERY_SLIDER]: {
                     slidesPerView: DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER,
                     loop:
-                      slidesForExtraTours.length >
+                      (tour?.photos?.length || 0) >
                       DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER,
                   },
                   [DESKTOP_BREAKPOINT_GALLERY_SLIDER]: {
                     slidesPerView: LARGE_DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER,
                     loop:
-                      slidesForExtraTours.length >
+                      (tour?.photos?.length || 0) >
                       LARGE_DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER,
                   },
                 }}
               >
-                {slidesForExtraTours.concat(slidesForExtraTours).map((s, i) => (
+                {tour.photos?.map((photo, i) => (
                   <SwiperSlide
                     key={i}
                     className={styles.gallerySlide}
                   >
-                    <button className={styles.gallerySlideButton}>
+                    <button
+                      className={clsx(styles.gallerySlideButton, {[styles.active]: i === selectedPhotoIndex})}
+                      onClick={() => setSelectedPhotoIndex(i)}
+                    >
                       <img
-                        src={s.image}
-                        alt="gallery image"
+                        src={photo}
+                        alt={`gallery image ${i + 1}`}
                       />
                     </button>
                   </SwiperSlide>

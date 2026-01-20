@@ -58,6 +58,11 @@
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
+  transition: border 0.2s ease;
+
+  &.active {
+    border: 3px solid #2f53de;
+  }
 }
 
 .gallerySlideButton img {

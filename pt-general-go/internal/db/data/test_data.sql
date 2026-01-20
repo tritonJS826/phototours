@@ -136,8 +136,18 @@ VALUES
 -- PHOTOS
 INSERT INTO photos (tour_id, url, description)
 VALUES
-  (tour1_id, 'https://example.com/gc-photo1.jpg', 'Sunrise over the Grand Canyon'),
-  (tour1_id, 'https://example.com/gc-photo2.jpg', 'Group on Bright Angel Trail'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886477/tuscan-spring__Untitled_Panorama2_114%D1%85249-200dpi_299-Edit_tebrjd.avif', 'Sunrise over the Grand Canyon'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__Untitled_Panorama1_65%D1%8587-200dpi_100-Edit_sprpmc.avif', 'Group on Bright Angel Trail'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8829-1_86x56_x5eivl.avif', 'Group on Bright Angel Trail'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8844obr_146x110_topaz_PRINT_yvqehs.avif', 'Group on Bright Angel Trail'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__OSKIN_3950_fdilkc.avif', 'Group on Bright Angel Trail'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886475/tuscan-spring__OSKIN_218_43%D1%8572-200dpi_sy8xug.avif', 'Group on Bright Angel Trail'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886470/tuscan-spring__IMGP0277_68%D1%8593-200dpi-Edit_fful6e.avif', 'Group on Bright Angel Trail'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__FUJI8847-Pano-Pano-Dehancer_copy_lgg7p7.avif', 'Group on Bright Angel Trail'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886470/tuscan-spring__IMG_1698_69%D1%8546-200dpi_2_zsq3qn.avif', 'Group on Bright Angel Trail'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886470/tuscan-spring___IGP6527_Panorama-Edit_copy_a2einq.avif', 'Group on Bright Angel Trail'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__AA8B2655_43%D1%8573-200dpi_113-Edit_lykwgv.avif', 'Group on Bright Angel Trail'),
+  
   (tour2_id, 'https://example.com/nyc-photo1.jpg', 'Statue of Liberty'),
   (tour2_id, 'https://example.com/nyc-photo2.jpg', 'Brooklyn Bridge at sunset'),
   (tour3_id, 'https://example.com/rafting-photo1.jpg', 'Navigating Class IV rapids'),
