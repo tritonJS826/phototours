@@ -44,7 +44,7 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 		s.logger.Debug("Created booking request in Zoho", zap.Any("result", *result))
 	}()
 
-	testStripeRedirectURL := "https://stripe.com"
+	testStripeRedirectURL := "https://buy.stripe.com/cNidR86ir4mh3OVeYob3q08"
 
 	return testStripeRedirectURL, nil
 }

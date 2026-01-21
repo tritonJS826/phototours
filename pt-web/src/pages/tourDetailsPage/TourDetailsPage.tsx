@@ -23,6 +23,10 @@ import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
 import {TourCardExtended} from "src/components/Tour/TourCardExtended/TourCardExtended";
 import {FeedbackBlock} from "src/pages/homePage/HomePage";
 import {BuyTravelModal} from "src/pages/tourDetailsPage/BuyTravelModal";
+import {
+  type BookingRequest,
+  createBooking,
+} from "src/services/bookingService";
 import {getTourBySlag as getTourBySlug} from "src/services/toursService";
 import type {TourView} from "src/types/tour";
 import type {Swiper as SwiperType} from "swiper";
@@ -40,12 +44,10 @@ interface ScheduleAccordionItemProps {
 const ScheduleAccordionItem = (props: ScheduleAccordionItemProps) => {
   return (
     <div className={props.className}>
-      {props.image && (
-        <img
-          src={props.image}
-          alt="dayImage"
-        />
-      )}
+      {props.image && <img
+        src={props.image}
+        alt="dayImage"
+                      />}
       <br />
       <p>
         {props.description}
@@ -188,191 +190,6 @@ const TABLET_SLIDES_PER_VIEW_GALLERY_SLIDER = 4;
 const DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER = 6;
 const LARGE_DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER = 8;
 
-const buyTravelContent = (
-  <>
-    <div className={styles.buyTravelBlockTitle}>
-      Travel details
-    </div>
-
-    <p className={styles.buyTravelLabel}>
-      Your Name
-    </p>
-    <input
-      type="text"
-      className={styles.butTravelInput}
-    />
-    <p className={styles.buyTravelLabel}>
-      Your Email
-    </p>
-    <input
-      type="text"
-      className={styles.butTravelInput}
-    />
-    <p className={styles.buyTravelLabel}>
-      Your Phone
-    </p>
-    <input
-      type="text"
-      className={styles.butTravelInput}
-    />
-    <p className={styles.buyTravelLabel}>
-      Travel dates
-    </p>
-    <Dropdown
-      trigger={
-        <div className={styles.locationInputBlock}>
-          <img
-            className={styles.locationInputImg}
-            src={calendar}
-            alt="calendar icon"
-          />
-          <input
-            type="text"
-            id="filters-location"
-            placeholder="Nov 25"
-            className={styles.locationInput}
-          />
-        </div>
-      }
-      dropdownMenuItems={[
-        {
-          dropdownSubMenuItems: [
-            {
-              id: "location-1",
-              isPreventDefaultUsed: true,
-              value: <div className={styles.dropdownItem}>
-                Location 1
-              </div>,
-              isVisible: true,
-            },
-            {
-              id: "location-2",
-              isPreventDefaultUsed: true,
-              value: <div className={styles.dropdownItem}>
-                Location 2
-              </div>,
-              isVisible: true,
-            },
-            {
-              id: "location-3",
-              isPreventDefaultUsed: true,
-              value: <div className={styles.dropdownItem}>
-                Location 3
-              </div>,
-              isVisible: true,
-            },
-          ],
-        },
-      ]}
-    />
-    <p className={styles.buyTravelLabel}>
-      Travelers
-    </p>
-    <Dropdown
-      trigger={
-        <div className={styles.locationInputBlock}>
-          <img
-            className={styles.locationInputImg}
-            src={people}
-            alt="Photo Tour Logo"
-          />
-          <input
-            type="text"
-            id="filters-location"
-            placeholder="1 travaler"
-            className={styles.locationInput}
-          />
-        </div>
-      }
-      dropdownMenuItems={[
-        {
-          dropdownSubMenuItems: [
-            {
-              id: "location-1",
-              isPreventDefaultUsed: true,
-              value: <div className={styles.dropdownItem}>
-                Location 1
-              </div>,
-              isVisible: true,
-            },
-            {
-              id: "location-2",
-              isPreventDefaultUsed: true,
-              value: <div className={styles.dropdownItem}>
-                Location 2
-              </div>,
-              isVisible: true,
-            },
-            {
-              id: "location-3",
-              isPreventDefaultUsed: true,
-              value: <div className={styles.dropdownItem}>
-                Location 3
-              </div>,
-              isVisible: true,
-            },
-          ],
-        },
-      ]}
-    />
-
-    <div className={styles.personalizeHr}>
-      <img
-        className={styles.personalizeHrArrowsToRight}
-        src={arrowsToRight}
-        alt="Photo Tour Logo"
-      />
-      <span>
-        Personalize your experience
-      </span>
-      <img
-        className={styles.personalizeHrArrowsToLeft}
-        src={arrowsToRight}
-        alt="Photo Tour Logo"
-      />
-    </div>
-
-    <div className={styles.personalizationBlock}>
-      <span>
-        Number of rooms
-      </span>
-      <span>
-        From
-        {" "}
-        <span className={styles.blueText}>
-          100$
-        </span>
-      </span>
-    </div>
-
-    <div className={styles.buyTravelFooter}>
-      <div className={styles.buyTravelFooterLeft}>
-        <span className={styles.buyTravelFooterLeftTop}>
-          Total
-          {" "}
-          <b className={styles.boldPrice}>
-            2000
-          </b>
-          {" "}
-          USD
-        </span>
-        <span className={styles.buyTravelFooterLeftBottom}>
-          Price for 1 traveler
-        </span>
-      </div>
-      <Button
-        as={Link}
-        to={"TODO"}
-        className={styles.primaryButton}
-        size="md"
-        variant="primary"
-      >
-        Book now
-      </Button>
-    </div>
-  </>
-);
-
 export function TourDetailsPage() {
   const {slug} = useParams<{ slug: string }>();
   const navigate = useNavigate();
@@ -382,6 +199,232 @@ export function TourDetailsPage() {
   const [error, setError] = useState<string | null>(null);
   const [isBuyTravelModalOpen, setIsBuyTravelModalOpen] = useState(false);
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(0);
+  const [bookingLoading, setBookingLoading] = useState(false);
+
+  const handleBookNow = async () => {
+    if (!tour) {
+      return;
+    }
+    setBookingLoading(true);
+    try {
+      const nameInput = document.getElementById(
+        "booking-name",
+      ) as HTMLInputElement;
+      const emailInput = document.getElementById(
+        "booking-email",
+      ) as HTMLInputElement;
+      const phoneInput = document.getElementById(
+        "booking-phone",
+      ) as HTMLInputElement;
+      const dateInput = document.getElementById(
+        "booking-date",
+      ) as HTMLInputElement;
+      const travelersInput = document.getElementById(
+        "booking-travelers",
+      ) as HTMLInputElement;
+
+      const name = nameInput?.value ?? "";
+      const phone = phoneInput?.value ?? "";
+
+      if (!name.trim() || !phone.trim()) {
+        alert("Please fill in your name and phone number");
+        setBookingLoading(false);
+
+        return;
+      }
+
+      const request: BookingRequest = {
+        tourId: tour.id,
+        name: name,
+        email: emailInput?.value ?? "",
+        phone: phone,
+        travelDate: dateInput?.value ?? "",
+        travelers: parseInt(travelersInput?.value?.split(" ")[0] ?? "1") || 1,
+      };
+      await createBooking(request);
+    } catch (error) {
+      console.error("Booking failed:", error);
+      alert(error instanceof Error ? error.message : "Booking failed, please fill the form");
+    } finally {
+      setBookingLoading(false);
+    }
+  };
+
+  const buyTravelContent = (
+    <>
+      <div className={styles.buyTravelBlockTitle}>
+        Travel details
+      </div>
+
+      <p className={styles.buyTravelLabel}>
+        Your Name
+      </p>
+      <input
+        type="text"
+        className={styles.butTravelInput}
+        id="booking-name"
+      />
+      <p className={styles.buyTravelLabel}>
+        Your Email
+      </p>
+      <input
+        type="text"
+        className={styles.butTravelInput}
+        id="booking-email"
+      />
+      <p className={styles.buyTravelLabel}>
+        Your Phone
+      </p>
+      <input
+        type="text"
+        className={styles.butTravelInput}
+        id="booking-phone"
+      />
+      <p className={styles.buyTravelLabel}>
+        Travel dates
+      </p>
+      <Dropdown
+        trigger={
+          <div className={styles.locationInputBlock}>
+            <img
+              className={styles.locationInputImg}
+              src={calendar}
+              alt="calendar icon"
+            />
+            <input
+              type="text"
+              id="booking-date"
+              placeholder="Select date"
+              className={styles.locationInput}
+            />
+          </div>
+        }
+        dropdownMenuItems={
+          tour?.dates?.map((date, i) => ({
+            dropdownSubMenuItems: [
+              {
+                id: `date-${i}`,
+                isPreventDefaultUsed: true,
+                value: <div className={styles.dropdownItem}>
+                  {date}
+                </div>,
+                isVisible: true,
+                onClick: () => {
+                  const input = document.getElementById(
+                    "booking-date",
+                  ) as HTMLInputElement;
+                  if (input) {
+                    input.value = date;
+                  }
+                },
+              },
+            ],
+          })) ?? []
+        }
+      />
+      <p className={styles.buyTravelLabel}>
+        Travelers
+      </p>
+      <Dropdown
+        trigger={
+          <div className={styles.locationInputBlock}>
+            <img
+              className={styles.locationInputImg}
+              src={people}
+              alt="Photo Tour Logo"
+            />
+            <input
+              type="text"
+              id="booking-travelers"
+              placeholder="1 traveler"
+              className={styles.locationInput}
+              readOnly
+            />
+          </div>
+        }
+        dropdownMenuItems={[1, 2, 3, 4, 5].map((n) => ({
+          dropdownSubMenuItems: [
+            {
+              id: `traveler-${n}`,
+              isPreventDefaultUsed: true,
+              value: (
+                <div className={styles.dropdownItem}>
+                  {n}
+                  {" "}
+                  traveler
+                  {n > 1 ? "s" : ""}
+                </div>
+              ),
+              isVisible: true,
+              onClick: () => {
+                const input = document.getElementById(
+                  "booking-travelers",
+                ) as HTMLInputElement;
+                if (input) {
+                  input.value = `${n} traveler${n > 1 ? "s" : ""}`;
+                }
+              },
+            },
+          ],
+        }))}
+      />
+
+      <div className={styles.personalizeHr}>
+        <img
+          className={styles.personalizeHrArrowsToRight}
+          src={arrowsToRight}
+          alt="Photo Tour Logo"
+        />
+        <span>
+          Personalize your experience
+        </span>
+        <img
+          className={styles.personalizeHrArrowsToLeft}
+          src={arrowsToRight}
+          alt="Photo Tour Logo"
+        />
+      </div>
+
+      <div className={styles.personalizationBlock}>
+        <span>
+          Number of rooms
+        </span>
+        <span>
+          From
+          {" "}
+          <span className={styles.blueText}>
+            100$
+          </span>
+        </span>
+      </div>
+
+      <div className={styles.buyTravelFooter}>
+        <div className={styles.buyTravelFooterLeft}>
+          <span className={styles.buyTravelFooterLeftTop}>
+            Total
+            {" "}
+            <b className={styles.boldPrice}>
+              {tour?.price ?? "2000"}
+            </b>
+            {" "}
+            USD
+          </span>
+          <span className={styles.buyTravelFooterLeftBottom}>
+            Price for 1 traveler
+          </span>
+        </div>
+        <Button
+          className={styles.primaryButton}
+          size="md"
+          variant="primary"
+          onClick={handleBookNow}
+          disabled={bookingLoading}
+        >
+          {bookingLoading ? "Processing..." : "Book now"}
+        </Button>
+      </div>
+    </>
+  );
 
   useEffect(() => {
     if (!slug) {

@@ -23,7 +23,7 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 		AllowOrigins:     []string{h.cfg.CORSOrigins},
 		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"},
 		AllowHeaders:     []string{"Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization", "X-User-Id", "x-user-id"},
-		ExposeHeaders:    []string{"Content-Length"},
+		ExposeHeaders:    []string{"Content-Length", "Location"},
 		AllowCredentials: true,
 		MaxAge:           12 * time.Hour,
 	}))

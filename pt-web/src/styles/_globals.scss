@@ -17,7 +17,6 @@
 
 html,
 body {
-  min-height: 100%;
   box-sizing: border-box;
 }
 
@@ -76,10 +75,6 @@ canvas {
   }
 }
 
-.full-bleed {
-  inline-size: 100vw;
-  margin-inline: calc(50% - 50vw);
-}
 
 .section + .section {
   padding-top: 0;

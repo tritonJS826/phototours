@@ -3,7 +3,8 @@ package handler
 import (
 	"net/http"
 	"pt-general-go/internal/domain"
-	"pt-general-go/internal/handler/dto"
+
+	// "pt-general-go/internal/handler/dto"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
@@ -34,7 +35,5 @@ func (h *Handler) CreateBookingRequest(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusCreated, dto.CreateBookingResponse{
-		RedirectURL: redirectURL,
-	})
+	ctx.Redirect(http.StatusSeeOther, redirectURL)
 }
