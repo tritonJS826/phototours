@@ -146,3 +146,12 @@
     }
   }
 }
+
+
+.leftCopyrightBlock {
+  display: flex;
+  max-width: 800px;
+  flex-grow: 1;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

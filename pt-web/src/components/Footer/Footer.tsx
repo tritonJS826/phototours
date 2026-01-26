@@ -161,14 +161,20 @@ export const Footer = function Footer() {
 
       <section className={styles.copyrightSection}>
         <div className={styles.copyrightContent}>
-          <p className={styles.copyrightText}>
-            © 2026 Tuscany Photo Tours. All rights reserved.
-          </p>
+          <div className={styles.leftCopyrightBlock}>
+            <p className={styles.copyrightText}>
+              © 2026 Tuscany Photo Tours. All rights reserved.
+            </p>
+            <p className={styles.copyrightText}>
+              Kythira Corporation OÜ (registrikood 16684153) Tallin, Est
+            </p>
+          </div>
           <div className={styles.socialIcons}>
             {SOCIAL_LINKS.map(renderSocialIcon)}
           </div>
         </div>
       </section>
+
     </footer>
   );
 };
