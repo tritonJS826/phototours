@@ -1092,8 +1092,6 @@ export function TourDetailsPage() {
       </div>
 
       <div className={styles.toursSlider}>
-        <div className={styles.toursSliderPlaceholder} />
-
         <button
           type="button"
           aria-label="Previous"

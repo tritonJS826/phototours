@@ -10,6 +10,7 @@
 .leftColumn {
   flex: 1;
   padding: 0 20px;
+  max-width: 100%;
 }
 
 .title {
@@ -158,6 +159,7 @@
 
 .tourDescriptionBlock {
   display: flex;
+  flex-wrap: wrap;
   justify-content: start;
   gap: 60px;
   margin-bottom: 30px;
@@ -303,7 +305,7 @@
   left: 50%;
   transform: translateX(-50%);
   // it was hard to center this placeholder, so let's just make it super wide
-  width: 200vw;
+  width: 100vw;
   height: 100%;
   background: #f0f0f0;
   z-index: -1;
@@ -320,18 +322,6 @@
   max-width: 1530px;
   margin: auto;
   padding: 20px;
-}
-
-.toursSliderPlaceholder {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  // it was hard to center this placeholder, so let's just make it super wide
-  width: 200vw;
-  height: 100%;
-  background: #f0f0f0;
-  z-index: -1;
 }
 
 .arrow {
