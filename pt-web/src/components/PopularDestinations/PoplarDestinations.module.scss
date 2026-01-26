@@ -24,9 +24,14 @@
   max-width: 230px;
   border-radius: 20px;
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #2F53DE 100%);
   width: 100%;
   justify-self: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(47, 83, 222, 0.3);
+  }
 }
 
 .imageWrapper {
@@ -43,9 +48,18 @@
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 70%,
-    #2F53DE 100%
+    rgba(0, 0, 0, 0) 100%
   );
   pointer-events: none;
+  transition: background 0.3s ease;
+}
+
+.popularDestinationCard:hover .imageWrapper::after {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 70%,
+    #2F53DE 100%
+  );
 }
 
 .overlayText {
