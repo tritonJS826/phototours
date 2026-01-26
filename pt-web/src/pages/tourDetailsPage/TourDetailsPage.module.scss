@@ -390,7 +390,7 @@
   margin: 0 24px;
 }
 
-.butTravelInput {
+.buyTravelInput {
   margin: 16px 24px;
   padding: 16px 20px;
   width: 432px;
@@ -430,6 +430,13 @@
   border: none;
   flex-grow: 1;
 }
+
+.readOnlyInput:focus-visible,
+.readOnlyInput:focus,
+.readOnlyInput:active {
+  outline-color: transparent;
+}
+
 
 .personalizeHr {
   background-color: #2f53de1a;
@@ -540,7 +547,7 @@
     margin: 0 16px;
   }
 
-  .butTravelInput {
+  .buyTravelInput {
     margin: 16px;
     width: calc(100% - 32px);
     padding: 12px 16px;

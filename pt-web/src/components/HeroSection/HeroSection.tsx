@@ -11,18 +11,18 @@ export function HeroTextSection(props: HeroSectionProps) {
     <section className={clsx(styles.heroSection, props.className)}>
       <h1 className={styles.heroTitle}>
         <b>
-          Unforgettable Photo
+          Exclusive
           {" "}
           <i className={styles.italic}>
-            Tours Across Tuscany
+            Photo Tours & Workshops:
           </i>
           {" "}
-          Capture breathtaking landscapes with expert guidance
+          Signature Photo Expeditions Across the Globe
         </b>
       </h1>
       <p className={styles.subtitle}>
-        Small groups • Iconic locations • Professional photo mentoring to
-        help you create award-winning shots on cinematic Tuscan routes.
+        Join our award-winning professional photographers and tour leaders on exclusive photo expeditions
+        across the globe. Capture the raw beauty of volcanoes, glaciers, and ancient forests with expert on-site mentoring
       </p>
       <TourSearchForm />
     </section>

@@ -1,4 +1,5 @@
 import {useEffect, useRef, useState} from "react";
+import {Helmet} from "react-helmet-async";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import arrowsToRight from "/images/arrowsToRight.svg";
 import blogAndPhotography1 from "/images/blogAndPhotography1.avif";
@@ -261,24 +262,27 @@ export function TourDetailsPage() {
       </p>
       <input
         type="text"
-        className={styles.butTravelInput}
+        className={styles.buyTravelInput}
         id="booking-name"
+        autoComplete="off"
       />
       <p className={styles.buyTravelLabel}>
         Your Email
       </p>
       <input
         type="text"
-        className={styles.butTravelInput}
+        className={styles.buyTravelInput}
         id="booking-email"
+        autoComplete="off"
       />
       <p className={styles.buyTravelLabel}>
         Your Phone
       </p>
       <input
         type="text"
-        className={styles.butTravelInput}
+        className={styles.buyTravelInput}
         id="booking-phone"
+        autoComplete="off"
       />
       <p className={styles.buyTravelLabel}>
         Travel dates
@@ -295,7 +299,9 @@ export function TourDetailsPage() {
               type="text"
               id="booking-date"
               placeholder="Select date"
-              className={styles.locationInput}
+              className={clsx(styles.locationInput, styles.readOnlyInput)}
+              autoComplete="off"
+              readOnly
             />
           </div>
         }
@@ -337,7 +343,8 @@ export function TourDetailsPage() {
               type="text"
               id="booking-travelers"
               placeholder="1 traveler"
-              className={styles.locationInput}
+              className={clsx(styles.locationInput, styles.readOnlyInput)}
+              autoComplete="off"
               readOnly
             />
           </div>
@@ -448,6 +455,16 @@ export function TourDetailsPage() {
           setSelectedPhotoIndex(0);
         }
         document.title = t.title || "Tour";
+
+        // Preload images for accordion
+        // for (const day of t.dailyItinerary ?? []) {
+        //   if (!day.imgUrl) {
+        //     continue;
+        //   }
+        //   console.log("loaded", day.imgUrl);
+        //   const img = new Image();
+        //   img.src = day.imgUrl;
+        // }
       } catch {
         if (!alive) {
           return;

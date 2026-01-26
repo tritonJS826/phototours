@@ -215,7 +215,9 @@
 
 .blogAndPhotographyText {
   font-weight: 400;
-  font-size: 20px;
+
+  // should be 20 but not enough space for current text
+  font-size: 19px;
 }
 
 .blogAndPhotographyButton {
@@ -274,7 +276,7 @@
 }
 
 .faqSubtitle {
-  max-width: 490px;
+  // max-width: 650px;
   font-weight: 400;
   font-size: 20px;
   line-height: 1.35;

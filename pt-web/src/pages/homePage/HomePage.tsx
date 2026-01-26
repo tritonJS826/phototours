@@ -36,11 +36,10 @@ export const FeedbackBlock = () => {
     <div className={styles.feedBackBlock}>
       <div className={styles.feedBackContent}>
         <h2 className={styles.feedBackTitle}>
-          Book Your Spring Tuscany Experience
+          Find Your Perfect Photo Journey
         </h2>
         <p className={styles.feedBackDescription}>
-          Small groups • Iconic locations • Professional photo mentoring to help
-          you create award-winning shots on cinematic Tuscan routes.
+          Share your contact info, and we’ll reach out to help you select the ideal destination and dates.
         </p>
         <div className="">
           <div className={styles.feedBackForm}>
@@ -61,7 +60,7 @@ export const FeedbackBlock = () => {
                 placeholder="+1 000 000-000"
               /> */}
             <button className={styles.feedBackButton}>
-              Sent
+              Contact Me
             </button>
           </div>
           <span className={styles.privacyPolicyText}>
@@ -88,17 +87,16 @@ const COPY = {
       "As Iceland’s leading photo tour operator, we offer expert tours\n" +
       "to help you capture breathtaking images at the best photo locations.",
   },
-  topPopularDestinations: {title: "Top Tuscany Photo Destinations"},
+  topPopularDestinations: {title: "Our Top Photo Tours & Workshops"},
   topSelections: {
-    title: "Top Destinations Selection",
-
+    title: "Explore Our Photo Tours & Photography Expeditions",
     subtitle:
-      "Small groups • Iconic locations • Professional photo mentoring to help you create award-winning shots on cinematic Tuscan routes.",
+      "Join our expert-led journeys to the world's most iconic locations. Master your skills and capture the beauty of the planet.",
   },
   reviews: {
     title: "Reviews",
     subtitle:
-      "Insights, tips, and stories to help you elevate your photography and explore Tuscany with confidence.",
+      "Testimonials from Our Photo Tours & Workshop Participants",
   },
   articles: {
     title: "Best travel tips for Iceland",
@@ -393,13 +391,13 @@ export function HomePage() {
 
       <div className={styles.wantMoreBlock}>
         <h3 className={styles.wantMoreHeader}>
-          Want more options?
+          Ready to discover more?
         </h3>
         <button
           onClick={() => navigate(PATHS.TOURS)}
           className={styles.wantMoreButton}
         >
-          Explore all tours
+          Explore All Tours
         </button>
       </div>
 
@@ -416,8 +414,7 @@ export function HomePage() {
               </i>
             </h3>
             <p className={styles.blogAndPhotographyText}>
-              Insights, tips, and stories to help you elevate your photography
-              and explore Tuscany with confidence.
+              Expert insights, practical tips, and stories designed to elevate your photography and uncover the world's hidden gems.
             </p>
             <Link
               to={PATHS.TOURS}
@@ -448,8 +445,9 @@ export function HomePage() {
           FAQ
         </h3>
         <p className={styles.faqSubtitle}>
-          Insights, tips, and stories to help you elevate your photography and
-          explore Tuscany with confidence.
+          Photography Tours and Expeditions: Frequently Asked Questions.
+          <br />
+          Find answers to common questions about our journeys and logistics.
         </p>
         <div className={styles.accordions}>
           <Accordion
