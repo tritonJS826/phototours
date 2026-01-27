@@ -27,7 +27,7 @@ export interface TourDay {
 
 export interface TourView {
   id: number;
-  stars: number;
+  starAmount: number;
   reviewAmount: number;
   slug?: string;
   title: string;

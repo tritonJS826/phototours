@@ -45,6 +45,7 @@ type TourDTO = {
   guide?: { id: number; name?: string };
   tags?: Array<string | { name: string }>;
   categories?: Array<string | { name: string }>;
+  starAmount: number;
 };
 
 function toUrl(v: string | UrlObj): string {
@@ -87,11 +88,11 @@ function mapTourToView(dto: TourDTO): TourView {
   const priceNum = typeof priceRaw === "number" ? priceRaw : priceRaw ? Number(priceRaw) : undefined;
   const price = Number.isFinite(priceNum) && (priceNum as number) > 0 ? (priceNum as number) : undefined;
 
-  const STUB_NUMBER = 5;
+  const STUB_NUMBER = 4.3;
 
   return {
     reviewAmount: dto.reviewAmount ?? STUB_NUMBER,
-    stars: dto.start ?? STUB_NUMBER,
+    starAmount: dto.starAmount ?? STUB_NUMBER,
     id: dto.id,
     slug: dto.slug,
     title: dto.title,

@@ -37,6 +37,7 @@ export function ToursPage() {
               id="filters-location"
               placeholder="Location"
               className={styles.locationInput}
+              autoComplete="off"
             />
           </div>
 
@@ -90,6 +91,7 @@ export function ToursPage() {
               id="filters-location"
               placeholder="Choose season"
               className={styles.locationInput}
+              autoComplete="off"
             />
           </div>
 
@@ -151,6 +153,7 @@ export function ToursPage() {
               id="filters-location"
               placeholder="Select number of travelers"
               className={styles.locationInput}
+              autoComplete="off"
             />
           </div>
 
@@ -271,7 +274,7 @@ export function ToursPage() {
               <div />
               <div>
                 <p className={styles.filtersHeaderCenterToursAmount}>
-                  20 tours match your search
+                  12 tours match your search
                 </p>
                 <p className={styles.filtersHeaderCenterSub}>
                   Refine the results by using the filters

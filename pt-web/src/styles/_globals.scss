@@ -12,7 +12,7 @@
   padding: 0;
   box-sizing: border-box;
 
-  transition: all 0.3s ease; 
+  // transition: all 0.3s ease; 
 }
 
 html,
@@ -46,6 +46,7 @@ a {
 button {
   cursor: pointer;
   font: inherit;
+  transition: all 0.3s ease;
 }
 
 ul,

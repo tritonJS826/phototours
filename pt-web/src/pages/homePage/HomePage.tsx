@@ -28,18 +28,24 @@ import {PATHS} from "src/routes/routes";
 import "react-international-phone/style.css";
 import styles from "src/pages/homePage/HomePage.module.scss";
 
+interface FeedbackBlockProps {
+  title: string;
+  subtitle: string;
+  buttonText: string;
+}
+
 // Const FEATURED_TOURS_LIMIT = 3;
-export const FeedbackBlock = () => {
+export const FeedbackBlock = (props: FeedbackBlockProps) => {
   const [phoneNumber, setPhoneNumber] = useState<string>("");
 
   return (
     <div className={styles.feedBackBlock}>
       <div className={styles.feedBackContent}>
         <h2 className={styles.feedBackTitle}>
-          Find Your Perfect Photo Journey
+          {props.title}
         </h2>
         <p className={styles.feedBackDescription}>
-          Share your contact info, and we’ll reach out to help you select the ideal destination and dates.
+          {props.subtitle}
         </p>
         <div className="">
           <div className={styles.feedBackForm}>
@@ -60,7 +66,7 @@ export const FeedbackBlock = () => {
                 placeholder="+1 000 000-000"
               /> */}
             <button className={styles.feedBackButton}>
-              Contact Me
+              {props.buttonText}
             </button>
           </div>
           <span className={styles.privacyPolicyText}>
@@ -463,8 +469,11 @@ export function HomePage() {
         </div>
       </div>
 
-      <FeedbackBlock />
-
+      <FeedbackBlock
+        title="Find Your Perfect Photo Journey"
+        subtitle="Share your contact info, and we’ll reach out to help you select the ideal destination and dates."
+        buttonText="Contact Me"
+      />
       <Footer />
     </div>
   );

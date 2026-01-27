@@ -245,7 +245,11 @@ export function AboutUs() {
         </div>
       </div>
 
-      <FeedbackBlock />
+      <FeedbackBlock
+        title="Find Your Perfect Photo Journey"
+        subtitle="Share your contact info, and we’ll reach out to help you select the ideal destination and dates."
+        buttonText="Contact Me"
+      />
     </div>
   );
 }

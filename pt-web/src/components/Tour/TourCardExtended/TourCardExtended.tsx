@@ -41,7 +41,7 @@ export function TourCardExtended({tour, className}: Props) {
           )}
           <div className={styles.stars}>
             <span className={styles.starsAmount}>
-              {tour.stars.toFixed(STARS_FRACTIONAL_DIGITS)}
+              {tour.starAmount.toFixed(STARS_FRACTIONAL_DIGITS)}
             </span>
             <img
               src={star}
@@ -75,7 +75,7 @@ export function TourCardExtended({tour, className}: Props) {
               loading="lazy"
             />
             <span>
-              3 reviews
+              {tour.reviewAmount}
             </span>
           </div>
 
@@ -129,12 +129,12 @@ export function TourCardExtended({tour, className}: Props) {
               loading="lazy"
             />
             <div className={styles.startEndInfoDescription}>
-              <span className={styles.startEndInfoDescriptionTop}>
-                Tour starts
-              </span>
-              <span className={styles.startEndInfoDescriptionBottom}>
-                Name of tour
-              </span>
+              <p className={styles.startEndInfoDescriptionTop}>
+                Duration
+              </p>
+              <p className={styles.startEndInfoDescriptionBottom}>
+                {tour.durationDays}
+              </p>
             </div>
           </div>
 
@@ -146,12 +146,12 @@ export function TourCardExtended({tour, className}: Props) {
               loading="lazy"
             />
             <div className={styles.startEndInfoDescription}>
-              <span className={styles.startEndInfoDescriptionTop}>
+              <p className={styles.startEndInfoDescriptionTop}>
                 Tour starts
-              </span>
-              <span className={styles.startEndInfoDescriptionBottom}>
-                Name of tour
-              </span>
+              </p>
+              <p className={styles.startEndInfoDescriptionBottom}>
+                {tour.startLocation}
+              </p>
             </div>
           </div>
 
@@ -163,12 +163,12 @@ export function TourCardExtended({tour, className}: Props) {
               loading="lazy"
             />
             <div className={styles.startEndInfoDescription}>
-              <span className={styles.startEndInfoDescriptionTop}>
-                Tour starts
-              </span>
-              <span className={styles.startEndInfoDescriptionBottom}>
-                Name of tour
-              </span>
+              <p className={styles.startEndInfoDescriptionTop}>
+                Ending place
+              </p>
+              <p className={styles.startEndInfoDescriptionBottom}>
+                {tour.endLocation}
+              </p>
             </div>
           </div>
 

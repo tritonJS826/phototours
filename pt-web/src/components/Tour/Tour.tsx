@@ -35,7 +35,7 @@ export function TourCard({tour}: Props) {
           )}
           <div className={styles.stars}>
             <span className={styles.starsAmount}>
-              {tour.stars.toFixed(STARS_FRACTIONAL_DIGITS)}
+              {tour.starAmount.toFixed(STARS_FRACTIONAL_DIGITS)}
             </span>
             <img
               src={star}
