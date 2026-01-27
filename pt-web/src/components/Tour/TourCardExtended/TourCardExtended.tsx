@@ -9,6 +9,7 @@ import timer from "/images/timer.svg";
 import clsx from "clsx";
 import {Button} from "src/components/Button/Button";
 import type {TourView} from "src/types/tour";
+import {renderMultilineDouble} from "src/utils/textUtils";
 import styles from "src/components/Tour/TourCardExtended/TourCardExtended.module.scss";
 
 type Props = {
@@ -175,7 +176,7 @@ export function TourCardExtended({tour, className}: Props) {
         </div>
 
         <p className={styles.description}>
-          {tour.description}
+          {renderMultilineDouble(tour.description)}
         </p>
 
         <div className={styles.cardFooter}>

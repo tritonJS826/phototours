@@ -30,6 +30,7 @@ import {
 } from "src/services/bookingService";
 import {getTourBySlag as getTourBySlug} from "src/services/toursService";
 import type {TourView} from "src/types/tour";
+import {renderMultilineDouble} from "src/utils/textUtils";
 import type {Swiper as SwiperType} from "swiper";
 import {A11y, Keyboard} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
@@ -714,7 +715,7 @@ export function TourDetailsPage() {
                 Description
               </h2>
               <p className={styles.tourDescriptionDescription}>
-                {tour.description}
+                {renderMultilineDouble(tour.description)}
               </p>
             </div>
             <div className={styles.tourSummary}>

@@ -5,7 +5,12 @@ export function renderMultiline(text: string) {
 }
 
 export function renderMultilineDouble(text: string) {
-  return text.split("\n\n").map((line, i) => (<p key={i}>
-    {line}
-  </p>));
+  return text
+    .replace(/\\n/g, "\n")
+    .split("\n\n")
+    .map((line, i) => (
+      <p key={i}>
+        {line}
+      </p>
+    ));
 }

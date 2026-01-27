@@ -274,7 +274,9 @@ export function ToursPage() {
               <div />
               <div>
                 <p className={styles.filtersHeaderCenterToursAmount}>
-                  12 tours match your search
+                  {data?.length ?? 0}
+                  {" "}
+                  tours match your search
                 </p>
                 <p className={styles.filtersHeaderCenterSub}>
                   Refine the results by using the filters
