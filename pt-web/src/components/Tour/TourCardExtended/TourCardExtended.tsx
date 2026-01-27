@@ -15,12 +15,17 @@ import styles from "src/components/Tour/TourCardExtended/TourCardExtended.module
 type Props = {
   tour: TourView;
   className: string;
+  travelers?: number;
 };
 
 const STARS_FRACTIONAL_DIGITS = 1;
 
-export function TourCardExtended({tour, className}: Props) {
-  const price = Number(tour.price ?? 0).toLocaleString();
+export function TourCardExtended({tour, className, travelers}: Props) {
+  const travelerCount = travelers || 1;
+  const basePrice = Number(tour.price ?? 0);
+
+  const totalPrice = basePrice; //  * TravelerCount
+  const price = totalPrice.toLocaleString();
   const cover = tour.coverUrl || tour.photos?.[0] || "";
   const tourUrl = `/tours/${tour.slug ?? tour.id}`;
 
@@ -191,7 +196,12 @@ export function TourCardExtended({tour, className}: Props) {
               USD
             </div>
             <div className={styles.priceBlockBottom}>
-              Price for 1 traveler
+              Price for
+              {" "}
+              {travelerCount}
+              {" "}
+              traveler
+              {travelerCount > 1 ? "s" : ""}
             </div>
           </div>
 

@@ -12,7 +12,7 @@ interface ToursRailProps {
 const DEFAULT_TOURS_LIMIT = 3;
 
 export function ToursRail({title, subtitle, limit}: ToursRailProps) {
-  const {data, loading, error, reload} = useTours();
+  const {allTours: data, loading, error, reload} = useTours();
 
   if (loading) {
     return (

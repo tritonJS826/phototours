@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useRef, useState} from "react";
-import {listTours} from "src/services/toursService";
+import {listTours, type ToursFilter} from "src/services/toursService";
 import type {TourView} from "src/types/tour";
 
 type State = {
@@ -8,7 +8,7 @@ type State = {
   error: string | null;
 };
 
-export function useTours() {
+export function useTours(filter?: ToursFilter) {
   const [state, setState] = useState<State>({data: null, loading: true, error: null});
   const mounted = useRef(true);
 
@@ -16,7 +16,7 @@ export function useTours() {
   const load = useCallback(async () => {
     setState(s => ({...s, loading: true, error: null}));
     try {
-      const data = await listTours();
+      const data = await listTours(filter);
       if (mounted.current) {
         setState({data, loading: false, error: null});
       }
@@ -26,7 +26,7 @@ export function useTours() {
         setState({data: null, loading: false, error: msg});
       }
     }
-  }, []);
+  }, [filter]);
 
   useEffect(() => {
     mounted.current = true;
@@ -38,8 +38,7 @@ export function useTours() {
   }, [load]);
 
   return {
-    // TODO: remove this workaround with stars, should be fetched from server
-    data: state.data?.map(item => ({...item, stars: 5.0})),
+    allTours: state.data,
     loading: state.loading,
     error: state.error,
     reload: load,

@@ -1,7 +1,9 @@
+import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import calendar from "/images/calendar.svg";
 import group from "/images/group.svg";
 import location from "/images/phone.svg";
+import sun from "/images/sun-solid.svg";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
 import {PATHS} from "src/routes/routes";
 // Import {CalendarDays, MapPin, Users, X} from "lucide-react";
@@ -11,12 +13,12 @@ import styles from "src/components/TourSearchForm/TourSearchForm.module.scss";
 // Type Panel = "location" | "dates" | "trav" | null;
 
 export function TourSearchForm() {
-  // Const [open, setOpen] = useState<Panel>(null);
-
-  // function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-  //   e.preventDefault();
-  // }
   const navigate = useNavigate();
+  const [searchData, setSearchData] = useState({
+    location: "",
+    season: "",
+    travelers: 1,
+  });
 
   return (
     <div className={styles.tourSearchForm}>
@@ -36,7 +38,7 @@ export function TourSearchForm() {
               className={styles.currentValue}
               onClick={() => {}}
             >
-              Start Location
+              {searchData.location || "Choose location"}
             </span>
           </div>
 
@@ -46,28 +48,31 @@ export function TourSearchForm() {
           {
             dropdownSubMenuItems: [
               {
-                id: "tour-1",
+                id: "location-1",
                 isPreventDefaultUsed: true,
                 value: <div className={styles.tourLocationItem}>
-                  Tour 1
+                  Location 1
                 </div>,
                 isVisible: true,
+                onClick: () => setSearchData(prev => ({...prev, location: "Location 1"})),
               },
               {
-                id: "tour-2",
+                id: "location-2",
                 isPreventDefaultUsed: true,
                 value: <div className={styles.tourLocationItem}>
-                  Tour 2
+                  Location 2
                 </div>,
                 isVisible: true,
+                onClick: () => setSearchData(prev => ({...prev, location: "Location 2"})),
               },
               {
-                id: "tour-3",
+                id: "location-3",
                 isPreventDefaultUsed: true,
                 value: <div className={styles.tourLocationItem}>
-                  Tour 3
+                  Location 3
                 </div>,
                 isVisible: true,
+                onClick: () => setSearchData(prev => ({...prev, location: "Location 3"})),
               },
             ],
           },
@@ -82,16 +87,16 @@ export function TourSearchForm() {
             <div className={styles.label}>
               <img
                 src={calendar}
-                alt="user link"
+                alt="season icon"
               />
               {" "}
-              Dates
+              Season
             </div>
             <span
               className={styles.currentValue}
               onClick={() => {}}
             >
-              Start Location
+              {searchData.season || "Choose season"}
             </span>
           </div>
 
@@ -101,28 +106,40 @@ export function TourSearchForm() {
           {
             dropdownSubMenuItems: [
               {
-                id: "start-1",
+                id: "winter",
                 isPreventDefaultUsed: true,
                 value: <div className={styles.tourLocationItem}>
-                  1. Start date - End date
+                  Winter
                 </div>,
                 isVisible: true,
+                onClick: () => setSearchData(prev => ({...prev, season: "Winter"})),
               },
               {
-                id: "Email",
+                id: "spring",
                 isPreventDefaultUsed: true,
                 value: <div className={styles.tourLocationItem}>
-                  2. Start date - End date
+                  Spring
                 </div>,
                 isVisible: true,
+                onClick: () => setSearchData(prev => ({...prev, season: "Spring"})),
               },
               {
-                id: "Instagram",
+                id: "summer",
                 isPreventDefaultUsed: true,
                 value: <div className={styles.tourLocationItem}>
-                  3. Start date - End date
+                  Summer
                 </div>,
                 isVisible: true,
+                onClick: () => setSearchData(prev => ({...prev, season: "Summer"})),
+              },
+              {
+                id: "autumn",
+                isPreventDefaultUsed: true,
+                value: <div className={styles.tourLocationItem}>
+                  Autumn
+                </div>,
+                isVisible: true,
+                onClick: () => setSearchData(prev => ({...prev, season: "Autumn"})),
               },
             ],
           },
@@ -140,13 +157,15 @@ export function TourSearchForm() {
                 alt="group img"
               />
               {" "}
-              Group Size
+              Travelers
             </div>
             <span
               className={styles.currentValue}
               onClick={() => {}}
             >
-              Start Location
+              {searchData.travelers === 1
+                ? "1 traveler"
+                : `${searchData.travelers} travelers`}
             </span>
           </div>
 
@@ -156,28 +175,31 @@ export function TourSearchForm() {
           {
             dropdownSubMenuItems: [
               {
-                id: "start-1",
+                id: "traveler-1",
                 isPreventDefaultUsed: true,
                 value: <div className={styles.tourLocationItem}>
-                  1. 1 traveler
+                  1 traveler
                 </div>,
                 isVisible: true,
+                onClick: () => setSearchData(prev => ({...prev, travelers: 1})),
               },
               {
-                id: "Email",
+                id: "traveler-2",
                 isPreventDefaultUsed: true,
                 value: <div className={styles.tourLocationItem}>
-                  2. 2 travelers
+                  2 travelers
                 </div>,
                 isVisible: true,
+                onClick: () => setSearchData(prev => ({...prev, travelers: 2})),
               },
               {
-                id: "Instagram",
+                id: "traveler-3",
                 isPreventDefaultUsed: true,
                 value: <div className={styles.tourLocationItem}>
-                  3. 3 travelers
+                  3 travelers
                 </div>,
                 isVisible: true,
+                onClick: () => setSearchData(prev => ({...prev, travelers: 3})),
               },
             ],
           },
@@ -189,7 +211,29 @@ export function TourSearchForm() {
       <div className={styles.button}>
         <button
           className={styles.searchNowButton}
-          onClick={() => navigate(PATHS.TOURS)}
+          onClick={() => {
+            const params = new URLSearchParams();
+
+            if (searchData.location) {
+              params.set("location", searchData.location);
+            }
+            if (searchData.season) {
+              // Map season to representative month
+              const seasonMonthMap: {[key: string]: string} = {
+                "Winter": "December",
+                "Spring": "March",
+                "Summer": "June",
+                "Autumn": "September",
+              };
+              params.set("month", seasonMonthMap[searchData.season]);
+            }
+            if (searchData.travelers > 1) {
+              params.set("travelers", searchData.travelers.toString());
+            }
+
+            const queryString = params.toString();
+            navigate(`${PATHS.TOURS}${queryString ? `?${queryString}` : ""}`);
+          }}
         >
           Search now
         </button>

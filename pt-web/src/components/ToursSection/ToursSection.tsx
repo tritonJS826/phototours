@@ -11,7 +11,7 @@ interface ToursSectionProps {
 const DEFAULT_LIMIT = 6;
 
 export function ToursSection({limit, className = ""}: ToursSectionProps) {
-  const {data, loading, error, reload} = useTours();
+  const {allTours: data, loading, error, reload} = useTours();
 
   if (loading) {
     return (

@@ -140,6 +140,15 @@ type TourFull struct {
 	ReviewAmount int64   `json:"reviewAmount"`
 }
 
+type TourPreview struct {
+	Dates      []TourDate `json:"dates"`
+	Tags       []Tag      `json:"tags"`
+	Categories []Category `json:"categories"`
+	Tour
+	StarAmount   float64 `json:"starAmount"`
+	ReviewAmount int64   `json:"reviewAmount"`
+}
+
 type Category struct {
 	Name string    `json:"name"`
 	ID   uuid.UUID `json:"id"`

@@ -11,6 +11,7 @@ export const QUERY_PARAMS = {
   END_DATE: "endDate",
   TRAVELERS: "travelers",
   TAGS: "tags",
+  MONTH: "month",
 } as const;
 
 type UrlObj = { url: string };
@@ -124,6 +125,8 @@ export type ToursFilter = {
   endDate?: string;
   travelers?: number;
   tags?: string[];
+  month?: string;
+  season?: string;
 };
 
 export async function listTours(filter?: ToursFilter): Promise<TourView[]> {
@@ -142,6 +145,9 @@ export async function listTours(filter?: ToursFilter): Promise<TourView[]> {
   }
   if (filter?.tags?.length) {
     params.set(QUERY_PARAMS.TAGS, filter.tags.join(","));
+  }
+  if (filter?.month) {
+    params.set(QUERY_PARAMS.MONTH, filter.month);
   }
   const url = params.toString() ? `${TOURS_PATH}?${params.toString()}` : TOURS_PATH;
   const raw = await fetchData<TourDTO[]>(url);

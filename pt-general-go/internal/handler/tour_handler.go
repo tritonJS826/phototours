@@ -123,7 +123,7 @@ func (h *Handler) GetTourBySlug(ctx *gin.Context) {
 // @Param priceMin query number false "Filter by minimum price"
 // @Param priceMax query number false "Filter by maximum price"
 // @Param season query string false "Filter by season (winter, spring, summer, autumn)"
-// @Success 200 {array} domain.Tour
+// @Success 200 {array} domain.TourPreview
 // @Failure 400 {object} map[string]string
 // @Failure 500 {object} map[string]string
 // @Router /tours [get]
