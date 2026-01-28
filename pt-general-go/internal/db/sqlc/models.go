@@ -380,6 +380,13 @@ type Tour struct {
 	UpdatedAt       pgtype.Timestamp
 }
 
+type TourActivity struct {
+	ID        pgtype.UUID
+	TourID    pgtype.UUID
+	Activity  string
+	CreatedAt pgtype.Timestamp
+}
+
 type TourCategory struct {
 	CategoryID pgtype.UUID
 	TourID     pgtype.UUID
@@ -396,12 +403,27 @@ type TourDate struct {
 	UpdatedAt   pgtype.Timestamp
 }
 
+type TourIncluded struct {
+	ID        pgtype.UUID
+	TourID    pgtype.UUID
+	Included  string
+	CreatedAt pgtype.Timestamp
+}
+
 type TourMaterial struct {
 	ID        pgtype.UUID
 	TourID    pgtype.UUID
 	Title     string
 	Url       string
 	Type      MaterialType
+	CreatedAt pgtype.Timestamp
+}
+
+type TourSummary struct {
+	ID        pgtype.UUID
+	TourID    pgtype.UUID
+	Name      string
+	Value     string
 	CreatedAt pgtype.Timestamp
 }
 

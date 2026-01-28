@@ -37,6 +37,7 @@ type TourDTO = {
   videos?: Array<string | UrlObj>;
   included?: string[];
   activities?: string[];
+  summary?: string[];
   dates?: Array<string | DateObj>;
   program?: {
     days?: Array<{ day: number; plan: string; description: string; imgUrl: string }>;
@@ -83,8 +84,6 @@ function mapTourToView(dto: TourDTO): TourView {
       description: d.description,
       imgUrl: d.imgUrl,
     })) ?? [];
-  const included = dto.included ?? dto.program?.included ?? [];
-  const activities = dto.activities ?? dto.program?.activities ?? [];
   const priceRaw = dto.price === "" ? undefined : dto.price;
   const priceNum = typeof priceRaw === "number" ? priceRaw : priceRaw ? Number(priceRaw) : undefined;
   const price = Number.isFinite(priceNum) && (priceNum as number) > 0 ? (priceNum as number) : undefined;
@@ -109,13 +108,14 @@ function mapTourToView(dto: TourDTO): TourView {
     coverUrl: dto.coverUrl,
     photos: photoUrls,
     videos: videoUrls,
-    included,
-    activities,
     dates,
     dailyItinerary,
     guide: dto.guide ? {id: dto.guide.id, name: dto.guide.name} : undefined,
     tags,
     categories,
+    activities: dto.activities ?? [],
+    included: dto.included ?? [],
+    summary: dto.summary ?? [],
   };
 }
 

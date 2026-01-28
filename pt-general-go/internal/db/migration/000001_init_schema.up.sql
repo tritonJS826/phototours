@@ -187,3 +187,25 @@ CREATE TABLE booking_requests (
 );
 CREATE TRIGGER set_updated_at_trigger_booking_requests BEFORE
 UPDATE ON booking_requests FOR EACH ROW EXECUTE FUNCTION set_updated_at();
+CREATE TABLE tour_activities (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    tour_id UUID NOT NULL,
+    activity TEXT NOT NULL,
+    created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    CONSTRAINT tour_activity_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE tour_included (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    tour_id UUID NOT NULL,
+    included TEXT NOT NULL,
+    created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    CONSTRAINT tour_included_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE tour_summary (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    tour_id UUID NOT NULL,
+    name TEXT NOT NULL,
+    value TEXT NOT NULL,
+    created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    CONSTRAINT tour_summary_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE
+);

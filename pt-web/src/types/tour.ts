@@ -46,9 +46,6 @@ export interface TourView {
   photos: string[];
   videos?: string[];
 
-  included?: string[];
-  activities?: string[];
-
   dates: string[];
   dailyItinerary?: TourDay[];
 
@@ -56,6 +53,10 @@ export interface TourView {
 
   tags?: string[];
   categories?: string[];
+
+  activities: string[];
+  included: string[];
+  summary: string[];
 }
 
 export interface TourMaterial {

@@ -17,8 +17,11 @@ type TourService struct {
 	reviewRepository       *repository.ReviewRepository
 	tagRepository          *repository.TagRepository
 	tourRepository         *repository.TourRepository
+	tourActivityRepository *repository.TourActivityRepository
 	tourDateRepository     *repository.TourDateRepository
+	tourIncludedRepository *repository.TourIncludedRepository
 	tourMaterialRepository *repository.TourMaterialRepository
+	tourSummaryRepository  *repository.TourSummaryRepository
 	videoRepository        *repository.VideoRepository
 	logger                 *zap.Logger
 }
@@ -30,8 +33,11 @@ func NewTourService(
 	reviewRepository *repository.ReviewRepository,
 	tagRepository *repository.TagRepository,
 	tourRepository *repository.TourRepository,
+	tourActivityRepository *repository.TourActivityRepository,
 	tourDateRepository *repository.TourDateRepository,
+	tourIncludedRepository *repository.TourIncludedRepository,
 	tourMaterialRepository *repository.TourMaterialRepository,
+	tourSummaryRepository *repository.TourSummaryRepository,
 	videoRepository *repository.VideoRepository,
 	logger *zap.Logger,
 ) *TourService {
@@ -43,7 +49,10 @@ func NewTourService(
 		tagRepository:          tagRepository,
 		tourDateRepository:     tourDateRepository,
 		tourRepository:         tourRepository,
+		tourActivityRepository: tourActivityRepository,
+		tourIncludedRepository: tourIncludedRepository,
 		tourMaterialRepository: tourMaterialRepository,
+		tourSummaryRepository:  tourSummaryRepository,
 		videoRepository:        videoRepository,
 		logger:                 logger,
 	}
@@ -193,48 +202,134 @@ func (s *TourService) GetAllTours(ctx context.Context, limit, offset int32, filt
 }
 
 func (s *TourService) buildTourFull(ctx context.Context, tour *domain.Tour) (*domain.TourFull, error) {
-	guide, err := s.guideRepository.GetGuidesByTourID(ctx, *tour.GuideID)
-	if err != nil {
-		return nil, err
+	errGroup, ctx := errgroup.WithContext(ctx)
+
+	var (
+		guide         *domain.Guide
+		videos        []domain.Video
+		tourMaterials []domain.TourMaterial
+		photos        []domain.Photo
+		tourDates     []domain.TourDate
+		tags          []domain.Tag
+		categories    []domain.Category
+		reviews       []domain.Review
+		reviewInfo    *domain.ReviewInfo
+		activities    []string
+		included      []string
+		summary       []string
+	)
+
+	if tour.GuideID != nil {
+		errGroup.Go(func() error {
+			g, err := s.guideRepository.GetGuidesByTourID(ctx, *tour.GuideID)
+			if err != nil {
+				return err
+			}
+			guide = g
+			return nil
+		})
 	}
 
-	videos, err := s.videoRepository.GetVideosByTourID(ctx, tour.ID)
-	if err != nil {
-		return nil, err
-	}
+	errGroup.Go(func() error {
+		v, err := s.videoRepository.GetVideosByTourID(ctx, tour.ID)
+		if err != nil {
+			return err
+		}
+		videos = v
+		return nil
+	})
 
-	tourMaterials, err := s.tourMaterialRepository.GetTourMaterialsByTourID(ctx, tour.ID)
-	if err != nil {
-		return nil, err
-	}
+	errGroup.Go(func() error {
+		tm, err := s.tourMaterialRepository.GetTourMaterialsByTourID(ctx, tour.ID)
+		if err != nil {
+			return err
+		}
+		tourMaterials = tm
+		return nil
+	})
 
-	photos, err := s.photoRepository.GetPhotosByTourID(ctx, tour.ID)
-	if err != nil {
-		return nil, err
-	}
+	errGroup.Go(func() error {
+		p, err := s.photoRepository.GetPhotosByTourID(ctx, tour.ID)
+		if err != nil {
+			return err
+		}
+		photos = p
+		return nil
+	})
 
-	tourDates, err := s.tourDateRepository.GetTourDatesByTourID(ctx, tour.ID)
-	if err != nil {
-		return nil, err
-	}
+	errGroup.Go(func() error {
+		td, err := s.tourDateRepository.GetTourDatesByTourID(ctx, tour.ID)
+		if err != nil {
+			return err
+		}
+		tourDates = td
+		return nil
+	})
 
-	tags, err := s.tagRepository.GetTagsByTourID(ctx, tour.ID)
-	if err != nil {
-		return nil, err
-	}
+	errGroup.Go(func() error {
+		t, err := s.tagRepository.GetTagsByTourID(ctx, tour.ID)
+		if err != nil {
+			return err
+		}
+		tags = t
+		return nil
+	})
 
-	categories, err := s.categoryRepository.GetCategoriesByTourID(ctx, tour.ID)
-	if err != nil {
-		return nil, err
-	}
+	errGroup.Go(func() error {
+		c, err := s.categoryRepository.GetCategoriesByTourID(ctx, tour.ID)
+		if err != nil {
+			return err
+		}
+		categories = c
+		return nil
+	})
 
-	reviews, err := s.reviewRepository.GetReviewsByTourID(ctx, tour.ID)
-	if err != nil {
-		return nil, err
-	}
+	errGroup.Go(func() error {
+		r, err := s.reviewRepository.GetReviewsByTourID(ctx, tour.ID)
+		if err != nil {
+			return err
+		}
+		reviews = r
+		return nil
+	})
 
-	reviewInfo, err := s.reviewRepository.GetReviewInfo(ctx, tour.ID)
-	if err != nil {
+	errGroup.Go(func() error {
+		ri, err := s.reviewRepository.GetReviewInfo(ctx, tour.ID)
+		if err != nil {
+			return err
+		}
+		reviewInfo = ri
+		return nil
+	})
+
+	errGroup.Go(func() error {
+		a, err := s.tourActivityRepository.GetTourActivityStringsByTourID(ctx, tour.ID)
+		if err != nil {
+			return err
+		}
+		activities = a
+		return nil
+	})
+
+	errGroup.Go(func() error {
+		i, err := s.tourIncludedRepository.GetTourIncludedStringsByTourID(ctx, tour.ID)
+		if err != nil {
+			return err
+		}
+		included = i
+		return nil
+	})
+
+	errGroup.Go(func() error {
+		s, err := s.tourSummaryRepository.GetTourSummaryStringsByTourID(ctx, tour.ID)
+		if err != nil {
+			return err
+		}
+		summary = s
+		return nil
+	})
+
+	if err := errGroup.Wait(); err != nil {
 		return nil, err
 	}
 
@@ -248,6 +343,9 @@ func (s *TourService) buildTourFull(ctx context.Context, tour *domain.Tour) (*do
 		Categories:   categories,
 		Guide:        guide,
 		Reviews:      reviews,
+		Summary:      summary,
+		Activities:   activities,
+		Included:     included,
 		StarAmount:   reviewInfo.StarAmount,
 		ReviewAmount: reviewInfo.ReviewAmount,
 	}, nil

@@ -25,8 +25,11 @@ type Repository struct {
 	ReviewRepository         *ReviewRepository
 	TagRepository            *TagRepository
 	TourRepository           *TourRepository
+	TourActivityRepository   *TourActivityRepository
 	TourDateRepository       *TourDateRepository
+	TourIncludedRepository   *TourIncludedRepository
 	TourMaterialRepository   *TourMaterialRepository
+	TourSummaryRepository    *TourSummaryRepository
 	UploadRepository         *UploadRepository
 	UserRepository           *UserRepository
 	VideoRepository          *VideoRepository
@@ -46,8 +49,11 @@ func NewRepository(cfg *config.Config, dbPool *pgxpool.Pool, cld *cloudinary.Clo
 		ReviewRepository:         NewReviewRepository(queries),
 		TagRepository:            NewTagRepository(queries),
 		TourRepository:           NewTourRepository(queries),
+		TourActivityRepository:   NewTourActivityRepository(queries),
 		TourDateRepository:       NewTourDateRepository(queries),
+		TourIncludedRepository:   NewTourIncludedRepository(queries),
 		TourMaterialRepository:   NewTourMaterialRepository(queries),
+		TourSummaryRepository:    NewTourSummaryRepository(queries),
 		UserRepository:           NewUserRepository(queries),
 		UploadRepository:         NewUploadRepository(cld, cfg.CloudinaryConfig.UploadFolder),
 		VideoRepository:          NewVideoRepository(queries),

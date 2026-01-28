@@ -14,9 +14,18 @@ type Querier interface {
 	CreateBookingRequest(ctx context.Context, arg CreateBookingRequestParams) (BookingRequest, error)
 	CreatePageMetadata(ctx context.Context, arg CreatePageMetadataParams) (CreatePageMetadataRow, error)
 	CreateTour(ctx context.Context, arg CreateTourParams) (Tour, error)
+	CreateTourActivity(ctx context.Context, arg CreateTourActivityParams) (TourActivity, error)
+	CreateTourIncluded(ctx context.Context, arg CreateTourIncludedParams) (TourIncluded, error)
+	CreateTourSummary(ctx context.Context, arg CreateTourSummaryParams) (TourSummary, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
 	DeletePageMetadata(ctx context.Context, url string) (int64, error)
+	DeleteTourActivitiesByTourID(ctx context.Context, tourID pgtype.UUID) error
+	DeleteTourActivity(ctx context.Context, id pgtype.UUID) error
 	DeleteTourByID(ctx context.Context, id pgtype.UUID) (int64, error)
+	DeleteTourIncluded(ctx context.Context, id pgtype.UUID) error
+	DeleteTourIncludedByTourID(ctx context.Context, tourID pgtype.UUID) error
+	DeleteTourSummary(ctx context.Context, id pgtype.UUID) error
+	DeleteTourSummaryByTourID(ctx context.Context, tourID pgtype.UUID) error
 	GetArticleBySlug(ctx context.Context, slug string) (GetArticleBySlugRow, error)
 	GetArticles(ctx context.Context, arg GetArticlesParams) ([]GetArticlesRow, error)
 	GetCategoriesByTourID(ctx context.Context, tourID pgtype.UUID) ([]Category, error)
@@ -32,12 +41,18 @@ type Querier interface {
 	GetReviewsByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]GetReviewsByTourIDsRow, error)
 	GetTagsByTourID(ctx context.Context, tourID pgtype.UUID) ([]Tag, error)
 	GetTagsByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]GetTagsByTourIDsRow, error)
+	GetTourActivitiesByTourID(ctx context.Context, tourID pgtype.UUID) ([]TourActivity, error)
+	GetTourActivitiesByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]TourActivity, error)
 	GetTourByID(ctx context.Context, id pgtype.UUID) (Tour, error)
 	GetTourBySlug(ctx context.Context, slug string) (Tour, error)
 	GetTourDatesByTourID(ctx context.Context, tourID pgtype.UUID) ([]TourDate, error)
 	GetTourDatesByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]TourDate, error)
+	GetTourIncludedByTourID(ctx context.Context, tourID pgtype.UUID) ([]TourIncluded, error)
+	GetTourIncludedByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]TourIncluded, error)
 	GetTourMaterialsByTourID(ctx context.Context, tourID pgtype.UUID) ([]TourMaterial, error)
 	GetTourMaterialsByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]TourMaterial, error)
+	GetTourSummaryByTourID(ctx context.Context, tourID pgtype.UUID) ([]TourSummary, error)
+	GetTourSummaryByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]TourSummary, error)
 	GetTours(ctx context.Context, arg GetToursParams) ([]Tour, error)
 	GetUserByEmail(ctx context.Context, email string) (User, error)
 	GetUserByID(ctx context.Context, id pgtype.UUID) (User, error)

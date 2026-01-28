@@ -135,6 +135,9 @@ type TourFull struct {
 	Tags       []Tag          `json:"tags"`
 	Categories []Category     `json:"categories"`
 	Reviews    []Review       `json:"reviews"`
+	Summary    []string       `json:"summary"`
+	Activities []string       `json:"activities"`
+	Included   []string       `json:"included"`
 	Tour
 	StarAmount   float64 `json:"starAmount"`
 	ReviewAmount int64   `json:"reviewAmount"`
@@ -329,4 +332,26 @@ type Video struct {
 	URL         string    `json:"url"`
 	ID          uuid.UUID `json:"id"`
 	TourID      uuid.UUID `json:"tourId"`
+}
+
+type TourActivity struct {
+	CreatedAt time.Time `json:"createdAt"`
+	Activity  string    `json:"activity"`
+	ID        uuid.UUID `json:"id"`
+	TourID    uuid.UUID `json:"tourId"`
+}
+
+type TourIncluded struct {
+	CreatedAt time.Time `json:"createdAt"`
+	Included  string    `json:"included"`
+	ID        uuid.UUID `json:"id"`
+	TourID    uuid.UUID `json:"tourId"`
+}
+
+type TourSummary struct {
+	CreatedAt time.Time `json:"createdAt"`
+	Name      string    `json:"name"`
+	Value     string    `json:"value"`
+	ID        uuid.UUID `json:"id"`
+	TourID    uuid.UUID `json:"tourId"`
 }

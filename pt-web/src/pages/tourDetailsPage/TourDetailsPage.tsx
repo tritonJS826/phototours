@@ -183,9 +183,9 @@ const TABLET_SLIDES_PER_VIEW = 2;
 const DESKTOP_SLIDES_PER_VIEW = 3;
 const LARGE_DESKTOP_SLIDES_PER_VIEW = 4;
 
-const MOBILE_BREAKPOINT_GALLERY_SLIDER = 640;
-const TABLET_BREAKPOINT_GALLERY_SLIDER = 920;
-const DESKTOP_BREAKPOINT_GALLERY_SLIDER = 1224;
+const MOBILE_BREAKPOINT_GALLERY_SLIDER = 1020;
+const TABLET_BREAKPOINT_GALLERY_SLIDER = 1250;
+const DESKTOP_BREAKPOINT_GALLERY_SLIDER = 1500;
 
 const MOBILE_SLIDES_PER_VIEW_GALLERY_SLIDER = 3;
 const TABLET_SLIDES_PER_VIEW_GALLERY_SLIDER = 4;
@@ -853,7 +853,7 @@ export function TourDetailsPage() {
                       className={styles.includedImg}
                     />
                     <span className={styles.includedDescription}>
-                      Crampons (if conditions call for such equipment)
+                      {included}
                     </span>
                   </div>
                 ),

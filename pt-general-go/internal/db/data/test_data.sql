@@ -23,8 +23,7 @@ DECLARE
     tour1_id UUID := '33333333-3333-3333-3333-333333333301';
     tour2_id UUID := '33333333-3333-3333-3333-333333333302';
     tour3_id UUID := '33333333-3333-3333-3333-333333333303';
-    tour4_id UUID := '33333333-3333-3333-3333-333333333304';
-    tour5_id UUID := '33333333-3333-3333-3333-333333333305';
+
     tour6_id UUID := '33333333-3333-3333-3333-333333333306';
     tour7_id UUID := '33333333-3333-3333-3333-333333333307';
     tour8_id UUID := '33333333-3333-3333-3333-333333333308';
@@ -46,12 +45,7 @@ DECLARE
     tour_date7_id UUID := '44444444-4444-4444-4444-444444444407';
     tour_date8_id UUID := '44444444-4444-4444-4444-444444444408';
     tour_date9_id UUID := '44444444-4444-4444-4444-444444444409';
-    tour_date10_id UUID := '44444444-4444-4444-4444-444444444410';
-    tour_date11_id UUID := '44444444-4444-4444-4444-444444444411';
-    tour_date12_id UUID := '44444444-4444-4444-4444-444444444412';
-    tour_date13_id UUID := '44444444-4444-4444-4444-444444444413';
-    tour_date14_id UUID := '44444444-4444-4444-4444-444444444414';
-    tour_date15_id UUID := '44444444-4444-4444-4444-444444444415';
+
     tour_date16_id UUID := '44444444-4444-4444-4444-444444444416';
     tour_date17_id UUID := '44444444-4444-4444-4444-444444444417';
     tour_date18_id UUID := '44444444-4444-4444-4444-444444444418';
@@ -102,6 +96,208 @@ DECLARE
     booking3_id UUID := '55555555-5555-5555-5555-555555555503';
     booking4_id UUID := '55555555-5555-5555-5555-555555555504';
     booking5_id UUID := '55555555-5555-5555-5555-555555555505';
+
+    -- Activities IDs
+    tour_activity1_id UUID := '66666666-6666-6666-6666-666666666601';
+    tour_activity2_id UUID := '66666666-6666-6666-6666-666666666602';
+    tour_activity3_id UUID := '66666666-6666-6666-6666-666666666603';
+    tour_activity4_id UUID := '66666666-6666-6666-6666-666666666604';
+    tour_activity5_id UUID := '66666666-6666-6666-6666-666666666605';
+    tour_activity6_id UUID := '66666666-6666-6666-6666-666666666606';
+    tour_activity7_id UUID := '66666666-6666-6666-6666-666666666607';
+    tour_activity8_id UUID := '66666666-6666-6666-6666-666666666608';
+    tour_activity9_id UUID := '66666666-6666-6666-6666-666666666609';
+    tour_activity10_id UUID := '66666666-6666-6666-6666-666666666610';
+    tour_activity11_id UUID := '66666666-6666-6666-6666-666666666611';
+    tour_activity12_id UUID := '66666666-6666-6666-6666-666666666612';
+    tour_activity13_id UUID := '66666666-6666-6666-6666-666666666613';
+    tour_activity14_id UUID := '66666666-6666-6666-6666-666666666614';
+    tour_activity15_id UUID := '66666666-6666-6666-6666-666666666615';
+    tour_activity16_id UUID := '66666666-6666-6666-6666-666666666616';
+    tour_activity17_id UUID := '66666666-6666-6666-6666-666666666617';
+    tour_activity18_id UUID := '66666666-6666-6666-6666-666666666618';
+    tour_activity19_id UUID := '66666666-6666-6666-6666-666666666619';
+    tour_activity20_id UUID := '66666666-6666-6666-6666-666666666620';
+    tour_activity21_id UUID := '66666666-6666-6666-6666-666666666621';
+    tour_activity22_id UUID := '66666666-6666-6666-6666-666666666622';
+    tour_activity23_id UUID := '66666666-6666-6666-6666-666666666623';
+    tour_activity24_id UUID := '66666666-6666-6666-6666-666666666624';
+    tour_activity25_id UUID := '66666666-6666-6666-6666-666666666625';
+    tour_activity26_id UUID := '66666666-6666-6666-6666-666666666626';
+    tour_activity27_id UUID := '66666666-6666-6666-6666-666666666627';
+    tour_activity28_id UUID := '66666666-6666-6666-6666-666666666628';
+    tour_activity29_id UUID := '66666666-6666-6666-6666-666666666629';
+    tour_activity30_id UUID := '66666666-6666-6666-6666-666666666630';
+    tour_activity31_id UUID := '66666666-6666-6666-6666-666666666631';
+    tour_activity32_id UUID := '66666666-6666-6666-6666-666666666632';
+    tour_activity33_id UUID := '66666666-6666-6666-6666-666666666633';
+    tour_activity34_id UUID := '66666666-6666-6666-6666-666666666634';
+    tour_activity35_id UUID := '66666666-6666-6666-6666-666666666635';
+    tour_activity36_id UUID := '66666666-6666-6666-6666-666666666636';
+    tour_activity37_id UUID := '66666666-6666-6666-6666-666666666637';
+    tour_activity38_id UUID := '66666666-6666-6666-6666-666666666638';
+    tour_activity39_id UUID := '66666666-6666-6666-6666-666666666639';
+    tour_activity40_id UUID := '66666666-6666-6666-6666-666666666640';
+    tour_activity41_id UUID := '66666666-6666-6666-6666-666666666641';
+    tour_activity42_id UUID := '66666666-6666-6666-6666-666666666642';
+    tour_activity43_id UUID := '66666666-6666-6666-6666-666666666643';
+    tour_activity44_id UUID := '66666666-6666-6666-6666-666666666644';
+    tour_activity45_id UUID := '66666666-6666-6666-6666-666666666645';
+    tour_activity46_id UUID := '66666666-6666-6666-6666-666666666646';
+    tour_activity47_id UUID := '66666666-6666-6666-6666-666666666647';
+    tour_activity48_id UUID := '66666666-6666-6666-6666-666666666648';
+    tour_activity49_id UUID := '66666666-6666-6666-6666-666666666649';
+    tour_activity50_id UUID := '66666666-6666-6666-6666-666666666650';
+    tour_activity51_id UUID := '66666666-6666-6666-6666-666666666651';
+    tour_activity52_id UUID := '66666666-6666-6666-6666-666666666652';
+    tour_activity53_id UUID := '66666666-6666-6666-6666-666666666653';
+    tour_activity54_id UUID := '66666666-6666-6666-6666-666666666654';
+    tour_activity55_id UUID := '66666666-6666-6666-6666-666666666655';
+    tour_activity56_id UUID := '66666666-6666-6666-6666-666666666656';
+    tour_activity57_id UUID := '66666666-6666-6666-6666-666666666657';
+    tour_activity58_id UUID := '66666666-6666-6666-6666-666666666658';
+    tour_activity59_id UUID := '66666666-6666-6666-6666-666666666659';
+    tour_activity60_id UUID := '66666666-6666-6666-6666-666666666660';
+    tour_activity61_id UUID := '66666666-6666-6666-6666-666666666661';
+    tour_activity62_id UUID := '66666666-6666-6666-6666-666666666662';
+
+    -- Tour summary IDs
+    tour_summary1_id UUID := '77777777-7777-7777-7777-777777777701';
+    tour_summary2_id UUID := '77777777-7777-7777-7777-777777777702';
+    tour_summary3_id UUID := '77777777-7777-7777-7777-777777777703';
+    tour_summary4_id UUID := '77777777-7777-7777-7777-777777777704';
+    tour_summary5_id UUID := '77777777-7777-7777-7777-777777777705';
+    tour_summary6_id UUID := '77777777-7777-7777-7777-777777777706';
+    tour_summary7_id UUID := '77777777-7777-7777-7777-777777777707';
+    tour_summary8_id UUID := '77777777-7777-7777-7777-777777777708';
+    tour_summary9_id UUID := '77777777-7777-7777-7777-777777777709';
+    tour_summary10_id UUID := '77777777-7777-7777-7777-777777777710';
+    tour_summary11_id UUID := '77777777-7777-7777-7777-777777777711';
+    tour_summary12_id UUID := '77777777-7777-7777-7777-777777777712';
+    tour_summary13_id UUID := '77777777-7777-7777-7777-777777777713';
+    tour_summary14_id UUID := '77777777-7777-7777-7777-777777777714';
+    tour_summary15_id UUID := '77777777-7777-7777-7777-777777777715';
+    tour_summary16_id UUID := '77777777-7777-7777-7777-777777777716';
+    tour_summary17_id UUID := '77777777-7777-7777-7777-777777777717';
+    tour_summary18_id UUID := '77777777-7777-7777-7777-777777777718';
+    tour_summary19_id UUID := '77777777-7777-7777-7777-777777777719';
+    tour_summary20_id UUID := '77777777-7777-7777-7777-777777777720';
+    tour_summary21_id UUID := '77777777-7777-7777-7777-777777777721';
+    tour_summary22_id UUID := '77777777-7777-7777-7777-777777777722';
+    tour_summary23_id UUID := '77777777-7777-7777-7777-777777777723';
+    tour_summary24_id UUID := '77777777-7777-7777-7777-777777777724';
+    tour_summary25_id UUID := '77777777-7777-7777-7777-777777777725';
+    tour_summary26_id UUID := '77777777-7777-7777-7777-777777777726';
+    tour_summary27_id UUID := '77777777-7777-7777-7777-777777777727';
+    tour_summary28_id UUID := '77777777-7777-7777-7777-777777777728';
+    tour_summary29_id UUID := '77777777-7777-7777-7777-777777777729';
+    tour_summary30_id UUID := '77777777-7777-7777-7777-777777777730';
+    tour_summary31_id UUID := '77777777-7777-7777-7777-777777777731';
+    tour_summary32_id UUID := '77777777-7777-7777-7777-777777777732';
+    tour_summary33_id UUID := '77777777-7777-7777-7777-777777777733';
+    tour_summary34_id UUID := '77777777-7777-7777-7777-777777777734';
+    tour_summary35_id UUID := '77777777-7777-7777-7777-777777777735';
+    tour_summary36_id UUID := '77777777-7777-7777-7777-777777777736';
+    tour_summary37_id UUID := '77777777-7777-7777-7777-777777777737';
+    tour_summary38_id UUID := '77777777-7777-7777-7777-777777777738';
+    tour_summary39_id UUID := '77777777-7777-7777-7777-777777777739';
+    tour_summary40_id UUID := '77777777-7777-7777-7777-777777777740';
+    tour_summary41_id UUID := '77777777-7777-7777-7777-777777777741';
+    tour_summary42_id UUID := '77777777-7777-7777-7777-777777777742';
+    tour_summary43_id UUID := '77777777-7777-7777-7777-777777777743';
+    tour_summary44_id UUID := '77777777-7777-7777-7777-777777777744';
+    tour_summary45_id UUID := '77777777-7777-7777-7777-777777777745';
+    tour_summary46_id UUID := '77777777-7777-7777-7777-777777777746';
+    tour_summary47_id UUID := '77777777-7777-7777-7777-777777777747';
+    tour_summary48_id UUID := '77777777-7777-7777-7777-777777777748';
+    tour_summary49_id UUID := '77777777-7777-7777-7777-777777777749';
+    tour_summary50_id UUID := '77777777-7777-7777-7777-777777777750';
+    tour_summary51_id UUID := '77777777-7777-7777-7777-777777777751';
+    tour_summary52_id UUID := '77777777-7777-7777-7777-777777777752';
+    tour_summary53_id UUID := '77777777-7777-7777-7777-777777777753';
+    tour_summary54_id UUID := '77777777-7777-7777-7777-777777777754';
+    tour_summary55_id UUID := '77777777-7777-7777-7777-777777777755';
+    tour_summary56_id UUID := '77777777-7777-7777-7777-777777777756';
+    tour_summary57_id UUID := '77777777-7777-7777-7777-777777777757';
+    tour_summary58_id UUID := '77777777-7777-7777-7777-777777777758';
+    tour_summary59_id UUID := '77777777-7777-7777-7777-777777777759';
+    tour_summary60_id UUID := '77777777-7777-7777-7777-777777777760';
+    tour_summary61_id UUID := '77777777-7777-7777-7777-777777777761';
+    tour_summary62_id UUID := '77777777-7777-7777-7777-777777777762';
+    tour_summary63_id UUID := '77777777-7777-7777-7777-777777777763';
+    tour_summary64_id UUID := '77777777-7777-7777-7777-777777777764';
+    tour_summary65_id UUID := '77777777-7777-7777-7777-777777777765';
+    tour_summary66_id UUID := '77777777-7777-7777-7777-777777777766';
+    tour_summary67_id UUID := '77777777-7777-7777-7777-777777777767';
+    tour_summary68_id UUID := '77777777-7777-7777-7777-777777777768';
+    tour_summary69_id UUID := '77777777-7777-7777-7777-777777777769';
+    tour_summary71_id UUID := '77777777-7777-7777-7777-777777777771';
+    tour_summary70_id UUID := '77777777-7777-7777-7777-777777777770';
+    tour_summary72_id UUID := '77777777-7777-7777-7777-777777777772';
+
+    -- Tour included IDs
+    tour_included1_id UUID := '88888888-8888-8888-8888-888888888801';
+    tour_included2_id UUID := '88888888-8888-8888-8888-888888888802';
+    tour_included3_id UUID := '88888888-8888-8888-8888-888888888803';
+    tour_included4_id UUID := '88888888-8888-8888-8888-888888888804';
+    tour_included5_id UUID := '88888888-8888-8888-8888-888888888805';
+    tour_included6_id UUID := '88888888-8888-8888-8888-888888888806';
+    tour_included7_id UUID := '88888888-8888-8888-8888-888888888807';
+    tour_included8_id UUID := '88888888-8888-8888-8888-888888888808';
+    tour_included9_id UUID := '88888888-8888-8888-8888-888888888809';
+    tour_included10_id UUID := '88888888-8888-8888-8888-888888888810';
+    tour_included11_id UUID := '88888888-8888-8888-8888-888888888811';
+    tour_included12_id UUID := '88888888-8888-8888-8888-888888888812';
+    tour_included13_id UUID := '88888888-8888-8888-8888-888888888813';
+    tour_included14_id UUID := '88888888-8888-8888-8888-888888888814';
+    tour_included15_id UUID := '88888888-8888-8888-8888-888888888815';
+    tour_included16_id UUID := '88888888-8888-8888-8888-888888888816';
+    tour_included17_id UUID := '88888888-8888-8888-8888-888888888817';
+    tour_included18_id UUID := '88888888-8888-8888-8888-888888888818';
+    tour_included19_id UUID := '88888888-8888-8888-8888-888888888819';
+    tour_included20_id UUID := '88888888-8888-8888-8888-888888888820';
+    tour_included21_id UUID := '88888888-8888-8888-8888-888888888821';
+    tour_included22_id UUID := '88888888-8888-8888-8888-888888888822';
+    tour_included23_id UUID := '88888888-8888-8888-8888-888888888823';
+    tour_included24_id UUID := '88888888-8888-8888-8888-888888888824';
+    tour_included25_id UUID := '88888888-8888-8888-8888-888888888825';
+    tour_included26_id UUID := '88888888-8888-8888-8888-888888888826';
+    tour_included27_id UUID := '88888888-8888-8888-8888-888888888827';
+    tour_included28_id UUID := '88888888-8888-8888-8888-888888888828';
+    tour_included29_id UUID := '88888888-8888-8888-8888-888888888829';
+    tour_included30_id UUID := '88888888-8888-8888-8888-888888888830';
+    tour_included31_id UUID := '88888888-8888-8888-8888-888888888831';
+    tour_included32_id UUID := '88888888-8888-8888-8888-888888888832';
+    tour_included33_id UUID := '88888888-8888-8888-8888-888888888833';
+    tour_included34_id UUID := '88888888-8888-8888-8888-888888888834';
+    tour_included35_id UUID := '88888888-8888-8888-8888-888888888835';
+    tour_included36_id UUID := '88888888-8888-8888-8888-888888888836';
+    tour_included37_id UUID := '88888888-8888-8888-8888-888888888837';
+    tour_included38_id UUID := '88888888-8888-8888-8888-888888888838';
+    tour_included39_id UUID := '88888888-8888-8888-8888-888888888839';
+    tour_included40_id UUID := '88888888-8888-8888-8888-888888888840';
+    tour_included41_id UUID := '88888888-8888-8888-8888-888888888841';
+    tour_included42_id UUID := '88888888-8888-8888-8888-888888888842';
+    tour_included43_id UUID := '88888888-8888-8888-8888-888888888843';
+    tour_included44_id UUID := '88888888-8888-8888-8888-888888888844';
+    tour_included45_id UUID := '88888888-8888-8888-8888-888888888845';
+    tour_included46_id UUID := '88888888-8888-8888-8888-888888888846';
+    tour_included47_id UUID := '88888888-8888-8888-8888-888888888847';
+    tour_included48_id UUID := '88888888-8888-8888-8888-888888888848';
+    tour_included49_id UUID := '88888888-8888-8888-8888-888888888849';
+    tour_included50_id UUID := '88888888-8888-8888-8888-888888888850';
+    tour_included51_id UUID := '88888888-8888-8888-8888-888888888851';
+    tour_included52_id UUID := '88888888-8888-8888-8888-888888888852';
+    tour_included53_id UUID := '88888888-8888-8888-8888-888888888853';
+    tour_included54_id UUID := '88888888-8888-8888-8888-888888888854';
+    tour_included55_id UUID := '88888888-8888-8888-8888-888888888855';
+    tour_included56_id UUID := '88888888-8888-8888-8888-888888888856';
+    tour_included57_id UUID := '88888888-8888-8888-8888-888888888857';
+    tour_included58_id UUID := '88888888-8888-8888-8888-888888888858';
+    tour_included59_id UUID := '88888888-8888-8888-8888-888888888859';
+    tour_included60_id UUID := '88888888-8888-8888-8888-888888888860';
+    tour_included61_id UUID := '88888888-8888-8888-8888-888888888861';
+    tour_included62_id UUID := '88888888-8888-8888-8888-888888888862';
 BEGIN
 
 -- USERS
@@ -158,21 +354,7 @@ VALUES
      '/images/3.avif', 5, 'Venice Marco Polo Airport (VCE)', 'Venice Marco Polo Airport (VCE)',
      ARRAY['February','March'], ARRAY['English'], 12),
 
-  (tour4_id, 'yellowstone-photo-tour', 'Yellowstone Photo Expedition',
-   'A 7-day tour for photographers exploring America''s first national park.',
-   'MEDIUM', 1800.00,
-   '{"days":[{"day":1,"plan":"Arrival in Jackson Hole"},{"day":2,"plan":"Old Faithful and geyser basins"},{"day":3,"plan":"Grand Prismatic Spring sunrise"},{"day":4,"plan":"Lamar Valley wildlife"},{"day":5,"plan":"Mammoth Hot Springs"},{"day":6,"plan":"Yellowstone Lake"},{"day":7,"plan":"Final shots and departure"}]}',
-   guide3_id,
-   '/images/4.avif', 7, 'West Yellowstone', 'Jackson Hole',
-   ARRAY['May','June','September'], ARRAY['English','Japanese'], 18),
 
-  (tour5_id, 'napa-valley-wine-road', 'Napa Valley Wine and Culinary Tour',
-    'Taste the finest wines and cuisine across California wine country.',
-    'EASY', 950.00,
-    '{"days":[{"day":1,"plan":"Arrival in San Francisco"},{"day":2,"plan":"Napa Valley vineyard tours"},{"day":3,"plan":"Sonoma County exploration"},{"day":4,"plan":"Farm-to-table experience and departure"}]}',
-    guide5_id,
-    '/images/5.avif', 4, 'Sonoma', 'San Francisco',
-    ARRAY['April','May','September','October','November'], ARRAY['English','Spanish'], 21),
 
    (tour6_id, 'new-zealand-photo-tour', 'New Zealand Photography Expedition',
      'Discover the stunning landscapes of New Zealand from fjords to mountains. Capture the dramatic beauty of Milford Sound, the Southern Alps, and pristine lakes. This 10-day photography adventure features expert guidance, golden hour sessions, and diverse landscapes from glaciers to beaches. Small group ensures personalized instruction.',
@@ -254,6 +436,283 @@ VALUES
      '/images/15.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
      ARRAY['March','April','May','October','November'], ARRAY['English'], 14);
 
+-- TOUR ACTIVITIES
+INSERT INTO tour_activities(id, tour_id, activity, created_at)
+VALUES
+  -- Tour 1: Tuscany Spring
+  (tour_activity1_id, tour1_id, 'Sunrise photo sessions', '2025-04-15'),
+  (tour_activity2_id, tour1_id, 'Sunset photo sessions', '2025-04-15'),
+  (tour_activity3_id, tour1_id, 'Photography workshops', '2025-04-15'),
+  (tour_activity4_id, tour1_id, 'Editing & post-processing sessions', '2025-04-15'),
+  (tour_activity5_id, tour1_id, 'Cultural experiences', '2025-04-15'),
+  
+  -- Tour 2: Morocco
+  (tour_activity6_id, tour2_id, 'Sunrise photo sessions', '2025-04-15'),
+  (tour_activity7_id, tour2_id, 'Sunset photo sessions', '2025-04-15'),
+  (tour_activity8_id, tour2_id, 'Photography workshops', '2025-04-15'),
+  (tour_activity9_id, tour2_id, 'Editing & post-processing sessions', '2025-04-15'),
+  (tour_activity10_id, tour2_id, 'Cultural experiences', '2025-04-15'),
+  
+  -- Tour 3: Venice Carnival
+  (tour_activity11_id, tour3_id, 'Sunrise photo sessions', '2025-04-15'),
+  (tour_activity12_id, tour3_id, 'Sunset photo sessions', '2025-04-15'),
+  (tour_activity13_id, tour3_id, 'Photography workshops', '2025-04-15'),
+  (tour_activity14_id, tour3_id, 'Editing & post-processing sessions', '2025-04-15'),
+  (tour_activity15_id, tour3_id, 'Cultural experiences', '2025-04-15'),
+  
+  -- Tour 6: New Zealand
+  (tour_activity16_id, tour6_id, 'Sunrise photo sessions', '2025-04-15'),
+  (tour_activity17_id, tour6_id, 'Sunset photo sessions', '2025-04-15'),
+  (tour_activity18_id, tour6_id, 'Photography workshops', '2025-04-15'),
+  (tour_activity19_id, tour6_id, 'Editing & post-processing sessions', '2025-04-15'),
+  (tour_activity20_id, tour6_id, 'Cultural experiences', '2025-04-15'),
+  
+   -- Tour 8: Cyclades
+   (tour_activity21_id, tour8_id, 'Sunrise photo sessions', '2025-04-15'),
+   (tour_activity22_id, tour8_id, 'Sunset photo sessions', '2025-04-15'),
+   (tour_activity23_id, tour8_id, 'Photography workshops', '2025-04-15'),
+   (tour_activity24_id, tour8_id, 'Editing & post-processing sessions', '2025-04-15'),
+   (tour_activity25_id, tour8_id, 'The catamaran life experience', '2025-04-15'),
+   (tour_activity26_id, tour8_id, 'Sea-to-Land landscape photography', '2025-04-15'),
+   (tour_activity27_id, tour8_id, 'Cultural experiences', '2025-04-15'),
+   
+   -- Tour 9: Cinque-Terre & Umbria
+   (tour_activity28_id, tour9_id, 'Sunrise photo sessions', '2025-04-15'),
+   (tour_activity29_id, tour9_id, 'Sunset photo sessions', '2025-04-15'),
+   (tour_activity30_id, tour9_id, 'Photography workshops', '2025-04-15'),
+   (tour_activity31_id, tour9_id, 'Editing & post-processing sessions', '2025-04-15'),
+   (tour_activity32_id, tour9_id, 'Cultural experiences', '2025-04-15'),
+   
+   -- Tour 10: Provence
+   (tour_activity33_id, tour10_id, 'Sunrise photo sessions', '2025-04-15'),
+   (tour_activity34_id, tour10_id, 'Sunset photo sessions', '2025-04-15'),
+   (tour_activity35_id, tour10_id, 'Photography workshops', '2025-04-15'),
+   (tour_activity36_id, tour10_id, 'Editing & post-processing sessions', '2025-04-15'),
+   (tour_activity37_id, tour10_id, 'Cultural experiences', '2025-04-15'),
+   
+   -- Tour 11: Sicily and Aeolian Islands
+   (tour_activity38_id, tour11_id, 'Sunrise photo sessions', '2025-04-15'),
+   (tour_activity39_id, tour11_id, 'Sunset photo sessions', '2025-04-15'),
+   (tour_activity40_id, tour11_id, 'Photography workshops', '2025-04-15'),
+   (tour_activity41_id, tour11_id, 'Editing & post-processing sessions', '2025-04-15'),
+   (tour_activity42_id, tour11_id, 'Cultural experiences', '2025-04-15'),
+   
+   -- Tour 12: Czechia (autumn)
+   (tour_activity43_id, tour12_id, 'Sunrise photo sessions', '2025-04-15'),
+   (tour_activity44_id, tour12_id, 'Sunset photo sessions', '2025-04-15'),
+   (tour_activity45_id, tour12_id, 'Photography workshops', '2025-04-15'),
+   (tour_activity46_id, tour12_id, 'Editing & post-processing sessions', '2025-04-15'),
+   (tour_activity47_id, tour12_id, 'Cultural experiences', '2025-04-15'),
+   
+   -- Tour 13: Scotland
+   (tour_activity48_id, tour13_id, 'Sunrise photo sessions', '2025-04-15'),
+   (tour_activity49_id, tour13_id, 'Sunset photo sessions', '2025-04-15'),
+   (tour_activity50_id, tour13_id, 'Photography workshops', '2025-04-15'),
+   (tour_activity51_id, tour13_id, 'Editing & post-processing sessions', '2025-04-15'),
+   (tour_activity52_id, tour13_id, 'Cultural experiences', '2025-04-15'),
+   
+   -- Tour 14: Tuscany autumn
+   (tour_activity53_id, tour14_id, 'Sunrise photo sessions', '2025-04-15'),
+   (tour_activity54_id, tour14_id, 'Sunset photo sessions', '2025-04-15'),
+   (tour_activity55_id, tour14_id, 'Photography workshops', '2025-04-15'),
+   (tour_activity56_id, tour14_id, 'Editing & post-processing sessions', '2025-04-15'),
+   (tour_activity57_id, tour14_id, 'Cultural experiences', '2025-04-15'),
+   
+   -- Tour 15: Japan
+   (tour_activity58_id, tour15_id, 'Sunrise photo sessions', '2025-04-15'),
+   (tour_activity59_id, tour15_id, 'Sunset photo sessions', '2025-04-15'),
+   (tour_activity60_id, tour15_id, 'Photography workshops', '2025-04-15'),
+   (tour_activity61_id, tour15_id, 'Editing & post-processing sessions', '2025-04-15'),
+   (tour_activity62_id, tour15_id, 'Cultural experiences', '2025-04-15');
+
+ -- TOUR SUMMARY
+INSERT INTO tour_summary(id, tour_id, name, value, created_at)
+VALUES
+  -- Tour 1: Tuscany Spring
+  (tour_summary1_id, tour1_id, 'Duration', '10 days', '2025-04-15'),
+  (tour_summary2_id, tour1_id, 'Group Size', '7 participants', '2025-04-15'),
+  (tour_summary3_id, tour1_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary4_id, tour1_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary5_id, tour1_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  (tour_summary6_id, tour1_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  
+  -- Tour 2: Morocco
+  (tour_summary7_id, tour2_id, 'Duration', '12 days', '2025-04-15'),
+  (tour_summary8_id, tour2_id, 'Group Size', '7 participants', '2025-04-15'),
+  (tour_summary9_id, tour2_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary10_id, tour2_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary11_id, tour2_id, 'Tour starts', 'Casablanca', '2025-04-15'),
+  (tour_summary12_id, tour2_id, 'Ending place', 'Casablanca', '2025-04-15'),
+  
+  -- Tour 3: Venice Carnival
+  (tour_summary13_id, tour3_id, 'Duration', '5 days', '2025-04-15'),
+  (tour_summary14_id, tour3_id, 'Group Size', '7 participants', '2025-04-15'),
+  (tour_summary15_id, tour3_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary16_id, tour3_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary17_id, tour3_id, 'Tour starts', 'Venice Marco Polo Airport (VCE)', '2025-04-15'),
+  (tour_summary18_id, tour3_id, 'Ending place', 'Venice Marco Polo Airport (VCE)', '2025-04-15'),
+  
+  -- Tour 6: New Zealand
+  (tour_summary19_id, tour6_id, 'Duration', '10 days', '2025-04-15'),
+  (tour_summary20_id, tour6_id, 'Group Size', '7 participants', '2025-04-15'),
+  (tour_summary21_id, tour6_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary22_id, tour6_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary23_id, tour6_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  (tour_summary24_id, tour6_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  
+  -- Tour 8: Cyclades
+  (tour_summary25_id, tour8_id, 'Duration', '7 days', '2025-04-15'),
+  (tour_summary26_id, tour8_id, 'Group Size', '11 participants', '2025-04-15'),
+  (tour_summary27_id, tour8_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary28_id, tour8_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary29_id, tour8_id, 'Tour starts', 'Athens International Airport (ATH)', '2025-04-15'),
+  (tour_summary30_id, tour8_id, 'Ending place', 'Athens International Airport (ATH)', '2025-04-15'),
+  
+  -- Tour 9: Cinque-Terre & Umbria
+  (tour_summary31_id, tour9_id, 'Duration', '10 days', '2025-04-15'),
+  (tour_summary32_id, tour9_id, 'Group Size', '7 participants', '2025-04-15'),
+  (tour_summary33_id, tour9_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary34_id, tour9_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary35_id, tour9_id, 'Tour starts', 'Florence Airport (FLR)', '2025-04-15'),
+  (tour_summary36_id, tour9_id, 'Ending place', 'Florence Airport (FLR)', '2025-04-15'),
+  
+  -- Tour 10: Provence
+  (tour_summary37_id, tour10_id, 'Duration', '10 days', '2025-04-15'),
+  (tour_summary38_id, tour10_id, 'Group Size', '7 participants', '2025-04-15'),
+  (tour_summary39_id, tour10_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary40_id, tour10_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary41_id, tour10_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  (tour_summary42_id, tour10_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  
+  -- Tour 11: Sicily & Aeolian Islands
+  (tour_summary43_id, tour11_id, 'Duration', '10 days', '2025-04-15'),
+  (tour_summary44_id, tour11_id, 'Group Size', '7 participants', '2025-04-15'),
+  (tour_summary45_id, tour11_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary46_id, tour11_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary47_id, tour11_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  (tour_summary48_id, tour11_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  
+  -- Tour 12: Czechia Autumn
+  (tour_summary49_id, tour12_id, 'Duration', '10 days', '2025-04-15'),
+  (tour_summary50_id, tour12_id, 'Group Size', '7 participants', '2025-04-15'),
+  (tour_summary51_id, tour12_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary52_id, tour12_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary53_id, tour12_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  (tour_summary54_id, tour12_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  
+  -- Tour 13: Scotland Highlands
+  (tour_summary55_id, tour13_id, 'Duration', '10 days', '2025-04-15'),
+  (tour_summary56_id, tour13_id, 'Group Size', '7 participants', '2025-04-15'),
+  (tour_summary57_id, tour13_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary58_id, tour13_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary59_id, tour13_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  (tour_summary60_id, tour13_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  
+  -- Tour 14: Tuscany Autumn
+  (tour_summary61_id, tour14_id, 'Duration', '10 days', '2025-04-15'),
+  (tour_summary62_id, tour14_id, 'Group Size', '7 participants', '2025-04-15'),
+  (tour_summary63_id, tour14_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary64_id, tour14_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary65_id, tour14_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  (tour_summary66_id, tour14_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  
+  -- Tour 15: Japan Cultural
+  (tour_summary67_id, tour15_id, 'Duration', '10 days', '2025-04-15'),
+  (tour_summary68_id, tour15_id, 'Group Size', '7 participants', '2025-04-15'),
+  (tour_summary69_id, tour15_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary70_id, tour15_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary71_id, tour15_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  (tour_summary72_id, tour15_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15');
+
+ -- TOUR INCLUDED
+INSERT INTO tour_included(id, tour_id, included, created_at)
+VALUES
+  -- Tour 1: Tuscany Spring
+  (tour_included1_id, tour1_id, 'Accommodation', '2025-04-15'),
+  (tour_included2_id, tour1_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included3_id, tour1_id, 'Photo shoots', '2025-04-15'),
+  (tour_included4_id, tour1_id, 'Photo workshops', '2025-04-15'),
+  (tour_included5_id, tour1_id, 'Expert photo guide', '2025-04-15'),
+  
+  -- Tour 2: Morocco
+  (tour_included6_id, tour2_id, 'Accommodation', '2025-04-15'),
+  (tour_included7_id, tour2_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included8_id, tour2_id, 'Breakfasts', '2025-04-15'),
+  (tour_included9_id, tour2_id, 'Photo shoots', '2025-04-15'),
+  (tour_included10_id, tour2_id, 'Photo workshops', '2025-04-15'),
+  (tour_included11_id, tour2_id, 'Expert photo guide', '2025-04-15'),
+  
+  -- Tour 3: Venice Carnival
+  (tour_included12_id, tour3_id, 'Accommodation', '2025-04-15'),
+  (tour_included13_id, tour3_id, 'Photo shoots', '2025-04-15'),
+  (tour_included14_id, tour3_id, 'Photo workshops', '2025-04-15'),
+  (tour_included15_id, tour3_id, 'Expert photo guide', '2025-04-15'),
+  
+  -- Tour 6: New Zealand
+  (tour_included16_id, tour6_id, 'Accommodation', '2025-04-15'),
+  (tour_included17_id, tour6_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included18_id, tour6_id, 'Photo shoots', '2025-04-15'),
+  (tour_included19_id, tour6_id, 'Photo workshops', '2025-04-15'),
+  (tour_included20_id, tour6_id, 'Expert photo guide', '2025-04-15'),
+  
+  -- Tour 8: Cyclades
+  (tour_included21_id, tour8_id, 'Accommodation', '2025-04-15'),
+  (tour_included22_id, tour8_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included23_id, tour8_id, 'Photo shoots', '2025-04-15'),
+  (tour_included24_id, tour8_id, 'Photo workshops', '2025-04-15'),
+  (tour_included25_id, tour8_id, 'Expert photo guide', '2025-04-15'),
+  (tour_included26_id, tour8_id, 'Professional skipper & crew services', '2025-04-15'),
+  (tour_included27_id, tour8_id, 'Catamaran cruise', '2025-04-15'),
+  
+  -- Tour 9: Cinque-Terre & Umbria
+  (tour_included28_id, tour9_id, 'Accommodation', '2025-04-15'),
+  (tour_included29_id, tour9_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included30_id, tour9_id, 'Photo shoots', '2025-04-15'),
+  (tour_included31_id, tour9_id, 'Photo workshops', '2025-04-15'),
+  (tour_included32_id, tour9_id, 'Expert photo guide', '2025-04-15'),
+  
+  -- Tour 10: Provence
+  (tour_included33_id, tour10_id, 'Accommodation', '2025-04-15'),
+  (tour_included34_id, tour10_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included35_id, tour10_id, 'Photo shoots', '2025-04-15'),
+  (tour_included36_id, tour10_id, 'Photo workshops', '2025-04-15'),
+  (tour_included37_id, tour10_id, 'Expert photo guide', '2025-04-15'),
+  
+  -- Tour 11: Sicily & Aeolian Islands
+  (tour_included38_id, tour11_id, 'Accommodation', '2025-04-15'),
+  (tour_included39_id, tour11_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included40_id, tour11_id, 'Photo shoots', '2025-04-15'),
+  (tour_included41_id, tour11_id, 'Photo workshops', '2025-04-15'),
+  (tour_included42_id, tour11_id, 'Expert photo guide', '2025-04-15'),
+  
+  -- Tour 12: Czechia Autumn
+  (tour_included43_id, tour12_id, 'Accommodation', '2025-04-15'),
+  (tour_included44_id, tour12_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included45_id, tour12_id, 'Photo shoots', '2025-04-15'),
+  (tour_included46_id, tour12_id, 'Photo workshops', '2025-04-15'),
+  (tour_included47_id, tour12_id, 'Expert photo guide', '2025-04-15'),
+  
+  -- Tour 13: Scotland Highlands
+  (tour_included48_id, tour13_id, 'Accommodation', '2025-04-15'),
+  (tour_included49_id, tour13_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included50_id, tour13_id, 'Photo shoots', '2025-04-15'),
+  (tour_included51_id, tour13_id, 'Photo workshops', '2025-04-15'),
+  (tour_included52_id, tour13_id, 'Expert photo guide', '2025-04-15'),
+  
+  -- Tour 14: Tuscany Autumn
+  (tour_included53_id, tour14_id, 'Accommodation', '2025-04-15'),
+  (tour_included54_id, tour14_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included55_id, tour14_id, 'Photo shoots', '2025-04-15'),
+  (tour_included56_id, tour14_id, 'Photo workshops', '2025-04-15'),
+  (tour_included57_id, tour14_id, 'Expert photo guide', '2025-04-15'),
+  
+  -- Tour 15: Japan Cultural
+  (tour_included58_id, tour15_id, 'Accommodation', '2025-04-15'),
+  (tour_included59_id, tour15_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included60_id, tour15_id, 'Photo shoots', '2025-04-15'),
+  (tour_included61_id, tour15_id, 'Photo workshops', '2025-04-15'),
+  (tour_included62_id, tour15_id, 'Expert photo guide', '2025-04-15');
+
 -- TOUR DATES
 INSERT INTO tour_dates (id, tour_id, date_from, date_to, group_size, is_available)
 VALUES
@@ -272,77 +731,66 @@ VALUES
   (tour_date8_id, tour3_id, '2025-02-15', '2025-02-19', 8, TRUE),
   (tour_date9_id, tour3_id, '2025-02-22', '2025-02-26', 6, TRUE),
   
-  -- Tour 4: New Zealand (10-day tour)
-  (tour_date10_id, tour4_id, '2025-01-10', '2025-01-19', 8, TRUE),
-  (tour_date11_id, tour4_id, '2025-02-05', '2025-02-14', 10, TRUE),
-  (tour_date12_id, tour4_id, '2025-03-01', '2025-03-10', 8, TRUE),
+
   
-  -- Tour 5: Japan Cherry Blossom (10-day tour)
-  (tour_date13_id, tour5_id, '2025-03-25', '2025-04-03', 10, TRUE),
-  (tour_date14_id, tour5_id, '2025-04-05', '2025-04-14', 8, TRUE),
-  (tour_date15_id, tour5_id, '2025-04-15', '2025-04-24', 6, TRUE),
-  
-  -- Tour 6: Cyclades Sailing (7-day tour)
+  -- Tour 6: New Zealand (10-day tour)
   (tour_date16_id, tour6_id, '2025-05-20', '2025-05-26', 10, TRUE),
   (tour_date17_id, tour6_id, '2025-06-15', '2025-06-21', 12, TRUE),
   (tour_date18_id, tour6_id, '2025-09-10', '2025-09-16', 10, TRUE),
   (tour_date19_id, tour6_id, '2025-10-05', '2025-10-11', 8, TRUE),
   
-  -- Tour 7: Cinque-Terre & Umbria (10-day tour)
-  (tour_date20_id, tour7_id, '2025-04-10', '2025-04-19', 10, TRUE),
-  (tour_date21_id, tour7_id, '2025-05-15', '2025-05-24', 8, TRUE),
-  (tour_date22_id, tour7_id, '2025-09-25', '2025-10-04', 10, TRUE),
-  (tour_date23_id, tour7_id, '2025-10-15', '2025-10-24', 8, TRUE),
+  -- Tour 7: Japan Cherry Blossom (10-day tour)
+  (tour_date20_id, tour7_id, '2025-03-25', '2025-04-03', 10, TRUE),
+  (tour_date21_id, tour7_id, '2025-04-05', '2025-04-14', 8, TRUE),
+  (tour_date22_id, tour7_id, '2025-04-15', '2025-04-24', 6, TRUE),
   
-  -- Tour 8: Provence (10-day tour)
-  (tour_date24_id, tour8_id, '2025-06-20', '2025-06-29', 12, TRUE),
-  (tour_date25_id, tour8_id, '2025-07-10', '2025-07-19', 10, TRUE),
-  (tour_date26_id, tour8_id, '2025-08-05', '2025-08-14', 10, TRUE),
-  (tour_date27_id, tour8_id, '2025-09-01', '2025-09-10', 8, TRUE),
+  -- Tour 8: Cyclades Sailing (7-day tour)
+  (tour_date23_id, tour8_id, '2025-05-20', '2025-05-26', 10, TRUE),
+  (tour_date24_id, tour8_id, '2025-06-15', '2025-06-21', 12, TRUE),
+  (tour_date25_id, tour8_id, '2025-09-10', '2025-09-16', 10, TRUE),
+  (tour_date26_id, tour8_id, '2025-10-05', '2025-10-11', 8, TRUE),
   
-  -- Tour 9: Sicily & Aeolian Islands (10-day tour)
-  (tour_date28_id, tour9_id, '2025-05-25', '2025-06-03', 10, TRUE),
-  (tour_date29_id, tour9_id, '2025-06-20', '2025-06-29', 8, TRUE),
-  (tour_date30_id, tour9_id, '2025-09-15', '2025-09-24', 10, TRUE),
-  (tour_date31_id, tour9_id, '2025-10-10', '2025-10-19', 8, TRUE),
+  -- Tour 9: Cinque-Terre & Umbria (10-day tour)
+  (tour_date27_id, tour9_id, '2025-04-10', '2025-04-19', 10, TRUE),
+  (tour_date28_id, tour9_id, '2025-05-15', '2025-05-24', 8, TRUE),
+  (tour_date29_id, tour9_id, '2025-09-25', '2025-10-04', 10, TRUE),
+  (tour_date30_id, tour9_id, '2025-10-15', '2025-10-24', 8, TRUE),
   
-  -- Tour 10: Czechia Autumn (10-day tour)
-  (tour_date32_id, tour10_id, '2025-09-20', '2025-09-29', 10, TRUE),
-  (tour_date33_id, tour10_id, '2025-10-05', '2025-10-14', 8, TRUE),
-  (tour_date34_id, tour10_id, '2025-10-25', '2025-11-03', 12, TRUE),
-  (tour_date35_id, tour10_id, '2025-11-10', '2025-11-19', 8, TRUE),
+  -- Tour 10: Provence (10-day tour)
+  (tour_date31_id, tour10_id, '2025-06-20', '2025-06-29', 12, TRUE),
+  (tour_date32_id, tour10_id, '2025-07-10', '2025-07-19', 10, TRUE),
+  (tour_date33_id, tour10_id, '2025-08-05', '2025-08-14', 10, TRUE),
+  (tour_date34_id, tour10_id, '2025-09-01', '2025-09-10', 8, TRUE),
   
-  -- Tour 11: Scotland Highlands (10-day tour)
-  (tour_date36_id, tour11_id, '2025-05-01', '2025-05-10', 10, TRUE),
-  (tour_date37_id, tour11_id, '2025-06-15', '2025-06-24', 12, TRUE),
-  (tour_date38_id, tour11_id, '2025-07-20', '2025-07-29', 8, TRUE),
-  (tour_date39_id, tour11_id, '2025-08-10', '2025-08-19', 10, TRUE),
-  (tour_date40_id, tour11_id, '2025-09-05', '2025-09-14', 8, TRUE),
+  -- Tour 11: Sicily & Aeolian Islands (10-day tour)
+  (tour_date35_id, tour11_id, '2025-05-25', '2025-06-03', 10, TRUE),
+  (tour_date36_id, tour11_id, '2025-06-20', '2025-06-29', 8, TRUE),
+  (tour_date37_id, tour11_id, '2025-09-15', '2025-09-24', 10, TRUE),
+  (tour_date38_id, tour11_id, '2025-10-10', '2025-10-19', 8, TRUE),
   
-  -- Tour 12: Tuscany Autumn (10-day tour)
-  (tour_date41_id, tour12_id, '2025-09-15', '2025-09-24', 10, TRUE),
-  (tour_date42_id, tour12_id, '2025-10-05', '2025-10-14', 12, TRUE),
-  (tour_date43_id, tour12_id, '2025-10-25', '2025-11-03', 8, TRUE),
-  (tour_date44_id, tour12_id, '2025-11-10', '2025-11-19', 10, TRUE),
+  -- Tour 12: Czechia Autumn (10-day tour)
+  (tour_date39_id, tour12_id, '2025-09-20', '2025-09-29', 10, TRUE),
+  (tour_date40_id, tour12_id, '2025-10-05', '2025-10-14', 8, TRUE),
+  (tour_date41_id, tour12_id, '2025-10-25', '2025-11-03', 12, TRUE),
+  (tour_date42_id, tour12_id, '2025-11-10', '2025-11-19', 8, TRUE),
   
-  -- Tour 13: Japan Cultural (10-day tour)
-  (tour_date45_id, tour13_id, '2025-03-20', '2025-03-29', 10, TRUE),
-  (tour_date46_id, tour13_id, '2025-04-10', '2025-04-19', 8, TRUE),
-  (tour_date47_id, tour13_id, '2025-05-05', '2025-05-14', 10, TRUE),
-  (tour_date48_id, tour13_id, '2025-10-15', '2025-10-24', 8, TRUE),
-  (tour_date49_id, tour13_id, '2025-11-05', '2025-11-14', 10, TRUE),
+  -- Tour 13: Scotland Highlands (10-day tour)
+  (tour_date43_id, tour13_id, '2025-04-01', '2025-04-10', 10, TRUE),
+  (tour_date44_id, tour13_id, '2025-05-15', '2025-05-24', 8, TRUE),
+  (tour_date45_id, tour13_id, '2025-09-20', '2025-09-29', 10, TRUE),
+  (tour_date46_id, tour13_id, '2025-10-01', '2025-10-10', 12, TRUE),
   
-  -- Tour 14: Patagonia (10-day tour)
-  (tour_date50_id, tour14_id, '2025-01-05', '2025-01-14', 8, TRUE),
-  (tour_date51_id, tour14_id, '2025-01-20', '2025-01-29', 10, TRUE),
-  (tour_date52_id, tour14_id, '2025-02-10', '2025-02-19', 8, TRUE),
-  (tour_date53_id, tour14_id, '2025-03-01', '2025-03-10', 10, TRUE),
+  -- Tour 14: Tuscany Autumn (10-day tour)
+  (tour_date47_id, tour14_id, '2025-09-15', '2025-09-24', 10, TRUE),
+  (tour_date48_id, tour14_id, '2025-10-05', '2025-10-14', 12, TRUE),
+  (tour_date49_id, tour14_id, '2025-10-25', '2025-11-03', 8, TRUE),
   
-  -- Tour 15: Other destinations (10-day tour)
-  (tour_date54_id, tour15_id, '2025-04-01', '2025-04-10', 10, TRUE),
-  (tour_date55_id, tour15_id, '2025-05-15', '2025-05-24', 8, TRUE),
-  (tour_date56_id, tour15_id, '2025-10-01', '2025-10-10', 12, TRUE),
-  (tour_date57_id, tour15_id, '2025-11-15', '2025-11-24', 8, TRUE);
+  -- Tour 15: Japan Cultural (10-day tour)
+  (tour_date50_id, tour15_id, '2025-03-20', '2025-03-29', 10, TRUE),
+  (tour_date51_id, tour15_id, '2025-04-10', '2025-04-19', 8, TRUE),
+  (tour_date52_id, tour15_id, '2025-05-05', '2025-05-14', 10, TRUE),
+  (tour_date53_id, tour15_id, '2025-10-01', '2025-10-10', 12, TRUE),
+  (tour_date54_id, tour15_id, '2025-11-15', '2025-11-24', 8, TRUE);
 
 -- MATERIALS
 INSERT INTO tour_materials (tour_id, title, url, type)
@@ -353,9 +801,7 @@ VALUES
   (tour2_id, 'Manhattan Walking Guide', 'https://example.com/manhattan-guide.pdf', 'PDF'),
   (tour3_id, 'Rafting Safety Manual', 'https://example.com/rafting-safety.pdf', 'PDF'),
   (tour3_id, 'Whitewater Training Video', 'https://example.com/rafting-training.mp4', 'VIDEO'),
-  (tour4_id, 'Wildlife Photography Tips', 'https://example.com/wildlife-photo-tips.pdf', 'PDF'),
-  (tour5_id, 'Napa Valley Wine Map', 'https://example.com/napa-wine-map.pdf', 'PDF'),
-  (tour5_id, 'Wine Tasting Guide Video', 'https://example.com/wine-tasting.mp4', 'VIDEO'),
+
   
   -- Tour 6: New Zealand Photography
   (tour6_id, 'New Zealand Landscape Photography Guide', 'https://example.com/new-zealand-photo-guide.pdf', 'PDF'),
@@ -410,24 +856,23 @@ VALUES
 -- PHOTOS
 INSERT INTO photos (tour_id, url, description)
 VALUES
-  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886477/tuscan-spring__Untitled_Panorama2_114%D1%85249-200dpi_299-Edit_tebrjd.avif', 'Sunrise over the Grand Canyon'),
-  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__Untitled_Panorama1_65%D1%8587-200dpi_100-Edit_sprpmc.avif', 'Group on Bright Angel Trail'),
-  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8829-1_86x56_x5eivl.avif', 'Group on Bright Angel Trail'),
-  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8844obr_146x110_topaz_PRINT_yvqehs.avif', 'Group on Bright Angel Trail'),
-  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__OSKIN_3950_fdilkc.avif', 'Group on Bright Angel Trail'),
-  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886475/tuscan-spring__OSKIN_218_43%D1%8572-200dpi_sy8xug.avif', 'Group on Bright Angel Trail'),
-  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886470/tuscan-spring__IMGP0277_68%D1%8593-200dpi-Edit_fful6e.avif', 'Group on Bright Angel Trail'),
-  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__FUJI8847-Pano-Pano-Dehancer_copy_lgg7p7.avif', 'Group on Bright Angel Trail'),
-  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886470/tuscan-spring__IMG_1698_69%D1%8546-200dpi_2_zsq3qn.avif', 'Group on Bright Angel Trail'),
-  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886470/tuscan-spring___IGP6527_Panorama-Edit_copy_a2einq.avif', 'Group on Bright Angel Trail'),
-  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__AA8B2655_43%D1%8573-200dpi_113-Edit_lykwgv.avif', 'Group on Bright Angel Trail'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886477/tuscan-spring__Untitled_Panorama2_114%D1%85249-200dpi_299-Edit_tebrjd.avif', 'Val d''Orcia sunrise over rolling hills'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__Untitled_Panorama1_65%D1%8587-200dpi_100-Edit_sprpmc.avif', 'Pienza medieval town at golden hour'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8829-1_86x56_x5eivl.avif', 'Cypress alley in morning mist'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8844obr_146x110_topaz_PRINT_yvqehs.avif', 'Podere Belvedere iconic chapel'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__OSKIN_3950_fdilkc.avif', 'San Quirico d''Orcia historic center'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886475/tuscan-spring__OSKIN_218_43%D1%8572-200dpi_sy8xug.avif', 'Tuscan vineyard at harvest time'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886470/tuscan-spring__IMGP0277_68%D1%8593-200dpi-Edit_fful6e.avif', 'Madonna di Vitaleta chapel on hill'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__FUJI8847-Pano-Pano-Dehancer_copy_lgg7p7.avif', 'Poggio Covili historic estate at sunset'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886470/tuscan-spring__IMG_1698_69%D1%8546-200dpi_2_zsq3qn.avif', 'Crete Senesi countryside with oak trees'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886470/tuscan-spring___IGP6527_Panorama-Edit_copy_a2einq.avif', 'Monteriggioni walled town at sunrise'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__AA8B2655_43%D1%8573-200dpi_113-Edit_lykwgv.avif', 'Val d''Orcia foggy morning landscape'),
   
-  (tour2_id, 'https://example.com/nyc-photo1.jpg', 'Statue of Liberty'),
-  (tour2_id, 'https://example.com/nyc-photo2.jpg', 'Brooklyn Bridge at sunset'),
-  (tour3_id, 'https://example.com/rafting-photo1.jpg', 'Navigating Class IV rapids'),
-  (tour3_id, 'https://example.com/rafting-photo2.jpg', 'Canyon campsite under stars'),
-  (tour4_id, 'https://example.com/yellowstone-photo1.jpg', 'Old Faithful eruption'),
-  (tour5_id, 'https://example.com/napa-photo1.jpg', 'Napa Valley vineyards at golden hour'),
+  (tour2_id, 'https://example.com/morocco-photo1.jpg', 'Blue-washed streets of Chefchaouen'),
+  (tour2_id, 'https://example.com/morocco-photo2.jpg', 'Sahara desert golden dunes at sunset'),
+  (tour3_id, 'https://example.com/venice-carnival-photo1.jpg', 'Venice Carnival masks and costumes'),
+  (tour3_id, 'https://example.com/venice-carnival-photo2.jpg', 'Gondola photography at golden hour'),
+
 
    -- Tour 6: New Zealand Photography
    (tour6_id, 'https://example.com/new-zealand-photo1.jpg', 'Milford Sound sunrise with dramatic peaks'),
@@ -506,8 +951,7 @@ VALUES
   (tour1_id, 'https://example.com/tuscany-video1.mp4', 'Tuscany spring photography workshop highlights'),
   (tour2_id, 'https://example.com/morocco-video1.mp4', 'Morocco Sahara desert and imperial cities tour'),
   (tour3_id, 'https://example.com/venice-carnival-video1.mp4', 'Venice Carnival masks and costumes photography'),
-  (tour4_id, 'https://example.com/new-zealand-video1.mp4', 'New Zealand Milford Sound and landscapes'),
-  (tour5_id, 'https://example.com/japan-cherry-blossom-video1.mp4', 'Japan cherry blossom season photography'),
+
   
   -- Tour 2 (Morocco) - additional video
   (tour2_id, 'https://example.com/morocco-video2.mp4', 'Chefchaouen blue streets and Atlas Mountains adventure'),
@@ -515,51 +959,47 @@ VALUES
   -- Tour 3 (Venice Carnival) - additional video
   (tour3_id, 'https://example.com/venice-carnival-video2.mp4', 'Venice gondola photography and hidden gems'),
   
-  -- Tour 4 (New Zealand) - additional video
-  (tour4_id, 'https://example.com/new-zealand-video2.mp4', 'Queenstown adventure and Mount Cook glacier exploration'),
+
+   
+  -- Tour 6: New Zealand
+  (tour6_id, 'https://example.com/new-zealand-video1.mp4', 'New Zealand Milford Sound and landscapes'),
+  (tour6_id, 'https://example.com/new-zealand-video2.mp4', 'Queenstown adventure and Mount Cook glacier exploration'),
   
-  -- Tour 5 (Japan Cherry Blossom) - additional video
-  (tour5_id, 'https://example.com/japan-cherry-blossom-video2.mp4', 'Kyoto temples and traditional Japanese culture'),
+  -- Tour 7: Japan Cherry Blossom
+  (tour7_id, 'https://example.com/japan-cherry-blossom-video1.mp4', 'Japan cherry blossom season photography'),
+  (tour7_id, 'https://example.com/japan-cherry-blossom-video2.mp4', 'Kyoto temples and traditional Japanese culture'),
   
-  -- Tour 6: Cyclades Sailing
-  (tour6_id, 'https://example.com/cyclades-sailing-video1.mp4', 'Greek islands sailing adventure and sunset photography'),
-  (tour6_id, 'https://example.com/cyclades-sailing-video2.mp4', 'Santorini Oia village and traditional Greek island life'),
+  -- Tour 8: Cyclades Sailing
+  (tour8_id, 'https://example.com/cyclades-sailing-video1.mp4', 'Greek islands sailing adventure and sunset photography'),
+  (tour8_id, 'https://example.com/cyclades-sailing-video2.mp4', 'Santorini Oia village and traditional Greek island life'),
   
-  -- Tour 7: Cinque-Terre & Umbria
-  (tour7_id, 'https://example.com/cinque-terre-video1.mp4', 'Italian coastal villages and dramatic cliffside photography'),
-  (tour7_id, 'https://example.com/cinque-terre-video2.mp4', 'Umbria medieval hill towns and authentic Italian culture'),
+  -- Tour 9: Cinque-Terre & Umbria
+  (tour9_id, 'https://example.com/cinque-terre-video1.mp4', 'Italian coastal villages and dramatic cliffside photography'),
+  (tour9_id, 'https://example.com/cinque-terre-video2.mp4', 'Umbria medieval hill towns and authentic Italian culture'),
+   
+  -- Tour 10: Provence
+  (tour10_id, 'https://example.com/provence-video1.mp4', 'Provence lavender fields and golden hour photography'),
+  (tour10_id, 'https://example.com/provence-video2.mp4', 'French village life and Provençal countryside exploration'),
   
-  -- Tour 8: Provence
-  (tour8_id, 'https://example.com/provence-video1.mp4', 'Provence lavender fields and golden hour photography'),
-  (tour8_id, 'https://example.com/provence-video2.mp4', 'French village life and Provençal countryside exploration'),
+  -- Tour 11: Sicily & Aeolian Islands
+  (tour11_id, 'https://example.com/sicily-video1.mp4', 'Mount Etna volcanic landscapes and Mediterranean seascapes'),
+  (tour11_id, 'https://example.com/sicily-video2.mp4', 'Sicilian culture and Aeolian Islands sailing adventure'),
   
-  -- Tour 9: Sicily & Aeolian Islands
-  (tour9_id, 'https://example.com/sicily-video1.mp4', 'Mount Etna volcanic landscapes and Mediterranean seascapes'),
-  (tour9_id, 'https://example.com/sicily-video2.mp4', 'Sicilian culture and Aeolian Islands sailing adventure'),
+  -- Tour 12: Czechia Autumn
+  (tour12_id, 'https://example.com/czechia-video1.mp4', 'Prague Gothic architecture and autumn foliage photography'),
+  (tour12_id, 'https://example.com/czechia-video2.mp4', 'Bohemian countryside and medieval towns in golden autumn'),
   
-  -- Tour 10: Czechia Autumn
-  (tour10_id, 'https://example.com/czechia-video1.mp4', 'Prague Gothic architecture and autumn foliage photography'),
-  (tour10_id, 'https://example.com/czechia-video2.mp4', 'Bohemian countryside and medieval towns in golden autumn'),
+  -- Tour 13: Scotland Highlands
+  (tour13_id, 'https://example.com/scotland-video1.mp4', 'Scottish Highlands landscapes and dramatic coastline photography'),
+  (tour13_id, 'https://example.com/scotland-video2.mp4', 'Isle of Skye exploration and ancient Scottish castles'),
+   
+  -- Tour 14: Tuscany Autumn
+  (tour14_id, 'https://example.com/tuscany-autumn-video1.mp4', 'Tuscany autumn harvest and golden vineyard landscapes'),
+  (tour14_id, 'https://example.com/tuscany-autumn-video2.mp4', 'Italian countryside photography and rural autumn traditions'),
   
-  -- Tour 11: Scotland Highlands
-  (tour11_id, 'https://example.com/scotland-video1.mp4', 'Scottish Highlands landscapes and dramatic coastline photography'),
-  (tour11_id, 'https://example.com/scotland-video2.mp4', 'Isle of Skye exploration and ancient Scottish castles'),
-  
-  -- Tour 12: Tuscany Autumn
-  (tour12_id, 'https://example.com/tuscany-autumn-video1.mp4', 'Tuscany autumn harvest and golden vineyard landscapes'),
-  (tour12_id, 'https://example.com/tuscany-autumn-video2.mp4', 'Italian countryside photography and rural autumn traditions'),
-  
-  -- Tour 13: Japan Cultural
-  (tour13_id, 'https://example.com/japan-cultural-video1.mp4', 'Japan traditional culture and modern Tokyo street photography'),
-  (tour13_id, 'https://example.com/japan-cultural-video2.mp4', 'Kyoto temples and authentic Japanese cultural experiences'),
-  
-  -- Tour 14: Patagonia
-  (tour14_id, 'https://example.com/patagonia-video1.mp4', 'Patagonia dramatic landscapes and glacier photography adventure'),
-  (tour14_id, 'https://example.com/patagonia-video2.mp4', 'Torres del Paine national park wilderness exploration'),
-  
-  -- Tour 15: Other
-  (tour15_id, 'https://example.com/photography-workshop-video1.mp4', 'Advanced photography techniques and composition tips'),
-  (tour15_id, 'https://example.com/photography-workshop-video2.mp4', 'Professional travel photography and storytelling methods');
+  -- Tour 15: Japan Cultural
+  (tour15_id, 'https://example.com/japan-cultural-video1.mp4', 'Japan traditional culture and modern Tokyo street photography'),
+  (tour15_id, 'https://example.com/japan-cultural-video2.mp4', 'Kyoto temples and authentic Japanese cultural experiences');
 
 -- TAGS
 INSERT INTO tags (name) VALUES
@@ -584,10 +1024,7 @@ INSERT INTO tour_tags (tag_id, tour_id)
 SELECT id, tour2_id FROM tags WHERE name IN ('desert', 'culture', 'architecture');
 INSERT INTO tour_tags (tag_id, tour_id)
 SELECT id, tour3_id FROM tags WHERE name IN ('festivals', 'portrait', 'culture');
-INSERT INTO tour_tags (tag_id, tour_id)
-SELECT id, tour4_id FROM tags WHERE name IN ('nature', 'wildlife', 'landscape');
-INSERT INTO tour_tags (tag_id, tour_id)
-SELECT id, tour5_id FROM tags WHERE name IN ('wine', 'food', 'countryside');
+
 INSERT INTO tour_tags (tag_id, tour_id)
 SELECT id, tour6_id FROM tags WHERE name IN ('landscape', 'nature', 'adventure');
 INSERT INTO tour_tags (tag_id, tour_id)
@@ -622,10 +1059,7 @@ INSERT INTO tour_categories (category_id, tour_id)
 SELECT id, tour2_id FROM categories WHERE name IN ('Cultural', 'Adventure');
 INSERT INTO tour_categories (category_id, tour_id)
 SELECT id, tour3_id FROM categories WHERE name IN ('Festivals', 'Photography');
-INSERT INTO tour_categories (category_id, tour_id)
-SELECT id, tour4_id FROM categories WHERE name IN ('Outdoor', 'Photography');
-INSERT INTO tour_categories (category_id, tour_id)
-SELECT id, tour5_id FROM categories WHERE name IN ('Food & Wine', 'Cultural');
+
 INSERT INTO tour_categories (category_id, tour_id)
 SELECT id, tour6_id FROM categories WHERE name IN ('Adventure', 'Photography');
 INSERT INTO tour_categories (category_id, tour_id)
@@ -681,14 +1115,6 @@ VALUES
   (tour3_id, user4_id, 5, 'Adrenaline rush! The rapids were incredible.'),
   (tour3_id, user7_id, 5, 'Professional guides and top-notch safety equipment.'),
   (tour3_id, user8_id, 4, 'Amazing adventure, but bring waterproof bags for your stuff.'),
-  (tour3_id, user10_id, 5, 'Worth every penny. Cant wait to do it again!'),
-
-  -- Tour 4: Yellowstone Photo Tour (1 review)
-  (tour4_id, user3_id, 5, 'Jake helped me capture shots I never thought possible.'),
-
-  -- Tour 5: Napa Valley Wine Tour (3 reviews)
-  (tour5_id, user4_id, 4, 'Delicious wines and beautiful scenery.'),
-  (tour5_id, user7_id, 5, 'The farm-to-table dinner was unforgettable!'),
-  (tour5_id, user8_id, 4, 'Great tour, wish it was a bit longer.');
+  (tour3_id, user10_id, 5, 'Worth every penny. Cant wait to do it again!');
 
 END $$;
