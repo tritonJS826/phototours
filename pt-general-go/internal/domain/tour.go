@@ -114,6 +114,7 @@ type Tour struct {
 	EndLocation     *string         `json:"endLocation"`
 	Price           *float64        `json:"price"`
 	StartLocation   *string         `json:"startLocation"`
+	Location        *string         `json:"location"`
 	GuideID         *uuid.UUID      `json:"guideId"`
 	CoverURL        *string         `json:"coverUrl"`
 	Difficulty      DifficultyLevel `json:"difficulty"`

@@ -31,6 +31,10 @@ func MapToDomainTour(row *db.Tour) *domain.Tour {
 		tour.EndLocation = &row.EndLocation.String
 	}
 
+	if row.Location.Valid {
+		tour.Location = &row.Location.String
+	}
+
 	if row.DurationDays.Valid {
 		tour.DurationDays = &row.DurationDays.Int32
 	}
@@ -74,6 +78,10 @@ func MapToDomainTours(rows []db.Tour) []domain.Tour {
 
 		if row.EndLocation.Valid {
 			tour.EndLocation = &row.EndLocation.String
+		}
+
+		if row.Location.Valid {
+			tour.Location = &row.Location.String
 		}
 
 		if row.DurationDays.Valid {

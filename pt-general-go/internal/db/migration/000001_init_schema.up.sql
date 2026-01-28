@@ -73,6 +73,7 @@ CREATE TABLE tours (
     languages TEXT [] DEFAULT ARRAY []::TEXT [] NOT NULL,
     min_age INTEGER,
     start_location TEXT,
+    location TEXT,
     created_at TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT tour_guide_id_fk FOREIGN KEY (guide_id) REFERENCES guides(id) ON UPDATE CASCADE ON DELETE

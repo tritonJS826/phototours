@@ -4,6 +4,7 @@ import (
 	"context"
 	"pt-general-go/internal/domain"
 	"pt-general-go/internal/repository"
+	"strings"
 
 	"github.com/google/uuid"
 	"go.uber.org/zap"
@@ -79,13 +80,39 @@ func (s *TourService) GetTourFullBySlug(ctx context.Context, slug string) (*doma
 }
 
 func (s *TourService) GetAllTours(ctx context.Context, limit, offset int32, filters *domain.TourFilter) ([]domain.TourPreview, error) {
-	tours, err := s.tourRepository.GetTours(ctx, limit, offset, filters)
+	// Remove location filter from database query to handle it client-side
+	dbFilters := filters
+	if filters != nil && filters.Location != nil {
+		dbFilters = &domain.TourFilter{
+			DateFrom:  filters.DateFrom,
+			DateTo:    filters.DateTo,
+			GroupSize: filters.GroupSize,
+			PriceMin:  filters.PriceMin,
+			PriceMax:  filters.PriceMax,
+			Season:    filters.Season,
+			Location:  nil, // Remove location filter for database query
+		}
+	}
+
+	tours, err := s.tourRepository.GetTours(ctx, limit, offset, dbFilters)
 	if err != nil {
 		return nil, err
 	}
 
 	if len(tours) == 0 {
 		return []domain.TourPreview{}, nil
+	}
+
+	// Apply location filter client-side if specified
+	if filters != nil && filters.Location != nil {
+		location := strings.ToLower(*filters.Location)
+		filteredTours := make([]domain.Tour, 0, len(tours))
+		for _, tour := range tours {
+			if tour.Location != nil && strings.Contains(strings.ToLower(*tour.Location), location) {
+				filteredTours = append(filteredTours, tour)
+			}
+		}
+		tours = filteredTours
 	}
 
 	tourIDs := make([]uuid.UUID, len(tours))

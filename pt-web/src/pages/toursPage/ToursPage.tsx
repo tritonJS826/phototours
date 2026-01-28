@@ -1,6 +1,5 @@
 import {useEffect, useMemo, useState} from "react";
-import {useNavigate, useSearchParams} from "react-router-dom";
-import calendar from "/images/calendar-blue.svg";
+import {useSearchParams} from "react-router-dom";
 import location_blue from "/images/location_blue.svg";
 import people from "/images/people.svg";
 import price from "/images/price.svg";
@@ -12,6 +11,7 @@ import {TourCardExtended} from "src/components/Tour/TourCardExtended/TourCardExt
 import {useTours} from "src/hooks/useTours";
 import {FilterModal} from "src/pages/toursPage/FilterModal";
 import {type ToursFilter} from "src/services/toursService";
+import {TourView} from "src/types/tour";
 import styles from "src/pages/toursPage/ToursPage.module.scss";
 
 export function ToursPage() {
@@ -84,7 +84,7 @@ export function ToursPage() {
   }, [filters.location, filters.month, filters.travelers]);
 
   // Helper function to check if tour is available in selected season
-  const isTourAvailableInSeason = (tour: any, season: string) => {
+  const isTourAvailableInSeason = (tour: TourView, season: string) => {
     if (!tour.availableMonths || !season) {
       return true;
     }
@@ -184,10 +184,10 @@ export function ToursPage() {
           {
             dropdownSubMenuItems: [
               {
-                id: "location-1",
+                id: "location-europe",
                 isPreventDefaultUsed: true,
                 value: <div className={styles.dropdownItem}>
-                  Location 1
+                  Europe
                 </div>,
                 isVisible: true,
                 onClick: () => {
@@ -195,16 +195,16 @@ export function ToursPage() {
                     "filters-location",
                   ) as HTMLInputElement;
                   if (input) {
-                    input.value = "Location 1";
+                    input.value = "Europe";
                   }
-                  setFilters(prev => ({...prev, location: "Location 1"}));
+                  setFilters(prev => ({...prev, location: "Europe"}));
                 },
               },
               {
-                id: "location-2",
+                id: "location-japan",
                 isPreventDefaultUsed: true,
                 value: <div className={styles.dropdownItem}>
-                  Location 2
+                  Japan
                 </div>,
                 isVisible: true,
                 onClick: () => {
@@ -212,16 +212,50 @@ export function ToursPage() {
                     "filters-location",
                   ) as HTMLInputElement;
                   if (input) {
-                    input.value = "Location 2";
+                    input.value = "Japan";
                   }
-                  setFilters(prev => ({...prev, location: "Location 2"}));
+                  setFilters(prev => ({...prev, location: "Japan"}));
+                },
+              },
+              // {
+              //   id: "location-usa",
+              //   isPreventDefaultUsed: true,
+              //   value: <div className={styles.dropdownItem}>
+              //     USA
+              //   </div>,
+              //   isVisible: true,
+              //   onClick: () => {
+              //     const input = document.getElementById(
+              //       "filters-location",
+              //     ) as HTMLInputElement;
+              //     if (input) {
+              //       input.value = "USA";
+              //     }
+              //     setFilters(prev => ({...prev, location: "USA"}));
+              //   },
+              // },
+              {
+                id: "location-north-africa",
+                isPreventDefaultUsed: true,
+                value: <div className={styles.dropdownItem}>
+                  North Africa
+                </div>,
+                isVisible: true,
+                onClick: () => {
+                  const input = document.getElementById(
+                    "filters-location",
+                  ) as HTMLInputElement;
+                  if (input) {
+                    input.value = "North Africa";
+                  }
+                  setFilters(prev => ({...prev, location: "North Africa"}));
                 },
               },
               {
-                id: "location-3",
+                id: "location-oceania",
                 isPreventDefaultUsed: true,
                 value: <div className={styles.dropdownItem}>
-                  Location 3
+                  Oceania
                 </div>,
                 isVisible: true,
                 onClick: () => {
@@ -229,9 +263,26 @@ export function ToursPage() {
                     "filters-location",
                   ) as HTMLInputElement;
                   if (input) {
-                    input.value = "Location 3";
+                    input.value = "Oceania";
                   }
-                  setFilters(prev => ({...prev, location: "Location 3"}));
+                  setFilters(prev => ({...prev, location: "Oceania"}));
+                },
+              },
+              {
+                id: "location-mediterranean",
+                isPreventDefaultUsed: true,
+                value: <div className={styles.dropdownItem}>
+                  Mediterranean
+                </div>,
+                isVisible: true,
+                onClick: () => {
+                  const input = document.getElementById(
+                    "filters-location",
+                  ) as HTMLInputElement;
+                  if (input) {
+                    input.value = "Mediterranean";
+                  }
+                  setFilters(prev => ({...prev, location: "Mediterranean"}));
                 },
               },
             ],

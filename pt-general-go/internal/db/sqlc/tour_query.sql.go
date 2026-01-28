@@ -56,6 +56,7 @@ INSERT INTO tours (
     languages,
     min_age,
     start_location,
+    location,
     created_at,
     updated_at
 `
@@ -109,6 +110,7 @@ func (q *Queries) CreateTour(ctx context.Context, arg CreateTourParams) (Tour, e
 		&i.Languages,
 		&i.MinAge,
 		&i.StartLocation,
+		&i.Location,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)
@@ -145,6 +147,7 @@ SELECT
     languages,
     min_age,
     start_location,
+    location,
     created_at,
     updated_at
 FROM tours
@@ -170,6 +173,7 @@ func (q *Queries) GetTourByID(ctx context.Context, id pgtype.UUID) (Tour, error)
 		&i.Languages,
 		&i.MinAge,
 		&i.StartLocation,
+		&i.Location,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)
@@ -193,6 +197,7 @@ SELECT
     languages,
     min_age,
     start_location,
+    location,
     created_at,
     updated_at
 FROM tours
@@ -218,6 +223,7 @@ func (q *Queries) GetTourBySlug(ctx context.Context, slug string) (Tour, error) 
 		&i.Languages,
 		&i.MinAge,
 		&i.StartLocation,
+		&i.Location,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)
@@ -241,6 +247,7 @@ SELECT DISTINCT
     tours.languages,
     tours.min_age,
     tours.start_location,
+    tours.location,
     tours.created_at,
     tours.updated_at
 FROM tours
@@ -306,6 +313,7 @@ func (q *Queries) GetTours(ctx context.Context, arg GetToursParams) ([]Tour, err
 			&i.Languages,
 			&i.MinAge,
 			&i.StartLocation,
+			&i.Location,
 			&i.CreatedAt,
 			&i.UpdatedAt,
 		); err != nil {
@@ -354,6 +362,7 @@ RETURNING
     languages,
     min_age,
     start_location,
+    location,
     created_at,
     updated_at
 `
@@ -411,6 +420,7 @@ func (q *Queries) UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) 
 		&i.Languages,
 		&i.MinAge,
 		&i.StartLocation,
+		&i.Location,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)

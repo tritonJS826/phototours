@@ -376,6 +376,7 @@ type Tour struct {
 	Languages       []string
 	MinAge          pgtype.Int4
 	StartLocation   pgtype.Text
+	Location        pgtype.Text
 	CreatedAt       pgtype.Timestamp
 	UpdatedAt       pgtype.Timestamp
 }

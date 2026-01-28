@@ -43,6 +43,7 @@ INSERT INTO tours (
     languages,
     min_age,
     start_location,
+    location,
     created_at,
     updated_at;
 
@@ -63,6 +64,7 @@ SELECT
     languages,
     min_age,
     start_location,
+    location,
     created_at,
     updated_at
 FROM tours
@@ -85,6 +87,7 @@ SELECT
     languages,
     min_age,
     start_location,
+    location,
     created_at,
     updated_at
 FROM tours
@@ -107,6 +110,7 @@ SELECT DISTINCT
     tours.languages,
     tours.min_age,
     tours.start_location,
+    tours.location,
     tours.created_at,
     tours.updated_at
 FROM tours
@@ -159,6 +163,7 @@ RETURNING
     languages,
     min_age,
     start_location,
+    location,
     created_at,
     updated_at;
 
