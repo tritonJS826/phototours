@@ -48,31 +48,49 @@ export function TourSearchForm() {
           {
             dropdownSubMenuItems: [
               {
-                id: "location-1",
+                id: "location-europe",
                 isPreventDefaultUsed: true,
                 value: <div className={styles.tourLocationItem}>
-                  Location 1
+                  Europe
                 </div>,
                 isVisible: true,
-                onClick: () => setSearchData(prev => ({...prev, location: "Location 1"})),
+                onClick: () => setSearchData(prev => ({...prev, location: "Europe"})),
               },
               {
-                id: "location-2",
+                id: "location-japan",
                 isPreventDefaultUsed: true,
                 value: <div className={styles.tourLocationItem}>
-                  Location 2
+                  Japan
                 </div>,
                 isVisible: true,
-                onClick: () => setSearchData(prev => ({...prev, location: "Location 2"})),
+                onClick: () => setSearchData(prev => ({...prev, location: "Japan"})),
               },
               {
-                id: "location-3",
+                id: "location-north-africa",
                 isPreventDefaultUsed: true,
                 value: <div className={styles.tourLocationItem}>
-                  Location 3
+                  North Africa
                 </div>,
                 isVisible: true,
-                onClick: () => setSearchData(prev => ({...prev, location: "Location 3"})),
+                onClick: () => setSearchData(prev => ({...prev, location: "North Africa"})),
+              },
+              {
+                id: "location-oceania",
+                isPreventDefaultUsed: true,
+                value: <div className={styles.tourLocationItem}>
+                  Oceania
+                </div>,
+                isVisible: true,
+                onClick: () => setSearchData(prev => ({...prev, location: "Oceania"})),
+              },
+              {
+                id: "location-mediterranean",
+                isPreventDefaultUsed: true,
+                value: <div className={styles.tourLocationItem}>
+                  Mediterranean
+                </div>,
+                isVisible: true,
+                onClick: () => setSearchData(prev => ({...prev, location: "Mediterranean"})),
               },
             ],
           },
@@ -218,14 +236,7 @@ export function TourSearchForm() {
               params.set("location", searchData.location);
             }
             if (searchData.season) {
-              // Map season to representative month
-              const seasonMonthMap: {[key: string]: string} = {
-                "Winter": "December",
-                "Spring": "March",
-                "Summer": "June",
-                "Autumn": "September",
-              };
-              params.set("month", seasonMonthMap[searchData.season]);
+              params.set("season", searchData.season);
             }
             if (searchData.travelers > 1) {
               params.set("travelers", searchData.travelers.toString());
