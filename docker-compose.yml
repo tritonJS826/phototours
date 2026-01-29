@@ -1,0 +1,55 @@
+services:
+  postgres-general:
+    build:
+      context: .
+      dockerfile: ./postgres/postgres-general.Dockerfile
+    container_name: postgres-pt-general
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./pt-general/.env
+    volumes:
+      - postgres-general:/var/lib/postgresql/data
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d phototours_db -h localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  caddy:
+    image: caddy:2.8-alpine
+    container_name: gateway
+    ports:
+      - "5173:80"
+      - "5174:443"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./gateway/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    networks:
+      - app-network
+
+  # grafana:
+  #   image: grafana/grafana:11.5.2
+  #   container_name: grafana
+  #   env_file:
+  #     - ./grafana/.env
+  #   volumes:
+  #     - grafana-data:/var/lib/grafana
+  #     - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+  #   networks:
+  #     - app-network
+
+volumes:
+  postgres-general:
+  caddy-data:
+  caddy-config:
+  # grafana-data:
+
+networks:
+  app-network:
+    driver: bridge
