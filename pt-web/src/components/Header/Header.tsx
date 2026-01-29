@@ -12,6 +12,8 @@ import telegram from "/images/telegram.svg";
 import whatsapp from "/images/whatsapp.svg";
 import clsx from "clsx";
 import {
+  ChevronDown,
+  ChevronRight,
   // Bell,
   // CircleUser,
   // LogOut,
@@ -36,6 +38,7 @@ export function Header() {
     // SetAuthMode,
   ] = useState<"login" | "register">("login");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isContactDropdownOpen, setIsContactDropdownOpen] = useState(false);
 
   const {
     user,
@@ -226,12 +229,23 @@ export function Header() {
               <Dropdown
                 trigger={
                   <button
-                    className={styles.contactUsDropdownTrigger}
+                    className={clsx(
+                      styles.contactUsDropdownTrigger,
+                      {[styles.contactUsDropdownTriggerOpen]: isContactDropdownOpen},
+                    )}
                     onClick={() => {}}
                   >
                     Contact&nbsp;Us
+                    {isContactDropdownOpen
+                      ? (
+                        <ChevronDown size={16} />
+                      )
+                      : (
+                        <ChevronRight size={16} />
+                      )}
                   </button>
                 }
+                onOpenChange={setIsContactDropdownOpen}
                 dropdownMenuItems={[
                   {
                     dropdownSubMenuItems: [

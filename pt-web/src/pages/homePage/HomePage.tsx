@@ -14,7 +14,7 @@ import trustPilot from "/images/trustPilot.svg";
 import viator from "/images/viator.svg";
 import whatsapp from "/images/whatsapp.svg";
 import clsx from "clsx";
-import {Menu} from "lucide-react";
+import {ChevronDown, ChevronRight, Menu} from "lucide-react";
 import {Accordion, accordionTypes} from "src/components/Accordion/Accordion";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
 import {Footer} from "src/components/Footer/Footer";
@@ -140,6 +140,8 @@ const accordionItemsRight = [
 ];
 
 const RightBlockDark = () => {
+  const [isContactDropdownOpen, setIsContactDropdownOpen] = useState(false);
+
   return (
     <div className={styles.rightHeaderBlock}>
       <ul className={styles.leftHeaderLinks}>
@@ -181,12 +183,23 @@ const RightBlockDark = () => {
         <Dropdown
           trigger={
             <button
-              className={styles.contactUsDropdownTrigger}
+              className={clsx(
+                styles.contactUsDropdownTrigger,
+                {[styles.contactUsDropdownTriggerOpen]: isContactDropdownOpen},
+              )}
               onClick={() => {}}
             >
               Contact Us
+              {isContactDropdownOpen
+                ? (
+                  <ChevronDown size={16} />
+                )
+                : (
+                  <ChevronRight size={16} />
+                )}
             </button>
           }
+          onOpenChange={setIsContactDropdownOpen}
           dropdownMenuItems={[
             {
               dropdownSubMenuItems: [

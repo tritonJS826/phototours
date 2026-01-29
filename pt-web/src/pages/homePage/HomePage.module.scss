@@ -83,12 +83,29 @@
 }
 
 .contactUsDropdownTrigger {
+  position: relative;
+  // space before items
+  margin-bottom: 20px;
+  bottom: -10px;
+
   padding: 5px 10px;
   background: transparent;
   border-radius: 8px;
   border: 1px solid #fff;
   color: #fff;
-  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  &.contactUsDropdownTriggerOpen {
+    background-color: #fff;
+    color: #2C44A6;
+  }
 
   @media (max-width: 690px) {
     margin-left: auto;
@@ -269,6 +286,7 @@
 }
 
 .faqTitle {
+  margin-top: 35px;
   font-size: 45px;
   font-weight: 700;
   font-style: bold;

@@ -96,6 +96,11 @@ export interface DropdownProps {
    * @default false
    */
   isModalBehavior?: boolean;
+
+  /**
+   * Callback for when dropdown open state changes
+   */
+  onOpenChange?: (open: boolean) => void;
 }
 
 /**
@@ -158,6 +163,7 @@ export const Dropdown = (props: DropdownProps) => {
     <DropdownMenu.Root
       data-cy={props.cy?.dataCyOverlay}
       modal={!!props.isModalBehavior}
+      onOpenChange={props.onOpenChange}
     >
       <DropdownMenu.Trigger asChild>
         <div role="button">
