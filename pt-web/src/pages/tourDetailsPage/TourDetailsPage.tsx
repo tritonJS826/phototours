@@ -490,6 +490,7 @@ export function TourDetailsPage() {
   const swiperExtraToursRef = useRef<SwiperType | null>(null);
   const swiperGalleryRef = useRef<SwiperType | null>(null);
   const swiperFullscreenRef = useRef<SwiperType | null>(null);
+  const swiperMainRef = useRef<SwiperType | null>(null);
 
   useEffect(() => {
     if (swiperGalleryRef.current && tour?.photos) {
@@ -497,6 +498,9 @@ export function TourDetailsPage() {
     }
     if (swiperFullscreenRef.current && tour?.photos) {
       swiperFullscreenRef.current.slideTo(selectedPhotoIndex);
+    }
+    if (swiperMainRef.current && tour?.photos) {
+      swiperMainRef.current.slideTo(selectedPhotoIndex);
     }
   }, [selectedPhotoIndex, tour?.photos]);
 
@@ -552,11 +556,31 @@ export function TourDetailsPage() {
           </h1>
 
           <div className={styles.gallery}>
-            <img
-              className={styles.galleryImage}
-              src={cover}
-              alt={tour.title}
-            />
+            <Swiper
+              modules={[Keyboard, A11y]}
+              onSwiper={(s) => {
+                swiperMainRef.current = s;
+                s.slideTo(selectedPhotoIndex, 0);
+              }}
+              loop={photos.length > 1}
+              slidesPerView={1}
+              spaceBetween={0}
+              speed={500}
+              allowTouchMove
+              keyboard={{enabled: true}}
+              className={styles.mainGallerySwiper}
+              onSlideChange={(swiper) => setSelectedPhotoIndex(swiper.activeIndex)}
+            >
+              {photos.map((photo, i) => (
+                <SwiperSlide key={i}>
+                  <img
+                    className={styles.galleryImage}
+                    src={photo}
+                    alt={`${tour.title} - image ${i + 1}`}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
 
             <button
               type="button"
