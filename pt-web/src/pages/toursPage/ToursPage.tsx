@@ -66,22 +66,7 @@ export function ToursPage() {
     setSearchParams(params);
   }, [filters, setSearchParams]);
 
-  // Update input values when URL params change
-  useEffect(() => {
-    const locationInput = document.getElementById("filters-location") as HTMLInputElement;
-    const seasonInput = document.getElementById("filters-season") as HTMLInputElement;
-    const travelersInput = document.getElementById("filters-travelers") as HTMLInputElement;
 
-    if (locationInput && filters.location) {
-      locationInput.value = filters.location;
-    }
-    if (seasonInput && filters.season) {
-      seasonInput.value = filters.season;
-    }
-    if (travelersInput && filters.travelers) {
-      travelersInput.value = `${filters.travelers} traveler${filters.travelers > 1 ? "s" : ""}`;
-    }
-  }, [filters.location, filters.month, filters.travelers]);
 
   // Helper function to check if tour is available in selected season
   const isTourAvailableInSeason = (tour: TourView, season: string) => {
@@ -137,21 +122,6 @@ export function ToursPage() {
     setFilters({});
     setPriceRange({min: 300, max: 6000});
     setSearchParams(new URLSearchParams()); // Clear URL params
-
-    // Clear all input fields
-    const locationInput = document.getElementById("filters-location") as HTMLInputElement;
-    const seasonInput = document.getElementById("filters-season") as HTMLInputElement;
-    const travelersInput = document.getElementById("filters-travelers") as HTMLInputElement;
-
-    if (locationInput) {
-      locationInput.value = "";
-    }
-    if (seasonInput) {
-      seasonInput.value = "";
-    }
-    if (travelersInput) {
-      travelersInput.value = "";
-    }
   };
 
   const filtersContent = (
@@ -191,12 +161,6 @@ export function ToursPage() {
                 </div>,
                 isVisible: true,
                 onClick: () => {
-                  const input = document.getElementById(
-                    "filters-location",
-                  ) as HTMLInputElement;
-                  if (input) {
-                    input.value = "Europe";
-                  }
                   setFilters(prev => ({...prev, location: "Europe"}));
                 },
               },
@@ -208,12 +172,6 @@ export function ToursPage() {
                 </div>,
                 isVisible: true,
                 onClick: () => {
-                  const input = document.getElementById(
-                    "filters-location",
-                  ) as HTMLInputElement;
-                  if (input) {
-                    input.value = "Japan";
-                  }
                   setFilters(prev => ({...prev, location: "Japan"}));
                 },
               },
@@ -242,12 +200,6 @@ export function ToursPage() {
                 </div>,
                 isVisible: true,
                 onClick: () => {
-                  const input = document.getElementById(
-                    "filters-location",
-                  ) as HTMLInputElement;
-                  if (input) {
-                    input.value = "North Africa";
-                  }
                   setFilters(prev => ({...prev, location: "North Africa"}));
                 },
               },
@@ -259,12 +211,6 @@ export function ToursPage() {
                 </div>,
                 isVisible: true,
                 onClick: () => {
-                  const input = document.getElementById(
-                    "filters-location",
-                  ) as HTMLInputElement;
-                  if (input) {
-                    input.value = "Oceania";
-                  }
                   setFilters(prev => ({...prev, location: "Oceania"}));
                 },
               },
@@ -276,12 +222,6 @@ export function ToursPage() {
                 </div>,
                 isVisible: true,
                 onClick: () => {
-                  const input = document.getElementById(
-                    "filters-location",
-                  ) as HTMLInputElement;
-                  if (input) {
-                    input.value = "Mediterranean";
-                  }
                   setFilters(prev => ({...prev, location: "Mediterranean"}));
                 },
               },
@@ -325,12 +265,6 @@ export function ToursPage() {
                 </div>,
                 isVisible: true,
                 onClick: () => {
-                  const input = document.getElementById(
-                    "filters-season",
-                  ) as HTMLInputElement;
-                  if (input) {
-                    input.value = "Winter";
-                  }
                   setFilters(prev => ({...prev, season: "Winter"}));
                 },
               },
@@ -342,12 +276,6 @@ export function ToursPage() {
                 </div>,
                 isVisible: true,
                 onClick: () => {
-                  const input = document.getElementById(
-                    "filters-season",
-                  ) as HTMLInputElement;
-                  if (input) {
-                    input.value = "Spring";
-                  }
                   setFilters(prev => ({...prev, season: "Spring"}));
                 },
               },
@@ -359,12 +287,6 @@ export function ToursPage() {
                 </div>,
                 isVisible: true,
                 onClick: () => {
-                  const input = document.getElementById(
-                    "filters-season",
-                  ) as HTMLInputElement;
-                  if (input) {
-                    input.value = "Summer";
-                  }
                   setFilters(prev => ({...prev, season: "Summer"}));
                 },
               },
@@ -376,12 +298,6 @@ export function ToursPage() {
                 </div>,
                 isVisible: true,
                 onClick: () => {
-                  const input = document.getElementById(
-                    "filters-season",
-                  ) as HTMLInputElement;
-                  if (input) {
-                    input.value = "Autumn";
-                  }
                   setFilters(prev => ({...prev, season: "Autumn"}));
                 },
               },
@@ -427,12 +343,6 @@ export function ToursPage() {
                 </div>,
                 isVisible: true,
                 onClick: () => {
-                  const input = document.getElementById(
-                    "filters-travelers",
-                  ) as HTMLInputElement;
-                  if (input) {
-                    input.value = "1 traveler";
-                  }
                   setFilters(prev => ({...prev, travelers: 1}));
                 },
               },
@@ -444,12 +354,6 @@ export function ToursPage() {
                 </div>,
                 isVisible: true,
                 onClick: () => {
-                  const input = document.getElementById(
-                    "filters-travelers",
-                  ) as HTMLInputElement;
-                  if (input) {
-                    input.value = "2 travelers";
-                  }
                   setFilters(prev => ({...prev, travelers: 2}));
                 },
               },
@@ -461,12 +365,6 @@ export function ToursPage() {
                 </div>,
                 isVisible: true,
                 onClick: () => {
-                  const input = document.getElementById(
-                    "filters-travelers",
-                  ) as HTMLInputElement;
-                  if (input) {
-                    input.value = "3 travelers";
-                  }
                   setFilters(prev => ({...prev, travelers: 3}));
                 },
               },
