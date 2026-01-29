@@ -10,7 +10,11 @@
 .leftColumn {
   flex: 1;
   padding: 0 20px;
-  max-width: 100%;
+  max-width: calc(100% - 480px);
+
+  @media (max-width: 1020px) {
+    max-width: 100%;
+  }
 }
 
 .title {
