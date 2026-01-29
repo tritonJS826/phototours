@@ -185,7 +185,7 @@ export function ToursPage() {
             dropdownSubMenuItems: [
               {
                 id: "location-europe",
-                isPreventDefaultUsed: true,
+                isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
                   Europe
                 </div>,
@@ -202,7 +202,7 @@ export function ToursPage() {
               },
               {
                 id: "location-japan",
-                isPreventDefaultUsed: true,
+                isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
                   Japan
                 </div>,
@@ -236,7 +236,7 @@ export function ToursPage() {
               // },
               {
                 id: "location-north-africa",
-                isPreventDefaultUsed: true,
+                isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
                   North Africa
                 </div>,
@@ -253,7 +253,7 @@ export function ToursPage() {
               },
               {
                 id: "location-oceania",
-                isPreventDefaultUsed: true,
+                isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
                   Oceania
                 </div>,
@@ -270,7 +270,7 @@ export function ToursPage() {
               },
               {
                 id: "location-mediterranean",
-                isPreventDefaultUsed: true,
+                isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
                   Mediterranean
                 </div>,
@@ -319,7 +319,7 @@ export function ToursPage() {
             dropdownSubMenuItems: [
               {
                 id: "winter",
-                isPreventDefaultUsed: true,
+                isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
                   Winter
                 </div>,
@@ -336,7 +336,7 @@ export function ToursPage() {
               },
               {
                 id: "spring",
-                isPreventDefaultUsed: true,
+                isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
                   Spring
                 </div>,
@@ -353,7 +353,7 @@ export function ToursPage() {
               },
               {
                 id: "summer",
-                isPreventDefaultUsed: true,
+                isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
                   Summer
                 </div>,
@@ -370,7 +370,7 @@ export function ToursPage() {
               },
               {
                 id: "autumn",
-                isPreventDefaultUsed: true,
+                isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
                   Autumn
                 </div>,
@@ -421,7 +421,7 @@ export function ToursPage() {
             dropdownSubMenuItems: [
               {
                 id: "traveler-1",
-                isPreventDefaultUsed: true,
+                isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
                   1 traveler
                 </div>,
@@ -438,7 +438,7 @@ export function ToursPage() {
               },
               {
                 id: "traveler-2",
-                isPreventDefaultUsed: true,
+                isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
                   2 travelers
                 </div>,
@@ -455,7 +455,7 @@ export function ToursPage() {
               },
               {
                 id: "traveler-3",
-                isPreventDefaultUsed: true,
+                isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
                   3 travelers
                 </div>,
