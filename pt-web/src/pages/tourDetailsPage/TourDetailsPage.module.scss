@@ -10,7 +10,7 @@
 .leftColumn {
   flex: 1;
   padding: 0 20px;
-  max-width: calc(100% - 480px);
+  max-width: calc(100% - 500px);
 
   @media (max-width: 1020px) {
     max-width: 100%;
@@ -20,6 +20,10 @@
 .title {
   margin-bottom: 20px;
   font-size: 30px;
+
+  @media (max-width: 600px) {
+    font-size: 24px;
+  }
 }
 
 .gallery {
@@ -357,7 +361,9 @@
   margin-bottom: 40px;
 
   @media (max-width: 816px) {
-    gap: auto;
+    gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -367,6 +373,7 @@
   gap: 20px;
   flex-basis: 540px;
 }
+
 .activities {
   display: flex;
   flex-direction: column;
