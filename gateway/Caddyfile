@@ -3,6 +3,8 @@
 }
 
 tuscany-photo-tours.com {
+    # HTTPS on standard port 443 (Caddy handles this automatically)
+    # HTTP requests will be automatically redirected to HTTPS
     reverse_proxy pt-web:5174 {
         header_up Host {http.reverse_proxy.upstream.hostport}
         header_up X-Real-IP {http.request.remote.host}
@@ -33,6 +35,11 @@ tuscany-photo-tours.com {
 }
 
 # Default server that catches all other hostnames
+# :80 {
+#     respond 444
+# }
+
+# Catch all HTTP requests and redirect to HTTPS
 :80 {
-    respond 444
+    redir https://{host}{uri} permanent
 }
