@@ -23,7 +23,8 @@
   // overflow: hidden;
   border-radius: 20px;
   position: relative;
-  height: 500px;
+  aspect-ratio: 16/9;
+  width: 100%;
 }
 
 .galleryImage {
@@ -43,6 +44,119 @@
   z-index: 3;
   bottom: 0;
   margin: 3%;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+}
+
+.galleryMobileControls {
+  display: none;
+  position: absolute;
+  bottom: 18px;
+  left: 20px;
+  right: 20px;
+  z-index: 3;
+  background: transparent;
+  border-radius: 12px;
+
+
+  @media (max-width: 600px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.galleryImageCounter {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #00000066;
+  padding: 5px 11px;
+  border-radius: 11px;
+}
+
+.galleryFullscreenButton {
+  width: 51px;
+  height: 51px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  background-color: #00000066;
+  border-radius: 100%;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.fullscreenSwiper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .swiper {
+    width: 90%;
+    max-width: 1200px;
+    aspect-ratio: 16/9;
+  }
+
+  .swiperSlide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fullscreenImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .fullscreenClose {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1001;
+    font-size: 20px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  .fullscreenCounter {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    z-index: 1001;
+  }
 }
 
 .gallerySlide {
@@ -92,6 +206,12 @@
   }
 }
 
+@media (max-width: 600px) {
+  .galleryArrow {
+    display: none;
+  }
+}
+
 .galleryArrowLeft {
   left: 20px;
   transform: translateY(-50%) rotate(180deg);
@@ -122,7 +242,9 @@
 .reviewsBlock {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 20px;
+  margin: 20px;
 }
 
 .tagIcon {
@@ -138,8 +260,8 @@
   border-radius: 12px;
   font-size: 17px;
   background-color: #f8f8f8;
-  margin-top: 30px;
-  margin-bottom: 16px;
+  // margin-top: 30px;
+  // margin-bottom: 16px;
 }
 
 .reviewsBlockLeft {
@@ -150,6 +272,7 @@
 .starsList {
   display: flex;
   align-items: center;
+  // margin: 0 0 20px 16px;
 }
 
 .starYellowImg {

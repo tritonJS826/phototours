@@ -202,6 +202,7 @@ export function TourDetailsPage() {
   const [isBuyTravelModalOpen, setIsBuyTravelModalOpen] = useState(false);
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(0);
   const [bookingLoading, setBookingLoading] = useState(false);
+  const [isFullscreenOpen, setIsFullscreenOpen] = useState(false);
 
   const handleBookNow = async () => {
     if (!tour) {
@@ -488,10 +489,14 @@ export function TourDetailsPage() {
 
   const swiperExtraToursRef = useRef<SwiperType | null>(null);
   const swiperGalleryRef = useRef<SwiperType | null>(null);
+  const swiperFullscreenRef = useRef<SwiperType | null>(null);
 
   useEffect(() => {
     if (swiperGalleryRef.current && tour?.photos) {
       swiperGalleryRef.current.slideTo(selectedPhotoIndex);
+    }
+    if (swiperFullscreenRef.current && tour?.photos) {
+      swiperFullscreenRef.current.slideTo(selectedPhotoIndex);
     }
   }, [selectedPhotoIndex, tour?.photos]);
 
@@ -591,6 +596,17 @@ export function TourDetailsPage() {
                 loading="lazy"
               />
             </button>
+            <div className={styles.galleryMobileControls}>
+              <button
+                className={styles.galleryFullscreenButton}
+                onClick={() => setIsFullscreenOpen(true)}
+              >
+                photo
+              </button>
+              <span className={styles.galleryImageCounter}>
+                {selectedPhotoIndex + 1}/{photos.length}
+              </span>
+            </div>
             <div className={styles.gallerySlider}>
               <Swiper
                 modules={[Keyboard, A11y]}
@@ -646,6 +662,48 @@ export function TourDetailsPage() {
               </Swiper>
             </div>
           </div>
+
+          {isFullscreenOpen && (
+            <div className={styles.fullscreenSwiper}>
+              <button
+                className={styles.fullscreenClose}
+                onClick={() => setIsFullscreenOpen(false)}
+              >
+                ×
+              </button>
+              <div className={styles.fullscreenCounter}>
+                {selectedPhotoIndex + 1}/{photos.length}
+              </div>
+              <Swiper
+                modules={[Keyboard, A11y]}
+                onSwiper={(s) => {
+                  swiperFullscreenRef.current = s;
+                  s.slideTo(selectedPhotoIndex, 0);
+                }}
+                loop={photos.length > 1}
+                slidesPerView={1}
+                spaceBetween={0}
+                speed={500}
+                allowTouchMove
+                keyboard={{enabled: true}}
+                className={styles.swiper}
+                onSlideChange={(swiper) => setSelectedPhotoIndex(swiper.activeIndex)}
+              >
+                {photos.map((photo, i) => (
+                  <SwiperSlide
+                    key={i}
+                    className={styles.swiperSlide}
+                  >
+                    <img
+                      className={styles.fullscreenImage}
+                      src={photo}
+                      alt={`gallery image ${i + 1}`}
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          )}
 
           <div className={styles.reviewsBlock}>
             <div className={styles.reviewsBlockLeft}>
