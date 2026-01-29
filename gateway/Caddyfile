@@ -3,7 +3,7 @@
 }
 
 tuscany-photo-tours.com {
-    reverse_proxy host.docker.internal:5174 {
+    reverse_proxy pt-web:5174 {
         header_up Host {http.reverse_proxy.upstream.hostport}
         header_up X-Real-IP {http.request.remote.host}
         header_up X-Forwarded-For {http.request.remote.host}
@@ -11,7 +11,7 @@ tuscany-photo-tours.com {
     }
     
     handle /general/* {
-        reverse_proxy host.docker.internal:8000 {
+        reverse_proxy pt-general-go:8000 {
             header_up Host {http.reverse_proxy.upstream.hostport}
             header_up X-Real-IP {http.request.remote.host}
             header_up X-Forwarded-For {http.request.remote.host}
@@ -20,13 +20,13 @@ tuscany-photo-tours.com {
     }
     
     handle /general/health {
-        reverse_proxy host.docker.internal:8000/health {
+        reverse_proxy pt-general-go:8000/health {
             header_up Host {http.reverse_proxy.upstream.hostport}
         }
     }
     
     handle /general/api-docs {
-        reverse_proxy host.docker.internal:8000/api-docs {
+        reverse_proxy pt-general-go:8000/api-docs {
             header_up Host {http.reverse_proxy.upstream.hostport}
         }
     }

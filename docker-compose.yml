@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: ./postgres/postgres-general.Dockerfile
     container_name: postgres-pt-general
-    ports:
+    ports: 
       - "5432:5432"
     env_file:
       - ./pt-general/.env
@@ -18,20 +18,48 @@ services:
       timeout: 3s
       retries: 20
 
+  pt-general-go:
+    build:
+      context: ./pt-general-go
+      dockerfile: Dockerfile
+    container_name: pt-general-go
+    env_file:
+      - ./pt-general-go/.env
+    networks:
+      - app-network
+    expose:
+      - "8000"
+    depends_on:
+      postgres-general:
+        condition: service_healthy
+
+  pt-web:
+    build:
+      context: .
+      dockerfile: pt-web/Dockerfile
+    container_name: pt-web
+    env_file:
+      - ./pt-web/.env
+    networks:
+      - app-network
+    expose:
+      - "5174"
+
   caddy:
     image: caddy:2.8-alpine
     container_name: gateway
     ports:
       - "5173:80"
       - "5174:443"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     volumes:
       - ./gateway/Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy-data:/data
       - caddy-config:/config
     networks:
       - app-network
+    depends_on:
+      - pt-general-go
+      - pt-web
 
   # grafana:
   #   image: grafana/grafana:11.5.2
