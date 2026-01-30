@@ -57,6 +57,10 @@ export interface TourView {
   activities: string[];
   included: string[];
   summary: string[];
+
+  groupSize: number;
+  spotsLeft: number;
+  subtitle: string;
 }
 
 export interface TourMaterial {

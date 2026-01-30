@@ -64,12 +64,14 @@ export function TourCardExtended({tour, className, travelers}: Props) {
           <div className={styles.reviewsTag}>
             <img
               src={spotsLeft}
-              alt="stars"
+              alt="spots left"
               className={styles.tagIcon}
               loading="lazy"
             />
             <span>
-              2 spots left
+              {tour.spotsLeft}
+              {" "}
+              spots left
             </span>
           </div>
 
@@ -82,6 +84,8 @@ export function TourCardExtended({tour, className, travelers}: Props) {
             />
             <span>
               {tour.reviewAmount}
+              {" "}
+              comments
             </span>
           </div>
 

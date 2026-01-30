@@ -48,6 +48,9 @@ type TourDTO = {
   tags?: Array<string | { name: string }>;
   categories?: Array<string | { name: string }>;
   starAmount: number;
+  groupSize: number;
+  spotsLeft: number;
+  subtitle: string;
 };
 
 function toUrl(v: string | UrlObj): string {
@@ -141,6 +144,9 @@ function mapTourToView(dto: TourDTO): TourView {
     activities: dto.activities ?? [],
     included: dto.included ?? [],
     summary: dto.summary ?? [],
+    groupSize: dto.groupSize ?? 10,
+    spotsLeft: dto.spotsLeft ?? 1,
+    subtitle: dto.subtitle ?? "About",
   };
 }
 

@@ -33,6 +33,9 @@ type CreateTourParams struct {
 	Program         json.RawMessage `json:"program" swaggertype:"object"`
 	Languages       []string        `json:"languages"`
 	AvailableMonths []string        `json:"availableMonths"`
+	GroupSize       *int32          `json:"groupSize"`
+	SpotsLeft       *int32          `json:"spotsLeft"`
+	Subtitle        *string         `json:"subtitle"`
 }
 
 func (t *CreateTourParams) Validate() error {
@@ -48,6 +51,15 @@ func (t *CreateTourParams) Validate() error {
 	default:
 		return fmt.Errorf("%w: Invalid difficulty", ErrValidation)
 	}
+
+	if t.GroupSize != nil && (*t.GroupSize < 1 || *t.GroupSize > 500) {
+		return fmt.Errorf("%w: groupSize must be between 1 and 500", ErrValidation)
+	}
+
+	if t.SpotsLeft != nil && (*t.SpotsLeft < 1 || *t.SpotsLeft > 500) {
+		return fmt.Errorf("%w: spotsLeft must be between 1 and 500", ErrValidation)
+	}
+
 	return nil
 }
 
@@ -66,6 +78,9 @@ type UpdateTourParams struct {
 	Program         *json.RawMessage `json:"program" swaggertype:"object"`
 	Languages       *[]string        `json:"languages"`
 	AvailableMonths *[]string        `json:"availableMonths"`
+	GroupSize       *int32           `json:"groupSize"`
+	SpotsLeft       *int32           `json:"spotsLeft"`
+	Subtitle        *string          `json:"subtitle"`
 }
 
 func (r *UpdateTourParams) Validate() error {
@@ -82,7 +97,10 @@ func (r *UpdateTourParams) Validate() error {
 		r.Slug == nil &&
 		r.Program == nil &&
 		r.Languages == nil &&
-		r.AvailableMonths == nil {
+		r.AvailableMonths == nil &&
+		r.GroupSize == nil &&
+		r.SpotsLeft == nil &&
+		r.Subtitle == nil {
 		return errors.New("at least one field must be provided")
 	}
 
@@ -101,6 +119,12 @@ func (r *UpdateTourParams) Validate() error {
 	}
 	if r.Slug != nil && strings.TrimSpace(*r.Slug) == "" {
 		return errors.New("slug cannot be empty")
+	}
+	if r.GroupSize != nil && (*r.GroupSize < 1 || *r.GroupSize > 500) {
+		return errors.New("groupSize must be between 1 and 500")
+	}
+	if r.SpotsLeft != nil && (*r.SpotsLeft < 1 || *r.SpotsLeft > 500) {
+		return errors.New("spotsLeft must be between 1 and 500")
 	}
 
 	return nil
@@ -124,6 +148,9 @@ type Tour struct {
 	Program         json.RawMessage `json:"program" swaggertype:"object"`
 	Languages       []string        `json:"languages"`
 	AvailableMonths []string        `json:"availableMonths"`
+	GroupSize       *int32          `json:"groupSize"`
+	SpotsLeft       *int32          `json:"spotsLeft"`
+	Subtitle        *string         `json:"subtitle"`
 	ID              uuid.UUID       `json:"id"`
 }
 

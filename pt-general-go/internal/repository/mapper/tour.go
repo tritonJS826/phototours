@@ -49,6 +49,18 @@ func MapToDomainTour(row *db.Tour) *domain.Tour {
 
 	tour.GuideID = PgUUIDToUUIDPtr(row.GuideID)
 
+	if row.GroupSize.Valid {
+		tour.GroupSize = &row.GroupSize.Int32
+	}
+
+	if row.SpotsLeft.Valid {
+		tour.SpotsLeft = &row.SpotsLeft.Int32
+	}
+
+	if row.Subtitle.Valid {
+		tour.Subtitle = &row.Subtitle.String
+	}
+
 	return tour
 }
 
@@ -97,6 +109,18 @@ func MapToDomainTours(rows []db.Tour) []domain.Tour {
 		}
 
 		tour.GuideID = PgUUIDToUUIDPtr(row.GuideID)
+
+		if row.GroupSize.Valid {
+			tour.GroupSize = &row.GroupSize.Int32
+		}
+
+		if row.SpotsLeft.Valid {
+			tour.SpotsLeft = &row.SpotsLeft.Int32
+		}
+
+		if row.Subtitle.Valid {
+			tour.Subtitle = &row.Subtitle.String
+		}
 
 		tours = append(tours, tour)
 	}

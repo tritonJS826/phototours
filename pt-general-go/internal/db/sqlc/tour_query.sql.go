@@ -25,7 +25,10 @@ INSERT INTO tours (
     cover_url,
     languages,
     available_months,
-    guide_id
+    guide_id,
+    group_size,
+    spots_left,
+    subtitle
 ) VALUES (
     $1,
     $2,
@@ -39,7 +42,10 @@ INSERT INTO tours (
     $10,
     $11,
     $12,
-    $13
+    $13,
+    $14,
+    $15,
+    $16
 ) RETURNING
     id,
     slug,
@@ -57,6 +63,9 @@ INSERT INTO tours (
     min_age,
     start_location,
     location,
+    group_size,
+    spots_left,
+    subtitle,
     created_at,
     updated_at
 `
@@ -75,6 +84,9 @@ type CreateTourParams struct {
 	Languages       []string
 	AvailableMonths []string
 	GuideID         pgtype.UUID
+	GroupSize       pgtype.Int4
+	SpotsLeft       pgtype.Int4
+	Subtitle        pgtype.Text
 }
 
 func (q *Queries) CreateTour(ctx context.Context, arg CreateTourParams) (Tour, error) {
@@ -92,6 +104,9 @@ func (q *Queries) CreateTour(ctx context.Context, arg CreateTourParams) (Tour, e
 		arg.Languages,
 		arg.AvailableMonths,
 		arg.GuideID,
+		arg.GroupSize,
+		arg.SpotsLeft,
+		arg.Subtitle,
 	)
 	var i Tour
 	err := row.Scan(
@@ -111,6 +126,9 @@ func (q *Queries) CreateTour(ctx context.Context, arg CreateTourParams) (Tour, e
 		&i.MinAge,
 		&i.StartLocation,
 		&i.Location,
+		&i.GroupSize,
+		&i.SpotsLeft,
+		&i.Subtitle,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)
@@ -148,6 +166,9 @@ SELECT
     min_age,
     start_location,
     location,
+    group_size,
+    spots_left,
+    subtitle,
     created_at,
     updated_at
 FROM tours
@@ -174,6 +195,9 @@ func (q *Queries) GetTourByID(ctx context.Context, id pgtype.UUID) (Tour, error)
 		&i.MinAge,
 		&i.StartLocation,
 		&i.Location,
+		&i.GroupSize,
+		&i.SpotsLeft,
+		&i.Subtitle,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)
@@ -198,6 +222,9 @@ SELECT
     min_age,
     start_location,
     location,
+    group_size,
+    spots_left,
+    subtitle,
     created_at,
     updated_at
 FROM tours
@@ -224,6 +251,9 @@ func (q *Queries) GetTourBySlug(ctx context.Context, slug string) (Tour, error) 
 		&i.MinAge,
 		&i.StartLocation,
 		&i.Location,
+		&i.GroupSize,
+		&i.SpotsLeft,
+		&i.Subtitle,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)
@@ -248,6 +278,9 @@ SELECT DISTINCT
     tours.min_age,
     tours.start_location,
     tours.location,
+    tours.group_size,
+    tours.spots_left,
+    tours.subtitle,
     tours.created_at,
     tours.updated_at
 FROM tours
@@ -314,6 +347,9 @@ func (q *Queries) GetTours(ctx context.Context, arg GetToursParams) ([]Tour, err
 			&i.MinAge,
 			&i.StartLocation,
 			&i.Location,
+			&i.GroupSize,
+			&i.SpotsLeft,
+			&i.Subtitle,
 			&i.CreatedAt,
 			&i.UpdatedAt,
 		); err != nil {
@@ -344,8 +380,11 @@ SET
     languages = COALESCE($12, languages),
     available_months = COALESCE($13, available_months),
     guide_id = COALESCE($14, guide_id),
+    group_size = COALESCE($15, group_size),
+    spots_left = COALESCE($16, spots_left),
+    subtitle = COALESCE($17, subtitle),
     updated_at = NOW()
-WHERE id = $15
+WHERE id = $18
 RETURNING
     id,
     slug,
@@ -363,6 +402,9 @@ RETURNING
     min_age,
     start_location,
     location,
+    group_size,
+    spots_left,
+    subtitle,
     created_at,
     updated_at
 `
@@ -382,6 +424,9 @@ type UpdateTourByIDParams struct {
 	Languages       []string
 	AvailableMonths []string
 	GuideID         pgtype.UUID
+	GroupSize       pgtype.Int4
+	SpotsLeft       pgtype.Int4
+	Subtitle        pgtype.Text
 	ID              pgtype.UUID
 }
 
@@ -401,6 +446,9 @@ func (q *Queries) UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) 
 		arg.Languages,
 		arg.AvailableMonths,
 		arg.GuideID,
+		arg.GroupSize,
+		arg.SpotsLeft,
+		arg.Subtitle,
 		arg.ID,
 	)
 	var i Tour
@@ -421,6 +469,9 @@ func (q *Queries) UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) 
 		&i.MinAge,
 		&i.StartLocation,
 		&i.Location,
+		&i.GroupSize,
+		&i.SpotsLeft,
+		&i.Subtitle,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)

@@ -57,6 +57,18 @@ func (r *TourRepository) CreateTour(ctx context.Context, createTour *domain.Crea
 		params.GuideID = mapper.UUIDPtrToPgUUID(createTour.GuideID)
 	}
 
+	if createTour.GroupSize != nil {
+		params.GroupSize = pgtype.Int4{Int32: *createTour.GroupSize, Valid: true}
+	}
+
+	if createTour.SpotsLeft != nil {
+		params.SpotsLeft = pgtype.Int4{Int32: *createTour.SpotsLeft, Valid: true}
+	}
+
+	if createTour.Subtitle != nil {
+		params.Subtitle = pgtype.Text{String: *createTour.Subtitle, Valid: true}
+	}
+
 	tour, err := r.db.CreateTour(ctx, params)
 	if err != nil {
 		return nil, handleDBError(err)
@@ -169,6 +181,15 @@ func (r *TourRepository) UpdateTourByID(ctx context.Context, id uuid.UUID, req *
 	}
 	if req.AvailableMonths != nil {
 		params.AvailableMonths = *req.AvailableMonths
+	}
+	if req.GroupSize != nil {
+		params.GroupSize = pgtype.Int4{Int32: *req.GroupSize, Valid: true}
+	}
+	if req.SpotsLeft != nil {
+		params.SpotsLeft = pgtype.Int4{Int32: *req.SpotsLeft, Valid: true}
+	}
+	if req.Subtitle != nil {
+		params.Subtitle = pgtype.Text{String: *req.Subtitle, Valid: true}
 	}
 
 	tour, err := r.db.UpdateTourByID(ctx, params)

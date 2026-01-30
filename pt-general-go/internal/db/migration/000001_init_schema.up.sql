@@ -74,6 +74,9 @@ CREATE TABLE tours (
     min_age INTEGER,
     start_location TEXT,
     location TEXT,
+    group_size INTEGER DEFAULT 10 CHECK (group_size >= 1 AND group_size <= 500),
+    spots_left INTEGER DEFAULT 1 CHECK (spots_left >= 1 AND spots_left <= 500),
+    subtitle TEXT DEFAULT 'About',
     created_at TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT tour_guide_id_fk FOREIGN KEY (guide_id) REFERENCES guides(id) ON UPDATE CASCADE ON DELETE

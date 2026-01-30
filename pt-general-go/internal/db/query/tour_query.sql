@@ -12,7 +12,10 @@ INSERT INTO tours (
     cover_url,
     languages,
     available_months,
-    guide_id
+    guide_id,
+    group_size,
+    spots_left,
+    subtitle
 ) VALUES (
     @title,
     @description,
@@ -26,7 +29,10 @@ INSERT INTO tours (
     sqlc.narg(cover_url),
     @languages,
     @available_months,
-    sqlc.narg(guide_id)
+    sqlc.narg(guide_id),
+    sqlc.narg(group_size),
+    sqlc.narg(spots_left),
+    sqlc.narg(subtitle)
 ) RETURNING
     id,
     slug,
@@ -44,6 +50,9 @@ INSERT INTO tours (
     min_age,
     start_location,
     location,
+    group_size,
+    spots_left,
+    subtitle,
     created_at,
     updated_at;
 
@@ -65,6 +74,9 @@ SELECT
     min_age,
     start_location,
     location,
+    group_size,
+    spots_left,
+    subtitle,
     created_at,
     updated_at
 FROM tours
@@ -88,6 +100,9 @@ SELECT
     min_age,
     start_location,
     location,
+    group_size,
+    spots_left,
+    subtitle,
     created_at,
     updated_at
 FROM tours
@@ -111,6 +126,9 @@ SELECT DISTINCT
     tours.min_age,
     tours.start_location,
     tours.location,
+    tours.group_size,
+    tours.spots_left,
+    tours.subtitle,
     tours.created_at,
     tours.updated_at
 FROM tours
@@ -145,6 +163,9 @@ SET
     languages = COALESCE(sqlc.narg(languages), languages),
     available_months = COALESCE(sqlc.narg(available_months), available_months),
     guide_id = COALESCE(sqlc.narg(guide_id), guide_id),
+    group_size = COALESCE(sqlc.narg(group_size), group_size),
+    spots_left = COALESCE(sqlc.narg(spots_left), spots_left),
+    subtitle = COALESCE(sqlc.narg(subtitle), subtitle),
     updated_at = NOW()
 WHERE id = @id
 RETURNING
@@ -164,6 +185,9 @@ RETURNING
     min_age,
     start_location,
     location,
+    group_size,
+    spots_left,
+    subtitle,
     created_at,
     updated_at;
 

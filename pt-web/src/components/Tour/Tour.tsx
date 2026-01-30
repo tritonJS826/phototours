@@ -51,24 +51,28 @@ export function TourCard({tour}: Props) {
         <div className={styles.reviewsTag}>
           <img
             src={spotsLeft}
-            alt="stars"
+            alt="spots left"
             className={styles.tagIcon}
             loading="lazy"
           />
           <span>
-            2 spots left
+            {tour.spotsLeft}
+            {" "}
+            spots left
           </span>
         </div>
 
         <div className={styles.reviewsTag}>
           <img
             src={reviews}
-            alt="stars"
+            alt="reviews"
             className={styles.tagIcon}
             loading="lazy"
           />
           <span>
-            3 reviews
+            {tour.reviewAmount}
+            {" "}
+            reviews
           </span>
         </div>
       </div>

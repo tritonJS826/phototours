@@ -377,6 +377,9 @@ type Tour struct {
 	MinAge          pgtype.Int4
 	StartLocation   pgtype.Text
 	Location        pgtype.Text
+	GroupSize       pgtype.Int4
+	SpotsLeft       pgtype.Int4
+	Subtitle        pgtype.Text
 	CreatedAt       pgtype.Timestamp
 	UpdatedAt       pgtype.Timestamp
 }

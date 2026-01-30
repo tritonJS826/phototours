@@ -30,6 +30,7 @@ import {
 } from "src/services/bookingService";
 import {getTourBySlag as getTourBySlug} from "src/services/toursService";
 import type {TourView} from "src/types/tour";
+import {formatMonthsToDateRange} from "src/utils/dateUtils";
 import {renderMultilineDouble} from "src/utils/textUtils";
 import type {Swiper as SwiperType} from "swiper";
 import {A11y, Keyboard} from "swiper/modules";
@@ -763,24 +764,28 @@ export function TourDetailsPage() {
               <div className={styles.reviewsTag}>
                 <img
                   src={spotsLeft}
-                  alt="stars"
+                  alt="spots left"
                   className={styles.tagIcon}
                   loading="lazy"
                 />
                 <span>
-                  2 spots left
+                  {tour.spotsLeft}
+                  {" "}
+                  spots left
                 </span>
               </div>
 
               <div className={styles.reviewsTag}>
                 <img
                   src={reviews}
-                  alt="stars"
+                  alt="reviews"
                   className={styles.tagIcon}
                   loading="lazy"
                 />
                 <span>
-                  3 reviews
+                  {tour.reviewAmount}
+                  {" "}
+                  reviews
                 </span>
               </div>
             </div>
@@ -823,7 +828,7 @@ export function TourDetailsPage() {
           <div className={styles.tourDescriptionBlock}>
             <div className={styles.tourDescription}>
               <h2 className={styles.tourDescriptionTitle}>
-                Description
+                {tour.subtitle}
               </h2>
               <p className={styles.tourDescriptionDescription}>
                 {renderMultilineDouble(tour.description)}
@@ -846,9 +851,7 @@ export function TourDetailsPage() {
                       Group size:
                     </span>
                     <span className={styles.summaryTagRightPartDescription}>
-                      {/* TODO */}
-                      {/* {tour.groupSize} */}
-                      9
+                      {tour.groupSize}
                     </span>
                   </div>
                 </div>
@@ -917,10 +920,10 @@ export function TourDetailsPage() {
                   />
                   <div className={styles.summaryTagRightPart}>
                     <span className={styles.summaryTagRightPartTitle}>
-                      Tour starts:
+                      Available:
                     </span>
                     <span className={styles.summaryTagRightPartDescription}>
-                      {tour.startLocation}
+                      {formatMonthsToDateRange(tour.availableMonths ?? tour.dates ?? [])}
                     </span>
                   </div>
                 </div>
