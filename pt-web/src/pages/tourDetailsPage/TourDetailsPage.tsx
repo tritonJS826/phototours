@@ -203,6 +203,13 @@ export function TourDetailsPage() {
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(0);
   const [bookingLoading, setBookingLoading] = useState(false);
   const [isFullscreenOpen, setIsFullscreenOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    date: '',
+    travelers: '1 traveler'
+  });
 
   const handleBookNow = async () => {
     if (!tour) {
@@ -210,26 +217,10 @@ export function TourDetailsPage() {
     }
     setBookingLoading(true);
     try {
-      const nameInput = document.getElementById(
-        "booking-name",
-      ) as HTMLInputElement;
-      const emailInput = document.getElementById(
-        "booking-email",
-      ) as HTMLInputElement;
-      const phoneInput = document.getElementById(
-        "booking-phone",
-      ) as HTMLInputElement;
-      const dateInput = document.getElementById(
-        "booking-date",
-      ) as HTMLInputElement;
-      const travelersInput = document.getElementById(
-        "booking-travelers",
-      ) as HTMLInputElement;
+      const name = formData.name.trim();
+      const phone = formData.phone.trim();
 
-      const name = nameInput?.value ?? "";
-      const phone = phoneInput?.value ?? "";
-
-      if (!name.trim() || !phone.trim()) {
+      if (!name || !phone) {
         alert("Please fill in your name and phone number");
         setBookingLoading(false);
 
@@ -239,10 +230,10 @@ export function TourDetailsPage() {
       const request: BookingRequest = {
         tourId: tour.id,
         name: name,
-        email: emailInput?.value ?? "",
+        email: formData.email,
         phone: phone,
-        travelDate: dateInput?.value ?? "",
-        travelers: parseInt(travelersInput?.value?.split(" ")[0] ?? "1") || 1,
+        travelDate: formData.date,
+        travelers: parseInt(formData.travelers.split(" ")[0] ?? "1") || 1,
       };
       await createBooking(request);
     } catch (error) {
@@ -265,7 +256,8 @@ export function TourDetailsPage() {
       <input
         type="text"
         className={styles.buyTravelInput}
-        id="booking-name"
+        value={formData.name}
+        onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
         autoComplete="off"
       />
       <p className={styles.buyTravelLabel}>
@@ -274,7 +266,8 @@ export function TourDetailsPage() {
       <input
         type="text"
         className={styles.buyTravelInput}
-        id="booking-email"
+        value={formData.email}
+        onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
         autoComplete="off"
       />
       <p className={styles.buyTravelLabel}>
@@ -283,7 +276,8 @@ export function TourDetailsPage() {
       <input
         type="text"
         className={styles.buyTravelInput}
-        id="booking-phone"
+        value={formData.phone}
+        onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
         autoComplete="off"
       />
       <p className={styles.buyTravelLabel}>
@@ -299,7 +293,7 @@ export function TourDetailsPage() {
             />
             <input
               type="text"
-              id="booking-date"
+              value={formData.date}
               placeholder="Select date"
               className={clsx(styles.locationInput, styles.readOnlyInput)}
               autoComplete="off"
@@ -317,14 +311,9 @@ export function TourDetailsPage() {
                   {date}
                 </div>,
                 isVisible: true,
-                onClick: () => {
-                  const input = document.getElementById(
-                    "booking-date",
-                  ) as HTMLInputElement;
-                  if (input) {
-                    input.value = date;
-                  }
-                },
+onClick: () => {
+                setFormData(prev => ({ ...prev, date }));
+              },
               },
             ],
           })) ?? []
@@ -343,7 +332,7 @@ export function TourDetailsPage() {
             />
             <input
               type="text"
-              id="booking-travelers"
+              value={formData.travelers}
               placeholder="1 traveler"
               className={clsx(styles.locationInput, styles.readOnlyInput)}
               autoComplete="off"
@@ -366,12 +355,7 @@ export function TourDetailsPage() {
               ),
               isVisible: true,
               onClick: () => {
-                const input = document.getElementById(
-                  "booking-travelers",
-                ) as HTMLInputElement;
-                if (input) {
-                  input.value = `${n} traveler${n > 1 ? "s" : ""}`;
-                }
+                setFormData(prev => ({ ...prev, travelers: `${n} traveler${n > 1 ? "s" : ""}` }));
               },
             },
           ],
