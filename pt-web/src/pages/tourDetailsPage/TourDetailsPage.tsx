@@ -1,6 +1,7 @@
 import {useEffect, useRef, useState} from "react";
 import {Helmet} from "react-helmet-async";
 import {Link, useNavigate, useParams} from "react-router-dom";
+import {NotFoundPage} from "../notFound/notFoundPage";
 import arrowsToRight from "/images/arrowsToRight.svg";
 import blogAndPhotography1 from "/images/blogAndPhotography1.avif";
 import blogAndPhotography2 from "/images/blogAndPhotography2.avif";
@@ -50,7 +51,7 @@ const ScheduleAccordionItem = (props: ScheduleAccordionItemProps) => {
       {props.image && <img
         src={props.image}
         alt="dayImage"
-                      />}
+      />}
       <br />
       <p>
         {props.description}
@@ -544,19 +545,8 @@ export function TourDetailsPage() {
 
   if (error) {
     return (
-      <section className={styles.wrap}>
-        <Container>
-          <div className={styles.state}>
-            {error}
-            <button
-              type="button"
-              className={styles.backBtn}
-              onClick={() => navigate("/tours")}
-            >
-              Back to all tours
-            </button>
-          </div>
-        </Container>
+      <section>
+        <NotFoundPage />
       </section>
     );
   }

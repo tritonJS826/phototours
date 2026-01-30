@@ -17,7 +17,7 @@ import {Dashboard} from "src/pages/dashboard/Dashboard";
 import {ArticlePage} from "src/pages/exploreArticles/ArticlePage/ArticlePage";
 import {ArticlesPage} from "src/pages/exploreArticles/ArticlesPage/ArticlesPage";
 import {HomePage} from "src/pages/homePage/HomePage";
-import {NotFound} from "src/pages/notFound/notFound";
+import {NotFoundPage} from "src/pages/notFound/notFoundPage";
 import {Notifications} from "src/pages/notifications/Notifications";
 import {MyPhotosPage} from "src/pages/photos/MyPhotosPage";
 import {EditProfile} from "src/pages/profile/EditProfile";
@@ -156,7 +156,7 @@ export function App() {
           <Route element={<PageLayout />}>
             <Route
               path={PATHS.NOT_FOUND}
-              element={<NotFound />}
+              element={<NotFoundPage />}
             />
           </Route>
         </Route>
