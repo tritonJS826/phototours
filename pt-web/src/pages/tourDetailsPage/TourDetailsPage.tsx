@@ -204,11 +204,12 @@ export function TourDetailsPage() {
   const [bookingLoading, setBookingLoading] = useState(false);
   const [isFullscreenOpen, setIsFullscreenOpen] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    date: '',
-    travelers: '1 traveler'
+    name: "",
+    email: "",
+    phone: "",
+    date: "",
+    travelers: "1 traveler",
+    rooms: "0 rooms",
   });
 
   const handleBookNow = async () => {
@@ -257,7 +258,7 @@ export function TourDetailsPage() {
         type="text"
         className={styles.buyTravelInput}
         value={formData.name}
-        onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+        onChange={(e) => setFormData(prev => ({...prev, name: e.target.value}))}
         autoComplete="off"
       />
       <p className={styles.buyTravelLabel}>
@@ -267,7 +268,7 @@ export function TourDetailsPage() {
         type="text"
         className={styles.buyTravelInput}
         value={formData.email}
-        onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+        onChange={(e) => setFormData(prev => ({...prev, email: e.target.value}))}
         autoComplete="off"
       />
       <p className={styles.buyTravelLabel}>
@@ -277,7 +278,7 @@ export function TourDetailsPage() {
         type="text"
         className={styles.buyTravelInput}
         value={formData.phone}
-        onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+        onChange={(e) => setFormData(prev => ({...prev, phone: e.target.value}))}
         autoComplete="off"
       />
       <p className={styles.buyTravelLabel}>
@@ -306,14 +307,14 @@ export function TourDetailsPage() {
             dropdownSubMenuItems: [
               {
                 id: `date-${i}`,
-                isPreventDefaultUsed: true,
+                isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
                   {date}
                 </div>,
                 isVisible: true,
-onClick: () => {
-                setFormData(prev => ({ ...prev, date }));
-              },
+                onClick: () => {
+                  setFormData(prev => ({...prev, date}));
+                },
               },
             ],
           })) ?? []
@@ -344,7 +345,7 @@ onClick: () => {
           dropdownSubMenuItems: [
             {
               id: `traveler-${n}`,
-              isPreventDefaultUsed: true,
+              isPreventDefaultUsed: false,
               value: (
                 <div className={styles.dropdownItem}>
                   {n}
@@ -355,7 +356,7 @@ onClick: () => {
               ),
               isVisible: true,
               onClick: () => {
-                setFormData(prev => ({ ...prev, travelers: `${n} traveler${n > 1 ? "s" : ""}` }));
+                setFormData(prev => ({...prev, travelers: `${n} traveler${n > 1 ? "s" : ""}`}));
               },
             },
           ],
@@ -390,6 +391,46 @@ onClick: () => {
           </span>
         </span>
       </div>
+
+      <Dropdown
+        trigger={
+          <div className={styles.locationInputBlock}>
+            <img
+              className={styles.locationInputImg}
+              src={people}
+              alt="Rooms Icon"
+            />
+            <input
+              type="text"
+              value={formData.rooms}
+              placeholder="0 rooms"
+              className={clsx(styles.locationInput, styles.readOnlyInput)}
+              autoComplete="off"
+              readOnly
+            />
+          </div>
+        }
+        dropdownMenuItems={[0, 1, 2, 3].map((n) => ({
+          dropdownSubMenuItems: [
+            {
+              id: `room-${n}`,
+              isPreventDefaultUsed: false,
+              value: (
+                <div className={styles.dropdownItem}>
+                  {n}
+                  {" "}
+                  room
+                  {n > 1 ? "s" : ""}
+                </div>
+              ),
+              isVisible: true,
+              onClick: () => {
+                setFormData(prev => ({...prev, rooms: `${n} room${n > 1 ? "s" : ""}`}));
+              },
+            },
+          ],
+        }))}
+      />
 
       <div className={styles.buyTravelFooter}>
         <div className={styles.buyTravelFooterLeft}>
@@ -612,7 +653,9 @@ onClick: () => {
                 photo
               </button>
               <span className={styles.galleryImageCounter}>
-                {selectedPhotoIndex + 1}/{photos.length}
+                {selectedPhotoIndex + 1}
+                /
+                {photos.length}
               </span>
             </div>
             <div className={styles.gallerySlider}>
@@ -680,7 +723,9 @@ onClick: () => {
                 ×
               </button>
               <div className={styles.fullscreenCounter}>
-                {selectedPhotoIndex + 1}/{photos.length}
+                {selectedPhotoIndex + 1}
+                /
+                {photos.length}
               </div>
               <Swiper
                 modules={[Keyboard, A11y]}
