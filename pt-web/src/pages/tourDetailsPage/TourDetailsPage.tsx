@@ -235,6 +235,7 @@ export function TourDetailsPage() {
         phone: phone,
         travelDate: formData.date,
         travelers: parseInt(formData.travelers.split(" ")[0] ?? "1") || 1,
+        rooms: parseInt(formData.rooms.split(" ")[0] ?? "0") || 0,
       };
       await createBooking(request);
     } catch (error) {
@@ -510,7 +511,6 @@ export function TourDetailsPage() {
   }, [slug]);
 
   const photos = tour?.photos || [];
-  const cover = photos[selectedPhotoIndex] || tour?.coverUrl || photos[0];
 
   const swiperExtraToursRef = useRef<SwiperType | null>(null);
   const swiperGalleryRef = useRef<SwiperType | null>(null);

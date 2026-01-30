@@ -15,7 +15,7 @@ export const QUERY_PARAMS = {
 } as const;
 
 type UrlObj = { url: string };
-type DateObj = { date: string; isAvailable?: boolean };
+type DatesObj = { dateFrom: string; dateTo: string };
 
 type TourDTO = {
   reviewAmount: number;
@@ -38,7 +38,7 @@ type TourDTO = {
   included?: string[];
   activities?: string[];
   summary?: string[];
-  dates?: Array<string | DateObj>;
+  dates: Array<DatesObj>;
   program?: {
     days?: Array<{ day: number; plan: string; description: string; imgUrl: string }>;
     included?: string[];
@@ -68,13 +68,38 @@ function toIsoDate(value: string): string {
   return i >= 0 ? value.slice(0, i) : value;
 }
 
+function toShortDate(value: string): string {
+  const ts = Date.parse(value);
+  if (!Number.isNaN(ts)) {
+    const d = new Date(ts);
+
+    return d.toLocaleDateString(undefined, {day: "2-digit", month: "short", year: "numeric"});
+  }
+  const i = value.indexOf("T");
+
+  return i >= 0 ? value.slice(0, i) : value;
+}
+
 function mapTourToView(dto: TourDTO): TourView {
   const photoUrls = (dto.photos ?? []).map(x => fileUrl(toUrl(x)));
   const videoUrls = (dto.videos ?? []).map(toUrl);
   const dates = (dto.dates ?? [])
-    .map(x => (typeof x === "string" ? x : x.date))
-    .filter(Boolean)
-    .map(toIsoDate);
+    .map((d) => {
+      const from = d.dateFrom;
+      const to = d.dateTo;
+      if (from && to) {
+        return `${toShortDate(from)} — ${toShortDate(to)}`;
+      }
+      if (from) {
+        return toShortDate(from);
+      }
+      if (to) {
+        return toShortDate(to);
+      }
+
+      return undefined;
+    })
+    .filter(Boolean) as string[];
   const tags = (dto.tags ?? []).map(toName).filter(Boolean);
   const categories = (dto.categories ?? []).map(toName).filter(Boolean);
   const dailyItinerary =

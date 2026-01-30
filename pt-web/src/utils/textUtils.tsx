@@ -9,8 +9,8 @@ export function renderMultilineDouble(text: string) {
     .replace(/\\n/g, "\n")
     .split("\n\n")
     .map((line, i) => (
-      <p key={i}>
+      <span key={i}>
         {line}
-      </p>
+      </span>
     ));
 }

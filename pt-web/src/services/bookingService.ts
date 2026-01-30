@@ -7,7 +7,7 @@ export interface BookingRequest {
   phone: string;
   travelDate: string;
   travelers: number;
-  rooms?: number;
+  rooms: number;
 }
 
 export async function createBooking(data: BookingRequest): Promise<void> {
