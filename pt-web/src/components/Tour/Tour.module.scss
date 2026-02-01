@@ -4,7 +4,7 @@
   flex-direction: column;
   background: #fff;
   overflow: hidden;
-  gap: 16px
+  gap: 16px;
 }
 
 .link {
@@ -36,8 +36,7 @@
   padding: 6px 12px;
   font-size: 12px;
   color: #fff;
-  background: #FFFFFF4A;
-  backdrop-filter: blur(4.6px);
+  background: #ffffff4a;
   border: 1px solid rgb(255 255 255 / 50%);
   border-radius: 9px;
   backdrop-filter: blur(2px);
@@ -60,7 +59,7 @@
   gap: 4px;
   padding: 10px;
   border-radius: 12px;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
 }
 
 .body {
@@ -69,13 +68,13 @@
   gap: 10px;
 }
 
-
 .title {
   font-size: 28px;
   font-weight: 700;
   line-height: 1.35;
   color: #111;
   margin: 0;
+
   // max-height: 114px;
 }
 
@@ -101,14 +100,14 @@
 .primaryButton {
   margin: 12px 20px 12px 0;
   color: #fff;
-  background-color: #2F53DE;
+  background-color: #2f53de;
   padding: 20px;
   border-radius: 10px;
   border: none;
   font-size: 16px;
 
   &:hover {
-    background-color: #0E2EAD;
+    background-color: #0e2ead;
     color: #fff;
   }
 

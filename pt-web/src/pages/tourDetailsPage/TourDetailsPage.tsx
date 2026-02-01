@@ -1,7 +1,6 @@
 import {useEffect, useRef, useState} from "react";
-import {Helmet} from "react-helmet-async";
-import {Link, useNavigate, useParams} from "react-router-dom";
-import {NotFoundPage} from "../notFound/notFoundPage";
+// Import {Helmet} from "react-helmet-async";
+import {useParams} from "react-router-dom";
 import arrowsToRight from "/images/arrowsToRight.svg";
 import blogAndPhotography1 from "/images/blogAndPhotography1.avif";
 import blogAndPhotography2 from "/images/blogAndPhotography2.avif";
@@ -24,6 +23,7 @@ import {Dropdown} from "src/components/Dropdown/Dropdown";
 import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
 import {TourCardExtended} from "src/components/Tour/TourCardExtended/TourCardExtended";
 import {FeedbackBlock} from "src/pages/homePage/HomePage";
+import {NotFoundPage} from "src/pages/notFound/notFoundPage";
 import {BuyTravelModal} from "src/pages/tourDetailsPage/BuyTravelModal";
 import {
   type BookingRequest,
@@ -48,10 +48,12 @@ interface ScheduleAccordionItemProps {
 const ScheduleAccordionItem = (props: ScheduleAccordionItemProps) => {
   return (
     <div className={props.className}>
-      {props.image && <img
-        src={props.image}
-        alt="dayImage"
-      />}
+      {props.image && (
+        <img
+          src={props.image}
+          alt="dayImage"
+        />
+      )}
       <br />
       <p>
         {props.description}
@@ -139,6 +141,7 @@ const slidesForExtraTours = [
     title: "Your Guide to Iconic Tuscany Shots",
 
     subtitle:
+      // eslint-disable-next-line max-len
       "Explore essential techniques and hidden locations for creating cinematic images in Tuscany. Explore essential techniques and hidden locations for creating cinematic images in Tuscany.",
   },
   {
@@ -164,6 +167,7 @@ const slidesForExtraTours = [
     title: "Your Guide to Iconic Tuscany Shots",
 
     subtitle:
+      // eslint-disable-next-line max-len
       "Explore essential techniques and hidden locations for creating cinematic images in Tuscany. Explore essential techniques and hidden locations for creating cinematic images in Tuscany.",
   },
   {
@@ -196,7 +200,6 @@ const LARGE_DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER = 8;
 
 export function TourDetailsPage() {
   const {slug} = useParams<{ slug: string }>();
-  const navigate = useNavigate();
 
   const [tour, setTour] = useState<TourView | null>(null);
   const [loading, setLoading] = useState(true);
@@ -230,23 +233,28 @@ export function TourDetailsPage() {
         return;
       }
 
+      const DEFAULT_TRAVELERS_AMOUNT = 1;
+
       const request: BookingRequest = {
         tourId: tour.id,
         name: name,
         email: formData.email,
         phone: phone,
         travelDate: formData.date,
-        travelers: parseInt(formData.travelers.split(" ")[0] ?? "1") || 1,
+        travelers: parseInt(formData.travelers.split(" ")[0] ?? "1") || DEFAULT_TRAVELERS_AMOUNT,
         rooms: parseInt(formData.rooms.split(" ")[0] ?? "0") || 0,
       };
       await createBooking(request);
-    } catch (error) {
-      console.error("Booking failed:", error);
-      alert(error instanceof Error ? error.message : "Booking failed, please fill the form");
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error("Booking failed:", err);
+      alert(err instanceof Error ? err.message : "Booking failed, please fill the form");
     } finally {
       setBookingLoading(false);
     }
   };
+
+  const ONE_TRAVELER_AMOUNT = 1;
 
   const buyTravelContent = (
     <>
@@ -344,6 +352,7 @@ export function TourDetailsPage() {
             />
           </div>
         }
+        // eslint-disable-next-line no-magic-numbers
         dropdownMenuItems={[1, 2, 3, 4, 5].map((n) => ({
           dropdownSubMenuItems: [
             {
@@ -354,12 +363,12 @@ export function TourDetailsPage() {
                   {n}
                   {" "}
                   traveler
-                  {n > 1 ? "s" : ""}
+                  {n > ONE_TRAVELER_AMOUNT ? "s" : ""}
                 </div>
               ),
               isVisible: true,
               onClick: () => {
-                setFormData(prev => ({...prev, travelers: `${n} traveler${n > 1 ? "s" : ""}`}));
+                setFormData(prev => ({...prev, travelers: `${n} traveler${n > ONE_TRAVELER_AMOUNT ? "s" : ""}`}));
               },
             },
           ],
@@ -413,6 +422,7 @@ export function TourDetailsPage() {
             />
           </div>
         }
+        // eslint-disable-next-line no-magic-numbers
         dropdownMenuItems={[0, 1, 2, 3].map((n) => ({
           dropdownSubMenuItems: [
             {
@@ -423,12 +433,12 @@ export function TourDetailsPage() {
                   {n}
                   {" "}
                   room
-                  {n > 1 ? "s" : ""}
+                  {n > ONE_TRAVELER_AMOUNT ? "s" : ""}
                 </div>
               ),
               isVisible: true,
               onClick: () => {
-                setFormData(prev => ({...prev, rooms: `${n} room${n > 1 ? "s" : ""}`}));
+                setFormData(prev => ({...prev, rooms: `${n} room${n > ONE_TRAVELER_AMOUNT ? "s" : ""}`}));
               },
             },
           ],
@@ -563,6 +573,9 @@ export function TourDetailsPage() {
     );
   }
 
+  const SWIPER_LOOP_MIN_SLIDES = 1;
+  const INCREMENT_1 = 1;
+
   return (
     <div>
       <section className={styles.wrap}>
@@ -578,7 +591,7 @@ export function TourDetailsPage() {
                 swiperMainRef.current = s;
                 s.slideTo(selectedPhotoIndex, 0);
               }}
-              loop={photos.length > 1}
+              loop={photos.length > SWIPER_LOOP_MIN_SLIDES}
               slidesPerView={1}
               spaceBetween={0}
               speed={500}
@@ -592,7 +605,7 @@ export function TourDetailsPage() {
                   <img
                     className={styles.galleryImage}
                     src={photo}
-                    alt={`${tour.title} - image ${i + 1}`}
+                    alt={`${tour.title} - image ${i + INCREMENT_1}`}
                   />
                 </SwiperSlide>
               ))}
@@ -607,7 +620,7 @@ export function TourDetailsPage() {
                   return;
                 }
                 setSelectedPhotoIndex((prev) =>
-                  prev === 0 ? photos.length - 1 : prev - 1,
+                  prev === 0 ? photos.length - INCREMENT_1 : prev - INCREMENT_1,
                 );
               }}
             >
@@ -626,7 +639,7 @@ export function TourDetailsPage() {
                   return;
                 }
                 setSelectedPhotoIndex((prev) =>
-                  prev === photos.length - 1 ? 0 : prev + 1,
+                  prev === photos.length - INCREMENT_1 ? 0 : prev + INCREMENT_1,
                 );
               }}
             >
@@ -644,7 +657,7 @@ export function TourDetailsPage() {
                 photo
               </button>
               <span className={styles.galleryImageCounter}>
-                {selectedPhotoIndex + 1}
+                {selectedPhotoIndex + INCREMENT_1}
                 /
                 {photos.length}
               </span>
@@ -696,7 +709,7 @@ export function TourDetailsPage() {
                     >
                       <img
                         src={photo}
-                        alt={`gallery image ${i + 1}`}
+                        alt={`gallery image ${i + INCREMENT_1}`}
                       />
                     </button>
                   </SwiperSlide>
@@ -714,7 +727,7 @@ export function TourDetailsPage() {
                 ×
               </button>
               <div className={styles.fullscreenCounter}>
-                {selectedPhotoIndex + 1}
+                {selectedPhotoIndex + INCREMENT_1}
                 /
                 {photos.length}
               </div>
@@ -724,7 +737,7 @@ export function TourDetailsPage() {
                   swiperFullscreenRef.current = s;
                   s.slideTo(selectedPhotoIndex, 0);
                 }}
-                loop={photos.length > 1}
+                loop={photos.length > INCREMENT_1}
                 slidesPerView={1}
                 spaceBetween={0}
                 speed={500}
@@ -741,7 +754,7 @@ export function TourDetailsPage() {
                     <img
                       className={styles.fullscreenImage}
                       src={photo}
-                      alt={`gallery image ${i + 1}`}
+                      alt={`gallery image ${i + INCREMENT_1}`}
                     />
                   </SwiperSlide>
                 ))}

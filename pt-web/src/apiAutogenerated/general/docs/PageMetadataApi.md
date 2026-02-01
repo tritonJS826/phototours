@@ -1,15 +1,13 @@
 # PageMetadataApi
 
-All URIs are relative to *http://localhost:8000/general*
+All URIs are relative to _http://localhost:8000/general_
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
+| Method                                                          | HTTP request              | Description                       |
+| --------------------------------------------------------------- | ------------------------- | --------------------------------- |
 | [**pageMetadataDelete**](PageMetadataApi.md#pagemetadatadelete) | **DELETE** /page-metadata | Delete page metadata (Admin only) |
-| [**pageMetadataGet**](PageMetadataApi.md#pagemetadataget) | **GET** /page-metadata | Get page metadata |
-| [**pageMetadataPatch**](PageMetadataApi.md#pagemetadatapatch) | **PATCH** /page-metadata | Update page metadata (Admin only) |
-| [**pageMetadataPost**](PageMetadataApi.md#pagemetadatapost) | **POST** /page-metadata | Create page metadata (Admin only) |
-
-
+| [**pageMetadataGet**](PageMetadataApi.md#pagemetadataget)       | **GET** /page-metadata    | Get page metadata                 |
+| [**pageMetadataPatch**](PageMetadataApi.md#pagemetadatapatch)   | **PATCH** /page-metadata  | Update page metadata (Admin only) |
+| [**pageMetadataPost**](PageMetadataApi.md#pagemetadatapost)     | **POST** /page-metadata   | Create page metadata (Admin only) |
 
 ## pageMetadataDelete
 
@@ -22,15 +20,12 @@ Delete metadata for a page URL (requires admin role)
 ### Example
 
 ```ts
-import {
-  Configuration,
-  PageMetadataApi,
-} from '';
-import type { PageMetadataDeleteRequest } from '';
+import { Configuration, PageMetadataApi } from "";
+import type { PageMetadataDeleteRequest } from "";
 
 async function example() {
   console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
+  const config = new Configuration({
     // To configure API key authorization: BearerAuth
     apiKey: "YOUR API KEY",
   });
@@ -55,10 +50,9 @@ example().catch(console.error);
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **url** | `string` | Page URL | [Defaults to `undefined`] |
+| Name    | Type     | Description | Notes                     |
+| ------- | -------- | ----------- | ------------------------- |
+| **url** | `string` | Page URL    | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -73,19 +67,18 @@ example().catch(console.error);
 - **Content-Type**: Not defined
 - **Accept**: `application/json`
 
-
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | No Content |  -  |
-| **400** | Bad Request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Internal Server Error |  -  |
+
+| Status code | Description           | Response headers |
+| ----------- | --------------------- | ---------------- |
+| **204**     | No Content            | -                |
+| **400**     | Bad Request           | -                |
+| **401**     | Unauthorized          | -                |
+| **403**     | Forbidden             | -                |
+| **404**     | Not Found             | -                |
+| **500**     | Internal Server Error | -                |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
 
 ## pageMetadataGet
 
@@ -98,11 +91,8 @@ Get metadata for a specific page URL
 ### Example
 
 ```ts
-import {
-  Configuration,
-  PageMetadataApi,
-} from '';
-import type { PageMetadataGetRequest } from '';
+import { Configuration, PageMetadataApi } from "";
+import type { PageMetadataGetRequest } from "";
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -127,10 +117,9 @@ example().catch(console.error);
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **url** | `string` | Page URL | [Defaults to `undefined`] |
+| Name    | Type     | Description | Notes                     |
+| ------- | -------- | ----------- | ------------------------- |
+| **url** | `string` | Page URL    | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -145,17 +134,16 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: `application/json`
 
-
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-| **400** | Bad Request |  -  |
-| **404** | Not Found |  -  |
-| **500** | Internal Server Error |  -  |
+
+| Status code | Description           | Response headers |
+| ----------- | --------------------- | ---------------- |
+| **200**     | OK                    | -                |
+| **400**     | Bad Request           | -                |
+| **404**     | Not Found             | -                |
+| **500**     | Internal Server Error | -                |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
 
 ## pageMetadataPatch
 
@@ -176,7 +164,7 @@ import type { PageMetadataPatchRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
+  const config = new Configuration({
     // To configure API key authorization: BearerAuth
     apiKey: "YOUR API KEY",
   });
@@ -201,10 +189,9 @@ example().catch(console.error);
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **request** | [DtoUpdatePageMetadataRequest](DtoUpdatePageMetadataRequest.md) | Update data | |
+| Name        | Type                                                            | Description | Notes |
+| ----------- | --------------------------------------------------------------- | ----------- | ----- |
+| **request** | [DtoUpdatePageMetadataRequest](DtoUpdatePageMetadataRequest.md) | Update data |       |
 
 ### Return type
 
@@ -219,19 +206,18 @@ example().catch(console.error);
 - **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
-
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-| **400** | Bad Request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Internal Server Error |  -  |
+
+| Status code | Description           | Response headers |
+| ----------- | --------------------- | ---------------- |
+| **200**     | OK                    | -                |
+| **400**     | Bad Request           | -                |
+| **401**     | Unauthorized          | -                |
+| **403**     | Forbidden             | -                |
+| **404**     | Not Found             | -                |
+| **500**     | Internal Server Error | -                |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
 
 ## pageMetadataPost
 
@@ -252,7 +238,7 @@ import type { PageMetadataPostRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
+  const config = new Configuration({
     // To configure API key authorization: BearerAuth
     apiKey: "YOUR API KEY",
   });
@@ -277,10 +263,9 @@ example().catch(console.error);
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **request** | [DomainPageMetadata](DomainPageMetadata.md) | Page metadata | |
+| Name        | Type                                        | Description   | Notes |
+| ----------- | ------------------------------------------- | ------------- | ----- |
+| **request** | [DomainPageMetadata](DomainPageMetadata.md) | Page metadata |       |
 
 ### Return type
 
@@ -295,15 +280,14 @@ example().catch(console.error);
 - **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
-
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **201** | Created |  -  |
-| **400** | Bad Request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **500** | Internal Server Error |  -  |
+
+| Status code | Description           | Response headers |
+| ----------- | --------------------- | ---------------- |
+| **201**     | Created               | -                |
+| **400**     | Bad Request           | -                |
+| **401**     | Unauthorized          | -                |
+| **403**     | Forbidden             | -                |
+| **500**     | Internal Server Error | -                |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-

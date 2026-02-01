@@ -3,7 +3,7 @@
 
 .wrap {
   display: flex;
-  margin: 30px auto 0 auto;
+  margin: 30px auto 0;
   max-width: 1530px;
 }
 
@@ -12,7 +12,7 @@
   padding: 0 20px;
   max-width: calc(100% - 500px);
 
-  @media (max-width: 1020px) {
+  @media (width <= 1020px) {
     max-width: 100%;
   }
 }
@@ -21,7 +21,7 @@
   margin-bottom: 20px;
   font-size: 30px;
 
-  @media (max-width: 600px) {
+  @media (width <= 600px) {
     font-size: 24px;
   }
 }
@@ -55,7 +55,7 @@
   bottom: 0;
   margin: 3%;
 
-  @media (max-width: 600px) {
+  @media (width <= 600px) {
     display: none;
   }
 }
@@ -70,8 +70,7 @@
   background: transparent;
   border-radius: 12px;
 
-
-  @media (max-width: 600px) {
+  @media (width <= 600px) {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -82,7 +81,7 @@
   color: white;
   font-size: 14px;
   font-weight: 500;
-  background-color: #00000066;
+  background-color: #0006;
   padding: 5px 11px;
   border-radius: 11px;
 }
@@ -90,17 +89,17 @@
 .galleryFullscreenButton {
   width: 51px;
   height: 51px;
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgb(255 255 255 / 20%);
+  border: 1px solid rgb(255 255 255 / 30%);
   color: white;
-  background-color: #00000066;
+  background-color: #0006;
   border-radius: 100%;
   font-size: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgb(255 255 255 / 30%);
   }
 }
 
@@ -138,8 +137,8 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgb(255 255 255 / 20%);
+    border: 1px solid rgb(255 255 255 / 30%);
     color: white;
     border-radius: 50%;
     width: 40px;
@@ -153,7 +152,7 @@
     transition: all 0.2s ease;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.3);
+      background: rgb(255 255 255 / 30%);
     }
   }
 
@@ -216,7 +215,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (width <= 600px) {
   .galleryArrow {
     display: none;
   }
@@ -270,6 +269,7 @@
   border-radius: 12px;
   font-size: 17px;
   background-color: #f8f8f8;
+
   // margin-top: 30px;
   // margin-bottom: 16px;
 }
@@ -282,6 +282,7 @@
 .starsList {
   display: flex;
   align-items: center;
+
   // margin: 0 0 20px 16px;
 }
 
@@ -329,7 +330,7 @@
   gap: 10px;
   min-width: 110px;
   align-items: center;
-  width: 150px
+  width: 150px;
 }
 
 .summaryTagRightPart {
@@ -360,7 +361,7 @@
   margin-top: 40px;
   margin-bottom: 40px;
 
-  @media (max-width: 816px) {
+  @media (width <= 816px) {
     gap: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -431,10 +432,10 @@
 .whyLove {
   position: relative;
   width: 100%;
-  padding: 30px 0;
   z-index: 0;
   max-width: 1530px;
   margin: auto;
+
   // 30px - top&bottom margin compensation
   padding: 30px 20px;
 }
@@ -445,6 +446,7 @@
   top: 0;
   left: 50%;
   transform: translateX(-50%);
+
   // it was hard to center this placeholder, so let's just make it super wide
   // width: 100vw;
   height: 100%;
@@ -518,7 +520,7 @@
 
   // Custom scrollbar styling
   scrollbar-width: thin;
-  scrollbar-color: rgba(47, 83, 222, 0.3) transparent;
+  scrollbar-color: rgb(47 83 222 / 30%) transparent;
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -529,11 +531,11 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: rgba(47, 83, 222, 0.3);
+    background-color: rgb(47 83 222 / 30%);
     border-radius: 4px;
 
     &:hover {
-      background-color: rgba(47, 83, 222, 0.5);
+      background-color: rgb(47 83 222 / 50%);
     }
   }
 
@@ -571,7 +573,7 @@
   display: flex;
   padding: 16px 10px;
   border-radius: 10px;
-  margin: 8px 24px 16px 24px;
+  margin: 8px 24px 16px;
 }
 
 .dropdownItem {
@@ -605,7 +607,6 @@
   outline-color: transparent;
 }
 
-
 .personalizeHr {
   background-color: #2f53de1a;
   display: flex;
@@ -620,7 +621,7 @@
 .personalizationBlock {
   display: flex;
   justify-content: space-between;
-  padding: 24px 24px 0px 24px;
+  padding: 24px 24px 0;
   font-size: 14px;
 }
 
@@ -629,7 +630,7 @@
 }
 
 .buyTravelFooter {
-  box-shadow: 0px 0px 4px 0px #00000040;
+  box-shadow: 0 0 4px 0 #00000040;
   padding: 20px 24px;
   display: flex;
   justify-content: space-between;
@@ -687,7 +688,7 @@
   background-color: #2f53de;
   color: white;
   border: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 20%);
   cursor: pointer;
   z-index: 100;
   font-size: 16px;
@@ -697,12 +698,12 @@
     background-color: #0e2ead;
   }
 
-  @media (max-width: 1020px) {
+  @media (width <= 1020px) {
     display: block;
   }
 }
 
-@media (max-width: 1020px) {
+@media (width <= 1020px) {
   .calcBackStub {
     display: none;
   }
@@ -722,7 +723,7 @@
   }
 
   .locationInputBlock {
-    margin: 8px 16px 16px 16px;
+    margin: 8px 16px 16px;
     padding: 12px 10px;
   }
 

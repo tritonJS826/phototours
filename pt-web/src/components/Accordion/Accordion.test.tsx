@@ -1,5 +1,5 @@
 import {fireEvent, render, screen} from "@testing-library/react";
-import {Accordion, accordionTypes} from "src/component/accordion/Accordion";
+import {Accordion, accordionTypes} from "src/components/Accordion/Accordion";
 
 const FIRST_TRIGGER = "trigger1";
 const SECOND_TRIGGER = "trigger2";

@@ -17,7 +17,6 @@
 //     z-index: 200;
 // }
 
-
 // // TODO: the issue with borders is not solved
 // :global(.PhoneInputInput) {
 //     border: none !important;
@@ -38,31 +37,34 @@
 // }
 
 :global(.react-international-phone-input-container) {
-    width: 360px;
-    height: 54px;
+  width: 360px;
+  height: 54px;
 }
 
 :global(.react-international-phone-country-selector) {
+  min-height: 54px;
+
+  > button {
+    padding: 10px;
     min-height: 54px;
-
-
-    > button {
-        padding: 10px;
-        min-height: 54px;
-        border-top-left-radius: 10px !important;
-        border-bottom-left-radius: 10px !important;
-    }
+    border-top-left-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+  }
 }
 
-:global(.react-international-phone-input.react-international-phone-input.react-international-phone-input) {
-    background-color: white;
-    min-height: 54px;
-    // Apply base styles to the main container
-    // width: 300px;
-    padding: 18px 21px;
-    width: 100%;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    font-size: 16px;
-    // width: 100%;
+:global(
+    .react-international-phone-input.react-international-phone-input.react-international-phone-input
+  ) {
+  background-color: white;
+  min-height: 54px;
+
+  // Apply base styles to the main container
+  // width: 300px;
+  padding: 18px 21px;
+  width: 100%;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-size: 16px;
+
+  // width: 100%;
 }

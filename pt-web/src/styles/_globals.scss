@@ -12,7 +12,7 @@
   padding: 0;
   box-sizing: border-box;
 
-  // transition: all 0.3s ease; 
+  // transition: all 0.3s ease;
 }
 
 html,
@@ -79,7 +79,6 @@ canvas {
     padding-inline: var(--gutter-sm);
   }
 }
-
 
 .section + .section {
   padding-top: 0;

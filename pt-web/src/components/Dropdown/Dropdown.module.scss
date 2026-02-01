@@ -8,7 +8,7 @@ $dropdownMaxHeight: 50vh;
 .dropdownMenuSubContent {
   z-index: $dropdownZIndex;
   max-height: $dropdownMaxHeight;
-  border: 1px solid #2F53DE;
+  border: 1px solid #2f53de;
   border-radius: 8px;
   animation-duration: 400ms;
   animation-name: slideDownAndFade;
@@ -25,14 +25,17 @@ $dropdownMaxHeight: 50vh;
 .dropdownMenuSubContent[data-side="top"] {
   animation-name: slideDownAndFade;
 }
+
 .dropdownMenuContent[data-side="right"],
 .dropdownMenuSubContent[data-side="right"] {
   animation-name: slideLeftAndFade;
 }
+
 .dropdownMenuContent[data-side="bottom"],
 .dropdownMenuSubContent[data-side="bottom"] {
   animation-name: slideUpAndFade;
 }
+
 .dropdownMenuContent[data-side="left"],
 .dropdownMenuSubContent[data-side="left"] {
   max-width: $dropdownMaxWidth;
@@ -67,6 +70,7 @@ $dropdownMaxHeight: 50vh;
     opacity: 0;
     transform: translateY($dropdownIndentationBottom);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -78,6 +82,7 @@ $dropdownMaxHeight: 50vh;
     opacity: 0;
     transform: translateX(-$dropdownIndentationBottom);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -89,6 +94,7 @@ $dropdownMaxHeight: 50vh;
     opacity: 0;
     transform: translateY(-$dropdownIndentationBottom);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -100,6 +106,7 @@ $dropdownMaxHeight: 50vh;
     opacity: 0;
     transform: translateX($dropdownIndentationBottom);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);

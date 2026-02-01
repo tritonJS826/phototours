@@ -1,5 +1,5 @@
-import type {StoryObj} from "@storybook/react";
-import {Accordion, accordionTypes} from "src/component/accordion/Accordion";
+import type {StoryObj} from "@storybook/react-vite";
+import {Accordion, accordionTypes} from "src/components/Accordion/Accordion";
 
 const meta = {
   title: "Accordion",

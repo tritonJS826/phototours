@@ -3,8 +3,6 @@ import type {TourView} from "src/types/tour";
 
 export const TOURS_PATH = "/general/tours";
 
-const ISO_DATE_LENGTH = 10;
-
 export const QUERY_PARAMS = {
   LOCATION: "location",
   START_DATE: "startDate",
@@ -61,15 +59,16 @@ function toName(v: string | { name?: string }): string {
   return typeof v === "string" ? v : v.name ?? "";
 }
 
-function toIsoDate(value: string): string {
-  const ts = Date.parse(value);
-  if (!Number.isNaN(ts)) {
-    return new Date(ts).toISOString().slice(0, ISO_DATE_LENGTH);
-  }
-  const i = value.indexOf("T");
+// Function toIsoDate(value: string): string {
+//   const ISO_DATE_LENGTH = 10;
+//   const ts = Date.parse(value);
+//   if (!Number.isNaN(ts)) {
+//     return new Date(ts).toISOString().slice(0, ISO_DATE_LENGTH);
+//   }
+//   const i = value.indexOf("T");
 
-  return i >= 0 ? value.slice(0, i) : value;
-}
+//   return i >= 0 ? value.slice(0, i) : value;
+// }
 
 function toShortDate(value: string): string {
   const ts = Date.parse(value);
@@ -117,6 +116,8 @@ function mapTourToView(dto: TourDTO): TourView {
   const price = Number.isFinite(priceNum) && (priceNum as number) > 0 ? (priceNum as number) : undefined;
 
   const STUB_NUMBER = 4.3;
+  const DEFAULT_GROUP_SIZE = 10;
+  const DEFAULT_SPOTS_LEFT = 1;
 
   return {
     reviewAmount: dto.reviewAmount ?? STUB_NUMBER,
@@ -144,8 +145,8 @@ function mapTourToView(dto: TourDTO): TourView {
     activities: dto.activities ?? [],
     included: dto.included ?? [],
     summary: dto.summary ?? [],
-    groupSize: dto.groupSize ?? 10,
-    spotsLeft: dto.spotsLeft ?? 1,
+    groupSize: dto.groupSize ?? DEFAULT_GROUP_SIZE,
+    spotsLeft: dto.spotsLeft ?? DEFAULT_SPOTS_LEFT,
     subtitle: dto.subtitle ?? "About",
   };
 }

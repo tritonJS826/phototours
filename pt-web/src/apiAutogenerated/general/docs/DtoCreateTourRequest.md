@@ -1,25 +1,23 @@
-
 # DtoCreateTourRequest
-
 
 ## Properties
 
-Name | Type
------------- | -------------
-`availableMonths` | Array&lt;string&gt;
-`coverUrl` | string
-`description` | string
-`difficulty` | string
-`durationDays` | number
-`endLocation` | string
-`guideId` | number
-`languages` | Array&lt;string&gt;
-`minAge` | number
-`price` | number
-`program` | object
-`slug` | string
-`startLocation` | string
-`title` | string
+| Name              | Type                |
+| ----------------- | ------------------- |
+| `availableMonths` | Array&lt;string&gt; |
+| `coverUrl`        | string              |
+| `description`     | string              |
+| `difficulty`      | string              |
+| `durationDays`    | number              |
+| `endLocation`     | string              |
+| `guideId`         | number              |
+| `languages`       | Array&lt;string&gt; |
+| `minAge`          | number              |
+| `price`           | number              |
+| `program`         | object              |
+| `slug`            | string              |
+| `startLocation`   | string              |
+| `title`           | string              |
 
 ## Example
 
@@ -56,5 +54,3 @@ console.log(exampleParsed)
 ```
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-

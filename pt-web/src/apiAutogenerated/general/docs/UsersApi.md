@@ -1,13 +1,11 @@
 # UsersApi
 
-All URIs are relative to *http://localhost:8000/general*
+All URIs are relative to _http://localhost:8000/general_
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
-| [**usersGet**](UsersApi.md#usersget) | **GET** /users | Get all users (Admin only) |
-| [**usersIdPublicGet**](UsersApi.md#usersidpublicget) | **GET** /users/{id}/public | Get public user profile |
-
-
+| Method                                               | HTTP request               | Description                |
+| ---------------------------------------------------- | -------------------------- | -------------------------- |
+| [**usersGet**](UsersApi.md#usersget)                 | **GET** /users             | Get all users (Admin only) |
+| [**usersIdPublicGet**](UsersApi.md#usersidpublicget) | **GET** /users/{id}/public | Get public user profile    |
 
 ## usersGet
 
@@ -20,15 +18,12 @@ Get a paginated list of all users (requires admin role)
 ### Example
 
 ```ts
-import {
-  Configuration,
-  UsersApi,
-} from '';
-import type { UsersGetRequest } from '';
+import { Configuration, UsersApi } from "";
+import type { UsersGetRequest } from "";
 
 async function example() {
   console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
+  const config = new Configuration({
     // To configure API key authorization: BearerAuth
     apiKey: "YOUR API KEY",
   });
@@ -55,10 +50,9 @@ example().catch(console.error);
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **page** | `number` | Page number | [Optional] [Defaults to `1`] |
+| Name      | Type     | Description              | Notes                         |
+| --------- | -------- | ------------------------ | ----------------------------- |
+| **page**  | `number` | Page number              | [Optional] [Defaults to `1`]  |
 | **limit** | `number` | Items per page (max 100) | [Optional] [Defaults to `20`] |
 
 ### Return type
@@ -74,18 +68,17 @@ example().catch(console.error);
 - **Content-Type**: Not defined
 - **Accept**: `application/json`
 
-
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-| **400** | Bad Request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **500** | Internal Server Error |  -  |
+
+| Status code | Description           | Response headers |
+| ----------- | --------------------- | ---------------- |
+| **200**     | OK                    | -                |
+| **400**     | Bad Request           | -                |
+| **401**     | Unauthorized          | -                |
+| **403**     | Forbidden             | -                |
+| **500**     | Internal Server Error | -                |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
 
 ## usersIdPublicGet
 
@@ -98,11 +91,8 @@ Get public profile information for a user by ID
 ### Example
 
 ```ts
-import {
-  Configuration,
-  UsersApi,
-} from '';
-import type { UsersIdPublicGetRequest } from '';
+import { Configuration, UsersApi } from "";
+import type { UsersIdPublicGetRequest } from "";
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -127,10 +117,9 @@ example().catch(console.error);
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **id** | `number` | User ID | [Defaults to `undefined`] |
+| Name   | Type     | Description | Notes                     |
+| ------ | -------- | ----------- | ------------------------- |
+| **id** | `number` | User ID     | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -145,14 +134,13 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: `application/json`
 
-
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-| **400** | Bad Request |  -  |
-| **404** | Not Found |  -  |
-| **500** | Internal Server Error |  -  |
+
+| Status code | Description           | Response headers |
+| ----------- | --------------------- | ---------------- |
+| **200**     | OK                    | -                |
+| **400**     | Bad Request           | -                |
+| **404**     | Not Found             | -                |
+| **500**     | Internal Server Error | -                |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-

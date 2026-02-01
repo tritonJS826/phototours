@@ -1,3 +1,7 @@
+
+const AT_LEAST = 1;
+const PREVIOUS_INDEX_DECREMENT = 1;
+
 /**
  * Converts an array of month names to a simplified date range string
  * Example: ['October', 'November', 'December', 'January', 'February', 'March', 'April']
@@ -29,13 +33,13 @@ export function formatMonthsToDateRange(months: string[]): string {
     return "";
   }
 
-  if (uniqueMonths.length === 1) {
+  if (uniqueMonths.length === AT_LEAST) {
     return monthAbbreviations[uniqueMonths[0]] || uniqueMonths[0];
   }
 
   const firstMonth = monthAbbreviations[uniqueMonths[0]] || uniqueMonths[0];
-  const lastMonth = monthAbbreviations[uniqueMonths[uniqueMonths.length - 1]] || 
-                    uniqueMonths[uniqueMonths.length - 1];
+  const lastMonth = monthAbbreviations[uniqueMonths[uniqueMonths.length - PREVIOUS_INDEX_DECREMENT]] ||
+                    uniqueMonths[uniqueMonths.length - PREVIOUS_INDEX_DECREMENT];
 
   return `${firstMonth} - ${lastMonth}`;
 }

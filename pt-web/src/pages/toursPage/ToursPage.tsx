@@ -66,8 +66,6 @@ export function ToursPage() {
     setSearchParams(params);
   }, [filters, setSearchParams]);
 
-
-
   // Helper function to check if tour is available in selected season
   const isTourAvailableInSeason = (tour: TourView, season: string) => {
     if (!tour.availableMonths || !season) {
@@ -92,12 +90,14 @@ export function ToursPage() {
       return allTours;
     }
 
+    const DEFAULT_TRAVELERS = 1;
+
     return allTours.filter(tour => {
       // Price filtering with travelers multiplier
       if (!tour.price) {
         return true;
       } // Include tours without price
-      const travelerCount = filters.travelers || 1; // Default to 1 traveler if not set
+      const travelerCount = filters.travelers || DEFAULT_TRAVELERS;
       const totalPrice = tour.price * travelerCount;
       const priceMatch = totalPrice >= priceRange.min && totalPrice <= priceRange.max;
 
@@ -123,6 +123,8 @@ export function ToursPage() {
     setPriceRange({min: 300, max: 6000});
     setSearchParams(new URLSearchParams()); // Clear URL params
   };
+
+  const ONE_TRAVELER = 1;
 
   const filtersContent = (
     <>
@@ -325,7 +327,7 @@ export function ToursPage() {
               placeholder="Select number of travelers"
               className={styles.locationInput}
               autoComplete="off"
-              value={filters.travelers ? `${filters.travelers} traveler${filters.travelers > 1 ? "s" : ""}` : ""}
+              value={filters.travelers ? `${filters.travelers} traveler${filters.travelers > ONE_TRAVELER ? "s" : ""}` : ""}
               readOnly
             />
           </div>

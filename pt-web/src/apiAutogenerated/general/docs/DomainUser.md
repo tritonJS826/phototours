@@ -1,52 +1,48 @@
-
 # DomainUser
-
 
 ## Properties
 
-Name | Type
------------- | -------------
-`bio` | string
-`createdAt` | string
-`email` | string
-`firstName` | string
-`id` | number
-`lastName` | string
-`phone` | string
-`profilePicUrl` | string
-`role` | [DomainRole](DomainRole.md)
-`updatedAt` | string
+| Name            | Type                        |
+| --------------- | --------------------------- |
+| `bio`           | string                      |
+| `createdAt`     | string                      |
+| `email`         | string                      |
+| `firstName`     | string                      |
+| `id`            | number                      |
+| `lastName`      | string                      |
+| `phone`         | string                      |
+| `profilePicUrl` | string                      |
+| `role`          | [DomainRole](DomainRole.md) |
+| `updatedAt`     | string                      |
 
 ## Example
 
 ```typescript
-import type { DomainUser } from ''
+import type { DomainUser } from "";
 
 // TODO: Update the object below with actual values
 const example = {
-  "bio": null,
-  "createdAt": null,
-  "email": null,
-  "firstName": null,
-  "id": null,
-  "lastName": null,
-  "phone": null,
-  "profilePicUrl": null,
-  "role": null,
-  "updatedAt": null,
-} satisfies DomainUser
+  bio: null,
+  createdAt: null,
+  email: null,
+  firstName: null,
+  id: null,
+  lastName: null,
+  phone: null,
+  profilePicUrl: null,
+  role: null,
+  updatedAt: null,
+} satisfies DomainUser;
 
-console.log(example)
+console.log(example);
 
 // Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
+const exampleJSON: string = JSON.stringify(example);
+console.log(exampleJSON);
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as DomainUser
-console.log(exampleParsed)
+const exampleParsed = JSON.parse(exampleJSON) as DomainUser;
+console.log(exampleParsed);
 ```
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-

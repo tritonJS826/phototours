@@ -1,16 +1,14 @@
 # AuthApi
 
-All URIs are relative to *http://localhost:8000/general*
+All URIs are relative to _http://localhost:8000/general_
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
+| Method                                                          | HTTP request                   | Description          |
+| --------------------------------------------------------------- | ------------------------------ | -------------------- |
 | [**authChangePasswordPost**](AuthApi.md#authchangepasswordpost) | **POST** /auth/change-password | Change user password |
-| [**authLoginPost**](AuthApi.md#authloginpost) | **POST** /auth/login | Login user |
-| [**authProfileGet**](AuthApi.md#authprofileget) | **GET** /auth/profile | Get user profile |
-| [**authProfilePut**](AuthApi.md#authprofileput) | **PUT** /auth/profile | Update user profile |
-| [**authRegisterPost**](AuthApi.md#authregisterpost) | **POST** /auth/register | Register a new user |
-
-
+| [**authLoginPost**](AuthApi.md#authloginpost)                   | **POST** /auth/login           | Login user           |
+| [**authProfileGet**](AuthApi.md#authprofileget)                 | **GET** /auth/profile          | Get user profile     |
+| [**authProfilePut**](AuthApi.md#authprofileput)                 | **PUT** /auth/profile          | Update user profile  |
+| [**authRegisterPost**](AuthApi.md#authregisterpost)             | **POST** /auth/register        | Register a new user  |
 
 ## authChangePasswordPost
 
@@ -31,7 +29,7 @@ import type { AuthChangePasswordPostRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
+  const config = new Configuration({
     // To configure API key authorization: BearerAuth
     apiKey: "YOUR API KEY",
   });
@@ -56,10 +54,9 @@ example().catch(console.error);
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **request** | [DtoChangePasswordDTO](DtoChangePasswordDTO.md) | Password change data | |
+| Name        | Type                                            | Description          | Notes |
+| ----------- | ----------------------------------------------- | -------------------- | ----- |
+| **request** | [DtoChangePasswordDTO](DtoChangePasswordDTO.md) | Password change data |       |
 
 ### Return type
 
@@ -74,17 +71,16 @@ example().catch(console.error);
 - **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
-
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-| **400** | Bad Request |  -  |
-| **401** | Unauthorized |  -  |
-| **500** | Internal Server Error |  -  |
+
+| Status code | Description           | Response headers |
+| ----------- | --------------------- | ---------------- |
+| **200**     | OK                    | -                |
+| **400**     | Bad Request           | -                |
+| **401**     | Unauthorized          | -                |
+| **500**     | Internal Server Error | -                |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
 
 ## authLoginPost
 
@@ -126,10 +122,9 @@ example().catch(console.error);
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **request** | [DomainLogin](DomainLogin.md) | Login credentials | |
+| Name        | Type                          | Description       | Notes |
+| ----------- | ----------------------------- | ----------------- | ----- |
+| **request** | [DomainLogin](DomainLogin.md) | Login credentials |       |
 
 ### Return type
 
@@ -144,17 +139,16 @@ No authorization required
 - **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
-
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-| **400** | Bad Request |  -  |
-| **401** | Unauthorized |  -  |
-| **500** | Internal Server Error |  -  |
+
+| Status code | Description           | Response headers |
+| ----------- | --------------------- | ---------------- |
+| **200**     | OK                    | -                |
+| **400**     | Bad Request           | -                |
+| **401**     | Unauthorized          | -                |
+| **500**     | Internal Server Error | -                |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
 
 ## authProfileGet
 
@@ -167,15 +161,12 @@ Get the authenticated user\&#39;s profile
 ### Example
 
 ```ts
-import {
-  Configuration,
-  AuthApi,
-} from '';
-import type { AuthProfileGetRequest } from '';
+import { Configuration, AuthApi } from "";
+import type { AuthProfileGetRequest } from "";
 
 async function example() {
   console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
+  const config = new Configuration({
     // To configure API key authorization: BearerAuth
     apiKey: "YOUR API KEY",
   });
@@ -210,17 +201,16 @@ This endpoint does not need any parameter.
 - **Content-Type**: Not defined
 - **Accept**: `application/json`
 
-
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-| **401** | Unauthorized |  -  |
-| **404** | Not Found |  -  |
-| **500** | Internal Server Error |  -  |
+
+| Status code | Description           | Response headers |
+| ----------- | --------------------- | ---------------- |
+| **200**     | OK                    | -                |
+| **401**     | Unauthorized          | -                |
+| **404**     | Not Found             | -                |
+| **500**     | Internal Server Error | -                |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
 
 ## authProfilePut
 
@@ -233,15 +223,12 @@ Update the authenticated user\&#39;s profile (multipart/form-data for avatar upl
 ### Example
 
 ```ts
-import {
-  Configuration,
-  AuthApi,
-} from '';
-import type { AuthProfilePutRequest } from '';
+import { Configuration, AuthApi } from "";
+import type { AuthProfilePutRequest } from "";
 
 async function example() {
   console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
+  const config = new Configuration({
     // To configure API key authorization: BearerAuth
     apiKey: "YOUR API KEY",
   });
@@ -274,14 +261,13 @@ example().catch(console.error);
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **firstName** | `string` | First name | [Optional] [Defaults to `undefined`] |
-| **lastName** | `string` | Last name | [Optional] [Defaults to `undefined`] |
-| **phone** | `string` | Phone number | [Optional] [Defaults to `undefined`] |
-| **bio** | `string` | Biography | [Optional] [Defaults to `undefined`] |
-| **avatar** | `Blob` | Profile picture (max 5MB, jpeg/png/gif/webp) | [Optional] [Defaults to `undefined`] |
+| Name          | Type     | Description                                  | Notes                                |
+| ------------- | -------- | -------------------------------------------- | ------------------------------------ |
+| **firstName** | `string` | First name                                   | [Optional] [Defaults to `undefined`] |
+| **lastName**  | `string` | Last name                                    | [Optional] [Defaults to `undefined`] |
+| **phone**     | `string` | Phone number                                 | [Optional] [Defaults to `undefined`] |
+| **bio**       | `string` | Biography                                    | [Optional] [Defaults to `undefined`] |
+| **avatar**    | `Blob`   | Profile picture (max 5MB, jpeg/png/gif/webp) | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -296,17 +282,16 @@ example().catch(console.error);
 - **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
-
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-| **400** | Bad Request |  -  |
-| **401** | Unauthorized |  -  |
-| **500** | Internal Server Error |  -  |
+
+| Status code | Description           | Response headers |
+| ----------- | --------------------- | ---------------- |
+| **200**     | OK                    | -                |
+| **400**     | Bad Request           | -                |
+| **401**     | Unauthorized          | -                |
+| **500**     | Internal Server Error | -                |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
 
 ## authRegisterPost
 
@@ -348,10 +333,9 @@ example().catch(console.error);
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **request** | [DomainRegister](DomainRegister.md) | Registration data | |
+| Name        | Type                                | Description       | Notes |
+| ----------- | ----------------------------------- | ----------------- | ----- |
+| **request** | [DomainRegister](DomainRegister.md) | Registration data |       |
 
 ### Return type
 
@@ -366,13 +350,12 @@ No authorization required
 - **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
-
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **201** | Created |  -  |
-| **400** | Bad Request |  -  |
-| **500** | Internal Server Error |  -  |
+
+| Status code | Description           | Response headers |
+| ----------- | --------------------- | ---------------- |
+| **201**     | Created               | -                |
+| **400**     | Bad Request           | -                |
+| **500**     | Internal Server Error | -                |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-

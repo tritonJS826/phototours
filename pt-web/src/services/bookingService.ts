@@ -28,7 +28,9 @@ export async function createBooking(data: BookingRequest): Promise<void> {
         msg = j?.error ?? j?.message ?? msg;
       } else {
         const t = await res.text();
-        if (t) msg = t;
+        if (t) {
+          msg = t;
+        }
       }
     } catch {
       void 0;

@@ -19,9 +19,11 @@ type Props = {
 };
 
 const STARS_FRACTIONAL_DIGITS = 1;
+const DEFAULT_TRAVELERS_AMOUNT = 1;
+const ONE_TRAVELER_AMOUNT = 1;
 
 export function TourCardExtended({tour, className, travelers}: Props) {
-  const travelerCount = travelers || 1;
+  const travelerCount = travelers || DEFAULT_TRAVELERS_AMOUNT;
   const basePrice = Number(tour.price ?? 0);
 
   const totalPrice = basePrice; //  * TravelerCount
@@ -205,7 +207,7 @@ export function TourCardExtended({tour, className, travelers}: Props) {
               {travelerCount}
               {" "}
               traveler
-              {travelerCount > 1 ? "s" : ""}
+              {travelerCount > ONE_TRAVELER_AMOUNT ? "s" : ""}
             </div>
           </div>
 

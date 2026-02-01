@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import calendar from "/images/calendar.svg";
 import group from "/images/group.svg";
 import location from "/images/phone.svg";
-import sun from "/images/sun-solid.svg";
+// Import sun from "/images/sun-solid.svg";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
 import {PATHS} from "src/routes/routes";
 // Import {CalendarDays, MapPin, Users, X} from "lucide-react";
@@ -11,6 +11,8 @@ import {PATHS} from "src/routes/routes";
 import styles from "src/components/TourSearchForm/TourSearchForm.module.scss";
 
 // Type Panel = "location" | "dates" | "trav" | null;
+
+const TRAVELERS_ONE_AMOUNT = 1;
 
 export function TourSearchForm() {
   const navigate = useNavigate();
@@ -181,7 +183,7 @@ export function TourSearchForm() {
               className={styles.currentValue}
               onClick={() => {}}
             >
-              {searchData.travelers === 1
+              {searchData.travelers === TRAVELERS_ONE_AMOUNT
                 ? "1 traveler"
                 : `${searchData.travelers} travelers`}
             </span>
@@ -238,7 +240,7 @@ export function TourSearchForm() {
             if (searchData.season) {
               params.set("season", searchData.season);
             }
-            if (searchData.travelers > 1) {
+            if (searchData.travelers > TRAVELERS_ONE_AMOUNT) {
               params.set("travelers", searchData.travelers.toString());
             }
 

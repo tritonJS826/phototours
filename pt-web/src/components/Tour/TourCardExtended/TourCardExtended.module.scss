@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  background: #F8F8F8;
+  background: #f8f8f8;
   border-radius: 20px;
   padding: 20px;
   width: 100%;
@@ -39,8 +39,7 @@
   padding: 6px 12px;
   font-size: 12px;
   color: #fff;
-  background: #FFFFFF4A;
-  backdrop-filter: blur(4.6px);
+  background: #ffffff4a;
   border: 1px solid rgb(255 255 255 / 50%);
   border-radius: 9px;
   backdrop-filter: blur(2px);
@@ -75,7 +74,7 @@
   margin: 10px 10px 10px 0;
   border-radius: 12px;
   font-size: 12px;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
 }
 
 .starsList {
@@ -95,13 +94,13 @@
   flex-grow: 1;
 }
 
-
 .title {
   font-size: 22px;
   font-weight: 700;
   line-height: 1.35;
   color: #111;
   margin: 0;
+
   // place reservation
   height: 60px;
 }
@@ -126,7 +125,7 @@
 .startEndInfoDescription {
   display: flex;
   flex-direction: column;
-  color: #2F53DE;
+  color: #2f53de;
   max-width: 90px;
 }
 
@@ -139,7 +138,6 @@
   font-weight: 200;
   font-size: 12px;
 }
-
 
 .description {
   margin-top: 10px;
@@ -176,7 +174,7 @@
 
 .primaryButton {
   color: #fff;
-  background-color: #2F53DE;
+  background-color: #2f53de;
   padding: 14px 8px;
   width: 150px;
   border-radius: 10px;
@@ -184,7 +182,7 @@
   font-size: 16px;
 
   &:hover {
-    background-color: #0E2EAD;
+    background-color: #0e2ead;
     color: #fff;
   }
 

@@ -1,6 +1,6 @@
-import {Meta, StoryObj} from "@storybook/react";
-import {Button} from "src/component/button/Button";
-import {Dropdown} from "src/component/dropdown/Dropdown";
+import {Meta, StoryObj} from "@storybook/react-vite";
+import {Button} from "src/components/Button/Button";
+import {Dropdown} from "src/components/Dropdown/Dropdown";
 
 const meta: Meta<typeof Dropdown> = {
   title: "Dropdown",
