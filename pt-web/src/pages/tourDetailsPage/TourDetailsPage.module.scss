@@ -517,14 +517,20 @@
 
 .buyTravelBlock {
   position: sticky;
-  top: 90px;
-  right: 20px;
+  top: 20px;
+  bottom: 20px;
+  // right: 20px;
   border: 1px solid #2f53de;
   background-color: white;
   border-radius: 20px;
   width: 100%;
   overflow: hidden;
-  max-height: 82vh;
+  // ensure the block can fill available vertical space and allow inner scrolling
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: calc(100vh - 100px);
+  min-height: 0;
   overflow-y: auto;
 
   // Custom scrollbar styling
