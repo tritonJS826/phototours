@@ -72,8 +72,7 @@ export function TourCardExtended({tour, className, travelers}: Props) {
             />
             <span>
               {tour.spotsLeft}
-              {" "}
-              spots left
+&nbsp;spots&nbsp;left
             </span>
           </div>
 
@@ -86,8 +85,7 @@ export function TourCardExtended({tour, className, travelers}: Props) {
             />
             <span>
               {tour.reviewAmount}
-              {" "}
-              comments
+&nbsp;reviews
             </span>
           </div>
 

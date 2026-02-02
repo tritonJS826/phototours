@@ -773,8 +773,7 @@ export function TourDetailsPage() {
                 />
                 <span>
                   {tour.spotsLeft}
-                  {" "}
-                  spots left
+&nbsp;spots&nbsp;left
                 </span>
               </div>
 
@@ -787,8 +786,7 @@ export function TourDetailsPage() {
                 />
                 <span>
                   {tour.reviewAmount}
-                  {" "}
-                  reviews
+&nbsp;reviews
                 </span>
               </div>
             </div>
