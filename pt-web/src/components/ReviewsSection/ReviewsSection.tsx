@@ -32,7 +32,7 @@ const commentsDataStub: ReviewCardProps[] = [
     title: "Emily Carter, UK",
     subtitle: "The Most Magical Spring Experience",
     // eslint-disable-next-line max-len
-    description: "Spring Tuscany was a dream come true. Soft pastel sunrise light, rolling green hills, and the smell of fresh blossoms made me feel like I stepped into a painting. Every location was perfectly chosen. This tour filled me with so much inspiration.",
+    description: "It all began with a desire to visit Sicily. Islands, volcanoes, a catamaran… Back then, we didn't yet know that this would be the beginning of a much bigger story. Then came Iceland — magical, with its waterfalls, icy rivers, and the Blue Lagoon. After that, Provence — lavender fields, small towns, and sunrises that take your breath away. The Czech Republic, Moravia, Hungary — each country left its own unique mark. And ahead await the Balkans and Scotland.",
     flagImg: germanyFlag,
   },
   {
@@ -73,6 +73,60 @@ const commentsDataStub: ReviewCardProps[] = [
   },
   {
     id: "6",
+    userImg: userStub3,
+    title: "David Chen, Australia",
+    subtitle: "Professional Guidance, Stunning Results",
+    // eslint-disable-next-line max-len
+    description: "As an intermediate photographer, I learned more in these few days than in months of self-study. The instructor's expertise and the carefully chosen locations resulted in portfolio-worthy images.",
+    flagImg: germanyFlag,
+  },
+  {
+    id: "7",
+    userImg: userStub1,
+    title: "Marcus Weber, France",
+    subtitle: "Beyond Photography Expectations",
+    // eslint-disable-next-line max-len
+    description: "The attention to detail in planning was exceptional. From sunrise locations to hidden gems, every spot offered unique photographic opportunities. The guidance on composition and lighting elevated my skills significantly.",
+    flagImg: germanyFlag,
+  },
+  {
+    id: "8",
+    userImg: userStub2,
+    title: "Sophie Laurent, Canada",
+    subtitle: "A Journey Through Light and Color",
+    // eslint-disable-next-line max-len
+    description: "Tuscany's landscapes are breathtaking, but experiencing them through a photographer's lens was transformative. The small group size allowed for personalized attention and incredible access to viewpoints.",
+    flagImg: unitedKingdomFlag,
+  },
+  {
+    id: "9",
+    userImg: userStub3,
+    title: "David Chen, Australia",
+    subtitle: "Professional Guidance, Stunning Results",
+    // eslint-disable-next-line max-len
+    description: "As an intermediate photographer, I learned more in these few days than in months of self-study. The instructor's expertise and the carefully chosen locations resulted in portfolio-worthy images.",
+    flagImg: germanyFlag,
+  },
+  {
+    id: "10",
+    userImg: userStub1,
+    title: "Marcus Weber, France",
+    subtitle: "Beyond Photography Expectations",
+    // eslint-disable-next-line max-len
+    description: "The attention to detail in planning was exceptional. From sunrise locations to hidden gems, every spot offered unique photographic opportunities. The guidance on composition and lighting elevated my skills significantly.",
+    flagImg: germanyFlag,
+  },
+  {
+    id: "11",
+    userImg: userStub2,
+    title: "Sophie Laurent, Canada",
+    subtitle: "A Journey Through Light and Color",
+    // eslint-disable-next-line max-len
+    description: "Tuscany's landscapes are breathtaking, but experiencing them through a photographer's lens was transformative. The small group size allowed for personalized attention and incredible access to viewpoints.",
+    flagImg: unitedKingdomFlag,
+  },
+  {
+    id: "12",
     userImg: userStub3,
     title: "David Chen, Australia",
     subtitle: "Professional Guidance, Stunning Results",

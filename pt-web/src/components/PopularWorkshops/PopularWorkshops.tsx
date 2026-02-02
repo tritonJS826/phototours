@@ -1,14 +1,8 @@
 import {useRef} from "react";
 import {Link} from "react-router-dom";
-import blogAndPhotography1 from "/images/blogAndPhotography1.avif";
-import blogAndPhotography2 from "/images/blogAndPhotography2.avif";
-import blogAndPhotography3 from "/images/blogAndPhotography3.avif";
-// Import First from "src/components/PopularWorkshops/assets/1.avif";
-// import Second from "src/components/PopularWorkshops/assets/2.avif";
-// import Third from "src/components/PopularWorkshops/assets/3.avif";
-// import Fourth from "src/components/PopularWorkshops/assets/4.avif";
 import carouselImageArrow from "/images/carouselImageArrow.svg";
 import clsx from "clsx";
+import {PATHS} from "src/routes/routes";
 import type {Swiper as SwiperType} from "swiper";
 import {A11y, Autoplay, Keyboard, Pagination} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
@@ -22,43 +16,49 @@ type PopularWorkshopsProps = {
 const slides = [
   {
     id: "1",
-    image: blogAndPhotography1,
-    link: "#",
+    image:
+          "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8844obr_146x110_topaz_PRINT_yvqehs.avif",
+    link: PATHS.getTour("tuscany-spring-photo-tour"),
     title: "Chianti Hills & Vineyards",
     subtitle: "Capture golden vineyards, rustic hilltop villages, and soft evening light across the legendary rolling hills of Chianti.",
   },
   {
     id: "2",
-    image: blogAndPhotography2,
-    link: "#",
+    image:
+           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429914/morocco___A8B2183_90x63-topaz-denoiseraw-sharpen-color_copy_d6h1s7.avif",
+    link: PATHS.getTour("morocco-photo-tour"),
     title: "Your Guide to Iconic Tuscany Shots",
     subtitle: "Explore essential techniques and hidden locations for creating cinematic images in Tuscany.",
   },
   {
     id: "3",
-    image: blogAndPhotography3,
-    link: "#",
+    image:
+           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430346/venice__FUJI4667_Dehancer_ovjl23.avif",
+    link: PATHS.getTour("venice-carnival-photo-tour"),
     title: "Inspiration for Your Next Photo Adventure",
     subtitle: "A curated blend of tips, stories, and expert advice for photographing Tuscany at its best.",
   },
   {
     id: "4",
-    image: blogAndPhotography1,
-    link: "#",
+    image:
+           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif",
+    link: PATHS.getTour("new-zealand-photo-tour"),
     title: "Chianti Hills & Vineyards",
     subtitle: "Capture golden vineyards, rustic hilltop villages, and soft evening light across the legendary rolling hills of Chianti.",
   },
   {
     id: "5",
-    image: blogAndPhotography2,
-    link: "#",
+    image:
+           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif",
+    link: PATHS.getTour("japan-cherry-blossom-tour"),
     title: "Your Guide to Iconic Tuscany Shots",
     subtitle: "Explore essential techniques and hidden locations for creating cinematic images in Tuscany.",
   },
   {
     id: "6",
-    image: blogAndPhotography3,
-    link: "#",
+    image:
+           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429871/cyclades__IMG_8808-Pano_copy_jkdqjj.avif",
+    link: PATHS.getTour("cyclades-sailing-tour"),
     title: "Inspiration for Your Next Photo Adventure",
     subtitle: "A curated blend of tips, stories, and expert advice for photographing Tuscany at its best.",
   },
