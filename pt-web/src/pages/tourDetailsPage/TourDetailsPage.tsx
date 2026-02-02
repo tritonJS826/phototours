@@ -1038,12 +1038,13 @@ export function TourDetailsPage() {
       </section>
 
       <div className={styles.whyLove}>
-        <div className={styles.whyLovePlaceholder} />
-        <h2 className={styles.whyLoveTitle}>
-          Why travelers love this
-        </h2>
+        <div className={styles.whyLoveContent}>
+          <h2 className={styles.whyLoveTitle}>
+            Why travelers love this
+          </h2>
 
-        <ReviewsSection />
+          <ReviewsSection />
+        </div>
       </div>
 
       <div className={styles.faq}>

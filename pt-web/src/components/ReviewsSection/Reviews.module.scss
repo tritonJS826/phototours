@@ -1,86 +1,50 @@
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+.wrap {
+  background-color: #f0f0f0;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  padding: 20px;
 }
 
-.titles {
-  display: grid;
-  gap: 6px;
+.reviewsSlider {
+  position: relative;
+  max-width: 1530px;
+  margin: auto;
 }
 
-.title {
-  font-size: 38px;
-  font-weight: 800;
-  line-height: 1.25;
-  margin-bottom: 15px;
-}
-
-.subtitle {
-  font-size: 20px;
-  color: #666;
-}
-
-.link {
-  font-size: 14px;
-  color: #2b7a2b;
-  text-decoration: none;
-  border: 1px dashed #2b7a2b;
-  padding: 8px 12px;
-  border-radius: 999px;
-  transition:
-    opacity 0.2s ease,
-    transform 0.06s ease;
-}
-
-.link:hover {
-  opacity: 0.85;
-}
-
-.link:active {
-  transform: translateY(1px);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.state {
+.arrow {
+  position: absolute;
+  top: 43%;
+  z-index: 3;
+  background: transparent;
+  border: none;
   display: grid;
   place-items: center;
-  gap: 12px;
-  padding: 24px 0;
-}
-
-.retry {
-  border: 1px solid #ccc;
-  background: #f5f5f5;
-  border-radius: 8px;
-  padding: 8px 12px;
   cursor: pointer;
-}
+  opacity: 0.8;
 
-@media (width <= 1200px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
+  span {
+    font-size: 24px;
+    line-height: 1;
   }
 }
 
-@media (width <= 640px) {
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
+.arrowLeft {
+  left: 0;
+  transform: rotate(180deg) translateX(15px);
+}
 
-  .grid {
-    grid-template-columns: 1fr;
-  }
+.arrowRight {
+  right: 0;
+  transform: translateX(15px);
+}
 
-  .title {
-    font-size: 26px;
+.reviewSlide {
+  // Cropping for rightmost image - this will handle the cropping effect
+  .reviewCard {
+    img {
+      object-fit: cover;
+      object-position: center;
+    }
   }
 }

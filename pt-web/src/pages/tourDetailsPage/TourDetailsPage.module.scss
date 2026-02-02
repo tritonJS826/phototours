@@ -313,6 +313,7 @@
   font-size: 17px;
   line-height: 1.35;
   font-weight: 400;
+  color: #38383f;
 }
 
 .tourSummaryTitle {
@@ -430,34 +431,41 @@
 }
 
 .whyLove {
-  position: relative;
-  width: 100%;
-  z-index: 0;
-  max-width: 1530px;
-  margin: auto;
-
-  // 30px - top&bottom margin compensation
+  background-color: #f0f0f0;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
   padding: 30px 20px;
 }
 
-// gray overlay
-.whyLovePlaceholder {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+.whyLoveContent {
+  max-width: 1530px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
 
-  // it was hard to center this placeholder, so let's just make it super wide
-  // width: 100vw;
-  height: 100%;
-  background: #f0f0f0;
-  z-index: -1;
+// gray overlay
+// .whyLovePlaceholder {
+//   position: absolute;
+//   top: 0;
+//   left: 50%;
+//   transform: translateX(-50%);
+
+//   // it was hard to center this placeholder, so let's just make it super wide
+//   // width: 100vw;
+//   height: 100%;
+//   background: #f0f0f0;
+//   z-index: -1;
+// }
+.whyLovePlaceholder {
 }
 
 .whyLoveTitle {
   font-weight: 600;
   font-size: 25px;
   margin-bottom: 20px;
+  align-self: flex-start;
 }
 
 .toursSlider {
@@ -478,6 +486,7 @@
   display: grid;
   place-items: center;
   cursor: pointer;
+  opacity: 0.8;
 
   span {
     font-size: 24px;
