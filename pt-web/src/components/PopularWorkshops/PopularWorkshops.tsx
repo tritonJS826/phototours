@@ -10,7 +10,7 @@ import blogAndPhotography3 from "/images/blogAndPhotography3.avif";
 import carouselImageArrow from "/images/carouselImageArrow.svg";
 import clsx from "clsx";
 import type {Swiper as SwiperType} from "swiper";
-import {A11y, Keyboard} from "swiper/modules";
+import {A11y, Autoplay, Keyboard, Pagination} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import styles from "src/components/PopularWorkshops/PopularWorkshops.module.scss";
@@ -100,7 +100,7 @@ export function PopularWorkshops({className = ""}: PopularWorkshopsProps) {
       </button>
 
       <Swiper
-        modules={[Keyboard, A11y]}
+        modules={[Keyboard, A11y, Autoplay, Pagination]}
         onSwiper={(s) => (swiperRef.current = s)}
         loop={slides.length > LARGE_DESKTOP_SLIDES_PER_VIEW}
         loopAdditionalSlides={6}
@@ -109,6 +109,16 @@ export function PopularWorkshops({className = ""}: PopularWorkshopsProps) {
         speed={500}
         allowTouchMove
         keyboard={{enabled: true}}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+          el: "#pagination-container",
+          bulletClass: styles.paginationBullet,
+          bulletActiveClass: styles.paginationBulletActive,
+        }}
         className={styles.swiper}
         breakpoints={{
           [MOBILE_BREAKPOINT]: {

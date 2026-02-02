@@ -90,15 +90,15 @@ export function ToursPage() {
       return allTours;
     }
 
-    const DEFAULT_TRAVELERS = 1;
+    // Const DEFAULT_TRAVELERS = 1;
 
     return allTours.filter(tour => {
       // Price filtering with travelers multiplier
       if (!tour.price) {
         return true;
       } // Include tours without price
-      const travelerCount = filters.travelers || DEFAULT_TRAVELERS;
-      const totalPrice = tour.price * travelerCount;
+      // const travelerCount = filters.travelers || DEFAULT_TRAVELERS;
+      const totalPrice = tour.price; // * TravelerCount;
       const priceMatch = totalPrice >= priceRange.min && totalPrice <= priceRange.max;
 
       // Season filtering

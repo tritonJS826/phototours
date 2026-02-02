@@ -19,7 +19,7 @@ interface ToursSectionProps {
 
 const MOBILE_BREAKPOINT = 640;
 const TABLET_BREAKPOINT = 920;
-// Const DESKTOP_BREAKPOINT = 1224;
+// Const DESKTOP_BREAKPOINT = 1224;s
 
 const MOBILE_SLIDES_PER_VIEW = 1;
 const TABLET_SLIDES_PER_VIEW = 2;
@@ -143,7 +143,7 @@ export function ReviewsSection(props: ToursSectionProps) {
             },
           }}
         >
-          {commentsDataStub.concat(commentsDataStub).map((review) => (
+          {commentsDataStub.map((review) => (
             <SwiperSlide
               key={review.id}
               className={styles.reviewSlide}

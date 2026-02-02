@@ -143,8 +143,16 @@
   margin-top: 10px;
   margin-bottom: 20px;
   display: -webkit-box;
+
+  // font-family: 'DM Sans', sans-serif;
   font-size: 17px;
   -webkit-line-clamp: 4;
+  line-height: 135%;
+  font-weight: 400;
+  font-style: normal;
+
+  // leading-trim: none;
+  letter-spacing: 0%;
   line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;

@@ -26,6 +26,7 @@ import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
 import {ToursSection} from "src/components/ToursSection/ToursSection";
 import {PATHS} from "src/routes/routes";
 import "react-international-phone/style.css";
+import popularWorkshopsStyles from "src/components/PopularWorkshops/PopularWorkshops.module.scss";
 import styles from "src/pages/homePage/HomePage.module.scss";
 
 interface FeedbackBlockProps {
@@ -447,6 +448,10 @@ export function HomePage() {
             <PopularWorkshops />
           </div>
         </div>
+        <div
+          className={popularWorkshopsStyles.paginationContainer}
+          id="pagination-container"
+        />
       </div>
 
       <div className={styles.blockWrapper}>
