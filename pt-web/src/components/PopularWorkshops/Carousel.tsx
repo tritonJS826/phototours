@@ -37,6 +37,7 @@ export function Carousel(props: CarouselProps) {
               <img
                 src={slide.image}
                 alt={slide.title}
+                loading="lazy"
               />
               <h3>
                 {slide.title}

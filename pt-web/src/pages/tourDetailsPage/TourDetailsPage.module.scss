@@ -55,7 +55,7 @@
   bottom: 0;
   margin: 3%;
 
-  @media (width <= 600px) {
+  @media (width <= 900px) {
     display: none;
   }
 }
@@ -70,7 +70,7 @@
   background: transparent;
   border-radius: 12px;
 
-  @media (width <= 600px) {
+  @media (width <= 900px) {
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -17,6 +17,7 @@ export function ReviewCard(props: ReviewCardProps) {
         src={props.userImg}
         alt="user image"
         className={styles.image}
+        loading="lazy"
       />
       <div className={styles.titleBlock}>
         <h3 className={styles.title}>

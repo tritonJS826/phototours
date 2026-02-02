@@ -203,6 +203,7 @@ export function ReviewsSection(props: ToursSectionProps) {
               className={styles.reviewSlide}
             >
               <ReviewCard
+                key={review.id}
                 description={review.description}
                 id={review.id}
                 subtitle={review.subtitle}

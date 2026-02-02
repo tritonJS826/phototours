@@ -25,6 +25,7 @@ import {TourCardExtended} from "src/components/Tour/TourCardExtended/TourCardExt
 import {FeedbackBlock} from "src/pages/homePage/HomePage";
 import {NotFoundPage} from "src/pages/notFound/notFoundPage";
 import {BuyTravelModal} from "src/pages/tourDetailsPage/BuyTravelModal";
+import {PATHS} from "src/routes/routes";
 import {
   type BookingRequest,
   createBooking,
@@ -129,7 +130,7 @@ const slidesForExtraTours = [
   {
     id: "1",
     image: blogAndPhotography1,
-    link: "#",
+    link: PATHS.getTour("tuscany-spring-photo-tour"),
     title: "Chianti Hills & Vineyards",
     subtitle:
       "Capture golden vineyards, rustic hilltop villages, and soft evening light across the legendary rolling hills of Chianti.",
@@ -137,7 +138,7 @@ const slidesForExtraTours = [
   {
     id: "2",
     image: blogAndPhotography2,
-    link: "#",
+    link: PATHS.getTour("morocco-photo-tour"),
     title: "Your Guide to Iconic Tuscany Shots",
 
     subtitle:
@@ -147,7 +148,7 @@ const slidesForExtraTours = [
   {
     id: "3",
     image: blogAndPhotography3,
-    link: "#",
+    link: PATHS.getTour("venice-carnival-photo-tour"),
     title: "Inspiration for Your Next Photo Adventure",
     subtitle:
       "A curated blend of tips, stories, and expert advice for photographing Tuscany at its best.",
@@ -155,7 +156,7 @@ const slidesForExtraTours = [
   {
     id: "4",
     image: blogAndPhotography1,
-    link: "#",
+    link: PATHS.getTour("new-zealand-photo-tour"),
     title: "Chianti Hills & Vineyards",
     subtitle:
       "Capture golden vineyards, rustic hilltop villages, and soft evening light across the legendary rolling hills of Chianti.",
@@ -163,7 +164,7 @@ const slidesForExtraTours = [
   {
     id: "5",
     image: blogAndPhotography2,
-    link: "#",
+    link: PATHS.getTour("japan-cherry-blossom-tour"),
     title: "Your Guide to Iconic Tuscany Shots",
 
     subtitle:
@@ -173,7 +174,7 @@ const slidesForExtraTours = [
   {
     id: "6",
     image: blogAndPhotography3,
-    link: "#",
+    link: PATHS.getTour("cyclades-sailing-tour"),
     title: "Inspiration for Your Next Photo Adventure",
     subtitle:
       "A curated blend of tips, stories, and expert advice for photographing Tuscany at its best.",
@@ -606,6 +607,7 @@ export function TourDetailsPage() {
                     className={styles.galleryImage}
                     src={photo}
                     alt={`${tour.title} - image ${i + INCREMENT_1}`}
+                    loading="lazy"
                   />
                 </SwiperSlide>
               ))}
@@ -710,6 +712,7 @@ export function TourDetailsPage() {
                       <img
                         src={photo}
                         alt={`gallery image ${i + INCREMENT_1}`}
+                        loading="lazy"
                       />
                     </button>
                   </SwiperSlide>
@@ -748,13 +751,14 @@ export function TourDetailsPage() {
               >
                 {photos.map((photo, i) => (
                   <SwiperSlide
-                    key={i}
+                    key={photo}
                     className={styles.swiperSlide}
                   >
                     <img
                       className={styles.fullscreenImage}
                       src={photo}
                       alt={`gallery image ${i + INCREMENT_1}`}
+                      loading="lazy"
                     />
                   </SwiperSlide>
                 ))}
@@ -1127,13 +1131,12 @@ export function TourDetailsPage() {
             },
           }}
         >
-          {slidesForExtraTours.concat(slidesForExtraTours).map((s, i) => (
+          {slidesForExtraTours.map((s) => (
             <SwiperSlide
-              key={i}
+              key={s.id}
               className={styles.slide}
             >
               <TourCardExtended
-                key={s.id}
                 tour={tour}
                 className={styles.tourCard}
               />
