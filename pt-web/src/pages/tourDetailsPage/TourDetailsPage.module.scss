@@ -169,8 +169,8 @@
 }
 
 .gallerySlide {
-  width: 90px;
-  height: 84px;
+  // height: 78px;
+  aspect-ratio: 16/9;
 }
 
 .gallerySlideButton {
@@ -253,7 +253,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 20px;
-  margin: 20px;
+  margin: 20px 0;
 }
 
 .tagIcon {
