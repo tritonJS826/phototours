@@ -1076,6 +1076,10 @@ export function TourDetailsPage() {
         />
       </div>
 
+      <h2 className={styles.similarToursTitle}>
+        Similar tours
+      </h2>
+
       <div className={styles.toursSlider}>
         <button
           type="button"
