@@ -1026,13 +1026,28 @@ export function TourDetailsPage() {
         >
           {buyTravelContent}
         </BuyTravelModal>
-
-        <button
-          className={styles.floatingBookButton}
-          onClick={() => setIsBuyTravelModalOpen(true)}
-        >
-          Book now
-        </button>
+        <div className={styles.mobileFixedFooter}>
+          <div className={styles.buyTravelFooterLeft}>
+            <span className={styles.buyTravelFooterLeftTop}>
+              Total
+              {" "}
+              <b className={styles.boldPrice}>
+                {tour?.price ?? "2000"}
+              </b>
+              {" "}
+              USD
+            </span>
+            <span className={styles.buyTravelFooterLeftBottom}>
+              Price for 1 traveler
+            </span>
+          </div>
+          <Button
+            className={styles.bookButton}
+            onClick={() => setIsBuyTravelModalOpen(true)}
+          >
+            Book now
+          </Button>
+        </div>
       </section>
 
       <div className={styles.whyLove}>
