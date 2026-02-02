@@ -1,11 +1,6 @@
 import {Link} from "react-router-dom";
-import destination1 from "/images/popularDestination1.avif";
-import destination2 from "/images/popularDestination2.avif";
-import destination3 from "/images/popularDestination3.avif";
-import destination4 from "/images/popularDestination4.avif";
-import destination5 from "/images/popularDestination5.avif";
-import destination6 from "/images/popularDestination6.avif";
 import clsx from "clsx";
+import {PATHS} from "src/routes/routes";
 import styles from "src/components/PopularDestinations/PoplarDestinations.module.scss";
 
 type PopularWorkshopsProps = {
@@ -13,12 +8,42 @@ type PopularWorkshopsProps = {
 };
 
 const slides = [
-  {image: destination1, title: "Chianti Hills & Vineyards", href: "/"},
-  {image: destination2, title: "Val d’Orcia Sunrise Spots", href: "/"},
-  {image: destination3, title: "Tuscan Medieval Towns", href: "/"},
-  {image: destination4, title: "Rolling Hills Panorama", href: "/"},
-  {image: destination5, title: "Cypress Roads & Scenic Drives", href: "/"},
-  {image: destination6, title: "Sunset Tuscany Views", href: "/"},
+  {
+    image:
+    "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8844obr_146x110_topaz_PRINT_yvqehs.avif",
+    title: "Chianti Hills & Vineyards",
+    href: PATHS.getTour("tuscany-spring-photo-tour"),
+  },
+  {
+    image:
+     "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429914/morocco___A8B2183_90x63-topaz-denoiseraw-sharpen-color_copy_d6h1s7.avif",
+    title: "Val d’Orcia Sunrise Spots",
+    href: PATHS.getTour("morocco-photo-tour"),
+  },
+  {
+    image:
+     "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430346/venice__FUJI4667_Dehancer_ovjl23.avif",
+    title: "Tuscan Medieval Towns",
+    href: PATHS.getTour("venice-carnival-photo-tour"),
+  },
+  {
+    image:
+     "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif",
+    title: "Rolling Hills Panorama",
+    href: PATHS.getTour("new-zealand-photo-tour"),
+  },
+  {
+    image:
+     "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif",
+    title: "Cypress Roads & Scenic Drives",
+    href: PATHS.getTour("japan-cherry-blossom-tour"),
+  },
+  {
+    image:
+     "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429871/cyclades__IMG_8808-Pano_copy_jkdqjj.avif",
+    title: "Sunset Tuscany Views",
+    href: PATHS.getTour("cyclades-sailing-tour"),
+  },
 ];
 
 function renderPopularDestination(params: {image: string; title: string; href: string}) {
@@ -28,11 +53,11 @@ function renderPopularDestination(params: {image: string; title: string; href: s
       className={styles.popularDestinationCard}
       key={params.image}
     >
-      <div className={styles.imageWrapper}>
-        <img
-          src={params.image}
-          alt="card link"
-        />
+      <div
+        className={styles.imageWrapper}
+        style={{backgroundImage: `url(${params.image})`}}
+        aria-label={params.title}
+      >
         <span className={styles.overlayText}>
           {params.title}
         </span>

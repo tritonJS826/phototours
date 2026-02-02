@@ -8,6 +8,7 @@ import starYellow from "/images/star-yellow.png";
 import timer from "/images/timer.svg";
 import clsx from "clsx";
 import {Button} from "src/components/Button/Button";
+import {PATHS} from "src/routes/routes";
 import type {TourView} from "src/types/tour";
 import {renderMultilineDouble} from "src/utils/textUtils";
 import styles from "src/components/Tour/TourCardExtended/TourCardExtended.module.scss";
@@ -29,12 +30,12 @@ export function TourCardExtended({tour, className, travelers}: Props) {
   const totalPrice = basePrice; //  * TravelerCount
   const price = totalPrice.toLocaleString();
   const cover = tour.coverUrl || tour.photos?.[0] || "";
-  const tourUrl = `/tours/${tour.slug ?? tour.id}`;
+  // Const tourUrl = `/tours/${tour.slug}`;
 
   return (
     <article className={clsx(styles.card, className)}>
       <Link
-        to={tourUrl}
+        to={PATHS.getTour(tour.slug)}
         className={styles.link}
         aria-label={tour.title}
       >
@@ -211,7 +212,7 @@ export function TourCardExtended({tour, className, travelers}: Props) {
 
           <Button
             as={Link}
-            to={tourUrl}
+            to={PATHS.getTour(tour.slug)}
             className={styles.primaryButton}
             size="md"
             variant="primary"

@@ -19,7 +19,7 @@ type TourDTO = {
   reviewAmount: number;
   start: number;
   id: number;
-  slug?: string;
+  slug: string;
   title: string;
   description: string;
   price?: number | string;

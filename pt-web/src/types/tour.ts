@@ -29,7 +29,7 @@ export interface TourView {
   id: number;
   starAmount: number;
   reviewAmount: number;
-  slug?: string;
+  slug: string;
   title: string;
   description: string;
   price?: number;

@@ -4,6 +4,7 @@ export const PATHS = {
 
   TOURS: "/tours",
   TOUR_DETAILS: "/tours/:slug",
+  getTour: (slug: string) => `/tours/${slug}`,
 
   CART: "/cart",
   CONTACT: "/contact",
