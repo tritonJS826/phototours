@@ -20,6 +20,7 @@ import {Accordion, accordionTypes} from "src/components/Accordion/Accordion";
 import {Button} from "src/components/Button/Button";
 import {Container} from "src/components/Container/Container";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
+import {NumberInput} from "src/components/NumberInput/NumberInput";
 import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
 import {TourCardExtended} from "src/components/Tour/TourCardExtended/TourCardExtended";
 import {FeedbackBlock} from "src/pages/homePage/HomePage";
@@ -214,8 +215,8 @@ export function TourDetailsPage() {
     email: "",
     phone: "",
     date: "",
-    travelers: "1 traveler",
-    rooms: "0 rooms",
+    travelers: 1,
+    rooms: 0,
   });
 
   const handleBookNow = async () => {
@@ -242,8 +243,8 @@ export function TourDetailsPage() {
         email: formData.email,
         phone: phone,
         travelDate: formData.date,
-        travelers: parseInt(formData.travelers.split(" ")[0] ?? "1") || DEFAULT_TRAVELERS_AMOUNT,
-        rooms: parseInt(formData.rooms.split(" ")[0] ?? "0") || 0,
+        travelers: formData.travelers,
+        rooms: formData.rooms,
       };
       await createBooking(request);
     } catch (err) {
@@ -332,48 +333,13 @@ export function TourDetailsPage() {
           })) ?? []
         }
       />
-      <p className={styles.buyTravelLabel}>
-        Travelers
-      </p>
-      <Dropdown
-        trigger={
-          <div className={styles.locationInputBlock}>
-            <img
-              className={styles.locationInputImg}
-              src={people}
-              alt="Photo Tour Logo"
-            />
-            <input
-              type="text"
-              value={formData.travelers}
-              placeholder="1 traveler"
-              className={clsx(styles.locationInput, styles.readOnlyInput)}
-              autoComplete="off"
-              readOnly
-            />
-          </div>
-        }
-        // eslint-disable-next-line no-magic-numbers
-        dropdownMenuItems={[1, 2, 3, 4, 5].map((n) => ({
-          dropdownSubMenuItems: [
-            {
-              id: `traveler-${n}`,
-              isPreventDefaultUsed: false,
-              value: (
-                <div className={styles.dropdownItem}>
-                  {n}
-                  {" "}
-                  traveler
-                  {n > ONE_TRAVELER_AMOUNT ? "s" : ""}
-                </div>
-              ),
-              isVisible: true,
-              onClick: () => {
-                setFormData(prev => ({...prev, travelers: `${n} traveler${n > ONE_TRAVELER_AMOUNT ? "s" : ""}`}));
-              },
-            },
-          ],
-        }))}
+      <NumberInput
+        value={formData.travelers}
+        onChange={(value) => setFormData(prev => ({...prev, travelers: value}))}
+        min={1}
+        max={10}
+        description="Travelers"
+        icon={people}
       />
 
       <div className={styles.personalizeHr}>
@@ -405,45 +371,13 @@ export function TourDetailsPage() {
         </span>
       </div>
 
-      <Dropdown
-        trigger={
-          <div className={styles.locationInputBlock}>
-            <img
-              className={styles.locationInputImg}
-              src={people}
-              alt="Rooms Icon"
-            />
-            <input
-              type="text"
-              value={formData.rooms}
-              placeholder="0 rooms"
-              className={clsx(styles.locationInput, styles.readOnlyInput)}
-              autoComplete="off"
-              readOnly
-            />
-          </div>
-        }
-        // eslint-disable-next-line no-magic-numbers
-        dropdownMenuItems={[0, 1, 2, 3].map((n) => ({
-          dropdownSubMenuItems: [
-            {
-              id: `room-${n}`,
-              isPreventDefaultUsed: false,
-              value: (
-                <div className={styles.dropdownItem}>
-                  {n}
-                  {" "}
-                  room
-                  {n > ONE_TRAVELER_AMOUNT ? "s" : ""}
-                </div>
-              ),
-              isVisible: true,
-              onClick: () => {
-                setFormData(prev => ({...prev, rooms: `${n} room${n > ONE_TRAVELER_AMOUNT ? "s" : ""}`}));
-              },
-            },
-          ],
-        }))}
+      <NumberInput
+        value={formData.rooms}
+        onChange={(value) => setFormData(prev => ({...prev, rooms: value}))}
+        min={0}
+        max={10}
+        description="Number of rooms"
+        icon={people}
       />
 
       <div className={styles.buyTravelFooter}>
