@@ -519,12 +519,14 @@
   position: sticky;
   top: 20px;
   bottom: 20px;
+
   // right: 20px;
   border: 1px solid #2f53de;
   background-color: white;
   border-radius: 20px;
   width: 100%;
   overflow: hidden;
+
   // ensure the block can fill available vertical space and allow inner scrolling
   display: flex;
   flex-direction: column;
@@ -710,6 +712,7 @@
   @media (width <= 1020px) {
     display: flex;
     justify-content: space-between;
+
     // align-items: center;
   }
 
@@ -720,28 +723,26 @@
   }
 
   .buyTravelFooterLeft {
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
   }
-
 }
 
 .bookButton {
   width: 150px;
-  padding: 14px 32px;
   border-radius: 10px;
   color: white;
   background-color: #2f53de;
-    border: none;
-    padding: 14px 32px;
-    box-shadow: 0 4px 12px rgb(0 0 0 / 20%);
-    cursor: pointer;
-    &:hover {
-      background-color: #0e2ead;
-    }
-}
+  border: none;
+  padding: 14px 32px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 20%);
+  cursor: pointer;
 
+  &:hover {
+    background-color: #0e2ead;
+  }
+}
 
 // }
 

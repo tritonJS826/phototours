@@ -1,0 +1,71 @@
+.numberInputBlock {
+  border: 1px solid #2f53de;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-radius: 10px;
+  margin: 8px 24px 16px;
+}
+
+.numberInputLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.numberInputImg {
+  padding-right: 6px;
+}
+
+.numberInputDescription {
+  font-size: 14px;
+  color: #38383f;
+}
+
+.numberInputRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.numberInputButton {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #2f53de;
+  background-color: white;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  color: #2f53de;
+  transition: all 0.2s ease;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: #2f53de;
+    color: white;
+  }
+}
+
+.numberInputCount {
+  font-size: 16px;
+  font-weight: 500;
+  color: #2f53de;
+  min-width: 20px;
+  text-align: center;
+}
+
+@media (width <= 1020px) {
+  .numberInputBlock {
+    margin: 8px 16px 16px;
+    padding: 12px 16px;
+  }
+}

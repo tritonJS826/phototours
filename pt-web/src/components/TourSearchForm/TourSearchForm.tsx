@@ -5,6 +5,7 @@ import group from "/images/group.svg";
 import location from "/images/phone.svg";
 // Import sun from "/images/sun-solid.svg";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
+import {NumberInput} from "src/components/NumberInput/NumberInput";
 import {PATHS} from "src/routes/routes";
 // Import {CalendarDays, MapPin, Users, X} from "lucide-react";
 // Import {Button} from "src/components/Button/Button";
@@ -195,31 +196,21 @@ export function TourSearchForm() {
           {
             dropdownSubMenuItems: [
               {
-                id: "traveler-1",
+                id: "travelers-number-input",
                 isPreventDefaultUsed: true,
-                value: <div className={styles.tourLocationItem}>
-                  1 traveler
-                </div>,
+                value: (
+                  <div className={styles.tourTravelersInput}>
+                    <NumberInput
+                      value={searchData.travelers}
+                      onChange={(newValue) => setSearchData(prev => ({...prev, travelers: newValue}))}
+                      min={1}
+                      max={99}
+                      className={styles.dropdownNumberInput}
+                    />
+                  </div>
+                ),
                 isVisible: true,
-                onClick: () => setSearchData(prev => ({...prev, travelers: 1})),
-              },
-              {
-                id: "traveler-2",
-                isPreventDefaultUsed: true,
-                value: <div className={styles.tourLocationItem}>
-                  2 travelers
-                </div>,
-                isVisible: true,
-                onClick: () => setSearchData(prev => ({...prev, travelers: 2})),
-              },
-              {
-                id: "traveler-3",
-                isPreventDefaultUsed: true,
-                value: <div className={styles.tourLocationItem}>
-                  3 travelers
-                </div>,
-                isVisible: true,
-                onClick: () => setSearchData(prev => ({...prev, travelers: 3})),
+                onClick: () => {},
               },
             ],
           },

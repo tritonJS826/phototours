@@ -20,6 +20,7 @@ import {Accordion, accordionTypes} from "src/components/Accordion/Accordion";
 import {Button} from "src/components/Button/Button";
 import {Container} from "src/components/Container/Container";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
+import {NumberInput} from "src/components/NumberInput/NumberInput";
 import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
 import {TourCardExtended} from "src/components/Tour/TourCardExtended/TourCardExtended";
 import {FeedbackBlock} from "src/pages/homePage/HomePage";
@@ -255,6 +256,7 @@ export function TourDetailsPage() {
   };
 
   const ONE_TRAVELER_AMOUNT = 1;
+  const MAX_TRAVELERS_AMOUNT = 99;
 
   const buyTravelContent = (
     <>
@@ -334,45 +336,13 @@ export function TourDetailsPage() {
       <p className={styles.buyTravelLabel}>
         Travelers
       </p>
-      <Dropdown
-        trigger={
-          <div className={styles.locationInputBlock}>
-            <img
-              className={styles.locationInputImg}
-              src={people}
-              alt="Photo Tour Logo"
-            />
-            <input
-              type="text"
-              value={formData.travelers}
-              placeholder="1 traveler"
-              className={clsx(styles.locationInput, styles.readOnlyInput)}
-              autoComplete="off"
-              readOnly
-            />
-          </div>
-        }
-        // eslint-disable-next-line no-magic-numbers
-        dropdownMenuItems={[1, 2, 3, 4, 5].map((n) => ({
-          dropdownSubMenuItems: [
-            {
-              id: `traveler-${n}`,
-              isPreventDefaultUsed: false,
-              value: (
-                <div className={styles.dropdownItem}>
-                  {n}
-                  {" "}
-                  traveler
-                  {n > ONE_TRAVELER_AMOUNT ? "s" : ""}
-                </div>
-              ),
-              isVisible: true,
-              onClick: () => {
-                setFormData(prev => ({...prev, travelers: `${n} traveler${n > ONE_TRAVELER_AMOUNT ? "s" : ""}`}));
-              },
-            },
-          ],
-        }))}
+      <NumberInput
+        value={parseInt(formData.travelers.split(" ")[0] ?? "1") || ONE_TRAVELER_AMOUNT}
+        onChange={(newValue) => setFormData(prev => ({...prev, travelers: `${newValue} traveler${newValue > ONE_TRAVELER_AMOUNT ? "s" : ""}`}))}
+        min={ONE_TRAVELER_AMOUNT}
+        max={MAX_TRAVELERS_AMOUNT}
+        description="Number of travelers"
+        icon={people}
       />
 
       <div className={styles.personalizeHr}>
@@ -404,45 +374,13 @@ export function TourDetailsPage() {
         </span>
       </div>
 
-      <Dropdown
-        trigger={
-          <div className={styles.locationInputBlock}>
-            <img
-              className={styles.locationInputImg}
-              src={people}
-              alt="Rooms Icon"
-            />
-            <input
-              type="text"
-              value={formData.rooms}
-              placeholder="0 rooms"
-              className={clsx(styles.locationInput, styles.readOnlyInput)}
-              autoComplete="off"
-              readOnly
-            />
-          </div>
-        }
-        // eslint-disable-next-line no-magic-numbers
-        dropdownMenuItems={[0, 1, 2, 3].map((n) => ({
-          dropdownSubMenuItems: [
-            {
-              id: `room-${n}`,
-              isPreventDefaultUsed: false,
-              value: (
-                <div className={styles.dropdownItem}>
-                  {n}
-                  {" "}
-                  room
-                  {n > ONE_TRAVELER_AMOUNT ? "s" : ""}
-                </div>
-              ),
-              isVisible: true,
-              onClick: () => {
-                setFormData(prev => ({...prev, rooms: `${n} room${n > ONE_TRAVELER_AMOUNT ? "s" : ""}`}));
-              },
-            },
-          ],
-        }))}
+      <NumberInput
+        value={parseInt(formData.rooms.split(" ")[0] ?? "0") || 0}
+        onChange={(newValue) => setFormData(prev => ({...prev, rooms: `${newValue} room${newValue > ONE_TRAVELER_AMOUNT ? "s" : ""}`}))}
+        min={0}
+        max={10}
+        description="Number of rooms"
+        icon={people}
       />
 
       <div className={styles.buyTravelFooter}>

@@ -7,6 +7,7 @@ import sun from "/images/sun-solid.svg";
 import {Filter} from "lucide-react";
 import {AsyncSection} from "src/components/AsyncSection/AsyncSection";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
+import {NumberInput} from "src/components/NumberInput/NumberInput";
 import {TourCardExtended} from "src/components/Tour/TourCardExtended/TourCardExtended";
 import {useTours} from "src/hooks/useTours";
 import {FilterModal} from "src/pages/toursPage/FilterModal";
@@ -313,66 +314,14 @@ export function ToursPage() {
           Travelers amount
         </label>
       </div>
-      <Dropdown
-        trigger={(
-          <div className={styles.locationInputBlock}>
-            <img
-              className={styles.locationInputImg}
-              src={people}
-              alt="Photo Tour Logo"
-            />
-            <input
-              type="text"
-              id="filters-travelers"
-              placeholder="Select number of travelers"
-              className={styles.locationInput}
-              autoComplete="off"
-              value={filters.travelers ? `${filters.travelers} traveler${filters.travelers > ONE_TRAVELER ? "s" : ""}` : ""}
-              readOnly
-            />
-          </div>
-
-        )}
-
-        dropdownMenuItems={[
-          {
-            dropdownSubMenuItems: [
-              {
-                id: "traveler-1",
-                isPreventDefaultUsed: false,
-                value: <div className={styles.dropdownItem}>
-                  1 traveler
-                </div>,
-                isVisible: true,
-                onClick: () => {
-                  setFilters(prev => ({...prev, travelers: 1}));
-                },
-              },
-              {
-                id: "traveler-2",
-                isPreventDefaultUsed: false,
-                value: <div className={styles.dropdownItem}>
-                  2 travelers
-                </div>,
-                isVisible: true,
-                onClick: () => {
-                  setFilters(prev => ({...prev, travelers: 2}));
-                },
-              },
-              {
-                id: "traveler-3",
-                isPreventDefaultUsed: false,
-                value: <div className={styles.dropdownItem}>
-                  3 travelers
-                </div>,
-                isVisible: true,
-                onClick: () => {
-                  setFilters(prev => ({...prev, travelers: 3}));
-                },
-              },
-            ],
-          },
-        ]}
+      <NumberInput
+        className={styles.travelersAmountInput}
+        value={filters.travelers || ONE_TRAVELER}
+        onChange={(newValue) => setFilters(prev => ({...prev, travelers: newValue}))}
+        min={1}
+        max={99}
+        description="Travelers"
+        icon={people}
       />
 
       <div className={styles.priceLabelBlock}>
