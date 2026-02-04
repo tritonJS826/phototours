@@ -26,6 +26,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  max-height: 250px;
   border-radius: 25px;
 }
 
@@ -69,11 +70,12 @@
 }
 
 .title {
-  font-size: 28px;
+  font-size: 25px;
   font-weight: 700;
   line-height: 1.35;
   color: #111;
   margin: 0;
+  letter-spacing: -3%;
 
   // max-height: 114px;
 }
@@ -81,11 +83,13 @@
 .description {
   height: 81px;
   display: -webkit-box;
-  font-size: 20px;
+  font-size: 17px;
   -webkit-line-clamp: 3;
   line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  font-weight: 300;
+  line-height: 1.35;
 }
 
 .priceBlock {
@@ -95,6 +99,7 @@
 
 .buttonsBlock {
   display: flex;
+  width: 80%;
 }
 
 .primaryButton {
@@ -105,6 +110,9 @@
   border-radius: 10px;
   border: none;
   font-size: 16px;
+  width: 100%;
+  font-weight: 700;
+  letter-spacing: -3%;
 
   &:hover {
     background-color: #0e2ead;
@@ -124,6 +132,9 @@
   border-radius: 10px;
   border: 1px solid #000;
   font-size: 16px;
+  width: 100%;
+  font-weight: 700;
+  letter-spacing: -3%;
 
   &:hover {
     background-color: #212121;

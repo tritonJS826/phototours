@@ -21,8 +21,8 @@ export function HeroTextSection(props: HeroSectionProps) {
         </b>
       </h1>
       <p className={styles.subtitle}>
-        Join our award-winning professional photographers and tour leaders on exclusive photo expeditions
-        across the globe. Capture the raw beauty of volcanoes, glaciers, and ancient forests with expert on-site mentoring
+        Join our award-winning professional photographers and tour leaders on exclusive
+        photo expeditions. Capture the raw beauty of the world with expert mentoring
       </p>
       <TourSearchForm />
     </section>
