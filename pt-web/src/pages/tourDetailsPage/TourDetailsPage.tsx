@@ -235,8 +235,6 @@ export function TourDetailsPage() {
         return;
       }
 
-      const DEFAULT_TRAVELERS_AMOUNT = 1;
-
       const request: BookingRequest = {
         tourId: tour.id,
         name: name,
@@ -255,8 +253,6 @@ export function TourDetailsPage() {
       setBookingLoading(false);
     }
   };
-
-  const ONE_TRAVELER_AMOUNT = 1;
 
   const buyTravelContent = (
     <>
