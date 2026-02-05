@@ -20,20 +20,35 @@ DECLARE
     guide5_id UUID := '22222222-2222-2222-2222-222222222205';
 
     -- Tour IDs
-    tour1_id UUID := '33333333-3333-3333-3333-333333333301';
-    tour2_id UUID := '33333333-3333-3333-3333-333333333302';
-    tour3_id UUID := '33333333-3333-3333-3333-333333333303';
 
+    -- tuscany-spring-photo-tour
+    tour1_id UUID := '33333333-3333-3333-3333-333333333301';
+    -- morocco-photo-tour
+    tour2_id UUID := '33333333-3333-3333-3333-333333333302';
+    -- venice carnival  
+    tour3_id UUID := '33333333-3333-3333-3333-333333333303';
+    -- new-zealand-photo-tour
+    tour4_id UUID := '33333333-3333-3333-3333-333333333304';
+    -- cyclades-sailing-tour
+    tour5_id UUID := '33333333-3333-3333-3333-333333333305';
+    -- cinque-terre-umbria-tour
     tour6_id UUID := '33333333-3333-3333-3333-333333333306';
+    -- provence-photography-tour
     tour7_id UUID := '33333333-3333-3333-3333-333333333307';
+    -- sicily-aeolian-tour
     tour8_id UUID := '33333333-3333-3333-3333-333333333308';
+    -- czechia-autumn-tour
     tour9_id UUID := '33333333-3333-3333-3333-333333333309';
+    -- scotland-photography-tour
     tour10_id UUID := '33333333-3333-3333-3333-333333333310';
+    -- tuscany-autumn-tour
     tour11_id UUID := '33333333-3333-3333-3333-333333333311';
+    -- japan-autumn-tour
     tour12_id UUID := '33333333-3333-3333-3333-333333333312';
+    -- iceland
     tour13_id UUID := '33333333-3333-3333-3333-333333333313';
+    -- japan-spring
     tour14_id UUID := '33333333-3333-3333-3333-333333333314';
-    tour15_id UUID := '33333333-3333-3333-3333-333333333315';
 
     -- Tour Date IDs
     tour_date1_id UUID := '44444444-4444-4444-4444-444444444401';
@@ -45,7 +60,6 @@ DECLARE
     tour_date7_id UUID := '44444444-4444-4444-4444-444444444407';
     tour_date8_id UUID := '44444444-4444-4444-4444-444444444408';
     tour_date9_id UUID := '44444444-4444-4444-4444-444444444409';
-
     tour_date16_id UUID := '44444444-4444-4444-4444-444444444416';
     tour_date17_id UUID := '44444444-4444-4444-4444-444444444417';
     tour_date18_id UUID := '44444444-4444-4444-4444-444444444418';
@@ -356,7 +370,7 @@ VALUES
 
 
 
-   (tour6_id, 'new-zealand-photo-tour', 'New Zealand',
+   (tour4_id, 'new-zealand-photo-tour', 'New Zealand',
       'Discover the stunning landscapes of New Zealand from fjords to mountains. Capture the dramatic beauty of Milford Sound, the Southern Alps, and pristine lakes. This 10-day photography adventure features expert guidance, golden hour sessions, and diverse landscapes from glaciers to beaches. Small group ensures personalized instruction.',
      'EASY', 3850.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Departure flight to New Zealand with overnight connection."},{"day":2,"plan":"QUEENSTOWN ARRIVAL","description":"Arrival in Queenstown, orientation and sunset photography at Lake Wakatipu."},{"day":3,"plan":"MILFORD SOUND","description":"Full day excursion to Milford Sound for sunrise and landscape photography."},{"day":4,"plan":"GLENORCHY","description":"Photography in the Wakatipu Basin and Glenorchy area."},{"day":5,"plan":"SOUTHERN ALPS","description":"Scenic flight and photography in Mount Aspiring National Park."},{"day":6,"plan":"WANAKA","description":"Lake Wanaka and That Wanaka Tree photography session."},{"day":7,"plan":"AORAKI/MOUNT COOK","description":"Travel to Mount Cook for glacier and mountain photography."},{"day":8,"plan":"TEKAPO","description":"Lake Tekapo and Church of the Good Shepherd sunrise."},{"day":9,"plan":"QUEENSTOWN","description":"Final photography sessions and return to Queenstown."},{"day":10,"plan":"DEPARTURE","description":"Transfer to airport for return flight via Rome."}]}',
@@ -364,15 +378,7 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
     ARRAY['March','April','May','September','October','November'], ARRAY['English'], 16, 'Oceania', 12, 3, 'About Our New Zealand Photo Expedition'),
 
-   (tour7_id, 'japan-cherry-blossom-tour', 'Japan Cherry Blossom Photography',
-     'Experience the magical sakura season across Japan''s most iconic locations. From Tokyo''s urban gardens to Kyoto''s ancient temples, capture the ethereal beauty of cherry blossoms. This photography workshop includes expert guidance, optimal timing for peak bloom, and cultural immersion. Limited small group ensures intimate shooting experiences.',
-     'EASY', 4250.00,
-     '{"days":[{"day":1,"plan":"TOKYO ARRIVAL","description":"Arrival in Tokyo, orientation at Shinjuku Gyoen garden photography."},{"day":2,"plan":"MT. FUJI","description":"Day trip to Lake Kawaguchi for Mt Fuji and cherry blossom views."},{"day":3,"plan":"KYOTO TEMPLES","description":"Travel to Kyoto, evening photography at Kiyomizu-dera temple."},{"day":4,"plan":"PHILOSOPHER''S PATH","description":"Early morning sunrise along Philosopher''s Path canal with cherry blossoms."},{"day":5,"plan":"ARASHIYAMA","description":"Bamboo forest and Tenryu-ji temple garden photography."},{"day":6,"plan":"NARA","description":"Day trip to Nara for deer park and Todai-ji temple with sakura."},{"day":7,"plan":"OSAKA CASTLE","description":"Osaka Castle and surrounding cherry blossom park photography."},{"day":8,"plan":"HIROSHIMA","description":"Travel to Hiroshima, Peace Memorial Park photography."},{"day":9,"plan":"MIYAJIMA","description":"Itsukushima shrine and torii gate photography at high tide."},{"day":10,"plan":"DEPARTURE","description":"Final shooting session and departure from Osaka."}]}',
-     guide2_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 10, 'Tokyo, Narita Airport (NRT)', 'Osaka, Kansai Airport (KIX)',
-    ARRAY['March','April'], ARRAY['English'], 14, 'Japan', 9, 2, 'Experience the magical sakura season across Japan'),
-
-   (tour8_id, 'cyclades-sailing-tour', 'Cyclades Sailing Photography Tour',
+   (tour5_id, 'cyclades-sailing-tour', 'Cyclades Sailing Photography Tour',
      'Set sail through the stunning Cyclades islands for a 7-day photography adventure. Capture the iconic white-washed villages of Santorini, ancient ruins of Delos, and hidden beaches accessible only by boat. Experience authentic Greek island life, golden hour sailing, and night photography under Mediterranean skies. Small group with expert photo guidance.',
      'EASY', 3150.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ATHENS","description":"Welcome meeting in Athens. Transfer to Marina Alimos, board our sailing yacht. Evening safety briefing and sunset photography along the Athenian coast."},{"day":2,"plan":"SANTORINI SAIL","description":"Morning sail to Santorini. Afternoon photography of Oia village and blue-domed churches. Sunset session at Imerovigli caldera."},{"day":3,"plan":"SANTORINI EXPLORE","description":"Early morning at Fira. Visit Red Beach and Black Beach photography. Evening sail towards Ios under golden light."},{"day":4,"plan":"IOS TO NAXOS","description":"Morning exploration of Ios. Afternoon sail to Naxos. Photography at Portara and ancient Apollo temple ruins at sunset."},{"day":5,"plan":"DELOS TO MYKONOS","description":"Morning sail to sacred Delos island for ancient ruins photography. Afternoon arrival in Mykonos. Little Venice and windmill photography at sunset."},{"day":6,"plan":"MYKONOS HIDDEN GEMS","description":"Early morning at empty beaches. Explore traditional villages. Final night photography session under starlight. Farewell dinner onboard."},{"day":7,"plan":"RETURN ATHENS","description":"Morning sail back to Athens. Final photo review session. Transfer to Athens airport for departure."}]}',
@@ -380,7 +386,7 @@ VALUES
       'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429871/cyclades__IMG_8808-Pano_copy_jkdqjj.avif', 7, 'Athens, Greece', 'Athens, Greece',
       ARRAY['May','June','September','October'], ARRAY['English'], 16, 'Mediterranean', 11, 6, 'Set sail through the stunning Cyclades islands'),
 
-   (tour9_id, 'cinque-terre-umbria-tour', 'Cinque-Terre & Umbria Photography',
+   (tour6_id, 'cinque-terre-umbria-tour', 'Cinque-Terre & Umbria Photography',
      'Explore the colorful cliffside villages of Cinque-Terre and the medieval hill towns of Umbria. This 10-day journey captures the essence of coastal Italy and its rural heartland. Photograph dramatic seascapes, vineyards, ancient architecture, and authentic Italian life. Expert guidance in small group settings.',
      'EASY', 3650.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. FLORENCE","description":"Meeting at Florence Airport. Orientation and evening photography in historic Florence."},{"day":2,"plan":"CINQUE-TERRE START","description":"Travel to Cinque-Terre. Photography in Monterosso al Mare."},{"day":3,"plan":"VERNazzA & CORNIGLIA","description":"Morning session in Vernazza. Afternoon in Corniglia village."},{"day":4,"plan":"MANAROLA & RIOMAGGIORE","description":"Sunrise in Manarola. Afternoon exploration of Riomaggiore."},{"day":5,"plan":"PORTOFINO & SANTA MARGHERITA","description":"Day trip to Portofino and Santa Margherita Ligure."},{"day":6,"plan":"UMBRIA ARRIVAL","description":"Travel to Umbria. Photography in Perugia historic center."},{"day":7,"plan":"ASSISI & GUBBIO","description":"Morning in Assisi. Afternoon in medieval Gubbio."},{"day":8,"plan":"ORVIETO & CIVITA","description":"Photography in Orvieto and hill town of Civita di Bagnoregio."},{"day":9,"plan":"TODI & SPOLETO","description":"Final shooting sessions in Todi and Spoleto."},{"day":10,"plan":"DEPARTURE FLORENCE","description":"Return to Florence. Final gallery review and departure."}]}',
@@ -388,7 +394,7 @@ VALUES
      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429687/cinque-terre-umbria__OSKIN_4052_GenFill_copy_ytmtp1.avif', 10, 'Florence, Peretola Airport (FLR)', 'Florence, Peretola Airport (FLR)',
       ARRAY['April','May','September','October'], ARRAY['English'], 14, 'Europe', 14, 7, 'Discover the enchanting landscapes of Provence'),
 
-   (tour10_id, 'provence-photography-tour', 'Provence Lavender & Villages',
+   (tour7_id, 'provence-photography-tour', 'Provence Lavender & Villages',
      'Discover the enchanting landscapes of Provence during peak lavender season. Capture endless purple fields, medieval villages, and golden light. This 10-day photography workshop includes intimate knowledge of hidden locations, optimal timing for lavender bloom, and authentic Provençal experiences. Small group with personalized instruction.',
      'EASY', 3400.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Transfer to Provence via scenic drive."},{"day":2,"plan":"AVIGNON ORIENTATION","description":"Explore Avignon historic center. Evening photography at Palais des Papes."},{"day":3,"plan":"GORD & ROUSSILLON","description":"Morning in hilltop village of Gordes. Afternoon in ochre trails of Roussillon."},{"day":4,"plan":"LAVENDER FIELDS","description":"Full day photography in Valensole plateau lavender fields at sunrise and sunset."},{"day":5,"plan":"SENANQUE ABBEY","description":"Early morning at Cistercian abbey with lavender. Afternoon in local markets."},{"day":6,"plan":"LES BAUX & ARLES","description":"Morning at Les Baux de Provence. Afternoon in Arles roman monuments."},{"day":7,"plan":"CAMARGUE WETLANDS","description":"Day trip to Camargue for wildlife and traditional gardian photography."},{"day":8,"plan":"VERDON GORGE","description":"Scenic photography at Verdon Gorge and Lake of Sainte-Croix."},{"day":9,"plan":"CASSIS CALANQUES","description":"Day trip to Cassis for calanques coastal photography."},{"day":10,"plan":"DEPARTURE","description":"Final gallery review. Return transfer to Rome FCO."}]}',
@@ -396,7 +402,7 @@ VALUES
      '/images/10.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
       ARRAY['June','July','August','September'], ARRAY['English'], 16, 'Europe', 16, 10, 'About Our Provence Photo Expedition'),
 
-   (tour11_id, 'sicily-aeolian-tour', 'Sicily & Aeolian Islands Photography',
+   (tour8_id, 'sicily-aeolian-tour', 'Sicily & Aeolian Islands Photography',
      'Experience the dramatic beauty of Sicily and the volcanic Aeolian Islands. Capture Mount Etna''s power, ancient Greek ruins, and Stromboli''s nightly eruptions. This 10-day adventure combines Sicilian culture, volcanic landscapes, and Mediterranean seascapes with expert photo guidance in intimate small groups.',
      'MEDIUM', 3800.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Transfer to Sicily via scenic drive."},{"day":2,"plan":"TAORMINA ORIENTATION","description":"Explore Taormina with Greek theatre views. Evening golden hour photography."},{"day":3,"plan":"MOUNT ETNA","description":"Full day Mount Etna photography. Craters, lava flows, and volcanic landscapes."},{"day":4,"plan":"SIRACUSA","description":"Morning in Ortigia island. Afternoon Greek theatre and ancient architecture."},{"day":5,"plan":"AEOLIAN ISLANDS START","description": "Ferry to Lipari. Island exploration and coastal photography."},{"day":6,"plan":"STROMBOLI VOLCANO","description":"Day trip to Stromboli. Hike and evening eruption photography."},{"day":7,"plan":"VULCANO & PANAREA","description":"Morning in Vulcano with mud baths and hot springs. Afternoon in Panarea."},{"day":8,"plan":"PALERMO ARRIVAL","description":"Return to mainland. Palermo historic center photography."},{"day":9,"plan":"MONREALE & CEFALÙ","description":"Morning at Monreale cathedral. Afternoon in Cefalù coastal town."},{"day":10,"plan":"DEPARTURE","description":"Final gallery review. Return transfer to Rome FCO."}]}',
@@ -404,7 +410,7 @@ VALUES
      '/images/11.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
       ARRAY['May','June','September','October'], ARRAY['English'], 16, 'Mediterranean', 16, 12, 'About Our Sicily & Aeolian Islands Photo Adventure'),
 
- (tour12_id, 'czechia-autumn-tour', 'Czechia Autumn Photography',
+ (tour9_id, 'czechia-autumn-tour', 'Czechia Autumn Photography',
      'Capture the golden beauty of Czechia during peak autumn season. From Prague''s Gothic splendor to Bohemian castles and medieval towns, this 10-day journey showcases Central Europe''s finest fall colors. Expert guidance in small groups ensures optimal timing for golden hour and autumn foliage photography.',
      'EASY', 2950.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Transfer flight to Prague."},{"day":2,"plan":"PRAGUE ORIENTATION","description":"Prague Castle and Charles Bridge sunrise photography. Old Town Square exploration."},{"day":3,"plan":"PRAGUE DEEP DIVE","description":"Jewish Quarter and Lesser Town photography. Evening golden hour from Petřín Hill."},{"day":4,"plan":"KUTNÁ HORA","description":"Day trip to Kutná Hora. Sedlec Ossuary and St. Barbara''s Church."},{"day":5,"plan":"ČESKÝ KRUMLOV","description":"Travel to Český Krumlov. Castle and medieval town photography."},{"day":6,"plan":"SOUTH BOHEMIA","description":"Hluboká Castle and surrounding autumn landscapes. Village photography."},{"day":7,"plan":"KARLOVY VARY","description":"Travel to Karlovy Vary. Spa town architecture and autumn colors."},{"day":8,"plan":"BOHEMIAN SWITZERLAND","description":"Day trip to Bohemian Switzerland National Park for dramatic landscapes."},{"day":9,"plan":"PRAGUE FINAL","description":"Return to Prague. Final photography sessions and gallery review."},{"day":10,"plan":"DEPARTURE","description":"Transfer to Prague airport for return flight via Rome."}]}',
@@ -412,7 +418,7 @@ VALUES
       '/images/12.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
       ARRAY['September','October','November'], ARRAY['English'], 14, 'Europe', 14, 8, 'About Our Czechia Autumn Photo Expedition'),
 
- (tour13_id, 'scotland-photography-tour', 'Scotland Highlands & Islands',
+ (tour10_id, 'scotland-photography-tour', 'Scotland Highlands & Islands',
    'Journey through the mystical Scottish Highlands and dramatic coastline. Capture lochs, castles, and the raw beauty of the Isle of Skye. This 10-day photography adventure includes remote landscapes, historic sites, and authentic Highland culture. Expert guidance in small groups ensures intimate shooting experiences.',
      'EASY', 3200.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Transfer flight to Edinburgh."},{"day":2,"plan":"EDINBURGH ORIENTATION","description":"Edinburgh Castle and Royal Mile photography. Evening at Arthur''s Seat."},{"day":3,"plan":"STIRLING & TROSSACHS","description":"Stirling Castle photography. Drive through Trossachs National Park."},{"day":4,"plan":"GLENCOE","description":"Photography in Glencoe Valley. Buchaille Etive Mor and dramatic landscapes."},{"day":5,"plan":"ISLE OF SKYE ARRIVAL","description":"Travel to Isle of Skye. Sligachan and sunset at Neist Point."},{"day":6,"plan":"SKYE EXPLORATION","description":"Old Man of Storr, Kilt Rock, and Quiraing landscape photography."},{"day":7,"plan":"EILEAN DONAN","description":"Morning at Eilean Donan Castle. Drive through Wester Ross."},{"day":8,"plan":"INVERNESS & CAIRNGORMS","description":"Loch Ness photography. Cairngorms National Park exploration."},{"day":9,"plan":"ST ANDREWS","description":"Fishing villages and St Andrews Cathedral. Final coastal photography."},{"day":10,"plan":"DEPARTURE","description":"Return to Edinburgh. Transfer to airport for return flight via Rome."}]}',
@@ -420,7 +426,7 @@ VALUES
      '/images/13.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
       ARRAY['April','May','September','October'], ARRAY['English'], 16, 'Europe', 16, 10, 'About Our Scotland Highlands & Islands Photo Expedition'),
 
-(tour14_id, 'tuscany-autumn-tour', 'Tuscany Autumn Photography',
+(tour11_id, 'tuscany-autumn-tour', 'Tuscany Autumn Photography',
      'Experience Tuscany''s golden autumn season when vineyards turn gold and harvest creates authentic rural scenes. From rolling hills to medieval hill towns, capture the essence of Italian autumn culture. This 10-day workshop features wine harvest photography, truffle hunting, and golden light across iconic landscapes.',
      'EASY', 3500.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Transfer to Tuscany."},{"day":2,"plan":"VAL D''ORCIA AUTUMN","description":"Pienza and Podere Belvedere with autumn colors. Golden hour sessions."},{"day":3,"plan":"MONTALCINO WINERIES","description":"Wine harvest photography in Brunello vineyards. Cellar tours."},{"day":4,"plan":"SAN QUIRICO D''ORCIA","description":"Morning in San Quirico. Bagno Vignoni thermal village photography."},{"day":5,"plan":"MONTERIGGIONI & SIENA","description":"Monteriggioni walled town. Afternoon in Siena medieval center."},{"day":6,"plan":"CHIANTI REGION","description":"Full day Chanti valley photography. Vineyard harvest scenes."},{"day":7,"plan":"TRUFFLE HUNTING","description":"Morning truffle hunting experience with local hunters. Village markets."},{"day":8,"plan":"FLORENCE DAY TRIP","description":"Photography in Florence during autumn season. Ponte Vecchio at sunrise."},{"day":9,"plan":"CRETE SENESI","description":"Final landscape photography in Crete Senesi region."},{"day":10,"plan":"DEPARTURE","description":"Gallery review and transfer to Rome FCO for departure."}]}',
@@ -428,13 +434,32 @@ VALUES
       '/images/14.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
       ARRAY['September','October','November'], ARRAY['English'], 16, 'Europe', 11, 5, 'Journey through the mystical Scottish Highlands'),
 
-(tour15_id, 'japan-photography-tour', 'Japan Cultural Photography Journey',
+(tour12_id, 'japan-atumn-tour', 'Japan Cultural Photography Journey',
      'Immerse yourself in Japan''s rich cultural heritage and modern innovation. From ancient temples in Kyoto to neon-lit Tokyo streets, capture the fascinating contrast of traditional and contemporary Japan. This 10-day photography workshop includes expert guidance, cultural experiences, and optimal timing for seasonal beauty.',
      'EASY', 4100.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Transfer flight to Tokyo."},{"day":2,"plan":"TOKYO ORIENTATION","description":"Tokyo Tower and Shibuya Crossing photography. Evening at Senso-ji Temple."},{"day":3,"plan":"TOKYO CULTURE","description":"Tsukiji fish market morning. Meiji Shrine and Harajuku street photography."},{"day":4,"plan":"HAKONE & MT FUJI","description":"Day trip to Hakone. Lake Ashi with Mount Fuji views."},{"day":5,"plan":"KYOTO ARRIVAL","description":"Travel to Kyoto. Fushimi Inari shrine and bamboo forest photography."},{"day":6,"plan":"KYOTO TEMPLES","description":"Kinkaku-ji and Gion geisha district photography sessions."},{"day":7,"plan":"NARA DAY TRIP","description":"Todai-ji Temple and deer park photography. Traditional crafts."},{"day":8,"plan":"HIROSHIMA PEACE","description":"Travel to Hiroshima. Peace Memorial and Miyajima Island photography."},{"day":9,"plan":"OSAKA MODERN","description":"Osaka Castle and Dotonbori neon district photography."},{"day":10,"plan":"DEPARTURE","description":"Final gallery review. Transfer to Osaka airport for return flight via Rome."}]}',
      guide5_id,
       '/images/15.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
+      ARRAY['March','April','May','October','November'], ARRAY['English'], 14, 'Japan', 14, 3, 'Immerse yourself in Japan''s rich cultural heritage'),
+
+(tour13_id, 'iceland-tour', 'Japan Cultural Photography Journey',
+     '',
+     '', ,
+     '',
+     guide5_id,
+      '/images/15.avif', 10, '', '',
+      ARRAY['March','April','May','October','November'], ARRAY['English'], 14, 'Japan', 14, 3, 'Immerse yourself in Japan''s rich cultural heritage'),
+
+(tour14_id, 'japan-spring-tour', '',
+     '',
+     '', ,
+     '',
+     guide5_id,
+      '/images/15.avif', , '', '',
       ARRAY['March','April','May','October','November'], ARRAY['English'], 14, 'Japan', 14, 3, 'Immerse yourself in Japan''s rich cultural heritage');
+
+
+
 
 -- TOUR ACTIVITIES
 INSERT INTO tour_activities(id, tour_id, activity, created_at)
@@ -460,70 +485,77 @@ VALUES
   (tour_activity14_id, tour3_id, 'Editing & post-processing sessions', '2025-04-15'),
   (tour_activity15_id, tour3_id, 'Cultural experiences', '2025-04-15'),
   
-  -- Tour 6: New Zealand
-  (tour_activity16_id, tour6_id, 'Sunrise photo sessions', '2025-04-15'),
-  (tour_activity17_id, tour6_id, 'Sunset photo sessions', '2025-04-15'),
-  (tour_activity18_id, tour6_id, 'Photography workshops', '2025-04-15'),
-  (tour_activity19_id, tour6_id, 'Editing & post-processing sessions', '2025-04-15'),
-  (tour_activity20_id, tour6_id, 'Cultural experiences', '2025-04-15'),
+  -- Tour 4: New Zealand
+  (tour_activity16_id, tour4_id, 'Sunrise photo sessions', '2025-04-15'),
+  (tour_activity17_id, tour4_id, 'Sunset photo sessions', '2025-04-15'),
+  (tour_activity18_id, tour4_id, 'Photography workshops', '2025-04-15'),
+  (tour_activity19_id, tour4_id, 'Editing & post-processing sessions', '2025-04-15'),
+  (tour_activity20_id, tour4_id, 'Cultural experiences', '2025-04-15'),
   
-   -- Tour 8: Cyclades
-   (tour_activity21_id, tour8_id, 'Sunrise photo sessions', '2025-04-15'),
-   (tour_activity22_id, tour8_id, 'Sunset photo sessions', '2025-04-15'),
-   (tour_activity23_id, tour8_id, 'Photography workshops', '2025-04-15'),
-   (tour_activity24_id, tour8_id, 'Editing & post-processing sessions', '2025-04-15'),
-   (tour_activity25_id, tour8_id, 'The catamaran life experience', '2025-04-15'),
-   (tour_activity26_id, tour8_id, 'Sea-to-Land landscape photography', '2025-04-15'),
-   (tour_activity27_id, tour8_id, 'Cultural experiences', '2025-04-15'),
+   -- Tour 5: Cyclades
+   (tour_activity21_id, tour5_id, 'Sunrise photo sessions', '2025-04-15'),
+   (tour_activity22_id, tour5_id, 'Sunset photo sessions', '2025-04-15'),
+   (tour_activity23_id, tour5_id, 'Photography workshops', '2025-04-15'),
+   (tour_activity24_id, tour5_id, 'Editing & post-processing sessions', '2025-04-15'),
+   (tour_activity25_id, tour5_id, 'The catamaran life experience', '2025-04-15'),
+   (tour_activity26_id, tour5_id, 'Sea-to-Land landscape photography', '2025-04-15'),
+   (tour_activity27_id, tour5_id, 'Cultural experiences', '2025-04-15'),
    
-   -- Tour 9: Cinque-Terre & Umbria
-   (tour_activity28_id, tour9_id, 'Sunrise photo sessions', '2025-04-15'),
-   (tour_activity29_id, tour9_id, 'Sunset photo sessions', '2025-04-15'),
-   (tour_activity30_id, tour9_id, 'Photography workshops', '2025-04-15'),
-   (tour_activity31_id, tour9_id, 'Editing & post-processing sessions', '2025-04-15'),
-   (tour_activity32_id, tour9_id, 'Cultural experiences', '2025-04-15'),
+   -- Tour 6: Cinque-Terre & Umbria
+   (tour_activity28_id, tour6_id, 'Sunrise photo sessions', '2025-04-15'),
+   (tour_activity29_id, tour6_id, 'Sunset photo sessions', '2025-04-15'),
+   (tour_activity30_id, tour6_id, 'Photography workshops', '2025-04-15'),
+   (tour_activity31_id, tour6_id, 'Editing & post-processing sessions', '2025-04-15'),
+   (tour_activity32_id, tour6_id, 'Cultural experiences', '2025-04-15'),
    
-   -- Tour 10: Provence
-   (tour_activity33_id, tour10_id, 'Sunrise photo sessions', '2025-04-15'),
-   (tour_activity34_id, tour10_id, 'Sunset photo sessions', '2025-04-15'),
-   (tour_activity35_id, tour10_id, 'Photography workshops', '2025-04-15'),
-   (tour_activity36_id, tour10_id, 'Editing & post-processing sessions', '2025-04-15'),
-   (tour_activity37_id, tour10_id, 'Cultural experiences', '2025-04-15'),
+   -- Tour 7: Provence
+   (tour_activity33_id, tour7_id, 'Sunrise photo sessions', '2025-04-15'),
+   (tour_activity34_id, tour7_id, 'Sunset photo sessions', '2025-04-15'),
+   (tour_activity35_id, tour7_id, 'Photography workshops', '2025-04-15'),
+   (tour_activity36_id, tour7_id, 'Editing & post-processing sessions', '2025-04-15'),
+   (tour_activity37_id, tour7_id, 'Cultural experiences', '2025-04-15'),
    
-   -- Tour 11: Sicily and Aeolian Islands
-   (tour_activity38_id, tour11_id, 'Sunrise photo sessions', '2025-04-15'),
-   (tour_activity39_id, tour11_id, 'Sunset photo sessions', '2025-04-15'),
-   (tour_activity40_id, tour11_id, 'Photography workshops', '2025-04-15'),
-   (tour_activity41_id, tour11_id, 'Editing & post-processing sessions', '2025-04-15'),
-   (tour_activity42_id, tour11_id, 'Cultural experiences', '2025-04-15'),
+   -- Tour 8: Sicily and Aeolian Islands
+   (tour_activity38_id, tour8_id, 'Sunrise photo sessions', '2025-04-15'),
+   (tour_activity39_id, tour8_id, 'Sunset photo sessions', '2025-04-15'),
+   (tour_activity40_id, tour8_id, 'Photography workshops', '2025-04-15'),
+   (tour_activity41_id, tour8_id, 'Editing & post-processing sessions', '2025-04-15'),
+   (tour_activity42_id, tour8_id, 'Cultural experiences', '2025-04-15'),
    
-   -- Tour 12: Czechia (autumn)
-   (tour_activity43_id, tour12_id, 'Sunrise photo sessions', '2025-04-15'),
-   (tour_activity44_id, tour12_id, 'Sunset photo sessions', '2025-04-15'),
-   (tour_activity45_id, tour12_id, 'Photography workshops', '2025-04-15'),
-   (tour_activity46_id, tour12_id, 'Editing & post-processing sessions', '2025-04-15'),
-   (tour_activity47_id, tour12_id, 'Cultural experiences', '2025-04-15'),
+   -- Tour 9: Czechia (autumn)
+   (tour_activity43_id, tour9_id, 'Sunrise photo sessions', '2025-04-15'),
+   (tour_activity44_id, tour9_id, 'Sunset photo sessions', '2025-04-15'),
+   (tour_activity45_id, tour9_id, 'Photography workshops', '2025-04-15'),
+   (tour_activity46_id, tour9_id, 'Editing & post-processing sessions', '2025-04-15'),
+   (tour_activity47_id, tour9_id, 'Cultural experiences', '2025-04-15'),
    
-   -- Tour 13: Scotland
-   (tour_activity48_id, tour13_id, 'Sunrise photo sessions', '2025-04-15'),
-   (tour_activity49_id, tour13_id, 'Sunset photo sessions', '2025-04-15'),
-   (tour_activity50_id, tour13_id, 'Photography workshops', '2025-04-15'),
-   (tour_activity51_id, tour13_id, 'Editing & post-processing sessions', '2025-04-15'),
-   (tour_activity52_id, tour13_id, 'Cultural experiences', '2025-04-15'),
+   -- Tour 10: Scotland
+   (tour_activity48_id, tour10_id, 'Sunrise photo sessions', '2025-04-15'),
+   (tour_activity49_id, tour10_id, 'Sunset photo sessions', '2025-04-15'),
+   (tour_activity50_id, tour10_id, 'Photography workshops', '2025-04-15'),
+   (tour_activity51_id, tour10_id, 'Editing & post-processing sessions', '2025-04-15'),
+   (tour_activity52_id, tour10_id, 'Cultural experiences', '2025-04-15'),
    
-   -- Tour 14: Tuscany autumn
-   (tour_activity53_id, tour14_id, 'Sunrise photo sessions', '2025-04-15'),
-   (tour_activity54_id, tour14_id, 'Sunset photo sessions', '2025-04-15'),
-   (tour_activity55_id, tour14_id, 'Photography workshops', '2025-04-15'),
-   (tour_activity56_id, tour14_id, 'Editing & post-processing sessions', '2025-04-15'),
-   (tour_activity57_id, tour14_id, 'Cultural experiences', '2025-04-15'),
+   -- Tour 11: Tuscany autumn
+   (tour_activity53_id, tour11_id, 'Sunrise photo sessions', '2025-04-15'),
+   (tour_activity54_id, tour11_id, 'Sunset photo sessions', '2025-04-15'),
+   (tour_activity55_id, tour11_id, 'Photography workshops', '2025-04-15'),
+   (tour_activity56_id, tour11_id, 'Editing & post-processing sessions', '2025-04-15'),
+   (tour_activity57_id, tour11_id, 'Cultural experiences', '2025-04-15'),
    
-   -- Tour 15: Japan
-   (tour_activity58_id, tour15_id, 'Sunrise photo sessions', '2025-04-15'),
-   (tour_activity59_id, tour15_id, 'Sunset photo sessions', '2025-04-15'),
-   (tour_activity60_id, tour15_id, 'Photography workshops', '2025-04-15'),
-   (tour_activity61_id, tour15_id, 'Editing & post-processing sessions', '2025-04-15'),
-   (tour_activity62_id, tour15_id, 'Cultural experiences', '2025-04-15');
+   -- Tour 12: Japan autumn
+   (tour_activity58_id, tour12_id, 'Sunrise photo sessions', '2025-04-15'),
+   (tour_activity59_id, tour12_id, 'Sunset photo sessions', '2025-04-15'),
+   (tour_activity60_id, tour12_id, 'Photography workshops', '2025-04-15'),
+   (tour_activity61_id, tour12_id, 'Editing & post-processing sessions', '2025-04-15'),
+   (tour_activity62_id, tour12_id, 'Cultural experiences', '2025-04-15'),
+
+   -- Tour 13: Iceland
+   (tour_activity58_id, tour13_id, 'Replace me', '2025-04-15'),
+
+   -- Tour 14: japan-spring
+   (tour_activity58_id, tour13_id, 'Replace me', '2025-04-15');
+
 
  -- TOUR SUMMARY
 INSERT INTO tour_summary(id, tour_id, name, value, created_at)
@@ -552,77 +584,83 @@ VALUES
   (tour_summary17_id, tour3_id, 'Tour starts', 'Venice Marco Polo Airport (VCE)', '2025-04-15'),
   (tour_summary18_id, tour3_id, 'Ending place', 'Venice Marco Polo Airport (VCE)', '2025-04-15'),
   
-  -- Tour 6: New Zealand
-  (tour_summary19_id, tour6_id, 'Duration', '10 days', '2025-04-15'),
-  (tour_summary20_id, tour6_id, 'Group Size', '7 participants', '2025-04-15'),
-  (tour_summary21_id, tour6_id, 'Languages', 'English', '2025-04-15'),
-  (tour_summary22_id, tour6_id, 'Difficulty', 'Easy', '2025-04-15'),
-  (tour_summary23_id, tour6_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
-  (tour_summary24_id, tour6_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  -- Tour 4: New Zealand
+  (tour_summary19_id, tour4_id, 'Duration', '10 days', '2025-04-15'),
+  (tour_summary20_id, tour4_id, 'Group Size', '7 participants', '2025-04-15'),
+  (tour_summary21_id, tour4_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary22_id, tour4_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary23_id, tour4_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  (tour_summary24_id, tour4_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
   
-  -- Tour 8: Cyclades
-  (tour_summary25_id, tour8_id, 'Duration', '7 days', '2025-04-15'),
-  (tour_summary26_id, tour8_id, 'Group Size', '11 participants', '2025-04-15'),
-  (tour_summary27_id, tour8_id, 'Languages', 'English', '2025-04-15'),
-  (tour_summary28_id, tour8_id, 'Difficulty', 'Easy', '2025-04-15'),
-  (tour_summary29_id, tour8_id, 'Tour starts', 'Athens International Airport (ATH)', '2025-04-15'),
-  (tour_summary30_id, tour8_id, 'Ending place', 'Athens International Airport (ATH)', '2025-04-15'),
+  -- Tour 5: Cyclades
+  (tour_summary25_id, tour5_id, 'Duration', '7 days', '2025-04-15'),
+  (tour_summary26_id, tour5_id, 'Group Size', '11 participants', '2025-04-15'),
+  (tour_summary27_id, tour5_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary28_id, tour5_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary29_id, tour5_id, 'Tour starts', 'Athens International Airport (ATH)', '2025-04-15'),
+  (tour_summary30_id, tour5_id, 'Ending place', 'Athens International Airport (ATH)', '2025-04-15'),
   
-  -- Tour 9: Cinque-Terre & Umbria
-  (tour_summary31_id, tour9_id, 'Duration', '10 days', '2025-04-15'),
-  (tour_summary32_id, tour9_id, 'Group Size', '7 participants', '2025-04-15'),
-  (tour_summary33_id, tour9_id, 'Languages', 'English', '2025-04-15'),
-  (tour_summary34_id, tour9_id, 'Difficulty', 'Easy', '2025-04-15'),
-  (tour_summary35_id, tour9_id, 'Tour starts', 'Florence Airport (FLR)', '2025-04-15'),
-  (tour_summary36_id, tour9_id, 'Ending place', 'Florence Airport (FLR)', '2025-04-15'),
+  -- Tour 6: Cinque-Terre & Umbria
+  (tour_summary31_id, tour6_id, 'Duration', '10 days', '2025-04-15'),
+  (tour_summary32_id, tour6_id, 'Group Size', '7 participants', '2025-04-15'),
+  (tour_summary33_id, tour6_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary34_id, tour6_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary35_id, tour6_id, 'Tour starts', 'Florence Airport (FLR)', '2025-04-15'),
+  (tour_summary36_id, tour6_id, 'Ending place', 'Florence Airport (FLR)', '2025-04-15'),
   
-  -- Tour 10: Provence
-  (tour_summary37_id, tour10_id, 'Duration', '10 days', '2025-04-15'),
-  (tour_summary38_id, tour10_id, 'Group Size', '7 participants', '2025-04-15'),
-  (tour_summary39_id, tour10_id, 'Languages', 'English', '2025-04-15'),
-  (tour_summary40_id, tour10_id, 'Difficulty', 'Easy', '2025-04-15'),
-  (tour_summary41_id, tour10_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
-  (tour_summary42_id, tour10_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  -- Tour 7: Provence
+  (tour_summary37_id, tour7_id, 'Duration', '10 days', '2025-04-15'),
+  (tour_summary38_id, tour7_id, 'Group Size', '7 participants', '2025-04-15'),
+  (tour_summary39_id, tour7_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary40_id, tour7_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary41_id, tour7_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  (tour_summary42_id, tour7_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
   
-  -- Tour 11: Sicily & Aeolian Islands
-  (tour_summary43_id, tour11_id, 'Duration', '10 days', '2025-04-15'),
-  (tour_summary44_id, tour11_id, 'Group Size', '7 participants', '2025-04-15'),
-  (tour_summary45_id, tour11_id, 'Languages', 'English', '2025-04-15'),
-  (tour_summary46_id, tour11_id, 'Difficulty', 'Easy', '2025-04-15'),
-  (tour_summary47_id, tour11_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
-  (tour_summary48_id, tour11_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  -- Tour 8: Sicily & Aeolian Islands
+  (tour_summary43_id, tour8_id, 'Duration', '10 days', '2025-04-15'),
+  (tour_summary44_id, tour8_id, 'Group Size', '7 participants', '2025-04-15'),
+  (tour_summary45_id, tour8_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary46_id, tour8_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary47_id, tour8_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  (tour_summary48_id, tour8_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
   
-  -- Tour 12: Czechia Autumn
-  (tour_summary49_id, tour12_id, 'Duration', '10 days', '2025-04-15'),
-  (tour_summary50_id, tour12_id, 'Group Size', '7 participants', '2025-04-15'),
-  (tour_summary51_id, tour12_id, 'Languages', 'English', '2025-04-15'),
-  (tour_summary52_id, tour12_id, 'Difficulty', 'Easy', '2025-04-15'),
-  (tour_summary53_id, tour12_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
-  (tour_summary54_id, tour12_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  -- Tour 9: Czechia Autumn
+  (tour_summary49_id, tour9_id, 'Duration', '10 days', '2025-04-15'),
+  (tour_summary50_id, tour9_id, 'Group Size', '7 participants', '2025-04-15'),
+  (tour_summary51_id, tour9_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary52_id, tour9_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary53_id, tour9_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  (tour_summary54_id, tour9_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
   
-  -- Tour 13: Scotland Highlands
-  (tour_summary55_id, tour13_id, 'Duration', '10 days', '2025-04-15'),
-  (tour_summary56_id, tour13_id, 'Group Size', '7 participants', '2025-04-15'),
-  (tour_summary57_id, tour13_id, 'Languages', 'English', '2025-04-15'),
-  (tour_summary58_id, tour13_id, 'Difficulty', 'Easy', '2025-04-15'),
-  (tour_summary59_id, tour13_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
-  (tour_summary60_id, tour13_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  -- Tour 10: Scotland Highlands
+  (tour_summary55_id, tour10_id, 'Duration', '10 days', '2025-04-15'),
+  (tour_summary56_id, tour10_id, 'Group Size', '7 participants', '2025-04-15'),
+  (tour_summary57_id, tour10_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary58_id, tour10_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary59_id, tour10_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  (tour_summary60_id, tour10_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
   
-  -- Tour 14: Tuscany Autumn
-  (tour_summary61_id, tour14_id, 'Duration', '10 days', '2025-04-15'),
-  (tour_summary62_id, tour14_id, 'Group Size', '7 participants', '2025-04-15'),
-  (tour_summary63_id, tour14_id, 'Languages', 'English', '2025-04-15'),
-  (tour_summary64_id, tour14_id, 'Difficulty', 'Easy', '2025-04-15'),
-  (tour_summary65_id, tour14_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
-  (tour_summary66_id, tour14_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  -- Tour 11: Tuscany Autumn
+  (tour_summary61_id, tour11_id, 'Duration', '10 days', '2025-04-15'),
+  (tour_summary62_id, tour11_id, 'Group Size', '7 participants', '2025-04-15'),
+  (tour_summary63_id, tour11_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary64_id, tour11_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary65_id, tour11_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  (tour_summary66_id, tour11_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
   
-  -- Tour 15: Japan Cultural
-  (tour_summary67_id, tour15_id, 'Duration', '10 days', '2025-04-15'),
-  (tour_summary68_id, tour15_id, 'Group Size', '7 participants', '2025-04-15'),
-  (tour_summary69_id, tour15_id, 'Languages', 'English', '2025-04-15'),
-  (tour_summary70_id, tour15_id, 'Difficulty', 'Easy', '2025-04-15'),
-  (tour_summary71_id, tour15_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
-  (tour_summary72_id, tour15_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15');
+  -- Tour 12: Japan Cultural
+  (tour_summary67_id, tour12_id, 'Duration', '10 days', '2025-04-15'),
+  (tour_summary68_id, tour12_id, 'Group Size', '7 participants', '2025-04-15'),
+  (tour_summary69_id, tour12_id, 'Languages', 'English', '2025-04-15'),
+  (tour_summary70_id, tour12_id, 'Difficulty', 'Easy', '2025-04-15'),
+  (tour_summary71_id, tour12_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  (tour_summary72_id, tour12_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+
+  -- Tour 13: iceland
+  (tour_summary67_id, tour12_id, 'replace me', '10 days', '2025-04-15'),
+
+  -- Tour 14: japan-spring
+  (tour_summary67_id, tour12_id, 'replace me', '10 days', '2025-04-15');
 
  -- TOUR INCLUDED
 INSERT INTO tour_included(id, tour_id, included, created_at)
@@ -648,70 +686,84 @@ VALUES
   (tour_included14_id, tour3_id, 'Photo workshops', '2025-04-15'),
   (tour_included15_id, tour3_id, 'Expert photo guide', '2025-04-15'),
   
-  -- Tour 6: New Zealand
-  (tour_included16_id, tour6_id, 'Accommodation', '2025-04-15'),
-  (tour_included17_id, tour6_id, 'In-tour transportation', '2025-04-15'),
-  (tour_included18_id, tour6_id, 'Photo shoots', '2025-04-15'),
-  (tour_included19_id, tour6_id, 'Photo workshops', '2025-04-15'),
-  (tour_included20_id, tour6_id, 'Expert photo guide', '2025-04-15'),
+  -- Tour 4: New Zealand
+  (tour_included16_id, tour4_id, 'Accommodation', '2025-04-15'),
+  (tour_included17_id, tour4_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included18_id, tour4_id, 'Photo shoots', '2025-04-15'),
+  (tour_included19_id, tour4_id, 'Photo workshops', '2025-04-15'),
+  (tour_included20_id, tour4_id, 'Expert photo guide', '2025-04-15'),
   
-  -- Tour 8: Cyclades
-  (tour_included21_id, tour8_id, 'Accommodation', '2025-04-15'),
-  (tour_included22_id, tour8_id, 'In-tour transportation', '2025-04-15'),
-  (tour_included23_id, tour8_id, 'Photo shoots', '2025-04-15'),
-  (tour_included24_id, tour8_id, 'Photo workshops', '2025-04-15'),
-  (tour_included25_id, tour8_id, 'Expert photo guide', '2025-04-15'),
-  (tour_included26_id, tour8_id, 'Professional skipper & crew services', '2025-04-15'),
-  (tour_included27_id, tour8_id, 'Catamaran cruise', '2025-04-15'),
+  -- Tour 5: Cyclades
+  (tour_included21_id, tour5_id, 'Accommodation', '2025-04-15'),
+  (tour_included22_id, tour5_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included23_id, tour5_id, 'Photo shoots', '2025-04-15'),
+  (tour_included24_id, tour5_id, 'Photo workshops', '2025-04-15'),
+  (tour_included25_id, tour5_id, 'Expert photo guide', '2025-04-15'),
+  (tour_included26_id, tour5_id, 'Professional skipper & crew services', '2025-04-15'),
+  (tour_included27_id, tour5_id, 'Catamaran cruise', '2025-04-15'),
   
-  -- Tour 9: Cinque-Terre & Umbria
-  (tour_included28_id, tour9_id, 'Accommodation', '2025-04-15'),
-  (tour_included29_id, tour9_id, 'In-tour transportation', '2025-04-15'),
-  (tour_included30_id, tour9_id, 'Photo shoots', '2025-04-15'),
-  (tour_included31_id, tour9_id, 'Photo workshops', '2025-04-15'),
-  (tour_included32_id, tour9_id, 'Expert photo guide', '2025-04-15'),
+  -- Tour 6: Cinque-Terre & Umbria
+  (tour_included28_id, tour6_id, 'Accommodation', '2025-04-15'),
+  (tour_included29_id, tour6_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included30_id, tour6_id, 'Photo shoots', '2025-04-15'),
+  (tour_included31_id, tour6_id, 'Photo workshops', '2025-04-15'),
+  (tour_included32_id, tour6_id, 'Expert photo guide', '2025-04-15'),
   
-  -- Tour 10: Provence
-  (tour_included33_id, tour10_id, 'Accommodation', '2025-04-15'),
-  (tour_included34_id, tour10_id, 'In-tour transportation', '2025-04-15'),
-  (tour_included35_id, tour10_id, 'Photo shoots', '2025-04-15'),
-  (tour_included36_id, tour10_id, 'Photo workshops', '2025-04-15'),
-  (tour_included37_id, tour10_id, 'Expert photo guide', '2025-04-15'),
+  -- Tour 7: Provence
+  (tour_included33_id, tour7_id, 'Accommodation', '2025-04-15'),
+  (tour_included34_id, tour7_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included35_id, tour7_id, 'Photo shoots', '2025-04-15'),
+  (tour_included36_id, tour7_id, 'Photo workshops', '2025-04-15'),
+  (tour_included37_id, tour7_id, 'Expert photo guide', '2025-04-15'),
   
-  -- Tour 11: Sicily & Aeolian Islands
-  (tour_included38_id, tour11_id, 'Accommodation', '2025-04-15'),
-  (tour_included39_id, tour11_id, 'In-tour transportation', '2025-04-15'),
-  (tour_included40_id, tour11_id, 'Photo shoots', '2025-04-15'),
-  (tour_included41_id, tour11_id, 'Photo workshops', '2025-04-15'),
-  (tour_included42_id, tour11_id, 'Expert photo guide', '2025-04-15'),
+  -- Tour 8: Sicily & Aeolian Islands
+  (tour_included38_id, tour8_id, 'Accommodation', '2025-04-15'),
+  (tour_included39_id, tour8_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included40_id, tour8_id, 'Photo shoots', '2025-04-15'),
+  (tour_included41_id, tour8_id, 'Photo workshops', '2025-04-15'),
+  (tour_included42_id, tour8_id, 'Expert photo guide', '2025-04-15'),
   
-  -- Tour 12: Czechia Autumn
-  (tour_included43_id, tour12_id, 'Accommodation', '2025-04-15'),
-  (tour_included44_id, tour12_id, 'In-tour transportation', '2025-04-15'),
-  (tour_included45_id, tour12_id, 'Photo shoots', '2025-04-15'),
-  (tour_included46_id, tour12_id, 'Photo workshops', '2025-04-15'),
-  (tour_included47_id, tour12_id, 'Expert photo guide', '2025-04-15'),
+  -- Tour 9: Czechia Autumn
+  (tour_included43_id, tour9_id, 'Accommodation', '2025-04-15'),
+  (tour_included44_id, tour9_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included45_id, tour9_id, 'Photo shoots', '2025-04-15'),
+  (tour_included46_id, tour9_id, 'Photo workshops', '2025-04-15'),
+  (tour_included47_id, tour9_id, 'Expert photo guide', '2025-04-15'),
   
-  -- Tour 13: Scotland Highlands
-  (tour_included48_id, tour13_id, 'Accommodation', '2025-04-15'),
-  (tour_included49_id, tour13_id, 'In-tour transportation', '2025-04-15'),
-  (tour_included50_id, tour13_id, 'Photo shoots', '2025-04-15'),
-  (tour_included51_id, tour13_id, 'Photo workshops', '2025-04-15'),
-  (tour_included52_id, tour13_id, 'Expert photo guide', '2025-04-15'),
+  -- Tour 10: Scotland Highlands
+  (tour_included48_id, tour10_id, 'Accommodation', '2025-04-15'),
+  (tour_included49_id, tour10_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included50_id, tour10_id, 'Photo shoots', '2025-04-15'),
+  (tour_included51_id, tour10_id, 'Photo workshops', '2025-04-15'),
+  (tour_included52_id, tour10_id, 'Expert photo guide', '2025-04-15'),
   
-  -- Tour 14: Tuscany Autumn
-  (tour_included53_id, tour14_id, 'Accommodation', '2025-04-15'),
-  (tour_included54_id, tour14_id, 'In-tour transportation', '2025-04-15'),
-  (tour_included55_id, tour14_id, 'Photo shoots', '2025-04-15'),
-  (tour_included56_id, tour14_id, 'Photo workshops', '2025-04-15'),
-  (tour_included57_id, tour14_id, 'Expert photo guide', '2025-04-15'),
+  -- Tour 11: Tuscany Autumn
+  (tour_included53_id, tour11_id, 'Accommodation', '2025-04-15'),
+  (tour_included54_id, tour11_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included55_id, tour11_id, 'Photo shoots', '2025-04-15'),
+  (tour_included56_id, tour11_id, 'Photo workshops', '2025-04-15'),
+  (tour_included57_id, tour11_id, 'Expert photo guide', '2025-04-15'),
   
-  -- Tour 15: Japan Cultural
-  (tour_included58_id, tour15_id, 'Accommodation', '2025-04-15'),
-  (tour_included59_id, tour15_id, 'In-tour transportation', '2025-04-15'),
-  (tour_included60_id, tour15_id, 'Photo shoots', '2025-04-15'),
-  (tour_included61_id, tour15_id, 'Photo workshops', '2025-04-15'),
-  (tour_included62_id, tour15_id, 'Expert photo guide', '2025-04-15');
+  -- Tour 12: Japan autumn
+  (tour_included58_id, tour12_id, 'Accommodation', '2025-04-15'),
+  (tour_included59_id, tour12_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included60_id, tour12_id, 'Photo shoots', '2025-04-15'),
+  (tour_included61_id, tour12_id, 'Photo workshops', '2025-04-15'),
+  (tour_included62_id, tour12_id, 'Expert photo guide', '2025-04-15');
+
+  -- Tour 13: iceland
+  (tour_included58_id, tour13_id, 'Accommodation', '2025-04-15'),
+  (tour_included59_id, tour13_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included60_id, tour13_id, 'Photo shoots', '2025-04-15'),
+  (tour_included61_id, tour13_id, 'Photo workshops', '2025-04-15'),
+  (tour_included62_id, tour13_id, 'Expert photo guide', '2025-04-15');
+
+  -- Tour 14: Japan autumn
+  (tour_included58_id, tour14_id, 'Accommodation', '2025-04-15'),
+  (tour_included59_id, tour14_id, 'In-tour transportation', '2025-04-15'),
+  (tour_included60_id, tour14_id, 'Photo shoots', '2025-04-15'),
+  (tour_included61_id, tour14_id, 'Photo workshops', '2025-04-15'),
+  (tour_included62_id, tour14_id, 'Expert photo guide', '2025-04-15');
 
 -- TOUR DATES
 INSERT INTO tour_dates (id, tour_id, date_from, date_to, group_size, is_available)
@@ -731,124 +783,127 @@ VALUES
   (tour_date8_id, tour3_id, '2025-02-15', '2025-02-19', 8, TRUE),
   (tour_date9_id, tour3_id, '2025-02-22', '2025-02-26', 6, TRUE),
   
-
+  -- Tour 4: New Zealand (10-day tour)
+  (tour_date16_id, tour4_id, '2025-05-20', '2025-05-26', 10, TRUE),
+  (tour_date17_id, tour4_id, '2025-06-15', '2025-06-21', 12, TRUE),
+  (tour_date18_id, tour4_id, '2025-09-10', '2025-09-16', 10, TRUE),
+  (tour_date19_id, tour4_id, '2025-10-05', '2025-10-11', 8, TRUE),
   
-  -- Tour 6: New Zealand (10-day tour)
-  (tour_date16_id, tour6_id, '2025-05-20', '2025-05-26', 10, TRUE),
-  (tour_date17_id, tour6_id, '2025-06-15', '2025-06-21', 12, TRUE),
-  (tour_date18_id, tour6_id, '2025-09-10', '2025-09-16', 10, TRUE),
-  (tour_date19_id, tour6_id, '2025-10-05', '2025-10-11', 8, TRUE),
+  -- Tour 5: Cyclades Sailing (7-day tour)
+  (tour_date23_id, tour5_id, '2025-05-20', '2025-05-26', 10, TRUE),
+  (tour_date24_id, tour5_id, '2025-06-15', '2025-06-21', 12, TRUE),
+  (tour_date25_id, tour5_id, '2025-09-10', '2025-09-16', 10, TRUE),
+  (tour_date26_id, tour5_id, '2025-10-05', '2025-10-11', 8, TRUE),
   
-  -- Tour 7: Japan Cherry Blossom (10-day tour)
-  (tour_date20_id, tour7_id, '2025-03-25', '2025-04-03', 10, TRUE),
-  (tour_date21_id, tour7_id, '2025-04-05', '2025-04-14', 8, TRUE),
-  (tour_date22_id, tour7_id, '2025-04-15', '2025-04-24', 6, TRUE),
+  -- Tour 6: Cinque-Terre & Umbria (10-day tour)
+  (tour_date27_id, tour6_id, '2025-04-10', '2025-04-19', 10, TRUE),
+  (tour_date28_id, tour6_id, '2025-05-15', '2025-05-24', 8, TRUE),
+  (tour_date29_id, tour6_id, '2025-09-25', '2025-10-04', 10, TRUE),
+  (tour_date30_id, tour6_id, '2025-10-15', '2025-10-24', 8, TRUE),
   
-  -- Tour 8: Cyclades Sailing (7-day tour)
-  (tour_date23_id, tour8_id, '2025-05-20', '2025-05-26', 10, TRUE),
-  (tour_date24_id, tour8_id, '2025-06-15', '2025-06-21', 12, TRUE),
-  (tour_date25_id, tour8_id, '2025-09-10', '2025-09-16', 10, TRUE),
-  (tour_date26_id, tour8_id, '2025-10-05', '2025-10-11', 8, TRUE),
+  -- Tour 7: Provence (10-day tour)
+  (tour_date31_id, tour7_id, '2025-06-20', '2025-06-29', 12, TRUE),
+  (tour_date32_id, tour7_id, '2025-07-10', '2025-07-19', 10, TRUE),
+  (tour_date33_id, tour7_id, '2025-08-05', '2025-08-14', 10, TRUE),
+  (tour_date34_id, tour7_id, '2025-09-01', '2025-09-10', 8, TRUE),
   
-  -- Tour 9: Cinque-Terre & Umbria (10-day tour)
-  (tour_date27_id, tour9_id, '2025-04-10', '2025-04-19', 10, TRUE),
-  (tour_date28_id, tour9_id, '2025-05-15', '2025-05-24', 8, TRUE),
-  (tour_date29_id, tour9_id, '2025-09-25', '2025-10-04', 10, TRUE),
-  (tour_date30_id, tour9_id, '2025-10-15', '2025-10-24', 8, TRUE),
+  -- Tour 8: Sicily & Aeolian Islands (10-day tour)
+  (tour_date35_id, tour8_id, '2025-05-25', '2025-06-03', 10, TRUE),
+  (tour_date36_id, tour8_id, '2025-06-20', '2025-06-29', 8, TRUE),
+  (tour_date37_id, tour8_id, '2025-09-15', '2025-09-24', 10, TRUE),
+  (tour_date38_id, tour8_id, '2025-10-10', '2025-10-19', 8, TRUE),
   
-  -- Tour 10: Provence (10-day tour)
-  (tour_date31_id, tour10_id, '2025-06-20', '2025-06-29', 12, TRUE),
-  (tour_date32_id, tour10_id, '2025-07-10', '2025-07-19', 10, TRUE),
-  (tour_date33_id, tour10_id, '2025-08-05', '2025-08-14', 10, TRUE),
-  (tour_date34_id, tour10_id, '2025-09-01', '2025-09-10', 8, TRUE),
+  -- Tour 9: Czechia Autumn (10-day tour)
+  (tour_date39_id, tour9_id, '2025-09-20', '2025-09-29', 10, TRUE),
+  (tour_date40_id, tour9_id, '2025-10-05', '2025-10-14', 8, TRUE),
+  (tour_date41_id, tour9_id, '2025-10-25', '2025-11-03', 12, TRUE),
+  (tour_date42_id, tour9_id, '2025-11-10', '2025-11-19', 8, TRUE),
   
-  -- Tour 11: Sicily & Aeolian Islands (10-day tour)
-  (tour_date35_id, tour11_id, '2025-05-25', '2025-06-03', 10, TRUE),
-  (tour_date36_id, tour11_id, '2025-06-20', '2025-06-29', 8, TRUE),
-  (tour_date37_id, tour11_id, '2025-09-15', '2025-09-24', 10, TRUE),
-  (tour_date38_id, tour11_id, '2025-10-10', '2025-10-19', 8, TRUE),
+  -- Tour 10: Scotland Highlands (10-day tour)
+  (tour_date43_id, tour10_id, '2025-04-01', '2025-04-10', 10, TRUE),
+  (tour_date44_id, tour10_id, '2025-05-15', '2025-05-24', 8, TRUE),
+  (tour_date45_id, tour10_id, '2025-09-20', '2025-09-29', 10, TRUE),
+  (tour_date46_id, tour10_id, '2025-10-01', '2025-10-10', 12, TRUE),
   
-  -- Tour 12: Czechia Autumn (10-day tour)
-  (tour_date39_id, tour12_id, '2025-09-20', '2025-09-29', 10, TRUE),
-  (tour_date40_id, tour12_id, '2025-10-05', '2025-10-14', 8, TRUE),
-  (tour_date41_id, tour12_id, '2025-10-25', '2025-11-03', 12, TRUE),
-  (tour_date42_id, tour12_id, '2025-11-10', '2025-11-19', 8, TRUE),
+  -- Tour 11: Tuscany Autumn (10-day tour)
+  (tour_date47_id, tour11_id, '2025-09-15', '2025-09-24', 10, TRUE),
+  (tour_date48_id, tour11_id, '2025-10-05', '2025-10-14', 12, TRUE),
+  (tour_date49_id, tour11_id, '2025-10-25', '2025-11-03', 8, TRUE),
   
-  -- Tour 13: Scotland Highlands (10-day tour)
-  (tour_date43_id, tour13_id, '2025-04-01', '2025-04-10', 10, TRUE),
-  (tour_date44_id, tour13_id, '2025-05-15', '2025-05-24', 8, TRUE),
-  (tour_date45_id, tour13_id, '2025-09-20', '2025-09-29', 10, TRUE),
-  (tour_date46_id, tour13_id, '2025-10-01', '2025-10-10', 12, TRUE),
-  
-  -- Tour 14: Tuscany Autumn (10-day tour)
-  (tour_date47_id, tour14_id, '2025-09-15', '2025-09-24', 10, TRUE),
-  (tour_date48_id, tour14_id, '2025-10-05', '2025-10-14', 12, TRUE),
-  (tour_date49_id, tour14_id, '2025-10-25', '2025-11-03', 8, TRUE),
-  
-  -- Tour 15: Japan Cultural (10-day tour)
+  -- Tour 12: Japan autumn (10-day tour)
   (tour_date50_id, tour15_id, '2025-03-20', '2025-03-29', 10, TRUE),
   (tour_date51_id, tour15_id, '2025-04-10', '2025-04-19', 8, TRUE),
   (tour_date52_id, tour15_id, '2025-05-05', '2025-05-14', 10, TRUE),
   (tour_date53_id, tour15_id, '2025-10-01', '2025-10-10', 12, TRUE),
-  (tour_date54_id, tour15_id, '2025-11-15', '2025-11-24', 8, TRUE);
+  (tour_date54_id, tour15_id, '2025-11-15', '2025-11-24', 8, TRUE),
+
+  -- Tour 12: iceland
+  (tour_date50_id, tour15_id, '2025-03-20', '2025-03-29', 10, TRUE),
+
+  -- Tour 12: Japan spring
+  (tour_date50_id, tour15_id, '2025-03-20', '2025-03-29', 10, TRUE);
 
 -- MATERIALS
 INSERT INTO tour_materials (tour_id, title, url, type)
 VALUES
+  -- Tour 1: New Zealand Photography
   (tour1_id, 'Grand Canyon Trail Guide', 'https://example.com/grand-canyon-guide.pdf', 'PDF'),
   (tour1_id, 'Hiking Preparation Video', 'https://example.com/gc-prep-video.mp4', 'VIDEO'),
+  
+  -- Tour 2: New Zealand Photography
   (tour2_id, 'NYC Historical Map', 'https://example.com/nyc-history-map.pdf', 'PDF'),
   (tour2_id, 'Manhattan Walking Guide', 'https://example.com/manhattan-guide.pdf', 'PDF'),
+  
+  -- Tour 3: New Zealand Photography
   (tour3_id, 'Rafting Safety Manual', 'https://example.com/rafting-safety.pdf', 'PDF'),
   (tour3_id, 'Whitewater Training Video', 'https://example.com/rafting-training.mp4', 'VIDEO'),
 
+  -- Tour 4: New Zealand Photography
+  (tour4_id, 'New Zealand Landscape Photography Guide', 'https://example.com/new-zealand-photo-guide.pdf', 'PDF'),
+  (tour4_id, 'Milford Sound Photography Tips', 'https://example.com/milford-sound-tips.pdf', 'PDF'),
+  (tour4_id, 'New Zealand Photography Workshop Video', 'https://example.com/nz-photo-workshop.mp4', 'VIDEO'),
   
-  -- Tour 6: New Zealand Photography
-  (tour6_id, 'New Zealand Landscape Photography Guide', 'https://example.com/new-zealand-photo-guide.pdf', 'PDF'),
-  (tour6_id, 'Milford Sound Photography Tips', 'https://example.com/milford-sound-tips.pdf', 'PDF'),
-  (tour6_id, 'New Zealand Photography Workshop Video', 'https://example.com/nz-photo-workshop.mp4', 'VIDEO'),
+  -- Tour 5: Japan Cherry Blossom
+  (tour5_id, 'Cherry Blossom Photography Guide', 'https://example.com/sakura-photo-guide.pdf', 'PDF'),
+  (tour5_id, 'Japan Temple Photography Tips', 'https://example.com/japan-temple-tips.pdf', 'PDF'),
+  (tour5_id, 'Sakura Season Photography Video', 'https://example.com/sakura-photo-video.mp4', 'VIDEO'),
   
-  -- Tour 7: Japan Cherry Blossom
-  (tour7_id, 'Cherry Blossom Photography Guide', 'https://example.com/sakura-photo-guide.pdf', 'PDF'),
-  (tour7_id, 'Japan Temple Photography Tips', 'https://example.com/japan-temple-tips.pdf', 'PDF'),
-  (tour7_id, 'Sakura Season Photography Video', 'https://example.com/sakura-photo-video.mp4', 'VIDEO'),
+  -- Tour 6: Cyclades Sailing
+  (tour6_id, 'Greek Islands Sailing Guide', 'https://example.com/cyclades-sailing-guide.pdf', 'PDF'),
+  (tour6_id, 'Santorini Photography Tips', 'https://example.com/santorini-photo-tips.pdf', 'PDF'),
+  (tour6_id, 'Cyclades Sailing Adventure Video', 'https://example.com/cyclades-sailing.mp4', 'VIDEO'),
   
-  -- Tour 8: Cyclades Sailing
-  (tour8_id, 'Greek Islands Sailing Guide', 'https://example.com/cyclades-sailing-guide.pdf', 'PDF'),
-  (tour8_id, 'Santorini Photography Tips', 'https://example.com/santorini-photo-tips.pdf', 'PDF'),
-  (tour8_id, 'Cyclades Sailing Adventure Video', 'https://example.com/cyclades-sailing.mp4', 'VIDEO'),
+  -- Tour 7: Cinque-Terre & Umbria
+  (tour7_id, 'Italian Coastal Photography Guide', 'https://example.com/cinque-terre-photo-guide.pdf', 'PDF'),
+  (tour7_id, 'Umbria Hill Towns Photography', 'https://example.com/umbria-photo-tips.pdf', 'PDF'),
+  (tour7_id, 'Cinque-Terre Photography Workshop Video', 'https://example.com/cinque-terre-workshop.mp4', 'VIDEO'),
   
-  -- Tour 9: Cinque-Terre & Umbria
-  (tour9_id, 'Italian Coastal Photography Guide', 'https://example.com/cinque-terre-photo-guide.pdf', 'PDF'),
-  (tour9_id, 'Umbria Hill Towns Photography', 'https://example.com/umbria-photo-tips.pdf', 'PDF'),
-  (tour9_id, 'Cinque-Terre Photography Workshop Video', 'https://example.com/cinque-terre-workshop.mp4', 'VIDEO'),
-  
-  -- Tour 10: Provence
+  -- Tour 8: Provence
   (tour10_id, 'Provence Lavender Photography Guide', 'https://example.com/provence-lavender-guide.pdf', 'PDF'),
   (tour10_id, 'French Village Photography Tips', 'https://example.com/provence-villages-tips.pdf', 'PDF'),
   (tour10_id, 'Lavender Fields Photography Video', 'https://example.com/lavender-fields-video.mp4', 'VIDEO'),
   
-  -- Tour 11: Sicily & Aeolian Islands
+  -- Tour 9: Sicily & Aeolian Islands
   (tour11_id, 'Sicily Volcanic Photography Guide', 'https://example.com/sicily-volcano-guide.pdf', 'PDF'),
   (tour11_id, 'Mediterranean Island Photography Tips', 'https://example.com/aeolian-islands-tips.pdf', 'PDF'),
   (tour11_id, 'Mount Etna Photography Video', 'https://example.com/mount-etna-video.mp4', 'VIDEO'),
   
-  -- Tour 12: Czechia Autumn
+  -- Tour 10: Czechia Autumn
   (tour12_id, 'Czechia Autumn Photography Guide', 'https://example.com/czechia-autumn-guide.pdf', 'PDF'),
   (tour12_id, 'Prague Gothic Architecture Photography', 'https://example.com/prague-gothic-tips.pdf', 'PDF'),
   (tour12_id, 'Bohemian Autumn Photography Video', 'https://example.com/bohemian-autumn.mp4', 'VIDEO'),
   
-  -- Tour 13: Scotland Highlands
+  -- Tour 11: Scotland Highlands
   (tour13_id, 'Scotland Highlands Photography Guide', 'https://example.com/scotland-highlands-guide.pdf', 'PDF'),
   (tour13_id, 'Scottish Castle Photography Tips', 'https://example.com/scottish-castles-tips.pdf', 'PDF'),
   (tour13_id, 'Isle of Skye Landscape Video', 'https://example.com/isle-of-skye-video.mp4', 'VIDEO'),
   
-  -- Tour 14: Tuscany Autumn
+  -- Tour 12: Tuscany Autumn
   (tour14_id, 'Tuscany Autumn Photography Guide', 'https://example.com/tuscany-autumn-guide.pdf', 'PDF'),
   (tour14_id, 'Italian Wine Harvest Photography', 'https://example.com/tuscany-wine-harvest.pdf', 'PDF'),
   (tour14_id, 'Tuscany Golden Hour Video', 'https://example.com/tuscany-golden-hour.mp4', 'VIDEO'),
   
-  -- Tour 15: Japan Cultural
+  -- Tour 13: Japan Cultural
   (tour15_id, 'Japan Cultural Photography Guide', 'https://example.com/japan-cultural-guide.pdf', 'PDF'),
   (tour15_id, 'Tokyo Street Photography Tips', 'https://example.com/tokyo-street-tips.pdf', 'PDF'),
   (tour15_id, 'Japan Cultural Experience Video', 'https://example.com/japan-cultural-video.mp4', 'VIDEO');
@@ -927,123 +982,131 @@ VALUES
   (tour3_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430336/venice__AA8B0015-Editightroom_sky_Topaz_snow_78_Dehancer_snow_85_Yellow_65_copy_f8m2ls.avif', 'Venice Carnival masks and costumes'),
   (tour3_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430365/venice__IMGP1536-Edit-Lightroom_sky_Topaz_snow_78_Dehancer_snow_85_Yellow_65_vaskzy.avif', 'Venice Carnival masks and costumes'),
 
-   -- Tour 6: New Zealand Photography
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430000/new-zealand__IMG_0003-Edit_copy_3_toqaij.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429979/new-zealand___IGP8045-Pano-Dehancer_copy_3_lugbli.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429983/new-zealand___IGP7576-Dehancer_copy_3_xxzacq.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429997/new-zealand__IMG_1881-Dehancer_copy_3_hfdlkw.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429998/new-zealand__IMG_1122_obr-Dehancer_copy_3_rfpp8r.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430004/new-zealand__IMG_1236-Dehancer_copy_3_ncthb6.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429998/new-zealand__IMG_1171-Pano-Edit_copy_3_peyhgs.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429986/new-zealand__IMG_0961_Panorama_Dehancer_copy_3_qhvfww.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429980/new-zealand___IGP7623-Edit_copy_3_dvazi2.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430001/new-zealand__IMG_6422-Dehancer_copy_3_wkzjyu.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430001/new-zealand__IMG_2673-HDR-Dehancer_copy_3_vwuar6.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429968/new-zealand___IGP7469-Edit_copy_3_fjkyhh.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429975/new-zealand___IGP7992-Pano-Edit_copy_3_q45iqu.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429989/new-zealand__IMG_0727-Dehancer_copy_3_hkjn1k.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429991/new-zealand__IMG_0331-Dehancer_copy_3_clib1p.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429975/new-zealand___IGP7593-Edit_copy_3_xfb5mg.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429981/new-zealand__1Y0A9662_copy_3_ebxx2n.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429965/new-zealand___IGP7394-Pano-Dehancer_copy_3_vpdovr.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429975/new-zealand___IGP7470-Pano-Edit_copy_3_shlyc9.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430004/new-zealand__IMGP6956-Dehancer_copy_3_woeb1o.avif', 'Milford Sound sunrise with dramatic peaks'),
-   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429971/new-zealand___IGP7525-Dehancer_copy_3_wsey44.avif', 'Milford Sound sunrise with dramatic peaks'),
+   -- Tour 4: New Zealand Photography
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430000/new-zealand__IMG_0003-Edit_copy_3_toqaij.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429979/new-zealand___IGP8045-Pano-Dehancer_copy_3_lugbli.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429983/new-zealand___IGP7576-Dehancer_copy_3_xxzacq.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429997/new-zealand__IMG_1881-Dehancer_copy_3_hfdlkw.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429998/new-zealand__IMG_1122_obr-Dehancer_copy_3_rfpp8r.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430004/new-zealand__IMG_1236-Dehancer_copy_3_ncthb6.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429998/new-zealand__IMG_1171-Pano-Edit_copy_3_peyhgs.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429986/new-zealand__IMG_0961_Panorama_Dehancer_copy_3_qhvfww.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429980/new-zealand___IGP7623-Edit_copy_3_dvazi2.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430001/new-zealand__IMG_6422-Dehancer_copy_3_wkzjyu.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430001/new-zealand__IMG_2673-HDR-Dehancer_copy_3_vwuar6.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429968/new-zealand___IGP7469-Edit_copy_3_fjkyhh.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429975/new-zealand___IGP7992-Pano-Edit_copy_3_q45iqu.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429989/new-zealand__IMG_0727-Dehancer_copy_3_hkjn1k.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429991/new-zealand__IMG_0331-Dehancer_copy_3_clib1p.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429975/new-zealand___IGP7593-Edit_copy_3_xfb5mg.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429981/new-zealand__1Y0A9662_copy_3_ebxx2n.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429965/new-zealand___IGP7394-Pano-Dehancer_copy_3_vpdovr.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429975/new-zealand___IGP7470-Pano-Edit_copy_3_shlyc9.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430004/new-zealand__IMGP6956-Dehancer_copy_3_woeb1o.avif', 'Milford Sound sunrise with dramatic peaks'),
+   (tour4_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429971/new-zealand___IGP7525-Dehancer_copy_3_wsey44.avif', 'Milford Sound sunrise with dramatic peaks'),
 
-   -- Tour 7: Japan Cherry Blossom
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429756/japan-spring___IMG1972_ihxist.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429741/japan-spring___IMG1454_ytwzbv.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429820/japan-spring__IMG_7856-Edit_copy_mmguih.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429700/japan-spring___1824960_etegje.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429729/japan-spring___A8B9230_qcqyle.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429814/japan-spring__IMG_7088-Edit_copy_jmjb1w.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429726/japan-spring___A8B8512-Edit_woxvlh.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429749/japan-spring___A8B9923_lgibyy.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429828/japan-spring__P1040398-Edit_x4p5iq.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429804/japan-spring__IMG_4845_l33mxc.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429712/japan-spring___A8B7752_jcd7sv.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429762/japan-spring___IMG2393-Edit_copy_biaipg.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429703/japan-spring___1825037_vzoxgy.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429703/japan-spring___1827029-Pano_lgecpg.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429764/japan-spring___IMG2241_fbgslx.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429825/japan-spring__IMG_8944-Edit_copy_j6ulee.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429741/japan-spring___A8B9292-Pano_kgzfq0.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429811/japan-spring__IMG_5548_cyo3n4.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429729/japan-spring___A8B8673-Edit_okewev.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429725/japan-spring___A8B9101_v3cbqt.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429723/japan-spring___A8B8452-Edit_axgu8c.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429719/japan-spring___A8B8435_m43wcg.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429798/japan-spring___IMG2554_tnec8m.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429703/japan-spring___A8B0764-Edit_copy_vexdrw.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429798/japan-spring___IMG2449_slc8ai.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429725/japan-spring___A8B9136-Edit_zi2sp5.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429748/japan-spring___IMG1919_oq6gap.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   -- Tour 5: Cyclades Sailing
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429871/cyclades__IMG_8808-Pano_copy_jkdqjj.avif', 'Naxos Portara Apollo temple ruins'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429870/cyclades__IMG_0495-Edit-Edit_nrbuik.avif', 'Naxos Portara Apollo temple ruins'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429890/cyclades__IMGP9999-Pano-Edit_copy_emhqaa.avif', 'Naxos Portara Apollo temple ruins'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429860/cyclades__IMG_0829-Edit_copy_mrwjua.avif', 'Naxos Portara Apollo temple ruins'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429847/cyclades__AA8B0363-Pano-Edit_copy_bebkwe.avif', 'Naxos Portara Apollo temple ruins'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429890/cyclades__IMG_1123-Sky_copy_iippdr.avif', 'Naxos Portara Apollo temple ruins'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429886/cyclades__IMGP9208_copy_fuxnrj.avif', 'Naxos Portara Apollo temple ruins'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429880/cyclades__IMGP9651-Pano-Edit_copy_miyrr5.avif', 'Naxos Portara Apollo temple ruins'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429883/cyclades__IMGP9849-Edit_copy_g39eei.avif', 'Naxos Portara Apollo temple ruins'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429842/cyclades___A8B1487-Edit_copy_sf62cs.avif', 'Naxos Portara Apollo temple ruins'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429840/cyclades___A8B1472-Pano-Edit_copy_yrcbq6.avif', 'Naxos Portara Apollo temple ruins'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429877/cyclades__IMGP8280_copy_g6amjy.avif', 'Naxos Portara Apollo temple ruins'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429850/cyclades__IMG_1022_93x62-Edit_copy_riyudk.avif', 'Naxos Portara Apollo temple ruins'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429889/cyclades__IMGP8288-Edit_ths8e1.avif', 'Naxos Portara Apollo temple ruins'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429850/cyclades___A8B1504-Edit_copy_kosl4x.avif', 'Naxos Portara Apollo temple ruins'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429878/cyclades__IMG_1641_copy_j5b61v.avif', 'Naxos Portara Apollo temple ruins'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429862/cyclades__IMG_0361_copy_nlolgq.avif', 'Naxos Portara Apollo temple ruins'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429847/cyclades__AA8B0363-Pano-Edit_copy_bebkwe.avif', 'Naxos Portara Apollo temple ruins'),
 
-   -- Tour 8: Cyclades Sailing
-   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429871/cyclades__IMG_8808-Pano_copy_jkdqjj.avif', 'Naxos Portara Apollo temple ruins'),
-   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429870/cyclades__IMG_0495-Edit-Edit_nrbuik.avif', 'Naxos Portara Apollo temple ruins'),
-   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429890/cyclades__IMGP9999-Pano-Edit_copy_emhqaa.avif', 'Naxos Portara Apollo temple ruins'),
-   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429860/cyclades__IMG_0829-Edit_copy_mrwjua.avif', 'Naxos Portara Apollo temple ruins'),
-   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429847/cyclades__AA8B0363-Pano-Edit_copy_bebkwe.avif', 'Naxos Portara Apollo temple ruins'),
-   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429890/cyclades__IMG_1123-Sky_copy_iippdr.avif', 'Naxos Portara Apollo temple ruins'),
-   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429886/cyclades__IMGP9208_copy_fuxnrj.avif', 'Naxos Portara Apollo temple ruins'),
-   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429880/cyclades__IMGP9651-Pano-Edit_copy_miyrr5.avif', 'Naxos Portara Apollo temple ruins'),
-   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429883/cyclades__IMGP9849-Edit_copy_g39eei.avif', 'Naxos Portara Apollo temple ruins'),
-   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429842/cyclades___A8B1487-Edit_copy_sf62cs.avif', 'Naxos Portara Apollo temple ruins'),
-   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429840/cyclades___A8B1472-Pano-Edit_copy_yrcbq6.avif', 'Naxos Portara Apollo temple ruins'),
-   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429877/cyclades__IMGP8280_copy_g6amjy.avif', 'Naxos Portara Apollo temple ruins'),
-   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429850/cyclades__IMG_1022_93x62-Edit_copy_riyudk.avif', 'Naxos Portara Apollo temple ruins'),
-   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429889/cyclades__IMGP8288-Edit_ths8e1.avif', 'Naxos Portara Apollo temple ruins'),
-   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429850/cyclades___A8B1504-Edit_copy_kosl4x.avif', 'Naxos Portara Apollo temple ruins'),
-   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429878/cyclades__IMG_1641_copy_j5b61v.avif', 'Naxos Portara Apollo temple ruins'),
-   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429862/cyclades__IMG_0361_copy_nlolgq.avif', 'Naxos Portara Apollo temple ruins'),
-   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429847/cyclades__AA8B0363-Pano-Edit_copy_bebkwe.avif', 'Naxos Portara Apollo temple ruins'),
+   -- Tour 6: Cinque-Terre & Umbria
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429687/cinque-terre-umbria__OSKIN_4052_GenFill_copy_ytmtp1.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429649/cinque-terre-umbria__IMG_5988_svdxwt.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429665/cinque-terre-umbria__IMGP0566_copy_i4lpse.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429681/cinque-terre-umbria__IMGP2217_copy_sazhxx.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429682/cinque-terre-umbria__IMGP1845-Pano-2-Dehancer_copy_kovizs.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429684/cinque-terre-umbria__IMGP4429-2-Dehancer_copy_mcai9n.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429688/cinque-terre-umbria__IMGP4584-2_y2u0dp.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429670/cinque-terre-umbria__IMGP0755-Pano-Edit_ri1ucl.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429664/cinque-terre-umbria__IMGP0645-Dehancer_copy_jabbb1.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429675/cinque-terre-umbria__IMGP0854-Pano_copy_xpe28c.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429673/cinque-terre-umbria__IMGP1009-Pano-Edit-1_copy_u2vphi.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429658/cinque-terre-umbria__IMG_9390-Dehancer_copy-Edit_zs7gyu.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429665/cinque-terre-umbria__IMG_1786_copy_kajfdl.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429675/cinque-terre-umbria__IMGP1131-Edit_copy_zqxvdn.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429674/cinque-terre-umbria__IMGP0854-Pano_copy2_mwii2q.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429678/cinque-terre-umbria__IMGP1312-Pano-Dehancer_copy_jyboix.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429651/cinque-terre-umbria__IMG_6021_copy_awmcmc.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429671/cinque-terre-umbria__IMGP0567-Pano-Edit_kd4wuf.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429659/cinque-terre-umbria__IMG_5364-Pano-68x164-Topaz_Dehancer-Edit_h5zenn.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429656/cinque-terre-umbria___1646754-Edit_yxfkec.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429687/cinque-terre-umbria__IMGP1674-Dehancer_copy_il0bkz.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429687/cinque-terre-umbria__IMGP1539-Pano-Sky_copy_johssh.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429661/cinque-terre-umbria__IMG_5124-Pano-Edit_copy_hksmqx.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429674/cinque-terre-umbria__IMGP0686-Pano_254x129_PRINT-Dehancer_copy_mxtktz.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429686/cinque-terre-umbria__PAVEL_OSKIN_1417-Dehancer_copy_np6a6t.avif', 'Manarola colorful cliffside village'),
+   (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429675/cinque-terre-umbria__IMGP1131-Edit_copy_zqxvdn.avif', 'Manarola colorful cliffside village'),
 
-   -- Tour 9: Cinque-Terre & Umbria
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429687/cinque-terre-umbria__OSKIN_4052_GenFill_copy_ytmtp1.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429649/cinque-terre-umbria__IMG_5988_svdxwt.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429665/cinque-terre-umbria__IMGP0566_copy_i4lpse.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429681/cinque-terre-umbria__IMGP2217_copy_sazhxx.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429682/cinque-terre-umbria__IMGP1845-Pano-2-Dehancer_copy_kovizs.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429684/cinque-terre-umbria__IMGP4429-2-Dehancer_copy_mcai9n.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429688/cinque-terre-umbria__IMGP4584-2_y2u0dp.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429670/cinque-terre-umbria__IMGP0755-Pano-Edit_ri1ucl.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429664/cinque-terre-umbria__IMGP0645-Dehancer_copy_jabbb1.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429675/cinque-terre-umbria__IMGP0854-Pano_copy_xpe28c.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429673/cinque-terre-umbria__IMGP1009-Pano-Edit-1_copy_u2vphi.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429658/cinque-terre-umbria__IMG_9390-Dehancer_copy-Edit_zs7gyu.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429665/cinque-terre-umbria__IMG_1786_copy_kajfdl.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429675/cinque-terre-umbria__IMGP1131-Edit_copy_zqxvdn.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429674/cinque-terre-umbria__IMGP0854-Pano_copy2_mwii2q.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429678/cinque-terre-umbria__IMGP1312-Pano-Dehancer_copy_jyboix.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429651/cinque-terre-umbria__IMG_6021_copy_awmcmc.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429671/cinque-terre-umbria__IMGP0567-Pano-Edit_kd4wuf.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429659/cinque-terre-umbria__IMG_5364-Pano-68x164-Topaz_Dehancer-Edit_h5zenn.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429656/cinque-terre-umbria___1646754-Edit_yxfkec.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429687/cinque-terre-umbria__IMGP1674-Dehancer_copy_il0bkz.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429687/cinque-terre-umbria__IMGP1539-Pano-Sky_copy_johssh.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429661/cinque-terre-umbria__IMG_5124-Pano-Edit_copy_hksmqx.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429674/cinque-terre-umbria__IMGP0686-Pano_254x129_PRINT-Dehancer_copy_mxtktz.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429686/cinque-terre-umbria__PAVEL_OSKIN_1417-Dehancer_copy_np6a6t.avif', 'Manarola colorful cliffside village'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429675/cinque-terre-umbria__IMGP1131-Edit_copy_zqxvdn.avif', 'Manarola colorful cliffside village'),
+   -- Tour 7: Provence Lavender & Villages
+   (tour7_id, 'https://example.com/provence-photo1.jpg', 'Valensole plateau endless lavender fields'),
 
-   -- Tour 10: Provence Lavender & Villages
-   (tour10_id, 'https://example.com/provence-photo1.jpg', 'Valensole plateau endless lavender fields'),
+   -- Tour 8: Sicily & Aeolian Islands
+   (tour8_id, 'https://example.com/sicily-photo1.jpg', 'Mount Etna volcanic eruption at night'),
 
-   -- Tour 11: Sicily & Aeolian Islands
-   (tour11_id, 'https://example.com/sicily-photo1.jpg', 'Mount Etna volcanic eruption at night'),
+   -- Tour 9: Czechia Autumn
+   (tour9_id, 'https://example.com/czechia-photo1.jpg', 'Prague Castle autumn foliage at sunrise'),
 
-   -- Tour 12: Czechia Autumn
-   (tour12_id, 'https://example.com/czechia-photo1.jpg', 'Prague Castle autumn foliage at sunrise'),
+   -- Tour 10: Scotland Highlands
+   (tour10_id, 'https://example.com/scotland-photo1.jpg', 'Eilean Donan Castle at sunrise'),
 
-   -- Tour 13: Scotland Highlands
-   (tour13_id, 'https://example.com/scotland-photo1.jpg', 'Eilean Donan Castle at sunrise'),
+   -- Tour 11: Tuscany Autumn
+   (tour11_id, 'https://example.com/tuscany-autumn-photo1.jpg', 'Val d''Orcia rolling hills with autumn colors'),
 
-   -- Tour 14: Tuscany Autumn
-   (tour14_id, 'https://example.com/tuscany-autumn-photo1.jpg', 'Val d''Orcia rolling hills with autumn colors');
+   -- Tour 12: japan autumn
+   (tour12_id, 'https://example.com/tuscany-autumn-photo1.jpg', 'Val d''Orcia rolling hills with autumn colors'),
+
+   -- Tour 13: iceland
+   (tour13_id, 'https://example.com/tuscany-autumn-photo1.jpg', 'Val d''Orcia rolling hills with autumn colors'),
+
+   -- Tour 14: japan-spring
+     --  -- Tour 5: Japan Cherry Blossom
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429756/japan-spring___IMG1972_ihxist.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429741/japan-spring___IMG1454_ytwzbv.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429820/japan-spring__IMG_7856-Edit_copy_mmguih.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429700/japan-spring___1824960_etegje.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429729/japan-spring___A8B9230_qcqyle.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429814/japan-spring__IMG_7088-Edit_copy_jmjb1w.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429726/japan-spring___A8B8512-Edit_woxvlh.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429749/japan-spring___A8B9923_lgibyy.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429828/japan-spring__P1040398-Edit_x4p5iq.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429804/japan-spring__IMG_4845_l33mxc.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429712/japan-spring___A8B7752_jcd7sv.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429762/japan-spring___IMG2393-Edit_copy_biaipg.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429703/japan-spring___1825037_vzoxgy.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429703/japan-spring___1827029-Pano_lgecpg.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429764/japan-spring___IMG2241_fbgslx.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429825/japan-spring__IMG_8944-Edit_copy_j6ulee.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429741/japan-spring___A8B9292-Pano_kgzfq0.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429811/japan-spring__IMG_5548_cyo3n4.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429729/japan-spring___A8B8673-Edit_okewev.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429725/japan-spring___A8B9101_v3cbqt.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429723/japan-spring___A8B8452-Edit_axgu8c.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429719/japan-spring___A8B8435_m43wcg.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429798/japan-spring___IMG2554_tnec8m.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429703/japan-spring___A8B0764-Edit_copy_vexdrw.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429798/japan-spring___IMG2449_slc8ai.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429725/japan-spring___A8B9136-Edit_zi2sp5.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429748/japan-spring___IMG1919_oq6gap.avif', 'Cherry blossoms at Philosopher''s Path Kyoto');
+
 
 
 -- VIDEOS
@@ -1064,20 +1127,20 @@ VALUES
 
    
   -- Tour 6: New Zealand
-  (tour6_id, 'https://example.com/new-zealand-video1.mp4', 'New Zealand Milford Sound and landscapes'),
-  (tour6_id, 'https://example.com/new-zealand-video2.mp4', 'Queenstown adventure and Mount Cook glacier exploration'),
+  (tour4_id, 'https://example.com/new-zealand-video1.mp4', 'New Zealand Milford Sound and landscapes'),
+  (tour4_id, 'https://example.com/new-zealand-video2.mp4', 'Queenstown adventure and Mount Cook glacier exploration'),
   
   -- Tour 7: Japan Cherry Blossom
-  (tour7_id, 'https://example.com/japan-cherry-blossom-video1.mp4', 'Japan cherry blossom season photography'),
-  (tour7_id, 'https://example.com/japan-cherry-blossom-video2.mp4', 'Kyoto temples and traditional Japanese culture'),
+  (tour5_id, 'https://example.com/japan-cherry-blossom-video1.mp4', 'Japan cherry blossom season photography'),
+  (tour5_id, 'https://example.com/japan-cherry-blossom-video2.mp4', 'Kyoto temples and traditional Japanese culture'),
   
   -- Tour 8: Cyclades Sailing
-  (tour8_id, 'https://example.com/cyclades-sailing-video1.mp4', 'Greek islands sailing adventure and sunset photography'),
-  (tour8_id, 'https://example.com/cyclades-sailing-video2.mp4', 'Santorini Oia village and traditional Greek island life'),
+  (tour6_id, 'https://example.com/cyclades-sailing-video1.mp4', 'Greek islands sailing adventure and sunset photography'),
+  (tour6_id, 'https://example.com/cyclades-sailing-video2.mp4', 'Santorini Oia village and traditional Greek island life'),
   
   -- Tour 9: Cinque-Terre & Umbria
-  (tour9_id, 'https://example.com/cinque-terre-video1.mp4', 'Italian coastal villages and dramatic cliffside photography'),
-  (tour9_id, 'https://example.com/cinque-terre-video2.mp4', 'Umbria medieval hill towns and authentic Italian culture'),
+  (tour7_id, 'https://example.com/cinque-terre-video1.mp4', 'Italian coastal villages and dramatic cliffside photography'),
+  (tour7_id, 'https://example.com/cinque-terre-video2.mp4', 'Umbria medieval hill towns and authentic Italian culture'),
    
   -- Tour 10: Provence
   (tour10_id, 'https://example.com/provence-video1.mp4', 'Provence lavender fields and golden hour photography'),
@@ -1128,13 +1191,13 @@ INSERT INTO tour_tags (tag_id, tour_id)
 SELECT id, tour3_id FROM tags WHERE name IN ('festivals', 'portrait', 'culture');
 
 INSERT INTO tour_tags (tag_id, tour_id)
-SELECT id, tour6_id FROM tags WHERE name IN ('landscape', 'nature', 'adventure');
+SELECT id, tour4_id FROM tags WHERE name IN ('landscape', 'nature', 'adventure');
 INSERT INTO tour_tags (tag_id, tour_id)
-SELECT id, tour7_id FROM tags WHERE name IN ('cherry-blossom', 'temples', 'culture');
+SELECT id, tour5_id FROM tags WHERE name IN ('cherry-blossom', 'temples', 'culture');
 INSERT INTO tour_tags (tag_id, tour_id)
-SELECT id, tour8_id FROM tags WHERE name IN ('sailing', 'islands', 'mediterranean');
+SELECT id, tour6_id FROM tags WHERE name IN ('sailing', 'islands', 'mediterranean');
 INSERT INTO tour_tags (tag_id, tour_id)
-SELECT id, tour9_id FROM tags WHERE name IN ('coastal', 'villages', 'landscape');
+SELECT id, tour7_id FROM tags WHERE name IN ('coastal', 'villages', 'landscape');
 INSERT INTO tour_tags (tag_id, tour_id)
 SELECT id, tour10_id FROM tags WHERE name IN ('lavender', 'villages', 'summer');
 INSERT INTO tour_tags (tag_id, tour_id)
@@ -1163,13 +1226,13 @@ INSERT INTO tour_categories (category_id, tour_id)
 SELECT id, tour3_id FROM categories WHERE name IN ('Festivals', 'Photography');
 
 INSERT INTO tour_categories (category_id, tour_id)
-SELECT id, tour6_id FROM categories WHERE name IN ('Adventure', 'Photography');
+SELECT id, tour4_id FROM categories WHERE name IN ('Adventure', 'Photography');
 INSERT INTO tour_categories (category_id, tour_id)
-SELECT id, tour7_id FROM categories WHERE name IN ('Spring', 'Cultural');
+SELECT id, tour5_id FROM categories WHERE name IN ('Spring', 'Cultural');
 INSERT INTO tour_categories (category_id, tour_id)
-SELECT id, tour8_id FROM categories WHERE name IN ('Sailing', 'Summer');
+SELECT id, tour6_id FROM categories WHERE name IN ('Sailing', 'Summer');
 INSERT INTO tour_categories (category_id, tour_id)
-SELECT id, tour9_id FROM categories WHERE name IN ('Photography', 'Cultural');
+SELECT id, tour7_id FROM categories WHERE name IN ('Photography', 'Cultural');
 INSERT INTO tour_categories (category_id, tour_id)
 SELECT id, tour10_id FROM categories WHERE name IN ('Photography', 'Summer');
 INSERT INTO tour_categories (category_id, tour_id)
