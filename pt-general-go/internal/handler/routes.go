@@ -102,5 +102,10 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 		bookings.POST("", h.CreateBookingRequest)
 	}
 
+	contact := general.Group("/contact")
+	{
+		contact.POST("/me", h.ContactMe)
+	}
+
 	return router
 }

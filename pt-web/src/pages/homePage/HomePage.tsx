@@ -25,6 +25,7 @@ import {PopularWorkshops} from "src/components/PopularWorkshops/PopularWorkshops
 import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
 import {ToursSection} from "src/components/ToursSection/ToursSection";
 import {PATHS} from "src/routes/routes";
+import {submitContactMe} from "src/services/sailsService";
 import "react-international-phone/style.css";
 import popularWorkshopsStyles from "src/components/PopularWorkshops/PopularWorkshops.module.scss";
 import styles from "src/pages/homePage/HomePage.module.scss";
@@ -38,6 +39,30 @@ interface FeedbackBlockProps {
 // Const FEATURED_TOURS_LIMIT = 3;
 export const FeedbackBlock = (props: FeedbackBlockProps) => {
   const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async () => {
+    if (!name.trim() || !phoneNumber.trim()) {
+      alert("Please fill in both name and phone number");
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      await submitContactMe({
+        name: name.trim(),
+        phone: phoneNumber.trim(),
+      });
+      alert("Contact request submitted successfully!");
+      setName("");
+      setPhoneNumber("");
+    } catch (error) {
+      alert("Failed to submit contact request. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className={styles.feedBackBlock}>
@@ -54,6 +79,8 @@ export const FeedbackBlock = (props: FeedbackBlockProps) => {
               type="text"
               className={styles.feedBackInput}
               placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
             <InputPhone
               defaultCountry="us"
@@ -66,8 +93,12 @@ export const FeedbackBlock = (props: FeedbackBlockProps) => {
                 className={styles.feedBackInput}
                 placeholder="+1 000 000-000"
               /> */}
-            <button className={styles.feedBackButton}>
-              {props.buttonText}
+            <button 
+              className={styles.feedBackButton}
+              onClick={handleSubmit}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Submitting..." : props.buttonText}
             </button>
           </div>
           <span className={styles.privacyPolicyText}>

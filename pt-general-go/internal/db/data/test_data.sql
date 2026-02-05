@@ -339,7 +339,11 @@ VALUES
 
 -- TOURS
 INSERT INTO tours (
-  id, slug, title, description, difficulty, price, program, guide_id,
+  id, slug, title,
+  description,
+  difficulty, price,
+  program,
+  guide_id,
   cover_url, duration_days, end_location, start_location,
   available_months, languages, min_age, location, group_size, spots_left, subtitle
 )
@@ -1055,13 +1059,88 @@ VALUES
    (tour6_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429675/cinque-terre-umbria__IMGP1131-Edit_copy_zqxvdn.avif', 'Manarola colorful cliffside village'),
 
    -- Tour 7: Provence Lavender & Villages
-   (tour7_id, 'https://example.com/provence-photo1.jpg', 'Valensole plateau endless lavender fields'),
+   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430058/provence___A8B4955_Topaz_copy_upigxu.avif', 'Valensole plateau endless lavender fields'),
+   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430071/provence__Untitled_Panorama1_sqjxhe.avif', 'Valensole plateau endless lavender fields'),
+   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430065/provence__645Z8680-Sky-levels-Dehancer_copy_enhdao.avif', 'Valensole plateau endless lavender fields'),
+   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430055/provence___A8B5651-1_nf6hbi.avif', 'Valensole plateau endless lavender fields'),
+   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430062/provence__331A4608_copy_mlh8uh.avif', 'Valensole plateau endless lavender fields'),
+   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430070/provence__P1171450-Edit_copy_j9vdyv.avif', 'Valensole plateau endless lavender fields'),
+   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430071/provence__P1160424-Edit_copy_s8d3r8.avif', 'Valensole plateau endless lavender fields'),
+   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430035/provence___A8B4321-Edit_copy_yvb1fb.avif', 'Valensole plateau endless lavender fields'),
+   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430058/provence___A8B7664-1_uvrqhf.avif', 'Valensole plateau endless lavender fields'),
+   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430018/provence___A8B1576-Edit_copy_cr7kwr.avif', 'Valensole plateau endless lavender fields'),
+   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430068/provence__Gordes_copy_mre3jg.avif', 'Valensole plateau endless lavender fields'),
+   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430011/provence___A8B3410_uho2sb.avif', 'Valensole plateau endless lavender fields'),
+   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430065/provence__645Z9091-HDR-Stiched-Dehancer_copy_jbhbtx.avif', 'Valensole plateau endless lavender fields'),
+   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430017/provence___A8B3335_zxdiuq.avif', 'Valensole plateau endless lavender fields'),
+   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430008/provence___A8B1426-Edit_copy_dmnpzu.avif', 'Valensole plateau endless lavender fields'),
+   (tour7_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430039/provence___A8B4760_uc2bt0.avif', 'Valensole plateau endless lavender fields'),
 
    -- Tour 8: Sicily & Aeolian Islands
-   (tour8_id, 'https://example.com/sicily-photo1.jpg', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430152/sicily__IMG_0599_dmi5yb.avif', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430168/sicily__IslandsAeoleanDJI_0586-HDR-Pano-Edit_clarity_Dehancer_vvcjdt.avif', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430149/sicily__AeoleanPANO_stromboli-Dechancer_copy_zkifet.avif', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430146/sicily___1695197-Edit_copy_rnakcr.avif', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430151/sicily___1695355-Dehancer_copy_cfjtjq.avif', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430151/sicily__645Z8439-Edit_copy_cb0zbm.avif', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430162/sicily__IMGP8758_bvaf5w.avif', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430151/sicily___1695355-Dehancer_copy_cfjtjq.avif', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430161/sicily__IMG_1468-Pano-Edit_copy_baq6t3.avif', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430159/sicily__IMG_0630_da5cwh.avif', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430146/sicily__326054323_891450478768457_981251162749570418_n_cbgxpu.avif', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430160/sicily___1695375_fapep0.avif', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430165/sicily__IMGP9670_vipa3l.avif', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430166/sicily__IMGP9724_jlmgfq.avif', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430168/sicily__P1160094-Edit_copy_s5ybyu.avif', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430162/sicily__IMG_0700_wkrudt.avif', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430168/sicily__IMGP8994_vz0jd4.avif', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430161/sicily__IMGP8734_copy_ppv0sr.avif', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430171/sicily__IMGP9067_kdsbx3.avif', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430169/sicily__StromboliIMG_0590_bye4pf.avif', 'Mount Etna volcanic eruption at night'),
+   (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430167/sicily__PAVEL_OSKIN_2503_qymcry.avif', 'Mount Etna volcanic eruption at night'),
 
    -- Tour 9: Czechia Autumn
-   (tour9_id, 'https://example.com/czechia-photo1.jpg', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777171/iceland_1_IGP4228-Pano_109x162_200dpi_topaz_copy_lt6mdc.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777185/iceland_645Z3212-Edit_bqcuvd.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777216/iceland_645Z6169-HDR-Pano-Dehancer_uaao9y.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777172/iceland_11_IMG8365-Pano_Dechancer_246x138_copy-Edit_copy_q84w7b.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777458/iceland_DJI_20240813205653_0041_D-Pano-2-Clarity_65_Dehancer_75_yellow_50_copy_oecvqz.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777551/iceland_IMGP9746_146x110_PRINT_Dehancer_ppkjrv.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777526/iceland_DJI_20250813053458_0060_D-Pano-Edit_copy_rkgz8n.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777147/iceland__IMG2517-Pano-Edit-Edit_copy_cfvjbw.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777195/iceland_645Z2972_aovm5y.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777196/iceland_645Z4740-Pano_Labsat_Dehancer_copy_altom9.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777355/iceland_AA8B5429_164x110_PRINT_Topaz_Dehancer_rw9svw.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777323/iceland_AA8B0579_lpkgbz.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777131/iceland__A8B9065-Dehancer_copy_hgqkrc.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777561/iceland_P1090263_s42teo.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777582/iceland_P1189383-Pano_107x186_200dpi_topaz_cgfckg.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777448/iceland_DJI_20240814074535_0057_D-HDR_jtttmx.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777334/iceland_AA8B0969_e6rt78.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777310/iceland_AA8B0334-gigapixel_165x110_PRINT_mhmxdt.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777347/iceland_AA8B1225_fm8qkm.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777419/iceland_DJI_20240808195545_0046_D-Pano-Dechancer_copy_j2fyvv.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777333/iceland_AA8B2127_roqsal.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777438/iceland_DJI_20240813092732_0111_D-Pano_copy_l904bc.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777260/iceland_AA8B0282_tswyat.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777394/iceland_big_%D0%9F%D0%B0%D0%BB%D0%B8%D1%82%D1%80%D0%B0-%D0%9B%D0%B5%D0%B4%D0%BE%D0%B2%D0%BE%D0%B8%CC%86-%D0%9B%D0%B0%D0%B3%D1%83%D0%BD%D1%8B.%D0%98%D1%81%D0%BB%D0%B0%D0%BD%D0%B4%D0%B8%D1%8F.Colours-of-Jolulsarlon.Iceland-TOP10_j0h05m.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777196/iceland_645Z4740-Pano_Labsat_Dehancer_copy_altom9.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777480/iceland_DJI_20250801140159_0081_D-Edit_copy_ekrvwo.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777053/iceland__A8B7963_45x72_200dpi-TOP10_hncp4n.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777518/iceland_Iceland_drone-16-Edit_copy_mghrr1.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777033/iceland__A8B2266_t8lciy.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777448/iceland_DJI_20240811162246_0001_D-Pano-Dehancer_labsat_ortob-142x110_2024_bvnhqx.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777370/iceland_AA8B8808-Pano_115x237_200dpi_pv36kx.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777331/iceland_AA8B1400_b6hqk6.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777304/iceland_AA8B0703_zkshdp.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777360/iceland_AA8B9356_sky_kaggmi.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777563/iceland_IMGP7904GOTOV_u1zhcd.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777493/iceland_DJI_20250801161740_0008_D-Pano-153x110_Dechancer_Rollei_copy_ltcd69.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777143/iceland__IMG3178-Edit_Dehancer_kg2ups.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769776983/iceland__1844568_50x60_200dpi_fj5zat.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777117/iceland__A8B8661_hnr6d4.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777002/iceland__6458662_204x110_PRINT_topaz_Dehancer_y7cdbw.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777087/iceland__A8B7555_main_WB-164x110_PRINT_topaz_Dehancer_copy_p3talb.avif', 'Prague Castle autumn foliage at sunrise'),
 
    -- Tour 10: Scotland Highlands
    (tour10_id, 'https://example.com/scotland-photo1.jpg', 'Eilean Donan Castle at sunrise'),
@@ -1267,16 +1346,16 @@ VALUES
 -- REVIEWS
 INSERT INTO reviews (tour_id, user_id, rating, comment)
 VALUES
-  -- Tour 1: Grand Canyon Hiking (3 reviews)
+  -- Tour 1:
   (tour1_id, user3_id, 5, 'Absolutely breathtaking views! John was an amazing guide.'),
   (tour1_id, user4_id, 4, 'Great experience, though the hike was more challenging than expected.'),
   (tour1_id, user7_id, 5, 'Best hiking trip of my life. Highly recommend!'),
 
-  -- Tour 2: NYC History Tour (2 reviews)
+  -- Tour 2:
   (tour2_id, user3_id, 4, 'Sarah knows so much about NYC history. Learned a lot!'),
   (tour2_id, user10_id, 5, 'Perfect tour for history lovers. Well organized.'),
 
-  -- Tour 3: Colorado River Rafting (4 reviews)
+  -- Tour 3:
   (tour3_id, user4_id, 5, 'Adrenaline rush! The rapids were incredible.'),
   (tour3_id, user7_id, 5, 'Professional guides and top-notch safety equipment.'),
   (tour3_id, user8_id, 4, 'Amazing adventure, but bring waterproof bags for your stuff.'),
