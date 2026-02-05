@@ -403,7 +403,7 @@ VALUES
      'EASY', 3400.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Transfer to Provence via scenic drive."},{"day":2,"plan":"AVIGNON ORIENTATION","description":"Explore Avignon historic center. Evening photography at Palais des Papes."},{"day":3,"plan":"GORD & ROUSSILLON","description":"Morning in hilltop village of Gordes. Afternoon in ochre trails of Roussillon."},{"day":4,"plan":"LAVENDER FIELDS","description":"Full day photography in Valensole plateau lavender fields at sunrise and sunset."},{"day":5,"plan":"SENANQUE ABBEY","description":"Early morning at Cistercian abbey with lavender. Afternoon in local markets."},{"day":6,"plan":"LES BAUX & ARLES","description":"Morning at Les Baux de Provence. Afternoon in Arles roman monuments."},{"day":7,"plan":"CAMARGUE WETLANDS","description":"Day trip to Camargue for wildlife and traditional gardian photography."},{"day":8,"plan":"VERDON GORGE","description":"Scenic photography at Verdon Gorge and Lake of Sainte-Croix."},{"day":9,"plan":"CASSIS CALANQUES","description":"Day trip to Cassis for calanques coastal photography."},{"day":10,"plan":"DEPARTURE","description":"Final gallery review. Return transfer to Rome FCO."}]}',
      guide5_id,
-     '/images/10.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
+     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430058/provence___A8B4955_Topaz_copy_upigxu.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
       ARRAY['June','July','August','September'], ARRAY['English'], 16, 'Europe', 16, 10, 'About Our Provence Photo Expedition'),
 
    (tour8_id, 'sicily-aeolian-tour', 'Sicily & Aeolian Islands Photography',
@@ -411,7 +411,7 @@ VALUES
      'MEDIUM', 3800.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Transfer to Sicily via scenic drive."},{"day":2,"plan":"TAORMINA ORIENTATION","description":"Explore Taormina with Greek theatre views. Evening golden hour photography."},{"day":3,"plan":"MOUNT ETNA","description":"Full day Mount Etna photography. Craters, lava flows, and volcanic landscapes."},{"day":4,"plan":"SIRACUSA","description":"Morning in Ortigia island. Afternoon Greek theatre and ancient architecture."},{"day":5,"plan":"AEOLIAN ISLANDS START","description": "Ferry to Lipari. Island exploration and coastal photography."},{"day":6,"plan":"STROMBOLI VOLCANO","description":"Day trip to Stromboli. Hike and evening eruption photography."},{"day":7,"plan":"VULCANO & PANAREA","description":"Morning in Vulcano with mud baths and hot springs. Afternoon in Panarea."},{"day":8,"plan":"PALERMO ARRIVAL","description":"Return to mainland. Palermo historic center photography."},{"day":9,"plan":"MONREALE & CEFALÙ","description":"Morning at Monreale cathedral. Afternoon in Cefalù coastal town."},{"day":10,"plan":"DEPARTURE","description":"Final gallery review. Return transfer to Rome FCO."}]}',
      guide4_id,
-     '/images/11.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
+     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430152/sicily__IMG_0599_dmi5yb.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
       ARRAY['May','June','September','October'], ARRAY['English'], 16, 'Mediterranean', 16, 12, 'About Our Sicily & Aeolian Islands Photo Adventure'),
 
  (tour9_id, 'czechia-autumn-tour', 'Czechia Autumn Photography',
@@ -419,7 +419,7 @@ VALUES
      'EASY', 2950.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Transfer flight to Prague."},{"day":2,"plan":"PRAGUE ORIENTATION","description":"Prague Castle and Charles Bridge sunrise photography. Old Town Square exploration."},{"day":3,"plan":"PRAGUE DEEP DIVE","description":"Jewish Quarter and Lesser Town photography. Evening golden hour from Petřín Hill."},{"day":4,"plan":"KUTNÁ HORA","description":"Day trip to Kutná Hora. Sedlec Ossuary and St. Barbara''s Church."},{"day":5,"plan":"ČESKÝ KRUMLOV","description":"Travel to Český Krumlov. Castle and medieval town photography."},{"day":6,"plan":"SOUTH BOHEMIA","description":"Hluboká Castle and surrounding autumn landscapes. Village photography."},{"day":7,"plan":"KARLOVY VARY","description":"Travel to Karlovy Vary. Spa town architecture and autumn colors."},{"day":8,"plan":"BOHEMIAN SWITZERLAND","description":"Day trip to Bohemian Switzerland National Park for dramatic landscapes."},{"day":9,"plan":"PRAGUE FINAL","description":"Return to Prague. Final photography sessions and gallery review."},{"day":10,"plan":"DEPARTURE","description":"Transfer to Prague airport for return flight via Rome."}]}',
      guide2_id,
-      '/images/12.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
+      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429592/czech-fall___IGP2024_93x69_200dpi-Dehancer_120x90_PRINT_2017_copy_jssztz.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
       ARRAY['September','October','November'], ARRAY['English'], 14, 'Europe', 14, 8, 'About Our Czechia Autumn Photo Expedition'),
 
  (tour10_id, 'scotland-photography-tour', 'Scotland Highlands & Islands',
@@ -427,7 +427,7 @@ VALUES
      'EASY', 3200.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Transfer flight to Edinburgh."},{"day":2,"plan":"EDINBURGH ORIENTATION","description":"Edinburgh Castle and Royal Mile photography. Evening at Arthur''s Seat."},{"day":3,"plan":"STIRLING & TROSSACHS","description":"Stirling Castle photography. Drive through Trossachs National Park."},{"day":4,"plan":"GLENCOE","description":"Photography in Glencoe Valley. Buchaille Etive Mor and dramatic landscapes."},{"day":5,"plan":"ISLE OF SKYE ARRIVAL","description":"Travel to Isle of Skye. Sligachan and sunset at Neist Point."},{"day":6,"plan":"SKYE EXPLORATION","description":"Old Man of Storr, Kilt Rock, and Quiraing landscape photography."},{"day":7,"plan":"EILEAN DONAN","description":"Morning at Eilean Donan Castle. Drive through Wester Ross."},{"day":8,"plan":"INVERNESS & CAIRNGORMS","description":"Loch Ness photography. Cairngorms National Park exploration."},{"day":9,"plan":"ST ANDREWS","description":"Fishing villages and St Andrews Cathedral. Final coastal photography."},{"day":10,"plan":"DEPARTURE","description":"Return to Edinburgh. Transfer to airport for return flight via Rome."}]}',
      guide1_id,
-     '/images/13.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
+     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430128/scotland__IMGP3471_Panorama-Dehancer_copy_mpyxma.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
       ARRAY['April','May','September','October'], ARRAY['English'], 16, 'Europe', 16, 10, 'About Our Scotland Highlands & Islands Photo Expedition'),
 
 (tour11_id, 'tuscany-autumn-tour', 'Tuscany Autumn Photography',
@@ -435,7 +435,7 @@ VALUES
      'EASY', 3500.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Transfer to Tuscany."},{"day":2,"plan":"VAL D''ORCIA AUTUMN","description":"Pienza and Podere Belvedere with autumn colors. Golden hour sessions."},{"day":3,"plan":"MONTALCINO WINERIES","description":"Wine harvest photography in Brunello vineyards. Cellar tours."},{"day":4,"plan":"SAN QUIRICO D''ORCIA","description":"Morning in San Quirico. Bagno Vignoni thermal village photography."},{"day":5,"plan":"MONTERIGGIONI & SIENA","description":"Monteriggioni walled town. Afternoon in Siena medieval center."},{"day":6,"plan":"CHIANTI REGION","description":"Full day Chanti valley photography. Vineyard harvest scenes."},{"day":7,"plan":"TRUFFLE HUNTING","description":"Morning truffle hunting experience with local hunters. Village markets."},{"day":8,"plan":"FLORENCE DAY TRIP","description":"Photography in Florence during autumn season. Ponte Vecchio at sunrise."},{"day":9,"plan":"CRETE SENESI","description":"Final landscape photography in Crete Senesi region."},{"day":10,"plan":"DEPARTURE","description":"Gallery review and transfer to Rome FCO for departure."}]}',
      guide3_id,
-      '/images/14.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
+      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430222/tuscany-fall___IMG7020-Pano-1_1-Dechancer_copy_g90yjy.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
       ARRAY['September','October','November'], ARRAY['English'], 16, 'Europe', 11, 5, 'Journey through the mystical Scottish Highlands'),
 
 (tour12_id, 'japan-atumn-tour', 'Japan Cultural Photography Journey',
@@ -443,7 +443,7 @@ VALUES
      'EASY', 4100.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Transfer flight to Tokyo."},{"day":2,"plan":"TOKYO ORIENTATION","description":"Tokyo Tower and Shibuya Crossing photography. Evening at Senso-ji Temple."},{"day":3,"plan":"TOKYO CULTURE","description":"Tsukiji fish market morning. Meiji Shrine and Harajuku street photography."},{"day":4,"plan":"HAKONE & MT FUJI","description":"Day trip to Hakone. Lake Ashi with Mount Fuji views."},{"day":5,"plan":"KYOTO ARRIVAL","description":"Travel to Kyoto. Fushimi Inari shrine and bamboo forest photography."},{"day":6,"plan":"KYOTO TEMPLES","description":"Kinkaku-ji and Gion geisha district photography sessions."},{"day":7,"plan":"NARA DAY TRIP","description":"Todai-ji Temple and deer park photography. Traditional crafts."},{"day":8,"plan":"HIROSHIMA PEACE","description":"Travel to Hiroshima. Peace Memorial and Miyajima Island photography."},{"day":9,"plan":"OSAKA MODERN","description":"Osaka Castle and Dotonbori neon district photography."},{"day":10,"plan":"DEPARTURE","description":"Final gallery review. Transfer to Osaka airport for return flight via Rome."}]}',
      guide5_id,
-      '/images/15.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
+      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
       ARRAY['March','April','May','October','November'], ARRAY['English'], 14, 'Japan', 14, 3, 'Immerse yourself in Japan''s rich cultural heritage'),
 
 (tour13_id, 'iceland-tour', 'Japan Cultural Photography Journey',
@@ -451,7 +451,7 @@ VALUES
      '', ,
      '',
      guide5_id,
-      '/images/15.avif', 10, '', '',
+      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777171/iceland_1_IGP4228-Pano_109x162_200dpi_topaz_copy_lt6mdc.avif', 10, '', '',
       ARRAY['March','April','May','October','November'], ARRAY['English'], 14, 'Japan', 14, 3, 'Immerse yourself in Japan''s rich cultural heritage'),
 
 (tour14_id, 'japan-spring-tour', '',
@@ -459,7 +459,7 @@ VALUES
      '', ,
      '',
      guide5_id,
-      '/images/15.avif', , '', '',
+      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', , '', '',
       ARRAY['March','April','May','October','November'], ARRAY['English'], 14, 'Japan', 14, 3, 'Immerse yourself in Japan''s rich cultural heritage');
 
 
@@ -841,81 +841,62 @@ VALUES
   (tour_date53_id, tour15_id, '2025-10-01', '2025-10-10', 12, TRUE),
   (tour_date54_id, tour15_id, '2025-11-15', '2025-11-24', 8, TRUE),
 
-  -- Tour 12: iceland
+  -- Tour 13: iceland
   (tour_date50_id, tour15_id, '2025-03-20', '2025-03-29', 10, TRUE),
 
-  -- Tour 12: Japan spring
+  -- Tour 14: Japan spring
   (tour_date50_id, tour15_id, '2025-03-20', '2025-03-29', 10, TRUE);
 
--- MATERIALS
+-- MATERIALS (not used on front)
 INSERT INTO tour_materials (tour_id, title, url, type)
 VALUES
-  -- Tour 1: New Zealand Photography
+  -- Tour 1: Tuscany Spring
   (tour1_id, 'Grand Canyon Trail Guide', 'https://example.com/grand-canyon-guide.pdf', 'PDF'),
   (tour1_id, 'Hiking Preparation Video', 'https://example.com/gc-prep-video.mp4', 'VIDEO'),
   
-  -- Tour 2: New Zealand Photography
+  -- Tour 2: Morocco (6-day tour)
   (tour2_id, 'NYC Historical Map', 'https://example.com/nyc-history-map.pdf', 'PDF'),
-  (tour2_id, 'Manhattan Walking Guide', 'https://example.com/manhattan-guide.pdf', 'PDF'),
   
-  -- Tour 3: New Zealand Photography
+  -- Tour 3: Venice Carnival (5-day tour)
   (tour3_id, 'Rafting Safety Manual', 'https://example.com/rafting-safety.pdf', 'PDF'),
-  (tour3_id, 'Whitewater Training Video', 'https://example.com/rafting-training.mp4', 'VIDEO'),
 
   -- Tour 4: New Zealand Photography
   (tour4_id, 'New Zealand Landscape Photography Guide', 'https://example.com/new-zealand-photo-guide.pdf', 'PDF'),
-  (tour4_id, 'Milford Sound Photography Tips', 'https://example.com/milford-sound-tips.pdf', 'PDF'),
-  (tour4_id, 'New Zealand Photography Workshop Video', 'https://example.com/nz-photo-workshop.mp4', 'VIDEO'),
   
-  -- Tour 5: Japan Cherry Blossom
+  -- Tour 5: Cyclades Sailing
   (tour5_id, 'Cherry Blossom Photography Guide', 'https://example.com/sakura-photo-guide.pdf', 'PDF'),
-  (tour5_id, 'Japan Temple Photography Tips', 'https://example.com/japan-temple-tips.pdf', 'PDF'),
-  (tour5_id, 'Sakura Season Photography Video', 'https://example.com/sakura-photo-video.mp4', 'VIDEO'),
   
-  -- Tour 6: Cyclades Sailing
+  -- Tour 6: Cinque-Terre & Umbria
   (tour6_id, 'Greek Islands Sailing Guide', 'https://example.com/cyclades-sailing-guide.pdf', 'PDF'),
-  (tour6_id, 'Santorini Photography Tips', 'https://example.com/santorini-photo-tips.pdf', 'PDF'),
-  (tour6_id, 'Cyclades Sailing Adventure Video', 'https://example.com/cyclades-sailing.mp4', 'VIDEO'),
   
-  -- Tour 7: Cinque-Terre & Umbria
+  -- Tour 7: Provence Lavender & Villages
   (tour7_id, 'Italian Coastal Photography Guide', 'https://example.com/cinque-terre-photo-guide.pdf', 'PDF'),
-  (tour7_id, 'Umbria Hill Towns Photography', 'https://example.com/umbria-photo-tips.pdf', 'PDF'),
-  (tour7_id, 'Cinque-Terre Photography Workshop Video', 'https://example.com/cinque-terre-workshop.mp4', 'VIDEO'),
   
-  -- Tour 8: Provence
-  (tour10_id, 'Provence Lavender Photography Guide', 'https://example.com/provence-lavender-guide.pdf', 'PDF'),
-  (tour10_id, 'French Village Photography Tips', 'https://example.com/provence-villages-tips.pdf', 'PDF'),
-  (tour10_id, 'Lavender Fields Photography Video', 'https://example.com/lavender-fields-video.mp4', 'VIDEO'),
+  -- Tour 8: Sicily & Aeolian Islands
+  (tour8_id, 'Provence Lavender Photography Guide', 'https://example.com/provence-lavender-guide.pdf', 'PDF'),
   
-  -- Tour 9: Sicily & Aeolian Islands
-  (tour11_id, 'Sicily Volcanic Photography Guide', 'https://example.com/sicily-volcano-guide.pdf', 'PDF'),
-  (tour11_id, 'Mediterranean Island Photography Tips', 'https://example.com/aeolian-islands-tips.pdf', 'PDF'),
-  (tour11_id, 'Mount Etna Photography Video', 'https://example.com/mount-etna-video.mp4', 'VIDEO'),
+  -- Tour 9: Czechia Autumn
+  (tour9_id, 'Sicily Volcanic Photography Guide', 'https://example.com/sicily-volcano-guide.pdf', 'PDF'),
   
-  -- Tour 10: Czechia Autumn
-  (tour12_id, 'Czechia Autumn Photography Guide', 'https://example.com/czechia-autumn-guide.pdf', 'PDF'),
-  (tour12_id, 'Prague Gothic Architecture Photography', 'https://example.com/prague-gothic-tips.pdf', 'PDF'),
-  (tour12_id, 'Bohemian Autumn Photography Video', 'https://example.com/bohemian-autumn.mp4', 'VIDEO'),
+  -- Tour 10: Scotland Highlands
+  (tour10_id, 'Czechia Autumn Photography Guide', 'https://example.com/czechia-autumn-guide.pdf', 'PDF'),
   
-  -- Tour 11: Scotland Highlands
-  (tour13_id, 'Scotland Highlands Photography Guide', 'https://example.com/scotland-highlands-guide.pdf', 'PDF'),
-  (tour13_id, 'Scottish Castle Photography Tips', 'https://example.com/scottish-castles-tips.pdf', 'PDF'),
-  (tour13_id, 'Isle of Skye Landscape Video', 'https://example.com/isle-of-skye-video.mp4', 'VIDEO'),
+  -- Tour 11: Tuscany Autumn
+  (tour11_id, 'Scotland Highlands Photography Guide', 'https://example.com/scotland-highlands-guide.pdf', 'PDF'),
   
-  -- Tour 12: Tuscany Autumn
-  (tour14_id, 'Tuscany Autumn Photography Guide', 'https://example.com/tuscany-autumn-guide.pdf', 'PDF'),
-  (tour14_id, 'Italian Wine Harvest Photography', 'https://example.com/tuscany-wine-harvest.pdf', 'PDF'),
-  (tour14_id, 'Tuscany Golden Hour Video', 'https://example.com/tuscany-golden-hour.mp4', 'VIDEO'),
+  -- Tour 12: japan autumn
+  (tour12_id, 'Tuscany Autumn Photography Guide', 'https://example.com/tuscany-autumn-guide.pdf', 'PDF'),
   
-  -- Tour 13: Japan Cultural
-  (tour15_id, 'Japan Cultural Photography Guide', 'https://example.com/japan-cultural-guide.pdf', 'PDF'),
-  (tour15_id, 'Tokyo Street Photography Tips', 'https://example.com/tokyo-street-tips.pdf', 'PDF'),
-  (tour15_id, 'Japan Cultural Experience Video', 'https://example.com/japan-cultural-video.mp4', 'VIDEO');
+  -- Tour 13: iceland
+  (tour13_id, 'Japan Cultural Photography Guide', 'https://example.com/japan-cultural-guide.pdf', 'PDF'),
+  
+  -- Tour 14: japan-spring
+  (tour14_id, 'Japan Cultural Photography Guide', 'https://example.com/japan-cultural-guide.pdf', 'PDF');
+
 
 -- PHOTOS
 INSERT INTO photos (tour_id, url, description)
 VALUES
-
   -- Tour 1: Tuscany Spring
   (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8844obr_146x110_topaz_PRINT_yvqehs.avif', 'Val d''Orcia sunrise over rolling hills'),
   (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8829-1_86x56_x5eivl.avif', 'Pienza medieval town at golden hour'),
@@ -1100,91 +1081,213 @@ VALUES
    (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430167/sicily__PAVEL_OSKIN_2503_qymcry.avif', 'Mount Etna volcanic eruption at night'),
 
    -- Tour 9: Czechia Autumn
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777171/iceland_1_IGP4228-Pano_109x162_200dpi_topaz_copy_lt6mdc.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777185/iceland_645Z3212-Edit_bqcuvd.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777216/iceland_645Z6169-HDR-Pano-Dehancer_uaao9y.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777172/iceland_11_IMG8365-Pano_Dechancer_246x138_copy-Edit_copy_q84w7b.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777458/iceland_DJI_20240813205653_0041_D-Pano-2-Clarity_65_Dehancer_75_yellow_50_copy_oecvqz.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777551/iceland_IMGP9746_146x110_PRINT_Dehancer_ppkjrv.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777526/iceland_DJI_20250813053458_0060_D-Pano-Edit_copy_rkgz8n.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777147/iceland__IMG2517-Pano-Edit-Edit_copy_cfvjbw.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777195/iceland_645Z2972_aovm5y.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777196/iceland_645Z4740-Pano_Labsat_Dehancer_copy_altom9.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777355/iceland_AA8B5429_164x110_PRINT_Topaz_Dehancer_rw9svw.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777323/iceland_AA8B0579_lpkgbz.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777131/iceland__A8B9065-Dehancer_copy_hgqkrc.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777561/iceland_P1090263_s42teo.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777582/iceland_P1189383-Pano_107x186_200dpi_topaz_cgfckg.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777448/iceland_DJI_20240814074535_0057_D-HDR_jtttmx.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777334/iceland_AA8B0969_e6rt78.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777310/iceland_AA8B0334-gigapixel_165x110_PRINT_mhmxdt.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777347/iceland_AA8B1225_fm8qkm.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777419/iceland_DJI_20240808195545_0046_D-Pano-Dechancer_copy_j2fyvv.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777333/iceland_AA8B2127_roqsal.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777438/iceland_DJI_20240813092732_0111_D-Pano_copy_l904bc.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777260/iceland_AA8B0282_tswyat.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777394/iceland_big_%D0%9F%D0%B0%D0%BB%D0%B8%D1%82%D1%80%D0%B0-%D0%9B%D0%B5%D0%B4%D0%BE%D0%B2%D0%BE%D0%B8%CC%86-%D0%9B%D0%B0%D0%B3%D1%83%D0%BD%D1%8B.%D0%98%D1%81%D0%BB%D0%B0%D0%BD%D0%B4%D0%B8%D1%8F.Colours-of-Jolulsarlon.Iceland-TOP10_j0h05m.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777196/iceland_645Z4740-Pano_Labsat_Dehancer_copy_altom9.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777480/iceland_DJI_20250801140159_0081_D-Edit_copy_ekrvwo.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777053/iceland__A8B7963_45x72_200dpi-TOP10_hncp4n.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777518/iceland_Iceland_drone-16-Edit_copy_mghrr1.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777033/iceland__A8B2266_t8lciy.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777448/iceland_DJI_20240811162246_0001_D-Pano-Dehancer_labsat_ortob-142x110_2024_bvnhqx.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777370/iceland_AA8B8808-Pano_115x237_200dpi_pv36kx.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777331/iceland_AA8B1400_b6hqk6.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777304/iceland_AA8B0703_zkshdp.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777360/iceland_AA8B9356_sky_kaggmi.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777563/iceland_IMGP7904GOTOV_u1zhcd.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777493/iceland_DJI_20250801161740_0008_D-Pano-153x110_Dechancer_Rollei_copy_ltcd69.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777143/iceland__IMG3178-Edit_Dehancer_kg2ups.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769776983/iceland__1844568_50x60_200dpi_fj5zat.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777117/iceland__A8B8661_hnr6d4.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777002/iceland__6458662_204x110_PRINT_topaz_Dehancer_y7cdbw.avif', 'Prague Castle autumn foliage at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777087/iceland__A8B7555_main_WB-164x110_PRINT_topaz_Dehancer_copy_p3talb.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429592/czech-fall___IGP2024_93x69_200dpi-Dehancer_120x90_PRINT_2017_copy_jssztz.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429635/czech-fall__IMG_4250_Dehancer_113x60_PRINT_2015_copy_btx6nd.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429600/czech-fall___IMG8087-Pano-Edit-GL_148x105_odehuc.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429635/czech-fall__IMG_4462-Pano-Dehancer-2-part1_y0nncg.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429585/czech-fall___6455425-Pano-Edit-Topaz-Dehancer_275x90_PRINT_2022_copy_dsqso5.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429625/czech-fall__DJI_0497-Pano-Edit_copy_n53ct8.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429602/czech-fall__645Z8177-HDR-Pano-Topaz_v2ripe.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429603/czech-fall__645Z0456-Pano_medium_Dechancer_221x90_PRINT_2023_opokxn.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429610/czech-fall__645Z1357-Pano-Edit-Topoaz-Dehancer_copy_clwuql.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429582/czech-fall___A8B4862-Pano-Dehan%D1%81er_261x90_PRINT_2017_copy_as7f63.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429595/czech-fall___IMG6226-Pano-PRINT_226x133_topaz_autumn_f6bc1f.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429617/czech-fall__DJI_0470-HDR-Dehancer_copy_r61tub.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429580/czech-fall___6456288-Pano-Edit_copy_yzhcp6.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429645/czech-fall__IMG_9794-Pano-1_Topaz-Dehancer_273x90_PRINT_2016_copy_q0btks.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429634/czech-fall__IMG_5610-Pano-Edit_copy_mwu4hm.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429599/czech-fall__331A1006-Topaz-Dehancer_90x60_PRINT_2016_copy_plpd87.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429646/czech-fall__P1014918-Edit_copy_uqzup4.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429591/czech-fall___IMG0933-HDR-Pano-Dehancer_copy_o7hl8d.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429594/czech-fall___IMG5638-Pano_copy_v1zhte.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429627/czech-fall__DSC_4707_d9ukad.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429584/czech-fall___645550_Dehancer_153x90_PRINT_2022_copy_kxqjgw.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429584/czech-fall___6455649-Dehancer_155x110_PRINT_2022_ajcq2m.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429608/czech-fall__742-PANO0001-Pano-Dehancer_ilgp2f.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429587/czech-fall___IGP1966_PRINT_124x93_copy_bzhrny.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429585/czech-fall___6454914-97x97_Print_copy_yaw2yc.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429586/czech-fall___1098135-Pano-Edit-Dechancer_244x90_PRINT_2022_copy_yjrja6.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429593/czech-fall___6456065-Pano_253x103_Print_copy_f6g0ej.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429614/czech-fall__AA8B9233_Dehancer_90x60_PRINT_2016-2_xgdehb.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429603/czech-fall__645Z0837-HDR-Pano-Topaz-Dehancer_copy_2_jdvvdt.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429634/czech-fall__IMG_5115_Panorama_copy_fhr59g.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429644/czech-fall__IMGP9970-Dehancer_233x90_PRINT_2016_copy_hxj6w2.avif', 'Eilean Donan Castle at sunrise'),
+
 
    -- Tour 10: Scotland Highlands
-   (tour10_id, 'https://example.com/scotland-photo1.jpg', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430128/scotland__IMGP3471_Panorama-Dehancer_copy_mpyxma.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430135/scotland__IMGP3684_Panorama-Edit_copy_zcebv1.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430130/scotland__IMGP2829-Pano-Edit_copy_o2rkky.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430136/scotland__IMGP3519_Panorama-cover_shguxp.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430127/scotland__IMGP3415-Panorama_udpgny.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430080/scotland___A8B0373-Pano-Dehancer_njp00i.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430122/scotland__FUJI2575-Pano-Edit_copy_hrt4uu.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430136/scotland__IMGP3519_Panorama-cover_shguxp.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430137/scotland__IMGP3841-Dehancer_copy_suslxa.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430101/scotland___IMG0286-Pano-CloseUp-Dehancer_copy_n8jpdz.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430079/scotland___1812205_afpufd.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430101/scotland___IMG9183-Pano-Edit_rzs93g.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430125/scotland__FUJI2167-Edit_copy_nh8ez7.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430087/scotland___A8B2256_o8buod.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430100/scotland___A8B2388-Pano_oepdsk.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430106/scotland___IMG9401-HDR-Pano-137x83_PRINT-Dehancer_copy_fo0cfk.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430086/scotland___A8B2081_qukyee.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430109/scotland___IMG0410-Pano-Dehancer_copy_tt3hyp.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430113/scotland___IMG9830_105x78_200dpi_js7pf5.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430135/scotland__IMGP3684_Panorama-Edit_copy_zcebv1.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430084/scotland___A8B1370-Pano-Edit_bnrwf5.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430110/scotland___IMG9474-HDR-Pano-414x185_PRINT-Dehancer_copy_vdoz6g.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430117/scotland__DJI_0207_edbb7d.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430134/scotland__IMGP3882-Panorama_o9ovj7.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430100/scotland___IGP5738-Pano_285x115_PRINT-cover_gv8ill.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430080/scotland___A8B0373-Pano-Dehancer_njp00i.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430117/scotland__DJI_20251019125653_0116_D-HDR-Pano-Edit_copy_yf8oo7.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430120/scotland__DJI_20251022110052_0123_D-Edit_copy_jnmsph.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430119/scotland__FUJI2056-HDR-Dehancer_copy_gnlcvi.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430113/scotland___IMG9915-Pano_eklkiy.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430097/scotland___IGP1873-Pano-Edit-Dehancer_copy_knxinz.avif', 'Eilean Donan Castle at sunrise'),
+   (tour10_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430084/scotland___A8B1880_ahl55x.avif', 'Eilean Donan Castle at sunrise'),
+   
 
    -- Tour 11: Tuscany Autumn
-   (tour11_id, 'https://example.com/tuscany-autumn-photo1.jpg', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430222/tuscany-fall___IMG7020-Pano-1_1-Dechancer_copy_g90yjy.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430186/tuscany-fall___A8B9468-Pano-Edit_txjcxf.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430220/tuscany-fall__03_IGP2536-Pano_78%D1%8593-140dpi_PRINT_Dehancer-gigapixel-standard-scale-2_00x_copy_gistfe.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430265/tuscany-fall__IMG_0016_69%D1%8546-200dpi_copy_gl3m8f.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430179/tuscany-fall___6457517-Pano-1_Dechancer_copy_skb6ar.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430193/tuscany-fall___IGP2470-1_gr0fru.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430188/tuscany-fall___IGP0818-Pano_vehnrk.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430300/tuscany-fall__IMG_9480_mgim5z.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430223/tuscany-fall__09_1110303_165x110_PRINT_n_Dechancer_copy-Edit_uj1ofr.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430222/tuscany-fall__10_1110269_141x111_PRINT_Dechancer_copy-Edit_ehkoaq.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430229/tuscany-fall__11_IMG8365-Pano_Dechancer_246x138_copy-Edit_xjlmdm.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430309/tuscany-fall__IMG_8760-Pano_129%D1%8570-200dpi_283-Edit_nvcebs.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430230/tuscany-fall__15_File061-HDR-Pano-207%D1%87110_Print_Dehancer_copy-Edit_nybajl.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430230/tuscany-fall__21_IMG6757-Pano-2-Edit_PRINT_150x241_Dehancer-Edit-2_qex95z.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430235/tuscany-fall__25_IMG_0018-Pano_255x110_PRINT_Dehancer-Edit_chetav.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430233/tuscany-fall__26_IGP2470-146x110_PRINT_Dehancer-gigapixel-standard-scale-2_00x-Edit_ufo2mm.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430294/tuscany-fall__IMG_0281_39%D1%8569-200dpi-Edit_ta2tud.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430261/tuscany-fall__DJI_20241116154958_0002_D-Edit_copy_wfzmbv.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430249/tuscany-fall__DJI_20241123074034_0125_D-Dehancer_copy_xxlrps.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430244/tuscany-fall__645Z7350-Pano-Edit-Edit_copy_vehkdf.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430255/tuscany-fall__AA8B2425-PanoRPP_72%D1%85137-200dpi-Edit_ptc17e.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430293/tuscany-fall__IMG_6586_42%D1%8569-200dpi_156-Edit_akyfei.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430278/tuscany-fall__IMG_0327_Panorama_73x238_200dpi_276-Edit_cnkaz6.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430206/tuscany-fall___IGP3048_Panorama_ret_84%D1%85183-200dpi_251-Edit_copy_iimlup.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430321/tuscany-fall__Pavel_Oskin_1453_127x110_Print_copy_gf9txf.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430312/tuscany-fall__IMG_9184_69%D1%8546-200dpi_164-Edit_wmmpqo.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430309/tuscany-fall__IMGP6211_topaz_146x110_PRINT_Dehancer_copy-Edit_xrxehg.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430200/tuscany-fall___IGP2436-Pano-2_copy_nrghbe.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430316/tuscany-fall__IMGP9514_146x110_PRINT_nz6xcl.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430267/tuscany-fall__DJI_20251110080253_0199_D-Edit_copy_a4ff5b.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430290/tuscany-fall__IMG_0175_65%D1%8533-200dpi_128-Edit_drlbp4.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430284/tuscany-fall__IMG_6549_41%D1%8564-200dpi-Edit_neshyd.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430314/tuscany-fall__IMGP0228-Pano_67x104_200dpi_284-Edit_ihfssd.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430292/tuscany-fall__IMG_6589_38%D1%8561-200dpi_157-Edit_ytrkni.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430273/tuscany-fall__IMG_1631-Pano-Dehancer_copy_bvlmom.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430275/tuscany-fall__FUJI8662-Pano-Dehancer_g8x3v9.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430183/tuscany-fall___IGP1507-Pano-Topaz_174x110_PRINT_DEHANCER-Edit_zq02wq.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430310/tuscany-fall__IMGP4178_152x110_PRINT_Dehancer-Edit_fqyqph.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour11_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430194/tuscany-fall___IGP2521_atdj1w.avif', 'Val d''Orcia rolling hills with autumn colors'),
 
    -- Tour 12: japan autumn
-   (tour12_id, 'https://example.com/tuscany-autumn-photo1.jpg', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128148/japan_fall_2_FUJI7847-Pano-Edit_copy_l8kecb.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128148/japan_fall_2_FUJI7847-Pano-Edit_copy_l8kecb.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128173/japan_fall_FUJI8019-Dehancer_copy_tbogc6.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128149/japan_fall_5_1827923-Edit_x1heje.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128148/japan_fall_6_PLUM3236_copy_k9j40i.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128142/japan_fall_7_PLUM0520_copy_vk95qr.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128148/japan_fall_8_FUJI6050-HDR-Edit_copy_ye7kjz.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128170/japan_fall_9_FUJI8278-Dehancer_copy_miuk0t.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128157/japan_fall_10_A8B9746_cv8ocl.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128130/japan_fall__IMG2512-Edit_copy_qqrfi9.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128197/japan_fall_FUJI8504-Dehancer_copy_y5ll2z.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall__1828304-cover_k269sd.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128185/japan_fall_IMG_4886-Edit_copy_anlhrt.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128194/japan_fall_PLUM3970-Dehancer_copy_oh3iv5.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128192/japan_fall_PLUM2027-Edit_copy_i7ycbh.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128165/japan_fall_FUJI7890-Momiji_copy_dy1wn9.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128132/japan_fall__IMG1454_x5kxrx.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128196/japan_fall_PLUM0568-Edit_copy_unm1u6.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128179/japan_fall_FUJI7972-Dehancer_copy_pxd6tl.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128185/japan_fall_FUJI8433-Edit_copy_ayjlkz.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128137/japan_fall_4_FUJI8053-HDR-Edit_copy_r35kjz.avif', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128199/japan_fall_PLUM4043-Dehancer_copy_ajvhng.avif', 'Val d''Orcia rolling hills with autumn colors'),
 
    -- Tour 13: iceland
-   (tour13_id, 'https://example.com/tuscany-autumn-photo1.jpg', 'Val d''Orcia rolling hills with autumn colors'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777171/iceland_1_IGP4228-Pano_109x162_200dpi_topaz_copy_lt6mdc.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777185/iceland_645Z3212-Edit_bqcuvd.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777216/iceland_645Z6169-HDR-Pano-Dehancer_uaao9y.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777172/iceland_11_IMG8365-Pano_Dechancer_246x138_copy-Edit_copy_q84w7b.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777458/iceland_DJI_20240813205653_0041_D-Pano-2-Clarity_65_Dehancer_75_yellow_50_copy_oecvqz.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777551/iceland_IMGP9746_146x110_PRINT_Dehancer_ppkjrv.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777526/iceland_DJI_20250813053458_0060_D-Pano-Edit_copy_rkgz8n.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777147/iceland__IMG2517-Pano-Edit-Edit_copy_cfvjbw.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777195/iceland_645Z2972_aovm5y.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777196/iceland_645Z4740-Pano_Labsat_Dehancer_copy_altom9.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777355/iceland_AA8B5429_164x110_PRINT_Topaz_Dehancer_rw9svw.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777323/iceland_AA8B0579_lpkgbz.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777131/iceland__A8B9065-Dehancer_copy_hgqkrc.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777561/iceland_P1090263_s42teo.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777582/iceland_P1189383-Pano_107x186_200dpi_topaz_cgfckg.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777448/iceland_DJI_20240814074535_0057_D-HDR_jtttmx.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777334/iceland_AA8B0969_e6rt78.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777310/iceland_AA8B0334-gigapixel_165x110_PRINT_mhmxdt.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777347/iceland_AA8B1225_fm8qkm.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777419/iceland_DJI_20240808195545_0046_D-Pano-Dechancer_copy_j2fyvv.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777333/iceland_AA8B2127_roqsal.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777438/iceland_DJI_20240813092732_0111_D-Pano_copy_l904bc.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777260/iceland_AA8B0282_tswyat.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777394/iceland_big_%D0%9F%D0%B0%D0%BB%D0%B8%D1%82%D1%80%D0%B0-%D0%9B%D0%B5%D0%B4%D0%BE%D0%B2%D0%BE%D0%B8%CC%86-%D0%9B%D0%B0%D0%B3%D1%83%D0%BD%D1%8B.%D0%98%D1%81%D0%BB%D0%B0%D0%BD%D0%B4%D0%B8%D1%8F.Colours-of-Jolulsarlon.Iceland-TOP10_j0h05m.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777196/iceland_645Z4740-Pano_Labsat_Dehancer_copy_altom9.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777480/iceland_DJI_20250801140159_0081_D-Edit_copy_ekrvwo.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777053/iceland__A8B7963_45x72_200dpi-TOP10_hncp4n.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777518/iceland_Iceland_drone-16-Edit_copy_mghrr1.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777033/iceland__A8B2266_t8lciy.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777448/iceland_DJI_20240811162246_0001_D-Pano-Dehancer_labsat_ortob-142x110_2024_bvnhqx.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777370/iceland_AA8B8808-Pano_115x237_200dpi_pv36kx.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777331/iceland_AA8B1400_b6hqk6.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777304/iceland_AA8B0703_zkshdp.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777360/iceland_AA8B9356_sky_kaggmi.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777563/iceland_IMGP7904GOTOV_u1zhcd.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777493/iceland_DJI_20250801161740_0008_D-Pano-153x110_Dechancer_Rollei_copy_ltcd69.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777143/iceland__IMG3178-Edit_Dehancer_kg2ups.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769776983/iceland__1844568_50x60_200dpi_fj5zat.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777117/iceland__A8B8661_hnr6d4.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777002/iceland__6458662_204x110_PRINT_topaz_Dehancer_y7cdbw.avif', 'Prague Castle autumn foliage at sunrise'),
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777087/iceland__A8B7555_main_WB-164x110_PRINT_topaz_Dehancer_copy_p3talb.avif', 'Prague Castle autumn foliage at sunrise'),
 
    -- Tour 14: japan-spring
-     --  -- Tour 5: Japan Cherry Blossom
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429756/japan-spring___IMG1972_ihxist.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429741/japan-spring___IMG1454_ytwzbv.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429820/japan-spring__IMG_7856-Edit_copy_mmguih.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429700/japan-spring___1824960_etegje.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429729/japan-spring___A8B9230_qcqyle.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429814/japan-spring__IMG_7088-Edit_copy_jmjb1w.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429726/japan-spring___A8B8512-Edit_woxvlh.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429749/japan-spring___A8B9923_lgibyy.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429828/japan-spring__P1040398-Edit_x4p5iq.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429804/japan-spring__IMG_4845_l33mxc.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429712/japan-spring___A8B7752_jcd7sv.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429762/japan-spring___IMG2393-Edit_copy_biaipg.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429703/japan-spring___1825037_vzoxgy.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429703/japan-spring___1827029-Pano_lgecpg.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429764/japan-spring___IMG2241_fbgslx.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429825/japan-spring__IMG_8944-Edit_copy_j6ulee.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429741/japan-spring___A8B9292-Pano_kgzfq0.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429811/japan-spring__IMG_5548_cyo3n4.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429729/japan-spring___A8B8673-Edit_okewev.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429725/japan-spring___A8B9101_v3cbqt.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429723/japan-spring___A8B8452-Edit_axgu8c.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429719/japan-spring___A8B8435_m43wcg.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429798/japan-spring___IMG2554_tnec8m.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429703/japan-spring___A8B0764-Edit_copy_vexdrw.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429798/japan-spring___IMG2449_slc8ai.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429725/japan-spring___A8B9136-Edit_zi2sp5.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
-   (tour5_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429748/japan-spring___IMG1919_oq6gap.avif', 'Cherry blossoms at Philosopher''s Path Kyoto');
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429756/japan-spring___IMG1972_ihxist.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429741/japan-spring___IMG1454_ytwzbv.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429820/japan-spring__IMG_7856-Edit_copy_mmguih.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429700/japan-spring___1824960_etegje.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429729/japan-spring___A8B9230_qcqyle.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429814/japan-spring__IMG_7088-Edit_copy_jmjb1w.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429726/japan-spring___A8B8512-Edit_woxvlh.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429749/japan-spring___A8B9923_lgibyy.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429828/japan-spring__P1040398-Edit_x4p5iq.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429804/japan-spring__IMG_4845_l33mxc.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429712/japan-spring___A8B7752_jcd7sv.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429762/japan-spring___IMG2393-Edit_copy_biaipg.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429703/japan-spring___1825037_vzoxgy.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429703/japan-spring___1827029-Pano_lgecpg.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429764/japan-spring___IMG2241_fbgslx.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429825/japan-spring__IMG_8944-Edit_copy_j6ulee.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429741/japan-spring___A8B9292-Pano_kgzfq0.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429811/japan-spring__IMG_5548_cyo3n4.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429729/japan-spring___A8B8673-Edit_okewev.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429725/japan-spring___A8B9101_v3cbqt.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429723/japan-spring___A8B8452-Edit_axgu8c.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429719/japan-spring___A8B8435_m43wcg.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429798/japan-spring___IMG2554_tnec8m.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429703/japan-spring___A8B0764-Edit_copy_vexdrw.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429798/japan-spring___IMG2449_slc8ai.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429725/japan-spring___A8B9136-Edit_zi2sp5.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
+   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429748/japan-spring___IMG1919_oq6gap.avif', 'Cherry blossoms at Philosopher''s Path Kyoto');
 
 
 

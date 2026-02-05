@@ -107,5 +107,7 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 		contact.POST("/me", h.ContactMe)
 	}
 
+	general.POST("/subscribe", h.Subscribe)
+
 	return router
 }

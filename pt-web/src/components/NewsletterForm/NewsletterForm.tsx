@@ -1,6 +1,6 @@
 import {memo, useState} from "react";
 import {Link} from "react-router-dom";
-import {subscribeToNewsletter} from "src/services/newsletterService";
+import {subscribe} from "src/services/sailsService";
 import styles from "src/components/NewsletterForm/NewsletterForm.module.scss";
 
 const MESSAGES = {
@@ -50,7 +50,7 @@ export const NewsletterForm = memo(function NewsletterForm() {
     setMessage("");
 
     try {
-      const result = await subscribeToNewsletter(email, "footer");
+      const result = await subscribe({ email });
 
       setMessage(result.message || MESSAGES.SUCCESS);
       setEmail("");

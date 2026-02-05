@@ -15,3 +15,18 @@ export async function submitContactMe(data: ContactMeRequest): Promise<ContactMe
     body: JSON.stringify(data),
   });
 }
+
+export interface SubscribeRequest {
+  email: string;
+}
+
+export interface SubscribeResponse {
+  message: string;
+}
+
+export async function subscribe(data: SubscribeRequest): Promise<SubscribeResponse> {
+  return await fetchData<SubscribeResponse>('general/subscribe', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
