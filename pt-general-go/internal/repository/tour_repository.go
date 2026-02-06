@@ -25,6 +25,7 @@ func (r *TourRepository) CreateTour(ctx context.Context, createTour *domain.Crea
 		Description:     createTour.Description,
 		Difficulty:      db.DifficultyLevel(createTour.Difficulty),
 		Program:         createTour.Program,
+		Faq:             createTour.FAQ,
 		Languages:       createTour.Languages,
 		AvailableMonths: createTour.AvailableMonths,
 	}
@@ -154,6 +155,9 @@ func (r *TourRepository) UpdateTourByID(ctx context.Context, id uuid.UUID, req *
 	}
 	if req.Program != nil {
 		params.Program = *req.Program
+	}
+	if req.FAQ != nil {
+		params.Faq = *req.FAQ
 	}
 	if req.Price != nil {
 		params.Price = pgtype.Float8{Float64: *req.Price, Valid: true}

@@ -31,6 +31,7 @@ type CreateTourParams struct {
 	Difficulty      string          `json:"difficulty"`
 	Title           string          `json:"title"`
 	Program         json.RawMessage `json:"program" swaggertype:"object"`
+	FAQ             json.RawMessage `json:"faq" swaggertype:"object"`
 	Languages       []string        `json:"languages"`
 	AvailableMonths []string        `json:"availableMonths"`
 	GroupSize       *int32          `json:"groupSize"`
@@ -76,6 +77,7 @@ type UpdateTourParams struct {
 	Title           *string          `json:"title"`
 	Slug            *string          `json:"slug"`
 	Program         *json.RawMessage `json:"program" swaggertype:"object"`
+	FAQ             *json.RawMessage `json:"faq" swaggertype:"object"`
 	Languages       *[]string        `json:"languages"`
 	AvailableMonths *[]string        `json:"availableMonths"`
 	GroupSize       *int32           `json:"groupSize"`
@@ -96,6 +98,7 @@ func (r *UpdateTourParams) Validate() error {
 		r.Title == nil &&
 		r.Slug == nil &&
 		r.Program == nil &&
+		r.FAQ == nil &&
 		r.Languages == nil &&
 		r.AvailableMonths == nil &&
 		r.GroupSize == nil &&
@@ -146,6 +149,7 @@ type Tour struct {
 	Title           string          `json:"title"`
 	Slug            string          `json:"slug"`
 	Program         json.RawMessage `json:"program" swaggertype:"object"`
+	FAQ             json.RawMessage `json:"faq" swaggertype:"object"`
 	Languages       []string        `json:"languages"`
 	AvailableMonths []string        `json:"availableMonths"`
 	GroupSize       *int32          `json:"groupSize"`

@@ -64,7 +64,10 @@ CREATE TABLE tours (
     description TEXT NOT NULL,
     difficulty difficulty_level NOT NULL,
     price DOUBLE PRECISION,
+    -- {days: [{day: number|string, plan: string, description:string, imgUrl?: string}]}
     program JSONB NOT NULL,
+    -- {questions: [question: string, answer: string]}
+    faq JSONB NOT NULL, 
     guide_id UUID,
     cover_url TEXT,
     duration_days INTEGER,

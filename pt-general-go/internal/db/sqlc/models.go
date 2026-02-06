@@ -371,6 +371,7 @@ type Tour struct {
 	Difficulty      DifficultyLevel
 	Price           pgtype.Float8
 	Program         []byte
+	Faq             []byte
 	GuideID         pgtype.UUID
 	CoverUrl        pgtype.Text
 	DurationDays    pgtype.Int4

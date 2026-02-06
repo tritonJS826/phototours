@@ -42,6 +42,12 @@ type TourDTO = {
     included?: string[];
     activities?: string[];
   };
+  faq: {
+    questions: Array<{
+      question: string;
+      answer: string;
+    }>;
+  };
   guide?: { id: number; name?: string };
   tags?: Array<string | { name: string }>;
   categories?: Array<string | { name: string }>;
@@ -111,6 +117,8 @@ function mapTourToView(dto: TourDTO): TourView {
       description: d.description,
       imgUrl: d.imgUrl,
     })) ?? [];
+
+  const faq = dto.faq.questions;
   const priceRaw = dto.price === "" ? undefined : dto.price;
   const priceNum = typeof priceRaw === "number" ? priceRaw : priceRaw ? Number(priceRaw) : undefined;
   const price = Number.isFinite(priceNum) && (priceNum as number) > 0 ? (priceNum as number) : undefined;
@@ -139,6 +147,7 @@ function mapTourToView(dto: TourDTO): TourView {
     videos: videoUrls,
     dates,
     dailyItinerary,
+    faq,
     guide: dto.guide ? {id: dto.guide.id, name: dto.guide.name} : undefined,
     tags,
     categories,
@@ -187,7 +196,7 @@ export async function listTours(filter?: ToursFilter): Promise<TourView[]> {
   return (raw ?? []).map(mapTourToView);
 }
 
-export async function getTourBySlag(slug: string): Promise<TourView> {
+export async function getTourBySlug(slug: string): Promise<TourView> {
   const raw = await fetchData<TourDTO>(`${TOURS_PATH}/slug/${slug}`);
 
   return mapTourToView(raw);

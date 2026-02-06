@@ -17,6 +17,7 @@ INSERT INTO tours (
     description,
     difficulty,
     program,
+    faq,
     price,
     start_location,
     end_location,
@@ -45,7 +46,8 @@ INSERT INTO tours (
     $13,
     $14,
     $15,
-    $16
+    $16,
+    $17
 ) RETURNING
     id,
     slug,
@@ -54,6 +56,7 @@ INSERT INTO tours (
     difficulty,
     price,
     program,
+    faq,
     guide_id,
     cover_url,
     duration_days,
@@ -75,6 +78,7 @@ type CreateTourParams struct {
 	Description     string
 	Difficulty      DifficultyLevel
 	Program         []byte
+	Faq             []byte
 	Price           pgtype.Float8
 	StartLocation   pgtype.Text
 	EndLocation     pgtype.Text
@@ -95,6 +99,7 @@ func (q *Queries) CreateTour(ctx context.Context, arg CreateTourParams) (Tour, e
 		arg.Description,
 		arg.Difficulty,
 		arg.Program,
+		arg.Faq,
 		arg.Price,
 		arg.StartLocation,
 		arg.EndLocation,
@@ -117,6 +122,7 @@ func (q *Queries) CreateTour(ctx context.Context, arg CreateTourParams) (Tour, e
 		&i.Difficulty,
 		&i.Price,
 		&i.Program,
+		&i.Faq,
 		&i.GuideID,
 		&i.CoverUrl,
 		&i.DurationDays,
@@ -157,6 +163,7 @@ SELECT
     difficulty,
     price,
     program,
+    faq,
     guide_id,
     cover_url,
     duration_days,
@@ -186,6 +193,7 @@ func (q *Queries) GetTourByID(ctx context.Context, id pgtype.UUID) (Tour, error)
 		&i.Difficulty,
 		&i.Price,
 		&i.Program,
+		&i.Faq,
 		&i.GuideID,
 		&i.CoverUrl,
 		&i.DurationDays,
@@ -213,6 +221,7 @@ SELECT
     difficulty,
     price,
     program,
+    faq,
     guide_id,
     cover_url,
     duration_days,
@@ -242,6 +251,7 @@ func (q *Queries) GetTourBySlug(ctx context.Context, slug string) (Tour, error) 
 		&i.Difficulty,
 		&i.Price,
 		&i.Program,
+		&i.Faq,
 		&i.GuideID,
 		&i.CoverUrl,
 		&i.DurationDays,
@@ -269,6 +279,7 @@ SELECT DISTINCT
     tours.difficulty,
     tours.price,
     tours.program,
+    tours.faq,
     tours.guide_id,
     tours.cover_url,
     tours.duration_days,
@@ -338,6 +349,7 @@ func (q *Queries) GetTours(ctx context.Context, arg GetToursParams) ([]Tour, err
 			&i.Difficulty,
 			&i.Price,
 			&i.Program,
+			&i.Faq,
 			&i.GuideID,
 			&i.CoverUrl,
 			&i.DurationDays,
@@ -371,20 +383,21 @@ SET
     description = COALESCE($3, description),
     difficulty = COALESCE($4::difficulty_level, difficulty),
     program = COALESCE($5, program),
-    price = COALESCE($6, price),
-    start_location = COALESCE($7, start_location),
-    end_location = COALESCE($8, end_location),
-    duration_days = COALESCE($9, duration_days),
-    min_age = COALESCE($10, min_age),
-    cover_url = COALESCE($11, cover_url),
-    languages = COALESCE($12, languages),
-    available_months = COALESCE($13, available_months),
-    guide_id = COALESCE($14, guide_id),
-    group_size = COALESCE($15, group_size),
-    spots_left = COALESCE($16, spots_left),
-    subtitle = COALESCE($17, subtitle),
+    faq = COALESCE($6, faq),
+    price = COALESCE($7, price),
+    start_location = COALESCE($8, start_location),
+    end_location = COALESCE($9, end_location),
+    duration_days = COALESCE($10, duration_days),
+    min_age = COALESCE($11, min_age),
+    cover_url = COALESCE($12, cover_url),
+    languages = COALESCE($13, languages),
+    available_months = COALESCE($14, available_months),
+    guide_id = COALESCE($15, guide_id),
+    group_size = COALESCE($16, group_size),
+    spots_left = COALESCE($17, spots_left),
+    subtitle = COALESCE($18, subtitle),
     updated_at = NOW()
-WHERE id = $18
+WHERE id = $19
 RETURNING
     id,
     slug,
@@ -393,6 +406,7 @@ RETURNING
     difficulty,
     price,
     program,
+    faq,
     guide_id,
     cover_url,
     duration_days,
@@ -415,6 +429,7 @@ type UpdateTourByIDParams struct {
 	Description     pgtype.Text
 	Difficulty      NullDifficultyLevel
 	Program         []byte
+	Faq             []byte
 	Price           pgtype.Float8
 	StartLocation   pgtype.Text
 	EndLocation     pgtype.Text
@@ -437,6 +452,7 @@ func (q *Queries) UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) 
 		arg.Description,
 		arg.Difficulty,
 		arg.Program,
+		arg.Faq,
 		arg.Price,
 		arg.StartLocation,
 		arg.EndLocation,
@@ -460,6 +476,7 @@ func (q *Queries) UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) 
 		&i.Difficulty,
 		&i.Price,
 		&i.Program,
+		&i.Faq,
 		&i.GuideID,
 		&i.CoverUrl,
 		&i.DurationDays,

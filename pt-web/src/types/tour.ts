@@ -25,6 +25,11 @@ export interface TourDay {
   imgUrl?: string;
 }
 
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
 export interface TourView {
   id: number;
   starAmount: number;
@@ -48,6 +53,7 @@ export interface TourView {
 
   dates: string[];
   dailyItinerary?: TourDay[];
+  faq: FaqItem[];
 
   guide?: { id: number; name?: string };
 

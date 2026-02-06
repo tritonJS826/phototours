@@ -31,7 +31,7 @@ import {
   type BookingRequest,
   createBooking,
 } from "src/services/bookingService";
-import {getTourBySlag as getTourBySlug} from "src/services/toursService";
+import {getTourBySlug} from "src/services/toursService";
 import type {TourView} from "src/types/tour";
 import {formatMonthsToDateRange} from "src/utils/dateUtils";
 import {renderMultilineDouble} from "src/utils/textUtils";
@@ -68,45 +68,6 @@ interface AccordionItemData {
   trigger: { child: React.ReactNode };
   content: { child: React.ReactNode };
 }
-
-const faqAccordionItems: AccordionItemData[] = [
-  {
-    trigger: {child: "Day 1. Arrival and meet-up with the group"},
-    content: {
-      child: (
-        <ScheduleAccordionItem
-          className={styles.scheduleAccordionItem}
-          // eslint-disable-next-line max-len
-          description="Upon arrival, our coordinator will greet you at the meeting point. Check-in at the hotel, time to rest, and a welcome briefing in the evening. We'll go over the tour program, shooting locations, weather conditions, and plans for the next morning."
-        />
-      ),
-    },
-  },
-  {
-    trigger: {child: "Day 2. Sunrise shoot and exploring the surroundings"},
-    content: {
-      child: (
-        <ScheduleAccordionItem
-          className={styles.scheduleAccordionItem}
-          // eslint-disable-next-line max-len
-          description="Upon arrival, our coordinator will greet you at the meeting point. Check-in at the hotel, time to rest, and a welcome briefing in the evening. We'll go over the tour program, shooting locations, weather conditions, and plans for the next morning."
-        />
-      ),
-    },
-  },
-  {
-    trigger: {child: "Day 3. Iconic landmarks and guided photography session"},
-    content: {
-      child: (
-        <ScheduleAccordionItem
-          className={styles.scheduleAccordionItem}
-          // eslint-disable-next-line max-len
-          description="Upon arrival, our coordinator will greet you at the meeting point. Check-in at the hotel, time to rest, and a welcome briefing in the evening. We'll go over the tour program, shooting locations, weather conditions, and plans for the next morning."
-        />
-      ),
-    },
-  },
-];
 
 function getScheduleAccordionItems(tour: TourView): AccordionItemData[] {
   if (!tour.dailyItinerary || tour.dailyItinerary.length === 0) {
@@ -356,7 +317,7 @@ export function TourDetailsPage() {
 
       <div className={styles.personalizationBlock}>
         <span>
-          Number of rooms
+          Single room supplement
         </span>
         <span>
           From
@@ -372,7 +333,7 @@ export function TourDetailsPage() {
         onChange={(value) => setFormData(prev => ({...prev, rooms: value}))}
         min={0}
         max={10}
-        description="Number of rooms"
+        description="Single room supplement"
         icon={people}
       />
 
@@ -1000,7 +961,17 @@ export function TourDetailsPage() {
         </h2>
 
         <Accordion
-          items={faqAccordionItems}
+          items={tour.faq.map(item => ({
+            trigger: {child: item.question},
+            content: {
+              child: (
+                <ScheduleAccordionItem
+                  className={styles.scheduleAccordionItem}
+                  description={item.answer}
+                />
+              ),
+            },
+          }))}
           type={accordionTypes.MULTIPLE}
           className={styles.accordion}
         />

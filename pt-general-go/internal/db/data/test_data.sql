@@ -394,6 +394,7 @@ INSERT INTO tours (
   description,
   difficulty, price,
   program,
+  faq,
   guide_id,
   cover_url, duration_days, end_location, start_location,
   available_months, languages, min_age, location, group_size, spots_left, subtitle
@@ -462,6 +463,32 @@ VALUES
         "plan": "FINAL SUNRISE & DEPARTURE",
         "description": "For our final morning, we choose the sunrise location based on the latest weather forecast to capture the most dramatic closing shots of the journey.\n\nAfter the shoot and a final Tuscan breakfast, we drive to Rome, arriving at Fiumicino Airport around 12:00. We recommend booking return flights for the second half of the day.\n\nGuests extending their stay will be dropped off in central Rome to continue exploring the Eternal City at their own pace.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886464/tuscan-spring__400mm-f5_6-1s-iso200_ra1vyo.avif"
+      }
+    ]}',
+    '{"questions": [
+      {
+        "question": "1. What photography level is required for the Spring Tuscany Photo Tour? Can non-photographers participate?",
+        "answer": "We welcome photographers of all skill levels to our spring photo expeditions in Tuscany — from absolute beginners to seasoned professionals — as well as non-photographers. Our tour leaders are experts dedicated to helping participants refine their skills regardless of their starting point. You are welcome to join the shooting sessions with a professional camera or simply a mobile phone.\n\nExperiencing spring in Tuscany and the Val d’Orcia through the eyes of a professional photographer — who meticulously plans every detail, including the exact arrival time at each location — is a unique experience for both photographers and travelers alike. In our spring photo expedition, you avoid the tourist crowds and witness the authentic beauty of a region famous for its rolling mists, world-class wines, and gastronomy."
+      },
+      {
+        "question": "2. What should I bring with me for the Tuscany Photo Tour in spring?",
+        "answer": "We always provide specific gear recommendations for our Tuscany tours. If you plan to bring a camera, we recommend having a tripod and a selection of lenses: 24-70mm and 70-200mm are essential, while a 100-400mm lens is highly recommended.\n\nAfter booking your spot, you will receive a comprehensive manual with a checklist of everything you need for the photo tours and workshops — from camera gear to appropriate clothing. You can also schedule a consultation with your tour leader to ensure you are fully prepared for the trip."
+      },
+      {
+        "question": "3. What level of physical fitness is required for the Spring Tuscany Photo Tour?",
+        "answer": "The Spring Tuscany tour is rated as ’Easy’ and is suitable for participants with even minimal physical preparation. If you have health restrictions or concerns about your fitness, you can always contact our manager, who will help you assess the requirements for this specific spring expedition."
+      },
+      {
+        "question": "4. How many people are in the group for the Tuscany Photo Tour?",
+        "answer": "We specialize in small groups and value an individual approach for every participant in our Tuscany photo tours and workshops. Our priority is to ensure you gain valuable experience, new knowledge, and vivid memories while bringing home trophy shots from the Val d’Orcia for your portfolio or social media.\n\nTypically, the maximum group size for the Spring Tuscany photo tour is 7 participants, though in exceptional cases, it may be increased to 8."
+      },
+      {
+        "question": "5. Are flights included in the price of the Spring Tuscany tour and photo workshops?",
+        "answer": "Airfare and visas are not included in the cost, as our participants join us from all over the world. The following is included in the price:\n\n- Accommodation: Stay at the legendary Poggio Covili villa (single rooms or double rooms for couples).\n- Local Logistics: Transfers to and from the airport in Rome and all ground transportation between towns in a comfortable Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, on-site mentoring, and masterclasses, including post-processing.\n\nFor information regarding additional expenses during the Tuscany tour, please contact our managers."
+      },
+      {
+        "question": "6. What is included in the cost of the Spring Tuscany Photo Tour and workshops?",
+        "answer": "The price of the spring photo expedition in Tuscany includes:\n\n- Accommodation: Lodging at the iconic Poggio Covili villa (offering single occupancy or double rooms for couples).\n- Local Logistics: Airport transfers (Rome) and all transportation throughout the region in a high-end Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, on-site mentoring, and masterclasses, including post-processing.\n\nDetailed information about any extra costs can be requested from our management team."
       }
     ]}',
     guide1_id,
@@ -533,6 +560,32 @@ VALUES
         "description": "On the twelfth and final day of our signature Morocco photo tour, we make our way back to Casablanca (330 km, approx. 4.5 hours). As we drive through the changing landscapes one last time, it’s a perfect opportunity to review your portfolio and share final insights with the group.\n\nUpon arrival in Casablanca, we will head directly to the airport for your journey home. To ensure a relaxed and stress-free departure, please book your return flights for the second half of the day.\n\nWe conclude our adventure where it all began, carrying home a wealth of memories, new friendships, and a professional-grade collection of Moroccan landscape and street photography."
       }
     ]}',
+    '{"questions": [
+      {
+        "question": "1. What is the required photography level? Can non-photographers join the Morocco Photo Tour?",
+        "answer": "We welcome everyone from absolute beginners to seasoned professionals, as well as non-photographers who wish to experience North Africa through a creative lens. Our tour leaders are expert mentors who adapt their guidance to your specific skill level. Whether you are shooting with a professional camera or a mobile phone, we ensure you leave with exceptional results.\n\nWitnessing the camels of the Sahara, the vibrant life of Casablanca and Marrakech, the iconic film sets of Ait Ben Haddou, the ancient tanneries of Fes, and the mesmerizing ’Blue City’ of Chefchaouen through a professional’s eyes offers a perspective that standard travel cannot match. On this expedition, you will bypass the typical tourist crowds to experience the authentic soul of Morocco — a land celebrated for its rich culture, safety, and legendary hospitality."
+      },
+      {
+        "question": "2. What gear should I pack for the Morocco Photo Tour?",
+        "answer": "To help you prepare, we provide specialized equipment recommendations for the diverse Moroccan landscapes. If you are bringing a professional camera, a tripod and lenses are essential.\n\nOnce your spot is reserved, you will receive a comprehensive manual covering everything from technical gear to comfortable clothing for the desert and cities alike. You can also book a personal consultation with your tour leader to finalize your preparations."
+      },
+      {
+        "question": "3. What is the physical demand of the Morocco photo expedition?",
+        "answer": "The Morocco Photo Tour is rated as ’Easy’ and is accessible to participants with a standard level of fitness. We prioritize your comfort throughout the journey. If you have any specific health concerns or questions about the pace of the trip, our manager is available to discuss the requirements of the Moroccan itinerary with you directly."
+      },
+      {
+        "question": "4. What is the typical group size for Morocco Photo Tours & Workshops?",
+        "answer": "We believe in the power of intimacy and personalized attention. By keeping our groups small, we ensure that every participant receives direct mentoring and a truly immersive experience. Our goal is for you to return home not just with memories, but with a portfolio of ’trophy shots’ from the Sahara and beyond.\n\nThe group size for our Morocco tours is typically capped at 7 participants, though we occasionally host up to 8 in exceptional circumstances."
+      },
+      {
+        "question": "5. Are flights included in the price of the Morocco tour and photo workshops?",
+        "answer": "Since our community joins us from all over the world, airfare and visas are not included. The tour price covers your premium experience on the ground:\n\n- Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n- Logistics: Airport transfers (Casablanca) and all regional travel in a premium, air-conditioned Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, on-site mentoring, and masterclasses, including post-processing.\n\nFor details on any additional personal expenses, please reach out to our management team."
+      },
+      {
+        "question": "6. What is included in the cost of the Morocco Photo Tour and workshops?",
+        "answer": "Your booking provides a comprehensive, stress-free expedition:\n\n- Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n- Logistics: Airport transfers (Casablanca) and all regional travel in a premium, air-conditioned Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, on-site mentoring, and masterclasses, including post-processing.\n\nDetailed information about any extra costs can be requested from our management team."
+      }
+    ]}',
     guide1_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429914/morocco___A8B2183_90x63-topaz-denoiseraw-sharpen-color_copy_d6h1s7.avif', 6, 'Casablanca', 'Casablanca',
     ARRAY['January','February'], ARRAY['English','French'], 16, 'North Africa', 12, 9, 'About Our Morocco Photo Expedition'),
@@ -565,6 +618,32 @@ VALUES
         "day": 5,
         "plan": "FINAL SUNRISE & FAREWELL TO VENICE",
         "description": "For those who wish to make the most of their final moments in the lagoon, we offer an optional early-morning sunrise session at St. Mark’s Square. It is the perfect cinematic conclusion to your Venice Carnival photography journey, capturing the last golden rays over the historic gondolas before the city wakes.\n\nAfter our shoot, we’ll gather our belongings and prepare for departure, heading home with memory cards full of high-end images and hearts filled with the magic of the Adriatic.\n\nThroughout this entire experience, the Venice Carnival has served as more than just a backdrop-it has been our living studio. The kaleidoscope of opulent masks and exquisite costumes provided fresh inspiration, new characters, and diverse moods for your travel and portrait photography every single day.\n\nOur balanced itinerary-combining organized photoshoots, creative free time, and professional portfolio reviews-ensures that this tour is both a dynamic learning experience and a deeply personal adventure. You aren’t just leaving with photos; you are leaving with a refined vision and a unique collection of stories captured through your lens."
+      }
+    ]}',
+    '{"questions": [
+      {
+        "question": "1. What photography level is required for the Venice Carnival Photo Tour? Can non-photographers participate?",
+        "answer": "We welcome everyone from beginners to professionals, as well as non-photographers who wish to experience this centuries-old tradition away from the typical tourist crowds. Our tour leaders are expert mentors dedicated to helping you refine your skills, whether you are shooting with a professional camera or a smartphone.\n\nExperiencing the Venice Carnival through the eyes of a professional photographer — with a program meticulously planned for the best light and locations — is a transformative experience. On this expedition, you will bypass the usual crowds to capture the authentic soul of one of Europe’s most iconic cultural events, focusing on the intricate masks and atmospheric scenery."
+      },
+      {
+        "question": "2. What gear should I pack for a photo tour during the Venice Carnival?",
+        "answer": "We provide specific technical recommendations for every participant. If you are joining with a camera, we suggest bringing a tripod and a versatile lens kit: 24–70mm and 70–200mm zooms are essential, and a 35mm prime lens is highly recommended for environmental portraits and street photography.\n\nOnce your spot is reserved, you will receive a comprehensive manual covering everything from equipment to appropriate clothing for the Venetian winter. You can also schedule a personal consultation with your tour leader to ensure you are fully prepared for the workshop."
+      },
+      {
+        "question": "3. What level of physical fitness is required for a photo tour during the Venice Carnival?",
+        "answer": "The Venice Photo Tour is rated as ’Easy’ and is accessible to participants with a standard level of fitness. Most of our shooting involves walking through the historic center. If you have any specific health concerns or questions about the pace of the trip, our manager is available to discuss the requirements with you directly."
+      },
+      {
+        "question": "4. What is the typical group size for the Venice workshop?",
+        "answer": "We prioritize an intimate atmosphere and a personalized approach. By keeping our groups small, we ensure that every participant receives direct mentoring and plenty of space to shoot. Our goal is for you to return home with a portfolio of ’trophy shots’, including stunning portraits of costumed participants and evocative Venetian landscapes.\n\nThe group size for the Venice Carnival tour is typically capped at 7 participants, though we occasionally host up to 8 in exceptional circumstances."
+      },
+      {
+        "question": "5. Are flights included in the cost of the Venice photo expedition?",
+        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour price focuses on your premium experience within the city:\n\n- Accommodation: Lodging in a historic Venetian loft (twin-share with your partner or another participant of the same gender).\n- Expert Mentoring: All guided shooting sessions, workshops, on-site mentoring, and post-processing masterclasses.\n\nFor details on any additional personal expenses during the carnival, please reach out to our management team."
+      },
+      {
+        "question": "6. What exactly is covered in the Venice Carnival photo tour price?",
+        "answer": "Your booking ensures a seamless and professional photography experience:\n\n- Accommodation: Lodging in a historic Venetian loft (twin-share with your partner or another participant of the same gender).\n- Expert Mentoring: All guided shooting sessions, workshops, on-site mentoring, and post-processing masterclasses.\n\nDetailed information about specific inclusions or extra costs can be requested from our managers."
       }
     ]}',
     guide2_id,
@@ -611,6 +690,20 @@ VALUES
         "description": "Our final morning on the North Island begins with a spectacular sunrise photography session near Mount Taranaki, capturing the volcano’s iconic silhouette one last time. Afterward, we embark on the return journey to Auckland, concluding the first chapter of our New Zealand expedition.\n\nFor those continuing the adventure, we transition to the next phase of our journey. We will catch a domestic flight from Auckland to Christchurch - the historic gateway to the rugged beauty of the South Island."
       }
     ]}',
+    '{"questions": [
+      {
+        "question": "1. What photography level is required for the New Zealand Photo Tour? Can non-photographers join?",
+        "answer": "We welcome photographers of all skill levels, from absolute beginners to seasoned professionals, as well as non-photographers who wish to experience the breathtaking landscapes of New Zealand. Our tour leaders are expert mentors dedicated to helping participants refine their skills through personalized on-site guidance. You are welcome to participate in all shooting sessions with a professional camera or a mobile phone.\n\nExperiencing the rolling hills of the North Island and the dramatic fjords of the South Island through the eyes of a professional photographer — who plans every detail for the perfect light — is a transformative experience. On this New Zealand photo tour, you will bypass the usual crowds to capture the authentic soul of the country, from ancient forests to glacial lakes."
+      },
+      {
+        "question": "2. What gear should I pack for a photo tour in New Zealand?",
+        "answer": "We provide specific technical recommendations for every participant. If you are joining with a camera, we suggest a sturdy tripod and a versatile lens kit.\n\nOnce your spot is reserved, you will receive a comprehensive manual covering everything from technical equipment to essential layered clothing for the diverse Kiwi climate. You can also schedule a personal consultation with your expert photo guide, Pavel Oskin, to ensure you are fully prepared for the journey."
+      },
+      {
+        "question": "3. What level of physical fitness is required for this expedition?",
+        "answer": "The New Zealand photo tour is rated as ’Easy’ and is suitable for participants with standard physical preparation. While the itinerary includes varied terrain, from geothermal parks to the Hobbiton movie set, we prioritize your comfort and ensure most locations are easily accessible. If you have any specific health concerns, our manager is available to discuss the requirements with you directly."
+      }
+    ]}',
     guide1_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif', 10, 'Rome, Fiumicino Airport (FCO', 'Rome, Fiumicino Airport (FCO)',
     ARRAY['April','December','January'], ARRAY['English'], 16, 'Oceania', 12, 3, 'About Our New Zealand Photo Expedition'),
@@ -653,6 +746,32 @@ VALUES
         "day": "7",
         "plan": "RETURN TO ATHENS: THE FINAL PASSAGE",
         "description": "On the final day of our Cyclades sailing photo adventure, we embark on our last major passage back to Alimos Marina in Athens (approx. 6 hours). This time on the water is perfect for a final portfolio review or simply relaxing on the deck of our private catamaran, soaking in the last views of the Saronic Gulf.\n\nUpon arrival, a seamless Executive-class taxi transfer will be waiting to take you directly to the airport. Alternatively, if you wish to extend your stay, we can arrange a drop-off at your hotel, allowing you a few more days to capture the ancient wonders of Athens through your lens.\n\nWe conclude our journey having mastered the Aegean light, returning home with a world-class collection of images from the most beautiful corners of the Greek islands."
+      }
+    ]}',
+    '{"questions": [
+      {
+        "question": "1. What photography level is required for the Cyclades Photo Tour? Can non-photographers join?",
+        "answer": "We welcome photographers of all skill levels, from beginners to professionals, as well as non-photographers who want to enjoy the catamaran life experience. Our expert photo guides provide personalized on-site mentoring, helping you refine your skills regardless of your starting point. You are welcome to participate with a professional camera or a mobile phone.\n\nExperiencing the Greek islands through the eyes of a professional photographer — who meticulously plans the route and timing for every location — is a unique experience. On this Cyclades photo tour, you will avoid the typical tourist crowds and capture the raw beauty of the Mediterranean from exclusive vantage points."
+      },
+      {
+        "question": "2. What should I pack for a catamaran photo tour in the Cyclades?",
+        "answer": "We provide specific technical recommendations for every participant. If you are bringing a camera, we suggest a versatile lens kit for both wide-angle seascapes and detailed cultural shots.\n\nOnce your spot is reserved, you will receive a comprehensive manual with a checklist of everything you need — from photography gear to appropriate sailing attire. You can also schedule a consultation with your expert photo guide to help you prepare for the unique conditions of sea-to-land landscape photography."
+      },
+      {
+        "question": "3. What level of physical fitness is required?",
+        "answer": "Our photo tours are generally rated as ’Easy’ and are suitable for participants with standard physical preparation. However, living on a catamaran requires a basic level of mobility. If you have health restrictions or concerns about your fitness, please contact our manager to discuss the specifics of life on board during the catamaran cruise."
+      },
+      {
+        "question": "4. How many people are in a group?",
+        "answer": "We prioritize an intimate atmosphere and a personalized approach. This allows us to ensure that every guest receives individual guidance and enough space for creative work.\n\nThe maximum group size for our Cyclades sailing photo tour is usually 11 participants. This size is perfectly balanced to provide a comfortable experience on the catamaran while fostering a vibrant creative community."
+      },
+      {
+        "question": "5. Are flights included in the tour price?",
+        "answer": "Since our participants join us from all over the world, airfare and visas are not included. Your booking focuses on the premium experience provided once you arrive at the starting port:\n\n- Accommodation: Lodging on board the catamaran.\n- Logistics: All in-tour transportation and professional skipper & crew services, airport transfers (Athens) in a Mercedes E vehicle.\n- Education: Guided sunrise and sunset photo sessions, workshops, and post-processing lessons.\n\nFor details on additional personal expenses, please reach out to our management team."
+      },
+      {
+        "question": "6. What exactly is included in the cost?",
+        "answer": "Your booking provides a comprehensive and stress-free Greek island photography expedition:\n\n- Accommodation & Sailing: Stay on the catamaran and professional maritime services.\n- Logistics: All in-tour transportation and professional skipper & crew services, airport transfers (Athens) in a Mercedes E vehicle.\n- Expert Mentoring: Daily photo shoots and professional workshops.\n- Creative Growth: Focused editing and post-processing sessions to help you bring home trophy shots.\n- Unique Experiences: A blend of cultural experiences and high-end travel photography."
       }
     ]}',
     guide4_id,
@@ -714,6 +833,32 @@ VALUES
         "description": "Our final morning is dedicated to capturing the soul of Florence at its most peaceful. We head out before the city awakens to find the most compelling angles of the legendary Ponte Vecchio. This 14th-century stone bridge, famous for the artisan workshops and jewelry shops built directly into its structure, is a masterpiece of Renaissance architecture.\n\nAt dawn, the Arno River often mirrors the bridge in a perfect reflection, while the rising sun bathes the ancient facades in a soft, golden glow. This is a prime opportunity for fine-art and cityscape photography, allowing you to document the spirit of old Florence without the daytime crowds.\n\nAfter our shoot, we’ll take a quiet stroll through the empty, atmospheric streets, enjoying a final traditional cappuccino and dolce at a local café. As our Italian photography adventure comes to an end, you may choose to head to the airport or stay a few extra days to further explore the \"Cradle of the Renaissance.\" You leave with a heart full of memories and a portfolio enriched by the timeless beauty of Cinque Terre, Umbria, and Tuscany."
       }
     ]}',
+    '{"questions": [
+      {
+        "question": "1. What photography level is required for the Cinque Terre and Umbria Photo Tour? Can non-photographers participate?",
+        "answer": "We welcome photographers of all skill levels, from absolute beginners to seasoned professionals, as well as non-photographers who wish to experience the authentic Italian lifestyle. Our tour leaders are expert mentors who help participants refine their skills regardless of their starting point. You are welcome to join our shooting sessions with a professional camera or a mobile phone.\n\nExploring the vibrant coastal villages of Cinque Terre and the misty medieval towns of Umbria through the eyes of a professional photographer — who meticulously plans every detail and arrival time — is a transformative experience for both photographers and travelers. On this expedition, you will bypass the tourist crowds to capture the true beauty of these iconic Italian regions."
+      },
+      {
+        "question": "2. What should I pack for the photo tour in Italy?",
+        "answer": "We always provide specific technical recommendations for our Italy photo workshops. If you plan to bring a camera, we suggest having a tripod and a versatile lens kit.\n\nOnce your spot is reserved, you will receive a comprehensive manual with a checklist of everything you need for the expedition — from camera gear to appropriate clothing. You can also schedule a consultation with your expert photo guide to help you prepare for the trip."
+      },
+      {
+        "question": "3. What level of physical fitness is required for this photo tour?",
+        "answer": "The Cinque Terre and Umbria photo tour is rated as ’Easy’ and is suitable for participants with standard physical preparation. While there is some walking through historic towns and coastal paths, the pace is relaxed and focused on photography. If you have specific health restrictions or concerns about your fitness, please contact our manager to discuss the itinerary in detail."
+      },
+      {
+        "question": "4. How many people are in the group?",
+        "answer": "We prioritize an intimate atmosphere and a personalized approach for every participant. Our goal is for you to return home with valuable new knowledge, vivid memories, and a portfolio of ’trophy shots’ from the heart of Italy.\n\nThe group size for our photo expeditions in Cinque Terre and Umbria is limited to 7 participants. This small group exclusivity ensures that everyone receives individual attention and dedicated mentoring during every session."
+      },
+      {
+        "question": "5. Are international flights included in the 10-day Italy photo tour cost?",
+        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour officially starts and ends at Florence Airport (FLR). The following is included in the tour price:\n\n- Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n- Logistics: Airport transfers (Florence) and all regional travel in a Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing.\n\nFor information regarding additional personal expenses, please reach out to our management team."
+      },
+      {
+        "question": "6. What exactly is included in the Cinque Terre & Umbria photo tour?",
+        "answer": "Your booking provides a comprehensive, stress-free photography experience:\n\n- Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n- Logistics: Airport transfers (Florence) and all regional travel in a Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing."
+      }
+    ]}',
     guide3_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429687/cinque-terre-umbria__OSKIN_4052_GenFill_copy_ytmtp1.avif', 10, 'Florence, Peretola Airport (FLR)', 'Florence, Peretola Airport (FLR)',
     ARRAY['June'], ARRAY['English'], 14, 'Europe', 14, 7, 'Discover the enchanting landscapes of Provence'),
@@ -756,6 +901,32 @@ VALUES
         "day": "7",
         "plan": "DEPARTURE. MARSEILLE",
         "description": "On the final day of our photo tour, if the weather allows, we will capture the sunrise one last time to complete your portfolio. Afterward, we will depart for Marseille.\n\nWe recommend booking your return tickets for an afternoon flight to ensure a relaxed departure. We provide transfers directly to Marseille Provence Airport (MRS). If you wish to extend your stay, we can also drop you off in the city center to enjoy more of Marseille’s beautiful landmarks."
+      }
+    ]}',
+    '{"questions": [
+      {
+        "question": "1. What photography level is required for the Provence Photo Tour? Can non-photographers join?",
+        "answer": "We welcome photographers of all skill levels, from absolute beginners to seasoned professionals, as well as non-photographers who wish to experience the charm of Southern France. Our expert photo guides provide personalized on-site mentoring, helping you refine your craft whether you are shooting with a professional camera or a smartphone.\n\nExperiencing Provence through the eyes of a professional photographer — with a program meticulously planned for the best light and lavender blooms — is a transformative experience. On this expedition, you will bypass the typical tourist crowds to capture the authentic soul of the region, from the iconic purple fields to the wild spirit of the Camargue."
+      },
+      {
+        "question": "2. What gear should I pack for a photo tour in Provence?",
+        "answer": "We provide specific technical recommendations for every participant. If you are joining with a camera, we suggest a tripod and a versatile lens kit.\n\nOnce your spot is reserved, you will receive a comprehensive manual covering everything from technical equipment to appropriate clothing. You can also schedule a personal consultation with your expert photo guide to ensure you are fully prepared for the workshop."
+      },
+      {
+        "question": "3. What level of physical fitness is required for this expedition?",
+        "answer": "The Provence photo tour is rated as ’Easy’ and is accessible to participants with a standard level of fitness. Most of our locations are easily reachable, allowing us to focus entirely on the creative process. If you have any specific health concerns or questions about the pace of the trip, our manager is available to discuss the requirements with you directly."
+      },
+      {
+        "question": "4. How many people are in the group?",
+        "answer": "We prioritize an intimate atmosphere and a personalized approach for every participant. Our goal is to ensure you gain valuable experience and return home with a portfolio of ’trophy shots’ from the heart of Southern France.\n\nThe group size for our Provence photography workshop is capped at 7 participants. This small group exclusivity ensures that everyone receives individual attention during our intensive shooting sessions and editing workshops."
+      },
+      {
+        "question": "5. Are international flights included in the tour cost?",
+        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour officially starts and ends at Marseille Airport (MRS). The following is included in the tour price:\n\n- Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n- Logistics: Airport transfers (Marseille) and all regional travel in a Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing.\n\nFor information regarding additional personal expenses, please reach out to our management team."
+      },
+      {
+        "question": "6. What exactly is included in the 7-day Provence photo tour?",
+        "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n- Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n- Logistics: Airport transfers (Marseille) and all regional travel in a Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing."
       }
     ]}',
     guide5_id,
@@ -816,7 +987,9 @@ VALUES
         "plan": "TAORMINA DAWN & FAREWELL TO SICILY",
         "description": "Morning in Taormina is pure magic. Before the crowds arrive, the air is filled with soft light and a gentle Mediterranean breeze. The narrow cobblestone streets of the old town feel frozen in time, offering a rare sense of tranquility. White façades adorned with wrought-iron balconies and fresh flowers catch the first rays of sunlight, creating a perfect setting for fine-art and street photography.\n\nFrom the town’s elevated terraces, sweeping panoramas unfold: the azure sea, rugged cliffs, and the dramatic coastline below. Your camera will find endless inspiration in the architectural details-ancient doors, hidden stairways, and ornate railings that serve as strong compositional leading lines. At sunrise, Taormina reveals its soul, proving why it has been a muse for artists and photographers for centuries.\n\nAfter our final morning session and a quiet coffee in the square, we will provide a transfer to Catania Airport. Please book your return flight for the afternoon to ensure you have time to soak in the last moments of this incredible Sicily & Aeolian Islands photography workshop. You leave with a heart full of memories and a memory card brimming with the fiery spirit and Baroque elegance of Italy’s greatest island."
       }
-  ]}',
+    ]}',
+    '{"questions": [
+    ]}',
     guide4_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430152/sicily__IMG_0599_dmi5yb.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
     ARRAY['June','July'], ARRAY['English'], 16, 'Mediterranean', 16, 12, 'About Our Sicily & Aeolian Islands Photo Adventure'),
@@ -866,6 +1039,32 @@ VALUES
         "description": "We will greet our final sunrise from the viewpoint near Strahov Monastery, one of the premier panoramic spots in the city. From this elevated vantage point, the ’City of a Hundred Spires’ unfolds beneath us, offering a spectacular opportunity for cityscape photography as the morning light hits the red-tiled roofs and distant bridges.\n\nAfter our morning photo session and a final breakfast at the hotel, a transfer to Prague Airport awaits. For those wishing to stay in Prague a little longer, we will be happy to assist with arranging additional tours and activities to further explore the Gothic and Baroque wonders of the Czech capital. This concludes our Czechia autumn photo tour, leaving you with a portfolio of golden landscapes and medieval masterpieces."
       }
     ]}',
+    '{"questions": [
+      {
+        "question": "1. What photography level is required for the Czechia Autumn Photo Tour? Can non-photographers join?",
+        "answer": "We welcome photographers of all skill levels, from beginners to professionals, as well as non-photographers who wish to experience the beauty of Central Europe in autumn. Our tour leaders are experts dedicated to helping participants refine their skills through personalized on-site mentoring. You are welcome to join our shooting sessions with a professional camera or a mobile phone.\n\nExperiencing Prague and the rolling hills of South Moravia through the eyes of a professional photographer — who plans every detail for the best autumn light — is a transformative experience. On this Czechia photo tour, you will avoid the typical tourist crowds to capture the authentic soul of the region, from medieval architecture to misty vineyard landscapes."
+      },
+      {
+        "question": "2. What gear should I pack for an autumn photo tour in Czechia?",
+        "answer": "We provide specific technical recommendations for every participant. If you are joining with a camera, we suggest a tripod and a versatile lens kit: a wide-angle lens for Prague’s gothic streets and a telephoto lens (such as 70–200mm or 100–400mm) to capture the famous ’Moravian Tuscany’ waves.\n\nOnce your spot is reserved, you will receive a comprehensive manual covering everything from technical equipment to appropriate layered clothing for the crisp autumn air. You can also schedule a personal consultation with your expert photo guide to ensure you are fully prepared."
+      },
+      {
+        "question": "3. What level of physical fitness is required for this expedition?",
+        "answer": "The Czechia autumn photo tour is rated as ’Easy’ and is suitable for participants with standard physical preparation. Most locations are easily accessible, allowing us to focus entirely on the creative process. If you have any specific health concerns or questions about the pace of the trip, our manager is available to discuss the requirements with you directly."
+      },
+      {
+        "question": "4. How many people are in the group?",
+        "answer": "We prioritize an intimate atmosphere and a personalized approach for every participant. Our goal is to ensure you gain valuable experience and return home with a portfolio of ’trophy shots’ from the most cinematic corners of the Czech Republic.\n\nThe group size for our Czechia photography workshop is capped at 7 participants. This small group exclusivity ensures that everyone receives individual attention during our intensive shooting sessions and editing workshops."
+      },
+      {
+        "question": "5. Are international flights included in the tour cost?",
+        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour officially starts and ends at Prague Airport (PRG). The following is included in the tour price:\n\n- Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n- Logistics: Airport transfers (Prague) and all regional travel in a premium Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing.\n\nFor information regarding additional personal expenses, please reach out to our management team."
+      },
+      {
+        "question": "6. What exactly is included in the 10-day Czechia photo tour?",
+        "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n- Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n- Logistics: Airport transfers (Prague) and all regional travel in a premium Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing."
+      }
+    ]}',
     guide2_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429592/czech-fall___IGP2024_93x69_200dpi-Dehancer_120x90_PRINT_2017_copy_jssztz.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
     ARRAY['October'], ARRAY['English'], 14, 'Europe', 14, 8, 'About Our Czechia Autumn Photo Expedition'),
@@ -913,6 +1112,32 @@ VALUES
         "day": "8",
         "plan": "EDINBURGH & DEPARTURE",
         "description": "Edinburgh. Departure. The end of our photography tour in Scotland. We will arrive at the airport around midday, so please make sure your return flight is scheduled for the second half of the day."
+      }
+    ]}',
+    '{"questions": [
+      {
+        "question": "1. What photography level is required for the Scotland Photo Tour? Can non-photographers join?",
+        "answer": "We welcome photographers of all skill levels, from beginners to professionals, as well as non-photographers who wish to experience the dramatic beauty of the Highlands. Our tour leaders are experts dedicated to helping participants refine their skills through personalized on-site mentoring. You are welcome to join our shooting sessions with a professional camera or a mobile phone.\n\nExperiencing the Isle of Skye and Glencoe through the eyes of a professional photographer — who plans every detail for the most atmospheric light — is a transformative experience. On this Scotland photo tour, you will avoid the typical tourist crowds to capture the authentic soul of the region, from ancient castles to rugged mountain vistas."
+      },
+      {
+        "question": "2. What gear should I pack for a photo tour in Scotland?",
+        "answer": "We provide specific technical recommendations for every participant. If you are joining with a camera, we suggest a tripod and a versatile lens kit.\n\nOnce your spot is reserved, you will receive a comprehensive manual covering everything from technical equipment to essential waterproof layered clothing for the unpredictable Highland weather. You can also schedule a personal consultation with your expert photo guide to ensure you are fully prepared."
+      },
+      {
+        "question": "3. What level of physical fitness is required for this expedition?",
+        "answer": "The Scotland photo tour is rated as ’Easy’ and is suitable for participants with standard physical preparation. Most iconic locations are easily accessible, though some light trekking may be involved to reach the best vantage points. If you have any specific health concerns or questions about the pace of the trip, our manager is available to discuss the requirements with you directly."
+      },
+      {
+        "question": "4. How many people are in the group?",
+        "answer": "We prioritize an intimate atmosphere and a personalized approach for every participant. Our goal is to ensure you gain valuable experience and return home with a portfolio of ’trophy shots’ from the most cinematic corners of the British Isles.\n\nThe group size for our Scotland photography workshop is capped at 7 participants. This small group exclusivity ensures that everyone receives individual attention during our intensive shooting sessions and editing workshops."
+      },
+      {
+        "question": "5. Are international flights included in the tour cost?",
+        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The following is included in the tour price:\n\n- Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n- Logistics: Airport transfers and all regional travel in a premium vehicle.\n- Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing."
+      },
+      {
+        "question": "6. What exactly is included in the Scotland photo tour?",
+        "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n- Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n- Logistics: Airport transfers and all regional travel in a premium vehicle.\n- Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing."
       }
     ]}',
     guide1_id,
@@ -974,6 +1199,32 @@ VALUES
         "description": "Last sunrise photography location selected based on weather. Drive back to Rome Fiumicino Airport, arriving around 12:00. Return flights should be scheduled for the afternoon. Optionally, extend stay in Rome city center for further exploration."
       }
     ]}',
+    '{"questions": [
+      {
+        "question": "1. What is the required photography level? Can non-photographers join the Autumn Tuscany Photo Tour?",
+        "answer": "We welcome everyone from absolute beginners to seasoned professionals, as well as non-photographers who simply wish to experience Italy and Tuscany in a new way. Our tour leaders are dedicated mentors who adapt their guidance to your specific skill level. Whether you are shooting with a professional camera or a mobile phone, we ensure you leave with incredible results.\n\nExperiencing the Val d’Orcia in autumn through the lens of a professional — with every arrival timed perfectly for the best light — offers a perspective that standard travel simply cannot match. On this expedition, you will bypass the typical tourist routes to witness the authentic soul of Tuscany, famous for its golden vineyards, seasonal harvests, and world-class gastronomy."
+      },
+      {
+        "question": "2. What gear should I pack for photo expedition in Tuscany in autumn?",
+        "answer": "To help you prepare, we provide a specialized equipment guide for the Tuscan landscape. For those bringing dedicated camera gear, a tripod is essential. We recommend a lens kit including 24-70mm and 70-200mm optics; a 100-400mm lens is particularly valuable for capturing the layered depth of the rolling hills.\n\nOnce your spot is reserved, you’ll receive a detailed manual covering everything from technical gear to comfortable layered clothing for the crisp autumn mornings. You can also book a personal consultation with your tour leader to finalize your preparations."
+      },
+      {
+        "question": "3. What is the physical demand of the Autumn Tuscany Photo Tour?",
+        "answer": "This tour is rated as ’Easy’, making it accessible to anyone with a standard level of fitness. We prioritize comfort and accessibility. If you have any specific health concerns or questions about the pace of the trip, our manager is available to discuss the requirements of this autumn itinerary with you directly."
+      },
+      {
+        "question": "4. What is the typical group size for the Tuscany Photo Tour in autumn?",
+        "answer": "We believe in the power of intimacy and personalized attention. By keeping our groups small, we ensure that every participant receives direct mentoring and a meaningful experience. Our goal is for you to return home not just with memories, but with a portfolio of ’trophy shots’ from the Val d’Orcia.\n\nThe group size for our Tuscany autumn photo tours is usually capped at 7 participants, though we occasionally host up to 8 in exceptional circumstances."
+      },
+      {
+        "question": "5. Are flights included in the price of the Autumn Tuscany tour and photo workshops?",
+        "answer": "Since our community joins us from all corners of the globe, airfare and visas are not included. The tour price covers your premium experience on the ground:\n\n- Accommodation: Lodging at the legendary Poggio Covili villa (available as single occupancy or double rooms for couples).\n- Logistics: All airport transfers (Rome) and regional travel in a high-comfort Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, photo workshops, on-site mentoring, and masterclasses, including post-processing.\n\nFor details on any additional personal expenses, please reach out to our management team."
+      },
+      {
+        "question": "6. What is included in the cost of the Autumn Tuscany Photo Tour and workshops?",
+        "answer": "Your booking provides a comprehensive, stress-free experience:\n\n- Accommodation: Lodging at the legendary Poggio Covili villa (available as single occupancy or double rooms for couples).\n- Logistics: All airport transfers (Rome) and regional travel in a high-comfort Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, photo workshops, on-site mentoring, and masterclasses, including post-processing.\n\nDetailed information about any extra costs can be requested from our management team."
+      }
+    ]}',
     guide3_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430222/tuscany-fall___IMG7020-Pano-1_1-Dechancer_copy_g90yjy.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
     ARRAY['October','November'], ARRAY['English'], 16, 'Europe', 11, 5, 'Journey through the mystical Scottish Highlands'),
@@ -1026,6 +1277,32 @@ VALUES
         "day": "10",
         "plan": "RETURN TO TOKYO & DEPARTURE",
         "description": "Return to Tokyo. Depart from Haneda or Narita Airport in the afternoon. Optional city drop-offs for those extending their stay. End of Japan photography tour with a world-class portfolio of landscapes, wildlife, and cultural experiences."
+      }
+    ]}',
+    '{"questions": [
+      {
+        "question": "1. What photography level is required for the Japan Autumn Photo Tour? Can non-photographers join?",
+        "answer": "We welcome photographers of all skill levels, from beginners to professionals, as well as non-photographers who wish to experience the vibrant colors of Japan’s autumn. Our tour leaders are experts dedicated to helping participants refine their skills through personalized on-site mentoring. You are welcome to join our shooting sessions with a professional camera or a mobile phone.\n\nExperiencing Tokyo, the serene shrines, and the legendary landscapes through the eyes of a professional photographer — who plans every detail for the best light — is a transformative experience. On this Japan autumn photo tour, you will avoid the typical tourist crowds to capture the authentic soul of the country, from bustling street scenes to the tranquility of ancient gardens."
+      },
+      {
+        "question": "2. What gear should I pack for an autumn photo tour in Japan?",
+        "answer": "We provide specific technical recommendations for every participant. If you are joining with a camera, we suggest a tripod and a versatile lens kit: a wide-angle lens for urban Tokyo architecture and a telephoto lens (such as 70–200mm) to capture the unique details of the Jigokudani Monkey Park.\n\nOnce your spot is reserved, you will receive a comprehensive manual covering everything from technical equipment to appropriate clothing for the Japanese autumn. You can also schedule a personal consultation with your expert photo guide to ensure you are fully prepared."
+      },
+      {
+        "question": "3. What level of physical fitness is required for this expedition?",
+        "answer": "The Japan autumn photo tour is rated as ’Easy’ and is suitable for participants with standard physical preparation. Most iconic locations are easily accessible, allowing us to focus entirely on the creative process. If you have any specific health concerns or questions about the pace of the trip, our manager is available to discuss the requirements with you directly."
+      },
+      {
+        "question": "4. How many people are in the group?",
+        "answer": "We prioritize an intimate atmosphere and a personalized approach for every participant. Our goal is to ensure you gain valuable experience and return home with a portfolio of ’trophy shots’ from the most cinematic corners of Japan.\n\nThe group size for our Japan photography workshop is limited to 10 participants. This size ensures that everyone receives individual attention during our shooting sessions and editing workshops."
+      },
+      {
+        "question": "5. Are international flights included in the tour cost?",
+        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour officially starts and ends in Tokyo. The following is included in the tour price:\n\n- Accommodation: 10 days of high-quality lodging, including an Authentic Ryokan (special overnight stay).\n- Logistics: Airport transfers (Haneda) and all regional travel within the tour.\n- Meals: Daily breakfasts are included.\n- Expert Mentoring: All sunrise and sunset photo sessions, workshops, and on-site guidance.\n- Education: Dedicated editing and post-processing sessions."
+      },
+      {
+        "question": "6. What exactly is included in the 10-day Japan photo tour?",
+        "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n- Professional Guidance: Daily shoots and workshops led by an expert photo guide.\n- Unique Cultural Stays: An immersive Ryokan experience and visits to the Jigokudani Monkey Park.\n- Creative Growth: In-depth editing and post-processing sessions to refine your portfolio.\n- Logistics: All transportation, accommodation, and breakfasts throughout the 10-day itinerary."
       }
     ]}',
     guide5_id,
@@ -1087,6 +1364,32 @@ VALUES
           "description": "Early morning sunrise session at Strokkur geyser. Break camp and return to Reykjavik for final campsite setup. Optional late flight from Keflavik or extra night in Reykjavik. Conclusion of Iceland off-road caravan photography tour."
         }
       ]}',
+      '{"questions": [
+        {
+          "question": "1. What photography level is required for the Iceland Photo Tour? Can non-photographers join?",
+          "answer": "We welcome photographers of all skill levels, from beginners to professionals, as well as non-photographers who wish to experience the raw, ethereal beauty of the North. Our tour leaders are experts dedicated to helping participants refine their skills through personalized on-site mentoring. You are welcome to join our shooting sessions with a professional camera or a mobile phone.\n\nExperiencing the dramatic coastline of Vik, the crystalline ice of Diamond Beach, and the majestic waterfalls through the eyes of a professional photographer — who plans every detail for the most atmospheric light — is a transformative experience. On this Iceland photo tour, you will bypass the typical tourist crowds to capture the authentic soul of the land of fire and ice."
+        },
+        {
+          "question": "2. What gear should I pack for a photo tour in Iceland?",
+          "answer": "We provide specific technical recommendations for every participant. If you are joining with a camera, we suggest a sturdy tripod and a versatile lens kit.\n\nOnce your spot is reserved, you will receive a comprehensive manual covering everything from technical equipment to essential windproof and waterproof layered clothing. You can also schedule a personal consultation with your expert photo guide to ensure you are fully prepared for the Icelandic elements."
+        },
+        {
+          "question": "3. What level of physical fitness is required for this expedition?",
+          "answer": "The Iceland photo tour is rated as ’Easy’ and is suitable for participants with standard physical preparation. While most iconic locations are easily accessible, we prioritize safety and comfort in the field. If you have any specific health concerns or questions about the pace of the trip, our manager is available to discuss the requirements with you directly."
+        },
+        {
+          "question": "4. How many people are in the group?",
+          "answer": "We prioritize an intimate atmosphere and a personalized approach for every participant. Our goal is to ensure you gain valuable experience and return home with a portfolio of ’trophy shots’ from the most cinematic corners of the North Atlantic.\n\nThe group size for our Iceland photography workshop is capped at 6 participants. This small group exclusivity ensures that everyone receives individual attention during our intensive shooting sessions and editing workshops."
+        },
+        {
+          "question": "5. Are international flights included in the tour cost?",
+          "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour officially starts and ends at Keflavík Airport (KEF). The following is included in the tour price:\n\n- Accommodation: 10 days of accommodation in a specialized camper trailer, allowing us to stay in close proximity to key shooting locations.\n- Logistics: Airport transfers (Keflavík) and all regional travel in a specialized vehicle.\n- Expert Mentoring: All sunrise and sunset photo sessions, workshops, and on-site guidance.\n- Education: Dedicated editing and post-processing sessions.\n\nFor information regarding additional personal expenses, please reach out to our management team."
+        },
+        {
+          "question": "6. What exactly is included in the 10-day Iceland photo tour?",
+          "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n- Accommodation: 10 days of accommodation in a specialized camper trailer, allowing us to stay in close proximity to key shooting locations.\n- Logistics: Airport transfers (Keflavík) and all regional travel in a specialized vehicle.\n- Expert Mentoring: All sunrise and sunset photo sessions, workshops, and on-site guidance.\n- Education: Dedicated editing and post-processing sessions."
+        }
+      ]}',
       guide5_id,
       'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777171/iceland_1_IGP4228-Pano_109x162_200dpi_topaz_copy_lt6mdc.avif', 10, 'Keflavík Airport (KEF)', 'Keflavík Airport (KEF)',
       ARRAY['July','August','September'], ARRAY['English'], 14, 'Iceland', 14, 3, 'About Our Iceland Photo Expedition'),
@@ -1140,6 +1443,8 @@ VALUES
         "plan": "RETURN TO TOKYO & DEPARTURE",
         "description": "Return to Tokyo. Depart from Haneda or Narita Airport in the afternoon. Optional city drop-offs for those extending their stay. End of Japan photography tour with a world-class portfolio of landscapes, wildlife, and cultural experiences."
       }
+    ]}',
+    '{"questions": [
     ]}',
     guide5_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 10, 'Tokyo', 'Tokyo',
