@@ -50,7 +50,7 @@ export const NewsletterForm = memo(function NewsletterForm() {
     setMessage("");
 
     try {
-      const result = await subscribe({ email });
+      const result = await subscribe({email});
 
       setMessage(result.message || MESSAGES.SUCCESS);
       setEmail("");
