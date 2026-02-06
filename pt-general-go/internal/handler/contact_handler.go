@@ -37,7 +37,7 @@ func (h *Handler) ContactMe(ctx *gin.Context) {
 		lastName = strings.Join(nameParts[1:], " ")
 	}
 
-	lead := &domain.Lead{
+	lead := &domain.LeadZoho{
 		FirstName: firstName,
 		LastName:  lastName,
 		Phone:     contactReq.Phone,

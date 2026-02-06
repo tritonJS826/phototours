@@ -49,7 +49,7 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 	return testStripeRedirectURL, nil
 }
 
-func (s *BookingService) CreateLead(ctx context.Context, lead *domain.Lead) (*repository.LeadCreateResponse, error) {
+func (s *BookingService) CreateLead(ctx context.Context, lead *domain.LeadZoho) (*repository.LeadCreateResponse, error) {
 	result, err := s.zohoRepository.CreateLead(ctx, lead)
 	if err != nil {
 		s.logger.Error("Failed to create lead in Zoho", zap.Error(err), zap.Any("lead", lead))

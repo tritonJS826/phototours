@@ -50,7 +50,7 @@ func (s *AuthService) Register(ctx context.Context, register *domain.Register) (
 	}
 
 	go func() {
-		result, err := s.zohoRepository.CreateLead(context.Background(), &domain.Lead{
+		result, err := s.zohoRepository.CreateLead(context.Background(), &domain.LeadZoho{
 			Company:   "test",
 			LastName:  user.LastName,
 			FirstName: user.FirstName,
