@@ -17,6 +17,9 @@ func MapToDomainReviews(dbReviews []db.GetReviewsByTourIDRow) []domain.Review {
 			TourID:    PgUUIDToUUID(dbReview.TourID),
 			UserID:    PgUUIDToUUID(dbReview.UserID),
 			Rating:    dbReview.Rating,
+			UserName:  dbReview.UserName,
+			Link:      dbReview.Link,
+			Image:     dbReview.Image,
 		})
 	}
 	return reviews
@@ -34,6 +37,9 @@ func MapToDomainReviewsByTourIDs(dbReviews []db.GetReviewsByTourIDsRow) map[uuid
 			Rating:    dbReview.Rating,
 			Comment:   dbReview.Comment.String,
 			CreatedAt: dbReview.CreatedAt.Time,
+			UserName:  dbReview.UserName,
+			Link:      dbReview.Link,
+			Image:     dbReview.Image,
 		})
 	}
 	return result

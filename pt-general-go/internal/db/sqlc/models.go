@@ -352,6 +352,9 @@ type Review struct {
 	TourID    pgtype.UUID
 	Rating    int32
 	Comment   pgtype.Text
+	UserName  string
+	Link      string
+	Image     string
 	CreatedAt pgtype.Timestamp
 }
 

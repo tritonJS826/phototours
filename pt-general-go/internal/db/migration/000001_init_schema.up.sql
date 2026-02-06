@@ -129,6 +129,9 @@ CREATE TABLE reviews (
     tour_id UUID NOT NULL,
     rating INTEGER NOT NULL,
     comment TEXT,
+    user_name TEXT DEFAULT '' NOT NULL,
+    link TEXT DEFAULT '' NOT NULL,
+    image TEXT DEFAULT '' NOT NULL,
     created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     CONSTRAINT review_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT review_user_id_fk FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE RESTRICT
