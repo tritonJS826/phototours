@@ -69,11 +69,12 @@ type OrganizationInfo struct {
 }
 
 type ZohoRepository struct {
-	config       *config.ZohoConfig
-	httpClient   *http.Client
-	accessToken  string
-	refreshToken string
-	mu           sync.RWMutex
+	config         *config.ZohoConfig
+	httpClient     *http.Client
+	accessToken    string
+	refreshToken   string
+	tokenExpiresAt time.Time
+	mu             sync.RWMutex
 }
 
 func NewZohoRepository(cfg *config.ZohoConfig) *ZohoRepository {
@@ -99,9 +100,8 @@ func (r *ZohoRepository) GetAuthURL() string {
 }
 
 func (r *ZohoRepository) ExchangeCodeForTokens(ctx context.Context, code string) (*TokenResponse, error) {
-	if code == "" {
-		return nil, errors.New("authorization code cannot be empty")
-	}
+	// Safety margin before token expiration
+	const tokenSafetyMargin = 6 * time.Hour
 
 	data := url.Values{
 		"code":          {code},
@@ -145,9 +145,9 @@ func (r *ZohoRepository) ExchangeCodeForTokens(ctx context.Context, code string)
 
 	r.mu.Lock()
 	r.accessToken = tokenResp.AccessToken
-	if tokenResp.RefreshToken != "" {
-		r.refreshToken = tokenResp.RefreshToken
-	}
+	r.refreshToken = tokenResp.RefreshToken
+	// Set token expiration time with safety margin
+	r.tokenExpiresAt = time.Now().Add(time.Duration(tokenResp.ExpiresIn) * time.Second).Add(-tokenSafetyMargin)
 	r.mu.Unlock()
 
 	return &tokenResp, nil
@@ -201,8 +201,13 @@ func (r *ZohoRepository) RefreshAccessToken(ctx context.Context) (string, error)
 		return "", fmt.Errorf("failed to decode token response: %w", err)
 	}
 
+	// Safety margin before token expiration (official expiration time 60min)
+	const tokenSafetyMargin = 50 * time.Minute
+
 	r.mu.Lock()
 	r.accessToken = tokenResp.AccessToken
+	// Set token expiration time with safety margin
+	r.tokenExpiresAt = time.Now().Add(time.Duration(tokenResp.ExpiresIn) * time.Second).Add(-tokenSafetyMargin)
 	r.mu.Unlock()
 
 	return tokenResp.AccessToken, nil
@@ -490,9 +495,11 @@ func (r *ZohoRepository) getValidAccessToken(ctx context.Context) (string, error
 	r.mu.RLock()
 	accessToken := r.accessToken
 	refreshToken := r.refreshToken
+	tokenExpiresAt := r.tokenExpiresAt
 	r.mu.RUnlock()
 
-	if accessToken != "" {
+	// Check if access token exists and is not expired
+	if accessToken != "" && time.Now().Before(tokenExpiresAt) {
 		return accessToken, nil
 	}
 
