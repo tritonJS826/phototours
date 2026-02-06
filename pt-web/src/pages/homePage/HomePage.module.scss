@@ -3,17 +3,12 @@
 
 .heroSectionBg {
   background-image: url("/images/homeHero.avif");
-  max-width: 1530px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  margin: 30px auto 15px;
+  margin: 30px 20px 15px;
   border-radius: 20px;
   padding: 20px;
-
-  @media (width <= 1530px) {
-    margin: 30px 20px 15px;
-  }
 }
 
 .heroHeader {
@@ -328,17 +323,12 @@
 
 .feedBackBlock {
   background-image: url("/images/homeHero.avif");
-  max-width: 1530px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  margin: 30px auto 15px;
+  margin: 30px 20px 15px;
   border-radius: 20px;
   padding: 20px;
-
-  @media (width <= 1530px) {
-    margin: 30px 20px 15px;
-  }
 }
 
 .feedBackContent {
