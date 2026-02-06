@@ -102,6 +102,14 @@ DECLARE
     tour_date55_id UUID := '44444444-4444-4444-4444-444444444455';
     tour_date56_id UUID := '44444444-4444-4444-4444-444444444456';
     tour_date57_id UUID := '44444444-4444-4444-4444-444444444457';
+    tour_date58_id UUID := '44444444-4444-4444-4444-444444444458';
+    tour_date59_id UUID := '44444444-4444-4444-4444-444444444459';
+    tour_date60_id UUID := '44444444-4444-4444-4444-444444444460';
+    tour_date61_id UUID := '44444444-4444-4444-4444-444444444461';
+    tour_date62_id UUID := '44444444-4444-4444-4444-444444444462';
+    tour_date63_id UUID := '44444444-4444-4444-4444-444444444463';
+    tour_date64_id UUID := '44444444-4444-4444-4444-444444444464';
+    tour_date65_id UUID := '44444444-4444-4444-4444-444444444465';
 
 
     -- Booking IDs
@@ -350,117 +358,115 @@ INSERT INTO tours (
 VALUES
    (tour1_id, 'tuscany-spring-photo-tour', 'Spring Tuscany',
     'Capture the essence of Italy on our Spring Tuscany Photo Tour. Experience the iconic emerald hills of the Val d''Orcia, misty sunrises at Podere Belvedere, and the medieval charm of Pienza. This immersive landscape photography workshop features expert-led shoots, cypress alleys, and the hidden gems of the region. Limited to a small group for a 10-day tour. Book your photography adventure today!',
-    'EASY', 3250.00,
+    'EASY', 3800.00,
    '{"days":[{"day":1,"plan":"ARRIVAL. FIUMICINO","description":"Meeting at Fiumicino Airport. For smooth logistics, please arrive in the first half of the day — or come one day earlier. In that case, we’ll pick you up from your hotel in the morning.\n\nWe’ll start with lunch at a seaside restaurant on Lungomare di Salute. This street in Fiumicino is famous for its seafood restaurants loved by locals. There are no tourists, the staff doesn’t speak English, and the prices are pleasantly moderate — a true Roman experience.\n\nAfter lunch, we’ll head to Tuscany and check into our base — and this place deserves a special mention. It’s Poggio Covili, a historic estate and one of the most iconic and beautiful locations in Tuscany. In the evening, we’ll photograph it at sunset so you can enjoy a relaxed first shooting session after the trip.","imgUrl":"https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886466/tuscan-spring__08_6457792-Pano_150x110_Print_Dechancer_2022_copy-Edit_i3ogsp.avif"},{"day":2,"plan":"PIENZA","description":"At sunrise we will go to the most beautiful place in Tuscany, the quintessence of the best views of Val d’Orcia — the panoramic viewpoint of the town of Pienza. With good light conditions, and especially if we are lucky with fog, you can return from here with a dozen unique and magnificent shots.","imgUrl":"https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886466/tuscan-spring__400mm-f8-1slash60-iso100_wnjtxa.avif"},{"day":3,"plan":"PODERE BELVEDERE","description":"We will meet the sunrise at perhaps the most photographed location in all of Tuscany — Podere Belvedere. This truly iconic spot looks equally stunning at both sunrise and sunset. After the morning shoot, we’ll enjoy a coffee in the medieval town of San Quirico d’Orcia.\n\nThen we’ll return to our villa for a midday rest, and in the evening we’ll head out to capture the most famous little chapel in the Tuscan fields — Madonna di Vitaleta. If we’re efficient, we’ll have the chance to photograph it from different angles, using both wide-angle and telephoto lenses.\n\nWe’ll end the day with dinner at one of our favourite restaurants — Fonte Alla Vena. This cozy trattoria has a true country soul: wooden beams, simple tablecloths, bottles of homemade olive oil and wine. It’s a place for honest food: local vegetables, pasta, pici with rich sauces, and Cinta Senese pork prepared using the family recipes that Luciano, the owner, is always happy to share with us.\n\nYou will need lenses up to 400 mm. After the shoot, we will have a cappuccino with a dolce in a café on the central square, and then you will have time to take a leisurely walk through the streets of the town, lovingly designed and built by Pope Pius II on the site of his native village. Pienza is also the homeland of the most delicious sheep cheese in the world — pecorino.\n\nThen we will return to our house to rest, and in the evening we will go to shoot one of the iconic views of the small chapel of Madonna di Vitaleta. A pleasant 10-minute walk awaits us directly to the chapel. Afterwards — a wonderful dinner and relaxation.","imgUrl":"https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886466/tuscan-spring___2572_65%D1%85138-200dpi_202-Edit_bl1mdd.avif"},{"day":4,"plan":"SAN GIMIGNANO","description":"On this day we’ll wake up earlier than ever — it’s our longest morning drive, about 1.5 hours. We will meet the rising sun overlooking the \"Medieval Manhattan\" — the town of San Gimignano, famous for its 13 towering stone skyscrapers built by noble families centuries ago.\n\nAfter the sunrise shoot, we’ll enjoy a morning coffee at Marcella’s chocolaterie, known for her incredibly delicious dolci. Then we’ll take a slow walk through the charming streets of this remarkable town, visit the Duomo — one of its frescoes was painted by Ghirlandaio himself — and climb the tallest tower, Torre Municipale, for magnificent views.\n\nNext, we’ll head to Siena for lunch at the historic Taverna San Giuseppe, famous for its tagliolini with truffles. Afterwards, we’ll explore Siena’s medieval streets and visit the Siena Duomo — one of the most stunning Gothic cathedrals in Italy.\n\nWe’ll climb to a panoramic terrace to photograph the city from above and relax on the legendary Piazza del Campo, where the Palio horse race takes place. In the evening, we’ll return home for dinner at a cozy trattoria near our villa.","imgUrl":"https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886466/tuscan-spring___1337705-Pano-Edit_142%D1%85109-200dpi-Edit_ivizwp.avif"},{"day":5,"plan":"MACCIANO","description":"Our sunrise shoot is planned in the valley near Macciano: smooth rolling fields opening up in the first light of dawn, solitary farmhouses, and — if we’re lucky — a soft veil of morning mist. This is the essence of warm springtime Tuscany.\n\nWe will photograph the landscape from several more viewpoints, including the iconic shot from La Foce, and then head for a morning coffee in the small, completely non-touristic town of Cetona.\n\nAfter a gentle morning walk, we’ll try to visit the gallery of well-known Tuscan artists Tazio Angellini and Fausta Ottolini, located in an ancient 10th-century cantina. We’ll enjoy a glass of chilled prosecco with Fausta — depending on how she’s feeling.\n\nAfter lunch at the best restaurant in town, we’ll finish the day with a sunset shoot at Podere Belvedere.","imgUrl":"https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886466/tuscan-spring__08_6457792-Pano_150x110_Print_Dechancer_2022_copy-Edit_i3ogsp.avif"},{"day":6,"plan":"MONTALCINO","description":"Our sunrise location offers breathtaking views of Val d’Orcia from the hilltop town of Montalcino — the birthplace of Brunello di Montalcino.\n\nAfter our morning shoot and a walk through town, we’ll enjoy a tasting of the best Brunellos at the winemakers association inside the medieval fortress La Fortezza.\n\nFollowing a midday rest, we’ll visit the ancient Abbey of Sant’Antimo, founded by Charlemagne. In the afternoon, we’ll continue our wine journey with tastings at small local producers.\n\nWe’ll finish the day with a sunset shoot in the fields near Torrenieri.","imgUrl":"https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886466/tuscan-spring__400mm-f8-1slash60-iso100_wnjtxa.avif"},{"day":7,"plan":"PITIGLIANO","description":"We will greet the new day in Pitigliano, a dramatic town perched on a massive tuff cliff. After the sunrise shoot, we’ll enjoy a slow walk through town, visit the Duomo, and explore the catacombs carved into the rock.\n\nOur friends will show us their underground chambers and offer their famous homemade salsa. Later, we’ll relax at the Saturnia hot springs.\n\nAt sunset, we’ll photograph the medieval town of Sorano. Dinner will be at Sette di Vino in Pienza — a cozy osteria loved by locals for its honest, cheese-driven cuisine.","imgUrl":"https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886465/tuscan-spring___1337204-Edit_copy1_ft81tv.avif"},{"day":8,"plan":"CRETE SENESI","description":"We’ll greet the sunrise near the village of Mucigliano, surrounded by classic Tuscan landscapes still unknown to most tourists. On our way back, we’ll drive along the stunning roads of Crete Senesi, stopping often to photograph the rolling hills.\n\nAfter a longer siesta, we’ll photograph the iconic Podere Baccoleno at sunset, with its elegant cypress-lined road.","imgUrl":"https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886464/tuscan-spring___1337705_98x132_200dpi_217-Edit_zcc3nn.avif"},{"day":9,"plan":"BAGNO VIGNONI & SAN GALGANO","description":"We’ll welcome sunrise in Bagno Vignoni, famous for its ancient thermal pool and beloved by Tarkovsky.\n\nWith a view of the main pool, we’ll enjoy our morning cappuccino and then visit Sarteano to taste freshly pressed olive oil, and Radicofani, home to an original Andrea della Robbia majolica.\n\nLater we’ll soak in the natural hot springs at Bagni San Filippo. In the evening, we’ll photograph the roofless monastery of San Galgano and see the legendary sword in the stone. We’ll finish with a farewell dinner at one of the best restaurants in the region.","imgUrl":"https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886464/tuscan-spring__180R1797_j6wetk.avif"},{"day":10,"plan":"ROME. DEPARTURE","description":"In the morning, we will choose the final sunrise location based on the weather forecast. After the shoot, we will head to Rome and arrive at Fiumicino Airport at approximately 12:00.\n\nYour return flight should be scheduled for the second half of the day. Those who wish to spend additional time exploring Rome will be taken directly to the city.","imgUrl":"https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886464/tuscan-spring__400mm-f5_6-1s-iso200_ra1vyo.avif"}]}',
     guide1_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8844obr_146x110_topaz_PRINT_yvqehs.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
-    ARRAY['March','April','May','September','October'], ARRAY['English'], 16, 'Europe', 8, 4, 'About Our Tuscany Spring Photo Expedition'),
+    ARRAY['March','May'], ARRAY['English'], 16, 'Europe', 8, 4, 'About Our Tuscany Spring Photo Expedition'),
 
    (tour2_id, 'morocco-photo-tour', 'Morocco Photo Tour',
     'Experience the magic of Morocco on a visual journey from the blue-washed streets of Chefchaouen to the golden dunes of the Sahara Desert. Capture the vibrant souks of Marrakech, the ancient kasbahs of Ait Ben Haddou, and the majestic Atlas Mountains. This immersive photography workshop offers expert-led sunrise and sunset sessions in Morocco''s most iconic locations. Join our exclusive small group for an unforgettable adventure!',
-    'EASY', 4250.00,
+    'EASY', 3200.00,
     '{"days":[{"day":1,"plan":"DAY 1. CASABLANCA: ATLANTIC CONTRASTS","description":"Arrival in Casablanca, explore the Hassan II Mosque and Art Deco architecture.","imgUrl":"/images/morocco-casablanca.avif"},{"day":2,"plan":"DAY 2. MARRAKECH: THE RED CITY","description":"Photography in the bustling souks and historic medina of Marrakech.","imgUrl":"/images/morocco-marrakech.avif"},{"day":3,"plan":"DAY 3. ATLAS MOUNTAINS","description":"Capture stunning mountain landscapes and Berber villages.","imgUrl":"/images/morocco-atlas.avif"},{"day":4,"plan":"DAY 4. SAHARA DESERT","description":"Sunrise and sunset photography in the golden dunes of Erg Chebbi.","imgUrl":"/images/morocco-sahara.avif"},{"day":5,"plan":"DAY 5. FEZ: MEDIEVAL WONDER","description":"Explore the ancient medina and traditional tanneries of Fez.","imgUrl":"/images/morocco-fez.avif"},{"day":6,"plan":"DAY 6. CHEFCHAOUEN: BLUE PEARL","description":"Photograph the iconic blue-washed streets of Chefchaouen.","imgUrl":"/images/morocco-chefchaouen.avif"}]}',
     guide1_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429914/morocco___A8B2183_90x63-topaz-denoiseraw-sharpen-color_copy_d6h1s7.avif', 6, 'Casablanca', 'Casablanca',
-    ARRAY['March','April','May','October','November'], ARRAY['English','French'], 16, 'North Africa', 12, 9, 'About Our Morocco Photo Expedition'),
+    ARRAY['January','February'], ARRAY['English','French'], 16, 'North Africa', 12, 9, 'About Our Morocco Photo Expedition'),
 
    (tour3_id, 'venice-carnival-photo-tour', 'Venice Carnival',
      'Join our Venice Carnival Photo Tour for an unforgettable creative experience. Capture the elegance of Venetian masks and elaborate costumes against the backdrop of St. Mark''s Square. This photography workshop includes private shoots in historic palaces, gondola sessions, and hidden gems of Venice. Master your skills at sunrise and sunset. Limited small group tour. Book your photography adventure!',
-     'EASY', 2850.00,
+     'EASY', 2500.00,
     '{"days":[{"day":1,"plan":"DAY 1. ARRIVAL IN VENICE","description":"Arrival at Venice Marco Polo Airport. Transfer to our hotel in the historic center. Evening orientation and welcome dinner at a traditional Venetian restaurant.","imgUrl":"/images/venice-arrival.avif"},{"day":2,"plan":"DAY 2. SAN MARCO & COSTUMES","description":"Sunrise photography session at St. Mark''s Square. Morning portrait session with elaborately costumed models. Afternoon gondola photography tour through the canals.","imgUrl":"/images/venice-san-marco.avif"},{"day":3,"plan":"DAY 3. HIDDEN VENICE","description":"Early morning exploration of quiet backstreets and bridges. Private palace interior photography session. Sunset shoot from a rooftop terrace overlooking the city.","imgUrl":"/images/venice-hidden.avif"},{"day":4,"plan":"DAY 4. MURANO & BURANO","description":"Morning excursion to Murano for glassblowing photography. Afternoon visit to colorful Burano island for architectural shots. Evening mask-making workshop demonstration.","imgUrl":"/images/venice-islands.avif"},{"day":5,"plan":"DAY 5. GRAND FINALE","description":"Final sunrise session at Rialto Bridge. Last costume portrait opportunities. Farewell lunch and transfer to airport.","imgUrl":"/images/venice-departure.avif"}]}',
      guide2_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430346/venice__FUJI4667_Dehancer_ovjl23.avif', 5, 'Venice Marco Polo Airport (VCE)', 'Venice Marco Polo Airport (VCE)',
-    ARRAY['February','March'], ARRAY['English'], 12, 'Europe', 7, 5, 'About Our Venice Carnival Photo Experience'),
-
-
+    ARRAY['February'], ARRAY['English'], 12, 'Europe', 7, 5, 'About Our Venice Carnival Photo Experience'),
 
    (tour4_id, 'new-zealand-photo-tour', 'New Zealand',
       'Discover the stunning landscapes of New Zealand from fjords to mountains. Capture the dramatic beauty of Milford Sound, the Southern Alps, and pristine lakes. This 10-day photography adventure features expert guidance, golden hour sessions, and diverse landscapes from glaciers to beaches. Small group ensures personalized instruction.',
-     'EASY', 3850.00,
+     'EASY', 4100.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Departure flight to New Zealand with overnight connection."},{"day":2,"plan":"QUEENSTOWN ARRIVAL","description":"Arrival in Queenstown, orientation and sunset photography at Lake Wakatipu."},{"day":3,"plan":"MILFORD SOUND","description":"Full day excursion to Milford Sound for sunrise and landscape photography."},{"day":4,"plan":"GLENORCHY","description":"Photography in the Wakatipu Basin and Glenorchy area."},{"day":5,"plan":"SOUTHERN ALPS","description":"Scenic flight and photography in Mount Aspiring National Park."},{"day":6,"plan":"WANAKA","description":"Lake Wanaka and That Wanaka Tree photography session."},{"day":7,"plan":"AORAKI/MOUNT COOK","description":"Travel to Mount Cook for glacier and mountain photography."},{"day":8,"plan":"TEKAPO","description":"Lake Tekapo and Church of the Good Shepherd sunrise."},{"day":9,"plan":"QUEENSTOWN","description":"Final photography sessions and return to Queenstown."},{"day":10,"plan":"DEPARTURE","description":"Transfer to airport for return flight via Rome."}]}',
      guide1_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
-    ARRAY['March','April','May','September','October','November'], ARRAY['English'], 16, 'Oceania', 12, 3, 'About Our New Zealand Photo Expedition'),
+    ARRAY['April','December','January'], ARRAY['English'], 16, 'Oceania', 12, 3, 'About Our New Zealand Photo Expedition'),
 
-   (tour5_id, 'cyclades-sailing-tour', 'Cyclades Sailing Photography Tour',
+   (tour5_id, 'cyclades-sailing-tour', 'Cyclades Sailing',
      'Set sail through the stunning Cyclades islands for a 7-day photography adventure. Capture the iconic white-washed villages of Santorini, ancient ruins of Delos, and hidden beaches accessible only by boat. Experience authentic Greek island life, golden hour sailing, and night photography under Mediterranean skies. Small group with expert photo guidance.',
-     'EASY', 3150.00,
+     'EASY', 3200.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ATHENS","description":"Welcome meeting in Athens. Transfer to Marina Alimos, board our sailing yacht. Evening safety briefing and sunset photography along the Athenian coast."},{"day":2,"plan":"SANTORINI SAIL","description":"Morning sail to Santorini. Afternoon photography of Oia village and blue-domed churches. Sunset session at Imerovigli caldera."},{"day":3,"plan":"SANTORINI EXPLORE","description":"Early morning at Fira. Visit Red Beach and Black Beach photography. Evening sail towards Ios under golden light."},{"day":4,"plan":"IOS TO NAXOS","description":"Morning exploration of Ios. Afternoon sail to Naxos. Photography at Portara and ancient Apollo temple ruins at sunset."},{"day":5,"plan":"DELOS TO MYKONOS","description":"Morning sail to sacred Delos island for ancient ruins photography. Afternoon arrival in Mykonos. Little Venice and windmill photography at sunset."},{"day":6,"plan":"MYKONOS HIDDEN GEMS","description":"Early morning at empty beaches. Explore traditional villages. Final night photography session under starlight. Farewell dinner onboard."},{"day":7,"plan":"RETURN ATHENS","description":"Morning sail back to Athens. Final photo review session. Transfer to Athens airport for departure."}]}',
      guide4_id,
       'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429871/cyclades__IMG_8808-Pano_copy_jkdqjj.avif', 7, 'Athens, Greece', 'Athens, Greece',
-      ARRAY['May','June','September','October'], ARRAY['English'], 16, 'Mediterranean', 11, 6, 'Set sail through the stunning Cyclades islands'),
+      ARRAY['May'], ARRAY['English'], 16, 'Mediterranean', 11, 6, 'Set sail through the stunning Cyclades islands'),
 
-   (tour6_id, 'cinque-terre-umbria-tour', 'Cinque-Terre & Umbria Photography',
+   (tour6_id, 'cinque-terre-umbria-tour', 'Cinque-Terre & Umbria',
      'Explore the colorful cliffside villages of Cinque-Terre and the medieval hill towns of Umbria. This 10-day journey captures the essence of coastal Italy and its rural heartland. Photograph dramatic seascapes, vineyards, ancient architecture, and authentic Italian life. Expert guidance in small group settings.',
-     'EASY', 3650.00,
+     'EASY', 3500.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. FLORENCE","description":"Meeting at Florence Airport. Orientation and evening photography in historic Florence."},{"day":2,"plan":"CINQUE-TERRE START","description":"Travel to Cinque-Terre. Photography in Monterosso al Mare."},{"day":3,"plan":"VERNazzA & CORNIGLIA","description":"Morning session in Vernazza. Afternoon in Corniglia village."},{"day":4,"plan":"MANAROLA & RIOMAGGIORE","description":"Sunrise in Manarola. Afternoon exploration of Riomaggiore."},{"day":5,"plan":"PORTOFINO & SANTA MARGHERITA","description":"Day trip to Portofino and Santa Margherita Ligure."},{"day":6,"plan":"UMBRIA ARRIVAL","description":"Travel to Umbria. Photography in Perugia historic center."},{"day":7,"plan":"ASSISI & GUBBIO","description":"Morning in Assisi. Afternoon in medieval Gubbio."},{"day":8,"plan":"ORVIETO & CIVITA","description":"Photography in Orvieto and hill town of Civita di Bagnoregio."},{"day":9,"plan":"TODI & SPOLETO","description":"Final shooting sessions in Todi and Spoleto."},{"day":10,"plan":"DEPARTURE FLORENCE","description":"Return to Florence. Final gallery review and departure."}]}',
      guide3_id,
      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429687/cinque-terre-umbria__OSKIN_4052_GenFill_copy_ytmtp1.avif', 10, 'Florence, Peretola Airport (FLR)', 'Florence, Peretola Airport (FLR)',
-      ARRAY['April','May','September','October'], ARRAY['English'], 14, 'Europe', 14, 7, 'Discover the enchanting landscapes of Provence'),
+      ARRAY['June'], ARRAY['English'], 14, 'Europe', 14, 7, 'Discover the enchanting landscapes of Provence'),
 
    (tour7_id, 'provence-photography-tour', 'Provence Lavender & Villages',
      'Discover the enchanting landscapes of Provence during peak lavender season. Capture endless purple fields, medieval villages, and golden light. This 10-day photography workshop includes intimate knowledge of hidden locations, optimal timing for lavender bloom, and authentic Provençal experiences. Small group with personalized instruction.',
-     'EASY', 3400.00,
+     'EASY', 3900.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Transfer to Provence via scenic drive."},{"day":2,"plan":"AVIGNON ORIENTATION","description":"Explore Avignon historic center. Evening photography at Palais des Papes."},{"day":3,"plan":"GORD & ROUSSILLON","description":"Morning in hilltop village of Gordes. Afternoon in ochre trails of Roussillon."},{"day":4,"plan":"LAVENDER FIELDS","description":"Full day photography in Valensole plateau lavender fields at sunrise and sunset."},{"day":5,"plan":"SENANQUE ABBEY","description":"Early morning at Cistercian abbey with lavender. Afternoon in local markets."},{"day":6,"plan":"LES BAUX & ARLES","description":"Morning at Les Baux de Provence. Afternoon in Arles roman monuments."},{"day":7,"plan":"CAMARGUE WETLANDS","description":"Day trip to Camargue for wildlife and traditional gardian photography."},{"day":8,"plan":"VERDON GORGE","description":"Scenic photography at Verdon Gorge and Lake of Sainte-Croix."},{"day":9,"plan":"CASSIS CALANQUES","description":"Day trip to Cassis for calanques coastal photography."},{"day":10,"plan":"DEPARTURE","description":"Final gallery review. Return transfer to Rome FCO."}]}',
      guide5_id,
      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430058/provence___A8B4955_Topaz_copy_upigxu.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
-      ARRAY['June','July','August','September'], ARRAY['English'], 16, 'Europe', 16, 10, 'About Our Provence Photo Expedition'),
+      ARRAY['June','July'], ARRAY['English'], 16, 'Europe', 16, 10, 'About Our Provence Photo Expedition'),
 
-   (tour8_id, 'sicily-aeolian-tour', 'Sicily & Aeolian Islands Photography',
+   (tour8_id, 'sicily-aeolian-tour', 'Sicily & Aeolian Islands',
      'Experience the dramatic beauty of Sicily and the volcanic Aeolian Islands. Capture Mount Etna''s power, ancient Greek ruins, and Stromboli''s nightly eruptions. This 10-day adventure combines Sicilian culture, volcanic landscapes, and Mediterranean seascapes with expert photo guidance in intimate small groups.',
-     'MEDIUM', 3800.00,
+     'MEDIUM', 3900.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Transfer to Sicily via scenic drive."},{"day":2,"plan":"TAORMINA ORIENTATION","description":"Explore Taormina with Greek theatre views. Evening golden hour photography."},{"day":3,"plan":"MOUNT ETNA","description":"Full day Mount Etna photography. Craters, lava flows, and volcanic landscapes."},{"day":4,"plan":"SIRACUSA","description":"Morning in Ortigia island. Afternoon Greek theatre and ancient architecture."},{"day":5,"plan":"AEOLIAN ISLANDS START","description": "Ferry to Lipari. Island exploration and coastal photography."},{"day":6,"plan":"STROMBOLI VOLCANO","description":"Day trip to Stromboli. Hike and evening eruption photography."},{"day":7,"plan":"VULCANO & PANAREA","description":"Morning in Vulcano with mud baths and hot springs. Afternoon in Panarea."},{"day":8,"plan":"PALERMO ARRIVAL","description":"Return to mainland. Palermo historic center photography."},{"day":9,"plan":"MONREALE & CEFALÙ","description":"Morning at Monreale cathedral. Afternoon in Cefalù coastal town."},{"day":10,"plan":"DEPARTURE","description":"Final gallery review. Return transfer to Rome FCO."}]}',
      guide4_id,
      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430152/sicily__IMG_0599_dmi5yb.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
-      ARRAY['May','June','September','October'], ARRAY['English'], 16, 'Mediterranean', 16, 12, 'About Our Sicily & Aeolian Islands Photo Adventure'),
+      ARRAY['June','July'], ARRAY['English'], 16, 'Mediterranean', 16, 12, 'About Our Sicily & Aeolian Islands Photo Adventure'),
 
- (tour9_id, 'czechia-autumn-tour', 'Czechia Autumn Photography',
+ (tour9_id, 'czechia-autumn-tour', 'Czechia Autumn',
      'Capture the golden beauty of Czechia during peak autumn season. From Prague''s Gothic splendor to Bohemian castles and medieval towns, this 10-day journey showcases Central Europe''s finest fall colors. Expert guidance in small groups ensures optimal timing for golden hour and autumn foliage photography.',
-     'EASY', 2950.00,
+     'EASY', 2900.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Transfer flight to Prague."},{"day":2,"plan":"PRAGUE ORIENTATION","description":"Prague Castle and Charles Bridge sunrise photography. Old Town Square exploration."},{"day":3,"plan":"PRAGUE DEEP DIVE","description":"Jewish Quarter and Lesser Town photography. Evening golden hour from Petřín Hill."},{"day":4,"plan":"KUTNÁ HORA","description":"Day trip to Kutná Hora. Sedlec Ossuary and St. Barbara''s Church."},{"day":5,"plan":"ČESKÝ KRUMLOV","description":"Travel to Český Krumlov. Castle and medieval town photography."},{"day":6,"plan":"SOUTH BOHEMIA","description":"Hluboká Castle and surrounding autumn landscapes. Village photography."},{"day":7,"plan":"KARLOVY VARY","description":"Travel to Karlovy Vary. Spa town architecture and autumn colors."},{"day":8,"plan":"BOHEMIAN SWITZERLAND","description":"Day trip to Bohemian Switzerland National Park for dramatic landscapes."},{"day":9,"plan":"PRAGUE FINAL","description":"Return to Prague. Final photography sessions and gallery review."},{"day":10,"plan":"DEPARTURE","description":"Transfer to Prague airport for return flight via Rome."}]}',
      guide2_id,
       'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429592/czech-fall___IGP2024_93x69_200dpi-Dehancer_120x90_PRINT_2017_copy_jssztz.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
-      ARRAY['September','October','November'], ARRAY['English'], 14, 'Europe', 14, 8, 'About Our Czechia Autumn Photo Expedition'),
+      ARRAY['October'], ARRAY['English'], 14, 'Europe', 14, 8, 'About Our Czechia Autumn Photo Expedition'),
 
  (tour10_id, 'scotland-photography-tour', 'Scotland Highlands & Islands',
    'Journey through the mystical Scottish Highlands and dramatic coastline. Capture lochs, castles, and the raw beauty of the Isle of Skye. This 10-day photography adventure includes remote landscapes, historic sites, and authentic Highland culture. Expert guidance in small groups ensures intimate shooting experiences.',
-     'EASY', 3200.00,
+     'EASY', 3600.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Transfer flight to Edinburgh."},{"day":2,"plan":"EDINBURGH ORIENTATION","description":"Edinburgh Castle and Royal Mile photography. Evening at Arthur''s Seat."},{"day":3,"plan":"STIRLING & TROSSACHS","description":"Stirling Castle photography. Drive through Trossachs National Park."},{"day":4,"plan":"GLENCOE","description":"Photography in Glencoe Valley. Buchaille Etive Mor and dramatic landscapes."},{"day":5,"plan":"ISLE OF SKYE ARRIVAL","description":"Travel to Isle of Skye. Sligachan and sunset at Neist Point."},{"day":6,"plan":"SKYE EXPLORATION","description":"Old Man of Storr, Kilt Rock, and Quiraing landscape photography."},{"day":7,"plan":"EILEAN DONAN","description":"Morning at Eilean Donan Castle. Drive through Wester Ross."},{"day":8,"plan":"INVERNESS & CAIRNGORMS","description":"Loch Ness photography. Cairngorms National Park exploration."},{"day":9,"plan":"ST ANDREWS","description":"Fishing villages and St Andrews Cathedral. Final coastal photography."},{"day":10,"plan":"DEPARTURE","description":"Return to Edinburgh. Transfer to airport for return flight via Rome."}]}',
      guide1_id,
      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430128/scotland__IMGP3471_Panorama-Dehancer_copy_mpyxma.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
-      ARRAY['April','May','September','October'], ARRAY['English'], 16, 'Europe', 16, 10, 'About Our Scotland Highlands & Islands Photo Expedition'),
+      ARRAY['October'], ARRAY['English'], 16, 'Europe', 16, 10, 'About Our Scotland Highlands & Islands Photo Expedition'),
 
-(tour11_id, 'tuscany-autumn-tour', 'Tuscany Autumn Photography',
+(tour11_id, 'tuscany-autumn-tour', 'Tuscany Autumn',
      'Experience Tuscany''s golden autumn season when vineyards turn gold and harvest creates authentic rural scenes. From rolling hills to medieval hill towns, capture the essence of Italian autumn culture. This 10-day workshop features wine harvest photography, truffle hunting, and golden light across iconic landscapes.',
-     'EASY', 3500.00,
+     'EASY', 3800.00,
      '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Transfer to Tuscany."},{"day":2,"plan":"VAL D''ORCIA AUTUMN","description":"Pienza and Podere Belvedere with autumn colors. Golden hour sessions."},{"day":3,"plan":"MONTALCINO WINERIES","description":"Wine harvest photography in Brunello vineyards. Cellar tours."},{"day":4,"plan":"SAN QUIRICO D''ORCIA","description":"Morning in San Quirico. Bagno Vignoni thermal village photography."},{"day":5,"plan":"MONTERIGGIONI & SIENA","description":"Monteriggioni walled town. Afternoon in Siena medieval center."},{"day":6,"plan":"CHIANTI REGION","description":"Full day Chanti valley photography. Vineyard harvest scenes."},{"day":7,"plan":"TRUFFLE HUNTING","description":"Morning truffle hunting experience with local hunters. Village markets."},{"day":8,"plan":"FLORENCE DAY TRIP","description":"Photography in Florence during autumn season. Ponte Vecchio at sunrise."},{"day":9,"plan":"CRETE SENESI","description":"Final landscape photography in Crete Senesi region."},{"day":10,"plan":"DEPARTURE","description":"Gallery review and transfer to Rome FCO for departure."}]}',
      guide3_id,
       'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430222/tuscany-fall___IMG7020-Pano-1_1-Dechancer_copy_g90yjy.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
-      ARRAY['September','October','November'], ARRAY['English'], 16, 'Europe', 11, 5, 'Journey through the mystical Scottish Highlands'),
+      ARRAY['October','November'], ARRAY['English'], 16, 'Europe', 11, 5, 'Journey through the mystical Scottish Highlands'),
 
-(tour12_id, 'japan-atumn-tour', 'Japan Cultural Photography Journey',
-     'Immerse yourself in Japan''s rich cultural heritage and modern innovation. From ancient temples in Kyoto to neon-lit Tokyo streets, capture the fascinating contrast of traditional and contemporary Japan. This 10-day photography workshop includes expert guidance, cultural experiences, and optimal timing for seasonal beauty.',
-     'EASY', 4100.00,
-     '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Transfer flight to Tokyo."},{"day":2,"plan":"TOKYO ORIENTATION","description":"Tokyo Tower and Shibuya Crossing photography. Evening at Senso-ji Temple."},{"day":3,"plan":"TOKYO CULTURE","description":"Tsukiji fish market morning. Meiji Shrine and Harajuku street photography."},{"day":4,"plan":"HAKONE & MT FUJI","description":"Day trip to Hakone. Lake Ashi with Mount Fuji views."},{"day":5,"plan":"KYOTO ARRIVAL","description":"Travel to Kyoto. Fushimi Inari shrine and bamboo forest photography."},{"day":6,"plan":"KYOTO TEMPLES","description":"Kinkaku-ji and Gion geisha district photography sessions."},{"day":7,"plan":"NARA DAY TRIP","description":"Todai-ji Temple and deer park photography. Traditional crafts."},{"day":8,"plan":"HIROSHIMA PEACE","description":"Travel to Hiroshima. Peace Memorial and Miyajima Island photography."},{"day":9,"plan":"OSAKA MODERN","description":"Osaka Castle and Dotonbori neon district photography."},{"day":10,"plan":"DEPARTURE","description":"Final gallery review. Transfer to Osaka airport for return flight via Rome."}]}',
-     guide5_id,
-      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
-      ARRAY['March','April','May','October','November'], ARRAY['English'], 14, 'Japan', 14, 3, 'Immerse yourself in Japan''s rich cultural heritage'),
+(tour12_id, 'japan-atumn-tour', 'Japan Autumn',
+      'Immerse yourself in Japan''s rich cultural heritage and modern innovation. From ancient temples in Kyoto to neon-lit Tokyo streets, capture the fascinating contrast of traditional and contemporary Japan. This 10-day photography workshop includes expert guidance, cultural experiences, and optimal timing for seasonal beauty.',
+      'EASY', 4500.00,
+      '{"days":[{"day":1,"plan":"ARRIVAL. ROME FCO","description":"Meeting at Rome Fiumicino Airport. Transfer flight to Tokyo."},{"day":2,"plan":"TOKYO ORIENTATION","description":"Tokyo Tower and Shibuya Crossing photography. Evening at Senso-ji Temple."},{"day":3,"plan":"TOKYO CULTURE","description":"Tsukiji fish market morning. Meiji Shrine and Harajuku street photography."},{"day":4,"plan":"HAKONE & MT FUJI","description":"Day trip to Hakone. Lake Ashi with Mount Fuji views."},{"day":5,"plan":"KYOTO ARRIVAL","description":"Travel to Kyoto. Fushimi Inari shrine and bamboo forest photography."},{"day":6,"plan":"KYOTO TEMPLES","description":"Kinkaku-ji and Gion geisha district photography sessions."},{"day":7,"plan":"NARA DAY TRIP","description":"Todai-ji Temple and deer park photography. Traditional crafts."},{"day":8,"plan":"HIROSHIMA PEACE","description":"Travel to Hiroshima. Peace Memorial and Miyajima Island photography."},{"day":9,"plan":"OSAKA MODERN","description":"Osaka Castle and Dotonbori neon district photography."},{"day":10,"plan":"DEPARTURE","description":"Final gallery review. Transfer to Osaka airport for return flight via Rome."}]}',
+      guide5_id,
+       'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
+       ARRAY['March','April','November','December'], ARRAY['English'], 14, 'Japan', 14, 3, 'Immerse yourself in Japan''s rich cultural heritage'),
 
-(tour13_id, 'iceland-tour', 'Japan Cultural Photography Journey',
+(tour13_id, 'iceland-tour', '',
      '',
-     '', ,
+     '', 4450.00,
      '',
      guide5_id,
       'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777171/iceland_1_IGP4228-Pano_109x162_200dpi_topaz_copy_lt6mdc.avif', 10, '', '',
-      ARRAY['March','April','May','October','November'], ARRAY['English'], 14, 'Japan', 14, 3, 'Immerse yourself in Japan''s rich cultural heritage'),
+      ARRAY['July','August','September'], ARRAY['English'], 14, 'Iceland', 14, 3, 'Iceland Offroad Caravan Photography Adventure'),
 
 (tour14_id, 'japan-spring-tour', '',
      '',
-     '', ,
+     '', 4500.00,
      '',
      guide5_id,
       'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', , '', '',
-      ARRAY['March','April','May','October','November'], ARRAY['English'], 14, 'Japan', 14, 3, 'Immerse yourself in Japan''s rich cultural heritage');
+      ARRAY['March','April'], ARRAY['English'], 14, 'Japan', 14, 3, 'Japan Spring Photography Journey');
 
 
 
@@ -772,80 +778,97 @@ VALUES
 -- TOUR DATES
 INSERT INTO tour_dates (id, tour_id, date_from, date_to, group_size, is_available)
 VALUES
-  -- Tour 1: Tuscany Spring (10-day tour)
-  (tour_date1_id, tour1_id, '2025-04-15', '2025-04-24', 12, TRUE),
-  (tour_date2_id, tour1_id, '2025-05-06', '2025-05-15', 10, TRUE),
-  (tour_date3_id, tour1_id, '2025-09-20', '2025-09-29', 8, TRUE),
-  
-  -- Tour 2: Morocco (6-day tour)
-  (tour_date4_id, tour2_id, '2025-03-15', '2025-03-20', 12, TRUE),
-  (tour_date5_id, tour2_id, '2025-04-02', '2025-04-07', 10, TRUE),
-  (tour_date6_id, tour2_id, '2025-10-10', '2025-10-15', 12, TRUE),
-  (tour_date7_id, tour2_id, '2025-11-05', '2025-11-10', 10, TRUE),
+  -- Tour 2: Morocco (12-day tour)
+  (tour_date4_id, tour2_id, '2026-01-30', '2026-02-10', 0, FALSE),
+  (tour_date5_id, tour2_id, '2027-02-12', '2027-02-21', 7, TRUE),
   
   -- Tour 3: Venice Carnival (5-day tour)
-  (tour_date8_id, tour3_id, '2025-02-15', '2025-02-19', 8, TRUE),
-  (tour_date9_id, tour3_id, '2025-02-22', '2025-02-26', 6, TRUE),
+  (tour_date8_id, tour3_id, '2026-02-13', '2026-02-17', 0, FALSE),
+  (tour_date9_id, tour3_id, '2027-02-05', '2027-02-09', 7, TRUE),
   
-  -- Tour 4: New Zealand (10-day tour)
-  (tour_date16_id, tour4_id, '2025-05-20', '2025-05-26', 10, TRUE),
-  (tour_date17_id, tour4_id, '2025-06-15', '2025-06-21', 12, TRUE),
-  (tour_date18_id, tour4_id, '2025-09-10', '2025-09-16', 10, TRUE),
-  (tour_date19_id, tour4_id, '2025-10-05', '2025-10-11', 8, TRUE),
+  -- Tour 1: Tuscany Spring (10-day tour)
+  (tour_date1_id, tour1_id, '2026-03-09', '2026-03-18', 2, TRUE),
+  (tour_date2_id, tour1_id, '2026-03-20', '2026-03-29', 6, TRUE),
+  (tour_date3_id, tour1_id, '2027-03-05', '2027-03-14', 6, TRUE),
   
-  -- Tour 5: Cyclades Sailing (7-day tour)
-  (tour_date23_id, tour5_id, '2025-05-20', '2025-05-26', 10, TRUE),
-  (tour_date24_id, tour5_id, '2025-06-15', '2025-06-21', 12, TRUE),
-  (tour_date25_id, tour5_id, '2025-09-10', '2025-09-16', 10, TRUE),
-  (tour_date26_id, tour5_id, '2025-10-05', '2025-10-11', 8, TRUE),
+  -- Tour 14: Japan Spring (10-day tour)
+  (tour_date55_id, tour14_id, '2026-03-25', '2026-04-03', 0, FALSE),
+  (tour_date56_id, tour14_id, '2027-03-26', '2027-04-04', 10, TRUE),
+  (tour_date57_id, tour14_id, '2027-03-28', '2027-04-06', 10, TRUE),
   
-  -- Tour 6: Cinque-Terre & Umbria (10-day tour)
-  (tour_date27_id, tour6_id, '2025-04-10', '2025-04-19', 10, TRUE),
-  (tour_date28_id, tour6_id, '2025-05-15', '2025-05-24', 8, TRUE),
-  (tour_date29_id, tour6_id, '2025-09-25', '2025-10-04', 10, TRUE),
-  (tour_date30_id, tour6_id, '2025-10-15', '2025-10-24', 8, TRUE),
+  -- Tour 4: New Zealand North Island (10-day tour)
+  (tour_date16_id, tour4_id, '2026-04-06', '2026-04-15', 6, TRUE),
+  (tour_date17_id, tour4_id, '2026-12-25', '2027-01-03', 0, FALSE),
+  (tour_date18_id, tour4_id, '2027-01-25', '2027-02-03', 8, TRUE),
+  (tour_date19_id, tour4_id, '2027-04-08', '2027-04-17', 8, TRUE),
+  (tour_date20_id, tour4_id, '2027-12-03', '2027-12-12', 11, TRUE),
+  (tour_date21_id, tour4_id, '2028-01-04', '2028-01-14', 11, TRUE),
   
-  -- Tour 7: Provence (10-day tour)
-  (tour_date31_id, tour7_id, '2025-06-20', '2025-06-29', 12, TRUE),
-  (tour_date32_id, tour7_id, '2025-07-10', '2025-07-19', 10, TRUE),
-  (tour_date33_id, tour7_id, '2025-08-05', '2025-08-14', 10, TRUE),
-  (tour_date34_id, tour7_id, '2025-09-01', '2025-09-10', 8, TRUE),
+  -- Tour 4: New Zealand South Island (11-day tour)
+  (tour_date22_id, tour4_id, '2026-04-16', '2026-04-26', 6, TRUE),
+  (tour_date23_id, tour4_id, '2027-01-04', '2027-01-14', 0, FALSE),
+  (tour_date24_id, tour4_id, '2027-01-14', '2027-01-24', 8, TRUE),
+  (tour_date25_id, tour4_id, '2027-04-18', '2027-04-28', 8, TRUE),
+  (tour_date26_id, tour4_id, '2027-12-13', '2027-12-23', 11, TRUE),
+  (tour_date27_id, tour4_id, '2027-12-24', '2028-01-03', 11, TRUE),
   
-  -- Tour 8: Sicily & Aeolian Islands (10-day tour)
-  (tour_date35_id, tour8_id, '2025-05-25', '2025-06-03', 10, TRUE),
-  (tour_date36_id, tour8_id, '2025-06-20', '2025-06-29', 8, TRUE),
-  (tour_date37_id, tour8_id, '2025-09-15', '2025-09-24', 10, TRUE),
-  (tour_date38_id, tour8_id, '2025-10-10', '2025-10-19', 8, TRUE),
+  -- Tour 5: Cyclades by Catamaran (8-day tour)
+  (tour_date28_id, tour5_id, '2026-05-02', '2026-05-09', 8, TRUE),
+  (tour_date29_id, tour5_id, '2027-05-01', '2027-05-08', 19, TRUE),
+  
+  -- Tour 1: Tuscany Poppy Season (10-day tour)
+  (tour_date30_id, tour1_id, '2026-05-10', '2026-05-19', 3, TRUE),
+  (tour_date31_id, tour1_id, '2027-05-14', '2027-05-23', 5, TRUE),
+  (tour_date32_id, tour1_id, '2027-05-24', '2027-06-02', 5, TRUE),
+  
+  -- Tour 6: Cinque Terre & Umbria (10-day tour)
+  (tour_date33_id, tour6_id, '2026-06-05', '2026-06-14', 3, TRUE),
+  (tour_date34_id, tour6_id, '2027-06-04', '2027-06-13', 7, TRUE),
+  
+  -- Tour 7: Provence (7-day tour)
+  (tour_date35_id, tour7_id, '2026-06-22', '2026-06-28', 3, TRUE),
+  (tour_date36_id, tour7_id, '2027-06-28', '2027-07-04', 6, TRUE),
+  
+  -- Tour 8: Sicily & Aeolian Islands (11-day tour)
+  (tour_date37_id, tour8_id, '2026-07-08', '2026-07-18', 3, TRUE),
+  (tour_date38_id, tour8_id, '2027-06-16', '2027-06-26', 7, TRUE),
+  
+  -- Tour 13: Iceland Offroad Caravan (10-day tour)
+  (tour_date39_id, tour13_id, '2026-08-07', '2026-08-16', 3, TRUE),
+  (tour_date40_id, tour13_id, '2026-08-18', '2026-08-27', 5, TRUE),
+  (tour_date41_id, tour13_id, '2026-08-29', '2026-09-07', 5, TRUE),
+  (tour_date42_id, tour13_id, '2026-09-09', '2026-09-18', 5, TRUE),
+  (tour_date43_id, tour13_id, '2026-09-20', '2026-09-29', 5, TRUE),
+  (tour_date44_id, tour13_id, '2027-07-09', '2027-07-18', 5, TRUE),
+  (tour_date45_id, tour13_id, '2027-07-20', '2027-07-29', 5, TRUE),
+  (tour_date46_id, tour13_id, '2027-07-30', '2027-08-08', 5, TRUE),
+  (tour_date47_id, tour13_id, '2027-08-10', '2027-08-19', 5, TRUE),
+  (tour_date48_id, tour13_id, '2027-08-20', '2027-08-29', 5, TRUE),
+  (tour_date49_id, tour13_id, '2027-08-31', '2027-09-09', 5, TRUE),
+  (tour_date50_id, tour13_id, '2027-09-10', '2027-09-19', 5, TRUE),
+  (tour_date51_id, tour13_id, '2027-09-21', '2027-09-30', 5, TRUE),
   
   -- Tour 9: Czechia Autumn (10-day tour)
-  (tour_date39_id, tour9_id, '2025-09-20', '2025-09-29', 10, TRUE),
-  (tour_date40_id, tour9_id, '2025-10-05', '2025-10-14', 8, TRUE),
-  (tour_date41_id, tour9_id, '2025-10-25', '2025-11-03', 12, TRUE),
-  (tour_date42_id, tour9_id, '2025-11-10', '2025-11-19', 8, TRUE),
+  (tour_date52_id, tour9_id, '2026-10-09', '2026-10-18', 7, TRUE),
+  (tour_date53_id, tour9_id, '2027-10-15', '2027-10-24', 7, TRUE),
   
-  -- Tour 10: Scotland Highlands (10-day tour)
-  (tour_date43_id, tour10_id, '2025-04-01', '2025-04-10', 10, TRUE),
-  (tour_date44_id, tour10_id, '2025-05-15', '2025-05-24', 8, TRUE),
-  (tour_date45_id, tour10_id, '2025-09-20', '2025-09-29', 10, TRUE),
-  (tour_date46_id, tour10_id, '2025-10-01', '2025-10-10', 12, TRUE),
+  -- Tour 10: Scotland (8-day tour)
+  (tour_date54_id, tour10_id, '2026-10-17', '2026-10-24', 7, TRUE),
+  (tour_date55_id, tour10_id, '2027-10-17', '2027-10-24', 7, TRUE),
   
   -- Tour 11: Tuscany Autumn (10-day tour)
-  (tour_date47_id, tour11_id, '2025-09-15', '2025-09-24', 10, TRUE),
-  (tour_date48_id, tour11_id, '2025-10-05', '2025-10-14', 12, TRUE),
-  (tour_date49_id, tour11_id, '2025-10-25', '2025-11-03', 8, TRUE),
+  (tour_date56_id, tour11_id, '2026-10-30', '2026-11-08', 7, TRUE),
+  (tour_date57_id, tour11_id, '2026-11-08', '2026-11-17', 7, TRUE),
+  (tour_date58_id, tour11_id, '2027-10-22', '2027-10-31', 7, TRUE),
+  (tour_date59_id, tour11_id, '2027-10-31', '2027-11-09', 7, TRUE),
+  (tour_date60_id, tour11_id, '2027-11-09', '2027-11-18', 7, TRUE),
+  (tour_date61_id, tour11_id, '2027-11-19', '2027-11-28', 7, TRUE),
   
-  -- Tour 12: Japan autumn (10-day tour)
-  (tour_date50_id, tour15_id, '2025-03-20', '2025-03-29', 10, TRUE),
-  (tour_date51_id, tour15_id, '2025-04-10', '2025-04-19', 8, TRUE),
-  (tour_date52_id, tour15_id, '2025-05-05', '2025-05-14', 10, TRUE),
-  (tour_date53_id, tour15_id, '2025-10-01', '2025-10-10', 12, TRUE),
-  (tour_date54_id, tour15_id, '2025-11-15', '2025-11-24', 8, TRUE),
-
-  -- Tour 13: iceland
-  (tour_date50_id, tour15_id, '2025-03-20', '2025-03-29', 10, TRUE),
-
-  -- Tour 14: Japan spring
-  (tour_date50_id, tour15_id, '2025-03-20', '2025-03-29', 10, TRUE);
+  -- Tour 12: Japan Autumn (10-day tour)
+  (tour_date62_id, tour12_id, '2026-11-20', '2026-11-29', 6, TRUE),
+  (tour_date63_id, tour12_id, '2026-11-22', '2026-12-01', 6, TRUE),
+  (tour_date64_id, tour12_id, '2027-11-20', '2027-11-29', 9, TRUE),
+  (tour_date65_id, tour12_id, '2027-11-22', '2027-12-01', 9, TRUE);
 
 -- MATERIALS (not used on front)
 INSERT INTO tour_materials (tour_id, title, url, type)
@@ -1294,59 +1317,9 @@ VALUES
 -- VIDEOS
 INSERT INTO videos (tour_id, url, description)
 VALUES
-  -- Existing videos for tours 1-5
+  -- Existing videos for tours 1-2
   (tour1_id, 'https://example.com/tuscany-video1.mp4', 'Tuscany spring photography workshop highlights'),
   (tour2_id, 'https://example.com/morocco-video1.mp4', 'Morocco Sahara desert and imperial cities tour'),
-  (tour3_id, 'https://example.com/venice-carnival-video1.mp4', 'Venice Carnival masks and costumes photography'),
-
-  
-  -- Tour 2 (Morocco) - additional video
-  (tour2_id, 'https://example.com/morocco-video2.mp4', 'Chefchaouen blue streets and Atlas Mountains adventure'),
-  
-  -- Tour 3 (Venice Carnival) - additional video
-  (tour3_id, 'https://example.com/venice-carnival-video2.mp4', 'Venice gondola photography and hidden gems'),
-  
-
-   
-  -- Tour 6: New Zealand
-  (tour4_id, 'https://example.com/new-zealand-video1.mp4', 'New Zealand Milford Sound and landscapes'),
-  (tour4_id, 'https://example.com/new-zealand-video2.mp4', 'Queenstown adventure and Mount Cook glacier exploration'),
-  
-  -- Tour 7: Japan Cherry Blossom
-  (tour5_id, 'https://example.com/japan-cherry-blossom-video1.mp4', 'Japan cherry blossom season photography'),
-  (tour5_id, 'https://example.com/japan-cherry-blossom-video2.mp4', 'Kyoto temples and traditional Japanese culture'),
-  
-  -- Tour 8: Cyclades Sailing
-  (tour6_id, 'https://example.com/cyclades-sailing-video1.mp4', 'Greek islands sailing adventure and sunset photography'),
-  (tour6_id, 'https://example.com/cyclades-sailing-video2.mp4', 'Santorini Oia village and traditional Greek island life'),
-  
-  -- Tour 9: Cinque-Terre & Umbria
-  (tour7_id, 'https://example.com/cinque-terre-video1.mp4', 'Italian coastal villages and dramatic cliffside photography'),
-  (tour7_id, 'https://example.com/cinque-terre-video2.mp4', 'Umbria medieval hill towns and authentic Italian culture'),
-   
-  -- Tour 10: Provence
-  (tour10_id, 'https://example.com/provence-video1.mp4', 'Provence lavender fields and golden hour photography'),
-  (tour10_id, 'https://example.com/provence-video2.mp4', 'French village life and Provençal countryside exploration'),
-  
-  -- Tour 11: Sicily & Aeolian Islands
-  (tour11_id, 'https://example.com/sicily-video1.mp4', 'Mount Etna volcanic landscapes and Mediterranean seascapes'),
-  (tour11_id, 'https://example.com/sicily-video2.mp4', 'Sicilian culture and Aeolian Islands sailing adventure'),
-  
-  -- Tour 12: Czechia Autumn
-  (tour12_id, 'https://example.com/czechia-video1.mp4', 'Prague Gothic architecture and autumn foliage photography'),
-  (tour12_id, 'https://example.com/czechia-video2.mp4', 'Bohemian countryside and medieval towns in golden autumn'),
-  
-  -- Tour 13: Scotland Highlands
-  (tour13_id, 'https://example.com/scotland-video1.mp4', 'Scottish Highlands landscapes and dramatic coastline photography'),
-  (tour13_id, 'https://example.com/scotland-video2.mp4', 'Isle of Skye exploration and ancient Scottish castles'),
-   
-  -- Tour 14: Tuscany Autumn
-  (tour14_id, 'https://example.com/tuscany-autumn-video1.mp4', 'Tuscany autumn harvest and golden vineyard landscapes'),
-  (tour14_id, 'https://example.com/tuscany-autumn-video2.mp4', 'Italian countryside photography and rural autumn traditions'),
-  
-  -- Tour 15: Japan Cultural
-  (tour15_id, 'https://example.com/japan-cultural-video1.mp4', 'Japan traditional culture and modern Tokyo street photography'),
-  (tour15_id, 'https://example.com/japan-cultural-video2.mp4', 'Kyoto temples and authentic Japanese cultural experiences');
 
 -- TAGS
 INSERT INTO tags (name) VALUES
