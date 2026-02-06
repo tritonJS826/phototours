@@ -1074,10 +1074,10 @@ VALUES
     "description": "Return to Tokyo. Depart from Haneda or Narita Airport in the afternoon. Optional city drop-offs for those extending their stay. End of Japan photography tour with a world-class portfolio of landscapes, wildlife, and cultural experiences."
   }
 ]
-     }',
-     guide5_id,
-      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', , '', '',
-      ARRAY['March','April'], ARRAY['English'], 14, 'Japan', 14, 3, 'Japan Spring Photography Journey');
+    }',
+    guide5_id,
+     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 10, 'Tokyo', 'Tokyo',
+     ARRAY['March','April'], ARRAY['English'], 14, 'Japan', 14, 3, 'Japan Spring Photography Journey');
 
 
 
