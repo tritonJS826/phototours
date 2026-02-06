@@ -7,7 +7,7 @@
   padding: 20px;
   width: 100%;
   overflow: hidden;
-  gap: 16px;
+  gap: 10px;
   font-family: Onest, sans-serif;
 }
 
@@ -103,7 +103,7 @@
   margin: 0;
 
   // place reservation
-  height: 60px;
+  // height: 60px;
 }
 
 .startEndInfo {
@@ -146,14 +146,14 @@
   display: -webkit-box;
   font-family: "DM Sans", sans-serif;
   font-size: 17px;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   line-height: 135%;
-  font-weight: 400;
+  font-weight: 300;
   font-style: normal;
 
   // leading-trim: none;
   letter-spacing: 0%;
-  line-clamp: 4;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
