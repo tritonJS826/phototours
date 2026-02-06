@@ -358,7 +358,11 @@ func (r *ZohoRepository) getValidAccessToken(ctx context.Context) (string, error
 	}
 
 	if refreshToken != "" {
-		return r.RefreshAccessToken(ctx)
+		newToken, err := r.RefreshAccessToken(ctx)
+		if err != nil {
+			return "", fmt.Errorf("failed to refresh access token: %w", err)
+		}
+		return newToken, nil
 	}
 
 	return "", errors.New("no access token available, please authenticate first")
