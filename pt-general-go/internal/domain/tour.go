@@ -246,6 +246,9 @@ type Review struct {
 	TourID    uuid.UUID `json:"tourId"`
 	UserID    uuid.UUID `json:"userId"`
 	Rating    int32     `json:"rating"`
+	UserName  string    `json:"userName"`
+	Link      string    `json:"link"`
+	Image     string    `json:"image"`
 }
 
 type ReviewInfo struct {

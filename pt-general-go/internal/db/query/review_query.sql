@@ -5,6 +5,9 @@ SELECT
     user_id,
     rating,
     comment,
+    user_name,
+    link,
+    image,
     created_at
 FROM reviews
 WHERE tour_id = @tour_id
@@ -24,6 +27,9 @@ SELECT
     user_id,
     rating,
     comment,
+    user_name,
+    link,
+    image,
     created_at
 FROM reviews
 WHERE tour_id = ANY(@tour_ids::uuid[])

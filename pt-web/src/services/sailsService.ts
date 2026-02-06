@@ -1,4 +1,4 @@
-import { fetchData } from './httpHelper';
+import {fetchData} from "src/services/httpHelper";
 
 export interface ContactMeRequest {
   name: string;
@@ -10,8 +10,8 @@ export interface ContactMeResponse {
 }
 
 export async function submitContactMe(data: ContactMeRequest): Promise<ContactMeResponse> {
-  return await fetchData<ContactMeResponse>('general/contact/me', {
-    method: 'POST',
+  return await fetchData<ContactMeResponse>("general/contact/me", {
+    method: "POST",
     body: JSON.stringify(data),
   });
 }
@@ -25,8 +25,8 @@ export interface SubscribeResponse {
 }
 
 export async function subscribe(data: SubscribeRequest): Promise<SubscribeResponse> {
-  return await fetchData<SubscribeResponse>('general/subscribe', {
-    method: 'POST',
+  return await fetchData<SubscribeResponse>("general/subscribe", {
+    method: "POST",
     body: JSON.stringify(data),
   });
 }

@@ -45,6 +45,7 @@ export const FeedbackBlock = (props: FeedbackBlockProps) => {
   const handleSubmit = async () => {
     if (!name.trim() || !phoneNumber.trim()) {
       alert("Please fill in both name and phone number");
+
       return;
     }
 
@@ -59,6 +60,8 @@ export const FeedbackBlock = (props: FeedbackBlockProps) => {
       setPhoneNumber("");
     } catch (error) {
       alert("Failed to submit contact request. Please try again.");
+      // eslint-disable-next-line no-console
+      console.log(error);
     } finally {
       setIsSubmitting(false);
     }
@@ -93,7 +96,7 @@ export const FeedbackBlock = (props: FeedbackBlockProps) => {
                 className={styles.feedBackInput}
                 placeholder="+1 000 000-000"
               /> */}
-            <button 
+            <button
               className={styles.feedBackButton}
               onClick={handleSubmit}
               disabled={isSubmitting}
@@ -144,30 +147,36 @@ const COPY = {
 
 const accordionItemsLeft = [
   {
-    trigger: {child: "What experience level is required for this tour?"},
-    content: {child: "Lorem ipsum dolor, lorem ipsum"},
+    trigger: {child: "What photography level is required to join? Can non-photographers participate?"},
+    // eslint-disable-next-line max-len
+    content: {child: "We welcome photographers of all skill levels, from absolute beginners to seasoned professionals, as well as non-photographers. Our tour leaders are experts dedicated to helping participants refine their skills, regardless of their starting point. You are welcome to shoot with a professional camera or simply a mobile phone.\n\nSeeing the world through the eyes of a professional photographer — who meticulously plans every detail, including the exact time of arrival at each location — is a unique experience for both photographers and travelers alike. On a photo tour, you avoid tourist crowds and witness the authentic beauty of the planet’s most stunning locations."},
   },
   {
-    trigger: {child: "What kind of equipment should I bring?"},
-    content: {child: "Lorem ipsum dolor, lorem ipsum"},
+    trigger: {child: "What should I bring with me"},
+    // eslint-disable-next-line max-len
+    content: {child: "We always provide specific gear recommendations for each tour. After booking your spot, you will receive a comprehensive manual listing everything you need to prepare — from cameras and lenses to appropriate clothing. You can also schedule a consultation with your tour leader to help you get ready for the trip."},
   },
   {
-    trigger: {child: "How physically demanding is the tour?"},
-    content: {child: "Lorem ipsum dolor, lorem ipsum"},
+    trigger: {child: "What level of physical fitness is required"},
+    // eslint-disable-next-line max-len
+    content: {child: "The difficulty level is always specified on each tour’s dedicated page. If you have health restrictions or concerns about your physical fitness, you can always contact our manager, who will help you assess the requirements for a specific expedition."},
   },
 ];
 const accordionItemsRight = [
   {
-    trigger: {child: "What weather can I expect in spring?"},
-    content: {child: "Lorem ipsum dolor, lorem ipsum"},
+    trigger: {child: "How many people are in a group"},
+    // eslint-disable-next-line max-len
+    content: {child: "We specialize in small groups and value an individual approach to every participant. Our priority is ensuring you gain valuable experience, new knowledge, and vivid impressions, while bringing home trophy shots for your portfolio or social media.\n\n The maximum group size depends on the destination. Most tours consist of up to 7 participants. However, there are exceptions, such as our sailing photo tour in the Cyclades, where the catamaran can accommodate up to 11 participants. You can find the exact group size on the specific tour page or by contacting our managers."},
   },
   {
-    trigger: {child: "How many people are in the group?"},
-    content: {child: "Lorem ipsum dolor, lorem ipsum"},
+    trigger: {child: "Are flights included in the price"},
+    // eslint-disable-next-line max-len
+    content: {child: "Our tour prices do not include airfare or visas, as our participants join us from all over the world. The standard price includes: \n\n Accommodation: Twin-share room with your partner or another participant of the same gender. \n\n Local Logistics: Airport transfers and all transportation between locations in a comfortable vehicle (typically a Mercedes). \n\n Expert Mentoring: All shooting sessions, on-site mentoring, and workshops, including post-processing. In some tours, breakfast, additional activities, and entrance fees are also included. Please check the specific tour page for full details or contact us for clarification."},
   },
   {
-    trigger: {child: "Are accommodations and meals included?"},
-    content: {child: "Lorem ipsum dolor, lorem ipsum"},
+    trigger: {child: "What is included in the cost?"},
+    // eslint-disable-next-line max-len
+    content: {child: "The cost of all our photo tours & photography workshops includes: \n\n Accommodation: Double or single occupancy options. \n\n Local Logistics: Airport transfers and ground transportation between cities and locations. \n\n Expert Mentoring: All shooting sessions, on-site mentoring, and workshops, including post-processing. \n\n Depending on the destination, breakfasts, extra activities, and entrance tickets may also be part of the package. Detailed information is available on each tour's page."},
   },
 ];
 

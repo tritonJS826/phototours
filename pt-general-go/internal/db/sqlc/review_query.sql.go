@@ -74,6 +74,9 @@ SELECT
     user_id,
     rating,
     comment,
+    user_name,
+    link,
+    image,
     created_at
 FROM reviews
 WHERE tour_id = $1
@@ -86,6 +89,9 @@ type GetReviewsByTourIDRow struct {
 	UserID    pgtype.UUID
 	Rating    int32
 	Comment   pgtype.Text
+	UserName  string
+	Link      string
+	Image     string
 	CreatedAt pgtype.Timestamp
 }
 
@@ -104,6 +110,9 @@ func (q *Queries) GetReviewsByTourID(ctx context.Context, tourID pgtype.UUID) ([
 			&i.UserID,
 			&i.Rating,
 			&i.Comment,
+			&i.UserName,
+			&i.Link,
+			&i.Image,
 			&i.CreatedAt,
 		); err != nil {
 			return nil, err
@@ -123,6 +132,9 @@ SELECT
     user_id,
     rating,
     comment,
+    user_name,
+    link,
+    image,
     created_at
 FROM reviews
 WHERE tour_id = ANY($1::uuid[])
@@ -135,6 +147,9 @@ type GetReviewsByTourIDsRow struct {
 	UserID    pgtype.UUID
 	Rating    int32
 	Comment   pgtype.Text
+	UserName  string
+	Link      string
+	Image     string
 	CreatedAt pgtype.Timestamp
 }
 
@@ -153,6 +168,9 @@ func (q *Queries) GetReviewsByTourIDs(ctx context.Context, tourIds []pgtype.UUID
 			&i.UserID,
 			&i.Rating,
 			&i.Comment,
+			&i.UserName,
+			&i.Link,
+			&i.Image,
 			&i.CreatedAt,
 		); err != nil {
 			return nil, err
