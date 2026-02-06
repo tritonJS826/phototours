@@ -190,6 +190,14 @@ DECLARE
     tour_activity62_id UUID := '66666666-6666-6666-6666-666666666662';
     tour_activity63_id UUID := '66666666-6666-6666-6666-666666666663';
     tour_activity64_id UUID := '66666666-6666-6666-6666-666666666664';
+    tour_activity65_id UUID := '66666666-6666-6666-6666-666666666665';
+    tour_activity66_id UUID := '66666666-6666-6666-6666-666666666666';
+    tour_activity67_id UUID := '66666666-6666-6666-6666-666666666667';
+    tour_activity68_id UUID := '66666666-6666-6666-6666-666666666668';
+    tour_activity69_id UUID := '66666666-6666-6666-6666-666666666669';
+    tour_activity70_id UUID := '66666666-6666-6666-6666-666666666670';
+    tour_activity71_id UUID := '66666666-6666-6666-6666-666666666671';
+    tour_activity72_id UUID := '66666666-6666-6666-6666-666666666672';
 
     -- Tour summary IDs
     tour_summary1_id UUID := '77777777-7777-7777-7777-777777777701';
@@ -1229,10 +1237,18 @@ VALUES
    (tour_activity62_id, tour12_id, 'Cultural experiences', '2025-04-15'),
 
    -- Tour 13: Iceland
-   (tour_activity63_id, tour13_id, 'Replace me', '2025-04-15'),
+   (tour_activity63_id, tour13_id, 'Sunrise photo sessions', '2025-04-15'),
+   (tour_activity64_id, tour13_id, 'Sunset photo sessions', '2025-04-15'),
+   (tour_activity65_id, tour13_id, 'Photography workshops', '2025-04-15'),
+   (tour_activity66_id, tour13_id, 'Editing & post-processing sessions', '2025-04-15'),
+   (tour_activity67_id, tour13_id, 'Cultural experiences', '2025-04-15'),
 
    -- Tour 14: japan-spring
-   (tour_activity64_id, tour13_id, 'Replace me', '2025-04-15');
+   (tour_activity68_id, tour14_id, 'Sunrise photo sessions', '2025-04-15'),
+   (tour_activity69_id, tour14_id, 'Sunset photo sessions', '2025-04-15'),
+   (tour_activity70_id, tour14_id, 'Photography workshops', '2025-04-15'),
+   (tour_activity71_id, tour14_id, 'Editing & post-processing sessions', '2025-04-15'),
+   (tour_activity72_id, tour14_id, 'Cultural experiences', '2025-04-15');
 
 
  -- TOUR SUMMARY
@@ -1328,11 +1344,11 @@ VALUES
   
   -- Tour 12: Japan autumn
   (tour_summary67_id, tour12_id, 'Duration', '10 days', '2025-04-15'),
-  (tour_summary68_id, tour12_id, 'Group Size', '7 participants', '2025-04-15'),
+  (tour_summary68_id, tour12_id, 'Group Size', '10 participants', '2025-04-15'),
   (tour_summary69_id, tour12_id, 'Languages', 'English', '2025-04-15'),
   (tour_summary70_id, tour12_id, 'Difficulty', 'Easy', '2025-04-15'),
-  (tour_summary71_id, tour12_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
-  (tour_summary72_id, tour12_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
+  (tour_summary71_id, tour12_id, 'Tour starts', 'Tokyo, Haneda Airport (HND)', '2025-04-15'),
+  (tour_summary72_id, tour12_id, 'Ending place', 'Tokyo, Haneda Airport (HND)', '2025-04-15'),
 
   -- Tour 13: iceland
   (tour_summary74_id, tour13_id, 'Duration', '10 days', '2025-04-15'),
@@ -1348,8 +1364,8 @@ VALUES
   (tour_summary82_id, tour14_id, 'Group Size', '7 participants', '2025-04-15'),
   (tour_summary83_id, tour14_id, 'Languages', 'English', '2025-04-15'),
   (tour_summary84_id, tour14_id, 'Difficulty', 'Easy', '2025-04-15'),
-  (tour_summary85_id, tour14_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)', '2025-04-15'),
-  (tour_summary86_id, tour14_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)', '2025-04-15');
+  (tour_summary85_id, tour14_id, 'Tour starts', 'Tokyo, Haneda Airport (HND)', '2025-04-15'),
+  (tour_summary86_id, tour14_id, 'Ending place', 'Tokyo, Haneda Airport (HND)', '2025-04-15');
 
  -- TOUR INCLUDED
 INSERT INTO tour_included (id, tour_id, included, created_at)
@@ -2082,19 +2098,19 @@ SELECT id, tour1_id FROM categories WHERE name IN ('Photography', 'Spring');
 -- BOOKINGS
 INSERT INTO bookings (id, tour_date_id, user_id, status, participants, total_price)
 VALUES
-  (booking1_id, tour_date1_id, user3_id, 'CONFIRMED', 2, 2500.00),
-  (booking2_id, tour_date3_id, user4_id, 'PENDING', 1, 180.00),
-  (booking3_id, tour_date4_id, user7_id, 'CONFIRMED', 3, 1950.00),
-  (booking4_id, tour_date5_id, user8_id, 'CANCELLED', 2, 3600.00),
+  -- (booking1_id, tour_date1_id, user3_id, 'CONFIRMED', 2, 2500.00),
+  -- (booking2_id, tour_date3_id, user4_id, 'PENDING', 1, 180.00),
+  -- (booking3_id, tour_date4_id, user7_id, 'CONFIRMED', 3, 1950.00),
+  -- (booking4_id, tour_date5_id, user8_id, 'CANCELLED', 2, 3600.00),
   (booking5_id, tour_date5_id, user10_id, 'CONFIRMED', 1, 950.00);
 
 -- PAYMENTS
 INSERT INTO payments (booking_id, amount, payment_method, status, transaction_id)
 VALUES
-  (booking1_id, 2500.00, 'CARD', 'COMPLETED', 'TXN123ABC'),
-  (booking2_id, 180.00, 'PAYPAL', 'PENDING', 'TXN987XYZ'),
-  (booking3_id, 1950.00, 'BANK_TRANSFER', 'COMPLETED', 'TXN654QWE'),
-  (booking4_id, 3600.00, 'CARD', 'REFUNDED', 'TXN444RTY'),
+  -- (booking1_id, 2500.00, 'CARD', 'COMPLETED', 'TXN123ABC'),
+  -- (booking2_id, 180.00, 'PAYPAL', 'PENDING', 'TXN987XYZ'),
+  -- (booking3_id, 1950.00, 'BANK_TRANSFER', 'COMPLETED', 'TXN654QWE'),
+  -- (booking4_id, 3600.00, 'CARD', 'REFUNDED', 'TXN444RTY'),
   (booking5_id, 950.00, 'CARD', 'COMPLETED', 'TXN999BNM');
 
 -- REVIEWS
