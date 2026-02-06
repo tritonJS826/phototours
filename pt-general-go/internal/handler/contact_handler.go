@@ -32,7 +32,7 @@ func (h *Handler) ContactMe(ctx *gin.Context) {
 	// Split name into first and last name
 	nameParts := strings.Fields(contactReq.Name)
 	firstName := nameParts[0]
-	lastName := ""
+	lastName := "Unknown"
 	if len(nameParts) > 1 {
 		lastName = strings.Join(nameParts[1:], " ")
 	}
@@ -42,7 +42,7 @@ func (h *Handler) ContactMe(ctx *gin.Context) {
 		LastName:  lastName,
 		Phone:     contactReq.Phone,
 		Email:     "", // Optional field
-		Company:   "", // Optional field
+		Company:   "UnknownWebsite",
 	}
 
 	_, err := h.services.BookingService.CreateLead(ctx, lead)
