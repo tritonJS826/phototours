@@ -88,7 +88,7 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 
 	// Create Stripe checkout session with deal_id in metadata
 	params := &stripe.CheckoutSessionParams{
-		PaymentMethodTypes: stripe.StringSlice([]string{"card"}),
+		// PaymentMethodTypes: stripe.StringSlice([]string{"card"}),
 		LineItems: []*stripe.CheckoutSessionLineItemParams{
 			{
 				// Price for Deposit for the photo tour
@@ -98,8 +98,8 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 		},
 
 		Mode:       stripe.String(string(stripe.CheckoutSessionModePayment)),
-		SuccessURL: stripe.String("https://tuscany-photo-tours.com/"),
-		CancelURL:  stripe.String("https://tuscany-photo-tours.com/"),
+		SuccessURL: stripe.String("https://tuscany-photo-tours.com"),
+		CancelURL:  stripe.String("https://tuscany-photo-tours.com"),
 		Metadata: map[string]string{
 			"zoho_deal_id": dealID,
 		},
