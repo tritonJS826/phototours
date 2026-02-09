@@ -440,59 +440,6 @@ func (r *ZohoRepository) CreateDeal(
 	return &createResp, nil
 }
 
-func (r *ZohoRepository) CreateBookingRequest(ctx context.Context, booking *domain.BookingRequest) (*BookingCreateResponse, error) {
-	token, err := r.getValidAccessToken(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	// Create contact data with required Zoho fields
-	contactData := map[string]interface{}{
-		"Last_Name": booking.Name,
-		"Email":     booking.Email,
-		"Phone":     booking.Phone,
-	}
-
-	body := map[string][]map[string]interface{}{
-		"data": {contactData},
-	}
-
-	jsonBody, err := json.Marshal(body)
-	if err != nil {
-		return nil, fmt.Errorf("failed to marshal booking data: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, http.MethodPost, apiContacts, bytes.NewReader(jsonBody))
-	if err != nil {
-		return nil, fmt.Errorf("failed to create request: %w", err)
-	}
-
-	req.Header.Set("Authorization", "Zoho-oauthtoken "+token)
-	req.Header.Set("Content-Type", "application/json")
-
-	resp, err := r.httpClient.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("create booking request failed: %w", err)
-	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusCreated {
-		respBody, err := io.ReadAll(resp.Body)
-		if err != nil {
-			return nil, fmt.Errorf("failed to read error response body: %w", err)
-		}
-		return nil, fmt.Errorf("failed to create booking: %d %s - %s",
-			resp.StatusCode, resp.Status, string(respBody))
-	}
-
-	var createResp BookingCreateResponse
-	if err := json.NewDecoder(resp.Body).Decode(&createResp); err != nil {
-		return nil, fmt.Errorf("failed to decode create booking response: %w", err)
-	}
-
-	return &createResp, nil
-}
-
 func (r *ZohoRepository) SetTokens(accessToken, refreshToken string) {
 	r.mu.Lock()
 	defer r.mu.Unlock()

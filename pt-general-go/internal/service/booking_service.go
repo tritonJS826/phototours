@@ -102,8 +102,8 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 			},
 		},
 		Mode:       stripe.String(string(stripe.CheckoutSessionModePayment)),
-		SuccessURL: stripe.String(s.config.CORSOrigins),
-		CancelURL:  stripe.String(s.config.CORSOrigins),
+		SuccessURL: stripe.String("https://tuscany-photo-tours.com/"),
+		CancelURL:  stripe.String("https://tuscany-photo-tours.com/"),
 		Metadata: map[string]string{
 			"zoho_deal_id": dealID,
 		},
@@ -114,15 +114,6 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 		s.logger.Error("Failed to create Stripe checkout session", zap.Error(err))
 		return "", err
 	}
-
-	go func() {
-		result, err := s.zohoRepository.CreateBookingRequest(context.Background(), bookingRequest)
-		if err != nil {
-			s.logger.Error("Failed to create booking request in Zoho", zap.Error(err), zap.Any("bookingRequest", bookingRequest))
-			return
-		}
-		s.logger.Debug("Created booking request in Zoho", zap.Any("result", *result))
-	}()
 
 	return checkoutSession.URL, nil
 }
