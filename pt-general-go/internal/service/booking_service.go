@@ -3,10 +3,13 @@ package service
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"pt-general-go/internal/config"
 	"pt-general-go/internal/domain"
 	"pt-general-go/internal/repository"
 
+	"github.com/stripe/stripe-go/v76"
+	"github.com/stripe/stripe-go/v76/checkout/session"
 	stripeWebhook "github.com/stripe/stripe-go/v76/webhook"
 	"go.uber.org/zap"
 )
@@ -15,7 +18,7 @@ type BookingService struct {
 	bookingRequestRepository *repository.BookingRequestRepository
 	tourRepository           *repository.TourRepository
 	zohoRepository           *repository.ZohoRepository
-	stripeConfig             *config.StripeConfig
+	config                   *config.Config
 	logger                   *zap.Logger
 }
 
@@ -23,14 +26,14 @@ func NewBookingService(
 	bookingRequestRepository *repository.BookingRequestRepository,
 	tourRepository *repository.TourRepository,
 	zohoRepository *repository.ZohoRepository,
-	stripeConfig *config.StripeConfig,
+	config *config.Config,
 	logger *zap.Logger,
 ) *BookingService {
 	return &BookingService{
 		bookingRequestRepository: bookingRequestRepository,
 		tourRepository:           tourRepository,
 		zohoRepository:           zohoRepository,
-		stripeConfig:             stripeConfig,
+		config:                   config,
 		logger:                   logger,
 	}
 }
@@ -65,9 +68,51 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 		LeadID:               "stub",
 	}
 
-	err = s.zohoRepository.CreateDeal(ctx, deal)
+	dealResp, err := s.zohoRepository.CreateDeal(ctx, deal)
 	if err != nil {
 		s.logger.Error("Failed to create deal in Zoho", zap.Error(err), zap.Any("deal", deal))
+		return "", err
+	}
+
+	// Extract deal ID from response
+	var dealID string
+	if len(dealResp.Data) > 0 && dealResp.Data[0].Details.ID != "" {
+		dealID = dealResp.Data[0].Details.ID
+	} else {
+		s.logger.Error("No deal ID returned from Zoho")
+		return "", fmt.Errorf("no deal ID returned from Zoho")
+	}
+
+	// Set Stripe API key
+	stripe.Key = s.config.StripeConfig.SecretKey
+
+	// Create Stripe checkout session with deal_id in metadata
+	params := &stripe.CheckoutSessionParams{
+		PaymentMethodTypes: stripe.StringSlice([]string{"card"}),
+		LineItems: []*stripe.CheckoutSessionLineItemParams{
+			{
+				PriceData: &stripe.CheckoutSessionLineItemPriceDataParams{
+					Currency: stripe.String("usd"),
+					ProductData: &stripe.CheckoutSessionLineItemPriceDataProductDataParams{
+						Name: stripe.String(fmt.Sprintf("Deposit for %s", tour.Title)),
+					},
+					UnitAmount: stripe.Int64(int64(*tour.Price * 100)), // Convert to cents
+				},
+				Quantity: stripe.Int64(1),
+			},
+		},
+		Mode:       stripe.String(string(stripe.CheckoutSessionModePayment)),
+		SuccessURL: stripe.String(s.config.CORSOrigins),
+		CancelURL:  stripe.String(s.config.CORSOrigins),
+		Metadata: map[string]string{
+			"zoho_deal_id": dealID,
+		},
+	}
+
+	checkoutSession, err := session.New(params)
+	if err != nil {
+		s.logger.Error("Failed to create Stripe checkout session", zap.Error(err))
+		return "", err
 	}
 
 	go func() {
@@ -79,13 +124,11 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 		s.logger.Debug("Created booking request in Zoho", zap.Any("result", *result))
 	}()
 
-	testStripeRedirectURL := "https://buy.stripe.com/cNidR86ir4mh3OVeYob3q08"
-
-	return testStripeRedirectURL, nil
+	return checkoutSession.URL, nil
 }
 
 func (s *BookingService) CreateDeal(ctx context.Context, lead *domain.DealZoho) error {
-	err := s.zohoRepository.CreateDeal(ctx, lead)
+	_, err := s.zohoRepository.CreateDeal(ctx, lead)
 	if err != nil {
 		s.logger.Error("Failed to create lead in Zoho", zap.Error(err), zap.Any("lead", lead))
 		return err
@@ -110,7 +153,7 @@ func (s *BookingService) CreateContact(ctx context.Context, contact *domain.Cont
 
 func (s *BookingService) HandleDepositSucceededWebhook(ctx context.Context, body []byte, signature string) error {
 	// Verify Stripe webhook signature
-	event, err := stripeWebhook.ConstructEvent(body, signature, s.stripeConfig.WebhookSecret)
+	event, err := stripeWebhook.ConstructEvent(body, signature, s.config.StripeConfig.WebhookSecret)
 	if err != nil {
 		s.logger.Error("Failed to verify Stripe webhook signature", zap.Error(err))
 		return err

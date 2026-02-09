@@ -48,7 +48,7 @@ func (h *Handler) CreateBookingRequest(ctx *gin.Context) {
 // @Success 200 {object} map[string]string
 // @Failure 400 {object} map[string]string
 // @Failure 500 {object} map[string]string
-// @Router /general/booking/deposit-succeeded [post]
+// @Router /general/bookings/deposit-succeeded [post]
 func (h *Handler) StripeDepositSucceededWebhook(ctx *gin.Context) {
 	body, err := io.ReadAll(ctx.Request.Body)
 	if err != nil {

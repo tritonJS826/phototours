@@ -53,6 +53,17 @@ type LeadCreateResponse struct {
 	} `json:"data"`
 }
 
+type DealCreateResponse struct {
+	Data []struct {
+		Code    string `json:"code"`
+		Details struct {
+			ID string `json:"id"`
+		} `json:"details"`
+		Message string `json:"message"`
+		Status  string `json:"status"`
+	} `json:"data"`
+}
+
 type BookingCreateResponse struct {
 	Data []struct {
 		Code    string `json:"code"`
@@ -362,12 +373,11 @@ func (r *ZohoRepository) CreateContact(
 func (r *ZohoRepository) CreateDeal(
 	ctx context.Context,
 	deal *domain.DealZoho,
-) error {
+) (*DealCreateResponse, error) {
 
 	token, err := r.getValidAccessToken(ctx)
 	if err != nil {
-		// return nil, err
-		return err
+		return nil, err
 	}
 
 	// mandatory defaults
@@ -387,8 +397,7 @@ func (r *ZohoRepository) CreateDeal(
 
 	jsonBody, err := json.Marshal(body)
 	if err != nil {
-		// return nil, fmt.Errorf("failed to marshal deal data: %w", err)
-		return fmt.Errorf("failed to marshal deal data: %w", err)
+		return nil, fmt.Errorf("failed to marshal deal data: %w", err)
 	}
 
 	req, err := http.NewRequestWithContext(
@@ -398,8 +407,7 @@ func (r *ZohoRepository) CreateDeal(
 		bytes.NewReader(jsonBody),
 	)
 	if err != nil {
-		// return nil, fmt.Errorf("failed to create request: %w", err)
-		return fmt.Errorf("failed to create request: %w", err)
+		return nil, fmt.Errorf("failed to create request: %w", err)
 	}
 
 	req.Header.Set("Authorization", "Zoho-oauthtoken "+token)
@@ -407,18 +415,16 @@ func (r *ZohoRepository) CreateDeal(
 
 	resp, err := r.httpClient.Do(req)
 	if err != nil {
-		// return nil, fmt.Errorf("create deal request failed: %w", err)
-		return fmt.Errorf("create deal request failed: %w", err)
+		return nil, fmt.Errorf("create deal request failed: %w", err)
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusCreated {
 		respBody, err := io.ReadAll(resp.Body)
 		if err != nil {
-			// return nil, fmt.Errorf("failed to read error response body: %w", err)
-			return fmt.Errorf("failed to read error response body: %w", err)
+			return nil, fmt.Errorf("failed to read error response body: %w", err)
 		}
-		return fmt.Errorf(
+		return nil, fmt.Errorf(
 			"failed to create deal: %d %s - %s",
 			resp.StatusCode,
 			resp.Status,
@@ -426,13 +432,12 @@ func (r *ZohoRepository) CreateDeal(
 		)
 	}
 
-	// var createResp DealCreateResponse
-	// if err := json.NewDecoder(resp.Body).Decode(&createResp); err != nil {
-	// 	return nil, fmt.Errorf("failed to decode create deal response: %w", err)
-	// }
+	var createResp DealCreateResponse
+	if err := json.NewDecoder(resp.Body).Decode(&createResp); err != nil {
+		return nil, fmt.Errorf("failed to decode create deal response: %w", err)
+	}
 
-	// return &createResp, nil
-	return nil
+	return &createResp, nil
 }
 
 func (r *ZohoRepository) CreateBookingRequest(ctx context.Context, booking *domain.BookingRequest) (*BookingCreateResponse, error) {

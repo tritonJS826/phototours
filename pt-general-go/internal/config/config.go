@@ -35,6 +35,7 @@ const EnvTypeProd = "prod"
 
 type Config struct {
 	ServerPort       string `env:"SERVER_PORT,required"`
+	WebappDomain     string `env:"WEBAPP_DOMAIN, required"`
 	EnvType          string `env:"ENV_TYPE,required"`
 	CORSOrigins      string `env:"CORS_ORIGIN,required"`
 	DatabaseURL      string `env:"DATABASE_URL,required"`
