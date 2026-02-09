@@ -21,7 +21,7 @@ func NewService(repo *repository.Repository, cfg *config.Config, logger *zap.Log
 	return &Service{
 		ArticleService:      NewArticleService(repo.ArticleRepository, logger),
 		AuthService:         NewAuthService(repo.UserRepository, repo.UploadRepository, repo.ZohoRepository, cfg, logger),
-		BookingService:      NewBookingService(repo.BookingRequestRepository, repo.ZohoRepository, logger),
+		BookingService:      NewBookingService(repo.BookingRequestRepository, repo.TourRepository, repo.ZohoRepository, logger),
 		DevService:          NewDevService(repo.ResetRepository),
 		PageMetadataService: NewPageMetadataService(repo.PageMetadataRepository),
 		TourService: NewTourService(
