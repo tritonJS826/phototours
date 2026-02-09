@@ -4,6 +4,7 @@ import lake from "src/pages/bookTours/images/lake.avif";
 import train from "src/pages/bookTours/images/train.avif";
 import styles from "src/pages/bookTours/BookTours.module.scss";
 
+// Looks like deprecated thing
 export function BookTours() {
   return (
     <Container>

@@ -4,6 +4,7 @@ import (
 	"io"
 	"net/http"
 	"pt-general-go/internal/domain"
+	"pt-general-go/internal/handler/dto"
 
 	// "pt-general-go/internal/handler/dto"
 
@@ -29,14 +30,15 @@ func (h *Handler) CreateBookingRequest(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request data"})
 		return
 	}
-	redirectURL, err := h.services.BookingService.CreateBookingRequest(ctx, &bookingRequest)
+	redirectUrl, err := h.services.BookingService.CreateBookingRequest(ctx, &bookingRequest)
 	if err != nil {
 		h.logger.Error("create booking error", zap.Error(err))
 		h.handleError(ctx, err)
 		return
 	}
 
-	ctx.Redirect(http.StatusSeeOther, redirectURL)
+	// ctx.Redirect(http.StatusSeeOther, redirectURL)
+	ctx.JSON(200, dto.CreateBookingResponse{RedirectUrl: redirectUrl})
 }
 
 // StripeDepositSucceededWebhook godoc
