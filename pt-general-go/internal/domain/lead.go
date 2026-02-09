@@ -20,9 +20,9 @@ type DealZoho struct {
 	DealName             string  `json:"Deal_Name"`
 	ClientEmail          string  `json:"Client_Email,omitempty"`
 	ClientPhone          string  `json:"Client_Phone,omitempty"`
-	TourDate             string  `json:"Tour_Date,omitempty"`
+	TravelDates          string  `json:"Travel_Dates,omitempty"`
 	Travelers            int     `json:"Travelers,omitempty"`
-	SingleRoomSupplement float64 `json:"Single_Room_Supplement,omitempty"`
+	SingleRoomSupplement int     `json:"Single_Room_Supplement,omitempty"`
 	Amount               float64 `json:"Amount,omitempty"`
 	TourName             string  `json:"Tour_Name,omitempty"`
 	Stage                string  `json:"Stage"`
