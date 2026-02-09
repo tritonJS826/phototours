@@ -10,17 +10,20 @@ import (
 
 type BookingService struct {
 	bookingRequestRepository *repository.BookingRequestRepository
+	tourRepository           *repository.TourRepository
 	zohoRepository           *repository.ZohoRepository
 	logger                   *zap.Logger
 }
 
 func NewBookingService(
 	bookingRequestRepository *repository.BookingRequestRepository,
+	tourRepository *repository.TourRepository,
 	zohoRepository *repository.ZohoRepository,
 	logger *zap.Logger,
 ) *BookingService {
 	return &BookingService{
 		bookingRequestRepository: bookingRequestRepository,
+		tourRepository:           tourRepository,
 		zohoRepository:           zohoRepository,
 		logger:                   logger,
 	}
@@ -34,6 +37,32 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 	}
 
 	s.logger.Info("Booking request saved to database", zap.Any("savedBookingRequest", savedBookingRequest))
+
+	tour, err := s.tourRepository.GetTourByID(ctx, bookingRequest.TourID)
+	if err != nil {
+		s.logger.Error("Failed to get tour from database", zap.Error(err), zap.Any("tourId", bookingRequest.TourID))
+	}
+
+	deal := &domain.DealZoho{
+		DealName:             bookingRequest.Name,
+		ClientEmail:          bookingRequest.Email,
+		ClientPhone:          bookingRequest.Phone,
+		TourDate:             bookingRequest.TravelDate,
+		Travelers:            bookingRequest.Travelers,
+		SingleRoomSupplement: float64(bookingRequest.Rooms),
+		Amount:               0,          // TODO: should come from request
+		TourName:             tour.Title, // Use actual tour title
+		Stage:                "In Progress",
+		Pipeline:             "Photo Tours",
+		AccountID:            "stub",
+		ContactID:            "stub",
+		LeadID:               "stub",
+	}
+
+	err = s.zohoRepository.CreateDeal(ctx, deal)
+	if err != nil {
+		s.logger.Error("Failed to create deal in Zoho", zap.Error(err), zap.Any("deal", deal))
+	}
 
 	go func() {
 		result, err := s.zohoRepository.CreateBookingRequest(context.Background(), bookingRequest)

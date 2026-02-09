@@ -17,12 +17,17 @@ type ContactZoho struct {
 }
 
 type DealZoho struct {
-	DealName    string  `json:"Deal_Name"`
-	Stage       string  `json:"Stage"`
-	ClosingDate string  `json:"Closing_Date"` // YYYY-MM-DD
-	Amount      float64 `json:"Amount,omitempty"`
-	Pipeline    string  `json:"Pipeline,omitempty"`
-	ClientPhone string  `json:"Client_Phone,omitempty"`
+	DealName             string  `json:"Deal_Name"`
+	ClientEmail          string  `json:"Client_Email,omitempty"`
+	ClientPhone          string  `json:"Client_Phone,omitempty"`
+	TourDate             string  `json:"Tour_Date,omitempty"`
+	Travelers            int     `json:"Travelers,omitempty"`
+	SingleRoomSupplement float64 `json:"Single_Room_Supplement,omitempty"`
+	Amount               float64 `json:"Amount,omitempty"`
+	TourName             string  `json:"Tour_Name,omitempty"`
+	Stage                string  `json:"Stage"`
+	Pipeline             string  `json:"Pipeline,omitempty"`
+	ClosingDate          string  `json:"Closing_Date,omitempty"` // YYYY-MM-DD
 
 	// relations
 	AccountID string `json:"Account_Name,omitempty"`

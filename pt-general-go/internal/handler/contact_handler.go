@@ -30,11 +30,9 @@ func (h *Handler) ContactMe(ctx *gin.Context) {
 
 	deal := &domain.DealZoho{
 		DealName:    contactReq.Name,
-		Stage:       "Incoming",
-		ClosingDate: "stub",
-		Amount:      0,
-		Pipeline:    "Photo Tours",
 		ClientPhone: contactReq.Phone,
+		Stage:       "Incoming",
+		Pipeline:    "Photo Tours",
 		AccountID:   "stub",
 		ContactID:   "stub",
 		LeadID:      "stub",
