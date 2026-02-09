@@ -20,10 +20,10 @@ export function AboutUs() {
         <div className={styles.info}>
           <div className={styles.infoLeft}>
             <h1 className={styles.infoHeader}>
-              Discover Tuscany Through the Lens of Passion & Expertise
+              Get in Touch: Let’s Plan Your Ultimate Photography Journey
             </h1>
             <p className={styles.infoSubtitle}>
-              Small-group photo tours | Award-winning locations | Professional mentoring
+              Expert guidance • Hidden gems • Total immersion • Small group exclusivity
             </p>
           </div>
 
@@ -77,11 +77,13 @@ export function AboutUs() {
               Viktor Tsoi
             </h2>
             <p className={styles.victorDescription}>
-              Viktor is a passionate photographer with a deep love for natural light, authentic moments, and clean visual storytelling.
+              Tuscany Photo Tours was founded with a singular vision: to bridge the gap between signature travel and photographic education.
+              We believe that the world’s most extraordinary locations deserve more than just a passing glance — they
+              deserve to be captured with intent
             </p>
             <p className={styles.victorDescription2}>
-              His approach combines artistic vision with technical precision, helping clients feel confident and relaxed in front of the camera.
-              He believes that every photograph should preserve not just a moment — but a feeling
+              Our purpose is simple: to provide the opportunity to visit picturesque spots and to empower you with the skills
+              and access needed to create your own photographic masterpieces.
             </p>
           </div>
 
@@ -97,21 +99,23 @@ export function AboutUs() {
           </div>
           <div className={styles.ourHistoryMain}>
             <h2 className={styles.ourHistoryTitle}>
-              Our History
+              Our Mission
             </h2>
             <p className={styles.ourHistoryDescription}>
-              Tuscany Photo Tours was founded by a team of passionate photographers who fell in love with the timeless charm
-              of the Italian countryside — golden vineyards, rolling hills, medieval towns, and dreamy sunrise valleys.
+              Tuscany Photo Tours was founded with a singular vision: to bridge the gap between signature
+              travel and photographic education. We believe that the world’s most extraordinary locations deserve
+              more than just a passing glance — they deserve to be captured with intent.
             </p>
             <p className={styles.ourHistoryDescription2}>
               Our purpose is simple:
               <br />
-              to help you capture photographs you’ll be proud of for years to come.
+              Our purpose is simple: to provide the opportunity to visit picturesque spots and to empower you with the skills and
+              access needed to create your own photographic masterpieces.
             </p>
             <p className={styles.ourHistoryDescription3}>
-              After years of exploring every corner of the region, we curated a collection of the most
-              cinematic routes and hidden vantage points, turning them into a unique
-              photo-travel experience for beginners and professionals alike.
+              Drawing on over 15 years of experience, we curate exclusive expeditions to the most cinematic
+              corners of our planet. From the volcanic heart of New Zealand to the misty hills of Tuscany,
+              we ensure you are always in the right place at the right time to capture the perfect shot.
             </p>
           </div>
           <div className={styles.ourHistoryRight}>
@@ -137,10 +141,10 @@ export function AboutUs() {
                 />
               </div>
               <h3 className={styles.whatMakesUsDifferentCardTitle}>
-                Professional Photo Mentoring
+                Expert Guidance
               </h3>
               <p className={styles.whatMakesUsDifferentCardDescription}>
-                Our experienced photographers guide you through composition, lighting, and shooting techniques right on location.
+                Experienced photographers guide you through composition, lighting, and shooting techniques on location.
               </p>
             </div>
             <div className={styles.whatMakesUsDifferentCard}>
@@ -152,10 +156,10 @@ export function AboutUs() {
                 />
               </div>
               <h3 className={styles.whatMakesUsDifferentCardTitle}>
-                Award-Winning Spots
+                Hidden Gems
               </h3>
               <p className={styles.whatMakesUsDifferentCardDescription}>
-                We handpick the most iconic and lesser-known locations across Tuscany to ensure breathtaking shots in every season.
+                We select iconic and lesser-known locations for unique and breathtaking shots in every season.
               </p>
             </div>
             <div className={styles.whatMakesUsDifferentCard}>
@@ -167,10 +171,10 @@ export function AboutUs() {
                 />
               </div>
               <h3 className={styles.whatMakesUsDifferentCardTitle}>
-                Small Groups, Personal Attention
+                Total Immersion
               </h3>
               <p className={styles.whatMakesUsDifferentCardDescription}>
-                With a maximum of 6–8 participants, every guest receives individual guidance and a relaxed atmosphere.
+                We handle logistics with local experts, so you can fully focus on the creative process.
               </p>
             </div>
             <div className={styles.whatMakesUsDifferentCard}>
@@ -182,68 +186,15 @@ export function AboutUs() {
                 />
               </div>
               <h3 className={styles.whatMakesUsDifferentCardTitle}>
-                Seamless Travel & Local Expertise
+                Small Groups
               </h3>
               <p className={styles.whatMakesUsDifferentCardDescription}>
-                We collaborate with local drivers and guides to create an authentic, comfortable, and stress-free experience.
+                Groups of 6–10 participants ensure personal attention and individual mentoring.
               </p>
             </div>
           </div>
         </div>
       </main>
-
-      <div className={styles.ourMission}>
-        <div className={styles.ourMissionPlaceholder} />
-        <div className={styles.ourMissionContent}>
-          <h2 className={styles.ourMissionTitle}>
-            Our Mission
-          </h2>
-          <p className={styles.ourMissionDescription}>
-            We believe unforgettable photographs are born where passion meets guidance.
-            Our mission is to inspire, support, and empower every traveler to grow creatively and enjoy Tuscany through a new perspective.
-          </p>
-        </div>
-      </div>
-
-      <div className={styles.ourValuesBlock}>
-        <h2 className={styles.ourValuesTitle}>
-          Our Values
-        </h2>
-        <div className={styles.ourValuesCards}>
-          <div className={styles.ourValuesCard}>
-            <h3 className={styles.ourValuesCardTitle}>
-              Creativity
-            </h3>
-            <p className={styles.ourValuesCardDescription}>
-              helping guests discover their unique visual style
-            </p>
-          </div>
-          <div className={styles.ourValuesCard}>
-            <h3 className={styles.ourValuesCardTitle}>
-              Authenticity
-            </h3>
-            <p className={styles.ourValuesCardDescription}>
-              showing the true, untouched Tuscany
-            </p>
-          </div>
-          <div className={styles.ourValuesCard}>
-            <h3 className={styles.ourValuesCardTitle}>
-              Community
-            </h3>
-            <p className={styles.ourValuesCardDescription}>
-              building an inspiring and friendly atmosphere
-            </p>
-          </div>
-          <div className={styles.ourValuesCard}>
-            <h3 className={styles.ourValuesCardTitle}>
-              Sustainability
-            </h3>
-            <p className={styles.ourValuesCardDescription}>
-              respecting nature and supporting local businesses
-            </p>
-          </div>
-        </div>
-      </div>
 
       <FeedbackBlock
         title="Find Your Perfect Photo Journey"
