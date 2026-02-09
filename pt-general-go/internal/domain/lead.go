@@ -22,6 +22,7 @@ type DealZoho struct {
 	ClosingDate string  `json:"Closing_Date"` // YYYY-MM-DD
 	Amount      float64 `json:"Amount,omitempty"`
 	Pipeline    string  `json:"Pipeline,omitempty"`
+	ClientPhone string  `json:"Client Phone,omitempty"`
 
 	// relations
 	AccountID string `json:"Account_Name,omitempty"`

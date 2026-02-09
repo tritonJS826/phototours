@@ -4,7 +4,6 @@ import (
 	"net/http"
 	"pt-general-go/internal/domain"
 	"pt-general-go/internal/handler/dto"
-	"strings"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
@@ -29,23 +28,19 @@ func (h *Handler) ContactMe(ctx *gin.Context) {
 		return
 	}
 
-	// Split name into first and last name
-	nameParts := strings.Fields(contactReq.Name)
-	firstName := nameParts[0]
-	lastName := "Unknown"
-	if len(nameParts) > 1 {
-		lastName = strings.Join(nameParts[1:], " ")
+	deal := &domain.DealZoho{
+		DealName:    contactReq.Name,
+		Stage:       "Incoming",
+		ClosingDate: "stub",
+		Amount:      0,
+		Pipeline:    "Photo Tours",
+		ClientPhone: contactReq.Phone,
+		AccountID:   "stub",
+		ContactID:   "stub",
+		LeadID:      "stub",
 	}
 
-	lead := &domain.LeadZoho{
-		FirstName: firstName,
-		LastName:  lastName,
-		Phone:     contactReq.Phone,
-		Email:     "", // Optional field
-		Company:   "UnknownWebsite",
-	}
-
-	_, err := h.services.BookingService.CreateLead(ctx, lead)
+	err := h.services.BookingService.CreateDeal(ctx, deal)
 	if err != nil {
 		h.logger.Error("failed to create lead in zoho", zap.Error(err))
 		h.handleError(ctx, err)
