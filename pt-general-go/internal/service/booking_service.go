@@ -110,7 +110,7 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 		return "", err
 	}
 
-	return checkoutSession.URL, nil
+	return checkoutSession.PaymentLink.URL, nil
 }
 
 func (s *BookingService) CreateDeal(ctx context.Context, lead *domain.DealZoho) error {
