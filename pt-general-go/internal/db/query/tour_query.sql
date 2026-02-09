@@ -16,7 +16,13 @@ INSERT INTO tours (
     guide_id,
     group_size,
     spots_left,
-    subtitle
+    subtitle,
+    pop_up1_title,
+    pop_up1_description,
+    pop_up2_title,
+    pop_up2_description,
+    pop_up1_image_url,
+    pop_up2_image_url
 ) VALUES (
     @title,
     @description,
@@ -34,7 +40,13 @@ INSERT INTO tours (
     sqlc.narg(guide_id),
     sqlc.narg(group_size),
     sqlc.narg(spots_left),
-    sqlc.narg(subtitle)
+    sqlc.narg(subtitle),
+    @pop_up1_title,
+    @pop_up1_description,
+    @pop_up2_title,
+    @pop_up2_description,
+    @pop_up1_image_url,
+    @pop_up2_image_url
 ) RETURNING
     id,
     slug,
@@ -56,6 +68,12 @@ INSERT INTO tours (
     group_size,
     spots_left,
     subtitle,
+    pop_up1_title,
+    pop_up1_description,
+    pop_up2_title,
+    pop_up2_description,
+    pop_up1_image_url,
+    pop_up2_image_url,
     created_at,
     updated_at;
 
@@ -81,6 +99,12 @@ SELECT
     group_size,
     spots_left,
     subtitle,
+    pop_up1_title,
+    pop_up1_description,
+    pop_up2_title,
+    pop_up2_description,
+    pop_up1_image_url,
+    pop_up2_image_url,
     created_at,
     updated_at
 FROM tours
@@ -108,6 +132,12 @@ SELECT
     group_size,
     spots_left,
     subtitle,
+    pop_up1_title,
+    pop_up1_description,
+    pop_up2_title,
+    pop_up2_description,
+    pop_up1_image_url,
+    pop_up2_image_url,
     created_at,
     updated_at
 FROM tours
@@ -135,6 +165,12 @@ SELECT DISTINCT
     tours.group_size,
     tours.spots_left,
     tours.subtitle,
+    tours.pop_up1_title,
+    tours.pop_up1_description,
+    tours.pop_up2_title,
+    tours.pop_up2_description,
+    tours.pop_up1_image_url,
+    tours.pop_up2_image_url,
     tours.created_at,
     tours.updated_at
 FROM tours
@@ -173,6 +209,12 @@ SET
     group_size = COALESCE(sqlc.narg(group_size), group_size),
     spots_left = COALESCE(sqlc.narg(spots_left), spots_left),
     subtitle = COALESCE(sqlc.narg(subtitle), subtitle),
+    pop_up1_title = COALESCE(sqlc.narg(pop_up1_title), pop_up1_title),
+    pop_up1_description = COALESCE(sqlc.narg(pop_up1_description), pop_up1_description),
+    pop_up2_title = COALESCE(sqlc.narg(pop_up2_title), pop_up2_title),
+    pop_up2_description = COALESCE(sqlc.narg(pop_up2_description), pop_up2_description),
+    pop_up1_image_url = COALESCE(sqlc.narg(pop_up1_image_url), pop_up1_image_url),
+    pop_up2_image_url = COALESCE(sqlc.narg(pop_up2_image_url), pop_up2_image_url),
     updated_at = NOW()
 WHERE id = @id
 RETURNING
@@ -196,6 +238,12 @@ RETURNING
     group_size,
     spots_left,
     subtitle,
+    pop_up1_title,
+    pop_up1_description,
+    pop_up2_title,
+    pop_up2_description,
+    pop_up1_image_url,
+    pop_up2_image_url,
     created_at,
     updated_at;
 

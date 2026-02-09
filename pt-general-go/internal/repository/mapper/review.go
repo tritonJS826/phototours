@@ -44,3 +44,21 @@ func MapToDomainReviewsByTourIDs(dbReviews []db.GetReviewsByTourIDsRow) map[uuid
 	}
 	return result
 }
+
+func MapToDomainRandomReviews(dbReviews []db.GetRandomReviewsRow) []domain.Review {
+	reviews := make([]domain.Review, 0, len(dbReviews))
+	for _, dbReview := range dbReviews {
+		reviews = append(reviews, domain.Review{
+			CreatedAt: dbReview.CreatedAt.Time,
+			Comment:   dbReview.Comment.String,
+			ID:        PgUUIDToUUID(dbReview.ID),
+			TourID:    PgUUIDToUUID(dbReview.TourID),
+			UserID:    PgUUIDToUUID(dbReview.UserID),
+			Rating:    dbReview.Rating,
+			UserName:  dbReview.UserName,
+			Link:      dbReview.Link,
+			Image:     dbReview.Image,
+		})
+	}
+	return reviews
+}

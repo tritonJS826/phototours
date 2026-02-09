@@ -19,24 +19,30 @@ const (
 )
 
 type CreateTourParams struct {
-	MinAge          *int32          `json:"minAge"`
-	EndLocation     *string         `json:"endLocation"`
-	StartLocation   *string         `json:"startLocation"`
-	Price           *float64        `json:"price"`
-	DurationDays    *int32          `json:"durationDays"`
-	GuideID         *uuid.UUID      `json:"guideId"`
-	Slug            *string         `json:"slug"`
-	CoverURL        *string         `json:"coverUrl"`
-	Description     string          `json:"description"`
-	Difficulty      string          `json:"difficulty"`
-	Title           string          `json:"title"`
-	Program         json.RawMessage `json:"program" swaggertype:"object"`
-	FAQ             json.RawMessage `json:"faq" swaggertype:"object"`
-	Languages       []string        `json:"languages"`
-	AvailableMonths []string        `json:"availableMonths"`
-	GroupSize       *int32          `json:"groupSize"`
-	SpotsLeft       *int32          `json:"spotsLeft"`
-	Subtitle        *string         `json:"subtitle"`
+	MinAge            *int32          `json:"minAge"`
+	EndLocation       *string         `json:"endLocation"`
+	StartLocation     *string         `json:"startLocation"`
+	Price             *float64        `json:"price"`
+	DurationDays      *int32          `json:"durationDays"`
+	GuideID           *uuid.UUID      `json:"guideId"`
+	Slug              *string         `json:"slug"`
+	CoverURL          *string         `json:"coverUrl"`
+	Description       string          `json:"description"`
+	Difficulty        string          `json:"difficulty"`
+	Title             string          `json:"title"`
+	Program           json.RawMessage `json:"program" swaggertype:"object"`
+	FAQ               json.RawMessage `json:"faq" swaggertype:"object"`
+	Languages         []string        `json:"languages"`
+	AvailableMonths   []string        `json:"availableMonths"`
+	GroupSize         *int32          `json:"groupSize"`
+	SpotsLeft         *int32          `json:"spotsLeft"`
+	Subtitle          *string         `json:"subtitle"`
+	PopUp1Title       string          `json:"popUp1Title"`
+	PopUp1Description string          `json:"popUp1Description"`
+	PopUp2Title       string          `json:"popUp2Title"`
+	PopUp2Description string          `json:"popUp2Description"`
+	PopUp1ImageUrl    string          `json:"popUp1ImageUrl"`
+	PopUp2ImageUrl    string          `json:"popUp2ImageUrl"`
 }
 
 func (t *CreateTourParams) Validate() error {
@@ -65,24 +71,30 @@ func (t *CreateTourParams) Validate() error {
 }
 
 type UpdateTourParams struct {
-	DurationDays    *int32           `json:"durationDays"`
-	MinAge          *int32           `json:"minAge"`
-	EndLocation     *string          `json:"endLocation"`
-	Price           *float64         `json:"price"`
-	StartLocation   *string          `json:"startLocation"`
-	GuideID         *uuid.UUID       `json:"guideId"`
-	CoverURL        *string          `json:"coverUrl"`
-	Difficulty      *DifficultyLevel `json:"difficulty"`
-	Description     *string          `json:"description"`
-	Title           *string          `json:"title"`
-	Slug            *string          `json:"slug"`
-	Program         *json.RawMessage `json:"program" swaggertype:"object"`
-	FAQ             *json.RawMessage `json:"faq" swaggertype:"object"`
-	Languages       *[]string        `json:"languages"`
-	AvailableMonths *[]string        `json:"availableMonths"`
-	GroupSize       *int32           `json:"groupSize"`
-	SpotsLeft       *int32           `json:"spotsLeft"`
-	Subtitle        *string          `json:"subtitle"`
+	DurationDays      *int32           `json:"durationDays"`
+	MinAge            *int32           `json:"minAge"`
+	EndLocation       *string          `json:"endLocation"`
+	Price             *float64         `json:"price"`
+	StartLocation     *string          `json:"startLocation"`
+	GuideID           *uuid.UUID       `json:"guideId"`
+	CoverURL          *string          `json:"coverUrl"`
+	Difficulty        *DifficultyLevel `json:"difficulty"`
+	Description       *string          `json:"description"`
+	Title             *string          `json:"title"`
+	Slug              *string          `json:"slug"`
+	Program           *json.RawMessage `json:"program" swaggertype:"object"`
+	FAQ               *json.RawMessage `json:"faq" swaggertype:"object"`
+	Languages         *[]string        `json:"languages"`
+	AvailableMonths   *[]string        `json:"availableMonths"`
+	GroupSize         *int32           `json:"groupSize"`
+	SpotsLeft         *int32           `json:"spotsLeft"`
+	Subtitle          *string          `json:"subtitle"`
+	PopUp1Title       *string          `json:"popUp1Title"`
+	PopUp1Description *string          `json:"popUp1Description"`
+	PopUp2Title       *string          `json:"popUp2Title"`
+	PopUp2Description *string          `json:"popUp2Description"`
+	PopUp1ImageUrl    *string          `json:"popUp1ImageUrl"`
+	PopUp2ImageUrl    *string          `json:"popUp2ImageUrl"`
 }
 
 func (r *UpdateTourParams) Validate() error {
@@ -103,7 +115,13 @@ func (r *UpdateTourParams) Validate() error {
 		r.AvailableMonths == nil &&
 		r.GroupSize == nil &&
 		r.SpotsLeft == nil &&
-		r.Subtitle == nil {
+		r.Subtitle == nil &&
+		r.PopUp1Title == nil &&
+		r.PopUp1Description == nil &&
+		r.PopUp2Title == nil &&
+		r.PopUp2Description == nil &&
+		r.PopUp1ImageUrl == nil &&
+		r.PopUp2ImageUrl == nil {
 		return errors.New("at least one field must be provided")
 	}
 
@@ -134,28 +152,34 @@ func (r *UpdateTourParams) Validate() error {
 }
 
 type Tour struct {
-	UpdatedAt       time.Time       `json:"updatedAt"`
-	CreatedAt       time.Time       `json:"createdAt"`
-	DurationDays    *int32          `json:"durationDays"`
-	MinAge          *int32          `json:"minAge"`
-	EndLocation     *string         `json:"endLocation"`
-	Price           *float64        `json:"price"`
-	StartLocation   *string         `json:"startLocation"`
-	Location        *string         `json:"location"`
-	GuideID         *uuid.UUID      `json:"guideId"`
-	CoverURL        *string         `json:"coverUrl"`
-	Difficulty      DifficultyLevel `json:"difficulty"`
-	Description     string          `json:"description"`
-	Title           string          `json:"title"`
-	Slug            string          `json:"slug"`
-	Program         json.RawMessage `json:"program" swaggertype:"object"`
-	FAQ             json.RawMessage `json:"faq" swaggertype:"object"`
-	Languages       []string        `json:"languages"`
-	AvailableMonths []string        `json:"availableMonths"`
-	GroupSize       *int32          `json:"groupSize"`
-	SpotsLeft       *int32          `json:"spotsLeft"`
-	Subtitle        *string         `json:"subtitle"`
-	ID              uuid.UUID       `json:"id"`
+	UpdatedAt         time.Time       `json:"updatedAt"`
+	CreatedAt         time.Time       `json:"createdAt"`
+	DurationDays      *int32          `json:"durationDays"`
+	MinAge            *int32          `json:"minAge"`
+	EndLocation       *string         `json:"endLocation"`
+	Price             *float64        `json:"price"`
+	StartLocation     *string         `json:"startLocation"`
+	Location          *string         `json:"location"`
+	GuideID           *uuid.UUID      `json:"guideId"`
+	CoverURL          *string         `json:"coverUrl"`
+	Difficulty        DifficultyLevel `json:"difficulty"`
+	Description       string          `json:"description"`
+	Title             string          `json:"title"`
+	Slug              string          `json:"slug"`
+	Program           json.RawMessage `json:"program" swaggertype:"object"`
+	FAQ               json.RawMessage `json:"faq" swaggertype:"object"`
+	Languages         []string        `json:"languages"`
+	AvailableMonths   []string        `json:"availableMonths"`
+	GroupSize         *int32          `json:"groupSize"`
+	SpotsLeft         *int32          `json:"spotsLeft"`
+	Subtitle          *string         `json:"subtitle"`
+	PopUp1Title       string          `json:"popUp1Title"`
+	PopUp1Description string          `json:"popUp1Description"`
+	PopUp2Title       string          `json:"popUp2Title"`
+	PopUp2Description string          `json:"popUp2Description"`
+	PopUp1ImageUrl    string          `json:"popUp1ImageUrl"`
+	PopUp2ImageUrl    string          `json:"popUp2ImageUrl"`
+	ID                uuid.UUID       `json:"id"`
 }
 
 type TourFull struct {

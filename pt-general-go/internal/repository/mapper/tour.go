@@ -7,17 +7,23 @@ import (
 
 func MapToDomainTour(row *db.Tour) *domain.Tour {
 	tour := &domain.Tour{
-		ID:              PgUUIDToUUID(row.ID),
-		Slug:            row.Slug,
-		Title:           row.Title,
-		Description:     row.Description,
-		Difficulty:      domain.DifficultyLevel(row.Difficulty),
-		Program:         row.Program,
-		FAQ:             row.Faq,
-		Languages:       row.Languages,
-		AvailableMonths: row.AvailableMonths,
-		CreatedAt:       row.CreatedAt.Time,
-		UpdatedAt:       row.UpdatedAt.Time,
+		ID:                PgUUIDToUUID(row.ID),
+		Slug:              row.Slug,
+		Title:             row.Title,
+		Description:       row.Description,
+		Difficulty:        domain.DifficultyLevel(row.Difficulty),
+		Program:           row.Program,
+		FAQ:               row.Faq,
+		Languages:         row.Languages,
+		AvailableMonths:   row.AvailableMonths,
+		CreatedAt:         row.CreatedAt.Time,
+		UpdatedAt:         row.UpdatedAt.Time,
+		PopUp1Title:       row.PopUp1Title,
+		PopUp1Description: row.PopUp1Description,
+		PopUp2Title:       row.PopUp2Title,
+		PopUp2Description: row.PopUp2Description,
+		PopUp1ImageUrl:    row.PopUp1ImageUrl,
+		PopUp2ImageUrl:    row.PopUp2ImageUrl,
 	}
 
 	if row.Price.Valid {
@@ -69,17 +75,23 @@ func MapToDomainTours(rows []db.Tour) []domain.Tour {
 	tours := make([]domain.Tour, 0, len(rows))
 	for _, row := range rows {
 		tour := domain.Tour{
-			ID:              PgUUIDToUUID(row.ID),
-			Slug:            row.Slug,
-			Title:           row.Title,
-			Description:     row.Description,
-			Difficulty:      domain.DifficultyLevel(row.Difficulty),
-			Program:         row.Program,
-			FAQ:             row.Faq,
-			Languages:       row.Languages,
-			AvailableMonths: row.AvailableMonths,
-			CreatedAt:       row.CreatedAt.Time,
-			UpdatedAt:       row.UpdatedAt.Time,
+			ID:                PgUUIDToUUID(row.ID),
+			Slug:              row.Slug,
+			Title:             row.Title,
+			Description:       row.Description,
+			Difficulty:        domain.DifficultyLevel(row.Difficulty),
+			Program:           row.Program,
+			FAQ:               row.Faq,
+			Languages:         row.Languages,
+			AvailableMonths:   row.AvailableMonths,
+			CreatedAt:         row.CreatedAt.Time,
+			UpdatedAt:         row.UpdatedAt.Time,
+			PopUp1Title:       row.PopUp1Title,
+			PopUp1Description: row.PopUp1Description,
+			PopUp2Title:       row.PopUp2Title,
+			PopUp2Description: row.PopUp2Description,
+			PopUp1ImageUrl:    row.PopUp1ImageUrl,
+			PopUp2ImageUrl:    row.PopUp2ImageUrl,
 		}
 
 		if row.Price.Valid {

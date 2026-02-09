@@ -4,9 +4,8 @@ export interface ReviewCardProps {
     id: string;
     userImg: string;
     title: string;
-    subtitle: string;
+    subtitle: string | React.ReactElement;
     description: string;
-    flagImg: string;
 }
 
 export function ReviewCard(props: ReviewCardProps) {

@@ -47,7 +47,7 @@ export interface TourView {
   minAge?: number | null;
   availableMonths?: string[];
 
-  coverUrl?: string;
+  coverUrl: string;
   photos: string[];
   videos?: string[];
 
@@ -67,6 +67,14 @@ export interface TourView {
   groupSize: number;
   spotsLeft: number;
   subtitle: string;
+
+  // Popup-related fields
+  popUp1Title: string;
+  popUp1Description: string;
+  popUp1ImageUrl: string;
+  popUp2Title: string;
+  popUp2Description: string;
+  popUp2ImageUrl: string;
 }
 
 export interface TourMaterial {

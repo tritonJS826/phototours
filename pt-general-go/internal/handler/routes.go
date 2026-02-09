@@ -97,6 +97,11 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 		}
 	}
 
+	reviews := general.Group("/reviews")
+	{
+		reviews.GET("/random", h.GetRandomReviews)
+	}
+
 	bookings := general.Group("/bookings")
 	{
 		bookings.POST("", h.CreateBookingRequest)

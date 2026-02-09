@@ -74,7 +74,7 @@ export function AboutUs() {
               />
             </div>
             <h2 className={styles.victorTitle}>
-              Viktor Tsoi
+              Pavel Oskin
             </h2>
             <p className={styles.victorDescription}>
               Tuscany Photo Tours was founded with a singular vision: to bridge the gap between signature travel and photographic education.

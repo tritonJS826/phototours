@@ -11,6 +11,64 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+const getRandomReviews = `-- name: GetRandomReviews :many
+SELECT
+    id,
+    tour_id,
+    user_id,
+    rating,
+    comment,
+    user_name,
+    link,
+    image,
+    created_at
+FROM reviews
+ORDER BY RANDOM()
+LIMIT 20
+`
+
+type GetRandomReviewsRow struct {
+	ID        pgtype.UUID
+	TourID    pgtype.UUID
+	UserID    pgtype.UUID
+	Rating    int32
+	Comment   pgtype.Text
+	UserName  string
+	Link      string
+	Image     string
+	CreatedAt pgtype.Timestamp
+}
+
+func (q *Queries) GetRandomReviews(ctx context.Context) ([]GetRandomReviewsRow, error) {
+	rows, err := q.db.Query(ctx, getRandomReviews)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []GetRandomReviewsRow{}
+	for rows.Next() {
+		var i GetRandomReviewsRow
+		if err := rows.Scan(
+			&i.ID,
+			&i.TourID,
+			&i.UserID,
+			&i.Rating,
+			&i.Comment,
+			&i.UserName,
+			&i.Link,
+			&i.Image,
+			&i.CreatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const getReviewAmountAndStarAmount = `-- name: GetReviewAmountAndStarAmount :one
 SELECT
     COUNT(*) as review_amount,

@@ -364,28 +364,34 @@ type Tag struct {
 }
 
 type Tour struct {
-	ID              pgtype.UUID
-	Slug            string
-	Title           string
-	Description     string
-	Difficulty      DifficultyLevel
-	Price           pgtype.Float8
-	Program         []byte
-	Faq             []byte
-	GuideID         pgtype.UUID
-	CoverUrl        pgtype.Text
-	DurationDays    pgtype.Int4
-	EndLocation     pgtype.Text
-	AvailableMonths []string
-	Languages       []string
-	MinAge          pgtype.Int4
-	StartLocation   pgtype.Text
-	Location        pgtype.Text
-	GroupSize       pgtype.Int4
-	SpotsLeft       pgtype.Int4
-	Subtitle        pgtype.Text
-	CreatedAt       pgtype.Timestamp
-	UpdatedAt       pgtype.Timestamp
+	ID                pgtype.UUID
+	Slug              string
+	Title             string
+	Description       string
+	Difficulty        DifficultyLevel
+	Price             pgtype.Float8
+	Program           []byte
+	Faq               []byte
+	GuideID           pgtype.UUID
+	CoverUrl          pgtype.Text
+	DurationDays      pgtype.Int4
+	EndLocation       pgtype.Text
+	AvailableMonths   []string
+	Languages         []string
+	MinAge            pgtype.Int4
+	StartLocation     pgtype.Text
+	Location          pgtype.Text
+	GroupSize         pgtype.Int4
+	SpotsLeft         pgtype.Int4
+	Subtitle          pgtype.Text
+	PopUp1Title       string
+	PopUp1Description string
+	PopUp2Title       string
+	PopUp2Description string
+	PopUp1ImageUrl    string
+	PopUp2ImageUrl    string
+	CreatedAt         pgtype.Timestamp
+	UpdatedAt         pgtype.Timestamp
 }
 
 type TourActivity struct {

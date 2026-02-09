@@ -29,7 +29,13 @@ INSERT INTO tours (
     guide_id,
     group_size,
     spots_left,
-    subtitle
+    subtitle,
+    pop_up1_title,
+    pop_up1_description,
+    pop_up2_title,
+    pop_up2_description,
+    pop_up1_image_url,
+    pop_up2_image_url
 ) VALUES (
     $1,
     $2,
@@ -47,7 +53,13 @@ INSERT INTO tours (
     $14,
     $15,
     $16,
-    $17
+    $17,
+    $18,
+    $19,
+    $20,
+    $21,
+    $22,
+    $23
 ) RETURNING
     id,
     slug,
@@ -69,28 +81,40 @@ INSERT INTO tours (
     group_size,
     spots_left,
     subtitle,
+    pop_up1_title,
+    pop_up1_description,
+    pop_up2_title,
+    pop_up2_description,
+    pop_up1_image_url,
+    pop_up2_image_url,
     created_at,
     updated_at
 `
 
 type CreateTourParams struct {
-	Title           string
-	Description     string
-	Difficulty      DifficultyLevel
-	Program         []byte
-	Faq             []byte
-	Price           pgtype.Float8
-	StartLocation   pgtype.Text
-	EndLocation     pgtype.Text
-	DurationDays    pgtype.Int4
-	MinAge          pgtype.Int4
-	CoverUrl        pgtype.Text
-	Languages       []string
-	AvailableMonths []string
-	GuideID         pgtype.UUID
-	GroupSize       pgtype.Int4
-	SpotsLeft       pgtype.Int4
-	Subtitle        pgtype.Text
+	Title             string
+	Description       string
+	Difficulty        DifficultyLevel
+	Program           []byte
+	Faq               []byte
+	Price             pgtype.Float8
+	StartLocation     pgtype.Text
+	EndLocation       pgtype.Text
+	DurationDays      pgtype.Int4
+	MinAge            pgtype.Int4
+	CoverUrl          pgtype.Text
+	Languages         []string
+	AvailableMonths   []string
+	GuideID           pgtype.UUID
+	GroupSize         pgtype.Int4
+	SpotsLeft         pgtype.Int4
+	Subtitle          pgtype.Text
+	PopUp1Title       string
+	PopUp1Description string
+	PopUp2Title       string
+	PopUp2Description string
+	PopUp1ImageUrl    string
+	PopUp2ImageUrl    string
 }
 
 func (q *Queries) CreateTour(ctx context.Context, arg CreateTourParams) (Tour, error) {
@@ -112,6 +136,12 @@ func (q *Queries) CreateTour(ctx context.Context, arg CreateTourParams) (Tour, e
 		arg.GroupSize,
 		arg.SpotsLeft,
 		arg.Subtitle,
+		arg.PopUp1Title,
+		arg.PopUp1Description,
+		arg.PopUp2Title,
+		arg.PopUp2Description,
+		arg.PopUp1ImageUrl,
+		arg.PopUp2ImageUrl,
 	)
 	var i Tour
 	err := row.Scan(
@@ -135,6 +165,12 @@ func (q *Queries) CreateTour(ctx context.Context, arg CreateTourParams) (Tour, e
 		&i.GroupSize,
 		&i.SpotsLeft,
 		&i.Subtitle,
+		&i.PopUp1Title,
+		&i.PopUp1Description,
+		&i.PopUp2Title,
+		&i.PopUp2Description,
+		&i.PopUp1ImageUrl,
+		&i.PopUp2ImageUrl,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)
@@ -176,6 +212,12 @@ SELECT
     group_size,
     spots_left,
     subtitle,
+    pop_up1_title,
+    pop_up1_description,
+    pop_up2_title,
+    pop_up2_description,
+    pop_up1_image_url,
+    pop_up2_image_url,
     created_at,
     updated_at
 FROM tours
@@ -206,6 +248,12 @@ func (q *Queries) GetTourByID(ctx context.Context, id pgtype.UUID) (Tour, error)
 		&i.GroupSize,
 		&i.SpotsLeft,
 		&i.Subtitle,
+		&i.PopUp1Title,
+		&i.PopUp1Description,
+		&i.PopUp2Title,
+		&i.PopUp2Description,
+		&i.PopUp1ImageUrl,
+		&i.PopUp2ImageUrl,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)
@@ -234,6 +282,12 @@ SELECT
     group_size,
     spots_left,
     subtitle,
+    pop_up1_title,
+    pop_up1_description,
+    pop_up2_title,
+    pop_up2_description,
+    pop_up1_image_url,
+    pop_up2_image_url,
     created_at,
     updated_at
 FROM tours
@@ -264,6 +318,12 @@ func (q *Queries) GetTourBySlug(ctx context.Context, slug string) (Tour, error) 
 		&i.GroupSize,
 		&i.SpotsLeft,
 		&i.Subtitle,
+		&i.PopUp1Title,
+		&i.PopUp1Description,
+		&i.PopUp2Title,
+		&i.PopUp2Description,
+		&i.PopUp1ImageUrl,
+		&i.PopUp2ImageUrl,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)
@@ -292,6 +352,12 @@ SELECT DISTINCT
     tours.group_size,
     tours.spots_left,
     tours.subtitle,
+    tours.pop_up1_title,
+    tours.pop_up1_description,
+    tours.pop_up2_title,
+    tours.pop_up2_description,
+    tours.pop_up1_image_url,
+    tours.pop_up2_image_url,
     tours.created_at,
     tours.updated_at
 FROM tours
@@ -362,6 +428,12 @@ func (q *Queries) GetTours(ctx context.Context, arg GetToursParams) ([]Tour, err
 			&i.GroupSize,
 			&i.SpotsLeft,
 			&i.Subtitle,
+			&i.PopUp1Title,
+			&i.PopUp1Description,
+			&i.PopUp2Title,
+			&i.PopUp2Description,
+			&i.PopUp1ImageUrl,
+			&i.PopUp2ImageUrl,
 			&i.CreatedAt,
 			&i.UpdatedAt,
 		); err != nil {
@@ -396,8 +468,14 @@ SET
     group_size = COALESCE($16, group_size),
     spots_left = COALESCE($17, spots_left),
     subtitle = COALESCE($18, subtitle),
+    pop_up1_title = COALESCE($19, pop_up1_title),
+    pop_up1_description = COALESCE($20, pop_up1_description),
+    pop_up2_title = COALESCE($21, pop_up2_title),
+    pop_up2_description = COALESCE($22, pop_up2_description),
+    pop_up1_image_url = COALESCE($23, pop_up1_image_url),
+    pop_up2_image_url = COALESCE($24, pop_up2_image_url),
     updated_at = NOW()
-WHERE id = $19
+WHERE id = $25
 RETURNING
     id,
     slug,
@@ -419,30 +497,42 @@ RETURNING
     group_size,
     spots_left,
     subtitle,
+    pop_up1_title,
+    pop_up1_description,
+    pop_up2_title,
+    pop_up2_description,
+    pop_up1_image_url,
+    pop_up2_image_url,
     created_at,
     updated_at
 `
 
 type UpdateTourByIDParams struct {
-	Title           pgtype.Text
-	Slug            pgtype.Text
-	Description     pgtype.Text
-	Difficulty      NullDifficultyLevel
-	Program         []byte
-	Faq             []byte
-	Price           pgtype.Float8
-	StartLocation   pgtype.Text
-	EndLocation     pgtype.Text
-	DurationDays    pgtype.Int4
-	MinAge          pgtype.Int4
-	CoverUrl        pgtype.Text
-	Languages       []string
-	AvailableMonths []string
-	GuideID         pgtype.UUID
-	GroupSize       pgtype.Int4
-	SpotsLeft       pgtype.Int4
-	Subtitle        pgtype.Text
-	ID              pgtype.UUID
+	Title             pgtype.Text
+	Slug              pgtype.Text
+	Description       pgtype.Text
+	Difficulty        NullDifficultyLevel
+	Program           []byte
+	Faq               []byte
+	Price             pgtype.Float8
+	StartLocation     pgtype.Text
+	EndLocation       pgtype.Text
+	DurationDays      pgtype.Int4
+	MinAge            pgtype.Int4
+	CoverUrl          pgtype.Text
+	Languages         []string
+	AvailableMonths   []string
+	GuideID           pgtype.UUID
+	GroupSize         pgtype.Int4
+	SpotsLeft         pgtype.Int4
+	Subtitle          pgtype.Text
+	PopUp1Title       pgtype.Text
+	PopUp1Description pgtype.Text
+	PopUp2Title       pgtype.Text
+	PopUp2Description pgtype.Text
+	PopUp1ImageUrl    pgtype.Text
+	PopUp2ImageUrl    pgtype.Text
+	ID                pgtype.UUID
 }
 
 func (q *Queries) UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) (Tour, error) {
@@ -465,6 +555,12 @@ func (q *Queries) UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) 
 		arg.GroupSize,
 		arg.SpotsLeft,
 		arg.Subtitle,
+		arg.PopUp1Title,
+		arg.PopUp1Description,
+		arg.PopUp2Title,
+		arg.PopUp2Description,
+		arg.PopUp1ImageUrl,
+		arg.PopUp2ImageUrl,
 		arg.ID,
 	)
 	var i Tour
@@ -489,6 +585,12 @@ func (q *Queries) UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) 
 		&i.GroupSize,
 		&i.SpotsLeft,
 		&i.Subtitle,
+		&i.PopUp1Title,
+		&i.PopUp1Description,
+		&i.PopUp2Title,
+		&i.PopUp2Description,
+		&i.PopUp1ImageUrl,
+		&i.PopUp2ImageUrl,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)

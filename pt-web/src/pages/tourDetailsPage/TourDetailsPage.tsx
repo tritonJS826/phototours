@@ -15,6 +15,8 @@ import photoRoundBlue from "/images/photoRoundBlue.svg";
 import reviews from "/images/reviews.svg";
 import spotsLeft from "/images/spotsLeft.svg";
 import starYellow from "/images/star-yellow.png";
+import telegramBlue from "/images/telegram-blue.svg";
+import whatsappGreen from "/images/whatsapp-green.svg";
 import clsx from "clsx";
 import {Accordion, accordionTypes} from "src/components/Accordion/Accordion";
 import {Button} from "src/components/Button/Button";
@@ -22,6 +24,7 @@ import {Container} from "src/components/Container/Container";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
 import {NumberInput} from "src/components/NumberInput/NumberInput";
 import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
+import {TimeoutPopup} from "src/components/TimeoutPopup/TimeoutPopup";
 import {TourCardExtended} from "src/components/Tour/TourCardExtended/TourCardExtended";
 import {FeedbackBlock} from "src/pages/homePage/HomePage";
 import {NotFoundPage} from "src/pages/notFound/notFoundPage";
@@ -1054,6 +1057,52 @@ export function TourDetailsPage() {
         // eslint-disable-next-line max-len
         subtitle="Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity"
         buttonText="Book Now"
+      />
+
+      <TimeoutPopup
+        title={tour.popUp1Title}
+        description={tour.popUp1Description}
+        imgUrl={tour.popUp1ImageUrl}
+        leftBtnCallback={() => {}}
+        leftBtn={<span className={styles.pupUpButton}>
+          Telegram
+          <img
+            src={telegramBlue}
+            alt=""
+          />
+        </span>}
+        rightBtnCallback={() => {}}
+        rightBtn={<span className={styles.pupUpButton}>
+          Whatsapp
+          <img
+            src={whatsappGreen}
+            alt=""
+          />
+        </span>}
+        delay={20}
+      />
+
+      <TimeoutPopup
+        title={tour.popUp2Title}
+        description={tour.popUp2Description}
+        imgUrl={tour.popUp2ImageUrl}
+        leftBtnCallback={() => {}}
+        leftBtn={<span className={styles.pupUpButton}>
+          Telegram
+          <img
+            src={telegramBlue}
+            alt=""
+          />
+        </span>}
+        rightBtnCallback={() => {}}
+        rightBtn={<span className={styles.pupUpButton}>
+          Whatsapp
+          <img
+            src={whatsappGreen}
+            alt=""
+          />
+        </span>}
+        delay={120}
       />
     </div>
   );

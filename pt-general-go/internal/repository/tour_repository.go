@@ -21,13 +21,19 @@ func NewTourRepository(db db.Querier) *TourRepository {
 
 func (r *TourRepository) CreateTour(ctx context.Context, createTour *domain.CreateTourParams) (*domain.Tour, error) {
 	params := db.CreateTourParams{
-		Title:           createTour.Title,
-		Description:     createTour.Description,
-		Difficulty:      db.DifficultyLevel(createTour.Difficulty),
-		Program:         createTour.Program,
-		Faq:             createTour.FAQ,
-		Languages:       createTour.Languages,
-		AvailableMonths: createTour.AvailableMonths,
+		Title:             createTour.Title,
+		Description:       createTour.Description,
+		Difficulty:        db.DifficultyLevel(createTour.Difficulty),
+		Program:           createTour.Program,
+		Faq:               createTour.FAQ,
+		Languages:         createTour.Languages,
+		AvailableMonths:   createTour.AvailableMonths,
+		PopUp1Title:       createTour.PopUp1Title,
+		PopUp1Description: createTour.PopUp1Description,
+		PopUp2Title:       createTour.PopUp2Title,
+		PopUp2Description: createTour.PopUp2Description,
+		PopUp1ImageUrl:    createTour.PopUp1ImageUrl,
+		PopUp2ImageUrl:    createTour.PopUp2ImageUrl,
 	}
 
 	if createTour.Price != nil {

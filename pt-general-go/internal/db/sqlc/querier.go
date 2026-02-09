@@ -35,6 +35,7 @@ type Querier interface {
 	GetPageMetadata(ctx context.Context, url string) (GetPageMetadataRow, error)
 	GetPhotosByTourID(ctx context.Context, tourID pgtype.UUID) ([]Photo, error)
 	GetPhotosByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]Photo, error)
+	GetRandomReviews(ctx context.Context) ([]GetRandomReviewsRow, error)
 	GetReviewAmountAndStarAmount(ctx context.Context, tourID pgtype.UUID) (GetReviewAmountAndStarAmountRow, error)
 	GetReviewAmountAndStarAmountByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]GetReviewAmountAndStarAmountByTourIDsRow, error)
 	GetReviewsByTourID(ctx context.Context, tourID pgtype.UUID) ([]GetReviewsByTourIDRow, error)

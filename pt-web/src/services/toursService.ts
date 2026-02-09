@@ -30,7 +30,7 @@ type TourDTO = {
   difficulty?: TourView["difficulty"];
   minAge?: number | null;
   availableMonths?: string[];
-  coverUrl?: string;
+  coverUrl: string;
   photos?: Array<string | UrlObj>;
   videos?: Array<string | UrlObj>;
   included?: string[];
@@ -55,6 +55,13 @@ type TourDTO = {
   groupSize: number;
   spotsLeft: number;
   subtitle: string;
+
+  popUp1Description: string;
+  popUp1ImageUrl: string;
+  popUp1Title: string;
+  popUp2Description: string;
+  popUp2ImageUrl: string;
+  popUp2Title: string;
 };
 
 function toUrl(v: string | UrlObj): string {
@@ -157,6 +164,12 @@ function mapTourToView(dto: TourDTO): TourView {
     groupSize: dto.groupSize ?? DEFAULT_GROUP_SIZE,
     spotsLeft: dto.spotsLeft ?? DEFAULT_SPOTS_LEFT,
     subtitle: dto.subtitle ?? "About",
+    popUp1Description: dto.popUp1Description,
+    popUp1ImageUrl: dto.popUp1ImageUrl,
+    popUp1Title: dto.popUp1Title,
+    popUp2Description: dto.popUp2Description,
+    popUp2ImageUrl: dto.popUp2ImageUrl,
+    popUp2Title: dto.popUp2Title,
   };
 }
 
