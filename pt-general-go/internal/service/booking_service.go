@@ -110,6 +110,8 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 		return "", err
 	}
 
+	s.logger.Info("checkoutSession!!!", zap.Any("", checkoutSession))
+
 	return checkoutSession.PaymentLink.URL, nil
 }
 
