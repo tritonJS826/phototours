@@ -538,19 +538,21 @@ export function HomePage() {
       <Footer />
 
       <TimeoutPopup
-        delay={20}
+        delay={2}
         title={"Get the Ultimate \"Top 100 Global Locations\" Map"}
         // eslint-disable-next-line max-len
         description="From the peaks of Iceland and New Zealand to the hidden corners of Japan and Italy, get our curated map of the world’s most breathtaking spots sent straight to your phone. Which messenger do you prefer?"
         imgUrl={homeHero}
         leftBtnCallback={() => {}}
-        leftBtn={<span className={styles.pupUpButton}>
-          Telegram
+        leftBtn={<p className={styles.pupUpButton}>
+          <span>
+            Telegram
+          </span>
           <img
             src={telegramBlue}
             alt=""
           />
-        </span>}
+        </p>}
         rightBtnCallback={() => {}}
         rightBtn={<span className={styles.pupUpButton}>
           Whatsapp
