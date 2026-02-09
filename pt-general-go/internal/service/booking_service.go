@@ -91,16 +91,12 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 		PaymentMethodTypes: stripe.StringSlice([]string{"card"}),
 		LineItems: []*stripe.CheckoutSessionLineItemParams{
 			{
-				PriceData: &stripe.CheckoutSessionLineItemPriceDataParams{
-					Currency: stripe.String("usd"),
-					ProductData: &stripe.CheckoutSessionLineItemPriceDataProductDataParams{
-						Name: stripe.String(fmt.Sprintf("Deposit for %s", tour.Title)),
-					},
-					UnitAmount: stripe.Int64(int64(*tour.Price * 100)), // Convert to cents
-				},
+				// Price for Deposit for the photo tour
+				Price:    stripe.String("price_1SpEugCEK28BRQMezxR9aJgn"),
 				Quantity: stripe.Int64(1),
 			},
 		},
+
 		Mode:       stripe.String(string(stripe.CheckoutSessionModePayment)),
 		SuccessURL: stripe.String("https://tuscany-photo-tours.com/"),
 		CancelURL:  stripe.String("https://tuscany-photo-tours.com/"),
