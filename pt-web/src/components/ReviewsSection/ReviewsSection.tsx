@@ -65,7 +65,10 @@ const mapReviewToCardProps = (review: Review): ReviewCardProps => ({
     <span>
       You can ask a question by messaging
       {" "}
-      <a style={{textDecoration: "underline"}}>
+      <a
+        style={{textDecoration: "underline"}}
+        href={review.link}
+      >
         {review.userName}
         {" "}
         here
