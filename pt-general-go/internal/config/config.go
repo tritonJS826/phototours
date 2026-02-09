@@ -26,6 +26,11 @@ type CloudinaryConfig struct {
 	UploadFolder string `env:"CLOUDINARY_UPLOAD_FOLDER,required"`
 }
 
+type StripeConfig struct {
+	SecretKey     string `env:"STRIPE_SECRET_KEY,required"`
+	WebhookSecret string `env:"STRIPE_WEBHOOK_SECRET,required"`
+}
+
 const EnvTypeProd = "prod"
 
 type Config struct {
@@ -38,6 +43,7 @@ type Config struct {
 	ZohoConfig       ZohoConfig
 	JWTConfig        JWTConfig
 	CloudinaryConfig CloudinaryConfig
+	StripeConfig     StripeConfig
 }
 
 func NewConfig(path string) (*Config, error) {

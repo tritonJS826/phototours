@@ -4,6 +4,8 @@ import (
 	"context"
 	db "pt-general-go/internal/db/sqlc"
 	"pt-general-go/internal/domain"
+
+	"github.com/google/uuid"
 )
 
 type BookingRequestRepository struct {
@@ -23,7 +25,18 @@ func (r *BookingRequestRepository) CreateBookingRequest(ctx context.Context, boo
 		return nil, handleDBError(err)
 	}
 
+	id, err := dbBookingRequest.ID.Value()
+	if err != nil {
+		return nil, handleDBError(err)
+	}
+
+	uuidID, ok := id.(uuid.UUID)
+	if !ok {
+		return nil, handleDBError(err)
+	}
+
 	return &domain.BookingRequest{
+		ID:    uuidID,
 		Name:  dbBookingRequest.Name,
 		Phone: dbBookingRequest.Phone,
 	}, nil

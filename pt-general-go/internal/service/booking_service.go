@@ -2,9 +2,12 @@ package service
 
 import (
 	"context"
+	"encoding/json"
+	"pt-general-go/internal/config"
 	"pt-general-go/internal/domain"
 	"pt-general-go/internal/repository"
 
+	stripeWebhook "github.com/stripe/stripe-go/v76/webhook"
 	"go.uber.org/zap"
 )
 
@@ -12,6 +15,7 @@ type BookingService struct {
 	bookingRequestRepository *repository.BookingRequestRepository
 	tourRepository           *repository.TourRepository
 	zohoRepository           *repository.ZohoRepository
+	stripeConfig             *config.StripeConfig
 	logger                   *zap.Logger
 }
 
@@ -19,12 +23,14 @@ func NewBookingService(
 	bookingRequestRepository *repository.BookingRequestRepository,
 	tourRepository *repository.TourRepository,
 	zohoRepository *repository.ZohoRepository,
+	stripeConfig *config.StripeConfig,
 	logger *zap.Logger,
 ) *BookingService {
 	return &BookingService{
 		bookingRequestRepository: bookingRequestRepository,
 		tourRepository:           tourRepository,
 		zohoRepository:           zohoRepository,
+		stripeConfig:             stripeConfig,
 		logger:                   logger,
 	}
 }
@@ -100,4 +106,51 @@ func (s *BookingService) CreateContact(ctx context.Context, contact *domain.Cont
 	s.logger.Info("Created contact in Zoho")
 
 	return nil
+}
+
+func (s *BookingService) HandleDepositSucceededWebhook(ctx context.Context, body []byte, signature string) error {
+	// Verify Stripe webhook signature
+	event, err := stripeWebhook.ConstructEvent(body, signature, s.stripeConfig.WebhookSecret)
+	if err != nil {
+		s.logger.Error("Failed to verify Stripe webhook signature", zap.Error(err))
+		return err
+	}
+
+	// Handle the event
+	switch event.Type {
+	case "checkout.session.completed":
+		var checkoutSession struct {
+			ID       string `json:"id"`
+			Metadata struct {
+				ZohoDealID string `json:"zoho_deal_id"`
+			} `json:"metadata"`
+		}
+
+		if err := json.Unmarshal(event.Data.Raw, &checkoutSession); err != nil {
+			s.logger.Error("Failed to parse checkout session", zap.Error(err))
+			return err
+		}
+
+		// Extract deal ID from metadata
+		if checkoutSession.Metadata.ZohoDealID == "" {
+			s.logger.Error("No Zoho deal ID found in checkout session metadata")
+			return err
+		}
+
+		dealID := checkoutSession.Metadata.ZohoDealID
+
+		// Update Zoho deal status from "In Progress" to "Deposit Paid"
+		err = s.zohoRepository.UpdateDealStage(ctx, dealID, "Deposit Paid")
+		if err != nil {
+			s.logger.Error("Failed to update deal stage in Zoho", zap.Error(err), zap.String("dealID", dealID))
+			return err
+		}
+
+		s.logger.Info("Successfully updated deal stage to Deposit Paid", zap.String("dealID", dealID))
+		return nil
+
+	default:
+		s.logger.Info("Unhandled webhook event type", zap.String("type", string(event.Type)))
+		return nil
+	}
 }

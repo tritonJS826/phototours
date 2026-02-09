@@ -520,3 +520,50 @@ func (r *ZohoRepository) getValidAccessToken(ctx context.Context) (string, error
 
 	return "", errors.New("no access token available, please authenticate first")
 }
+
+func (r *ZohoRepository) UpdateDealStage(ctx context.Context, dealID, newStage string) error {
+	token, err := r.getValidAccessToken(ctx)
+	if err != nil {
+		return err
+	}
+
+	// Update deal data with new stage
+	updateData := map[string]interface{}{
+		"Stage": newStage,
+	}
+
+	body := map[string][]map[string]interface{}{
+		"data": {updateData},
+	}
+
+	jsonBody, err := json.Marshal(body)
+	if err != nil {
+		return fmt.Errorf("failed to marshal update data: %w", err)
+	}
+
+	updateURL := fmt.Sprintf("%s/%s", apiDeals, dealID)
+	req, err := http.NewRequestWithContext(ctx, http.MethodPatch, updateURL, bytes.NewReader(jsonBody))
+	if err != nil {
+		return fmt.Errorf("failed to create request: %w", err)
+	}
+
+	req.Header.Set("Authorization", "Zoho-oauthtoken "+token)
+	req.Header.Set("Content-Type", "application/json")
+
+	resp, err := r.httpClient.Do(req)
+	if err != nil {
+		return fmt.Errorf("update deal request failed: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusAccepted {
+		respBody, err := io.ReadAll(resp.Body)
+		if err != nil {
+			return fmt.Errorf("failed to read error response body: %w", err)
+		}
+		return fmt.Errorf("failed to update deal: %d %s - %s",
+			resp.StatusCode, resp.Status, string(respBody))
+	}
+
+	return nil
+}
