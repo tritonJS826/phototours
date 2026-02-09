@@ -2,6 +2,7 @@ package handler
 
 import (
 	"net/http"
+	"pt-general-go/internal/domain"
 	"pt-general-go/internal/handler/dto"
 
 	"github.com/gin-gonic/gin"
@@ -27,8 +28,18 @@ func (h *Handler) Subscribe(ctx *gin.Context) {
 		return
 	}
 
-	// TODO: Add email to newsletter service/Zoho
-	h.logger.Info("Newsletter subscription request", zap.String("email", subscribeReq.Email))
+	// Create Zoho contact
+	contact := &domain.ContactZoho{
+		Email:    subscribeReq.Email,
+		LastName: "unknown",
+	}
+
+	err := h.services.BookingService.CreateContact(ctx, contact)
+	if err != nil {
+		h.logger.Error("failed to create contact in zoho", zap.Error(err))
+		h.handleError(ctx, err)
+		return
+	}
 
 	ctx.JSON(http.StatusCreated, dto.SubscribeResponse{
 		Message: "Successfully subscribed to newsletter",

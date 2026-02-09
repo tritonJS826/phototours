@@ -441,8 +441,15 @@ func (r *ZohoRepository) CreateBookingRequest(ctx context.Context, booking *doma
 		return nil, err
 	}
 
-	body := map[string][]*domain.BookingRequest{
-		"data": {booking},
+	// Create contact data with required Zoho fields
+	contactData := map[string]interface{}{
+		"Last_Name": booking.Name,
+		"Email":     booking.Email,
+		"Phone":     booking.Phone,
+	}
+
+	body := map[string][]map[string]interface{}{
+		"data": {contactData},
 	}
 
 	jsonBody, err := json.Marshal(body)

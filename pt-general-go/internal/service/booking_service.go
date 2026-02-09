@@ -50,8 +50,8 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 		TourDate:             bookingRequest.TravelDate,
 		Travelers:            bookingRequest.Travelers,
 		SingleRoomSupplement: float64(bookingRequest.Rooms),
-		Amount:               0,          // TODO: should come from request
-		TourName:             tour.Title, // Use actual tour title
+		Amount:               *tour.Price,
+		TourName:             tour.Title,
 		Stage:                "In Progress",
 		Pipeline:             "Photo Tours",
 		AccountID:            "stub",
@@ -86,6 +86,18 @@ func (s *BookingService) CreateDeal(ctx context.Context, lead *domain.DealZoho) 
 	}
 
 	s.logger.Info("Created deal in Zoho")
+
+	return nil
+}
+
+func (s *BookingService) CreateContact(ctx context.Context, contact *domain.ContactZoho) error {
+	err := s.zohoRepository.CreateContact(ctx, contact)
+	if err != nil {
+		s.logger.Error("Failed to create contact in Zoho", zap.Error(err), zap.Any("contact", contact))
+		return err
+	}
+
+	s.logger.Info("Created contact in Zoho")
 
 	return nil
 }
