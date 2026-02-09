@@ -112,7 +112,7 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 
 	s.logger.Info("checkoutSession!!!", zap.Any("", checkoutSession))
 
-	return checkoutSession.PaymentLink.URL, nil
+	return checkoutSession.URL, nil
 }
 
 func (s *BookingService) CreateDeal(ctx context.Context, lead *domain.DealZoho) error {
