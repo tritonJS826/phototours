@@ -4,15 +4,17 @@ import {Link, useNavigate} from "react-router-dom";
 // Import cart from "/images/cart.svg";
 import email from "/images/email.svg";
 import getYourGuide from "/images/getYourGuide.svg";
+import homeHero from "/images/homeHero.avif";
 import instagram from "/images/instagram.svg";
 import logo from "/images/logo.svg";
 import phone from "/images/phone.svg";
 import telegram from "/images/telegram.svg";
+import telegramBlue from "/images/telegram-blue.svg";
 import tripAdvisor from "/images/tripAdvisor.svg";
 import trustPilot from "/images/trustPilot.svg";
-// Import user from "/images/user.svg";
 import viator from "/images/viator.svg";
 import whatsapp from "/images/whatsapp.svg";
+import whatsappGreen from "/images/whatsapp-green.svg";
 import clsx from "clsx";
 import {ChevronDown, ChevronRight, Menu} from "lucide-react";
 import {Accordion, accordionTypes} from "src/components/Accordion/Accordion";
@@ -23,6 +25,7 @@ import {InputPhone} from "src/components/InputPhone/InputPhone";
 import {PopularDestinations} from "src/components/PopularDestinations/PopularDestinations";
 import {PopularWorkshops} from "src/components/PopularWorkshops/PopularWorkshops";
 import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
+import {TimeoutPopup} from "src/components/TimeoutPopup/TimeoutPopup";
 import {ToursSection} from "src/components/ToursSection/ToursSection";
 import {PATHS} from "src/routes/routes";
 import {submitContactMe} from "src/services/sailsService";
@@ -533,6 +536,54 @@ export function HomePage() {
         buttonText="Contact Me"
       />
       <Footer />
+
+      <TimeoutPopup
+        delay={20}
+        title={"Get the Ultimate \"Top 100 Global Locations\" Map"}
+        // eslint-disable-next-line max-len
+        description="From the peaks of Iceland and New Zealand to the hidden corners of Japan and Italy, get our curated map of the world’s most breathtaking spots sent straight to your phone. Which messenger do you prefer?"
+        imgUrl={homeHero}
+        leftBtnCallback={() => {}}
+        leftBtn={<span className={styles.pupUpButton}>
+          Telegram
+          <img
+            src={telegramBlue}
+            alt=""
+          />
+        </span>}
+        rightBtnCallback={() => {}}
+        rightBtn={<span className={styles.pupUpButton}>
+          Whatsapp
+          <img
+            src={whatsappGreen}
+            alt=""
+          />
+        </span>}
+      />
+
+      <TimeoutPopup
+        delay={120}
+        title="Find Your Perfect Photo Expedition"
+        // eslint-disable-next-line max-len
+        description="Let us help you find the trip that matches your style, skill level, and bucket list. Tell us what you're looking for. Which messenger do you prefer?"
+        imgUrl={homeHero}
+        leftBtnCallback={() => {}}
+        leftBtn={<span className={styles.pupUpButton}>
+          Telegram
+          <img
+            src={telegramBlue}
+            alt=""
+          />
+        </span>}
+        rightBtnCallback={() => {}}
+        rightBtn={<span className={styles.pupUpButton}>
+          Whatsapp
+          <img
+            src={whatsappGreen}
+            alt=""
+          />
+        </span>}
+      />
     </div>
   );
 }
