@@ -219,8 +219,29 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, clamp(310px, 33%, 380px));
   gap: 20px;
+  justify-content: center;
+
+  @media (max-width: 1400px) {
+    grid-template-columns: repeat(2, clamp(280px, 50%, 380px));
+  }
+
+  @media (max-width: 1060px) {
+    grid-template-columns: repeat(1, clamp(280px, 100%, 380px));
+  }
+
+  @media (max-width: 860px) {
+    grid-template-columns: repeat(auto-fill, clamp(280px, 45vw, 350px));
+  }
+
+  @media (max-width: 750px) {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+  }
+
+  @media (max-width: 700px) {
+    grid-template-columns: repeat(1, minmax(320px, 380px));
+  }
 }
 
 .floatingFilterButton {
