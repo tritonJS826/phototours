@@ -1,3 +1,7 @@
+import email from "/images/email.svg";
+import instagram from "/images/instagram.svg";
+import telegram from "/images/telegram.svg";
+import whatsapp from "/images/whatsapp.svg";
 import styles from "src/pages/contactUs/ContactUs.module.scss";
 
 export const ContactUs = () => {
@@ -10,10 +14,14 @@ export const ContactUs = () => {
       <div className={styles.info}>
         <div className={styles.infoLeft}>
           <h1 className={styles.infoHeader}>
-            Get in Touch With Tuscany Photo Tours
+            Get in Touch With
+            <br />
+            {" "}
+            Tuscany Photo Tours
           </h1>
           <p className={styles.infoSubtitle}>
-            Small-group photo tours | Award-winning locations | Professional mentoring
+            Connect with us to start planning your next great photography expedition or
+            to explore professional collaboration opportunities within our community
           </p>
         </div>
         <div className={styles.infoRight}>
@@ -49,7 +57,34 @@ export const ContactUs = () => {
               social media
             </span>
             <span className={styles.infoRightMiniBlockDescription}>
-              social media links
+              <a className={styles.socialMediaImage}>
+                <img
+                  className={styles.socialMediIcon}
+                  src={email}
+                  alt="user link"
+                />
+              </a>
+              <a className={styles.socialMediaImage}>
+                <img
+                  className={styles.socialMediIcon}
+                  src={telegram}
+                  alt="user link"
+                />
+              </a>
+              <a className={styles.socialMediaImage}>
+                <img
+                  className={styles.socialMediIcon}
+                  src={whatsapp}
+                  alt="user link"
+                />
+              </a>
+              <a className={styles.socialMediaImage}>
+                <img
+                  className={styles.socialMediIcon}
+                  src={instagram}
+                  alt="user link"
+                />
+              </a>
             </span>
           </div>
         </div>

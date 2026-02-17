@@ -1,8 +1,13 @@
 import {Link} from "react-router-dom";
+import email from "/images/email.svg";
+import instagram from "/images/instagram.svg";
 import logoBlack from "/images/logoBlack.svg";
 import mastercardLogo from "/images/mastercardLogo.svg";
+import phone from "/images/phone.svg";
 import stripeLogo from "/images/stripeLogo.svg";
+import telegram from "/images/telegram.svg";
 import visaLogo from "/images/visaLogo.svg";
+import whatsapp from "/images/whatsapp.svg";
 import {NewsletterForm} from "src/components/NewsletterForm/NewsletterForm";
 import {PATHS} from "src/routes/routes";
 import styles from "src/components/Footer/Footer.module.scss";
@@ -132,6 +137,46 @@ export const Footer = function Footer() {
                 alt="Photo Tour Logo"
               />
             </Link>
+
+            <div className={styles.socialMedias}>
+              <span className={styles.infoRightMiniBlockDescription}>
+                <a className={styles.socialMediaImage}>
+                  <img
+                    className={styles.socialMediIcon}
+                    src={phone}
+                    alt="user link"
+                  />
+                </a>
+                <a className={styles.socialMediaImage}>
+                  <img
+                    className={styles.socialMediIcon}
+                    src={email}
+                    alt="user link"
+                  />
+                </a>
+                <a className={styles.socialMediaImage}>
+                  <img
+                    className={styles.socialMediIcon}
+                    src={telegram}
+                    alt="user link"
+                  />
+                </a>
+                <a className={styles.socialMediaImage}>
+                  <img
+                    className={styles.socialMediIcon}
+                    src={whatsapp}
+                    alt="user link"
+                  />
+                </a>
+                <a className={styles.socialMediaImage}>
+                  <img
+                    className={styles.socialMediIcon}
+                    src={instagram}
+                    alt="user link"
+                  />
+                </a>
+              </span>
+            </div>
           </div>
 
           {FOOTER_COLUMNS.map((column) => (
