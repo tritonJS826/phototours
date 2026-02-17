@@ -10,6 +10,14 @@
   position: relative;
   max-width: 1530px;
   margin: auto;
+
+  @media (max-width: 1200px) {
+    display: flex;
+    overflow-x: visible;
+    max-width: none;
+    width: 100%;
+    margin-right: 0;
+  }
 }
 
 .arrow {
@@ -22,6 +30,10 @@
   place-items: center;
   cursor: pointer;
   opacity: 0.8;
+
+  @media (max-width: 1200px) {
+    display: none;
+  }
 
   span {
     font-size: 24px;

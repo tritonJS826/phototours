@@ -1,14 +1,17 @@
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import blueArrowCircleRight from "/images/blueArrowCircleRight.svg";
 import userStub1 from "/images/userStub1.avif";
 import userStub2 from "/images/userStub2.avif";
 import userStub3 from "/images/userStub3.avif";
 import clsx from "clsx";
-import {ReviewCard, ReviewCardProps} from "src/components/ReviewsSection/ReviewCard/ReviewCard";
-import {getRandomReviews, Review} from "src/services/reviewsService";
-import type {Swiper as SwiperType} from "swiper";
-import {A11y, Autoplay, Keyboard} from "swiper/modules";
-import {Swiper, SwiperSlide} from "swiper/react";
+import {
+  ReviewCard,
+  ReviewCardProps,
+} from "src/components/ReviewsSection/ReviewCard/ReviewCard";
+import { getRandomReviews, Review } from "src/services/reviewsService";
+import type { Swiper as SwiperType } from "swiper";
+import { A11y, Autoplay, Keyboard } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import styles from "src/components/ReviewsSection/Reviews.module.scss";
 
@@ -31,7 +34,8 @@ const FALLBACK_REVIEWS: ReviewCardProps[] = [
     title: "Emily Carter, UK",
     subtitle: "The Most Magical Spring Experience",
     // eslint-disable-next-line max-len
-    description: "It all began with a desire to visit Sicily. Islands, volcanoes, a catamaran… Back then, we didn't yet know that this would be the beginning of a much bigger story. Then came Iceland — magical, with its waterfalls, icy rivers, and Blue Lagoon. After that, Provence — lavender fields, small towns, and sunrises that take your breath away. The Czech Republic, Moravia, Hungary — each country left its own unique mark. And ahead await the Balkans and Scotland.",
+    description:
+      "It all began with a desire to visit Sicily. Islands, volcanoes, a catamaran… Back then, we didn't yet know that this would be the beginning of a much bigger story. Then came Iceland — magical, with its waterfalls, icy rivers, and Blue Lagoon. After that, Provence — lavender fields, small towns, and sunrises that take your breath away. The Czech Republic, Moravia, Hungary — each country left its own unique mark. And ahead await the Balkans and Scotland.",
   },
   {
     id: "2",
@@ -39,7 +43,8 @@ const FALLBACK_REVIEWS: ReviewCardProps[] = [
     title: "Liam Becker, Germany",
     subtitle: "A Photographer's Spring Paradise",
     // eslint-disable-next-line max-len
-    description: "Perfectly timed sunrise spots, soft morning mist, and endless green hills — Tuscany in spring feels unreal. Every shoot gave me portfolio-level shots, even without rushing. One of the most inspiring trips I've ever joined.",
+    description:
+      "Perfectly timed sunrise spots, soft morning mist, and endless green hills — Tuscany in spring feels unreal. Every shoot gave me portfolio-level shots, even without rushing. One of the most inspiring trips I've ever joined.",
   },
   {
     id: "3",
@@ -47,7 +52,8 @@ const FALLBACK_REVIEWS: ReviewCardProps[] = [
     title: "Ava Thompson, USA",
     subtitle: "Where Every Sunrise Feels Magical",
     // eslint-disable-next-line max-len
-    description: "Spring Tuscany glows with pastel colors and gentle light that makes every moment feel cinematic. The atmosphere was calm, beautifully organized, and full of creativity. I left with photos that still take my breath away.",
+    description:
+      "Spring Tuscany glows with pastel colors and gentle light that makes every moment feel cinematic. The atmosphere was calm, beautifully organized, and full of creativity. I left with photos that still take my breath away.",
   },
 ];
 
@@ -63,19 +69,15 @@ const mapReviewToCardProps = (review: Review): ReviewCardProps => ({
   title: review.userName,
   subtitle: (
     <span>
-      You can ask a question by messaging
-      {" "}
-      <a
-        style={{textDecoration: "underline"}}
-        href={review.link}
-      >
-        {review.userName}
-        {" "}
-        here
+      You can ask a question by messaging{" "}
+      <a style={{ textDecoration: "underline" }} href={review.link}>
+        {review.userName} here
       </a>
     </span>
   ),
-  description: review.comment || "Amazing experience! Would definitely recommend this tour.",
+  description:
+    review.comment ||
+    "Amazing experience! Would definitely recommend this tour.",
 });
 
 export function ReviewsSection(props: ToursSectionProps) {
@@ -106,10 +108,15 @@ export function ReviewsSection(props: ToursSectionProps) {
     return (
       <section className={clsx(styles.wrap, props.className)}>
         <div className={styles.reviewsSlider}>
-          <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "300px"}}>
-            <p>
-              Loading reviews...
-            </p>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "300px",
+            }}
+          >
+            <p>Loading reviews...</p>
           </div>
         </div>
       </section>
@@ -156,13 +163,14 @@ export function ReviewsSection(props: ToursSectionProps) {
           spaceBetween={24}
           speed={500}
           allowTouchMove
-          keyboard={{enabled: true}}
+          keyboard={{ enabled: true }}
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
           className={styles.swiper}
+          style={{ overflow: "visible" }}
           breakpoints={{
             [MOBILE_BREAKPOINT]: {
               slidesPerView: TABLET_SLIDES_PER_VIEW,
@@ -175,10 +183,7 @@ export function ReviewsSection(props: ToursSectionProps) {
           }}
         >
           {reviews.map((review) => (
-            <SwiperSlide
-              key={review.id}
-              className={styles.reviewSlide}
-            >
+            <SwiperSlide key={review.id} className={styles.reviewSlide}>
               <ReviewCard
                 key={review.id}
                 description={review.description}
