@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import {useEffect, useRef, useState} from "react";
 import blueArrowCircleRight from "/images/blueArrowCircleRight.svg";
 import userStub1 from "/images/userStub1.avif";
 import userStub2 from "/images/userStub2.avif";
@@ -8,10 +8,10 @@ import {
   ReviewCard,
   ReviewCardProps,
 } from "src/components/ReviewsSection/ReviewCard/ReviewCard";
-import { getRandomReviews, Review } from "src/services/reviewsService";
-import type { Swiper as SwiperType } from "swiper";
-import { A11y, Autoplay, Keyboard } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import {getRandomReviews, Review} from "src/services/reviewsService";
+import type {Swiper as SwiperType} from "swiper";
+import {A11y, Autoplay, Keyboard} from "swiper/modules";
+import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import styles from "src/components/ReviewsSection/Reviews.module.scss";
 
@@ -23,9 +23,9 @@ const MOBILE_BREAKPOINT = 640;
 const TABLET_BREAKPOINT = 920;
 // Const DESKTOP_BREAKPOINT = 1224;s
 
-const MOBILE_SLIDES_PER_VIEW = 1;
-const TABLET_SLIDES_PER_VIEW = 2;
-const DESKTOP_SLIDES_PER_VIEW = 3;
+// const MOBILE_SLIDES_PER_VIEW = 1;
+// const TABLET_SLIDES_PER_VIEW = 2;
+// const DESKTOP_SLIDES_PER_VIEW = 3;
 
 const FALLBACK_REVIEWS: ReviewCardProps[] = [
   {
@@ -33,7 +33,7 @@ const FALLBACK_REVIEWS: ReviewCardProps[] = [
     userImg: userStub1,
     title: "Emily Carter, UK",
     subtitle: "The Most Magical Spring Experience",
-    // eslint-disable-next-line max-len
+
     description:
       "It all began with a desire to visit Sicily. Islands, volcanoes, a catamaran… Back then, we didn't yet know that this would be the beginning of a much bigger story. Then came Iceland — magical, with its waterfalls, icy rivers, and Blue Lagoon. After that, Provence — lavender fields, small towns, and sunrises that take your breath away. The Czech Republic, Moravia, Hungary — each country left its own unique mark. And ahead await the Balkans and Scotland.",
   },
@@ -42,7 +42,7 @@ const FALLBACK_REVIEWS: ReviewCardProps[] = [
     userImg: userStub2,
     title: "Liam Becker, Germany",
     subtitle: "A Photographer's Spring Paradise",
-    // eslint-disable-next-line max-len
+
     description:
       "Perfectly timed sunrise spots, soft morning mist, and endless green hills — Tuscany in spring feels unreal. Every shoot gave me portfolio-level shots, even without rushing. One of the most inspiring trips I've ever joined.",
   },
@@ -51,7 +51,7 @@ const FALLBACK_REVIEWS: ReviewCardProps[] = [
     userImg: userStub3,
     title: "Ava Thompson, USA",
     subtitle: "Where Every Sunrise Feels Magical",
-    // eslint-disable-next-line max-len
+
     description:
       "Spring Tuscany glows with pastel colors and gentle light that makes every moment feel cinematic. The atmosphere was calm, beautifully organized, and full of creativity. I left with photos that still take my breath away.",
   },
@@ -69,9 +69,15 @@ const mapReviewToCardProps = (review: Review): ReviewCardProps => ({
   title: review.userName,
   subtitle: (
     <span>
-      You can ask a question by messaging{" "}
-      <a style={{ textDecoration: "underline" }} href={review.link}>
-        {review.userName} here
+      You can ask a question by messaging
+      {" "}
+      <a
+        style={{textDecoration: "underline"}}
+        href={review.link}
+      >
+        {review.userName}
+        {" "}
+        here
       </a>
     </span>
   ),
@@ -108,15 +114,16 @@ export function ReviewsSection(props: ToursSectionProps) {
     return (
       <section className={clsx(styles.wrap, props.className)}>
         <div className={styles.reviewsSlider}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "300px",
-            }}
+          <div style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "300px",
+          }}
           >
-            <p>Loading reviews...</p>
+            <p>
+              Loading reviews...
+            </p>
           </div>
         </div>
       </section>
@@ -157,33 +164,40 @@ export function ReviewsSection(props: ToursSectionProps) {
         <Swiper
           modules={[Keyboard, A11y, Autoplay]}
           onSwiper={(s) => (swiperRef.current = s)}
-          loop={reviews.length > DESKTOP_SLIDES_PER_VIEW}
+          loop={true}
           loopAdditionalSlides={3}
-          slidesPerView={MOBILE_SLIDES_PER_VIEW}
+          slidesPerView={2.2}
           spaceBetween={24}
           speed={500}
           allowTouchMove
-          keyboard={{ enabled: true }}
+          keyboard={{enabled: true}}
           autoplay={{
-            delay: 3000,
+            delay: 5000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
           className={styles.swiper}
-          style={{ overflow: "visible" }}
+          style={{overflow: "visible"}}
           breakpoints={{
             [MOBILE_BREAKPOINT]: {
-              slidesPerView: TABLET_SLIDES_PER_VIEW,
-              loop: reviews.length > TABLET_SLIDES_PER_VIEW,
+              slidesPerView: 1.5,
+              loop: true,
             },
             [TABLET_BREAKPOINT]: {
-              slidesPerView: DESKTOP_SLIDES_PER_VIEW,
-              loop: reviews.length > DESKTOP_SLIDES_PER_VIEW,
+              slidesPerView: 2.2,
+              loop: true,
+            },
+            1200: {
+              slidesPerView: 3,
+              loop: true,
             },
           }}
         >
           {reviews.map((review) => (
-            <SwiperSlide key={review.id} className={styles.reviewSlide}>
+            <SwiperSlide
+              key={review.id}
+              className={styles.reviewSlide}
+            >
               <ReviewCard
                 key={review.id}
                 description={review.description}

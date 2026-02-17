@@ -10,35 +10,10 @@
   position: relative;
   max-width: 1530px;
   margin: auto;
-
-  @media (max-width: 1200px) {
-    display: flex;
-    overflow-x: visible;
-    max-width: none;
-    width: 100%;
-    margin-right: 0;
-  }
 }
 
 .arrow {
-  position: absolute;
-  top: 43%;
-  z-index: 3;
-  background: transparent;
-  border: none;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  opacity: 0.8;
-
-  @media (max-width: 1200px) {
-    display: none;
-  }
-
-  span {
-    font-size: 24px;
-    line-height: 1;
-  }
+  display: none;
 }
 
 .arrowLeft {
