@@ -1,5 +1,7 @@
 import {memo, useState} from "react";
 import {Link} from "react-router-dom";
+import notificationCheckMark from "/images/notificationCheckMark.svg";
+import {CentralNotification} from "src/components/CentralNotification/CentralNotification";
 import {subscribe} from "src/services/sailsService";
 import styles from "src/components/NewsletterForm/NewsletterForm.module.scss";
 
@@ -30,6 +32,7 @@ export const NewsletterForm = memo(function NewsletterForm() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState("");
+  const [isNotificationOpen, setIsNewsletterNotificationOpen] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,6 +57,7 @@ export const NewsletterForm = memo(function NewsletterForm() {
 
       setMessage(result.message || MESSAGES.SUCCESS);
       setEmail("");
+      setIsNewsletterNotificationOpen(true);
     } catch (error) {
       setMessage(error instanceof Error ? error.message : MESSAGES.ERROR);
     } finally {
@@ -62,50 +66,60 @@ export const NewsletterForm = memo(function NewsletterForm() {
   };
 
   return (
-    <form
-      className={styles.newsletterForm}
-      onSubmit={handleSubmit}
-      role="form"
-      aria-label="Newsletter subscription form"
-    >
-      <div className={styles.inputGroup}>
-        <div className={styles.inputWrapper}>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-            className={styles.emailInput}
+    <>
+      <form
+        className={styles.newsletterForm}
+        onSubmit={handleSubmit}
+        role="form"
+        aria-label="Newsletter subscription form"
+      >
+        <div className={styles.inputGroup}>
+          <div className={styles.inputWrapper}>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              className={styles.emailInput}
+              disabled={isSubmitting}
+              aria-label="Email address"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className={styles.subscribeButton}
             disabled={isSubmitting}
-            aria-label="Email address"
-            required
-          />
+            aria-label="Subscribe to newsletter"
+          >
+            {isSubmitting ? BUTTON_TEXT.SUBSCRIBING : BUTTON_TEXT.SUBSCRIBE}
+          </button>
         </div>
-        <button
-          type="submit"
-          className={styles.subscribeButton}
-          disabled={isSubmitting}
-          aria-label="Subscribe to newsletter"
-        >
-          {isSubmitting ? BUTTON_TEXT.SUBSCRIBING : BUTTON_TEXT.SUBSCRIBE}
-        </button>
-      </div>
-      <span className={styles.privacyPolicyText}>
-        By submitting, you agree to our
-        {" "}
-        <Link
-          to="#"
-          className={styles.privacyLink}
-        >
-          Privacy Policy.
-        </Link>
-      </span>
+        <span className={styles.privacyPolicyText}>
+          By submitting, you agree to our
+          {" "}
+          <Link
+            to="#"
+            className={styles.privacyLink}
+          >
+            Privacy Policy.
+          </Link>
+        </span>
 
-      {message && (
-        <div className={`${styles.message} ${isSuccessMessage(message) ? styles.successMessage : styles.errorMessage}`}>
-          {message}
-        </div>
-      )}
-    </form>
+        {message && (
+          <div className={`${styles.message} ${isSuccessMessage(message) ? styles.successMessage : styles.errorMessage}`}>
+            {message}
+          </div>
+        )}
+      </form>
+
+      <CentralNotification
+        isOpen={isNotificationOpen}
+        onClose={() => setIsNewsletterNotificationOpen(false)}
+        imageUrl={notificationCheckMark}
+        title="You’re on the list!"
+        subtitle="Welcome to Tuscany Photo Tours! You'll now receive exclusive updates, early offers, and photography tips straight to your inbox."
+      />
+    </>
   );
 });
