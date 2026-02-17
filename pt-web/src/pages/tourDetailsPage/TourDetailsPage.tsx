@@ -293,6 +293,10 @@ export function TourDetailsPage() {
           })) ?? []
         }
       />
+
+      <p className={styles.buyTravelLabel}>
+        Travelers
+      </p>
       <NumberInput
         value={formData.travelers}
         onChange={(value) => setFormData(prev => ({...prev, travelers: value}))}

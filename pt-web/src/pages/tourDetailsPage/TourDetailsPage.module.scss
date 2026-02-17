@@ -12,7 +12,7 @@
   padding: 0 20px;
   max-width: calc(100% - 500px);
 
-  @media (width <= 1020px) {
+  @media (width <= 1200px) {
     max-width: 100%;
   }
 }
@@ -546,6 +546,12 @@
   margin-right: 20px;
   min-width: 480px;
   margin-bottom: 40px;
+
+  @media (width <= 1200px) {
+    .calcBackStub {
+      display: none;
+    }
+  }
 }
 
 .buyTravelBlock {
@@ -611,7 +617,7 @@
 }
 
 .buyTravelInput {
-  margin: 16px 24px;
+  margin: 8px 24px 8px 16px;
   padding: 16px 20px;
   width: 432px;
   border-radius: 10px;
@@ -742,17 +748,11 @@
   z-index: 100;
   border-top: 1px solid #e0e0e0;
 
-  @media (width <= 1020px) {
+  @media (width <= 1200px) {
     display: flex;
     justify-content: space-between;
 
     // align-items: center;
-  }
-
-  @media (width <= 600px) {
-    // flex-direction: column;
-    // gap: 16px;
-    // align-items: stretch;
   }
 
   .buyTravelFooterLeft {
@@ -777,11 +777,7 @@
   }
 }
 
-@media (width <= 1020px) {
-  .calcBackStub {
-    display: none;
-  }
-
+@media (width <= 1200px) {
   .leftColumn {
     padding: 0 16px;
   }
@@ -807,7 +803,8 @@
   }
 
   .personalizationBlock {
-    padding: 16px;
+    margin-top: 30px;
+    padding: 0 16px;
     gap: 8px;
     align-items: flex-start;
   }
