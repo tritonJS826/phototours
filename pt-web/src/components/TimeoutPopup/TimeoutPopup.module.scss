@@ -14,8 +14,8 @@
 
 .card {
   background: white;
-  border-radius: 12px;
-  max-width: 400px;
+  border-radius: 19px;
+  max-width: 410px;
   width: 100%;
   position: relative;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
@@ -23,6 +23,7 @@
 }
 
 .closeButton {
+  display: none;
   position: absolute;
   top: 12px;
   right: 12px;
@@ -61,11 +62,12 @@
 }
 
 .cardContent {
-  padding: 24px;
+  padding: 32px;
 }
 
+
 .title {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 600;
   margin-bottom: 8px;
   color: #111827;
@@ -73,15 +75,17 @@
 }
 
 .description {
-  color: #6b7280;
+  color: #000000;
   margin-bottom: 16px;
-  line-height: 1.5;
-  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.35;
+  font-size: 16px;
+  margin-top: 20px;
 }
 
 
-
 .buttonContainer {
+  margin-top: 25px;
   display: flex;
   gap: 12px;
 }
@@ -92,7 +96,7 @@
   border: 1px solid #d1d5db;
   background-color: #007DC5;
   color: white;
-  border-radius: 8px;
+  border-radius: 50px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -110,7 +114,7 @@
   border: 1px solid transparent;
   background-color: #02B13B;
   color: white;
-  border-radius: 8px;
+  border-radius: 50px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -128,7 +132,7 @@
   }
 
   .cardContent {
-  padding: 20px;
+   padding: 28px;
   }
 
   .title {

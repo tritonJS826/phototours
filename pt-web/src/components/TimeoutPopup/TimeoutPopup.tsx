@@ -1,5 +1,5 @@
 import React, {ReactElement, useEffect, useState} from "react";
-import {X} from "lucide-react";
+// Import {X} from "lucide-react";
 import styles from "src/components/TimeoutPopup/TimeoutPopup.module.scss";
 
 interface TimeoutPopupProps {
@@ -58,12 +58,13 @@ export function TimeoutPopup({
         className={styles.card}
         onClick={(e) => e.stopPropagation()}
       >
-        <button
+        {/* Maybe we will need this button later */}
+        {/* <button
           className={styles.closeButton}
           onClick={handleClose}
         >
           <X className="icon" />
-        </button>
+        </button> */}
 
         {imgUrl && (
           <div className={styles.imageContainer}>

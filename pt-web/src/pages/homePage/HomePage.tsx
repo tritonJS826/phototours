@@ -4,7 +4,6 @@ import {Link, useNavigate} from "react-router-dom";
 // Import cart from "/images/cart.svg";
 import email from "/images/email.svg";
 import getYourGuide from "/images/getYourGuide.svg";
-import homeHero from "/images/homeHero.avif";
 import instagram from "/images/instagram.svg";
 import logo from "/images/logo.svg";
 import phone from "/images/phone.svg";
@@ -544,7 +543,7 @@ export function HomePage() {
         title={"Get the Ultimate \"Top 100 Global Locations\" Map"}
         // eslint-disable-next-line max-len
         description="From the peaks of Iceland and New Zealand to the hidden corners of Japan and Italy, get our curated map of the world’s most breathtaking spots sent straight to your phone. Which messenger do you prefer?"
-        imgUrl={homeHero}
+        imgUrl="https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771361885/20SecPopUpImage_h6vybz.avif"
         leftBtnCallback={() => {}}
         leftBtn={<p className={styles.pupUpButton}>
           <span>
@@ -557,7 +556,7 @@ export function HomePage() {
         </p>}
         rightBtnCallback={() => {}}
         rightBtn={<span className={styles.pupUpButton}>
-          Whatsapp
+          WhatsApp
           <img
             src={whatsappGreen}
             alt=""
@@ -570,7 +569,7 @@ export function HomePage() {
         title="Find Your Perfect Photo Expedition"
         // eslint-disable-next-line max-len
         description="Let us help you find the trip that matches your style, skill level, and bucket list. Tell us what you're looking for. Which messenger do you prefer?"
-        imgUrl={homeHero}
+        imgUrl="https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771361885/20SecPopUpImage_h6vybz.avif"
         leftBtnCallback={() => {}}
         leftBtn={<span className={styles.pupUpButton}>
           Telegram
@@ -581,7 +580,7 @@ export function HomePage() {
         </span>}
         rightBtnCallback={() => {}}
         rightBtn={<span className={styles.pupUpButton}>
-          Whatsapp
+          WhatsApp
           <img
             src={whatsappGreen}
             alt=""

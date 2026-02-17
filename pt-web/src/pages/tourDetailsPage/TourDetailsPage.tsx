@@ -1077,7 +1077,7 @@ export function TourDetailsPage() {
         </span>}
         rightBtnCallback={() => {}}
         rightBtn={<span className={styles.pupUpButton}>
-          Whatsapp
+          WhatsApp
           <img
             src={whatsappGreen}
             alt=""
@@ -1100,7 +1100,7 @@ export function TourDetailsPage() {
         </span>}
         rightBtnCallback={() => {}}
         rightBtn={<span className={styles.pupUpButton}>
-          Whatsapp
+          WhatsApp
           <img
             src={whatsappGreen}
             alt=""
