@@ -7,6 +7,7 @@ import blogAndPhotography2 from "/images/blogAndPhotography2.avif";
 import blogAndPhotography3 from "/images/blogAndPhotography3.avif";
 import blueArrowCircleRight from "/images/blueArrowCircleRight.svg";
 import calendar from "/images/calendar-blue.svg";
+import calendarRoundBlue from "/images/calendarRoundBlue.svg";
 import checkboxAccepted from "/images/checkboxAccepted.svg";
 import flagRoundBlue from "/images/flagRoundBlue.svg";
 import grayArrowRightCircle from "/images/grayArrowRightCircle.svg";
@@ -16,6 +17,7 @@ import reviews from "/images/reviews.svg";
 import spotsLeft from "/images/spotsLeft.svg";
 import starYellow from "/images/star-yellow.png";
 import telegramBlue from "/images/telegram-blue.svg";
+import timerRoundBlue from "/images/timerRoundBlue.svg";
 import whatsappGreen from "/images/whatsapp-green.svg";
 import clsx from "clsx";
 import {Accordion, accordionTypes} from "src/components/Accordion/Accordion";
@@ -43,6 +45,9 @@ import {A11y, Keyboard} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import styles from "src/pages/tourDetailsPage/TourDetailsPage.module.scss";
+
+const MAGIC_2_WORKAROUND = 2;
+const MAGIC_4_WORKAROUND = 4;
 
 interface ScheduleAccordionItemProps {
   description: string;
@@ -760,7 +765,7 @@ export function TourDetailsPage() {
                 </div>
                 <div className={styles.summaryTag}>
                   <img
-                    src={flagRoundBlue}
+                    src={timerRoundBlue}
                     alt="flag icon"
                     loading="lazy"
                     className={styles.summaryTagImg}
@@ -816,7 +821,7 @@ export function TourDetailsPage() {
               <div className={styles.summaryTagsHorizontalPair}>
                 <div className={styles.summaryTag}>
                   <img
-                    src={flagRoundBlue}
+                    src={calendarRoundBlue}
                     alt="flag icon"
                     loading="lazy"
                     className={styles.summaryTagImg}
@@ -832,7 +837,7 @@ export function TourDetailsPage() {
                 </div>
                 <div className={styles.summaryTag}>
                   <img
-                    src={flagRoundBlue}
+                    src={timerRoundBlue}
                     alt="flag icon"
                     loading="lazy"
                     className={styles.summaryTagImg}
@@ -887,7 +892,7 @@ export function TourDetailsPage() {
                   key={i}
                 >
                   <img
-                    src={photoRoundBlue}
+                    src={(i === MAGIC_4_WORKAROUND || i === MAGIC_2_WORKAROUND) ? flagRoundBlue : photoRoundBlue}
                     alt="flag icon"
                     loading="lazy"
                     className={styles.includedImg}
