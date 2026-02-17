@@ -37,7 +37,6 @@ func (h *Handler) CreateBookingRequest(ctx *gin.Context) {
 		return
 	}
 
-	// ctx.Redirect(http.StatusSeeOther, redirectURL)
 	ctx.JSON(200, dto.CreateBookingResponse{RedirectUrl: redirectUrl})
 }
 

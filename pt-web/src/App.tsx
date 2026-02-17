@@ -22,10 +22,16 @@ import {Notifications} from "src/pages/notifications/Notifications";
 import {MyPhotosPage} from "src/pages/photos/MyPhotosPage";
 import {EditProfile} from "src/pages/profile/EditProfile";
 import {Profile} from "src/pages/profile/Profile";
+import {ThankYouPage} from "src/pages/thankYouPage/ThankYouPage";
 import {TourDetailsPage} from "src/pages/tourDetailsPage/TourDetailsPage";
 import {ToursPage} from "src/pages/toursPage/ToursPage";
 import {PATHS} from "src/routes/routes";
-import {defaultMetadata, fetchMetadata, Metadata, MetaTag} from "src/services/metadataService";
+import {
+  defaultMetadata,
+  fetchMetadata,
+  Metadata,
+  MetaTag,
+} from "src/services/metadataService";
 
 const helmetContext = {};
 
@@ -104,6 +110,10 @@ export function App() {
               path={PATHS.ARTICLES_SLUG}
               element={<ArticlePage />}
             />
+            <Route
+              path={PATHS.THANK_YOU}
+              element={<ThankYouPage />}
+            />
           </Route>
 
           <Route element={<ProtectedPageLayout />}>
@@ -146,6 +156,10 @@ export function App() {
             <Route
               path={PATHS.ADMIN_EDIT_TOUR}
               element={<AdminTourEdit />}
+            />
+            <Route
+              path={PATHS.CART}
+              element={<Cart />}
             />
             <Route
               path={PATHS.ADMIN_TOUR_CONTINUE}
