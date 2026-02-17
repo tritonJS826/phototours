@@ -58,3 +58,17 @@ SELECT
 FROM reviews
 ORDER BY RANDOM()
 LIMIT 20;
+
+-- name: GetReviewsForMain :many
+SELECT
+    id,
+    tour_id,
+    user_id,
+    rating,
+    comment,
+    user_name,
+    link,
+    image,
+    created_at
+FROM reviews
+LIMIT 20;

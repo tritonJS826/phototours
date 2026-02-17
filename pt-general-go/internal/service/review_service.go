@@ -20,8 +20,8 @@ func NewReviewService(reviewRepository *repository.ReviewRepository, logger *zap
 	}
 }
 
-func (s *ReviewService) GetRandomReviews(ctx context.Context) ([]domain.Review, error) {
-	reviews, err := s.reviewRepository.GetRandomReviews(ctx)
+func (s *ReviewService) GetReviewsForMain(ctx context.Context) ([]domain.Review, error) {
+	reviews, err := s.reviewRepository.GetReviewsForMain(ctx)
 	if err != nil {
 		s.logger.Error("failed to get random reviews", zap.Error(err))
 		return nil, err

@@ -8,7 +8,7 @@ import {
   ReviewCard,
   ReviewCardProps,
 } from "src/components/ReviewsSection/ReviewCard/ReviewCard";
-import {getRandomReviews, Review} from "src/services/reviewsService";
+import {getRandomReviews as getReviewsMain, Review} from "src/services/reviewsService";
 import type {Swiper as SwiperType} from "swiper";
 import {A11y, Autoplay, Keyboard} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
@@ -26,39 +26,6 @@ const DESKTOP_BREAKPOINT = 1200;
 const MOBILE_SLIDES_PER_VIEW = 1.5;
 const TABLET_SLIDES_PER_VIEW = 2.2;
 const DESKTOP_SLIDES_PER_VIEW = 3.2;
-
-const FALLBACK_REVIEWS: ReviewCardProps[] = [
-  {
-    id: "1",
-    userImg: userStub1,
-    title: "Emily Carter, UK",
-    subtitle: "The Most Magical Spring Experience",
-
-    description:
-      // eslint-disable-next-line max-len
-      "It all began with a desire to visit Sicily. Islands, volcanoes, a catamaran… Back then, we didn't yet know that this would be the beginning of a much bigger story. Then came Iceland — magical, with its waterfalls, icy rivers, and Blue Lagoon. After that, Provence — lavender fields, small towns, and sunrises that take your breath away. The Czech Republic, Moravia, Hungary — each country left its own unique mark. And ahead await the Balkans and Scotland.",
-  },
-  {
-    id: "2",
-    userImg: userStub2,
-    title: "Liam Becker, Germany",
-    subtitle: "A Photographer's Spring Paradise",
-
-    description:
-      // eslint-disable-next-line max-len
-      "Perfectly timed sunrise spots, soft morning mist, and endless green hills — Tuscany in spring feels unreal. Every shoot gave me portfolio-level shots, even without rushing. One of the most inspiring trips I've ever joined.",
-  },
-  {
-    id: "3",
-    userImg: userStub3,
-    title: "Ava Thompson, USA",
-    subtitle: "Where Every Sunrise Feels Magical",
-
-    description:
-      // eslint-disable-next-line max-len
-      "Spring Tuscany glows with pastel colors and gentle light that makes every moment feel cinematic. The atmosphere was calm, beautifully organized, and full of creativity. I left with photos that still take my breath away.",
-  },
-];
 
 const getRandomUserImage = () => {
   const images = [userStub1, userStub2, userStub3];
@@ -91,13 +58,13 @@ const mapReviewToCardProps = (review: Review): ReviewCardProps => ({
 
 export function ReviewsSection(props: ToursSectionProps) {
   const swiperRef = useRef<SwiperType | null>(null);
-  const [reviews, setReviews] = useState<ReviewCardProps[]>(FALLBACK_REVIEWS);
+  const [reviews, setReviews] = useState<ReviewCardProps[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadReviews = async () => {
       try {
-        const apiReviews = await getRandomReviews();
+        const apiReviews = await getReviewsMain();
         if (apiReviews.length > 0) {
           const mappedReviews = apiReviews.map(mapReviewToCardProps);
           setReviews(mappedReviews);

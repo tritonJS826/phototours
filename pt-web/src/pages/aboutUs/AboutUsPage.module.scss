@@ -37,26 +37,25 @@
 }
 
 .heroSectionBg {
-  background-image: url("/images/homeHero.avif");
+  background-image: url("https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771339565/645Z7289-Pano-Edit-Edit_6.png_n3ty5n.avif");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 20px;
   padding: 20px;
+  // min-height: 557px;
+  aspect-ratio: 3/1;
+  position: relative;
 }
 
 .heroSection {
+  position: absolute;
+  bottom: 30px;
   color: #fff;
   display: flex;
   flex-direction: column;
   max-width: 1200px;
-  margin: 80px auto;
-  text-align: center;
   font-size: 24px;
-
-  @media (width <= 830px) {
-    margin-bottom: auto;
-  }
 }
 
 .italic {
@@ -67,7 +66,14 @@
   margin-top: 15px;
   font-size: 20px;
   max-width: 680px;
-  align-self: center;
+
+  font-family: DM Sans;
+  font-weight: 500;
+  font-style: Italic;
+  font-size: 20px;
+  line-height: 1.15;
+  letter-spacing: 0%;
+
 }
 
 .victorBlock {
@@ -275,35 +281,6 @@
   font-size: 17px;
   font-weight: 400;
 }
-
-.ourMission {
-  height: 470px;
-  width: 100vw;
-  max-width: 2560px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  background-image: url("/images/aboutUsOurMission.avif");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 40px 20px;
-}
-
-// .ourMissionPlaceholder {
-//   position: absolute;
-//   max-width: 2560px;
-//   top: 0;
-//   left: 0;
-//   // it was hard to center this placeholder, so let's just make it super wide
-//   width: 100vw;
-//   height: 100%;
-//   background: #F0F0F0;
-//   z-index: -3;
-
-//   // background-color: red;
-// }
 
 .ourMissionContent {
   max-width: 1530px;

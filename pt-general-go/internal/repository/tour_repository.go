@@ -81,7 +81,7 @@ func (r *TourRepository) CreateTour(ctx context.Context, createTour *domain.Crea
 		return nil, handleDBError(err)
 	}
 
-	return mapper.MapToDomainTour(&tour), nil
+	return mapper.MapToDomainCreateTour(tour), nil
 }
 
 func (r *TourRepository) GetTourByID(ctx context.Context, id uuid.UUID) (*domain.Tour, error) {
@@ -89,7 +89,7 @@ func (r *TourRepository) GetTourByID(ctx context.Context, id uuid.UUID) (*domain
 	if err != nil {
 		return nil, handleDBError(err)
 	}
-	return mapper.MapToDomainTour(&tour), nil
+	return mapper.MapToDomainGetTourByID(tour), nil
 }
 
 func (r *TourRepository) GetTourBySlug(ctx context.Context, slug string) (*domain.Tour, error) {
@@ -97,7 +97,7 @@ func (r *TourRepository) GetTourBySlug(ctx context.Context, slug string) (*domai
 	if err != nil {
 		return nil, handleDBError(err)
 	}
-	return mapper.MapToDomainTour(&tour), nil
+	return mapper.MapToDomainGetTourBySlug(tour), nil
 }
 
 func (r *TourRepository) GetTours(ctx context.Context, limit, offset int32, filters *domain.TourFilter) ([]domain.Tour, error) {
@@ -206,7 +206,7 @@ func (r *TourRepository) UpdateTourByID(ctx context.Context, id uuid.UUID, req *
 	if err != nil {
 		return nil, handleDBError(err)
 	}
-	return mapper.MapToDomainTour(&tour), nil
+	return mapper.MapToDomainUpdateTourByID(tour), nil
 }
 
 func (r *TourRepository) DeleteTourByID(ctx context.Context, id uuid.UUID) error {

@@ -386,9 +386,9 @@ type Tour struct {
 	Subtitle          pgtype.Text
 	PopUp1Title       string
 	PopUp1Description string
+	PopUp1ImageUrl    string
 	PopUp2Title       string
 	PopUp2Description string
-	PopUp1ImageUrl    string
 	PopUp2ImageUrl    string
 	CreatedAt         pgtype.Timestamp
 	UpdatedAt         pgtype.Timestamp

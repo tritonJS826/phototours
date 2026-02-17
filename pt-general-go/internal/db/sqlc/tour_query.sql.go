@@ -117,7 +117,38 @@ type CreateTourParams struct {
 	PopUp2ImageUrl    string
 }
 
-func (q *Queries) CreateTour(ctx context.Context, arg CreateTourParams) (Tour, error) {
+type CreateTourRow struct {
+	ID                pgtype.UUID
+	Slug              string
+	Title             string
+	Description       string
+	Difficulty        DifficultyLevel
+	Price             pgtype.Float8
+	Program           []byte
+	Faq               []byte
+	GuideID           pgtype.UUID
+	CoverUrl          pgtype.Text
+	DurationDays      pgtype.Int4
+	EndLocation       pgtype.Text
+	AvailableMonths   []string
+	Languages         []string
+	MinAge            pgtype.Int4
+	StartLocation     pgtype.Text
+	Location          pgtype.Text
+	GroupSize         pgtype.Int4
+	SpotsLeft         pgtype.Int4
+	Subtitle          pgtype.Text
+	PopUp1Title       string
+	PopUp1Description string
+	PopUp2Title       string
+	PopUp2Description string
+	PopUp1ImageUrl    string
+	PopUp2ImageUrl    string
+	CreatedAt         pgtype.Timestamp
+	UpdatedAt         pgtype.Timestamp
+}
+
+func (q *Queries) CreateTour(ctx context.Context, arg CreateTourParams) (CreateTourRow, error) {
 	row := q.db.QueryRow(ctx, createTour,
 		arg.Title,
 		arg.Description,
@@ -143,7 +174,7 @@ func (q *Queries) CreateTour(ctx context.Context, arg CreateTourParams) (Tour, e
 		arg.PopUp1ImageUrl,
 		arg.PopUp2ImageUrl,
 	)
-	var i Tour
+	var i CreateTourRow
 	err := row.Scan(
 		&i.ID,
 		&i.Slug,
@@ -224,9 +255,40 @@ FROM tours
 WHERE id = $1
 `
 
-func (q *Queries) GetTourByID(ctx context.Context, id pgtype.UUID) (Tour, error) {
+type GetTourByIDRow struct {
+	ID                pgtype.UUID
+	Slug              string
+	Title             string
+	Description       string
+	Difficulty        DifficultyLevel
+	Price             pgtype.Float8
+	Program           []byte
+	Faq               []byte
+	GuideID           pgtype.UUID
+	CoverUrl          pgtype.Text
+	DurationDays      pgtype.Int4
+	EndLocation       pgtype.Text
+	AvailableMonths   []string
+	Languages         []string
+	MinAge            pgtype.Int4
+	StartLocation     pgtype.Text
+	Location          pgtype.Text
+	GroupSize         pgtype.Int4
+	SpotsLeft         pgtype.Int4
+	Subtitle          pgtype.Text
+	PopUp1Title       string
+	PopUp1Description string
+	PopUp2Title       string
+	PopUp2Description string
+	PopUp1ImageUrl    string
+	PopUp2ImageUrl    string
+	CreatedAt         pgtype.Timestamp
+	UpdatedAt         pgtype.Timestamp
+}
+
+func (q *Queries) GetTourByID(ctx context.Context, id pgtype.UUID) (GetTourByIDRow, error) {
 	row := q.db.QueryRow(ctx, getTourByID, id)
-	var i Tour
+	var i GetTourByIDRow
 	err := row.Scan(
 		&i.ID,
 		&i.Slug,
@@ -294,9 +356,40 @@ FROM tours
 WHERE slug = $1
 `
 
-func (q *Queries) GetTourBySlug(ctx context.Context, slug string) (Tour, error) {
+type GetTourBySlugRow struct {
+	ID                pgtype.UUID
+	Slug              string
+	Title             string
+	Description       string
+	Difficulty        DifficultyLevel
+	Price             pgtype.Float8
+	Program           []byte
+	Faq               []byte
+	GuideID           pgtype.UUID
+	CoverUrl          pgtype.Text
+	DurationDays      pgtype.Int4
+	EndLocation       pgtype.Text
+	AvailableMonths   []string
+	Languages         []string
+	MinAge            pgtype.Int4
+	StartLocation     pgtype.Text
+	Location          pgtype.Text
+	GroupSize         pgtype.Int4
+	SpotsLeft         pgtype.Int4
+	Subtitle          pgtype.Text
+	PopUp1Title       string
+	PopUp1Description string
+	PopUp2Title       string
+	PopUp2Description string
+	PopUp1ImageUrl    string
+	PopUp2ImageUrl    string
+	CreatedAt         pgtype.Timestamp
+	UpdatedAt         pgtype.Timestamp
+}
+
+func (q *Queries) GetTourBySlug(ctx context.Context, slug string) (GetTourBySlugRow, error) {
 	row := q.db.QueryRow(ctx, getTourBySlug, slug)
-	var i Tour
+	var i GetTourBySlugRow
 	err := row.Scan(
 		&i.ID,
 		&i.Slug,
@@ -388,7 +481,38 @@ type GetToursParams struct {
 	LimitCount   int32
 }
 
-func (q *Queries) GetTours(ctx context.Context, arg GetToursParams) ([]Tour, error) {
+type GetToursRow struct {
+	ID                pgtype.UUID
+	Slug              string
+	Title             string
+	Description       string
+	Difficulty        DifficultyLevel
+	Price             pgtype.Float8
+	Program           []byte
+	Faq               []byte
+	GuideID           pgtype.UUID
+	CoverUrl          pgtype.Text
+	DurationDays      pgtype.Int4
+	EndLocation       pgtype.Text
+	AvailableMonths   []string
+	Languages         []string
+	MinAge            pgtype.Int4
+	StartLocation     pgtype.Text
+	Location          pgtype.Text
+	GroupSize         pgtype.Int4
+	SpotsLeft         pgtype.Int4
+	Subtitle          pgtype.Text
+	PopUp1Title       string
+	PopUp1Description string
+	PopUp2Title       string
+	PopUp2Description string
+	PopUp1ImageUrl    string
+	PopUp2ImageUrl    string
+	CreatedAt         pgtype.Timestamp
+	UpdatedAt         pgtype.Timestamp
+}
+
+func (q *Queries) GetTours(ctx context.Context, arg GetToursParams) ([]GetToursRow, error) {
 	rows, err := q.db.Query(ctx, getTours,
 		arg.Location,
 		arg.DateFrom,
@@ -404,9 +528,9 @@ func (q *Queries) GetTours(ctx context.Context, arg GetToursParams) ([]Tour, err
 		return nil, err
 	}
 	defer rows.Close()
-	items := []Tour{}
+	items := []GetToursRow{}
 	for rows.Next() {
-		var i Tour
+		var i GetToursRow
 		if err := rows.Scan(
 			&i.ID,
 			&i.Slug,
@@ -535,7 +659,38 @@ type UpdateTourByIDParams struct {
 	ID                pgtype.UUID
 }
 
-func (q *Queries) UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) (Tour, error) {
+type UpdateTourByIDRow struct {
+	ID                pgtype.UUID
+	Slug              string
+	Title             string
+	Description       string
+	Difficulty        DifficultyLevel
+	Price             pgtype.Float8
+	Program           []byte
+	Faq               []byte
+	GuideID           pgtype.UUID
+	CoverUrl          pgtype.Text
+	DurationDays      pgtype.Int4
+	EndLocation       pgtype.Text
+	AvailableMonths   []string
+	Languages         []string
+	MinAge            pgtype.Int4
+	StartLocation     pgtype.Text
+	Location          pgtype.Text
+	GroupSize         pgtype.Int4
+	SpotsLeft         pgtype.Int4
+	Subtitle          pgtype.Text
+	PopUp1Title       string
+	PopUp1Description string
+	PopUp2Title       string
+	PopUp2Description string
+	PopUp1ImageUrl    string
+	PopUp2ImageUrl    string
+	CreatedAt         pgtype.Timestamp
+	UpdatedAt         pgtype.Timestamp
+}
+
+func (q *Queries) UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) (UpdateTourByIDRow, error) {
 	row := q.db.QueryRow(ctx, updateTourByID,
 		arg.Title,
 		arg.Slug,
@@ -563,7 +718,7 @@ func (q *Queries) UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) 
 		arg.PopUp2ImageUrl,
 		arg.ID,
 	)
-	var i Tour
+	var i UpdateTourByIDRow
 	err := row.Scan(
 		&i.ID,
 		&i.Slug,

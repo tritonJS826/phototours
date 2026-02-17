@@ -13,7 +13,5 @@ export interface Review {
 }
 
 export async function getRandomReviews(): Promise<Review[]> {
-  return await fetchData<Review[]>("general/reviews/random", {
-    method: "GET",
-  });
+  return await fetchData<Review[]>("general/reviews/main", {method: "GET"});
 }

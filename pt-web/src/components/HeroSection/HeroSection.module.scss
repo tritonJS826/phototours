@@ -17,12 +17,19 @@
   margin: auto;
   letter-spacing: -3%;
   font-size: 37px;
+
+  @media (width <=1200px) {
+    font-size: 34px;
+  }
 }
 
 .italic {
   font-weight: 400;
   font-size: 40px;
   font-family: "Times New Roman", Times, serif;
+  @media (width <=1200px) {
+    font-size: 37px;
+  }
 }
 
 .subtitle {

@@ -99,7 +99,7 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 
 	reviews := general.Group("/reviews")
 	{
-		reviews.GET("/random", h.GetRandomReviews)
+		reviews.GET("/main", h.GetReviewsForMain)
 	}
 
 	bookings := general.Group("/bookings")
