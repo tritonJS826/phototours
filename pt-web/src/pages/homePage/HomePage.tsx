@@ -131,11 +131,11 @@ const COPY = {
       "As Iceland’s leading photo tour operator, we offer expert tours\n" +
       "to help you capture breathtaking images at the best photo locations.",
   },
-  topPopularDestinations: {title: "Our Top Photo Tours & Workshops"},
+  topPopularDestinations: {title: "Top Tuscany Photo Destinations"},
   topSelections: {
-    title: "Explore Our Photo Tours & Photography Expeditions",
+    title: "Top Destinations Selection",
     subtitle:
-      "Join our expert-led journeys to the world's most iconic locations. Master your skills and capture the beauty of the planet.",
+      "Small groups • Iconic locations • Professional photo mentoring to help you create award-winning shots on cinematic Tuscan routes.",
   },
   reviews: {
     title: "Reviews",
@@ -479,7 +479,7 @@ export function HomePage() {
               </i>
             </h3>
             <p className={styles.blogAndPhotographyText}>
-              Expert insights, practical tips, and stories designed to elevate your photography and uncover the world's hidden gems.
+              Insights, tips, and stories to help you elevate your photography and explore Tuscany with confidence.
             </p>
             <Link
               to={PATHS.TOURS}
