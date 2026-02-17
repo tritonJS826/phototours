@@ -150,10 +150,10 @@ const MOBILE_BREAKPOINT = 640;
 const TABLET_BREAKPOINT = 920;
 const DESKTOP_BREAKPOINT = 1224;
 
-const MOBILE_SLIDES_PER_VIEW = 1;
-const TABLET_SLIDES_PER_VIEW = 2;
-const DESKTOP_SLIDES_PER_VIEW = 3;
-const LARGE_DESKTOP_SLIDES_PER_VIEW = 4;
+const MOBILE_SLIDES_PER_VIEW = 1.2;
+const TABLET_SLIDES_PER_VIEW = 2.2;
+const DESKTOP_SLIDES_PER_VIEW = 3.2;
+const LARGE_DESKTOP_SLIDES_PER_VIEW = 4.2;
 
 const MOBILE_BREAKPOINT_GALLERY_SLIDER = 700;
 const TABLET_BREAKPOINT_GALLERY_SLIDER = 1250;
@@ -1016,26 +1016,26 @@ export function TourDetailsPage() {
         <Swiper
           modules={[Keyboard, A11y]}
           onSwiper={(s) => (swiperExtraToursRef.current = s)}
-          loop={slidesForExtraTours.length > LARGE_DESKTOP_SLIDES_PER_VIEW}
-          loopAdditionalSlides={6}
+          loop={true}
+          // LoopAdditionalSlides={6}
           slidesPerView={MOBILE_SLIDES_PER_VIEW}
           spaceBetween={24}
           speed={500}
           allowTouchMove
           keyboard={{enabled: true}}
-          className={styles.swiper}
+          className={clsx(styles.swiper, styles.similarToursSwiper)}
           breakpoints={{
             [MOBILE_BREAKPOINT]: {
               slidesPerView: TABLET_SLIDES_PER_VIEW,
-              loop: slidesForExtraTours.length > TABLET_SLIDES_PER_VIEW,
+              loop: true,
             },
             [TABLET_BREAKPOINT]: {
               slidesPerView: DESKTOP_SLIDES_PER_VIEW,
-              loop: slidesForExtraTours.length > DESKTOP_SLIDES_PER_VIEW,
+              loop: true,
             },
             [DESKTOP_BREAKPOINT]: {
               slidesPerView: LARGE_DESKTOP_SLIDES_PER_VIEW,
-              loop: slidesForExtraTours.length > LARGE_DESKTOP_SLIDES_PER_VIEW,
+              loop: true,
             },
           }}
         >

@@ -119,6 +119,7 @@
     width: 90%;
     max-width: 1200px;
     aspect-ratio: 16/9;
+    background-color: red;
   }
 
   .swiperSlide {
@@ -485,8 +486,24 @@
   padding: 20px;
 }
 
+.similarToursSwiper {
+  // position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 40px;
+    // without this scale we will see 1px vertical artifact sometimes at the right side of slider
+    transform: scale(1.1);
+    background: linear-gradient(to right, transparent, white);
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
 .arrow {
-  // we don't need arrows for now but probably it will be helpful in future
   // visibility: hidden;
   position: absolute;
   top: 51%;
@@ -494,6 +511,8 @@
   background: transparent;
   border: none;
   display: grid;
+  // we don't need arrows for now but probably it will be helpful in future
+  display: none;
   place-items: center;
   cursor: pointer;
   opacity: 0.8;
