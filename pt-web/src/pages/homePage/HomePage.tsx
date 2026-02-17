@@ -368,11 +368,13 @@ export function HomePage() {
               to={PATHS.HOME}
               aria-label="Homepage"
             >
-              <img
-                src={logo}
-                alt="Photo Tour Logo"
-                className={styles.heroLogo}
-              />
+              <div className={styles.logoContainer}>
+                <img
+                  src={logo}
+                  alt="Photo Tour Logo"
+                  className={styles.heroLogo}
+                />
+              </div>
             </Link>
 
             <RightBlockDark />

@@ -14,6 +14,7 @@
   // оставлю только кнопку, все остальное скрываем
   @media (width <= 830px) {
     background-color: transparent;
+    width: auto;
 
     > *:not(.button) {
       display: none;

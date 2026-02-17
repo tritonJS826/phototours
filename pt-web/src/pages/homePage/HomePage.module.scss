@@ -2,7 +2,7 @@
 @use "../../styles/mixins" as mixin;
 
 .heroSectionBg {
-  background-image: url("/images/homeHero.avif");
+  background-image: url("https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771351437/mainPageHeroBackground.png_bdswyp.avif");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -27,6 +27,13 @@
 
 .heroLogo {
   min-width: 106px;
+}
+
+.logoContainer {
+  background-color: #5555558C;
+  border-radius: 9px;
+  padding: 10px;
+
 }
 
 .rightHeaderBlock {
