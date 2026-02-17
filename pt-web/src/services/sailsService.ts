@@ -24,8 +24,16 @@ export interface SubscribeResponse {
   message: string;
 }
 
-export async function subscribe(data: SubscribeRequest): Promise<SubscribeResponse> {
-  return await fetchData<SubscribeResponse>("general/subscribe", {
+export interface SubscribeFullResponse extends SubscribeResponse {
+  data?: Array<{
+    code?: string;
+    status?: string;
+    message?: string;
+  }>;
+}
+
+export async function subscribe(data: SubscribeRequest): Promise<SubscribeFullResponse> {
+  return await fetchData<SubscribeFullResponse>("general/subscribe", {
     method: "POST",
     body: JSON.stringify(data),
   });
