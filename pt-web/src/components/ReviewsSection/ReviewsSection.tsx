@@ -106,7 +106,7 @@ export function ReviewsSection(props: ToursSectionProps) {
         <button
           type="button"
           aria-label="Previous"
-          className={`${styles.arrow} ${styles.arrowLeft}`}
+          className={clsx(styles.arrow, styles.arrowLeft)}
           onClick={() => swiperRef.current?.slidePrev()}
         >
           <span>
