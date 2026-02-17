@@ -219,7 +219,7 @@ export function TourDetailsPage() {
   };
 
   const buyTravelContent = (
-    <>
+    <div className={styles.buyTravelBlockContent}>
       <div className={styles.buyTravelBlockTitle}>
         Travel details
       </div>
@@ -369,7 +369,7 @@ export function TourDetailsPage() {
           {bookingLoading ? "Processing..." : "Book now"}
         </Button>
       </div>
-    </>
+    </div>
   );
 
   useEffect(() => {
@@ -924,7 +924,7 @@ export function TourDetailsPage() {
         <BuyTravelModal
           isOpen={isBuyTravelModalOpen}
           onClose={() => setIsBuyTravelModalOpen(false)}
-          showHeader={false}
+          showHeader={true}
         >
           {buyTravelContent}
         </BuyTravelModal>

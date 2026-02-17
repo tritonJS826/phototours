@@ -13,11 +13,18 @@
 }
 
 .heroTitle {
-  max-width: 800px;
+  max-width: 884px;
   margin: auto;
   letter-spacing: -3%;
   font-size: 37px;
 
+  font-family: Onest;
+  font-weight: 700;
+  font-size: 37px;
+  line-height: 1;
+  letter-spacing: 0.97;
+  text-align: center;
+  
   @media (width <=1200px) {
     font-size: 34px;
   }

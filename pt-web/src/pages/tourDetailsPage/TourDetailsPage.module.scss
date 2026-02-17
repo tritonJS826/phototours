@@ -12,7 +12,7 @@
   padding: 0 20px;
   max-width: calc(100% - 500px);
 
-  @media (width <= 1200px) {
+  @media (width <= 1100px) {
     max-width: 100%;
   }
 }
@@ -117,7 +117,7 @@
 
   .swiper {
     width: 90%;
-    max-width: 1200px;
+    max-width: 1100px;
     aspect-ratio: 16/9;
     background-color: red;
   }
@@ -517,7 +517,7 @@
   cursor: pointer;
   opacity: 0.8;
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1100px) {
     display: none;
   }
 
@@ -547,7 +547,7 @@
   min-width: 480px;
   margin-bottom: 40px;
 
-  @media (width <= 1200px) {
+  @media (width <= 1100px) {
     .calcBackStub {
       display: none;
     }
@@ -599,6 +599,13 @@
     display: none;
   }
 }
+.buyTravelBlockContent {
+  // in the modal we have fixed footer with 120px width
+  @media (width <= 1100px) {
+    margin-top: 20px;
+    margin-bottom: 120px;
+  }
+}
 
 .buyTravelBlockTitle {
   background-color: #2f53de;
@@ -607,6 +614,11 @@
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 16px;
+
+  // title with close button already exist in the modal 
+  @media (width <= 1100px) {
+    display: none;
+  }
 }
 
 .buyTravelLabel {
@@ -748,17 +760,15 @@
   z-index: 100;
   border-top: 1px solid #e0e0e0;
 
-  @media (width <= 1200px) {
+  @media (width <= 1100px) {
     display: flex;
     justify-content: space-between;
-
-    // align-items: center;
   }
 
   .buyTravelFooterLeft {
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
   }
 }
 
@@ -777,7 +787,7 @@
   }
 }
 
-@media (width <= 1200px) {
+@media (width <= 1100px) {
   .leftColumn {
     padding: 0 16px;
   }
@@ -787,7 +797,8 @@
   }
 
   .buyTravelInput {
-    margin: 16px;
+    margin: 8px 24px 8px 16px;
+    padding: 16px 20px;
     width: calc(100% - 32px);
     padding: 12px 16px;
   }
@@ -814,6 +825,12 @@
     flex-direction: column;
     gap: 16px;
     align-items: stretch;
+
+    // in modal it should be aligned to the bottom
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 
   .buyTravelFooterLeft {
