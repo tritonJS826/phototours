@@ -132,7 +132,7 @@ export function AboutUs() {
               <div className={styles.whatMakesUsDifferentCardImageWrapper}>
                 <img
                   className={styles.whatMakesUsDifferentCardImg}
-                  src={infinityBlue}
+                  src={mapMarkerBlue}
                   alt=""
                 />
               </div>
@@ -147,7 +147,7 @@ export function AboutUs() {
               <div className={styles.whatMakesUsDifferentCardImageWrapper}>
                 <img
                   className={styles.whatMakesUsDifferentCardImg}
-                  src={mapMarkerBlue}
+                  src={infinityBlue}
                   alt=""
                 />
               </div>

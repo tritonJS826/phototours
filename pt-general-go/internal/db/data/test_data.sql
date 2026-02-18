@@ -518,14 +518,14 @@ VALUES
       }
     ]}',
     guide1_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8844obr_146x110_topaz_PRINT_yvqehs.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__FUJI8847-Pano-Pano-Dehancer_copy_lgg7p7.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
     ARRAY['March','May'], ARRAY['English'], 16, 'Europe', 7, 4, 'About Our Tuscany Spring Photo Expedition',
     'Get the Ultimate Val d’Orcia Insider Guide', 
     'From secret photography spots to hidden gem wineries, get the best of Tuscany sent straight to your phone. Which messenger do you prefer?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8844obr_146x110_topaz_PRINT_yvqehs.avif',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__FUJI8847-Pano-Pano-Dehancer_copy_lgg7p7.avif',
     'Want the full Tuscany Itinerary?',
     'We’ll send you everything you need to know about our Spring Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8844obr_146x110_topaz_PRINT_yvqehs.avif'),
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__FUJI8847-Pano-Pano-Dehancer_copy_lgg7p7.avif'),
 
    (tour2_id, 'morocco-photo-tour', 'Morocco Photo Tour',
     'Experience the magic of Morocco on a visual journey from the blue-washed streets of Chefchaouen to the golden dunes of the Sahara Desert. Capture the vibrant souks of Marrakech, the ancient kasbahs of Ait Ben Haddou, and the majestic Atlas Mountains. This immersive photography workshop offers expert-led sunrise and sunset sessions in Morocco''s most iconic locations. Join our exclusive small group for an unforgettable adventure!',
@@ -685,14 +685,14 @@ VALUES
       }
     ]}',
     guide2_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430346/venice__FUJI4667_Dehancer_ovjl23.avif', 5, 'Venice Marco Polo Airport (VCE)', 'Venice Marco Polo Airport (VCE)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771393839/venice_2_1_ghkmly.avif', 5, 'Venice Marco Polo Airport (VCE)', 'Venice Marco Polo Airport (VCE)',
     ARRAY['February'], ARRAY['English'], 12, 'Europe', 7, 5, 'About Our Venice Carnival Photo Experience',
     'Get the Ultimate "Top 100 Global Locations" Map', 
     'From the peaks of Iceland and New Zealand to the hidden corners of Japan and Italy, get our curated map of the world’s most breathtaking spots sent straight to your phone. Which messenger do you prefer?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430346/venice__FUJI4667_Dehancer_ovjl23.avif',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771393839/venice_2_1_ghkmly.avif',
     'Want the full Venice Carnival Itinerary?',
     'We’ll send you everything you need to know about our Venice Carnival Photo Tour—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430346/venice__FUJI4667_Dehancer_ovjl23.avif'),
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771393839/venice_2_1_ghkmly.avif'),
 
    (tour4_id, 'new-zealand-photo-tour', 'New Zealand',
       'Discover the stunning landscapes of New Zealand from fjords to mountains. Capture the dramatic beauty of Milford Sound, the Southern Alps, and pristine lakes. This 10-day photography adventure features expert guidance, golden hour sessions, and diverse landscapes from glaciers to beaches. Small group ensures personalized instruction.',
@@ -753,10 +753,10 @@ VALUES
     ARRAY['April','December','January'], ARRAY['English'], 16, 'Oceania', 12, 3, 'About Our New Zealand Photo Expedition',
     'Get the New Zealand Insider Guide', 
     'Unlock the Ultimate NZ Guide & "Top 100 Photo Locations" Map. Get access to our expert routes, pro photography tips, and a digital map of the world’s most breathtaking spots. Which messenger do you prefer?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430346/venice__FUJI4667_Dehancer_ovjl23.avif',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif',
     'Want the full New Zealand Itinerary?',
     'We’ll send you everything you need to know about our New Zealand Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430346/venice__FUJI4667_Dehancer_ovjl23.avif'),
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif'),
 
    (tour5_id, 'cyclades-sailing-tour', 'Cyclades Sailing',
      'Set sail through the stunning Cyclades islands for a 7-day photography adventure. Capture the iconic white-washed villages of Santorini, ancient ruins of Delos, and hidden beaches accessible only by boat. Experience authentic Greek island life, golden hour sailing, and night photography under Mediterranean skies. Small group with expert photo guidance.',
@@ -1165,14 +1165,14 @@ VALUES
       }
     ]}',
     guide2_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429592/czech-fall___IGP2024_93x69_200dpi-Dehancer_120x90_PRINT_2017_copy_jssztz.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429602/czech-fall__645Z8177-HDR-Pano-Topaz_v2ripe.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
     ARRAY['October'], ARRAY['English'], 14, 'Europe', 14, 8, 'About Our Czechia Autumn Photo Expedition',
     'Get the Ultimate "Top 100 Global Locations" Map', 
     'From the peaks of Iceland and New Zealand to the hidden corners of Japan and Czechia, get our curated map of the world’s most breathtaking spots sent straight to your phone. Which messenger do you prefer?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429592/czech-fall___IGP2024_93x69_200dpi-Dehancer_120x90_PRINT_2017_copy_jssztz.avif',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429602/czech-fall__645Z8177-HDR-Pano-Topaz_v2ripe.avif',
     'Want the full Czechia Itinerary?',
     'We’ll send you everything you need to know about our Czechia Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429592/czech-fall___IGP2024_93x69_200dpi-Dehancer_120x90_PRINT_2017_copy_jssztz.avif'),
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429602/czech-fall__645Z8177-HDR-Pano-Topaz_v2ripe.avif'),
 
  (tour10_id, 'scotland-photography-tour', 'Scotland Highlands & Islands',
    'Journey through the mystical Scottish Highlands and dramatic coastline. Capture lochs, castles, and the raw beauty of the Isle of Skye. This 10-day photography adventure includes remote landscapes, historic sites, and authentic Highland culture. Expert guidance in small groups ensures intimate shooting experiences.',
@@ -1514,14 +1514,14 @@ VALUES
         }
       ]}',
       guide5_id,
-      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777171/iceland_1_IGP4228-Pano_109x162_200dpi_topaz_copy_lt6mdc.avif', 10, 'Keflavík Airport (KEF)', 'Keflavík Airport (KEF)',
+      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777034/iceland__A8B5114-1-164x110_PRINT_topaz_Dehancer_usmbp6.avif', 10, 'Keflavík Airport (KEF)', 'Keflavík Airport (KEF)',
       ARRAY['July','August','September'], ARRAY['English'], 14, 'Iceland', 14, 3, 'About Our Iceland Photo Expedition',
       'Get the Ultimate "Top 100 Global Locations" Map', 
       'From the peaks of Iceland and New Zealand to the hidden corners of Japan and Italy, get our curated map of the world’s most breathtaking spots sent straight to your phone. Which messenger do you prefer?',
-      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777171/iceland_1_IGP4228-Pano_109x162_200dpi_topaz_copy_lt6mdc.avif',
+      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777034/iceland__A8B5114-1-164x110_PRINT_topaz_Dehancer_usmbp6.avif',
       'Want the full Iceland Itinerary?',
       'We’ll send you everything you need to know about our Iceland Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
-      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777171/iceland_1_IGP4228-Pano_109x162_200dpi_topaz_copy_lt6mdc.avif'),
+      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777034/iceland__A8B5114-1-164x110_PRINT_topaz_Dehancer_usmbp6.avif'),
 
   (tour14_id, 'japan-spring-tour', 'Japan Spring',
      'Embark on our Japan Autumn Photo Tour to document the breathtaking Momiji season. From the neon streets of Tokyo and the iconic reflection of Mount Fuji to the serene zen gardens and hidden temples of Kyoto. This landscape photography workshop offers expert guidance in capturing the vibrant red maples and timeless spirit of Japan. Limited spots available — join us now!',
@@ -2058,9 +2058,8 @@ VALUES
 INSERT INTO photos (tour_id, url, description)
 VALUES
   -- Tour 1: Tuscany Spring
-  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8844obr_146x110_topaz_PRINT_yvqehs.avif', 'Val d''Orcia sunrise over rolling hills'),
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__FUJI8847-Pano-Pano-Dehancer_copy_lgg7p7.avif', 'Val d''Orcia sunrise over rolling hills'),
   (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8829-1_86x56_x5eivl.avif', 'Pienza medieval town at golden hour'),
-  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8844obr_146x110_topaz_PRINT_yvqehs.avif', 'Cypress alley in morning mist'),
   (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886468/tuscan-spring___IGP1687-Edit_copy_eorjiy.avif', 'Podere Belvedere iconic chapel'),
   (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__OSKIN_3950_fdilkc.avif', 'San Quirico d''Orcia historic center'),
   (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886470/tuscan-spring__IMG_1698_69%D1%8546-200dpi_2_zsq3qn.avif', 'Tuscan vineyard at harvest time'),
@@ -2077,7 +2076,7 @@ VALUES
   (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886466/tuscan-spring___A8B9644_49%D1%8573-200dpi_105-Edit_ebbyoe.avif', 'Val d''Orcia foggy morning landscape'),
   (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886466/tuscan-spring__400mm-f8-1slash60-iso100_wnjtxa.avif', 'Val d''Orcia foggy morning landscape'),
   (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886466/tuscan-spring___2572_65%D1%85138-200dpi_202-Edit_bl1mdd.avif', 'Val d''Orcia foggy morning landscape'),
-  
+  (tour1_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8844obr_146x110_topaz_PRINT_yvqehs.avif', 'Val d''Orcia foggy morning landscape'),
   -- Tour 2: Morocco (6-day tour)
   (tour2_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429914/morocco___A8B2183_90x63-topaz-denoiseraw-sharpen-color_copy_d6h1s7.avif', 'Blue-washed streets of Chefchaouen'),
   (tour2_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429900/morocco___1469265_k8qh6j.avif', 'Blue-washed streets of Chefchaouen'),
@@ -2106,6 +2105,7 @@ VALUES
   (tour2_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429935/morocco__IMG_2787_z6nyqe.avif', 'Blue-washed streets of Chefchaouen'),
   
   -- Tour 3: Venice Carnival (5-day tour)
+  (tour3_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771393839/venice_2_1_ghkmly.avif', 'Venice Carnival masks and costumes'),
   (tour3_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430346/venice__FUJI4667_Dehancer_ovjl23.avif', 'Venice Carnival masks and costumes'),
   (tour3_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430375/venice__IMG_4984-Edit-Lightroom_sky_Topaz_snow_78_Dehancer_snow_85_Yellow_65_r9ida1.avif', 'Venice Carnival masks and costumes'),
   (tour3_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430351/venice__FUJI5512-Edit_Dehancer-Edit_sibg4y.avif', 'Venice Carnival masks and costumes'),
@@ -2241,13 +2241,13 @@ VALUES
    (tour8_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430167/sicily__PAVEL_OSKIN_2503_qymcry.avif', 'Mount Etna volcanic eruption at night'),
 
    -- Tour 9: Czechia Autumn
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429592/czech-fall___IGP2024_93x69_200dpi-Dehancer_120x90_PRINT_2017_copy_jssztz.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429602/czech-fall__645Z8177-HDR-Pano-Topaz_v2ripe.avif', 'Eilean Donan Castle at sunrise'),
    (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429635/czech-fall__IMG_4250_Dehancer_113x60_PRINT_2015_copy_btx6nd.avif', 'Eilean Donan Castle at sunrise'),
    (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429600/czech-fall___IMG8087-Pano-Edit-GL_148x105_odehuc.avif', 'Eilean Donan Castle at sunrise'),
    (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429635/czech-fall__IMG_4462-Pano-Dehancer-2-part1_y0nncg.avif', 'Eilean Donan Castle at sunrise'),
    (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429585/czech-fall___6455425-Pano-Edit-Topaz-Dehancer_275x90_PRINT_2022_copy_dsqso5.avif', 'Eilean Donan Castle at sunrise'),
    (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429625/czech-fall__DJI_0497-Pano-Edit_copy_n53ct8.avif', 'Eilean Donan Castle at sunrise'),
-   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429602/czech-fall__645Z8177-HDR-Pano-Topaz_v2ripe.avif', 'Eilean Donan Castle at sunrise'),
+   (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429592/czech-fall___IGP2024_93x69_200dpi-Dehancer_120x90_PRINT_2017_copy_jssztz.avif', 'Eilean Donan Castle at sunrise'),
    (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429603/czech-fall__645Z0456-Pano_medium_Dechancer_221x90_PRINT_2023_opokxn.avif', 'Eilean Donan Castle at sunrise'),
    (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429610/czech-fall__645Z1357-Pano-Edit-Topoaz-Dehancer_copy_clwuql.avif', 'Eilean Donan Castle at sunrise'),
    (tour9_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429582/czech-fall___A8B4862-Pano-Dehan%D1%81er_261x90_PRINT_2017_copy_as7f63.avif', 'Eilean Donan Castle at sunrise'),
@@ -2376,6 +2376,7 @@ VALUES
    (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128199/japan_fall_PLUM4043-Dehancer_copy_ajvhng.avif', 'Val d''Orcia rolling hills with autumn colors'),
 
    -- Tour 13: iceland
+   (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777034/iceland__A8B5114-1-164x110_PRINT_topaz_Dehancer_usmbp6.avif', 'Prague Castle autumn foliage at sunrise'),
    (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777171/iceland_1_IGP4228-Pano_109x162_200dpi_topaz_copy_lt6mdc.avif', 'Prague Castle autumn foliage at sunrise'),
    (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777185/iceland_645Z3212-Edit_bqcuvd.avif', 'Prague Castle autumn foliage at sunrise'),
    (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777216/iceland_645Z6169-HDR-Pano-Dehancer_uaao9y.avif', 'Prague Castle autumn foliage at sunrise'),
