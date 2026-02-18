@@ -8,9 +8,9 @@ import (
 	"pt-general-go/internal/domain"
 	"pt-general-go/internal/repository"
 
-	"github.com/stripe/stripe-go/v76"
-	"github.com/stripe/stripe-go/v76/checkout/session"
-	stripeWebhook "github.com/stripe/stripe-go/v76/webhook"
+	"github.com/stripe/stripe-go/v84"
+	"github.com/stripe/stripe-go/v84/checkout/session"
+	stripeWebhook "github.com/stripe/stripe-go/v84/webhook"
 	"go.uber.org/zap"
 )
 
