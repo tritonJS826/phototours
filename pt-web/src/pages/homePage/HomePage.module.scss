@@ -358,6 +358,10 @@
   text-align: center;
   max-width: 650px;
   margin-top: 15px;
+
+  @media (width <= 475px) {
+    text-align: start;
+  }
 }
 
 .feedBackForm {
@@ -369,6 +373,7 @@
   @media (width <= 920px) {
     flex-direction: column;
   }
+
 }
 
 .feedBackInput {
@@ -380,7 +385,7 @@
   border: none;
 
   @media (width <= 475px) {
-    width: 70vw;
+    width: 100%;
   }
 }
 
@@ -388,7 +393,7 @@
   width: 360px;
 
   @media (width <= 475px) {
-    width: 70vw;
+    width: 100%;
   }
 }
 
