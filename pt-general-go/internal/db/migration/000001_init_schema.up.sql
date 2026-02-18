@@ -225,3 +225,10 @@ CREATE TABLE tour_summary (
     created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     CONSTRAINT tour_summary_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
+CREATE TABLE similar_tours (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    tour_id UUID NOT NULL,
+    similar_tour_id UUID NOT NULL,
+    CONSTRAINT similar_tours_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT similar_tours_similar_tour_id_fk FOREIGN KEY (similar_tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE
+);

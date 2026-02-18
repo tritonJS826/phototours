@@ -219,3 +219,11 @@ func (r *TourRepository) DeleteTourByID(ctx context.Context, id uuid.UUID) error
 	}
 	return nil
 }
+
+func (r *TourRepository) GetSimilarToursByTourID(ctx context.Context, tourID uuid.UUID) ([]domain.Tour, error) {
+	rows, err := r.db.GetSimilarToursByTourID(ctx, mapper.UUIDToPgUUID(tourID))
+	if err != nil {
+		return nil, handleDBError(err)
+	}
+	return mapper.MapToDomainSimilarTours(rows), nil
+}

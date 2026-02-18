@@ -2,9 +2,6 @@ import {useEffect, useRef, useState} from "react";
 // Import {Helmet} from "react-helmet-async";
 import {useParams} from "react-router-dom";
 import arrowsToRight from "/images/arrowsToRight.svg";
-import blogAndPhotography1 from "/images/blogAndPhotography1.avif";
-import blogAndPhotography2 from "/images/blogAndPhotography2.avif";
-import blogAndPhotography3 from "/images/blogAndPhotography3.avif";
 import blueArrowCircleRight from "/images/blueArrowCircleRight.svg";
 import calendar from "/images/calendar-blue.svg";
 import calendarRoundBlue from "/images/calendarRoundBlue.svg";
@@ -31,12 +28,11 @@ import {TourCardExtended} from "src/components/Tour/TourCardExtended/TourCardExt
 import {FeedbackBlock} from "src/pages/homePage/HomePage";
 import {NotFoundPage} from "src/pages/notFound/notFoundPage";
 import {BuyTravelModal} from "src/pages/tourDetailsPage/BuyTravelModal";
-import {PATHS} from "src/routes/routes";
 import {
   type BookingRequest,
   createBooking,
 } from "src/services/bookingService";
-import {getTourBySlug} from "src/services/toursService";
+import {getSimilarToursByTourId, getTourBySlug} from "src/services/toursService";
 import type {TourView} from "src/types/tour";
 import {formatMonthsToDateRange} from "src/utils/dateUtils";
 import {renderMultilineDouble} from "src/utils/textUtils";
@@ -96,61 +92,6 @@ function getScheduleAccordionItems(tour: TourView): AccordionItemData[] {
   }));
 }
 
-const slidesForExtraTours = [
-  {
-    id: "1",
-    image: blogAndPhotography1,
-    link: PATHS.getTour("tuscany-spring-photo-tour"),
-    title: "Chianti Hills & Vineyards",
-    subtitle:
-      "Capture golden vineyards, rustic hilltop villages, and soft evening light across the legendary rolling hills of Chianti.",
-  },
-  {
-    id: "2",
-    image: blogAndPhotography2,
-    link: PATHS.getTour("morocco-photo-tour"),
-    title: "Your Guide to Iconic Tuscany Shots",
-
-    subtitle:
-      // eslint-disable-next-line max-len
-      "Explore essential techniques and hidden locations for creating cinematic images in Tuscany. Explore essential techniques and hidden locations for creating cinematic images in Tuscany.",
-  },
-  {
-    id: "3",
-    image: blogAndPhotography3,
-    link: PATHS.getTour("venice-carnival-photo-tour"),
-    title: "Inspiration for Your Next Photo Adventure",
-    subtitle:
-      "A curated blend of tips, stories, and expert advice for photographing Tuscany at its best.",
-  },
-  {
-    id: "4",
-    image: blogAndPhotography1,
-    link: PATHS.getTour("new-zealand-photo-tour"),
-    title: "Chianti Hills & Vineyards",
-    subtitle:
-      "Capture golden vineyards, rustic hilltop villages, and soft evening light across the legendary rolling hills of Chianti.",
-  },
-  {
-    id: "5",
-    image: blogAndPhotography2,
-    link: PATHS.getTour("japan-cherry-blossom-tour"),
-    title: "Your Guide to Iconic Tuscany Shots",
-
-    subtitle:
-      // eslint-disable-next-line max-len
-      "Explore essential techniques and hidden locations for creating cinematic images in Tuscany. Explore essential techniques and hidden locations for creating cinematic images in Tuscany.",
-  },
-  {
-    id: "6",
-    image: blogAndPhotography3,
-    link: PATHS.getTour("cyclades-sailing-tour"),
-    title: "Inspiration for Your Next Photo Adventure",
-    subtitle:
-      "A curated blend of tips, stories, and expert advice for photographing Tuscany at its best.",
-  },
-];
-
 const MOBILE_BREAKPOINT = 640;
 const TABLET_BREAKPOINT = 920;
 const DESKTOP_BREAKPOINT = 1224;
@@ -187,6 +128,7 @@ export function TourDetailsPage() {
     travelers: 1,
     rooms: 0,
   });
+  const [similarTours, setSimilarTours] = useState<TourView[]>([]);
 
   const handleBookNow = async () => {
     if (!tour) {
@@ -400,15 +342,10 @@ export function TourDetailsPage() {
         }
         document.title = t.title || "Tour";
 
-        // Preload images for accordion
-        // for (const day of t.dailyItinerary ?? []) {
-        //   if (!day.imgUrl) {
-        //     continue;
-        //   }
-        //   console.log("loaded", day.imgUrl);
-        //   const img = new Image();
-        //   img.src = day.imgUrl;
-        // }
+        const similar = await getSimilarToursByTourId(String(t.id));
+        if (alive) {
+          setSimilarTours(similar);
+        }
       } catch {
         if (!alive) {
           return;
@@ -1048,13 +985,13 @@ export function TourDetailsPage() {
             },
           }}
         >
-          {slidesForExtraTours.map((s) => (
+          {similarTours.map((s) => (
             <SwiperSlide
               key={s.id}
               className={styles.slide}
             >
               <TourCardExtended
-                tour={tour}
+                tour={s}
                 className={styles.tourCard}
               />
             </SwiperSlide>

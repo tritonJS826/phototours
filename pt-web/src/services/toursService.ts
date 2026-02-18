@@ -214,3 +214,9 @@ export async function getTourBySlug(slug: string): Promise<TourView> {
 
   return mapTourToView(raw);
 }
+
+export async function getSimilarToursByTourId(tourId: string): Promise<TourView[]> {
+  const raw = await fetchData<TourDTO[]>(`${TOURS_PATH}/${tourId}/similar`);
+
+  return (raw ?? []).map(mapTourToView);
+}

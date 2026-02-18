@@ -2587,6 +2587,144 @@ VALUES
 (tour13_id, user8_id, 5, 'Chasing the morning fog in Tuscany is an experience I''ll never forget. The locations were incredible, every detail thoughtfully considered, and Pavel''s care for his guests is truly exceptional. And his cooking — absolutely outstanding! All the spots on the photo tour were stunning, but the one that stands out the most is Belvedere. At some point I just refused to leave — and as a result, we captured some truly unique shots! The Tuscany tour turned out to be far better than I imagined. Travel with Tuscany Photo Tours — it''s absolutely worth it!', 'Alena Bogdanova', 'https://www.facebook.com/alena.imclub', 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770632862/user_Alena_Bogdanova_jzqt1m.avif'),
 (tour14_id, user10_id, 5, 'Every trip with Tuscany Photo Tours is not only about discovering new places and hearing fascinating stories — it is also about entering a special world, a unique spirit. And, of course, the director, actor, and playwright of each journey is Pavel Oskin. Cheerful and in love with the world, he shares his vision and his passion for photography. He chooses special, rarely visited routes, always strives to surprise, and inspires everyone with his love for sunsets and sunrises, for wild waterfalls, for mountain slopes where the light changes every minute — and you must catch that play of light in time. A poet, a writer, an artist — with an eye that notices what most people simply cannot see. That is why his students'' photographs always stand out with taste and professionalism. And what a cook he is! Probably the best I have ever met. A virtuoso of quick yet unbelievably delicious dishes. Everyone who has ever traveled with him on a photo tour becomes his friend and lifelong companion.', 'Natalia Ryurikova', 'https://www.facebook.com/natalia.ryurikova', 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770632866/user_Natalia_Ryurikova_mybj7j.avif');
 
+INSERT INTO similar_tours (tour_id, similar_tour_id)
+VALUES
+(tour1_id, tour1_id),
+(tour1_id, tour3_id),
+(tour1_id, tour4_id),
+(tour1_id, tour6_id),
+(tour1_id, tour8_id),
+(tour1_id, tour11_id),
+(tour1_id, tour2_id),
+(tour1_id, tour5_id),
+
+(tour2_id, tour1_id),
+(tour2_id, tour3_id),
+(tour2_id, tour4_id),
+(tour2_id, tour6_id),
+(tour2_id, tour8_id),
+(tour2_id, tour1_id),
+(tour2_id, tour2_id),
+(tour2_id, tour5_id),
+
+(tour3_id, tour1_id),
+(tour3_id, tour3_id),
+(tour3_id, tour4_id),
+(tour3_id, tour6_id),
+(tour3_id, tour8_id),
+(tour3_id, tour11_id),
+(tour3_id, tour2_id),
+(tour3_id, tour5_id),
+
+(tour4_id, tour1_id),
+(tour4_id, tour3_id),
+(tour4_id, tour4_id),
+(tour4_id, tour6_id),
+(tour4_id, tour8_id),
+(tour4_id, tour1_id),
+(tour4_id, tour2_id),
+(tour4_id, tour5_id),
+
+
+(tour5_id, tour1_id),
+(tour5_id, tour3_id),
+(tour5_id, tour4_id),
+(tour5_id, tour6_id),
+(tour5_id, tour8_id),
+(tour5_id, tour11_id),
+(tour5_id, tour2_id),
+(tour5_id, tour5_id),
+
+
+(tour6_id, tour1_id),
+(tour6_id, tour3_id),
+(tour6_id, tour4_id),
+(tour6_id, tour6_id),
+(tour6_id, tour8_id),
+(tour6_id, tour11_id),
+(tour6_id, tour2_id),
+(tour6_id, tour5_id),
+
+
+(tour7_id, tour1_id),
+(tour7_id, tour3_id),
+(tour7_id, tour4_id),
+(tour7_id, tour6_id),
+(tour7_id, tour8_id),
+(tour7_id, tour11_id),
+(tour7_id, tour2_id),
+(tour7_id, tour5_id),
+
+
+(tour8_id, tour1_id),
+(tour8_id, tour3_id),
+(tour8_id, tour4_id),
+(tour8_id, tour6_id),
+(tour8_id, tour8_id),
+(tour8_id, tour11_id),
+(tour8_id, tour2_id),
+(tour8_id, tour5_id),
+
+
+(tour9_id, tour1_id),
+(tour9_id, tour3_id),
+(tour9_id, tour4_id),
+(tour9_id, tour6_id),
+(tour9_id, tour8_id),
+(tour9_id, tour11_id),
+(tour9_id, tour2_id),
+(tour9_id, tour5_id),
+
+
+(tour10_id, tour1_id),
+(tour10_id, tour3_id),
+(tour10_id, tour4_id),
+(tour10_id, tour6_id),
+(tour10_id, tour8_id),
+(tour10_id, tour11_id),
+(tour10_id, tour2_id),
+(tour10_id, tour5_id),
+
+
+(tour11_id, tour1_id),
+(tour11_id, tour3_id),
+(tour11_id, tour4_id),
+(tour11_id, tour6_id),
+(tour11_id, tour8_id),
+(tour11_id, tour11_id),
+(tour11_id, tour2_id),
+(tour11_id, tour5_id),
+
+
+(tour12_id, tour1_id),
+(tour12_id, tour3_id),
+(tour12_id, tour4_id),
+(tour12_id, tour6_id),
+(tour12_id, tour8_id),
+(tour12_id, tour11_id),
+(tour12_id, tour2_id),
+(tour12_id, tour5_id),
+
+
+(tour13_id, tour1_id),
+(tour13_id, tour3_id),
+(tour13_id, tour4_id),
+(tour13_id, tour6_id),
+(tour13_id, tour8_id),
+(tour13_id, tour11_id),
+(tour13_id, tour2_id),
+(tour13_id, tour5_id),
+
+
+(tour14_id, tour1_id),
+(tour14_id, tour3_id),
+(tour14_id, tour4_id),
+(tour14_id, tour6_id),
+(tour14_id, tour8_id),
+(tour14_id, tour11_id),
+(tour14_id, tour2_id),
+(tour14_id, tour5_id);
+
 
 
 END $$;

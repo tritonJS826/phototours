@@ -389,3 +389,7 @@ func (s *TourService) UpdateTourByID(ctx context.Context, id uuid.UUID, updateTo
 func (s *TourService) DeleteTourByID(ctx context.Context, id uuid.UUID) error {
 	return s.tourRepository.DeleteTourByID(ctx, id)
 }
+
+func (s *TourService) GetSimilarToursByTourID(ctx context.Context, tourID uuid.UUID) ([]domain.Tour, error) {
+	return s.tourRepository.GetSimilarToursByTourID(ctx, tourID)
+}

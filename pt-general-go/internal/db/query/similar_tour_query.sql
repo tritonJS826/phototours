@@ -1,0 +1,33 @@
+-- name: GetSimilarToursByTourID :many
+SELECT
+    tours.id,
+    tours.slug,
+    tours.title,
+    tours.description,
+    tours.difficulty,
+    tours.price,
+    tours.program,
+    tours.faq,
+    tours.guide_id,
+    tours.cover_url,
+    tours.duration_days,
+    tours.end_location,
+    tours.available_months,
+    tours.languages,
+    tours.min_age,
+    tours.start_location,
+    tours.location,
+    tours.group_size,
+    tours.spots_left,
+    tours.subtitle,
+    tours.pop_up1_title,
+    tours.pop_up1_description,
+    tours.pop_up2_title,
+    tours.pop_up2_description,
+    tours.pop_up1_image_url,
+    tours.pop_up2_image_url,
+    tours.created_at,
+    tours.updated_at
+FROM similar_tours
+JOIN tours ON similar_tours.similar_tour_id = tours.id
+WHERE similar_tours.tour_id = @tour_id;

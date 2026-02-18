@@ -308,3 +308,31 @@ func (h *Handler) DeleteTourByID(ctx *gin.Context) {
 	}
 	ctx.Status(http.StatusNoContent)
 }
+
+// GetSimilarToursByTourID godoc
+// @Summary Get similar tours by tour ID
+// @Description Get similar tours for a given tour
+// @Tags tours
+// @Accept json
+// @Produce json
+// @Param id path string true "Tour ID (UUID)"
+// @Success 200 {array} domain.Tour
+// @Failure 400 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /tours/{id}/similar [get]
+func (h *Handler) GetSimilarToursByTourID(ctx *gin.Context) {
+	tourID, err := uuid.Parse(ctx.Param("id"))
+	if err != nil {
+		h.logger.Error("failed to parse tour ID", zap.String("id", ctx.Param("id")), zap.Error(err))
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": fmt.Sprintf("Invalid tour ID: %v", err)})
+		return
+	}
+
+	tours, err := h.services.TourService.GetSimilarToursByTourID(ctx, tourID)
+	if err != nil {
+		h.logger.Error("failed to get similar tours", zap.String("tour_id", tourID.String()), zap.Error(err))
+		h.handleError(ctx, err)
+		return
+	}
+	ctx.JSON(http.StatusOK, tours)
+}

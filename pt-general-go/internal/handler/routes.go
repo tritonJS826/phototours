@@ -89,6 +89,7 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 		tours.GET("", h.GetAllTours)
 		tours.GET("/:id", h.GetTourByID)
 		tours.GET("/slug/:slug", h.GetTourBySlug)
+		tours.GET("/:id/similar", h.GetSimilarToursByTourID)
 		toursAdmin := tours.Group("", h.AuthMiddleware(), RequireRole(domain.RoleGuide, domain.RoleAdmin))
 		{
 			toursAdmin.POST("", h.CreateTour)

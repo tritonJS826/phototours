@@ -358,6 +358,12 @@ type Review struct {
 	CreatedAt pgtype.Timestamp
 }
 
+type SimilarTour struct {
+	ID            pgtype.UUID
+	TourID        pgtype.UUID
+	SimilarTourID pgtype.UUID
+}
+
 type Tag struct {
 	ID   pgtype.UUID
 	Name string

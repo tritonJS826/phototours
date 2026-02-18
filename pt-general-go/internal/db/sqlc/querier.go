@@ -41,6 +41,7 @@ type Querier interface {
 	GetReviewsByTourID(ctx context.Context, tourID pgtype.UUID) ([]GetReviewsByTourIDRow, error)
 	GetReviewsByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]GetReviewsByTourIDsRow, error)
 	GetReviewsForMain(ctx context.Context) ([]GetReviewsForMainRow, error)
+	GetSimilarToursByTourID(ctx context.Context, tourID pgtype.UUID) ([]GetSimilarToursByTourIDRow, error)
 	GetTagsByTourID(ctx context.Context, tourID pgtype.UUID) ([]Tag, error)
 	GetTagsByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]GetTagsByTourIDsRow, error)
 	GetTourActivitiesByTourID(ctx context.Context, tourID pgtype.UUID) ([]TourActivity, error)
