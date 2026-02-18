@@ -18,7 +18,7 @@
 .pict {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  // aspect-ratio: 16 / 9;
   overflow: hidden;
 }
 
@@ -73,7 +73,6 @@
 .title {
   font-size: 25px;
   font-weight: 700;
-  line-height: 1.35;
   color: #111;
   margin: 0;
   letter-spacing: -3%;
