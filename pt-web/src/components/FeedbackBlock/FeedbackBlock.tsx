@@ -95,6 +95,7 @@ export function FeedbackBlock(props: FeedbackBlockProps) {
         onClose={() => setIsContactMeSucceededNotificationOpen(false)}
         imageUrl={notificationCheckMark}
         title="We’ve received your request!"
+        // eslint-disable-next-line max-len
         subtitle="One of our travel experts will contact you soon using your details to help you choose the perfect destination and itinerary. Expect a call or message shortly."
       />
     </>
