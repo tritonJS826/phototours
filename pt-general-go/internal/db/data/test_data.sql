@@ -749,7 +749,7 @@ VALUES
       }
     ]}',
     guide1_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif', 10, 'Rome, Fiumicino Airport (FCO', 'Rome, Fiumicino Airport (FCO)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif', 10, 'Rome, Fiumicino Airport (FCO)', 'Rome, Fiumicino Airport (FCO)',
     ARRAY['April','December','January'], ARRAY['English'], 16, 'Oceania', 12, 3, 'About Our New Zealand Photo Expedition',
     'Get the New Zealand Insider Guide', 
     'Unlock the Ultimate NZ Guide & "Top 100 Photo Locations" Map. Get access to our expert routes, pro photography tips, and a digital map of the world’s most breathtaking spots. Which messenger do you prefer?',
