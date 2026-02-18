@@ -3,6 +3,9 @@
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
   padding: 20px;
+  @media (width <= 1400px) {
+    overflow: hidden;
+  }
 }
 
 .reviewsSlider {
