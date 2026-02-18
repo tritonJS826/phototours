@@ -368,9 +368,9 @@
   margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 12px;
 
-  @media (width <= 920px) {
+  @media (width <= 965px) {
     flex-direction: column;
   }
 
@@ -417,7 +417,7 @@
     background-color: #092388;
   }
 
-  @media (width <= 920px) {
+  @media (width <= 965px) {
     width: 180px;
   }
 }
