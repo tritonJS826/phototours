@@ -40,11 +40,11 @@ const COPY = {
       "As Iceland’s leading photo tour operator, we offer expert tours\n" +
       "to help you capture breathtaking images at the best photo locations.",
   },
-  topPopularDestinations: {title: "Top Tuscany Photo Destinations"},
+  topPopularDestinations: {title: "Our Top Photo Tours & Workshops"},
   topSelections: {
-    title: "Top Destinations Selection",
+    title: "Explore Our Photo Tours & Photography Expeditions",
     subtitle:
-      "Small groups • Iconic locations • Professional photo mentoring to help you create award-winning shots on cinematic Tuscan routes.",
+      "Join our expert-led journeys to the world's most iconic locations. Master your skills and capture the beauty of the planet.",
   },
   reviews: {
     title: "Reviews",

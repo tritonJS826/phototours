@@ -11,13 +11,13 @@ export function HeroTextSection(props: HeroSectionProps) {
     <section className={clsx(styles.heroSection, props.className)}>
       <h1 className={styles.heroTitle}>
         <p>
-          Unforgettable Photo
+          Exclusive
           {" "}
           <i className={styles.italic}>
-            Tours Across Tuscany
+            Photo Tours & Workshops
           </i>
           {" "}
-          Capture breathtaking landscapes with expert guidance
+          : Signature Photo Expeditions Across the Globe
         </p>
       </h1>
       <p className={styles.subtitle}>
