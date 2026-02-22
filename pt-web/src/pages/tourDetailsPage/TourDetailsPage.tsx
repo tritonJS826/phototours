@@ -180,7 +180,7 @@ export function TourDetailsPage() {
         className={styles.buyTravelInput}
         value={formData.name}
         onChange={(e) => setFormData(prev => ({...prev, name: e.target.value}))}
-        autoComplete="off"
+        autoComplete="on"
       />
       <p className={styles.buyTravelLabel}>
         Your Email
@@ -190,7 +190,7 @@ export function TourDetailsPage() {
         className={styles.buyTravelInput}
         value={formData.email}
         onChange={(e) => setFormData(prev => ({...prev, email: e.target.value}))}
-        autoComplete="off"
+        autoComplete="on"
       />
       <p className={styles.buyTravelLabel}>
         Your Phone
@@ -200,7 +200,7 @@ export function TourDetailsPage() {
         className={styles.buyTravelInput}
         value={formData.phone}
         onChange={(e) => setFormData(prev => ({...prev, phone: e.target.value}))}
-        autoComplete="off"
+        autoComplete="on"
       />
       <p className={styles.buyTravelLabel}>
         Travel dates

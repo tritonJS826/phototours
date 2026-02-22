@@ -67,6 +67,7 @@ export const NewsletterForm = memo(function NewsletterForm() {
         onSubmit={handleSubmitSubscribe}
         role="form"
         aria-label="Newsletter subscription form"
+        autoComplete="on"
       >
         <div className={styles.inputGroup}>
           <div className={styles.inputWrapper}>
@@ -78,6 +79,7 @@ export const NewsletterForm = memo(function NewsletterForm() {
               className={styles.emailInput}
               disabled={isSubmitting}
               aria-label="Email address"
+              autoComplete="on"
               required
             />
           </div>
