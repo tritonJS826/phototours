@@ -1,3 +1,4 @@
+import {X} from "lucide-react";
 import styles from "src/components/CentralNotification/CentralNotification.module.scss";
 
 interface CentralNotificationProps {
@@ -28,6 +29,12 @@ export function CentralNotification({
         className={styles.modal}
         onClick={(e) => e.stopPropagation()}
       >
+        <button
+          className={styles.closeButton}
+          onClick={onClose}
+        >
+          <X className="icon" />
+        </button>
         <img
           src={imageUrl}
           alt=""

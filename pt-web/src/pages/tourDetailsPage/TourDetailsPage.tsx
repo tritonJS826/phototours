@@ -1,8 +1,8 @@
 import {useEffect, useRef, useState} from "react";
 // Import {Helmet} from "react-helmet-async";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import arrowsToRight from "/images/arrowsToRight.svg";
-import blueArrowCircleRight from "/images/blueArrowCircleRight.svg";
+// Import blueArrowCircleRight from "/images/blueArrowCircleRight.svg";
 import calendar from "/images/calendar-blue.svg";
 import calendarRoundBlue from "/images/calendarRoundBlue.svg";
 import checkboxAccepted from "/images/checkboxAccepted.svg";
@@ -28,6 +28,7 @@ import {TourCardExtended} from "src/components/Tour/TourCardExtended/TourCardExt
 import {FeedbackBlock} from "src/pages/homePage/HomePage";
 import {NotFoundPage} from "src/pages/notFound/notFoundPage";
 import {BuyTravelModal} from "src/pages/tourDetailsPage/BuyTravelModal";
+import {PATHS} from "src/routes/routes";
 import {
   type BookingRequest,
   createBooking,
@@ -92,14 +93,14 @@ function getScheduleAccordionItems(tour: TourView): AccordionItemData[] {
   }));
 }
 
-const MOBILE_BREAKPOINT = 640;
-const TABLET_BREAKPOINT = 920;
-const DESKTOP_BREAKPOINT = 1224;
+// Const MOBILE_BREAKPOINT = 640;
+// const TABLET_BREAKPOINT = 920;
+// const DESKTOP_BREAKPOINT = 1224;
 
-const MOBILE_SLIDES_PER_VIEW = 1.2;
-const TABLET_SLIDES_PER_VIEW = 2.2;
-const DESKTOP_SLIDES_PER_VIEW = 3.2;
-const LARGE_DESKTOP_SLIDES_PER_VIEW = 4.2;
+// const MOBILE_SLIDES_PER_VIEW = 1.2;
+// const TABLET_SLIDES_PER_VIEW = 2.2;
+// const DESKTOP_SLIDES_PER_VIEW = 3.2;
+// const LARGE_DESKTOP_SLIDES_PER_VIEW = 4.2;
 
 const MOBILE_BREAKPOINT_GALLERY_SLIDER = 700;
 const TABLET_BREAKPOINT_GALLERY_SLIDER = 1250;
@@ -340,7 +341,7 @@ export function TourDetailsPage() {
         if (t.photos && t.photos.length > 0) {
           setSelectedPhotoIndex(0);
         }
-        document.title = t.title || "Tour";
+        document.title = t.title;
 
         const similar = await getSimilarToursByTourId(String(t.id));
         if (alive) {
@@ -365,7 +366,7 @@ export function TourDetailsPage() {
 
   const photos = tour?.photos || [];
 
-  const swiperExtraToursRef = useRef<SwiperType | null>(null);
+  // Const swiperExtraToursRef = useRef<SwiperType | null>(null);
   const swiperGalleryRef = useRef<SwiperType | null>(null);
   const swiperFullscreenRef = useRef<SwiperType | null>(null);
   const swiperMainRef = useRef<SwiperType | null>(null);
@@ -928,10 +929,21 @@ export function TourDetailsPage() {
 
       <h2 className={styles.similarToursTitle}>
         Similar tours
+
+        <Link
+          to={PATHS.TOURS}
+          className={styles.searchAllToursLink}
+        >
+          Search all
+          {" "}
+          <span className={styles.searchAllToursArrow}>
+            →
+          </span>
+        </Link>
       </h2>
 
       <div className={styles.toursSlider}>
-        <button
+        {/* <button
           type="button"
           aria-label="Previous"
           className={`${styles.arrow} ${styles.arrowLeft}`}
@@ -948,7 +960,7 @@ export function TourDetailsPage() {
         <button
           type="button"
           aria-label="Next"
-          className={`${styles.arrow} ${styles.arrowRight}`}
+          className={clsx(styles.arrow, styles.arrowRight)}
           onClick={() => swiperExtraToursRef.current?.slideNext()}
         >
           <span>
@@ -984,19 +996,20 @@ export function TourDetailsPage() {
               loop: true,
             },
           }}
-        >
-          {similarTours.map((s) => (
-            <SwiperSlide
-              key={s.id}
-              className={styles.slide}
-            >
-              <TourCardExtended
-                tour={s}
-                className={styles.tourCard}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        > */}
+        {similarTours.map((s) => (
+          // <SwiperSlide
+          //   key={s.id}
+          //   className={styles.slide}
+          // >
+          <TourCardExtended
+            key={s.id}
+            tour={s}
+            className={styles.tourCard}
+          />
+          // </SwiperSlide>
+        ))}
+        {/* </Swiper> */}
       </div>
       <FeedbackBlock
         title="Reserve Your Spot for the Tuscany Photo Tour"
