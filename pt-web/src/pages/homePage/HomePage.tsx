@@ -449,7 +449,7 @@ export function HomePage() {
       <Footer />
 
       <TimeoutPopup
-        delay={2}
+        delay={20}
         title={"Get the Ultimate \"Top 100 Global Locations\" Map"}
         // eslint-disable-next-line max-len
         description="From the peaks of Iceland and New Zealand to the hidden corners of Japan and Italy, get our curated map of the world’s most breathtaking spots sent straight to your phone. Which messenger do you prefer?"

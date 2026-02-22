@@ -1,4 +1,4 @@
-import React, {ReactElement, useEffect, useState} from "react";
+import React, {ReactElement, useEffect, useRef, useState} from "react";
 import {X} from "lucide-react";
 import styles from "src/components/TimeoutPopup/TimeoutPopup.module.scss";
 
@@ -26,13 +26,24 @@ export function TimeoutPopup({
   rightBtnCallback,
 }: TimeoutPopupProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    if (timerRef.current) {
+      return;
+    }
+
+    timerRef.current = setTimeout(() => {
+      timerRef.current = null;
       setIsVisible(true);
     }, delay * MILLISECONDS_IN_SECOND);
 
-    return () => clearTimeout(timer);
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+    };
   }, [delay]);
 
   const handleClose = () => {
