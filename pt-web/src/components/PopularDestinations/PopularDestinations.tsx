@@ -40,7 +40,7 @@ const slides = [
   },
   {
     image:
-     "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771824431/mainPageTop5CzechFall_h6iohn.avif",
+     "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771824433/mainPageTop6TuscanySpring_rnnwsz.avif",
     title: "Dreamy\nTuscan Fog",
     href: PATHS.getTour("tuscany-spring-photo-tour"),
   },
