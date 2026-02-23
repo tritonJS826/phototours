@@ -319,7 +319,7 @@ export function ToursPage() {
         value={filters.travelers || ONE_TRAVELER}
         onChange={(newValue) => setFilters(prev => ({...prev, travelers: newValue}))}
         min={1}
-        max={99}
+        max={20}
         description="Travelers"
         icon={people}
       />
@@ -438,6 +438,25 @@ export function ToursPage() {
               <div />
 
             </div>
+            {(data === null || data.length === 0) && !loading && (
+              <div className={styles.noTours}>
+                <h2 className={styles.noToursTitle}>
+                  No tours found
+                </h2>
+                <p className={styles.noToursDescription}>
+                  We couldn't find any tours matching your search.
+                  <br />
+                  Try adjusting your filters or explore our available Tuscany photo tours.
+                </p>
+                <button
+                  type="button"
+                  className={styles.noToursButton}
+                  onClick={handleResetAll}
+                >
+                  Reset filters
+                </button>
+              </div>
+            )}
             <div className={styles.grid}>
               {(data ?? []).map(tour => (
                 <TourCardExtended
