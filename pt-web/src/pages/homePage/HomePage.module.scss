@@ -288,9 +288,12 @@
 
 .reviewsSubTitle {
   font-size: 20px;
+  font-weight: 400;
   line-height: 1.35;
   max-width: 644px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+  white-space: pre-wrap;
+  color: #38383F;
 }
 
 .faqBlock {
