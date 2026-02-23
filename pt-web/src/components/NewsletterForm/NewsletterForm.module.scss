@@ -4,7 +4,7 @@
 .newsletterForm {
   display: flex;
   flex-direction: column;
-  gap: vars.$gap-md;
+  gap: 12px;
   width: 100%;
   padding: 0;
   background-color: transparent;
@@ -16,25 +16,37 @@
   .inputGroup {
     display: flex;
     gap: 8px;
-    width: 420px;
+    width: 100%;
 
-    @media (width <= 1340px) {
-      flex-direction: column;
-      width: 280px;
+    @media (width <= 500px) {
+      gap: 6px;
     }
   }
 
   .inputWrapper {
+    flex: 1;
+    min-width: 0;
     display: flex;
     align-items: center;
     justify-content: flex-start;
+
+    @media (width <= 500px) {
+      min-width: 139px;
+    }
 
     .emailInput {
       padding: 18px 21px;
       border-radius: 10px;
       font-size: 16px;
+      width: 100%;
 
-      border: none;
+      @media (width <= 500px) {
+        padding: 14px 12px;
+        font-size: 14px;
+      }
+
+      border: 1px solid #EDEDED;
+      
 
       &::placeholder {
         color: vars.$contact-placeholder-color;
@@ -51,6 +63,13 @@
     border: none;
     font-size: 16px;
     width: 120px;
+    flex-shrink: 0;
+
+    @media (width <= 500px) {
+      padding: 14px 10px;
+      font-size: 14px;
+      width: 100px;
+    }
 
     &:hover {
       background-color: #0e2ead;
