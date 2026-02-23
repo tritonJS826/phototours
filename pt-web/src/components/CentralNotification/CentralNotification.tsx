@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import {X} from "lucide-react";
 import styles from "src/components/CentralNotification/CentralNotification.module.scss";
 
@@ -7,6 +8,7 @@ interface CentralNotificationProps {
   imageUrl: string;
   title: string;
   subtitle: string;
+  isCircleImage?: boolean;
 }
 
 export function CentralNotification({
@@ -15,6 +17,7 @@ export function CentralNotification({
   imageUrl,
   title,
   subtitle,
+  isCircleImage = false,
 }: CentralNotificationProps) {
   if (!isOpen) {
     return null;
@@ -38,7 +41,7 @@ export function CentralNotification({
         <img
           src={imageUrl}
           alt=""
-          className={styles.image}
+          className={clsx(styles.image, isCircleImage ? styles.circleImage : false)}
         />
         <h2 className={styles.title}>
           {title}
