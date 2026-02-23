@@ -1643,107 +1643,122 @@ VALUES
 
 
 -- TOUR ACTIVITIES
-INSERT INTO tour_activities (id, tour_id, activity, created_at)
+INSERT INTO tour_activities (tour_id, activity, icon_name, created_at)
 VALUES
-  -- Tour 1: Tuscany Spring
-  (tour_activity1_id, tour1_id, 'Sunrise photo sessions', '2025-04-15'),
-  (tour_activity2_id, tour1_id, 'Sunset photo sessions', '2025-04-15'),
-  (tour_activity3_id, tour1_id, 'Photography workshops', '2025-04-15'),
-  (tour_activity4_id, tour1_id, 'Editing & post-processing sessions', '2025-04-15'),
-  (tour_activity5_id, tour1_id, 'Cultural experiences', '2025-04-15'),
-  
-  -- Tour 2: Morocco
-  (tour_activity6_id, tour2_id, 'Sunrise photo sessions', '2025-04-15'),
-  (tour_activity7_id, tour2_id, 'Sunset photo sessions', '2025-04-15'),
-  (tour_activity8_id, tour2_id, 'Photography workshops', '2025-04-15'),
-  (tour_activity9_id, tour2_id, 'Editing & post-processing sessions', '2025-04-15'),
-  (tour_activity10_id, tour2_id, 'Cultural experiences', '2025-04-15'),
-  
-  -- Tour 3: Venice Carnival
-  (tour_activity11_id, tour3_id, 'Sunrise photo sessions', '2025-04-15'),
-  (tour_activity12_id, tour3_id, 'Sunset photo sessions', '2025-04-15'),
-  (tour_activity13_id, tour3_id, 'Photography workshops', '2025-04-15'),
-  (tour_activity14_id, tour3_id, 'Editing & post-processing sessions', '2025-04-15'),
-  (tour_activity15_id, tour3_id, 'Cultural experiences', '2025-04-15'),
-  
-  -- Tour 4: New Zealand
-  (tour_activity16_id, tour4_id, 'Sunrise photo sessions', '2025-04-15'),
-  (tour_activity17_id, tour4_id, 'Sunset photo sessions', '2025-04-15'),
-  (tour_activity18_id, tour4_id, 'Photography workshops', '2025-04-15'),
-  (tour_activity19_id, tour4_id, 'Editing & post-processing sessions', '2025-04-15'),
-  (tour_activity20_id, tour4_id, 'Cultural experiences', '2025-04-15'),
-  
-   -- Tour 5: Cyclades
-   (tour_activity21_id, tour5_id, 'Sunrise photo sessions', '2025-04-15'),
-   (tour_activity22_id, tour5_id, 'Sunset photo sessions', '2025-04-15'),
-   (tour_activity23_id, tour5_id, 'Photography workshops', '2025-04-15'),
-   (tour_activity24_id, tour5_id, 'Editing & post-processing sessions', '2025-04-15'),
-   (tour_activity25_id, tour5_id, 'The catamaran life experience', '2025-04-15'),
-   (tour_activity26_id, tour5_id, 'Sea-to-Land landscape photography', '2025-04-15'),
-   (tour_activity27_id, tour5_id, 'Cultural experiences', '2025-04-15'),
-   
-   -- Tour 6: Cinque-Terre & Umbria
-   (tour_activity28_id, tour6_id, 'Sunrise photo sessions', '2025-04-15'),
-   (tour_activity29_id, tour6_id, 'Sunset photo sessions', '2025-04-15'),
-   (tour_activity30_id, tour6_id, 'Photography workshops', '2025-04-15'),
-   (tour_activity31_id, tour6_id, 'Editing & post-processing sessions', '2025-04-15'),
-   (tour_activity32_id, tour6_id, 'Cultural experiences', '2025-04-15'),
-   
-   -- Tour 7: Provence
-   (tour_activity33_id, tour7_id, 'Sunrise photo sessions', '2025-04-15'),
-   (tour_activity34_id, tour7_id, 'Sunset photo sessions', '2025-04-15'),
-   (tour_activity35_id, tour7_id, 'Photography workshops', '2025-04-15'),
-   (tour_activity36_id, tour7_id, 'Editing & post-processing sessions', '2025-04-15'),
-   (tour_activity37_id, tour7_id, 'Cultural experiences', '2025-04-15'),
-   
-   -- Tour 8: Sicily and Aeolian Islands
-   (tour_activity38_id, tour8_id, 'Sunrise photo sessions', '2025-04-15'),
-   (tour_activity39_id, tour8_id, 'Sunset photo sessions', '2025-04-15'),
-   (tour_activity40_id, tour8_id, 'Photography workshops', '2025-04-15'),
-   (tour_activity41_id, tour8_id, 'Editing & post-processing sessions', '2025-04-15'),
-   (tour_activity42_id, tour8_id, 'Cultural experiences', '2025-04-15'),
-   
-   -- Tour 9: Czechia (autumn)
-   (tour_activity43_id, tour9_id, 'Sunrise photo sessions', '2025-04-15'),
-   (tour_activity44_id, tour9_id, 'Sunset photo sessions', '2025-04-15'),
-   (tour_activity45_id, tour9_id, 'Photography workshops', '2025-04-15'),
-   (tour_activity46_id, tour9_id, 'Editing & post-processing sessions', '2025-04-15'),
-   (tour_activity47_id, tour9_id, 'Cultural experiences', '2025-04-15'),
-   
-   -- Tour 10: Scotland
-   (tour_activity48_id, tour10_id, 'Sunrise photo sessions', '2025-04-15'),
-   (tour_activity49_id, tour10_id, 'Sunset photo sessions', '2025-04-15'),
-   (tour_activity50_id, tour10_id, 'Photography workshops', '2025-04-15'),
-   (tour_activity51_id, tour10_id, 'Editing & post-processing sessions', '2025-04-15'),
-   (tour_activity52_id, tour10_id, 'Cultural experiences', '2025-04-15'),
-   
-   -- Tour 11: Tuscany autumn
-   (tour_activity53_id, tour11_id, 'Sunrise photo sessions', '2025-04-15'),
-   (tour_activity54_id, tour11_id, 'Sunset photo sessions', '2025-04-15'),
-   (tour_activity55_id, tour11_id, 'Photography workshops', '2025-04-15'),
-   (tour_activity56_id, tour11_id, 'Editing & post-processing sessions', '2025-04-15'),
-   (tour_activity57_id, tour11_id, 'Cultural experiences', '2025-04-15'),
-   
-   -- Tour 12: Japan autumn
-   (tour_activity58_id, tour12_id, 'Sunrise photo sessions', '2025-04-15'),
-   (tour_activity59_id, tour12_id, 'Sunset photo sessions', '2025-04-15'),
-   (tour_activity60_id, tour12_id, 'Photography workshops', '2025-04-15'),
-   (tour_activity61_id, tour12_id, 'Editing & post-processing sessions', '2025-04-15'),
-   (tour_activity62_id, tour12_id, 'Cultural experiences', '2025-04-15'),
 
-   -- Tour 13: Iceland
-   (tour_activity63_id, tour13_id, 'Sunrise photo sessions', '2025-04-15'),
-   (tour_activity64_id, tour13_id, 'Sunset photo sessions', '2025-04-15'),
-   (tour_activity65_id, tour13_id, 'Photography workshops', '2025-04-15'),
-   (tour_activity66_id, tour13_id, 'Editing & post-processing sessions', '2025-04-15'),
-   (tour_activity67_id, tour13_id, 'Cultural experiences', '2025-04-15'),
+-- Tour 1: tuscany-spring-photo-tour
+(tour1_id, 'Sunrise', 'sunrise', '2025-04-15'),
+(tour1_id, 'Sunset', 'sunset', '2025-04-15'),
+(tour1_id, 'PhotographyWorkshops', 'photographyWorkshops', '2025-04-15'),
+(tour1_id, 'EditingPostProcessingSessions', 'editingPostProcessingSessions', '2025-04-15'),
+(tour1_id, 'Culturalexperiences', 'culturalExperiences', '2025-04-15'),
 
-   -- Tour 14: japan-spring
-   (tour_activity68_id, tour14_id, 'Sunrise photo sessions', '2025-04-15'),
-   (tour_activity69_id, tour14_id, 'Sunset photo sessions', '2025-04-15'),
-   (tour_activity70_id, tour14_id, 'Photography workshops', '2025-04-15'),
-   (tour_activity71_id, tour14_id, 'Editing & post-processing sessions', '2025-04-15'),
-   (tour_activity72_id, tour14_id, 'Cultural experiences', '2025-04-15');
+-- Tour 2: morocco-photo-tour
+(tour2_id, 'Sunrise', 'sunrise', '2025-04-15'),
+(tour2_id, 'Sunset', 'sunset', '2025-04-15'),
+(tour2_id, 'Photographyworkshops', 'photographyWorkshops', '2025-04-15'),
+(tour2_id, 'Editingpostprocessing', 'editingPostProcessingSessions', '2025-04-15'),
+(tour2_id, 'Culturalexperiences', 'culturalExperiences', '2025-04-15'),
+
+-- Tour 3: venice carnival
+(tour3_id, 'Sunrise', 'sunrise', '2025-04-15'),
+(tour3_id, 'Sunset', 'sunset', '2025-04-15'),
+(tour3_id, 'Photographyworkshops', 'photographyWorkshops', '2025-04-15'),
+(tour3_id, 'EditingPostProcessingSessions', 'editingPostProcessingSessions', '2025-04-15'),
+(tour3_id, 'Culturalexperiences', 'culturalExperiences', '2025-04-15'),
+
+-- Tour 4: new-zealand-photo-tour
+(tour4_id, 'Sunrise', 'sunrise', '2025-04-15'),
+(tour4_id, 'Sunset', 'sunset', '2025-04-15'),
+(tour4_id, 'Photographyworkshops', 'photographyWorkshops', '2025-04-15'),
+(tour4_id, 'Editingpostprocessing', 'editingPostProcessingSessions', '2025-04-15'),
+(tour4_id, 'Culturalexperiences', 'culturalExperiences', '2025-04-15'),
+(tour4_id, 'Hobbitonmoviesettour', 'hobbitonMovieSetTour', '2025-04-15'),
+(tour4_id, 'Geothermalparksaccess', 'specialOvernightStay', '2025-04-15'),
+(tour4_id, 'Manupiruahotspringsspeedboat', 'geothermalParksAccessHotSprings', '2025-04-15'),
+(tour4_id, 'MilfordSoundpremiumcruise', 'boatCoastalPhotography', '2025-04-15'),
+
+-- Tour 5: Cyclades
+(tour5_id, 'Sunrise', 'sunrise', '2025-04-15'),
+(tour5_id, 'Sunset', 'sunset', '2025-04-15'),
+(tour5_id, 'Photographyworkshops', 'photographyWorkshops', '2025-04-15'),
+(tour5_id, 'Editingpostprocessing', 'editingPostProcessingSessions', '2025-04-15'),
+(tour5_id, 'Thecatamaranlifeexperience', 'boatCoastalPhotography', '2025-04-15'),
+(tour5_id, 'SeatoLandlandscapephotography', 'specialOvernightStay', '2025-04-15'),
+(tour5_id, 'Culturalexperiences', 'culturalExperiences', '2025-04-15'),
+
+-- Tour 6: cinque-terre-umbria-tour
+(tour6_id, 'Sunrise', 'sunrise', '2025-04-15'),
+(tour6_id, 'Sunset', 'sunset', '2025-04-15'),
+(tour6_id, 'PhotographyWorkshops', 'photographyWorkshops', '2025-04-15'),
+(tour6_id, 'EditingPostProcessingSessions', 'editingPostProcessingSessions', '2025-04-15'),
+(tour6_id, 'Culturalexperiences', 'culturalExperiences', '2025-04-15'),
+
+-- Tour 7: Provence
+(tour7_id, 'Sunrise', 'sunrise', '2025-04-15'),
+(tour7_id, 'Sunset', 'sunset', '2025-04-15'),
+(tour7_id, 'PhotographyWorkshops', 'photographyWorkshops', '2025-04-15'),
+(tour7_id, 'EditingPostProcessingSessions', 'editingPostProcessingSessions', '2025-04-15'),
+(tour7_id, 'Culturalexperiences', 'culturalExperiences', '2025-04-15'),
+(tour7_id, 'Flamingo & birdlife shoots', 'flamingoBirdLifeShoots', '2025-04-15'),
+(tour7_id, 'Wild horses photo session', 'wildHorsesPhotoSessions', '2025-04-15'),
+(tour7_id, 'Scenic horse riding', 'extraHorse', '2025-04-15'),
+
+-- Tour 8: Sicily and Aeolian Islands
+(tour8_id, 'Sunrise', 'sunrise', '2025-04-15'),
+(tour8_id, 'Sunset', 'sunset', '2025-04-15'),
+(tour8_id, 'PhotographyWorkshops', 'photographyWorkshops', '2025-04-15'),
+(tour8_id, 'EditingPostProcessingSessions', 'editingPostProcessingSessions', '2025-04-15'),
+(tour8_id, 'Culturalexperiences', 'culturalExperiences', '2025-04-15'),
+(tour8_id, 'Thecatamaranlifeexperience', 'boatCoastalPhotography', '2025-04-15'),
+(tour8_id, 'SeatoLandlandscapephotography', 'specialOvernightStay', '2025-04-15'),
+(tour8_id, 'landscapephotography', 'landscapePhotography', '2025-04-15'),
+
+-- Tour 9: Czechia (autumn)
+(tour9_id, 'Sunrise', 'sunrise', '2025-04-15'),
+(tour9_id, 'Sunset', 'sunset', '2025-04-15'),
+(tour9_id, 'PhotographyWorkshops', 'photographyWorkshops', '2025-04-15'),
+(tour9_id, 'EditingPostProcessingSessions', 'editingPostProcessingSessions', '2025-04-15'),
+(tour9_id, 'Culturalexperiences', 'culturalExperiences', '2025-04-15'),
+
+-- Tour 10: Scotland
+(tour10_id, 'Sunrise', 'sunrise', '2025-04-15'),
+(tour10_id, 'Sunset', 'sunset', '2025-04-15'),
+(tour10_id, 'PhotographyWorkshops', 'photographyWorkshops', '2025-04-15'),
+(tour10_id, 'EditingPostProcessingSessions', 'editingPostProcessingSessions', '2025-04-15'),
+(tour10_id, 'Culturalexperiences', 'culturalExperiences', '2025-04-15'),
+
+-- Tour 11: Tuscany autumn
+(tour11_id, 'Sunrise', 'sunrise', '2025-04-15'),
+(tour11_id, 'Sunset', 'sunset', '2025-04-15'),
+(tour11_id, 'PhotographyWorkshops', 'photographyWorkshops', '2025-04-15'),
+(tour11_id, 'EditingPostProcessingSessions', 'editingPostProcessingSessions', '2025-04-15'),
+(tour11_id, 'Culturalexperiences', 'culturalExperiences', '2025-04-15'),
+
+-- Tour 12: Japan autumn
+(tour12_id, 'Sunrise', 'sunrise', '2025-04-15'),
+(tour12_id, 'Sunset', 'sunset', '2025-04-15'),
+(tour12_id, 'PhotographyWorkshops', 'photographyWorkshops', '2025-04-15'),
+(tour12_id, 'EditingPostProcessingSessions', 'editingPostProcessingSessions', '2025-04-15'),
+(tour12_id, 'Culturalexperiences', 'culturalExperiences', '2025-04-15'),
+(tour12_id, 'Authentic Ryokan (special overnight stay)', 'authenticRyokanStaySpecialOvernightStay', '2025-04-15'),
+(tour12_id, 'Jigokudani Monkey Park', 'wildlifeNature', '2025-04-15'),
+
+-- Tour 13: Japan Spring
+(tour14_id, 'Sunrise', 'sunrise', '2025-04-15'),
+(tour14_id, 'Sunset', 'sunset', '2025-04-15'),
+(tour14_id, 'PhotographyWorkshops', 'photographyWorkshops', '2025-04-15'),
+(tour14_id, 'EditingPostProcessingSessions', 'editingPostProcessingSessions', '2025-04-15'),
+(tour14_id, 'Culturalexperiences', 'culturalExperiences', '2025-04-15'),
+(tour14_id, 'Authentic Ryokan (special overnight stay)', 'authenticRyokanstayspecialovernightstay', '2025-04-15'),
+(tour14_id, 'Jigokudani Monkey Park', 'wildlifeNature', '2025-04-15'),
+
+-- Tour 14: Iceland
+(tour13_id, 'Sunrise', 'sunrise', '2025-04-15'),
+(tour13_id, 'Sunset', 'sunset', '2025-04-15'),
+(tour13_id, 'PhotographyWorkshops', 'photographyWorkshops', '2025-04-15'),
+(tour13_id, 'EditingPostProcessingSessions', 'editingPostProcessingSessions', '2025-04-15'),
+(tour13_id, 'Culturalexperiences', 'culturalExperiences', '2025-04-15');
 
 
  -- TOUR SUMMARY

@@ -34,7 +34,7 @@ type TourDTO = {
   photos?: Array<string | UrlObj>;
   videos?: Array<string | UrlObj>;
   included?: string[];
-  activities?: string[];
+  activities?: Array<{ activity: string; iconName: string }>;
   summary?: string[];
   dates: Array<DatesObj>;
   program?: {
@@ -160,7 +160,10 @@ function mapTourToView(dto: TourDTO): TourView {
     guide: dto.guide ? {id: dto.guide.id, name: dto.guide.name} : undefined,
     tags,
     categories,
-    activities: dto.activities ?? [],
+    activities: (dto.activities ?? []).map(a => ({
+      activity: typeof a === "string" ? a : a.activity,
+      iconName: typeof a === "string" ? "" : a.iconName,
+    })),
     included: dto.included ?? [],
     summary: dto.summary ?? [],
     groupSize: dto.groupSize ?? DEFAULT_GROUP_SIZE,

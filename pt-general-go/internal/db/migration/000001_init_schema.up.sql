@@ -208,6 +208,7 @@ CREATE TABLE tour_activities (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     tour_id UUID NOT NULL,
     activity TEXT NOT NULL,
+    icon_name TEXT NOT NULL, 
     created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     CONSTRAINT tour_activity_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE
 );

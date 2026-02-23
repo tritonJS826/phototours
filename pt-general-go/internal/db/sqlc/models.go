@@ -405,6 +405,7 @@ type TourActivity struct {
 	ID        pgtype.UUID
 	TourID    pgtype.UUID
 	Activity  string
+	IconName  string
 	CreatedAt pgtype.Timestamp
 }
 

@@ -30,6 +30,11 @@ export interface FaqItem {
   answer: string;
 }
 
+export interface TourActivity {
+  activity: string;
+  iconName: string;
+}
+
 export interface TourView {
   id: number;
   starAmount: number;
@@ -60,7 +65,7 @@ export interface TourView {
   tags?: string[];
   categories?: string[];
 
-  activities: string[];
+  activities: TourActivity[];
   included: string[];
   summary: string[];
 

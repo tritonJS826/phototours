@@ -14,6 +14,7 @@ func MapToDomainTourActivities(dbActivities []db.TourActivity) []domain.TourActi
 			ID:        PgUUIDToUUID(dbActivity.ID),
 			TourID:    PgUUIDToUUID(dbActivity.TourID),
 			Activity:  dbActivity.Activity,
+			IconName:  dbActivity.IconName,
 			CreatedAt: dbActivity.CreatedAt.Time,
 		}
 		activities = append(activities, activity)
@@ -30,11 +31,34 @@ func MapToDomainTourActivitiesByTourIDs(dbActivities []db.TourActivity) map[uuid
 			ID:        PgUUIDToUUID(dbActivity.ID),
 			TourID:    tourID,
 			Activity:  dbActivity.Activity,
+			IconName:  dbActivity.IconName,
 			CreatedAt: dbActivity.CreatedAt.Time,
 		}
 		result[tourID] = append(activities, activity)
 	}
 	return result
+}
+
+func MapToDomainTourActivitiesToActivityStructs(dbActivities []db.TourActivity) []domain.Activity {
+	activities := make([]domain.Activity, 0, len(dbActivities))
+	for _, dbActivity := range dbActivities {
+		activities = append(activities, domain.Activity{
+			Activity: dbActivity.Activity,
+			IconName: dbActivity.IconName,
+		})
+	}
+	return activities
+}
+
+func MapDomainTourActivitiesToActivityStructs(domainActivities []domain.TourActivity) []domain.Activity {
+	activities := make([]domain.Activity, 0, len(domainActivities))
+	for _, dbActivity := range domainActivities {
+		activities = append(activities, domain.Activity{
+			Activity: dbActivity.Activity,
+			IconName: dbActivity.IconName,
+		})
+	}
+	return activities
 }
 
 func MapToDomainTourActivitiesToStrings(dbActivities []db.TourActivity) []string {

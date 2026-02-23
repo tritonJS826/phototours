@@ -9,7 +9,6 @@ import checkboxAccepted from "/images/checkboxAccepted.svg";
 import flagRoundBlue from "/images/flagRoundBlue.svg";
 import grayArrowRightCircle from "/images/grayArrowRightCircle.svg";
 import people from "/images/people.svg";
-import photoRoundBlue from "/images/photoRoundBlue.svg";
 import reviews from "/images/reviews.svg";
 import spotsLeft from "/images/spotsLeft.svg";
 import starYellow from "/images/star-yellow.png";
@@ -35,6 +34,7 @@ import {
 } from "src/services/bookingService";
 import {getSimilarToursByTourId, getTourBySlug} from "src/services/toursService";
 import type {TourView} from "src/types/tour";
+import {getActivityIcon} from "src/utils/activityIcons";
 import {formatMonthsToDateRange} from "src/utils/dateUtils";
 import {renderMultilineDouble} from "src/utils/textUtils";
 import type {Swiper as SwiperType} from "swiper";
@@ -42,9 +42,6 @@ import {A11y, Keyboard} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import styles from "src/pages/tourDetailsPage/TourDetailsPage.module.scss";
-
-const MAGIC_2_WORKAROUND = 2;
-const MAGIC_4_WORKAROUND = 4;
 
 const ANCHOR_SCHEDULE = "schedule";
 const ANCHOR_REVIEWS = "reviews";
@@ -847,13 +844,13 @@ export function TourDetailsPage() {
                   key={i}
                 >
                   <img
-                    src={(i === MAGIC_4_WORKAROUND || i === MAGIC_2_WORKAROUND) ? flagRoundBlue : photoRoundBlue}
-                    alt="flag icon"
+                    src={getActivityIcon(activity.iconName)}
+                    alt="activity icon"
                     loading="lazy"
                     className={styles.includedImg}
                   />
                   <span className={styles.includedDescription}>
-                    {activity}
+                    {activity.activity}
                   </span>
                 </div>
               ))}
