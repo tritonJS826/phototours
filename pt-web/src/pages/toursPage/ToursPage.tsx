@@ -39,7 +39,7 @@ export function ToursPage() {
   };
 
   const [filters, setFilters] = useState<ToursFilter>(getFiltersFromURL());
-  const [priceRange, setPriceRange] = useState({min: 300, max: 6000});
+  const [priceRange, setPriceRange] = useState({min: 300, max: 9900});
   const {allTours, loading, error, reload} = useTours(filters);
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
@@ -121,7 +121,7 @@ export function ToursPage() {
 
   const handleResetAll = () => {
     setFilters({});
-    setPriceRange({min: 300, max: 6000});
+    setPriceRange({min: 300, max: 9900});
     setSearchParams(new URLSearchParams()); // Clear URL params
   };
 
@@ -341,7 +341,8 @@ export function ToursPage() {
           <input
             type="range"
             min="300"
-            max="6000"
+            max="9900"
+            step="100"
             value={priceRange.min}
             className={styles.range}
             id="min"
@@ -350,7 +351,8 @@ export function ToursPage() {
           <input
             type="range"
             min="300"
-            max="6000"
+            max="9900"
+            step="100"
             value={priceRange.max}
             className={styles.range}
             id="max"
