@@ -55,6 +55,7 @@ type TourDTO = {
   groupSize: number;
   spotsLeft: number;
   subtitle: string;
+  reviewsSectionName: string;
 
   popUp1Description: string;
   popUp1ImageUrl: string;
@@ -154,6 +155,7 @@ function mapTourToView(dto: TourDTO): TourView {
     videos: videoUrls,
     dates,
     dailyItinerary,
+    reviewsSectionName: dto.reviewsSectionName,
     faq,
     guide: dto.guide ? {id: dto.guide.id, name: dto.guide.name} : undefined,
     tags,

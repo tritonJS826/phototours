@@ -68,6 +68,7 @@ CREATE TABLE tours (
     program JSONB NOT NULL,
     -- {questions: [question: string, answer: string]}
     faq JSONB NOT NULL, 
+    reviews_section_name TEXT NOT NULL,
     guide_id UUID,
     cover_url TEXT,
     duration_days INTEGER,

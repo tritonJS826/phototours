@@ -8,23 +8,24 @@ import (
 )
 
 type TourDTO struct {
-	Price           *float64        `json:"price" example:"1500.00"`
-	MinAge          *int32          `json:"minAge" example:"18"`
-	EndLocation     *string         `json:"endLocation" example:"Astana"`
-	StartLocation   *string         `json:"startLocation" example:"Almaty"`
-	DurationDays    *int32          `json:"durationDays" example:"7"`
-	CoverURL        *string         `json:"coverUrl" example:"https://example.com/cover.jpg"`
-	GuideID         *string         `json:"guideId" example:"123e4567-e89b-12d3-a456-426614174000"`
-	Description     string          `json:"description" example:"An exciting mountain tour"`
-	Difficulty      string          `json:"difficulty" example:"MEDIUM"`
-	Slug            string          `json:"slug" example:"mountain-adventure"`
-	Title           string          `json:"title" example:"Mountain Adventure"`
-	CreatedAt       string          `json:"createdAt" example:"2024-01-15T10:00:00Z"`
-	UpdatedAt       string          `json:"updatedAt" example:"2024-01-15T10:00:00Z"`
-	ID              string          `json:"id" example:"123e4567-e89b-12d3-a456-426614174000"`
-	Languages       []string        `json:"languages" example:"English,Russian"`
-	AvailableMonths []string        `json:"availableMonths" example:"June,July,August"`
-	Program         json.RawMessage `json:"program" swaggertype:"object"`
+	Price              *float64        `json:"price" example:"1500.00"`
+	MinAge             *int32          `json:"minAge" example:"18"`
+	EndLocation        *string         `json:"endLocation" example:"Astana"`
+	StartLocation      *string         `json:"startLocation" example:"Almaty"`
+	DurationDays       *int32          `json:"durationDays" example:"7"`
+	CoverURL           *string         `json:"coverUrl" example:"https://example.com/cover.jpg"`
+	GuideID            *string         `json:"guideId" example:"123e4567-e89b-12d3-a456-426614174000"`
+	Description        string          `json:"description" example:"An exciting mountain tour"`
+	Difficulty         string          `json:"difficulty" example:"MEDIUM"`
+	Slug               string          `json:"slug" example:"mountain-adventure"`
+	Title              string          `json:"title" example:"Mountain Adventure"`
+	CreatedAt          string          `json:"createdAt" example:"2024-01-15T10:00:00Z"`
+	UpdatedAt          string          `json:"updatedAt" example:"2024-01-15T10:00:00Z"`
+	ID                 string          `json:"id" example:"123e4567-e89b-12d3-a456-426614174000"`
+	Languages          []string        `json:"languages" example:"English,Russian"`
+	AvailableMonths    []string        `json:"availableMonths" example:"June,July,August"`
+	Program            json.RawMessage `json:"program" swaggertype:"object"`
+	ReviewsSectionName string          `json:"reviewsSectionName" example:"Why travelers love this"`
 }
 
 type TourFullDTO struct {
@@ -94,37 +95,39 @@ type CategoryDTO struct {
 }
 
 type CreateTourRequest struct {
-	Title           string          `json:"title" binding:"required" example:"Mountain Adventure"`
-	Description     string          `json:"description" binding:"required" example:"An exciting mountain tour"`
-	Difficulty      string          `json:"difficulty" binding:"required" example:"MEDIUM"`
-	Slug            *string         `json:"slug" example:"mountain-adventure"`
-	CoverURL        *string         `json:"coverUrl" example:"https://example.com/cover.jpg"`
-	GuideID         *string         `json:"guideId" example:"123e4567-e89b-12d3-a456-426614174000"`
-	DurationDays    *int32          `json:"durationDays" example:"7"`
-	Price           *float64        `json:"price" example:"1500.00"`
-	StartLocation   *string         `json:"startLocation" example:"Almaty"`
-	EndLocation     *string         `json:"endLocation" example:"Astana"`
-	MinAge          *int32          `json:"minAge" example:"18"`
-	Languages       []string        `json:"languages" example:"English,Russian"`
-	AvailableMonths []string        `json:"availableMonths" example:"June,July,August"`
-	Program         json.RawMessage `json:"program" swaggertype:"object"`
+	Title              string          `json:"title" binding:"required" example:"Mountain Adventure"`
+	Description        string          `json:"description" binding:"required" example:"An exciting mountain tour"`
+	Difficulty         string          `json:"difficulty" binding:"required" example:"MEDIUM"`
+	Slug               *string         `json:"slug" example:"mountain-adventure"`
+	CoverURL           *string         `json:"coverUrl" example:"https://example.com/cover.jpg"`
+	GuideID            *string         `json:"guideId" example:"123e4567-e89b-12d3-a456-426614174000"`
+	DurationDays       *int32          `json:"durationDays" example:"7"`
+	Price              *float64        `json:"price" example:"1500.00"`
+	StartLocation      *string         `json:"startLocation" example:"Almaty"`
+	EndLocation        *string         `json:"endLocation" example:"Astana"`
+	MinAge             *int32          `json:"minAge" example:"18"`
+	Languages          []string        `json:"languages" example:"English,Russian"`
+	AvailableMonths    []string        `json:"availableMonths" example:"June,July,August"`
+	Program            json.RawMessage `json:"program" swaggertype:"object"`
+	ReviewsSectionName *string         `json:"reviewsSectionName" example:"Why travelers love this"`
 }
 
 type UpdateTourRequest struct {
-	Title           *string          `json:"title" example:"Mountain Adventure Updated"`
-	Slug            *string          `json:"slug" example:"mountain-adventure-updated"`
-	Description     *string          `json:"description" example:"An updated exciting mountain tour"`
-	Difficulty      *string          `json:"difficulty" example:"HARD"`
-	CoverURL        *string          `json:"coverUrl" example:"https://example.com/new-cover.jpg"`
-	GuideID         *string          `json:"guideId" example:"123e4567-e89b-12d3-a456-426614174000"`
-	Price           *float64         `json:"price" example:"2000.00"`
-	DurationDays    *int32           `json:"durationDays" example:"10"`
-	StartLocation   *string          `json:"startLocation" example:"Bishkek"`
-	EndLocation     *string          `json:"endLocation" example:"Osh"`
-	MinAge          *int32           `json:"minAge" example:"21"`
-	Program         *json.RawMessage `json:"program" swaggertype:"object"`
-	Languages       *[]string        `json:"languages" example:"English,Russian,Kazakh"`
-	AvailableMonths *[]string        `json:"availableMonths" example:"May,June,July,August,September"`
+	Title              *string          `json:"title" example:"Mountain Adventure Updated"`
+	Slug               *string          `json:"slug" example:"mountain-adventure-updated"`
+	Description        *string          `json:"description" example:"An updated exciting mountain tour"`
+	Difficulty         *string          `json:"difficulty" example:"HARD"`
+	CoverURL           *string          `json:"coverUrl" example:"https://example.com/new-cover.jpg"`
+	GuideID            *string          `json:"guideId" example:"123e4567-e89b-12d3-a456-426614174000"`
+	Price              *float64         `json:"price" example:"2000.00"`
+	DurationDays       *int32           `json:"durationDays" example:"10"`
+	StartLocation      *string          `json:"startLocation" example:"Bishkek"`
+	EndLocation        *string          `json:"endLocation" example:"Osh"`
+	MinAge             *int32           `json:"minAge" example:"21"`
+	Program            *json.RawMessage `json:"program" swaggertype:"object"`
+	Languages          *[]string        `json:"languages" example:"English,Russian,Kazakh"`
+	AvailableMonths    *[]string        `json:"availableMonths" example:"May,June,July,August,September"`
+	ReviewsSectionName *string          `json:"reviewsSectionName" example:"Why travelers love this"`
 }
 
 func (r *UpdateTourRequest) ToDomain() (*domain.UpdateTourParams, error) {
@@ -144,19 +147,20 @@ func (r *UpdateTourRequest) ToDomain() (*domain.UpdateTourParams, error) {
 	}
 
 	return &domain.UpdateTourParams{
-		Title:           r.Title,
-		Slug:            r.Slug,
-		Description:     r.Description,
-		Difficulty:      difficulty,
-		CoverURL:        r.CoverURL,
-		GuideID:         guideID,
-		Price:           r.Price,
-		DurationDays:    r.DurationDays,
-		StartLocation:   r.StartLocation,
-		EndLocation:     r.EndLocation,
-		MinAge:          r.MinAge,
-		Program:         r.Program,
-		Languages:       r.Languages,
-		AvailableMonths: r.AvailableMonths,
+		Title:              r.Title,
+		Slug:               r.Slug,
+		Description:        r.Description,
+		Difficulty:         difficulty,
+		CoverURL:           r.CoverURL,
+		GuideID:            guideID,
+		Price:              r.Price,
+		DurationDays:       r.DurationDays,
+		StartLocation:      r.StartLocation,
+		EndLocation:        r.EndLocation,
+		MinAge:             r.MinAge,
+		Program:            r.Program,
+		Languages:          r.Languages,
+		AvailableMonths:    r.AvailableMonths,
+		ReviewsSectionName: r.ReviewsSectionName,
 	}, nil
 }

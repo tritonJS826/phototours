@@ -75,6 +75,9 @@ export interface TourView {
   popUp2Title: string;
   popUp2Description: string;
   popUp2ImageUrl: string;
+
+  // Reviews section dynamic title
+  reviewsSectionName?: string;
 }
 
 export interface TourMaterial {

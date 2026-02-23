@@ -921,7 +921,7 @@ export function TourDetailsPage() {
       >
         <div className={styles.whyLoveContent}>
           <h2 className={styles.whyLoveTitle}>
-            Why travelers love this
+            {tour.reviewsSectionName}
           </h2>
 
           <ReviewsSection />

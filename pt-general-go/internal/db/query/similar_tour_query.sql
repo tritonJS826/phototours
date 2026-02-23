@@ -26,6 +26,7 @@ SELECT
     tours.pop_up2_description,
     tours.pop_up1_image_url,
     tours.pop_up2_image_url,
+    tours.reviews_section_name,
     tours.created_at,
     tours.updated_at
 FROM similar_tours

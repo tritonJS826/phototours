@@ -39,6 +39,7 @@ SELECT
     tours.pop_up2_description,
     tours.pop_up1_image_url,
     tours.pop_up2_image_url,
+    tours.reviews_section_name,
     tours.created_at,
     tours.updated_at
 FROM similar_tours
@@ -47,34 +48,35 @@ WHERE similar_tours.tour_id = $1
 `
 
 type GetSimilarToursByTourIDRow struct {
-	ID                pgtype.UUID
-	Slug              string
-	Title             string
-	Description       string
-	Difficulty        DifficultyLevel
-	Price             pgtype.Float8
-	Program           []byte
-	Faq               []byte
-	GuideID           pgtype.UUID
-	CoverUrl          pgtype.Text
-	DurationDays      pgtype.Int4
-	EndLocation       pgtype.Text
-	AvailableMonths   []string
-	Languages         []string
-	MinAge            pgtype.Int4
-	StartLocation     pgtype.Text
-	Location          pgtype.Text
-	GroupSize         pgtype.Int4
-	SpotsLeft         pgtype.Int4
-	Subtitle          pgtype.Text
-	PopUp1Title       string
-	PopUp1Description string
-	PopUp2Title       string
-	PopUp2Description string
-	PopUp1ImageUrl    string
-	PopUp2ImageUrl    string
-	CreatedAt         pgtype.Timestamp
-	UpdatedAt         pgtype.Timestamp
+	ID                 pgtype.UUID
+	Slug               string
+	Title              string
+	Description        string
+	Difficulty         DifficultyLevel
+	Price              pgtype.Float8
+	Program            []byte
+	Faq                []byte
+	GuideID            pgtype.UUID
+	CoverUrl           pgtype.Text
+	DurationDays       pgtype.Int4
+	EndLocation        pgtype.Text
+	AvailableMonths    []string
+	Languages          []string
+	MinAge             pgtype.Int4
+	StartLocation      pgtype.Text
+	Location           pgtype.Text
+	GroupSize          pgtype.Int4
+	SpotsLeft          pgtype.Int4
+	Subtitle           pgtype.Text
+	PopUp1Title        string
+	PopUp1Description  string
+	PopUp2Title        string
+	PopUp2Description  string
+	PopUp1ImageUrl     string
+	PopUp2ImageUrl     string
+	ReviewsSectionName string
+	CreatedAt          pgtype.Timestamp
+	UpdatedAt          pgtype.Timestamp
 }
 
 func (q *Queries) GetSimilarToursByTourID(ctx context.Context, tourID pgtype.UUID) ([]GetSimilarToursByTourIDRow, error) {
@@ -113,6 +115,7 @@ func (q *Queries) GetSimilarToursByTourID(ctx context.Context, tourID pgtype.UUI
 			&i.PopUp2Description,
 			&i.PopUp1ImageUrl,
 			&i.PopUp2ImageUrl,
+			&i.ReviewsSectionName,
 			&i.CreatedAt,
 			&i.UpdatedAt,
 		); err != nil {
