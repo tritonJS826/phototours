@@ -80,7 +80,7 @@
           gap: vars.$gap-md;
 
           .footerLink {
-            color: vars.$color-medium;
+            color: #151517;
             text-decoration: none;
             font-size: vars.$font-size-md;
             font-weight: 400;
@@ -89,11 +89,11 @@
             line-height: 1.4;
 
             &:hover {
-              color: vars.$contact-btn-bg;
+              color: #424242;
             }
 
             &:focus-visible {
-              outline: vars.$border-width-medium solid vars.$contact-btn-bg;
+              outline: vars.$border-width-medium solid #424242;
               outline-offset: vars.$border-width-medium;
             }
           }
