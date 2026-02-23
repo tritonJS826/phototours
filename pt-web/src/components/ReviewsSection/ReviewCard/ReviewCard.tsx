@@ -7,6 +7,7 @@ export interface ReviewCardProps {
     id: string;
     userImg: string;
     title: string;
+    secondTitle: string;
     subtitle: string | React.ReactElement;
     description: string;
 }
@@ -26,6 +27,9 @@ export function ReviewCard(props: ReviewCardProps) {
         <div className={styles.titleBlock}>
           <h3 className={styles.title}>
             {props.title}
+          </h3>
+          <h3 className={styles.secondTitle}>
+            {props.secondTitle}
           </h3>
         </div>
         <h4 className={styles.subtitle}>

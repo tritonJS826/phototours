@@ -16,13 +16,21 @@
 .titleBlock {
   margin-top: 20px;
   display: flex;
-  align-items: center;
-  gap: 15px;
+  flex-direction: column;
 }
 
 .title {
   font-weight: 500;
   font-size: 30px;
+}
+
+.secondTitle {
+  font-family: "Onest", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: -3%;
 }
 
 .flagImage {

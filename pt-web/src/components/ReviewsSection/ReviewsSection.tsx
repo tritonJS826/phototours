@@ -34,28 +34,34 @@ const getRandomUserImage = () => {
   return images[Math.floor(Math.random() * images.length)];
 };
 
-const mapReviewToCardProps = (review: Review): ReviewCardProps => ({
-  id: review.id,
-  userImg: review.image || getRandomUserImage(),
-  title: review.userName,
-  subtitle: (
-    <span>
-      You can message
-      {" "}
-      {review.userName}
-      {" "}
-      <a
-        style={{textDecoration: "underline"}}
-        href={review.link}
-      >
-        here
-      </a>
-    </span>
-  ),
-  description:
-    review.comment ||
-    "Amazing experience! Would definitely recommend this tour.",
-});
+const mapReviewToCardProps = (review: Review): ReviewCardProps => {
+  const INDEX_OF_FIRST_SPACE = 1;
+  const titleParts = review.userName.split(" ");
+  const firstName = titleParts[0];
+  const surname = titleParts.slice(INDEX_OF_FIRST_SPACE).join(" ");
+
+  return ({
+    id: review.id,
+    userImg: review.image || getRandomUserImage(),
+    title: firstName,
+    secondTitle: surname,
+    subtitle: (
+      <span>
+        You can message
+        {" "}
+        {firstName}
+        {" "}
+        <a
+          style={{textDecoration: "underline"}}
+          href={review.link}
+        >
+          here
+        </a>
+      </span>
+    ),
+    description: review.comment,
+  });
+};
 
 const DEFAULT_FIRST_SLIDE = 1;
 const SLIDES_INCREMENT = 1;
@@ -180,6 +186,7 @@ export function ReviewsSection(props: ToursSectionProps) {
                 description={review.description}
                 id={review.id}
                 subtitle={review.subtitle}
+                secondTitle={review.secondTitle}
                 title={review.title}
                 userImg={review.userImg}
               />
@@ -248,6 +255,7 @@ export function ReviewsSection(props: ToursSectionProps) {
                 id={review.id}
                 subtitle={review.subtitle}
                 title={review.title}
+                secondTitle={review.secondTitle}
                 userImg={review.userImg}
               />
             </SwiperSlide>
