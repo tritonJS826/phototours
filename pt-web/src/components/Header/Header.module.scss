@@ -98,7 +98,7 @@
   }
 }
 
-.primaryHeaderLink {
+a.primaryHeaderLink {
   background: linear-gradient(101.01deg, #3e61ed -83.91%, #233787 167.82%);
   height: 30px;
   padding: 5px 10px;
@@ -108,6 +108,11 @@
   align-items: center;
   font-weight: 500;
   color: white;
+
+  &:hover {
+    color: white;
+    background: #0E2EAD;
+  }
 }
 
 .rightHeaderLinks {

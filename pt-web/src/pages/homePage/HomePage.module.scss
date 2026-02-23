@@ -87,6 +87,11 @@
   justify-content: center;
   align-items: center;
   font-weight: 500;
+
+  &:hover {
+    color: white;
+    background: #0E2EAD;
+  }
 }
 
 .rightHeaderLinks {
