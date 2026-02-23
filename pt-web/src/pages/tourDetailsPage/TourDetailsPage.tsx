@@ -1,6 +1,6 @@
 import {useEffect, useRef, useState} from "react";
 // Import {Helmet} from "react-helmet-async";
-import {Link, useParams} from "react-router-dom";
+import {Link, useParams, useSearchParams} from "react-router-dom";
 import arrowsToRight from "/images/arrowsToRight.svg";
 // Import blueArrowCircleRight from "/images/blueArrowCircleRight.svg";
 import calendar from "/images/calendar-blue.svg";
@@ -111,6 +111,8 @@ const TABLET_SLIDES_PER_VIEW_GALLERY_SLIDER = 4;
 const DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER = 5;
 const LARGE_DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER = 6;
 
+const WIDTH_FOR_ACTIVE_BUY_FORM_OPEN = 1210;
+
 export function TourDetailsPage() {
   const {slug} = useParams<{ slug: string }>();
 
@@ -130,6 +132,18 @@ export function TourDetailsPage() {
     rooms: 0,
   });
   const [similarTours, setSimilarTours] = useState<TourView[]>([]);
+  const [searchParams] = useSearchParams();
+
+  const isActionBuyFormOpenEnabled = () => {
+    return window.innerWidth < WIDTH_FOR_ACTIVE_BUY_FORM_OPEN;
+  };
+
+  useEffect(() => {
+    const isBuyFormOpen = searchParams.get("isBuyFormOpen") === "true";
+    if (isBuyFormOpen && isActionBuyFormOpenEnabled()) {
+      setIsBuyTravelModalOpen(true);
+    }
+  }, [searchParams]);
 
   const handleBookNow = async () => {
     if (!tour) {
