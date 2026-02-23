@@ -7,8 +7,8 @@
   width: 100%;
   background-color: #fff;
   border-bottom: 1px solid #e0e0e0;
-  color: vars.$header-footer-color;
-  font-weight: 100;
+  color: black;
+  font-weight: 300;
 }
 
 .headerContainer {
@@ -305,7 +305,7 @@
   .mobileMenu {
     display: block;
     position: fixed;
-    top: 60px;
+    top: 90px;
     left: 0;
     right: 0;
     width: 100%;
@@ -318,8 +318,14 @@
   }
 
   .headerContainer {
-    max-width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 
+    max-width: 100%;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
     // height: 60px;
   }
 
@@ -327,8 +333,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: 53px;
+    height: 53px;
     background-color: #2f53de;
     border: none;
     border-radius: 8px;
@@ -338,10 +344,20 @@
       width: 28px;
       height: 28px;
       stroke: #fff;
+      stroke-width: 2;
     }
   }
 
   .headerLogo {
+    display: flex;
+    align-items: center;
+  }
+
+  .headerNav {
+    display: none;
+  }
+
+  .rightHeaderLinks {
     display: none;
   }
 }
