@@ -46,6 +46,9 @@ import styles from "src/pages/tourDetailsPage/TourDetailsPage.module.scss";
 const MAGIC_2_WORKAROUND = 2;
 const MAGIC_4_WORKAROUND = 4;
 
+const ANCHOR_SCHEDULE = "schedule";
+const ANCHOR_REVIEWS = "reviews";
+
 interface ScheduleAccordionItemProps {
   description: string;
   image?: string;
@@ -859,7 +862,7 @@ export function TourDetailsPage() {
 
           <hr />
 
-          <div className={styles.schedule}>
+          <div id={ANCHOR_SCHEDULE} className={styles.schedule}>
             <h2 className={styles.scheduleTitle}>
               Schedule
             </h2>
@@ -909,7 +912,7 @@ export function TourDetailsPage() {
         </div>
       </section>
 
-      <div className={styles.whyLove}>
+      <div id={ANCHOR_REVIEWS} className={styles.whyLove}>
         <div className={styles.whyLoveContent}>
           <h2 className={styles.whyLoveTitle}>
             Why travelers love this
