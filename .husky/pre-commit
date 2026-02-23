@@ -2,7 +2,7 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 WEBAPP="pt-web/"
-GENERAL="pt-general/"
+GENERAL="pt-general-go/"
 
 # generateSwaggerDocs () {
 #   pnpm swag
@@ -41,7 +41,6 @@ runGeneralIfChanged () {
     echo "general changed. checking..."
     pnpm general:lint-staged
     pnpm concurrently \
-        "pnpm general:type-check" \
         "pnpm general:test" \
         "pnpm general:build"
   fi

@@ -3,7 +3,6 @@
 # Define your services
 services=(
   "pt-web"
-  "pt-general"
   "pt-general-go"
   "grafana"
 )
