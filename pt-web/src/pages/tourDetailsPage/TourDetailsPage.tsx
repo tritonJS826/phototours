@@ -862,7 +862,10 @@ export function TourDetailsPage() {
 
           <hr />
 
-          <div id={ANCHOR_SCHEDULE} className={styles.schedule}>
+          <div
+            id={ANCHOR_SCHEDULE}
+            className={styles.schedule}
+          >
             <h2 className={styles.scheduleTitle}>
               Schedule
             </h2>
@@ -912,7 +915,10 @@ export function TourDetailsPage() {
         </div>
       </section>
 
-      <div id={ANCHOR_REVIEWS} className={styles.whyLove}>
+      <div
+        id={ANCHOR_REVIEWS}
+        className={styles.whyLove}
+      >
         <div className={styles.whyLoveContent}>
           <h2 className={styles.whyLoveTitle}>
             Why travelers love this

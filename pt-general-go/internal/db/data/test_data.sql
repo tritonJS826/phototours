@@ -732,6 +732,46 @@ VALUES
         "day": "10",
         "plan": "FAREWELL TO THE NORTH & CROSSING TO THE SOUTH ISLAND",
         "description": "Our final morning on the North Island begins with a spectacular sunrise photography session near Mount Taranaki, capturing the volcano’s iconic silhouette one last time. Afterward, we embark on the return journey to Auckland, concluding the first chapter of our New Zealand expedition.\n\nFor those continuing the adventure, we transition to the next phase of our journey. We will catch a domestic flight from Auckland to Christchurch - the historic gateway to the rugged beauty of the South Island."
+      },
+      {
+      "day": "11–12",
+      "plan": "THE SOUTH ISLAND. GLACIAL MAJESTY OF LAKE PUKAKI",
+      "description": "Our journey on the South Island starts with a 3.5-hour drive from Christchurch to the shores of Lake Pukaki, where we will stay for two nights. This location is a landscape photographer’s dream. The lake’s unique electric-blue water, tinted by glacial flour, acts as a perfect mirror for the surrounding Southern Alps.\n\nSunrise here is particularly spectacular, as the peaks glow in hues of rose and gold, while dusk drapes the mountains in soft purple shadows. Along the road to the Tasman Glacier, we will stop at Peter’s Lookout and other iconic vantage points. These locations offer sweeping panoramas of glacial valleys where the light is constantly shifting — from dramatic morning mists to the warm, textured glow of the golden hour.\n\nThe highlight of this leg is our excursion to the Tasman Glacier View. Following a scenic drive through the heart of the Alps, a short trek leads us to a stunning overlook. From here, you can capture the immense scale of the blue icefalls, deep crevasses, and the terminal glacial lake. This region is unparalleled for panoramic photography, atmospheric ice details, and capturing the raw, elemental beauty of New Zealand’s high country."
+      },
+      {
+        "day": "13",
+        "plan": "THE SOUTH ISLAND. THE MYSTERY OF THE MOERAKI BOULDERS",
+        "description": "We journey to the coast (approx. a 2-hour drive) to encounter one of New Zealand’s most surreal sights: the Moeraki Boulders. These massive, perfectly spherical monoliths are scattered along the shoreline, providing a unique focal point for long-exposure photography.\n\nAs the tide rolls in, the waves wrap around these ancient stones, leaving behind ethereal trails of sea foam. During the golden hours, the wet sand reflects the sky and the boulders themselves, creating minimalist, graphic scenes. Though their near-perfect symmetry seems artificial, these boulders are a geological marvel known as septarian concretions, formed millions of years ago on the seabed and exposed over eons of erosion.\n\nFor any landscape photographer, Moeraki is an invaluable location where form, space, and the movement of the tide converge. We will dedicate both a sunrise and a sunset session to this incredible site, ensuring you capture the quiet, prehistoric energy of the coast for your New Zealand photography portfolio."
+      },
+      {
+        "day": "14-15",
+        "plan": "THE SOUTH ISLAND. MILFORD SOUND: THE EIGHTH WONDER OF THE WORLD",
+        "description": "Our journey continues toward Te Anau, the gateway to Fiordland National Park—the undisputed jewel of our expedition. While the 4.5-hour drive is long, we make several scenic stops to capture the shifting landscapes of the high country.\n\nMilford Sound (Piopiotahi) is a sanctuary for landscape photography. This deep, narrow fiord is flanked by sheer rock faces rising 1,200 meters directly from dark, still waters. The peaks are often shrouded in mist, creating moody, cinematic compositions. After rainfall, hundreds of temporary waterfalls cascade down the cliffs, adding a sense of raw energy to your frames.\n\nIncluded in your tour is an exclusive premium cruise experience. This unhurried voyage takes us deep into the heart of the fiord, past lush rainforests and thundering waterfalls. With an intimate atmosphere on board, a glass of champagne, and locally sourced canapés, you can focus entirely on your craft.\n\nAs sunset approaches, the light softens into a palette of violet and rose. We will photograph the golden hour from the shore, capturing the towering peaks and their reflections in the prehistoric silence of this ancient landscape before returning to Te Anau for the night."
+      },
+      {
+        "day": "16",
+        "plan": "THE SOUTH ISLAND. LAKE WANAKA: THE LONE WILLOW & ALPINE SERENITY",
+        "description": "This day begins with a 3-hour journey toward Lake Wanaka. As we traverse the heart of the island, we’ll pass through idyllic high-country landscapes where emerald valleys and grazing sheep offer classic New Zealand vistas at every turn.\n\nWe have a dedicated overnight stay in Wanaka with a singular focus: capturing the world-famous \"That Wanaka Tree.\" This solitary willow, growing directly out of the lake’s crystal-clear waters just meters from the shore, is a masterpiece of natural symmetry.\n\nThe silhouette of the tree against the backdrop of the Southern Alps creates a graphic, serene composition. At sunrise, we often catch perfect mirror-like reflections, while the sunset provides a soft, tranquil glow. Regardless of the weather, this location offers atmospheric shots stripped of all distractions."
+      },
+      {
+        "day": "17-18",
+        "plan": "THE SOUTH ISLAND. FOX GLACIER: ICE ARCHITECTURE & THE MIRROR LAKE",
+        "description": "We head to the rugged West Coast of the South Island, arriving at Fox Glacier (Te Moeka o Tuawe) after a scenic drive. This region is a rare natural laboratory where you can witness the raw power of geological forces. Here, the glacier descends into the lush greenery of the rainforest, creating a striking contrast between alpine ice and dense bush.\n\nHighlights include the Fox Glacier Viewpoint and Lake Matheson, known worldwide as the \"Mirror Lake.\" On a calm day, the lake offers a flawless reflection of Mount Cook (Aoraki) and Mount Tasman. We will time our visit for a sunset session to capture that perfect alpine glow.\n\nFor those seeking the ultimate perspective, an optional helicopter flight with a glacier landing (Heli-hike) can be arranged, providing unparalleled access to pristine upper ice fields."
+      },
+      {
+        "day": "19",
+        "plan": "THE SOUTH ISLAND. THE WILD WEST COAST: PUNAKAIKI & MOTUKIEKIE",
+        "description": "Today we journey north to Paparoa National Park, where dense rainforest meets the crashing Tasman Sea.\n\nOur primary destination is Punakaiki and the Pancake Rocks. During high tide, the ocean surges into vertical vents, creating powerful blowholes that blast saltwater into the air—an extraordinary subject for dynamic coastal photography.\n\nFor our evening session, we visit Motukiekie Beach, famous for its sea stacks and natural arches rising from the Pacific. At low tide, vibrant starfish appear along the rocks, offering vivid foreground elements for your compositions.\n\nNote on Safety: Motukiekie is entirely tide-dependent and requires careful timing. If conditions allow, we will capture sunset light reflecting across mirror-like wet sands."
+      },
+      {
+        "day": "20",
+        "plan": "THE SOUTH ISLAND. ARTHUR’S PASS: THE ALPINE CROSSING & CASTLE HILL",
+        "description": "We journey into the heart of the Southern Alps, entering the dramatic landscapes of Arthur’s Pass.\n\nOur first focus is Devils Punchbowl Falls, a 131-meter cascade surrounded by dark alpine cliffs—ideal for long-exposure photography.\n\nWe then explore Castle Hill (Kura Tawhiti), where massive limestone boulders form a surreal stone labyrinth. During golden hour, low light carves deep shadows into the formations, creating cinematic compositions.\n\nKeep your cameras ready for the Kea, the world’s only alpine parrot, often seen in this region."
+      },
+      {
+        "day": "21",
+        "plan": "THE SOUTH ISLAND. CHRISTCHURCH & DEPARTURE",
+        "description": "On the final day of our New Zealand expedition, we begin our journey back to Christchurch Airport (approx. a 1.5-hour drive), concluding our 21-day photographic odyssey.\n\nFor those returning to the starting point, arrival back in Auckland is scheduled for 8:15 PM. Please ensure your onward travel arrangements account for this timing.\n\nOptional Extension: For those wishing to continue the adventure, we can arrange a bespoke deep-sea fishing excursion in Kaikoura—where the mountains meet the sea—providing a memorable finale to your New Zealand photography tour."
       }
     ]}',
     '{"questions": [
