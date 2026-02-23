@@ -39,7 +39,7 @@ export function ReviewCard(props: ReviewCardProps) {
           onClick={() => setIsModalOpen(true)}
         >
           <span className={styles.arrowReadMore}>
-            →
+            ➙
           </span>
           {" "}
           Read full review

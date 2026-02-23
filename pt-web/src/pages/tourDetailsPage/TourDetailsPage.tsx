@@ -957,7 +957,7 @@ export function TourDetailsPage() {
           Search all
           {" "}
           <span className={styles.searchAllToursArrow}>
-            →
+            ➙
           </span>
         </Link>
       </h2>
