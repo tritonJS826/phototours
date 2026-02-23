@@ -368,6 +368,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
+
+  @media (width <= 816px) {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
 }
 
 .included {
