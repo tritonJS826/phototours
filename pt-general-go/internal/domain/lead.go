@@ -28,6 +28,7 @@ type DealZoho struct {
 	Stage                string  `json:"Stage"`
 	Pipeline             string  `json:"Pipeline,omitempty"`
 	ClosingDate          string  `json:"Closing_Date,omitempty"` // YYYY-MM-DD
+	Source               string  `json:Source, omitempty`
 
 	// relations
 	AccountID string `json:"Account_Name,omitempty"`

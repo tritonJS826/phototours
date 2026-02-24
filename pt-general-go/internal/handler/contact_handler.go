@@ -19,7 +19,7 @@ import (
 // @Success 201 {object} dto.ContactMeResponse
 // @Failure 400 {object} map[string]string
 // @Failure 500 {object} map[string]string
-// @Router /contact-me [post]
+// @Router /contact/me [post]
 func (h *Handler) ContactMe(ctx *gin.Context) {
 	var contactReq dto.ContactMeRequest
 	if err := ctx.ShouldBindJSON(&contactReq); err != nil {
@@ -31,6 +31,7 @@ func (h *Handler) ContactMe(ctx *gin.Context) {
 	deal := &domain.DealZoho{
 		DealName:    contactReq.Name,
 		ClientPhone: contactReq.Phone,
+		Source:      "Website",
 		Stage:       "Incoming",
 		Pipeline:    "Photo Tours",
 		AccountID:   "stub",
