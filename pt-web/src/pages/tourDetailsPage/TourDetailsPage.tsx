@@ -111,6 +111,24 @@ const TABLET_SLIDES_PER_VIEW_GALLERY_SLIDER = 4;
 const DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER = 5;
 const LARGE_DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER = 6;
 
+const SIMILAR_TOURS_MOBILE_SMALL_BREAKPOINT = 330;
+const SIMILAR_TOURS_MOBILE_MID_BREAKPOINT = 520;
+const SIMILAR_TOURS_MOBILE_BREAKPOINT = 730;
+const SIMILAR_TOURS_TABLET_SMALL = 900;
+const SIMILAR_TOURS_TABLET = 910;
+const SIMILAR_TOURS_TABLET_LG = 1000;
+const SIMILAR_TOURS_DESKTOP_SMALL = 1130;
+const SIMILAR_TOURS_DESKTOP = 1350;
+
+const SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE = 1.01;
+const SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_MID = 1.2;
+const SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_LG = 1.7;
+const SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_SMALL = 2.2;
+const SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET = 2.3;
+const SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_LG = 2.8;
+const SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP_SMALL = 3.2;
+const SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP = 4;
+
 const WIDTH_FOR_ACTIVE_BUY_FORM_OPEN = 1210;
 
 export function TourDetailsPage() {
@@ -380,7 +398,7 @@ export function TourDetailsPage() {
 
   const photos = tour?.photos || [];
 
-  // Const swiperExtraToursRef = useRef<SwiperType | null>(null);
+  const swiperExtraToursRef = useRef<SwiperType | null>(null);
   const swiperGalleryRef = useRef<SwiperType | null>(null);
   const swiperFullscreenRef = useRef<SwiperType | null>(null);
   const swiperMainRef = useRef<SwiperType | null>(null);
@@ -967,73 +985,63 @@ export function TourDetailsPage() {
       </h2>
 
       <div className={styles.toursSlider}>
-        {/* <button
-          type="button"
-          aria-label="Previous"
-          className={`${styles.arrow} ${styles.arrowLeft}`}
-          onClick={() => swiperExtraToursRef.current?.slidePrev()}
-        >
-          <span>
-            <img
-              src={blueArrowCircleRight}
-              alt="right slider button"
-              loading="lazy"
-            />
-          </span>
-        </button>
-        <button
-          type="button"
-          aria-label="Next"
-          className={clsx(styles.arrow, styles.arrowRight)}
-          onClick={() => swiperExtraToursRef.current?.slideNext()}
-        >
-          <span>
-            <img
-              src={blueArrowCircleRight}
-              alt="right slider button"
-              loading="lazy"
-            />
-          </span>
-        </button>
         <Swiper
           modules={[Keyboard, A11y]}
           onSwiper={(s) => (swiperExtraToursRef.current = s)}
-          loop={true}
-          // LoopAdditionalSlides={6}
-          slidesPerView={MOBILE_SLIDES_PER_VIEW}
+          loop={similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE}
+          slidesPerView={SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE}
           spaceBetween={24}
           speed={500}
           allowTouchMove
           keyboard={{enabled: true}}
           className={clsx(styles.swiper, styles.similarToursSwiper)}
           breakpoints={{
-            [MOBILE_BREAKPOINT]: {
-              slidesPerView: TABLET_SLIDES_PER_VIEW,
-              loop: true,
+            [SIMILAR_TOURS_MOBILE_SMALL_BREAKPOINT]: {
+              slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_MID,
+              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_MID,
             },
-            [TABLET_BREAKPOINT]: {
-              slidesPerView: DESKTOP_SLIDES_PER_VIEW,
-              loop: true,
+            [SIMILAR_TOURS_MOBILE_MID_BREAKPOINT]: {
+              slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_LG,
+              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_LG,
             },
-            [DESKTOP_BREAKPOINT]: {
-              slidesPerView: LARGE_DESKTOP_SLIDES_PER_VIEW,
-              loop: true,
+            [SIMILAR_TOURS_MOBILE_BREAKPOINT]: {
+              slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_SMALL,
+              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_SMALL,
+            },
+            [SIMILAR_TOURS_TABLET_SMALL]: {
+              slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_SMALL,
+              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_SMALL,
+            },
+            [SIMILAR_TOURS_TABLET]: {
+              slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET,
+              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET,
+            },
+            [SIMILAR_TOURS_TABLET_LG]: {
+              slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_LG,
+              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_LG,
+            },
+            [SIMILAR_TOURS_DESKTOP_SMALL]: {
+              slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP_SMALL,
+              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP_SMALL,
+            },
+            [SIMILAR_TOURS_DESKTOP]: {
+              slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP,
+              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP,
             },
           }}
-        > */}
-        {similarTours.map((s) => (
-          // <SwiperSlide
-          //   key={s.id}
-          //   className={styles.slide}
-          // >
-          <TourCardExtended
-            key={s.id}
-            tour={s}
-            className={styles.tourCard}
-          />
-          // </SwiperSlide>
-        ))}
-        {/* </Swiper> */}
+        >
+          {similarTours.map((s) => (
+            <SwiperSlide
+              key={s.id}
+              className={styles.slide}
+            >
+              <TourCardExtended
+                tour={s}
+                className={styles.tourCard}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
       <FeedbackBlock
         title="Reserve Your Spot for the Tuscany Photo Tour"

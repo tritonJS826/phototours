@@ -546,6 +546,12 @@
   display: flex;
   gap: 20px;
   justify-content: center;
+
+  @media (width <= 900px) {
+    width: 100vw;
+    margin-left: 0;
+    margin-right: calc(-50vw + 50%);
+  }
 }
 
 .tourCard {
