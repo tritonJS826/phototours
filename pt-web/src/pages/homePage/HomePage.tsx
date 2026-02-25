@@ -21,6 +21,7 @@ import {Dropdown} from "src/components/Dropdown/Dropdown";
 import {FeedbackBlock} from "src/components/FeedbackBlock/FeedbackBlock";
 import {Footer} from "src/components/Footer/Footer";
 import {HeroTextSection} from "src/components/HeroSection/HeroSection";
+import {PartnersSlider} from "src/components/PartnersSlider/PartnersSlider";
 import {PopularDestinations} from "src/components/PopularDestinations/PopularDestinations";
 import {PopularWorkshops} from "src/components/PopularWorkshops/PopularWorkshops";
 import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
@@ -56,6 +57,13 @@ const COPY = {
     subtitle: "Find all your essential photography tips and information",
   },
 };
+
+const partners = [
+  {id: "1", src: tripAdvisor, alt: "tripAdvisor logo"},
+  {id: "2", src: viator, alt: "viator logo"},
+  {id: "3", src: getYourGuide, alt: "getYourGuide Logo"},
+  {id: "4", src: trustPilot, alt: "trustPilot Logo"},
+];
 
 const accordionItemsLeft = [
   {
@@ -327,24 +335,7 @@ export function HomePage() {
         </nav>
       )}
 
-      <div className={styles.partners}>
-        <img
-          src={tripAdvisor}
-          alt="tripAdvisor logo"
-        />
-        <img
-          src={viator}
-          alt="viator logo"
-        />
-        <img
-          src={getYourGuide}
-          alt="getYourGuide Logo"
-        />
-        <img
-          src={trustPilot}
-          alt="trustPilot Logo"
-        />
-      </div>
+      <PartnersSlider partners={partners} />
 
       <div className={styles.blockWrapper}>
         <h2 className={styles.popularDestinationsTitle}>
