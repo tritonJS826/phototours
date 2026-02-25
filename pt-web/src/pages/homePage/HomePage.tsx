@@ -49,7 +49,7 @@ const COPY = {
   reviews: {
     title: "Reviews",
     subtitle:
-      "Testimonials from Our Photo Tours & Workshop Participants",
+      "Testimonials from Our Photo \n\nTours & Workshop Participants",
   },
   articles: {
     title: "Best travel tips for Iceland",
@@ -432,11 +432,14 @@ export function HomePage() {
             items={accordionItemsLeft}
             type={accordionTypes.MULTIPLE}
             className={styles.accordion}
+            itemClassName={styles.accordionItem}
           />
           <Accordion
             items={accordionItemsRight}
             type={accordionTypes.MULTIPLE}
             className={styles.accordion}
+            itemClassName={styles.accordionItem}
+
           />
         </div>
       </div>

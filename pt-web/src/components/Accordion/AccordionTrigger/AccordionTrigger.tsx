@@ -19,6 +19,11 @@ export interface AccordionTriggerProps {
    * Data attribute for cypress testing
    */
   dataCy?: string;
+
+  /**
+   * Custom styles for trigger
+   */
+  className?: string;
 }
 
 /**
@@ -28,7 +33,7 @@ export interface AccordionTriggerProps {
 export const AccordionTrigger = (props: AccordionTriggerProps) => {
   return (
     <RadixAccordionHeader className={styles.accordionHeader}>
-      <RadixAccordionTrigger className={styles.accordionTrigger}>
+      <RadixAccordionTrigger className={clsx(styles.accordionTrigger, props.className)}>
         {props.child}
         <>
           <div className={clsx(styles.icon, styles.plusIcon, styles.plus)} />
