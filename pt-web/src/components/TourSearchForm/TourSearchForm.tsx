@@ -72,10 +72,10 @@ export function TourSearchForm() {
                 id: "location-north-africa",
                 isPreventDefaultUsed: true,
                 value: <div className={styles.tourLocationItem}>
-                  North Africa
+                  Africa
                 </div>,
                 isVisible: true,
-                onClick: () => setSearchData(prev => ({...prev, location: "North Africa"})),
+                onClick: () => setSearchData(prev => ({...prev, location: "Africa"})),
               },
               {
                 id: "location-oceania",
