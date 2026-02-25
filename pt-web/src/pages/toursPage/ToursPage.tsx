@@ -171,61 +171,22 @@ export function ToursPage() {
                 id: "location-japan",
                 isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
-                  Japan
+                  Asia & Oceania
                 </div>,
                 isVisible: true,
                 onClick: () => {
-                  setFilters(prev => ({...prev, location: "Japan"}));
+                  setFilters(prev => ({...prev, location: "Asia & Oceania"}));
                 },
               },
-              // {
-              //   id: "location-usa",
-              //   isPreventDefaultUsed: true,
-              //   value: <div className={styles.dropdownItem}>
-              //     USA
-              //   </div>,
-              //   isVisible: true,
-              //   onClick: () => {
-              //     const input = document.getElementById(
-              //       "filters-location",
-              //     ) as HTMLInputElement;
-              //     if (input) {
-              //       input.value = "USA";
-              //     }
-              //     setFilters(prev => ({...prev, location: "USA"}));
-              //   },
-              // },
               {
                 id: "location-north-africa",
                 isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
-                  North Africa
+                  Africa
                 </div>,
                 isVisible: true,
                 onClick: () => {
-                  setFilters(prev => ({...prev, location: "North Africa"}));
-                },
-              },
-              {
-                id: "location-oceania",
-                isPreventDefaultUsed: false,
-                value: <div className={styles.dropdownItem}>
-                  Oceania
-                </div>,
-                isVisible: true,
-                onClick: () => {
-                  setFilters(prev => ({...prev, location: "Oceania"}));
-                },
-              },
-              {
-                id: "location-mediterranean",
-                isPreventDefaultUsed: false,
-                value: <div className={styles.dropdownItem}>
-                  Mediterranean
-                </div>,
-                isVisible: true,
-                onClick: () => {
-                  setFilters(prev => ({...prev, location: "Mediterranean"}));
+                  setFilters(prev => ({...prev, location: "Africa"}));
                 },
               },
             ],

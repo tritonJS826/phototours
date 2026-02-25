@@ -86,15 +86,6 @@ export function TourSearchForm() {
                 isVisible: true,
                 onClick: () => setSearchData(prev => ({...prev, location: "Oceania"})),
               },
-              {
-                id: "location-mediterranean",
-                isPreventDefaultUsed: true,
-                value: <div className={styles.tourLocationItem}>
-                  Mediterranean
-                </div>,
-                isVisible: true,
-                onClick: () => setSearchData(prev => ({...prev, location: "Mediterranean"})),
-              },
             ],
           },
         ]}
