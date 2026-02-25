@@ -2169,7 +2169,6 @@ VALUES
    -- Tour 12: japan autumn
    (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif', 'Val d''Orcia rolling hills with autumn colors'),
    (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128148/japan_fall_2_FUJI7847-Pano-Edit_copy_l8kecb.avif', 'Val d''Orcia rolling hills with autumn colors'),
-   (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128148/japan_fall_2_FUJI7847-Pano-Edit_copy_l8kecb.avif', 'Val d''Orcia rolling hills with autumn colors'),
    (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128173/japan_fall_FUJI8019-Dehancer_copy_tbogc6.avif', 'Val d''Orcia rolling hills with autumn colors'),
    (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128149/japan_fall_5_1827923-Edit_x1heje.avif', 'Val d''Orcia rolling hills with autumn colors'),
    (tour12_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128148/japan_fall_6_PLUM3236_copy_k9j40i.avif', 'Val d''Orcia rolling hills with autumn colors'),
@@ -2236,7 +2235,6 @@ VALUES
    (tour13_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777087/iceland__A8B7555_main_WB-164x110_PRINT_topaz_Dehancer_copy_p3talb.avif', 'Prague Castle autumn foliage at sunrise'),
 
    -- Tour 14: japan-spring
-   (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
    (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
    (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429756/japan-spring___IMG1972_ihxist.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
    (tour14_id, 'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429741/japan-spring___IMG1454_ytwzbv.avif', 'Cherry blossoms at Philosopher''s Path Kyoto'),
