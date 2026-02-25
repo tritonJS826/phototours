@@ -1,5 +1,7 @@
+import {useEffect} from "react";
 import clsx from "clsx";
 import {X} from "lucide-react";
+import {useBodyScrollLock} from "src/hooks/useBodyScrollLock";
 import styles from "src/components/CentralNotification/CentralNotification.module.scss";
 
 interface CentralNotificationProps {
@@ -19,6 +21,8 @@ export function CentralNotification({
   subtitle,
   isCircleImage = false,
 }: CentralNotificationProps) {
+  useBodyScrollLock(isOpen);
+
   if (!isOpen) {
     return null;
   }

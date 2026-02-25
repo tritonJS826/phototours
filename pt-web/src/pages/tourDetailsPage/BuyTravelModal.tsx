@@ -1,5 +1,6 @@
 import React from "react";
 import {X} from "lucide-react";
+import {useBodyScrollLock} from "src/hooks/useBodyScrollLock";
 import styles from "src/pages/tourDetailsPage/BuyTravelModal.module.scss";
 
 interface BuyTravelModalProps {
@@ -15,6 +16,8 @@ export function BuyTravelModal({
   children,
   showHeader = true,
 }: BuyTravelModalProps) {
+  useBodyScrollLock(isOpen);
+
   if (!isOpen) {
     return null;
   }

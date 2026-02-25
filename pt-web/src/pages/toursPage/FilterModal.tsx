@@ -1,5 +1,6 @@
 import React from "react";
 import {X} from "lucide-react";
+import {useBodyScrollLock} from "src/hooks/useBodyScrollLock";
 import styles from "src/pages/toursPage/FilterModal.module.scss";
 
 interface FilterModalProps {
@@ -9,6 +10,8 @@ interface FilterModalProps {
 }
 
 export function FilterModal({isOpen, onClose, children}: FilterModalProps) {
+  useBodyScrollLock(isOpen);
+
   if (!isOpen) {
     return null;
   }

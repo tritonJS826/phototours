@@ -1,5 +1,6 @@
 import React, {ReactElement, useEffect, useRef, useState} from "react";
 import {X} from "lucide-react";
+import {useBodyScrollLock} from "src/hooks/useBodyScrollLock";
 import styles from "src/components/TimeoutPopup/TimeoutPopup.module.scss";
 
 interface TimeoutPopupProps {
@@ -45,6 +46,8 @@ export function TimeoutPopup({
       }
     };
   }, [delay]);
+
+  useBodyScrollLock(isVisible);
 
   const handleClose = () => {
     setIsVisible(false);
