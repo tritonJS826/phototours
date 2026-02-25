@@ -1,8 +1,10 @@
 import {Link} from "react-router-dom";
 import email from "/images/email.svg";
+import facebook from "/images/facebook.svg";
 import instagram from "/images/instagram.svg";
 import logoBlack from "/images/logoBlack.svg";
 import mastercardLogo from "/images/mastercardLogo.svg";
+import molniya from "/images/molniya.svg";
 import phone from "/images/phone.svg";
 import stripeLogo from "/images/stripeLogo.svg";
 import telegram from "/images/telegram.svg";
@@ -127,7 +129,6 @@ export const Footer = function Footer() {
       <section className={styles.mainSection}>
         <div className={styles.mainContent}>
           <div className={styles.logoColumn}>
-            {/* <Logo showTagline={false} /> */}
             <Link
               to={PATHS.HOME}
               aria-label="Homepage"
@@ -172,6 +173,20 @@ export const Footer = function Footer() {
                   <img
                     className={styles.socialMediIcon}
                     src={instagram}
+                    alt="user link"
+                  />
+                </a>
+                <a className={styles.socialMediaImage}>
+                  <img
+                    className={styles.socialMediIcon}
+                    src={facebook}
+                    alt="user link"
+                  />
+                </a>
+                <a className={styles.socialMediaImage}>
+                  <img
+                    className={styles.socialMediIcon}
+                    src={molniya}
                     alt="user link"
                   />
                 </a>

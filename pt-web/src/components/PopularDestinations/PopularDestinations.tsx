@@ -51,14 +51,23 @@ const slides = [
   },
 ];
 
-const MOBILE_BREAKPOINT = 640;
-const TABLET_BREAKPOINT = 920;
-const DESKTOP_BREAKPOINT = 1224;
+const MOBILE_BREAKPOINT_EXTRA_SMALL = 380;
+const MOBILE_BREAKPOINT_SMALL = 420;
+const MOBILE_BREAKPOINT = 490;
+const TABLET_BREAKPOINT = 600;
+const DESKTOP_BREAKPOINT = 750;
+const LARGE_DESKTOP_BREAKPOINT = 980;
+const EXTRA_LARGE_DESKTOP_BREAKPOINT = 1230;
+const ULTRA_LARGE_DESKTOP_BREAKPOINT = 1430;
 
-const MOBILE_SLIDES_PER_VIEW = 1.2;
-const TABLET_SLIDES_PER_VIEW = 2.2;
+const EXTRA_SMALL_MOBILE_SLIDES_PER_VIEW = 1.6;
+const SMALL_MOBILE_SLIDES_PER_VIEW = 1.8;
+const MOBILE_SLIDES_PER_VIEW = 2.2;
+const TABLET_SLIDES_PER_VIEW = 2.6;
 const DESKTOP_SLIDES_PER_VIEW = 3.2;
 const LARGE_DESKTOP_SLIDES_PER_VIEW = 4.2;
+const EXTRA_LARGE_SLIDES_PER_VIEW = 5.2;
+const ULTRA_SLIDES_PER_VIEW = 6;
 
 export function PopularDestinations({className = ""}: PopularWorkshopsProps) {
   const swiperRef = useRef<SwiperType | null>(null);
@@ -71,7 +80,9 @@ export function PopularDestinations({className = ""}: PopularWorkshopsProps) {
         className={`${styles.arrow} ${styles.arrowLeft}`}
         onClick={() => swiperRef.current?.slidePrev()}
       >
-        <span>‹</span>
+        <span>
+          ‹
+        </span>
       </button>
       <button
         type="button"
@@ -79,15 +90,17 @@ export function PopularDestinations({className = ""}: PopularWorkshopsProps) {
         className={`${styles.arrow} ${styles.arrowRight}`}
         onClick={() => swiperRef.current?.slideNext()}
       >
-        <span>›</span>
+        <span>
+          ›
+        </span>
       </button>
 
       <Swiper
         modules={[Keyboard, A11y, Autoplay, Pagination]}
         onSwiper={(s) => (swiperRef.current = s)}
-        loop={slides.length > LARGE_DESKTOP_SLIDES_PER_VIEW}
+        loop={slides.length > ULTRA_SLIDES_PER_VIEW}
         loopAdditionalSlides={6}
-        slidesPerView={MOBILE_SLIDES_PER_VIEW}
+        slidesPerView={1.4}
         spaceBetween={24}
         speed={500}
         allowTouchMove
@@ -104,17 +117,37 @@ export function PopularDestinations({className = ""}: PopularWorkshopsProps) {
         }}
         className={styles.swiper}
         breakpoints={{
+          [MOBILE_BREAKPOINT_EXTRA_SMALL]: {
+            slidesPerView: EXTRA_SMALL_MOBILE_SLIDES_PER_VIEW,
+            loop: slides.length > EXTRA_SMALL_MOBILE_SLIDES_PER_VIEW,
+          },
+          [MOBILE_BREAKPOINT_SMALL]: {
+            slidesPerView: SMALL_MOBILE_SLIDES_PER_VIEW,
+            loop: slides.length > SMALL_MOBILE_SLIDES_PER_VIEW,
+          },
           [MOBILE_BREAKPOINT]: {
+            slidesPerView: MOBILE_SLIDES_PER_VIEW,
+            loop: slides.length > MOBILE_SLIDES_PER_VIEW,
+          },
+          [TABLET_BREAKPOINT]: {
             slidesPerView: TABLET_SLIDES_PER_VIEW,
             loop: slides.length > TABLET_SLIDES_PER_VIEW,
           },
-          [TABLET_BREAKPOINT]: {
+          [DESKTOP_BREAKPOINT]: {
             slidesPerView: DESKTOP_SLIDES_PER_VIEW,
             loop: slides.length > DESKTOP_SLIDES_PER_VIEW,
           },
-          [DESKTOP_BREAKPOINT]: {
+          [LARGE_DESKTOP_BREAKPOINT]: {
             slidesPerView: LARGE_DESKTOP_SLIDES_PER_VIEW,
             loop: slides.length > LARGE_DESKTOP_SLIDES_PER_VIEW,
+          },
+          [EXTRA_LARGE_DESKTOP_BREAKPOINT]: {
+            slidesPerView: EXTRA_LARGE_SLIDES_PER_VIEW,
+            loop: slides.length > EXTRA_LARGE_SLIDES_PER_VIEW,
+          },
+          [ULTRA_LARGE_DESKTOP_BREAKPOINT]: {
+            slidesPerView: ULTRA_SLIDES_PER_VIEW,
+            loop: slides.length > ULTRA_SLIDES_PER_VIEW,
           },
         }}
       >
