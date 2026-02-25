@@ -3,7 +3,7 @@ import clsx from "clsx";
 import {Autoplay} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
-import styles from "./PartnersSlider.module.scss";
+import styles from "src/components/PartnersSlider/PartnersSlider.module.scss";
 
 interface Partner {
   id: string;

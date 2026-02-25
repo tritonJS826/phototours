@@ -18,19 +18,21 @@
   .mainSection {
     border-bottom: none;
     box-shadow: inset 0 -0.5px 0 rgba(vars.$color-border, 0.9);
+    padding-bottom: 50px;
 
     .mainContent {
       margin-bottom: 20px;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 20px;
 
       @media (width <= 1050px) {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      @media (width <= 550px) {
+      @media (width <= 780px) {
         grid-template-columns: repeat(1, 1fr);
+        row-gap: 40px;
       }
 
       .logoColumn {
@@ -38,7 +40,8 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-
+        gap: 20px;
+        
         .logo {
           margin-top: 0;
           margin-bottom: vars.$gap-xl;
@@ -62,7 +65,7 @@
       }
 
       .columnTitle {
-        font-size: vars.$font-size-lg;
+        font-size: 20px;
         font-weight: 700;
         color: vars.$btn-primary-color;
         margin-bottom: vars.$gap-xl;
@@ -101,6 +104,11 @@
       }
 
       .subscribeColumn {
+        min-width: 300px;
+
+        @media (width < 500px) {
+          min-width: auto;
+        }
         .subscribeForm {
           .newsletterForm {
             padding: 0;
@@ -138,11 +146,18 @@
         font-weight: 400;
         margin: 0;
         line-height: 1.5;
+
+        @media (width <= 800px) {
+          text-align: left;
+        }
       }
 
       .socialIcons {
         display: flex;
-        gap: vars.$gap-sm;
+        gap: 10px;
+        @media (width <= 800px) {
+          align-self: start;
+        }
 
         .socialIcon {
           display: flex;
@@ -164,6 +179,20 @@
         }
       }
     }
+  }
+}
+
+.navigationLists {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 60px;
+
+  @media (width <= 500px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (width <= 400px) {
+    grid-template-columns: 1fr;
   }
 }
 

@@ -167,11 +167,19 @@
   text-align: center;
   font-weight: 700;
   font-size: 25px;
+  
+  @media (width <= 900px) {
+    text-align: left;
+  }
 }
 
 .topDestinationsSelectionTitle {
   font-size: 45px;
-  margin: 70px 0 17px auto;
+  margin: 50px 0 17px auto;
+
+  @media (width <= 900px) {
+    font-size: 32px;
+  }
 }
 
 .topDestinationsSelectionSubTitle {
@@ -195,6 +203,7 @@
 .wantMoreHeader {
   font-weight: 700;
   font-size: 30px;
+  text-align: center;
 }
 
 .wantMoreButton {
@@ -233,6 +242,10 @@
   background-color: #f8f8f8;
   padding: 30px;
   border-radius: 20px;
+
+  @media (width <= 550px) {
+    padding: 20px;
+  }
 }
 
 .blogAndPhotographyTitle {
@@ -240,7 +253,7 @@
   font-size: 45px;
 
   @media (width <= 550px) {
-    font-size: 40px;
+    font-size: 32px;
   }
 
   i {
@@ -284,6 +297,10 @@
 .reviewsTitle {
   font-size: 45px;
   margin: 0 0 17px auto;
+
+  @media (width <= 800px) {
+      font-size: 32px;      
+    }
 }
 
 .reviewsSubTitle {
@@ -303,6 +320,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (width <= 800px) {
+    align-items: start;
+  }
 }
 
 .faqTitle {
@@ -311,6 +332,11 @@
   font-weight: 700;
   font-style: bold;
   margin-bottom: 25px;
+  
+  @media (width <= 800px) {
+    font-size: 32px; 
+  }
+  
 }
 
 .faqSubtitle {
@@ -319,6 +345,11 @@
   font-size: 20px;
   line-height: 1.35;
   text-align: center;
+
+  @media (width <= 800px) {
+    text-align: left; 
+    font-size: 16px;
+  }
 }
 
 .accordions {
@@ -329,6 +360,10 @@
   width: 100%;
   max-width: 1490px;
   margin: 60px 0;
+
+  @media (width <= 800px) {
+    margin: 40px 0;
+  }
 
   @media (width <= 740px) {
     grid-template-columns: repeat(1, 1fr);
@@ -341,7 +376,7 @@
 
 .accordionItem {
   font-family: DM Sans;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 20px;
   line-height: 135%;
   letter-spacing: 0%;
@@ -443,6 +478,18 @@
 }
 
 .privacyPolicyText {
+  display: inline-block;
+  margin-top: 12px;
+
+  font-family: DM Sans;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 135%;
+  letter-spacing: 0%;
+
+  @media (width <= 800px) {
+    font-size: 14px;
+  }
 }
 
 .privacyLink {

@@ -68,12 +68,20 @@
   h3 {
     font-weight: 600;
     font-size: 25px;
+
+    @media (width <= 800px) {
+      font-size: 24px;      
+    }
   }
 
   p {
     font-weight: 400;
     font-size: 17px;
     line-height: 1.35;
+
+    @media (width <= 800px) {
+      font-size: 16px;      
+    }
   }
 }
 
@@ -207,6 +215,11 @@
   margin-top: 10px;
   position: relative;
   z-index: 1;
+
+  @media (width <= 800px) {
+    display: none;
+  }
+
 }
 
 .paginationBullet {

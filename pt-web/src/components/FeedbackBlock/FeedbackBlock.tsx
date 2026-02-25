@@ -53,7 +53,7 @@ export function FeedbackBlock(props: FeedbackBlockProps) {
           <p className={styles.feedBackDescription}>
             {props.subtitle}
           </p>
-          <div className="">
+          <div className={styles.feedbackFormContainer}>
             <div className={styles.feedBackForm}>
               <input
                 type="text"

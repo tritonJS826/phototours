@@ -179,19 +179,22 @@ export const Footer = function Footer() {
             </div>
           </div>
 
-          {FOOTER_COLUMNS.map((column) => (
-            <div
-              key={column.id}
-              className={styles.footerColumn}
-            >
-              <h3 className={styles.columnTitle}>
-                {column.title}
-              </h3>
-              <ul className={styles.footerLinks}>
-                {column.links.map(renderFooterLink)}
-              </ul>
-            </div>
-          ))}
+          <div className={styles.navigationLists}>
+            {FOOTER_COLUMNS.map((column) => (
+              <div
+                key={column.id}
+                className={styles.footerColumn}
+              >
+                <h3 className={styles.columnTitle}>
+                  {column.title}
+                </h3>
+                <ul className={styles.footerLinks}>
+                  {column.links.map(renderFooterLink)}
+                </ul>
+              </div>
+            ))}
+
+          </div>
 
           <div className={styles.subscribeColumn}>
             <h3 className={styles.columnTitle}>

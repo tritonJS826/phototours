@@ -1,6 +1,11 @@
+import {useRef} from "react";
 import {Link} from "react-router-dom";
 import clsx from "clsx";
 import {PATHS} from "src/routes/routes";
+import type {Swiper as SwiperType} from "swiper";
+import {A11y, Autoplay, Keyboard, Pagination} from "swiper/modules";
+import {Swiper, SwiperSlide} from "swiper/react";
+import "swiper/css";
 import styles from "src/components/PopularDestinations/PoplarDestinations.module.scss";
 
 type PopularWorkshopsProps = {
@@ -46,31 +51,99 @@ const slides = [
   },
 ];
 
-function renderPopularDestination(params: {image: string; title: string; href: string}) {
-  return (
-    <Link
-      to={params.href}
-      className={styles.popularDestinationCard}
-      key={params.image}
-    >
-      <div
-        className={styles.imageWrapper}
-        style={{backgroundImage: `url(${params.image})`}}
-        aria-label={params.title}
-      >
-        <span className={styles.overlayText}>
-          {params.title}
-        </span>
-      </div>
-    </Link>
-  );
+const MOBILE_BREAKPOINT = 640;
+const TABLET_BREAKPOINT = 920;
+const DESKTOP_BREAKPOINT = 1224;
 
-}
+const MOBILE_SLIDES_PER_VIEW = 1.2;
+const TABLET_SLIDES_PER_VIEW = 2.2;
+const DESKTOP_SLIDES_PER_VIEW = 3.2;
+const LARGE_DESKTOP_SLIDES_PER_VIEW = 4.2;
 
 export function PopularDestinations({className = ""}: PopularWorkshopsProps) {
+  const swiperRef = useRef<SwiperType | null>(null);
+
   return (
     <section className={clsx(styles.wrap, className)}>
-      {slides.map(renderPopularDestination)}
+      <button
+        type="button"
+        aria-label="Previous"
+        className={`${styles.arrow} ${styles.arrowLeft}`}
+        onClick={() => swiperRef.current?.slidePrev()}
+      >
+        <span>‹</span>
+      </button>
+      <button
+        type="button"
+        aria-label="Next"
+        className={`${styles.arrow} ${styles.arrowRight}`}
+        onClick={() => swiperRef.current?.slideNext()}
+      >
+        <span>›</span>
+      </button>
+
+      <Swiper
+        modules={[Keyboard, A11y, Autoplay, Pagination]}
+        onSwiper={(s) => (swiperRef.current = s)}
+        loop={slides.length > LARGE_DESKTOP_SLIDES_PER_VIEW}
+        loopAdditionalSlides={6}
+        slidesPerView={MOBILE_SLIDES_PER_VIEW}
+        spaceBetween={24}
+        speed={500}
+        allowTouchMove
+        keyboard={{enabled: true}}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+          el: "#popular-destinations-pagination",
+          bulletClass: styles.paginationBullet,
+          bulletActiveClass: styles.paginationBulletActive,
+        }}
+        className={styles.swiper}
+        breakpoints={{
+          [MOBILE_BREAKPOINT]: {
+            slidesPerView: TABLET_SLIDES_PER_VIEW,
+            loop: slides.length > TABLET_SLIDES_PER_VIEW,
+          },
+          [TABLET_BREAKPOINT]: {
+            slidesPerView: DESKTOP_SLIDES_PER_VIEW,
+            loop: slides.length > DESKTOP_SLIDES_PER_VIEW,
+          },
+          [DESKTOP_BREAKPOINT]: {
+            slidesPerView: LARGE_DESKTOP_SLIDES_PER_VIEW,
+            loop: slides.length > LARGE_DESKTOP_SLIDES_PER_VIEW,
+          },
+        }}
+      >
+        {slides.map((slide) => (
+          <SwiperSlide
+            key={slide.image}
+            className={styles.slide}
+          >
+            <Link
+              to={slide.href}
+              className={styles.popularDestinationCard}
+            >
+              <div
+                className={styles.imageWrapper}
+                style={{backgroundImage: `url(${slide.image})`}}
+                aria-label={slide.title}
+              >
+                <span className={styles.overlayText}>
+                  {slide.title}
+                </span>
+              </div>
+            </Link>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      <div
+        id="popular-destinations-pagination"
+        className={styles.paginationContainer}
+      />
     </section>
   );
 }
