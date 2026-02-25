@@ -253,11 +253,11 @@ VALUES
       },
       {
         "question": "5. Are flights included in the price of the Spring Tuscany tour and photo workshops?",
-        "answer": "Airfare and visas are not included in the cost, as our participants join us from all over the world. The following is included in the price:\n\n- Accommodation: Stay at the legendary Poggio Covili villa (single rooms or double rooms for couples).\n- Local Logistics: Transfers to and from the airport in Rome and all ground transportation between towns in a comfortable Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, on-site mentoring, and masterclasses, including post-processing.\n\nFor information regarding additional expenses during the Tuscany tour, please contact our managers."
+        "answer": "Airfare and visas are not included in the cost, as our participants join us from all over the world. The following is included in the price:\n\n• Accommodation: Stay at the legendary Poggio Covili villa (single rooms or double rooms for couples).\n- Local Logistics: Transfers to and from the airport in Rome and all ground transportation between towns in a comfortable Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, on-site mentoring, and masterclasses, including post-processing.\n\nFor information regarding additional expenses during the Tuscany tour, please contact our managers."
       },
       {
         "question": "6. What is included in the cost of the Spring Tuscany Photo Tour and workshops?",
-        "answer": "The price of the spring photo expedition in Tuscany includes:\n\n- Accommodation: Lodging at the iconic Poggio Covili villa (offering single occupancy or double rooms for couples).\n- Local Logistics: Airport transfers (Rome) and all transportation throughout the region in a high-end Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, on-site mentoring, and masterclasses, including post-processing.\n\nDetailed information about any extra costs can be requested from our management team."
+        "answer": "The price of the spring photo expedition in Tuscany includes:\n\n• Accommodation: Lodging at the iconic Poggio Covili villa (offering single occupancy or double rooms for couples).\n- Local Logistics: Airport transfers (Rome) and all transportation throughout the region in a high-end Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, on-site mentoring, and masterclasses, including post-processing.\n\nDetailed information about any extra costs can be requested from our management team."
       }
     ]}',
     guide1_id,
@@ -355,11 +355,11 @@ VALUES
       },
       {
         "question": "5. Are flights included in the price of the Morocco tour and photo workshops?",
-        "answer": "Since our community joins us from all over the world, airfare and visas are not included. The tour price covers your premium experience on the ground:\n\n- Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n- Logistics: Airport transfers (Casablanca) and all regional travel in a premium, air-conditioned Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, on-site mentoring, and masterclasses, including post-processing.\n\nFor details on any additional personal expenses, please reach out to our management team."
+        "answer": "Since our community joins us from all over the world, airfare and visas are not included. The tour price covers your premium experience on the ground:\n\n• Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n• Logistics: Airport transfers (Casablanca) and all regional travel in a premium, air-conditioned Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, on-site mentoring, and masterclasses, including post-processing.\n\nFor details on any additional personal expenses, please reach out to our management team."
       },
       {
         "question": "6. What is included in the cost of the Morocco Photo Tour and workshops?",
-        "answer": "Your booking provides a comprehensive, stress-free expedition:\n\n- Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n- Logistics: Airport transfers (Casablanca) and all regional travel in a premium, air-conditioned Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, on-site mentoring, and masterclasses, including post-processing.\n\nDetailed information about any extra costs can be requested from our management team."
+        "answer": "Your booking provides a comprehensive, stress-free expedition:\n\n• Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n• Logistics: Airport transfers (Casablanca) and all regional travel in a premium, air-conditioned Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, on-site mentoring, and masterclasses, including post-processing.\n\nDetailed information about any extra costs can be requested from our management team."
       }
     ]}',
     guide1_id,
@@ -422,11 +422,11 @@ VALUES
       },
       {
         "question": "5. Are flights included in the cost of the Venice photo expedition?",
-        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour price focuses on your premium experience within the city:\n\n- Accommodation: Lodging in a historic Venetian loft (twin-share with your partner or another participant of the same gender).\n- Expert Mentoring: All guided shooting sessions, workshops, on-site mentoring, and post-processing masterclasses.\n\nFor details on any additional personal expenses during the carnival, please reach out to our management team."
+        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour price focuses on your premium experience within the city:\n\n• Accommodation: Lodging in a historic Venetian loft (twin-share with your partner or another participant of the same gender).\n- Expert Mentoring: All guided shooting sessions, workshops, on-site mentoring, and post-processing masterclasses.\n\nFor details on any additional personal expenses during the carnival, please reach out to our management team."
       },
       {
         "question": "6. What exactly is covered in the Venice Carnival photo tour price?",
-        "answer": "Your booking ensures a seamless and professional photography experience:\n\n- Accommodation: Lodging in a historic Venetian loft (twin-share with your partner or another participant of the same gender).\n- Expert Mentoring: All guided shooting sessions, workshops, on-site mentoring, and post-processing masterclasses.\n\nDetailed information about specific inclusions or extra costs can be requested from our managers."
+        "answer": "Your booking ensures a seamless and professional photography experience:\n\n• Accommodation: Lodging in a historic Venetian loft (twin-share with your partner or another participant of the same gender).\n- Expert Mentoring: All guided shooting sessions, workshops, on-site mentoring, and post-processing masterclasses.\n\nDetailed information about specific inclusions or extra costs can be requested from our managers."
       }
     ]}',
     guide2_id,
@@ -532,6 +532,18 @@ VALUES
       {
         "question": "3. What level of physical fitness is required for this expedition?",
         "answer": "The New Zealand photo tour is rated as ’Easy’ and is suitable for participants with standard physical preparation. While the itinerary includes varied terrain, from geothermal parks to the Hobbiton movie set, we prioritize your comfort and ensure most locations are easily accessible. If you have any specific health concerns, our manager is available to discuss the requirements with you directly."
+      },
+      {
+        "question": "4. How many people are in the group?",
+        "answer": "We value an individual approach and a personalized experience for every guest. Our goal is to ensure you gain valuable new knowledge and return home with a portfolio of \"trophy shots\" from the most cinematic corners of the planet.\n\nThe group size for our New Zealand photography workshop is limited to 11 participants. This size allows for a vibrant creative community while ensuring that everyone receives dedicated attention during our shooting and editing sessions."
+      },
+      {
+        "question": "5. Are international flights included in the tour cost?",
+        "answer": "International airfare and visas are not included, as our participants join us from various locations worldwide. Depending on your selected booking option, the inclusions for domestic logistics are as follows:\n\n• Full Itinerary (Both Islands): All domestic flights between the North and South Islands are included in the price.\n• North Island Only: The tour starts and ends in Auckland; no domestic flights are required for this portion.\n• South Island Only: You will need to arrange your own transport to the starting point on the South Island, or contact us to coordinate with the main group’s arrival.\n\nThe standard tour price covers accommodation (twin-share rooms in high-quality hotels with your partner or another participant of the same gender), expert mentoring, and all local ground transportation for your chosen duration (10, 11, or 21 days).\n\nFor details on any additional personal expenses, please reach out to our management team."
+      },
+      {
+        "question": "6. What exactly is included in the New Zealand photo tour?",
+        "answer": "Your booking provides a comprehensive, stress-free photography and travel experience tailored to your chosen route:\n\n• Full Itinerary (Both Islands): All domestic flights between the North and South Islands are included in the price.\n• North Island Only: The tour starts and ends in Auckland; no domestic flights are required for this portion.\n• South Island Only: You will need to arrange your own transport to the starting point on the South Island, or contact us to coordinate with the main group’s arrival.\n\nThe standard tour price covers accommodation (twin-share rooms in high-quality hotels with your partner or another participant of the same gender), expert mentoring, and all local ground transportation for your chosen duration (10, 11, or 21 days)."
       }
     ]}',
     guide1_id,
@@ -604,11 +616,11 @@ VALUES
       },
       {
         "question": "5. Are flights included in the tour price?",
-        "answer": "Since our participants join us from all over the world, airfare and visas are not included. Your booking focuses on the premium experience provided once you arrive at the starting port:\n\n- Accommodation: Lodging on board the catamaran.\n- Logistics: All in-tour transportation and professional skipper & crew services, airport transfers (Athens) in a Mercedes E vehicle.\n- Education: Guided sunrise and sunset photo sessions, workshops, and post-processing lessons.\n\nFor details on additional personal expenses, please reach out to our management team."
+        "answer": "Since our participants join us from all over the world, airfare and visas are not included. Your booking focuses on the premium experience provided once you arrive at the starting port:\n\n• Accommodation: Lodging on board the catamaran.\n- Logistics: All in-tour transportation and professional skipper & crew services, airport transfers (Athens) in a Mercedes E vehicle.\n- Education: Guided sunrise and sunset photo sessions, workshops, and post-processing lessons.\n\nFor details on additional personal expenses, please reach out to our management team."
       },
       {
         "question": "6. What exactly is included in the cost?",
-        "answer": "Your booking provides a comprehensive and stress-free Greek island photography expedition:\n\n- Accommodation & Sailing: Stay on the catamaran and professional maritime services.\n- Logistics: All in-tour transportation and professional skipper & crew services, airport transfers (Athens) in a Mercedes E vehicle.\n- Expert Mentoring: Daily photo shoots and professional workshops.\n- Creative Growth: Focused editing and post-processing sessions to help you bring home trophy shots.\n- Unique Experiences: A blend of cultural experiences and high-end travel photography."
+        "answer": "Your booking provides a comprehensive and stress-free Greek island photography expedition:\n\n• Accommodation & Sailing: Stay on the catamaran and professional maritime services.\n- Logistics: All in-tour transportation and professional skipper & crew services, airport transfers (Athens) in a Mercedes E vehicle.\n- Expert Mentoring: Daily photo shoots and professional workshops.\n- Creative Growth: Focused editing and post-processing sessions to help you bring home trophy shots.\n- Unique Experiences: A blend of cultural experiences and high-end travel photography."
       }
     ]}',
     guide4_id,
@@ -696,11 +708,11 @@ VALUES
       },
       {
         "question": "5. Are international flights included in the 10-day Italy photo tour cost?",
-        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour officially starts and ends at Florence Airport (FLR). The following is included in the tour price:\n\n- Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n- Logistics: Airport transfers (Florence) and all regional travel in a Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing.\n\nFor information regarding additional personal expenses, please reach out to our management team."
+        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour officially starts and ends at Florence Airport (FLR). The following is included in the tour price:\n\n• Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n• Logistics: Airport transfers (Florence) and all regional travel in a Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing.\n\nFor information regarding additional personal expenses, please reach out to our management team."
       },
       {
         "question": "6. What exactly is included in the Cinque Terre & Umbria photo tour?",
-        "answer": "Your booking provides a comprehensive, stress-free photography experience:\n\n- Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n- Logistics: Airport transfers (Florence) and all regional travel in a Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing."
+        "answer": "Your booking provides a comprehensive, stress-free photography experience:\n\n• Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n• Logistics: Airport transfers (Florence) and all regional travel in a Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing."
       }
     ]}',
     guide3_id,
@@ -773,11 +785,11 @@ VALUES
       },
       {
         "question": "5. Are international flights included in the tour cost?",
-        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour officially starts and ends at Marseille Airport (MRS). The following is included in the tour price:\n\n- Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n- Logistics: Airport transfers (Marseille) and all regional travel in a Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing.\n\nFor information regarding additional personal expenses, please reach out to our management team."
+        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour officially starts and ends at Marseille Airport (MRS). The following is included in the tour price:\n\n• Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n• Logistics: Airport transfers (Marseille) and all regional travel in a Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing.\n\nFor information regarding additional personal expenses, please reach out to our management team."
       },
       {
         "question": "6. What exactly is included in the 7-day Provence photo tour?",
-        "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n- Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n- Logistics: Airport transfers (Marseille) and all regional travel in a Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing."
+        "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n• Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n• Logistics: Airport transfers (Marseille) and all regional travel in a Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing."
       }
     ]}',
     guide5_id,
@@ -866,11 +878,11 @@ VALUES
         },
         {
           "question": "5. Are flights included in the tour price?",
-          "answer": "Since our participants join us from all over the world, airfare and visas are not included. Your booking focuses on the experience provided from the moment you land at Catania Airport (CTA):\n\n- Accommodation: Lodging on board the catamaran.\n- Logistics: All in-tour transportation and professional skipper & crew services, airport transfers (Catania).\n- Education: Guided sunrise and sunset photo sessions, workshops, and post-processing lessons."
+          "answer": "Since our participants join us from all over the world, airfare and visas are not included. Your booking focuses on the experience provided from the moment you land at Catania Airport (CTA):\n\n• Accommodation: Lodging on board the catamaran.\n- Logistics: All in-tour transportation and professional skipper & crew services, airport transfers (Catania).\n- Education: Guided sunrise and sunset photo sessions, workshops, and post-processing lessons."
         },
         {
           "question": "6. What exactly is included in the cost?",
-          "answer": "Your booking provides a comprehensive and stress-free 10-day photography expedition:\n\n- Accommodation: Lodging on board the catamaran.\n- Logistics: All in-tour transportation and professional skipper & crew services, airport transfers (Catania).\n- Education: Guided sunrise and sunset photo sessions, workshops, and post-processing lessons."
+          "answer": "Your booking provides a comprehensive and stress-free 10-day photography expedition:\n\n• Accommodation: Lodging on board the catamaran.\n- Logistics: All in-tour transportation and professional skipper & crew services, airport transfers (Catania).\n- Education: Guided sunrise and sunset photo sessions, workshops, and post-processing lessons."
         }
     ]}',
     guide4_id,
@@ -948,11 +960,11 @@ VALUES
       },
       {
         "question": "5. Are international flights included in the tour cost?",
-        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour officially starts and ends at Prague Airport (PRG). The following is included in the tour price:\n\n- Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n- Logistics: Airport transfers (Prague) and all regional travel in a premium Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing.\n\nFor information regarding additional personal expenses, please reach out to our management team."
+        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour officially starts and ends at Prague Airport (PRG). The following is included in the tour price:\n\n• Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n• Logistics: Airport transfers (Prague) and all regional travel in a premium Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing.\n\nFor information regarding additional personal expenses, please reach out to our management team."
       },
       {
         "question": "6. What exactly is included in the 10-day Czechia photo tour?",
-        "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n- Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n- Logistics: Airport transfers (Prague) and all regional travel in a premium Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing."
+        "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n• Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n• Logistics: Airport transfers (Prague) and all regional travel in a premium Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing."
       }
     ]}',
     guide2_id,
@@ -1030,11 +1042,11 @@ VALUES
       },
       {
         "question": "5. Are international flights included in the tour cost?",
-        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The following is included in the tour price:\n\n- Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n- Logistics: Airport transfers and all regional travel in a premium vehicle.\n- Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing."
+        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The following is included in the tour price:\n\n• Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n• Logistics: Airport transfers and all regional travel in a premium vehicle.\n• Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing."
       },
       {
         "question": "6. What exactly is included in the Scotland photo tour?",
-        "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n- Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n- Logistics: Airport transfers and all regional travel in a premium vehicle.\n- Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing."
+        "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n• Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n• Logistics: Airport transfers and all regional travel in a premium vehicle.\n• Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing."
       }
     ]}',
     guide1_id,
@@ -1122,11 +1134,11 @@ VALUES
       },
       {
         "question": "5. Are flights included in the price of the Autumn Tuscany tour and photo workshops?",
-        "answer": "Since our community joins us from all corners of the globe, airfare and visas are not included. The tour price covers your premium experience on the ground:\n\n- Accommodation: Lodging at the legendary Poggio Covili villa (available as single occupancy or double rooms for couples).\n- Logistics: All airport transfers (Rome) and regional travel in a high-comfort Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, photo workshops, on-site mentoring, and masterclasses, including post-processing.\n\nFor details on any additional personal expenses, please reach out to our management team."
+        "answer": "Since our community joins us from all corners of the globe, airfare and visas are not included. The tour price covers your premium experience on the ground:\n\n• Accommodation: Lodging at the legendary Poggio Covili villa (available as single occupancy or double rooms for couples).\n- Logistics: All airport transfers (Rome) and regional travel in a high-comfort Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, photo workshops, on-site mentoring, and masterclasses, including post-processing.\n\nFor details on any additional personal expenses, please reach out to our management team."
       },
       {
         "question": "6. What is included in the cost of the Autumn Tuscany Photo Tour and workshops?",
-        "answer": "Your booking provides a comprehensive, stress-free experience:\n\n- Accommodation: Lodging at the legendary Poggio Covili villa (available as single occupancy or double rooms for couples).\n- Logistics: All airport transfers (Rome) and regional travel in a high-comfort Mercedes vehicle.\n- Expert Mentoring: All shooting sessions, photo workshops, on-site mentoring, and masterclasses, including post-processing.\n\nDetailed information about any extra costs can be requested from our management team."
+        "answer": "Your booking provides a comprehensive, stress-free experience:\n\n• Accommodation: Lodging at the legendary Poggio Covili villa (available as single occupancy or double rooms for couples).\n- Logistics: All airport transfers (Rome) and regional travel in a high-comfort Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, photo workshops, on-site mentoring, and masterclasses, including post-processing.\n\nDetailed information about any extra costs can be requested from our management team."
       }
     ]}',
     guide3_id,
@@ -1209,7 +1221,7 @@ VALUES
       },
       {
         "question": "5. Are international flights included in the tour cost?",
-        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour officially starts and ends in Tokyo. The following is included in the tour price:\n\n- Accommodation: 10 days of high-quality lodging, including an Authentic Ryokan (special overnight stay).\n- Logistics: Airport transfers (Haneda) and all regional travel within the tour.\n- Meals: Daily breakfasts are included.\n- Expert Mentoring: All sunrise and sunset photo sessions, workshops, and on-site guidance.\n- Education: Dedicated editing and post-processing sessions."
+        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour officially starts and ends in Tokyo. The following is included in the tour price:\n\n• Accommodation: 10 days of high-quality lodging, including an Authentic Ryokan (special overnight stay).\n• Logistics: Airport transfers (Haneda) and all regional travel within the tour.\n- Meals: Daily breakfasts are included.\n- Expert Mentoring: All sunrise and sunset photo sessions, workshops, and on-site guidance.\n- Education: Dedicated editing and post-processing sessions."
       },
       {
         "question": "6. What exactly is included in the 10-day Japan photo tour?",
@@ -1301,11 +1313,11 @@ VALUES
         },
         {
           "question": "5. Are international flights included in the tour cost?",
-          "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour officially starts and ends at Keflavík Airport (KEF). The following is included in the tour price:\n\n- Accommodation: 10 days of accommodation in a specialized camper trailer, allowing us to stay in close proximity to key shooting locations.\n- Logistics: Airport transfers (Keflavík) and all regional travel in a specialized vehicle.\n- Expert Mentoring: All sunrise and sunset photo sessions, workshops, and on-site guidance.\n- Education: Dedicated editing and post-processing sessions.\n\nFor information regarding additional personal expenses, please reach out to our management team."
+          "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour officially starts and ends at Keflavík Airport (KEF). The following is included in the tour price:\n\n• Accommodation: 10 days of accommodation in a specialized camper trailer, allowing us to stay in close proximity to key shooting locations.\n• Logistics: Airport transfers (Keflavík) and all regional travel in a specialized vehicle.\n- Expert Mentoring: All sunrise and sunset photo sessions, workshops, and on-site guidance.\n- Education: Dedicated editing and post-processing sessions.\n\nFor information regarding additional personal expenses, please reach out to our management team."
         },
         {
           "question": "6. What exactly is included in the 10-day Iceland photo tour?",
-          "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n- Accommodation: 10 days of accommodation in a specialized camper trailer, allowing us to stay in close proximity to key shooting locations.\n- Logistics: Airport transfers (Keflavík) and all regional travel in a specialized vehicle.\n- Expert Mentoring: All sunrise and sunset photo sessions, workshops, and on-site guidance.\n- Education: Dedicated editing and post-processing sessions."
+          "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n• Accommodation: 10 days of accommodation in a specialized camper trailer, allowing us to stay in close proximity to key shooting locations.\n• Logistics: Airport transfers (Keflavík) and all regional travel in a specialized vehicle.\n- Expert Mentoring: All sunrise and sunset photo sessions, workshops, and on-site guidance.\n- Education: Dedicated editing and post-processing sessions."
         }
       ]}',
       guide5_id,
