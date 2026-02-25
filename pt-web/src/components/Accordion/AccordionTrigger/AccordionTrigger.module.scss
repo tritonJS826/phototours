@@ -33,12 +33,6 @@
   text-align: left;
   transition: all 650ms ease;
 
-  &:hover {
-    padding-left: 0;
-
-    // background-color: var(--hoverBgColor);
-  }
-
   &[data-state="open"] > .minusIcon {
     display: block;
   }
