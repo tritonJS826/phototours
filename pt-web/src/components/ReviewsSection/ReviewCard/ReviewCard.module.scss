@@ -55,9 +55,11 @@
   font-weight: 500;
   font-size: 20px;
   letter-spacing: 0%;
+  height: 53px;
 
   @media (width <= 800px) {
     font-size: 14px;
+    height: 36px;
   }
 }
 

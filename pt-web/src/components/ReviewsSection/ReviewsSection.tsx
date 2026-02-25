@@ -21,11 +21,11 @@ interface ToursSectionProps {
 }
 
 const MOBILE_BREAKPOINT = 320;
-const TABLET_BREAKPOINT = 920;
+const TABLET_BREAKPOINT = 650;
 const DESKTOP_BREAKPOINT = 1200;
 
-const MOBILE_SLIDES_PER_VIEW = 1.1;
-const TABLET_SLIDES_PER_VIEW = 2.1;
+const MOBILE_SLIDES_PER_VIEW = 1.2;
+const TABLET_SLIDES_PER_VIEW = 2.4;
 const DESKTOP_SLIDES_PER_VIEW = 3.1;
 
 const getRandomUserImage = () => {
