@@ -29,16 +29,27 @@
 .gallery {
   // max-width: 100%;
   // overflow: hidden;
-  border-radius: 20px;
+  // border-radius: 20px;
   position: relative;
   aspect-ratio: 16/9;
   width: 100%;
+
+  @media (width <= 900px) {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    // border-radius: 0;
+  }
 }
 
 .mainGallerySwiper {
   width: 100%;
   height: 100%;
   border-radius: 18px;
+
+  @media (width <= 900px) {
+    border-radius: 0;
+  }
 }
 
 .galleryImage {
@@ -253,8 +264,10 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 20px;
+  column-gap: 20px;
+  row-gap: 12px;
   margin: 20px 0;
+
 }
 
 .tagIcon {
@@ -292,11 +305,38 @@
   height: 23px;
 }
 
+.mobileSeparator {
+  // color
+  border: 0;
+  border-top: 1px solid #e0e0e0;
+
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+
+  @media (width >= 800px) {
+    display: none;
+  }
+
+}
+
+.desktopSeparator {
+  // color
+  border: 0;
+  border-top: 1px solid #e0e0e0;
+
+  @media (width <= 800px) {
+    display: none;
+  }
+}
+
 .tourDescriptionBlock {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
   justify-content: start;
-  gap: 60px;
+  column-gap: 60px;
+  row-gap: 40px;
   margin-bottom: 30px;
   margin-top: 20px;
 }

@@ -684,7 +684,7 @@ export function TourDetailsPage() {
             </div>
           </div>
 
-          <hr />
+          <hr className={styles.desktopSeparator} />
           <div className={styles.tourDescriptionBlock}>
             <div className={styles.tourDescription}>
               <h2 className={styles.tourDescriptionTitle}>
@@ -807,7 +807,8 @@ export function TourDetailsPage() {
             </div>
           </div>
 
-          <hr />
+          <hr className={styles.desktopSeparator} />
+          <hr className={styles.mobileSeparator} />
 
           <div className={styles.includedActivities}>
             <div className={styles.included}>
@@ -834,6 +835,8 @@ export function TourDetailsPage() {
               )}
             </div>
 
+            <hr className={styles.mobileSeparator} />
+
             <div className={styles.activities}>
               <h2 className={styles.includedActivitiesTitle}>
                 Activities
@@ -857,7 +860,8 @@ export function TourDetailsPage() {
             </div>
           </div>
 
-          <hr />
+          <hr className={styles.desktopSeparator} />
+          <hr className={styles.mobileSeparator} />
 
           <div
             id={ANCHOR_SCHEDULE}
