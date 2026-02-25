@@ -10,6 +10,7 @@ import {Dropdown} from "src/components/Dropdown/Dropdown";
 import {NumberInput} from "src/components/NumberInput/NumberInput";
 import {TourCardExtended} from "src/components/Tour/TourCardExtended/TourCardExtended";
 import {useTours} from "src/hooks/useTours";
+import {FeedbackBlock} from "src/pages/homePage/HomePage";
 import {FilterModal} from "src/pages/toursPage/FilterModal";
 import {type ToursFilter} from "src/services/toursService";
 import {TourView} from "src/types/tour";
@@ -356,82 +357,90 @@ export function ToursPage() {
   );
 
   return (
-    <section className={styles.wrap}>
-      <button
-        className={styles.floatingFilterButton}
-        onClick={() => setIsFilterModalOpen(true)}
-      >
-        <Filter />
-      </button>
-
-      <FilterModal
-        isOpen={isFilterModalOpen}
-        onClose={() => setIsFilterModalOpen(false)}
-      >
-        <div className={styles.modalFiltersWrapper}>
-          {filtersContent}
-        </div>
-      </FilterModal>
-
-      <div className={styles.horizontal}>
-        <div className={styles.filters}>
-          {filtersContent}
-        </div>
-
-        <AsyncSection
-          loading={loading}
-          error={error ?? undefined}
-          onRetry={reload}
+    <div className={styles.wrap}>
+      <section className={styles.main}>
+        <button
+          className={styles.floatingFilterButton}
+          onClick={() => setIsFilterModalOpen(true)}
         >
-          <div className={styles.verticalContainer}>
-            <div className={styles.filtersHeader}>
-              <div />
-              <div>
-                <p className={styles.filtersHeaderCenterToursAmount}>
-                  {data?.length ?? 0}
-                  {" "}
-                  tours match your search
-                </p>
-                <p className={styles.filtersHeaderCenterSub}>
-                  Refine the results by using the filters
-                </p>
-              </div>
-              <div />
+          <Filter />
+        </button>
 
-            </div>
-            {(data === null || data.length === 0) && !loading && (
-              <div className={styles.noTours}>
-                <h2 className={styles.noToursTitle}>
-                  No tours found
-                </h2>
-                <p className={styles.noToursDescription}>
-                  We couldn't find any tours matching your search.
-                  <br />
-                  Try adjusting your filters or explore our available Tuscany photo tours.
-                </p>
-                <button
-                  type="button"
-                  className={styles.noToursButton}
-                  onClick={handleResetAll}
-                >
-                  Reset filters
-                </button>
-              </div>
-            )}
-            <div className={styles.grid}>
-              {(data ?? []).map(tour => (
-                <TourCardExtended
-                  key={tour.id}
-                  tour={tour}
-                  className={styles.tourCard}
-                  travelers={filters.travelers}
-                />))}
-            </div>
-
+        <FilterModal
+          isOpen={isFilterModalOpen}
+          onClose={() => setIsFilterModalOpen(false)}
+        >
+          <div className={styles.modalFiltersWrapper}>
+            {filtersContent}
           </div>
-        </AsyncSection>
-      </div>
+        </FilterModal>
 
-    </section>
+        <div className={styles.horizontal}>
+          <div className={styles.filters}>
+            {filtersContent}
+          </div>
+
+          <AsyncSection
+            loading={loading}
+            error={error ?? undefined}
+            onRetry={reload}
+          >
+            <div className={styles.verticalContainer}>
+              <div className={styles.filtersHeader}>
+                <div />
+                <div>
+                  <p className={styles.filtersHeaderCenterToursAmount}>
+                    {data?.length ?? 0}
+                    {" "}
+                    tours match your search
+                  </p>
+                  <p className={styles.filtersHeaderCenterSub}>
+                    Refine the results by using the filters
+                  </p>
+                </div>
+                <div />
+
+              </div>
+              {(data === null || data.length === 0) && !loading && (
+                <div className={styles.noTours}>
+                  <h2 className={styles.noToursTitle}>
+                    No tours found
+                  </h2>
+                  <p className={styles.noToursDescription}>
+                    We couldn't find any tours matching your search.
+                    <br />
+                    Try adjusting your filters or explore our available Tuscany photo tours.
+                  </p>
+                  <button
+                    type="button"
+                    className={styles.noToursButton}
+                    onClick={handleResetAll}
+                  >
+                    Reset filters
+                  </button>
+                </div>
+              )}
+              <div className={styles.grid}>
+                {(data ?? []).map(tour => (
+                  <TourCardExtended
+                    key={tour.id}
+                    tour={tour}
+                    className={styles.tourCard}
+                    travelers={filters.travelers}
+                  />))}
+              </div>
+
+            </div>
+          </AsyncSection>
+        </div>
+
+        <FeedbackBlock
+          title="Find Your Perfect Photo Journey"
+          subtitle="Share your contact info, and we’ll reach out to help you select the ideal destination and dates."
+          buttonText="Contact Me"
+        />
+
+      </section>
+    </div>
   );
 }

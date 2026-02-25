@@ -50,7 +50,7 @@ const COPY = {
   reviews: {
     title: "Reviews",
     subtitle:
-      "Testimonials from Our Photo \n\nTours & Workshop Participants",
+      "Testimonials from Our Photo Tours & Workshop Participants",
   },
   articles: {
     title: "Best travel tips for Iceland",
