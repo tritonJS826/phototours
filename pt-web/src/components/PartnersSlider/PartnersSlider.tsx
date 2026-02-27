@@ -26,6 +26,7 @@ export function PartnersSlider(props: PartnersSliderProps) {
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}
+        className={styles.swiper}
         loop
         freeMode
         spaceBetween={55}
