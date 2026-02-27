@@ -719,7 +719,7 @@
 }
 
 .buyTravelInput {
-  margin: 8px 24px 8px 16px;
+  margin: 8px 24px 8px 24px;
   padding: 16px 20px;
   width: 432px;
   border-radius: 10px;
@@ -763,6 +763,10 @@
 .readOnlyInput:focus,
 .readOnlyInput:active {
   outline-color: transparent;
+}
+
+.travelersInput {
+  // margin
 }
 
 .personalizeHr {
