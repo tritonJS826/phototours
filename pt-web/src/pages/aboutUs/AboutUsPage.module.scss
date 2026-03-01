@@ -8,6 +8,7 @@
   padding: 20px 20px 0;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
 }
 
 .info {
@@ -46,6 +47,7 @@
   // min-height: 557px;
   aspect-ratio: 3/1;
   position: relative;
+  min-height: 150px;
 }
 
 .heroSection {
@@ -83,27 +85,28 @@
   justify-content: space-between;
   align-items: center;
 
-  @media (width <= 660px) {
+  @media (width <= 1250px) {
     margin-top: 20px;
 
     // flex-wrap: wrap;
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 }
 
 .victorImageBlock {
   width: 550px;
-  height: 500px;
+  // height: 500px;
   min-width: 330px;
   min-height: 300px;
   max-width: 100%;
-  border-radius: 18px;
   overflow: hidden;
 }
 
 .victorImage {
   width: 100%;
-  height: 100%;
+  // height: 100%;
+  aspect-ratio: 550/500;
+  border-radius: 18px;
 }
 
 .victorInfoBlock {
@@ -113,6 +116,10 @@
   min-width: 260px;
   overflow: hidden;
   overflow-wrap: break-word;
+
+  @media (width <= 1250px) {
+    max-width: 550px;
+  }
 }
 
 .victorSocial {
@@ -156,6 +163,10 @@
     overflow: hidden;
     min-width: 147px;
     max-width: 147px;
+  }
+
+  @media (width <= 1250px) {
+    display: none;
   }
 }
 
