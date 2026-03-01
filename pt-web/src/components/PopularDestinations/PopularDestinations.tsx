@@ -98,8 +98,7 @@ export function PopularDestinations({className = ""}: PopularWorkshopsProps) {
       <Swiper
         modules={[Keyboard, A11y, Autoplay, Pagination]}
         onSwiper={(s) => (swiperRef.current = s)}
-        loop={slides.length > ULTRA_SLIDES_PER_VIEW}
-        loopAdditionalSlides={6}
+        loop={false}
         slidesPerView={1.4}
         spaceBetween={24}
         speed={500}
@@ -117,38 +116,14 @@ export function PopularDestinations({className = ""}: PopularWorkshopsProps) {
         }}
         className={styles.swiper}
         breakpoints={{
-          [MOBILE_BREAKPOINT_EXTRA_SMALL]: {
-            slidesPerView: EXTRA_SMALL_MOBILE_SLIDES_PER_VIEW,
-            loop: slides.length > EXTRA_SMALL_MOBILE_SLIDES_PER_VIEW,
-          },
-          [MOBILE_BREAKPOINT_SMALL]: {
-            slidesPerView: SMALL_MOBILE_SLIDES_PER_VIEW,
-            loop: slides.length > SMALL_MOBILE_SLIDES_PER_VIEW,
-          },
-          [MOBILE_BREAKPOINT]: {
-            slidesPerView: MOBILE_SLIDES_PER_VIEW,
-            loop: slides.length > MOBILE_SLIDES_PER_VIEW,
-          },
-          [TABLET_BREAKPOINT]: {
-            slidesPerView: TABLET_SLIDES_PER_VIEW,
-            loop: slides.length > TABLET_SLIDES_PER_VIEW,
-          },
-          [DESKTOP_BREAKPOINT]: {
-            slidesPerView: DESKTOP_SLIDES_PER_VIEW,
-            loop: slides.length > DESKTOP_SLIDES_PER_VIEW,
-          },
-          [LARGE_DESKTOP_BREAKPOINT]: {
-            slidesPerView: LARGE_DESKTOP_SLIDES_PER_VIEW,
-            loop: slides.length > LARGE_DESKTOP_SLIDES_PER_VIEW,
-          },
-          [EXTRA_LARGE_DESKTOP_BREAKPOINT]: {
-            slidesPerView: EXTRA_LARGE_SLIDES_PER_VIEW,
-            loop: slides.length > EXTRA_LARGE_SLIDES_PER_VIEW,
-          },
-          [ULTRA_LARGE_DESKTOP_BREAKPOINT]: {
-            slidesPerView: ULTRA_SLIDES_PER_VIEW,
-            loop: slides.length > ULTRA_SLIDES_PER_VIEW,
-          },
+          [MOBILE_BREAKPOINT_EXTRA_SMALL]: {slidesPerView: EXTRA_SMALL_MOBILE_SLIDES_PER_VIEW},
+          [MOBILE_BREAKPOINT_SMALL]: {slidesPerView: SMALL_MOBILE_SLIDES_PER_VIEW},
+          [MOBILE_BREAKPOINT]: {slidesPerView: MOBILE_SLIDES_PER_VIEW},
+          [TABLET_BREAKPOINT]: {slidesPerView: TABLET_SLIDES_PER_VIEW},
+          [DESKTOP_BREAKPOINT]: {slidesPerView: DESKTOP_SLIDES_PER_VIEW},
+          [LARGE_DESKTOP_BREAKPOINT]: {slidesPerView: LARGE_DESKTOP_SLIDES_PER_VIEW},
+          [EXTRA_LARGE_DESKTOP_BREAKPOINT]: {slidesPerView: EXTRA_LARGE_SLIDES_PER_VIEW},
+          [ULTRA_LARGE_DESKTOP_BREAKPOINT]: {slidesPerView: ULTRA_SLIDES_PER_VIEW},
         }}
       >
         {slides.map((slide) => (

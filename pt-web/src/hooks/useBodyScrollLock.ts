@@ -7,6 +7,7 @@ export function useBodyScrollLock(isLocked: boolean) {
     } else {
       document.body.style.overflow = "";
     }
+
     return () => {
       document.body.style.overflow = "";
     };

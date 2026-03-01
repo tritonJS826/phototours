@@ -21,6 +21,7 @@ export function getActivityIcon(iconName: string): string {
   if (!iconName) {
     return activityIcons.default;
   }
+
   return activityIcons[iconName.toLowerCase()] || activityIcons.default;
 }
 

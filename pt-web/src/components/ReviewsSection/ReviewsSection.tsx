@@ -27,6 +27,8 @@ const DESKTOP_BREAKPOINT = 1200;
 const MOBILE_SLIDES_PER_VIEW = 1.2;
 const TABLET_SLIDES_PER_VIEW = 2.4;
 const DESKTOP_SLIDES_PER_VIEW = 3.1;
+const LOOP_ADDITIONAL_SLIDES = 3;
+const MIN_SLIDES_FOR_LOOP = 1;
 
 const getRandomUserImage = () => {
   const images = [userStub1, userStub2, userStub3];
@@ -147,8 +149,8 @@ export function ReviewsSection(props: ToursSectionProps) {
         <Swiper
           modules={[Keyboard, A11y, Autoplay]}
           onSwiper={(s) => (swiperRef.current = s)}
-          loop={true}
-          loopAdditionalSlides={3}
+          loop={totalSlides > MIN_SLIDES_FOR_LOOP}
+          loopAdditionalSlides={totalSlides > MIN_SLIDES_FOR_LOOP ? LOOP_ADDITIONAL_SLIDES : 0}
           slidesPerView={1.2}
           spaceBetween={24}
           speed={500}
@@ -164,15 +166,15 @@ export function ReviewsSection(props: ToursSectionProps) {
           breakpoints={{
             [MOBILE_BREAKPOINT]: {
               slidesPerView: MOBILE_SLIDES_PER_VIEW,
-              loop: true,
+              loop: totalSlides > MIN_SLIDES_FOR_LOOP,
             },
             [TABLET_BREAKPOINT]: {
               slidesPerView: TABLET_SLIDES_PER_VIEW,
-              loop: true,
+              loop: totalSlides > MIN_SLIDES_FOR_LOOP,
             },
             [DESKTOP_BREAKPOINT]: {
-              slidesPerView: DESKTOP_SLIDES_PER_VIEW,
-              loop: true,
+              slidesPerView: Math.min(DESKTOP_SLIDES_PER_VIEW, totalSlides),
+              loop: totalSlides > MIN_SLIDES_FOR_LOOP,
             },
           }}
         >
@@ -235,14 +237,28 @@ export function ReviewsSection(props: ToursSectionProps) {
           modules={[Keyboard, A11y]}
           onSwiper={(s) => (desktopSwiperRef.current = s)}
           onSlideChange={(s) => setCurrentSlide(s.realIndex + SLIDES_INCREMENT)}
-          loop={true}
-          loopAdditionalSlides={3}
-          slidesPerView={3}
+          loop={totalSlides > MIN_SLIDES_FOR_LOOP}
+          loopAdditionalSlides={totalSlides > MIN_SLIDES_FOR_LOOP ? LOOP_ADDITIONAL_SLIDES : 0}
+          slidesPerView={Math.min(LOOP_ADDITIONAL_SLIDES, totalSlides)}
           spaceBetween={24}
           speed={500}
           allowTouchMove={false}
           keyboard={{enabled: true}}
           className={styles.swiper}
+          breakpoints={{
+            [MOBILE_BREAKPOINT]: {
+              slidesPerView: MOBILE_SLIDES_PER_VIEW,
+              loop: totalSlides > MIN_SLIDES_FOR_LOOP,
+            },
+            [TABLET_BREAKPOINT]: {
+              slidesPerView: TABLET_SLIDES_PER_VIEW,
+              loop: totalSlides > MIN_SLIDES_FOR_LOOP,
+            },
+            [DESKTOP_BREAKPOINT]: {
+              slidesPerView: Math.min(DESKTOP_SLIDES_PER_VIEW, totalSlides),
+              loop: totalSlides > MIN_SLIDES_FOR_LOOP,
+            },
+          }}
         >
           {reviews.map((review) => (
             <SwiperSlide
