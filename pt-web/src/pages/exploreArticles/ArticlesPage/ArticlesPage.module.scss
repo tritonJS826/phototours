@@ -2,9 +2,9 @@
 @use "../../../styles/mixins" as mixin;
 
 .page {
-  padding-top: 80px;
-  padding-bottom: vars.$spacing-xxxl;
-  background: vars.$color-bg-white;
+  margin: 80px 20px 40px;
+  overflow: hidden;
+
 }
 
 .title {
