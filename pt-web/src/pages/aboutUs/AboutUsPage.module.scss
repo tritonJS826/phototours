@@ -40,14 +40,13 @@
 .heroSectionBg {
   background-image: url("https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771339565/645Z7289-Pano-Edit-Edit_6.png_n3ty5n.avif");
   background-size: cover;
-  background-position: center;
+  background-position: left;
   background-repeat: no-repeat;
   border-radius: 20px;
   padding: 20px;
-  // min-height: 557px;
   aspect-ratio: 3/1;
   position: relative;
-  min-height: 150px;
+  min-height: 300px;
 }
 
 .heroSection {
@@ -165,7 +164,7 @@
     max-width: 147px;
   }
 
-  @media (width <= 1250px) {
+  @media (width <= 880px) {
     display: none;
   }
 }
