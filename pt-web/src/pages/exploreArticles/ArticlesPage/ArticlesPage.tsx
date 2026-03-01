@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import {ArticleCard} from "src/components/Articles/ArticleCard/ArticleCard";
 import {listArticles} from "src/services/articlesService";
 import type {ArticleSummary} from "src/types/article";
 import styles from "src/pages/exploreArticles/ArticlesPage/ArticlesPage.module.scss";
@@ -22,32 +22,10 @@ export function ArticlesPage() {
       <div className="container">
         <section className={styles.list}>
           {items.map((a) => (
-            <article
+            <ArticleCard
               key={a.id}
-              className={styles.card}
-            >
-              <Link
-                to={`/articles/${a.slug}`}
-                className={styles.cardLink}
-                aria-label={a.title}
-              >
-                <div className={styles.pict}>
-                  <img
-                    src={a.coverUrl}
-                    alt={a.alt ?? a.title}
-                    loading="lazy"
-                  />
-                </div>
-                <div className={styles.body}>
-                  <h3 className={styles.title}>
-                    {a.title}
-                  </h3>
-                  <p className={styles.excerpt}>
-                    {a.excerpt}
-                  </p>
-                </div>
-              </Link>
-            </article>
+              item={a}
+            />
           ))}
         </section>
       </div>

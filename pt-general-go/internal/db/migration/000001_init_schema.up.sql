@@ -44,8 +44,6 @@ CREATE TABLE articles (
     published_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
-CREATE TRIGGER set_updated_at_trigger_article BEFORE
-UPDATE ON articles FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 CREATE TABLE guides (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL UNIQUE,
@@ -55,8 +53,6 @@ CREATE TABLE guides (
     updated_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     CONSTRAINT guide_user_id_fk FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE RESTRICT
 );
-CREATE TRIGGER set_updated_at_trigger_guides BEFORE
-UPDATE ON guides FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 CREATE TABLE tours (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     slug TEXT NOT NULL UNIQUE DEFAULT gen_random_uuid()::text,
@@ -202,8 +198,6 @@ CREATE TABLE booking_requests (
     created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
-CREATE TRIGGER set_updated_at_trigger_booking_requests BEFORE
-UPDATE ON booking_requests FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 CREATE TABLE tour_activities (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     tour_id UUID NOT NULL,

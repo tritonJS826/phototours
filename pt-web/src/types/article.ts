@@ -1,3 +1,29 @@
+export type ArticleBlockImage = {
+  type: "image";
+  src: string;
+  alt?: string;
+};
+
+export type ArticleBlockText = {
+  type: "text";
+  content: string;
+};
+
+export type ArticleBlockTitle = {
+  type: "title";
+  content: string;
+};
+
+export type ArticleBlockSeparator = {
+  type: "separator";
+};
+
+export type ArticleBlock =
+  | ArticleBlockImage
+  | ArticleBlockText
+  | ArticleBlockTitle
+  | ArticleBlockSeparator;
+
 export type ArticleSummary = {
   id: number;
   slug: string;
@@ -21,4 +47,5 @@ export type Article = {
   author?: string | null;
   featured: boolean;
   publishedAt: string;
+  blocks?: ArticleBlock[];
 };
