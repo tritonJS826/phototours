@@ -317,7 +317,7 @@ a.primaryHeaderLink {
 @media (width <= 750px) {
   .mobileMenu {
     display: block;
-    position: fixed;
+    position: absolute;
     top: 90px;
     left: 0;
     right: 0;
