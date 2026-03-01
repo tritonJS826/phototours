@@ -12,6 +12,7 @@ export const PATHS = {
 
   ARTICLES: "/articles",
   ARTICLES_SLUG: "/articles/:slug",
+  getArticle: (slug: string) => `/articles/${slug}`,
 
   PROFILE: "/profile",
   PROFILE_ID: "/profile/:id",

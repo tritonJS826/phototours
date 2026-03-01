@@ -1,7 +1,13 @@
-import stokksnesArticle from "./stokksnes-iceland.json";
+import stokksnesArticle from "src/data/articles/stokksnes-iceland.json";
 import type {Article, ArticleSummary} from "src/types/article";
 
-const articles: Article[] = [stokksnesArticle as Article];
+const articles: Article[] = [
+  stokksnesArticle as Article,
+  stokksnesArticle as Article,
+  stokksnesArticle as Article,
+  stokksnesArticle as Article,
+  stokksnesArticle as Article,
+];
 
 const articlesSummary: ArticleSummary[] = articles.map((a) => ({
   id: a.id,

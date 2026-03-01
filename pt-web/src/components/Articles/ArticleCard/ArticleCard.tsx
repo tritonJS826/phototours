@@ -1,4 +1,6 @@
 import {Link} from "react-router-dom";
+import clsx from "clsx";
+import {PATHS} from "src/routes/routes";
 import {ArticleSummary} from "src/types/article";
 import styles from "src/components/Articles/ArticleCard/ArticleCard.module.scss";
 
@@ -7,8 +9,8 @@ type Props = { item: ArticleSummary; className?: string };
 export function ArticleCard({item, className}: Props) {
   return (
     <Link
-      to={`/articles/${item.slug}`}
-      className={`${styles.card} ${className ?? ""}`}
+      to={PATHS.getArticle(item.slug)}
+      className={clsx(styles.card, className)}
       aria-label={item.title}
     >
       <div className={styles.pict}>

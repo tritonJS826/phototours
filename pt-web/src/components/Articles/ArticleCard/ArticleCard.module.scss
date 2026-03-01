@@ -15,12 +15,12 @@
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
   }
 }
 
 .pict {
   width: 100%;
+  border-radius: 18px;
   overflow: hidden;
 }
 
@@ -41,24 +41,25 @@
 }
 
 .title {
-  font-size: 25px;
-  font-weight: 700;
-  color: #111;
-  margin: 0;
-  letter-spacing: -3%;
-  line-height: 1.2;
+  height: 57px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 120%;
+  letter-spacing: -2%;
 }
 
 .description {
   height: 70px;
   display: -webkit-box;
+  font-weight: 400;
+  font-style: Regular;
   font-size: 17px;
-  font-weight: 300;
-  line-height: 1.35;
-  font-family: "DM Sans", sans-serif;
+  line-height: 135%;
+  letter-spacing: 0%;
   overflow: hidden;
   position: relative;
-  color: #666;
+  color: #151517;
+  text-align: justify;
 }
 
 .description::after {
