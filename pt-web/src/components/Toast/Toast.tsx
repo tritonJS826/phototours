@@ -1,5 +1,5 @@
-import {Check} from "lucide-react";
 import {useEffect, useState} from "react";
+import {Check} from "lucide-react";
 import styles from "src/components/Toast/Toast.module.scss";
 
 type Props = {
@@ -9,7 +9,9 @@ type Props = {
   duration?: number;
 };
 
-export function Toast({message, isVisible, onClose, duration = 3000}: Props) {
+const DEFAULT_TOAST_DURATION = 3000;
+
+export function Toast({message, isVisible, onClose, duration = DEFAULT_TOAST_DURATION}: Props) {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -19,16 +21,24 @@ export function Toast({message, isVisible, onClose, duration = 3000}: Props) {
         setShow(false);
         setTimeout(onClose, 300);
       }, duration);
+
       return () => clearTimeout(timer);
     }
   }, [isVisible, duration, onClose]);
 
-  if (!isVisible && !show) return null;
+  if (!isVisible && !show) {
+    return null;
+  }
 
   return (
     <div className={`${styles.toast} ${show ? styles.visible : styles.hidden}`}>
-      <Check size={18} className={styles.icon} />
-      <span>{message}</span>
+      <Check
+        size={18}
+        className={styles.icon}
+      />
+      <span>
+        {message}
+      </span>
     </div>
   );
 }
