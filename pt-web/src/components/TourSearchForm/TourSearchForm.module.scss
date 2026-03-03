@@ -11,7 +11,7 @@
   color: #000;
 
   // оставлю только кнопку, все остальное скрываем
-  @media (width <= 830px) {
+  @media (width <=830px) {
     background-color: transparent;
 
     > *:not(.button) {
@@ -84,6 +84,8 @@
   border-radius: 10px;
   border: none;
   font-size: 16px;
+  letter-spacing: -3%;
+  font-weight: 600;
 
   &:hover {
     background-color: #0e2ead;

@@ -2,23 +2,19 @@
 @use "../../styles/mixins" as mixin;
 
 .heroSectionBg {
-  background-image: url("/images/homeHero.avif");
-  max-width: 1530px;
+  background-image: url("https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771824381/mainPageHeroBackground_u7o3y9.avif");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  margin: 30px auto 15px;
+  margin: 30px 20px 15px;
   border-radius: 20px;
   padding: 20px;
-
-  @media (width <= 1530px) {
-    margin: 30px 20px 15px;
-  }
 }
 
 .heroHeader {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   color: #fff;
 }
 
@@ -32,6 +28,12 @@
 
 .heroLogo {
   min-width: 106px;
+}
+
+.logoContainer {
+  background-color: #5555558c;
+  border-radius: 9px;
+  padding: 10px;
 }
 
 .rightHeaderBlock {
@@ -67,7 +69,11 @@
   align-items: center;
   gap: 8px;
 
-  @media (width <= 690px) {
+  a:hover {
+    color: rgb(209 209 209);
+  }
+
+  @media (width <=690px) {
     margin-right: 20px;
   }
 }
@@ -81,6 +87,11 @@
   justify-content: center;
   align-items: center;
   font-weight: 500;
+
+  &:hover {
+    color: white;
+    background: #0e2ead;
+  }
 }
 
 .rightHeaderLinks {
@@ -95,7 +106,7 @@
   // space before items
   margin-bottom: 20px;
   bottom: -10px;
-  padding: 5px 10px;
+  padding: 3px 10px;
   background: transparent;
   border-radius: 8px;
   border: 1px solid #fff;
@@ -114,7 +125,7 @@
     color: #2c44a6;
   }
 
-  @media (width <= 690px) {
+  @media (width <=690px) {
     margin-left: auto;
   }
 }
@@ -156,11 +167,19 @@
   text-align: center;
   font-weight: 700;
   font-size: 25px;
+
+  @media (width <=900px) {
+    text-align: left;
+  }
 }
 
 .topDestinationsSelectionTitle {
   font-size: 45px;
-  margin: 70px 0 17px auto;
+  margin: 50px 0 17px auto;
+
+  @media (width <=900px) {
+    font-size: 32px;
+  }
 }
 
 .topDestinationsSelectionSubTitle {
@@ -184,15 +203,17 @@
 .wantMoreHeader {
   font-weight: 700;
   font-size: 30px;
+  text-align: center;
 }
 
 .wantMoreButton {
-  font-weight: 700;
   font-size: 16px;
   padding: 19px 34px;
   border-radius: 10px;
   border: 1px solid #2f53de;
   color: #2f53de;
+  font-weight: 700;
+  letter-spacing: -3%;
 
   &:hover {
     background-color: #0e2ead;
@@ -210,7 +231,7 @@
   margin-top: 70px;
   gap: 20px;
 
-  @media (width <= 950px) {
+  @media (width <=950px) {
     flex-direction: column;
   }
 }
@@ -222,14 +243,18 @@
   background-color: #f8f8f8;
   padding: 30px;
   border-radius: 20px;
+
+  @media (width <=550px) {
+    padding: 20px;
+  }
 }
 
 .blogAndPhotographyTitle {
   font-weight: 700;
   font-size: 45px;
 
-  @media (width <= 550px) {
-    font-size: 40px;
+  @media (width <=550px) {
+    font-size: 32px;
   }
 
   i {
@@ -254,6 +279,8 @@
   border: 1px solid #000;
   font-size: 16px;
   max-width: 160px;
+  font-weight: 700;
+  letter-spacing: -3%;
 
   &:hover {
     background-color: #212121;
@@ -272,32 +299,45 @@
 
 .reviewsTitle {
   font-size: 45px;
-  margin: 70px 0 17px auto;
+  margin: 0 0 17px auto;
+
+  @media (width <=800px) {
+    font-size: 32px;
+  }
 }
 
 .reviewsSubTitle {
   font-size: 20px;
+  font-weight: 400;
   line-height: 1.35;
   max-width: 644px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+  white-space: pre-wrap;
+  color: #38383f;
 }
 
 .faqBlock {
-  margin-top: 40px;
   background: linear-gradient(101.01deg, #3e61ed -83.91%, #233787 167.82%);
   color: #fff;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (width <=800px) {
+    align-items: start;
+  }
 }
 
 .faqTitle {
   margin-top: 35px;
   font-size: 45px;
   font-weight: 700;
-  font-style: bold;
   margin-bottom: 25px;
+
+  @media (width <=800px) {
+    font-size: 32px;
+  }
 }
 
 .faqSubtitle {
@@ -306,6 +346,11 @@
   font-size: 20px;
   line-height: 1.35;
   text-align: center;
+
+  @media (width <=800px) {
+    text-align: left;
+    font-size: 16px;
+  }
 }
 
 .accordions {
@@ -317,7 +362,11 @@
   max-width: 1490px;
   margin: 60px 0;
 
-  @media (width <= 740px) {
+  @media (width <=800px) {
+    margin: 40px 0;
+  }
+
+  @media (width <=740px) {
     grid-template-columns: repeat(1, 1fr);
   }
 }
@@ -326,19 +375,24 @@
   flex: 1;
 }
 
+.accordionItem {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 135%;
+  letter-spacing: 0%;
+  padding: 15px 0;
+  border-bottom: 1px solid white;
+}
+
 .feedBackBlock {
-  background-image: url("/images/homeHero.avif");
-  max-width: 1530px;
+  background-image: url("https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771391607/mainPageContactMeBackground_kjb9dt.avif");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  margin: 30px auto 15px;
+  margin: 30px 20px;
   border-radius: 20px;
   padding: 20px;
-
-  @media (width <= 1530px) {
-    margin: 30px 20px 15px;
-  }
 }
 
 .feedBackContent {
@@ -352,7 +406,6 @@
 .feedBackTitle {
   font-weight: 700px;
   font-size: 37px;
-  font-style: bold;
 }
 
 .feedBackDescription {
@@ -360,17 +413,21 @@
   font-size: 20px;
   line-height: 1.35;
   text-align: center;
-  max-width: 650px;
+  max-width: 440px;
   margin-top: 15px;
+
+  @media (width <=475px) {
+    text-align: start;
+  }
 }
 
 .feedBackForm {
   margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 12px;
 
-  @media (width <= 920px) {
+  @media (width <=965px) {
     flex-direction: column;
   }
 }
@@ -383,16 +440,16 @@
   height: 54px;
   border: none;
 
-  @media (width <= 475px) {
-    width: 70vw;
+  @media (width <=475px) {
+    width: 100%;
   }
 }
 
 .feedBackPhoneInput {
   width: 360px;
 
-  @media (width <= 475px) {
-    width: 70vw;
+  @media (width <=475px) {
+    width: 100%;
   }
 }
 
@@ -405,6 +462,8 @@
   font-size: 16px;
   width: auto;
   height: 54px;
+  letter-spacing: -3%;
+  font-weight: 500;
 
   // transition: all 0.3s ease;
 
@@ -416,19 +475,30 @@
     background-color: #092388;
   }
 
-  @media (width <= 920px) {
+  @media (width <=965px) {
     width: 180px;
   }
 }
 
 .privacyPolicyText {
+  display: inline-block;
+  margin-top: 12px;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 135%;
+  letter-spacing: 0%;
+
+  @media (width <=800px) {
+    font-size: 14px;
+  }
 }
 
 .privacyLink {
   text-decoration: underline;
 }
 
-@media (width <= 751px) {
+@media (width <=751px) {
   .rightHeaderBlock {
     display: none;
   }
@@ -452,14 +522,18 @@
       font-size: 16px;
       padding: 8px 0;
       display: block;
+
+      &:hover {
+        color: #424242;
+      }
     }
   }
 }
 
-@media (width <= 750px) {
+@media (width <=750px) {
   .mobileMenu {
     display: block;
-    position: fixed;
+    position: absolute;
     top: 110px;
     left: 0;
     right: 0;
@@ -474,14 +548,20 @@
     margin: 0 20px;
   }
 
+  .heroHeader {
+    flex-direction: row-reverse;
+  }
+
   .burgerBtn {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
-    background-color: #2f53de;
-    border: none;
+    width: 53px;
+    height: 53px;
+    background-color: rgb(255 255 255 / 15%);
+    backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgb(255 255 255 / 30%);
     border-radius: 8px;
     cursor: pointer;
 
@@ -489,6 +569,14 @@
       width: 28px;
       height: 28px;
       stroke: #fff;
+      stroke-width: 2;
     }
   }
+}
+
+.pupUpButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
