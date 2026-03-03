@@ -125,7 +125,7 @@
     color: #2c44a6;
   }
 
-  @media (width <= 690px) {
+  @media (width <=690px) {
     margin-left: auto;
   }
 }
@@ -207,12 +207,13 @@
 }
 
 .wantMoreButton {
-  font-weight: 700;
   font-size: 16px;
   padding: 19px 34px;
   border-radius: 10px;
   border: 1px solid #2f53de;
   color: #2f53de;
+  font-weight: 700;
+  letter-spacing: -3%;
 
   &:hover {
     background-color: #0e2ead;
@@ -230,7 +231,7 @@
   margin-top: 70px;
   gap: 20px;
 
-  @media (width <= 950px) {
+  @media (width <=950px) {
     flex-direction: column;
   }
 }
@@ -278,6 +279,8 @@
   border: 1px solid #000;
   font-size: 16px;
   max-width: 160px;
+  font-weight: 700;
+  letter-spacing: -3%;
 
   &:hover {
     background-color: #212121;
@@ -374,7 +377,7 @@
 }
 
 .accordionItem {
-  font-family: DM Sans;
+  font-family: "DM Sans", sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 135%;
@@ -461,6 +464,8 @@
   font-size: 16px;
   width: auto;
   height: 54px;
+  letter-spacing: -3%;
+  font-weight: 500;
 
   // transition: all 0.3s ease;
 
@@ -480,8 +485,7 @@
 .privacyPolicyText {
   display: inline-block;
   margin-top: 12px;
-
-  font-family: DM Sans;
+  font-family: "DM Sans", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 135%;
@@ -496,7 +500,7 @@
   text-decoration: underline;
 }
 
-@media (width <= 751px) {
+@media (width <=751px) {
   .rightHeaderBlock {
     display: none;
   }
@@ -528,7 +532,7 @@
   }
 }
 
-@media (width <= 750px) {
+@media (width <=750px) {
   .mobileMenu {
     display: block;
     position: absolute;
