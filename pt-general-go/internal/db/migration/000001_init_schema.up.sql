@@ -44,8 +44,6 @@ CREATE TABLE articles (
     published_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
-CREATE TRIGGER set_updated_at_trigger_article BEFORE
-UPDATE ON articles FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 CREATE TABLE guides (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL UNIQUE,
@@ -55,8 +53,6 @@ CREATE TABLE guides (
     updated_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     CONSTRAINT guide_user_id_fk FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE RESTRICT
 );
-CREATE TRIGGER set_updated_at_trigger_guides BEFORE
-UPDATE ON guides FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 CREATE TABLE tours (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     slug TEXT NOT NULL UNIQUE DEFAULT gen_random_uuid()::text,
@@ -64,7 +60,11 @@ CREATE TABLE tours (
     description TEXT NOT NULL,
     difficulty difficulty_level NOT NULL,
     price DOUBLE PRECISION,
+    -- {days: [{day: number|string, plan: string, description:string, imgUrl?: string}]}
     program JSONB NOT NULL,
+    -- {questions: [question: string, answer: string]}
+    faq JSONB NOT NULL, 
+    reviews_section_name TEXT NOT NULL,
     guide_id UUID,
     cover_url TEXT,
     duration_days INTEGER,
@@ -77,6 +77,12 @@ CREATE TABLE tours (
     group_size INTEGER DEFAULT 10 CHECK (group_size >= 1 AND group_size <= 500),
     spots_left INTEGER DEFAULT 1 CHECK (spots_left >= 1 AND spots_left <= 500),
     subtitle TEXT DEFAULT 'About',
+    pop_up1_title TEXT NOT NULL,
+    pop_up1_description TEXT NOT NULL,
+    pop_up1_image_url TEXT NOT NULL,
+    pop_up2_title TEXT NOT NULL,
+    pop_up2_description TEXT NOT NULL,
+    pop_up2_image_url TEXT NOT NULL,
     created_at TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT tour_guide_id_fk FOREIGN KEY (guide_id) REFERENCES guides(id) ON UPDATE CASCADE ON DELETE
@@ -129,9 +135,12 @@ CREATE TABLE reviews (
     tour_id UUID NOT NULL,
     rating INTEGER NOT NULL,
     comment TEXT,
+    user_name TEXT DEFAULT '' NOT NULL,
+    link TEXT DEFAULT '' NOT NULL,
+    image TEXT DEFAULT '' NOT NULL,
     created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     CONSTRAINT review_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT review_user_id_fk FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE RESTRICT
+    CONSTRAINT review_user_id_fk FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 CREATE TABLE tags (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -189,12 +198,11 @@ CREATE TABLE booking_requests (
     created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
-CREATE TRIGGER set_updated_at_trigger_booking_requests BEFORE
-UPDATE ON booking_requests FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 CREATE TABLE tour_activities (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     tour_id UUID NOT NULL,
     activity TEXT NOT NULL,
+    icon_name TEXT NOT NULL, 
     created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     CONSTRAINT tour_activity_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -212,4 +220,11 @@ CREATE TABLE tour_summary (
     value TEXT NOT NULL,
     created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     CONSTRAINT tour_summary_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE similar_tours (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    tour_id UUID NOT NULL,
+    similar_tour_id UUID NOT NULL,
+    CONSTRAINT similar_tours_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT similar_tours_similar_tour_id_fk FOREIGN KEY (similar_tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE
 );

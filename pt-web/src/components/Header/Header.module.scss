@@ -7,8 +7,8 @@
   width: 100%;
   background-color: #fff;
   border-bottom: 1px solid #e0e0e0;
-  color: vars.$header-footer-color;
-  font-weight: 100;
+  color: black;
+  font-weight: 300;
 }
 
 .headerContainer {
@@ -86,6 +86,10 @@
   align-items: center;
   gap: 8px;
   color: black;
+
+  a:hover {
+    color: #424242;
+  }
 }
 
 @media (width <= 750px) {
@@ -94,7 +98,7 @@
   }
 }
 
-.primaryHeaderLink {
+a.primaryHeaderLink {
   background: linear-gradient(101.01deg, #3e61ed -83.91%, #233787 167.82%);
   height: 30px;
   padding: 5px 10px;
@@ -104,6 +108,11 @@
   align-items: center;
   font-weight: 500;
   color: white;
+
+  &:hover {
+    color: white;
+    background: #0E2EAD;
+  }
 }
 
 .rightHeaderLinks {
@@ -118,7 +127,7 @@
   margin-bottom: 20px;
   bottom: -10px;
   position: relative;
-  padding: 5px 10px;
+  padding: 3px 10px;
   background: transparent;
   border-radius: 8px;
   border: 1px solid #2c44a6;
@@ -222,6 +231,10 @@
       font-size: 16px;
       padding: 8px 0;
       display: block;
+
+      &:hover {
+        color: #424242;
+      }
     }
   }
 }
@@ -304,8 +317,8 @@
 @media (width <= 750px) {
   .mobileMenu {
     display: block;
-    position: fixed;
-    top: 60px;
+    position: absolute;
+    top: 90px;
     left: 0;
     right: 0;
     width: 100%;
@@ -318,8 +331,14 @@
   }
 
   .headerContainer {
-    max-width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 
+    max-width: 100%;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
     // height: 60px;
   }
 
@@ -327,8 +346,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: 53px;
+    height: 53px;
     background-color: #2f53de;
     border: none;
     border-radius: 8px;
@@ -338,10 +357,20 @@
       width: 28px;
       height: 28px;
       stroke: #fff;
+      stroke-width: 2;
     }
   }
 
   .headerLogo {
+    display: flex;
+    align-items: center;
+  }
+
+  .headerNav {
+    display: none;
+  }
+
+  .rightHeaderLinks {
     display: none;
   }
 }

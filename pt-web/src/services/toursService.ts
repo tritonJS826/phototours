@@ -30,17 +30,23 @@ type TourDTO = {
   difficulty?: TourView["difficulty"];
   minAge?: number | null;
   availableMonths?: string[];
-  coverUrl?: string;
+  coverUrl: string;
   photos?: Array<string | UrlObj>;
   videos?: Array<string | UrlObj>;
   included?: string[];
-  activities?: string[];
+  activities?: Array<{ activity: string; iconName: string }>;
   summary?: string[];
   dates: Array<DatesObj>;
   program?: {
     days?: Array<{ day: number; plan: string; description: string; imgUrl: string }>;
     included?: string[];
     activities?: string[];
+  };
+  faq: {
+    questions: Array<{
+      question: string;
+      answer: string;
+    }>;
   };
   guide?: { id: number; name?: string };
   tags?: Array<string | { name: string }>;
@@ -49,6 +55,14 @@ type TourDTO = {
   groupSize: number;
   spotsLeft: number;
   subtitle: string;
+  reviewsSectionName: string;
+
+  popUp1Description: string;
+  popUp1ImageUrl: string;
+  popUp1Title: string;
+  popUp2Description: string;
+  popUp2ImageUrl: string;
+  popUp2Title: string;
 };
 
 function toUrl(v: string | UrlObj): string {
@@ -111,6 +125,8 @@ function mapTourToView(dto: TourDTO): TourView {
       description: d.description,
       imgUrl: d.imgUrl,
     })) ?? [];
+
+  const faq = dto.faq.questions;
   const priceRaw = dto.price === "" ? undefined : dto.price;
   const priceNum = typeof priceRaw === "number" ? priceRaw : priceRaw ? Number(priceRaw) : undefined;
   const price = Number.isFinite(priceNum) && (priceNum as number) > 0 ? (priceNum as number) : undefined;
@@ -139,15 +155,26 @@ function mapTourToView(dto: TourDTO): TourView {
     videos: videoUrls,
     dates,
     dailyItinerary,
+    reviewsSectionName: dto.reviewsSectionName,
+    faq,
     guide: dto.guide ? {id: dto.guide.id, name: dto.guide.name} : undefined,
     tags,
     categories,
-    activities: dto.activities ?? [],
+    activities: (dto.activities ?? []).map(a => ({
+      activity: typeof a === "string" ? a : a.activity,
+      iconName: typeof a === "string" ? "" : a.iconName,
+    })),
     included: dto.included ?? [],
     summary: dto.summary ?? [],
     groupSize: dto.groupSize ?? DEFAULT_GROUP_SIZE,
     spotsLeft: dto.spotsLeft ?? DEFAULT_SPOTS_LEFT,
     subtitle: dto.subtitle ?? "About",
+    popUp1Description: dto.popUp1Description,
+    popUp1ImageUrl: dto.popUp1ImageUrl,
+    popUp1Title: dto.popUp1Title,
+    popUp2Description: dto.popUp2Description,
+    popUp2ImageUrl: dto.popUp2ImageUrl,
+    popUp2Title: dto.popUp2Title,
   };
 }
 
@@ -187,8 +214,16 @@ export async function listTours(filter?: ToursFilter): Promise<TourView[]> {
   return (raw ?? []).map(mapTourToView);
 }
 
-export async function getTourBySlag(slug: string): Promise<TourView> {
+export async function getTourBySlug(slug: string): Promise<TourView> {
   const raw = await fetchData<TourDTO>(`${TOURS_PATH}/slug/${slug}`);
 
   return mapTourToView(raw);
+}
+
+export async function getSimilarToursByTourId(tourId: string): Promise<TourView[]> {
+  const raw = await fetchData<TourDTO[]>(`${TOURS_PATH}/${tourId}/similar`);
+
+  const similarTours = (raw ?? []).map(mapTourToView);
+
+  return similarTours;
 }

@@ -25,6 +25,16 @@ export interface TourDay {
   imgUrl?: string;
 }
 
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface TourActivity {
+  activity: string;
+  iconName: string;
+}
+
 export interface TourView {
   id: number;
   starAmount: number;
@@ -42,25 +52,37 @@ export interface TourView {
   minAge?: number | null;
   availableMonths?: string[];
 
-  coverUrl?: string;
+  coverUrl: string;
   photos: string[];
   videos?: string[];
 
   dates: string[];
   dailyItinerary?: TourDay[];
+  faq: FaqItem[];
 
   guide?: { id: number; name?: string };
 
   tags?: string[];
   categories?: string[];
 
-  activities: string[];
+  activities: TourActivity[];
   included: string[];
   summary: string[];
 
   groupSize: number;
   spotsLeft: number;
   subtitle: string;
+
+  // Popup-related fields
+  popUp1Title: string;
+  popUp1Description: string;
+  popUp1ImageUrl: string;
+  popUp2Title: string;
+  popUp2Description: string;
+  popUp2ImageUrl: string;
+
+  // Reviews section dynamic title
+  reviewsSectionName?: string;
 }
 
 export interface TourMaterial {

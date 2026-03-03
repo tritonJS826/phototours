@@ -26,6 +26,7 @@ type Booking struct {
 }
 
 type BookingRequest struct {
+	ID         uuid.UUID `json:"id,omitempty"`
 	Name       string    `json:"name"`
 	Phone      string    `json:"phone"`
 	TourID     uuid.UUID `json:"tourId"`
@@ -33,4 +34,5 @@ type BookingRequest struct {
 	TravelDate string    `json:"travelDate"`
 	Travelers  int       `json:"travelers"`
 	Rooms      int       `json:"rooms,omitempty"`
+	ZohoDealID string    `json:"zohoDealId,omitempty"`
 }

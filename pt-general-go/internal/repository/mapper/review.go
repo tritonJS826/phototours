@@ -17,6 +17,9 @@ func MapToDomainReviews(dbReviews []db.GetReviewsByTourIDRow) []domain.Review {
 			TourID:    PgUUIDToUUID(dbReview.TourID),
 			UserID:    PgUUIDToUUID(dbReview.UserID),
 			Rating:    dbReview.Rating,
+			UserName:  dbReview.UserName,
+			Link:      dbReview.Link,
+			Image:     dbReview.Image,
 		})
 	}
 	return reviews
@@ -34,7 +37,28 @@ func MapToDomainReviewsByTourIDs(dbReviews []db.GetReviewsByTourIDsRow) map[uuid
 			Rating:    dbReview.Rating,
 			Comment:   dbReview.Comment.String,
 			CreatedAt: dbReview.CreatedAt.Time,
+			UserName:  dbReview.UserName,
+			Link:      dbReview.Link,
+			Image:     dbReview.Image,
 		})
 	}
 	return result
+}
+
+func MapToDomainReviewsForMain(dbReviews []db.GetReviewsForMainRow) []domain.Review {
+	reviews := make([]domain.Review, 0, len(dbReviews))
+	for _, dbReview := range dbReviews {
+		reviews = append(reviews, domain.Review{
+			CreatedAt: dbReview.CreatedAt.Time,
+			Comment:   dbReview.Comment.String,
+			ID:        PgUUIDToUUID(dbReview.ID),
+			TourID:    PgUUIDToUUID(dbReview.TourID),
+			UserID:    PgUUIDToUUID(dbReview.UserID),
+			Rating:    dbReview.Rating,
+			UserName:  dbReview.UserName,
+			Link:      dbReview.Link,
+			Image:     dbReview.Image,
+		})
+	}
+	return reviews
 }

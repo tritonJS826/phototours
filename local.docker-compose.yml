@@ -7,7 +7,7 @@ services:
     ports:
       - "5432:5432"
     env_file:
-      - ./pt-general/.env
+      - ./pt-general-go/.env
     volumes:
       - postgres-general:/var/lib/postgresql/data
     networks:

@@ -22,6 +22,11 @@ export interface AccordionItem {
    * A unique key to identify the AccordionItem.
    */
   itemKey: string;
+
+  /**
+   * Customs styles for children
+   */
+  className?: string;
 }
 
 /**
@@ -35,6 +40,7 @@ export const AccordionItem = (props: AccordionItem) => {
       value={props.itemKey}
     >
       <AccordionTrigger
+        className={props.className}
         child={props.trigger.child}
         dataCy={props.trigger.dataCy}
       />

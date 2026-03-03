@@ -21,12 +21,19 @@ func NewTourRepository(db db.Querier) *TourRepository {
 
 func (r *TourRepository) CreateTour(ctx context.Context, createTour *domain.CreateTourParams) (*domain.Tour, error) {
 	params := db.CreateTourParams{
-		Title:           createTour.Title,
-		Description:     createTour.Description,
-		Difficulty:      db.DifficultyLevel(createTour.Difficulty),
-		Program:         createTour.Program,
-		Languages:       createTour.Languages,
-		AvailableMonths: createTour.AvailableMonths,
+		Title:             createTour.Title,
+		Description:       createTour.Description,
+		Difficulty:        db.DifficultyLevel(createTour.Difficulty),
+		Program:           createTour.Program,
+		Faq:               createTour.FAQ,
+		Languages:         createTour.Languages,
+		AvailableMonths:   createTour.AvailableMonths,
+		PopUp1Title:       createTour.PopUp1Title,
+		PopUp1Description: createTour.PopUp1Description,
+		PopUp2Title:       createTour.PopUp2Title,
+		PopUp2Description: createTour.PopUp2Description,
+		PopUp1ImageUrl:    createTour.PopUp1ImageUrl,
+		PopUp2ImageUrl:    createTour.PopUp2ImageUrl,
 	}
 
 	if createTour.Price != nil {
@@ -74,7 +81,7 @@ func (r *TourRepository) CreateTour(ctx context.Context, createTour *domain.Crea
 		return nil, handleDBError(err)
 	}
 
-	return mapper.MapToDomainTour(&tour), nil
+	return mapper.MapToDomainCreateTour(tour), nil
 }
 
 func (r *TourRepository) GetTourByID(ctx context.Context, id uuid.UUID) (*domain.Tour, error) {
@@ -82,7 +89,7 @@ func (r *TourRepository) GetTourByID(ctx context.Context, id uuid.UUID) (*domain
 	if err != nil {
 		return nil, handleDBError(err)
 	}
-	return mapper.MapToDomainTour(&tour), nil
+	return mapper.MapToDomainGetTourByID(tour), nil
 }
 
 func (r *TourRepository) GetTourBySlug(ctx context.Context, slug string) (*domain.Tour, error) {
@@ -90,7 +97,7 @@ func (r *TourRepository) GetTourBySlug(ctx context.Context, slug string) (*domai
 	if err != nil {
 		return nil, handleDBError(err)
 	}
-	return mapper.MapToDomainTour(&tour), nil
+	return mapper.MapToDomainGetTourBySlug(tour), nil
 }
 
 func (r *TourRepository) GetTours(ctx context.Context, limit, offset int32, filters *domain.TourFilter) ([]domain.Tour, error) {
@@ -155,6 +162,9 @@ func (r *TourRepository) UpdateTourByID(ctx context.Context, id uuid.UUID, req *
 	if req.Program != nil {
 		params.Program = *req.Program
 	}
+	if req.FAQ != nil {
+		params.Faq = *req.FAQ
+	}
 	if req.Price != nil {
 		params.Price = pgtype.Float8{Float64: *req.Price, Valid: true}
 	}
@@ -196,7 +206,7 @@ func (r *TourRepository) UpdateTourByID(ctx context.Context, id uuid.UUID, req *
 	if err != nil {
 		return nil, handleDBError(err)
 	}
-	return mapper.MapToDomainTour(&tour), nil
+	return mapper.MapToDomainUpdateTourByID(tour), nil
 }
 
 func (r *TourRepository) DeleteTourByID(ctx context.Context, id uuid.UUID) error {
@@ -208,4 +218,12 @@ func (r *TourRepository) DeleteTourByID(ctx context.Context, id uuid.UUID) error
 		return domain.ErrNotFound
 	}
 	return nil
+}
+
+func (r *TourRepository) GetSimilarToursByTourID(ctx context.Context, tourID uuid.UUID) ([]domain.Tour, error) {
+	rows, err := r.db.GetSimilarToursByTourID(ctx, mapper.UUIDToPgUUID(tourID))
+	if err != nil {
+		return nil, handleDBError(err)
+	}
+	return mapper.MapToDomainSimilarTours(rows), nil
 }

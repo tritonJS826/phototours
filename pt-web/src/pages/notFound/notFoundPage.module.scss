@@ -5,7 +5,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 115px 0;
+  // margin: 115px 0;
+  
+  background-image: url("https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771359007/tuscany-fall___IGP3048_Panorama_ret_84%D1%85183-200dpi_251-Edit_copy_iimlup_2.png_mxtr0g.avif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 20px;
+  height: calc(100vh - 60px);
+  min-height: 500px;  
 }
 
 .content {
@@ -25,13 +33,13 @@
   font-size: 45px;
   font-weight: 700;
   margin: 0;
-  color: #2d46aa;
+  color: #FFFFFF;
 }
 
 .subtitle {
   font-size: 45px;
   margin: 8px 0;
-  color: #151517;
+  color: #FFFFFF;
 }
 
 .description {
@@ -39,7 +47,7 @@
   line-height: 1.35;
   font-weight: 400;
   margin-bottom: 40px;
-  color: vars.$header-footer-color;
+  color: #FFFFFF;
 }
 
 .button {

@@ -7,10 +7,12 @@ export const PATHS = {
   getTour: (slug: string) => `/tours/${slug}`,
 
   CART: "/cart",
+  THANK_YOU: "/thank-you",
   CONTACT: "/contact",
 
   ARTICLES: "/articles",
   ARTICLES_SLUG: "/articles/:slug",
+  getArticle: (slug: string) => `/articles/${slug}`,
 
   PROFILE: "/profile",
   PROFILE_ID: "/profile/:id",
@@ -41,4 +43,3 @@ export const buildPath = {
   adminUsers: () => PATHS.ADMIN_USERS,
   publicProfile: (id: string | number) => `/profile/${id}`,
 } as const;
-

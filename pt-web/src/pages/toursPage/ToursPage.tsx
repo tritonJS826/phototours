@@ -10,6 +10,7 @@ import {Dropdown} from "src/components/Dropdown/Dropdown";
 import {NumberInput} from "src/components/NumberInput/NumberInput";
 import {TourCardExtended} from "src/components/Tour/TourCardExtended/TourCardExtended";
 import {useTours} from "src/hooks/useTours";
+import {FeedbackBlock} from "src/pages/homePage/HomePage";
 import {FilterModal} from "src/pages/toursPage/FilterModal";
 import {type ToursFilter} from "src/services/toursService";
 import {TourView} from "src/types/tour";
@@ -39,7 +40,7 @@ export function ToursPage() {
   };
 
   const [filters, setFilters] = useState<ToursFilter>(getFiltersFromURL());
-  const [priceRange, setPriceRange] = useState({min: 300, max: 6000});
+  const [priceRange, setPriceRange] = useState({min: 300, max: 9900});
   const {allTours, loading, error, reload} = useTours(filters);
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
@@ -121,7 +122,7 @@ export function ToursPage() {
 
   const handleResetAll = () => {
     setFilters({});
-    setPriceRange({min: 300, max: 6000});
+    setPriceRange({min: 300, max: 9900});
     setSearchParams(new URLSearchParams()); // Clear URL params
   };
 
@@ -171,61 +172,22 @@ export function ToursPage() {
                 id: "location-japan",
                 isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
-                  Japan
+                  Asia & Oceania
                 </div>,
                 isVisible: true,
                 onClick: () => {
-                  setFilters(prev => ({...prev, location: "Japan"}));
+                  setFilters(prev => ({...prev, location: "Asia & Oceania"}));
                 },
               },
-              // {
-              //   id: "location-usa",
-              //   isPreventDefaultUsed: true,
-              //   value: <div className={styles.dropdownItem}>
-              //     USA
-              //   </div>,
-              //   isVisible: true,
-              //   onClick: () => {
-              //     const input = document.getElementById(
-              //       "filters-location",
-              //     ) as HTMLInputElement;
-              //     if (input) {
-              //       input.value = "USA";
-              //     }
-              //     setFilters(prev => ({...prev, location: "USA"}));
-              //   },
-              // },
               {
                 id: "location-north-africa",
                 isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
-                  North Africa
+                  Africa
                 </div>,
                 isVisible: true,
                 onClick: () => {
-                  setFilters(prev => ({...prev, location: "North Africa"}));
-                },
-              },
-              {
-                id: "location-oceania",
-                isPreventDefaultUsed: false,
-                value: <div className={styles.dropdownItem}>
-                  Oceania
-                </div>,
-                isVisible: true,
-                onClick: () => {
-                  setFilters(prev => ({...prev, location: "Oceania"}));
-                },
-              },
-              {
-                id: "location-mediterranean",
-                isPreventDefaultUsed: false,
-                value: <div className={styles.dropdownItem}>
-                  Mediterranean
-                </div>,
-                isVisible: true,
-                onClick: () => {
-                  setFilters(prev => ({...prev, location: "Mediterranean"}));
+                  setFilters(prev => ({...prev, location: "Africa"}));
                 },
               },
             ],
@@ -319,7 +281,7 @@ export function ToursPage() {
         value={filters.travelers || ONE_TRAVELER}
         onChange={(newValue) => setFilters(prev => ({...prev, travelers: newValue}))}
         min={1}
-        max={99}
+        max={20}
         description="Travelers"
         icon={people}
       />
@@ -341,7 +303,8 @@ export function ToursPage() {
           <input
             type="range"
             min="300"
-            max="6000"
+            max="9900"
+            step="100"
             value={priceRange.min}
             className={styles.range}
             id="min"
@@ -350,7 +313,8 @@ export function ToursPage() {
           <input
             type="range"
             min="300"
-            max="6000"
+            max="9900"
+            step="100"
             value={priceRange.max}
             className={styles.range}
             id="max"
@@ -393,63 +357,90 @@ export function ToursPage() {
   );
 
   return (
-    <section className={styles.wrap}>
-      <button
-        className={styles.floatingFilterButton}
-        onClick={() => setIsFilterModalOpen(true)}
-      >
-        <Filter />
-      </button>
-
-      <FilterModal
-        isOpen={isFilterModalOpen}
-        onClose={() => setIsFilterModalOpen(false)}
-      >
-        <div className={styles.modalFiltersWrapper}>
-          {filtersContent}
-        </div>
-      </FilterModal>
-
-      <div className={styles.horizontal}>
-        <div className={styles.filters}>
-          {filtersContent}
-        </div>
-
-        <AsyncSection
-          loading={loading}
-          error={error ?? undefined}
-          onRetry={reload}
+    <div className={styles.wrap}>
+      <section className={styles.main}>
+        <button
+          className={styles.floatingFilterButton}
+          onClick={() => setIsFilterModalOpen(true)}
         >
-          <div className={styles.verticalContainer}>
-            <div className={styles.filtersHeader}>
-              <div />
-              <div>
-                <p className={styles.filtersHeaderCenterToursAmount}>
-                  {data?.length ?? 0}
-                  {" "}
-                  tours match your search
-                </p>
-                <p className={styles.filtersHeaderCenterSub}>
-                  Refine the results by using the filters
-                </p>
-              </div>
-              <div />
+          <Filter />
+        </button>
 
-            </div>
-            <div className={styles.grid}>
-              {(data ?? []).map(tour => (
-                <TourCardExtended
-                  key={tour.id}
-                  tour={tour}
-                  className={styles.tourCard}
-                  travelers={filters.travelers}
-                />))}
-            </div>
-
+        <FilterModal
+          isOpen={isFilterModalOpen}
+          onClose={() => setIsFilterModalOpen(false)}
+        >
+          <div className={styles.modalFiltersWrapper}>
+            {filtersContent}
           </div>
-        </AsyncSection>
-      </div>
+        </FilterModal>
 
-    </section>
+        <div className={styles.horizontal}>
+          <div className={styles.filters}>
+            {filtersContent}
+          </div>
+
+          <AsyncSection
+            loading={loading}
+            error={error ?? undefined}
+            onRetry={reload}
+          >
+            <div className={styles.verticalContainer}>
+              <div className={styles.filtersHeader}>
+                <div />
+                <div>
+                  <p className={styles.filtersHeaderCenterToursAmount}>
+                    {data?.length ?? 0}
+                    {" "}
+                    tours match your search
+                  </p>
+                  <p className={styles.filtersHeaderCenterSub}>
+                    Refine the results by using the filters
+                  </p>
+                </div>
+                <div />
+
+              </div>
+              {(data === null || data.length === 0) && !loading && (
+                <div className={styles.noTours}>
+                  <h2 className={styles.noToursTitle}>
+                    No tours found
+                  </h2>
+                  <p className={styles.noToursDescription}>
+                    We couldn't find any tours matching your search.
+                    <br />
+                    Try adjusting your filters or explore our available Tuscany photo tours.
+                  </p>
+                  <button
+                    type="button"
+                    className={styles.noToursButton}
+                    onClick={handleResetAll}
+                  >
+                    Reset filters
+                  </button>
+                </div>
+              )}
+              <div className={styles.grid}>
+                {(data ?? []).map(tour => (
+                  <TourCardExtended
+                    key={tour.id}
+                    tour={tour}
+                    className={styles.tourCard}
+                    travelers={filters.travelers}
+                  />))}
+              </div>
+
+            </div>
+          </AsyncSection>
+        </div>
+
+        <FeedbackBlock
+          title="Find Your Perfect Photo Journey"
+          subtitle="Share your contact info, and we’ll reach out to help you select the ideal destination and dates."
+          buttonText="Contact Me"
+        />
+
+      </section>
+    </div>
   );
 }

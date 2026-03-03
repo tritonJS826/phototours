@@ -60,13 +60,19 @@ interface AccordionProps {
    * Additional custom class name for the component (Optional)
    */
   className?: string;
+
+  /**
+   * Additional custom class name for the component items (children)
+   */
+  itemClassName?: string;
 }
 
 /**
  * Accordion item component
  */
-const renderAccordionItem = (item: AccordionItemData, uniqueId: string) => (
+const renderAccordionItem = (item: AccordionItemData, uniqueId: string, itemClassName?: string) => (
   <AccordionItem
+    className={itemClassName}
     trigger={item.trigger}
     content={item.content}
     itemKey={uniqueId}
@@ -86,7 +92,7 @@ export const Accordion = (props: AccordionProps) => {
       {props.items.map((item) => {
         const uniqueId = useId();
 
-        return renderAccordionItem(item, uniqueId);
+        return renderAccordionItem(item, uniqueId, props.itemClassName);
       })}
     </RadixAccordionRoot>
   );

@@ -1,32 +1,26 @@
 .wrap {
-  background-color: #f0f0f0;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
-  padding: 20px;
+  padding: 20px 0;
+  @media (width <= 1200px) {
+    padding: 20px 20px;
+    overflow: hidden;
+  }
 }
 
 .reviewsSlider {
   position: relative;
   max-width: 1530px;
   margin: auto;
+
+  @media (width > 1200px) {
+    display: none;
+  }
 }
 
 .arrow {
-  position: absolute;
-  top: 43%;
-  z-index: 3;
-  background: transparent;
-  border: none;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  opacity: 0.8;
-
-  span {
-    font-size: 24px;
-    line-height: 1;
-  }
+  display: none;
 }
 
 .arrowLeft {
@@ -40,6 +34,11 @@
 }
 
 .reviewSlide {
+  background-color: #F8F8F8;
+  border-radius: 20px;
+  padding: 20px;
+
+  
   // Cropping for rightmost image - this will handle the cropping effect
   .reviewCard {
     img {
@@ -47,4 +46,65 @@
       object-position: center;
     }
   }
+}
+
+.desktopSlider {
+  display: none;
+  position: relative;
+  max-width: 1530px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+
+  @media (width > 1200px) {
+    display: block;
+  }
+}
+
+.desktopNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-bottom: 24px;
+
+  position: absolute;
+  right: 0;
+  top: -80px;
+}
+
+.desktopArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+
+  img {
+    width: 25px;
+    height: 25px;
+  }
+
+  &:first-child {
+    img {
+      transform: rotate(180deg);
+    }
+  }
+
+  &:last-child {
+    img {
+      transform: rotate(0deg);
+    }
+  }
+}
+
+.slideCounter {
+  font-family: DM Sans;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 135%;
+  letter-spacing: 8%;
 }

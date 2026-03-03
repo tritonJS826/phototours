@@ -89,6 +89,7 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 		tours.GET("", h.GetAllTours)
 		tours.GET("/:id", h.GetTourByID)
 		tours.GET("/slug/:slug", h.GetTourBySlug)
+		tours.GET("/:id/similar", h.GetSimilarToursByTourID)
 		toursAdmin := tours.Group("", h.AuthMiddleware(), RequireRole(domain.RoleGuide, domain.RoleAdmin))
 		{
 			toursAdmin.POST("", h.CreateTour)
@@ -97,10 +98,23 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 		}
 	}
 
+	reviews := general.Group("/reviews")
+	{
+		reviews.GET("/main", h.GetReviewsForMain)
+	}
+
 	bookings := general.Group("/bookings")
 	{
 		bookings.POST("", h.CreateBookingRequest)
+		bookings.POST("/deposit-succeeded", h.StripeDepositSucceededWebhook)
 	}
+
+	contact := general.Group("/contact")
+	{
+		contact.POST("/me", h.ContactMe)
+	}
+
+	general.POST("/subscribe", h.Subscribe)
 
 	return router
 }

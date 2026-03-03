@@ -1,20 +1,20 @@
 import {useEffect, useRef, useState} from "react";
 // Import {Helmet} from "react-helmet-async";
-import {useParams} from "react-router-dom";
+import {Link, useParams, useSearchParams} from "react-router-dom";
 import arrowsToRight from "/images/arrowsToRight.svg";
-import blogAndPhotography1 from "/images/blogAndPhotography1.avif";
-import blogAndPhotography2 from "/images/blogAndPhotography2.avif";
-import blogAndPhotography3 from "/images/blogAndPhotography3.avif";
-import blueArrowCircleRight from "/images/blueArrowCircleRight.svg";
+// Import blueArrowCircleRight from "/images/blueArrowCircleRight.svg";
 import calendar from "/images/calendar-blue.svg";
+import calendarRoundBlue from "/images/calendarRoundBlue.svg";
 import checkboxAccepted from "/images/checkboxAccepted.svg";
 import flagRoundBlue from "/images/flagRoundBlue.svg";
 import grayArrowRightCircle from "/images/grayArrowRightCircle.svg";
 import people from "/images/people.svg";
-import photoRoundBlue from "/images/photoRoundBlue.svg";
 import reviews from "/images/reviews.svg";
 import spotsLeft from "/images/spotsLeft.svg";
 import starYellow from "/images/star-yellow.png";
+import telegramBlue from "/images/telegram-blue.svg";
+import timerRoundBlue from "/images/timerRoundBlue.svg";
+import whatsappGreen from "/images/whatsapp-green.svg";
 import clsx from "clsx";
 import {Accordion, accordionTypes} from "src/components/Accordion/Accordion";
 import {Button} from "src/components/Button/Button";
@@ -22,6 +22,7 @@ import {Container} from "src/components/Container/Container";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
 import {NumberInput} from "src/components/NumberInput/NumberInput";
 import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
+import {TimeoutPopup} from "src/components/TimeoutPopup/TimeoutPopup";
 import {TourCardExtended} from "src/components/Tour/TourCardExtended/TourCardExtended";
 import {FeedbackBlock} from "src/pages/homePage/HomePage";
 import {NotFoundPage} from "src/pages/notFound/notFoundPage";
@@ -31,8 +32,9 @@ import {
   type BookingRequest,
   createBooking,
 } from "src/services/bookingService";
-import {getTourBySlag as getTourBySlug} from "src/services/toursService";
+import {getSimilarToursByTourId, getTourBySlug} from "src/services/toursService";
 import type {TourView} from "src/types/tour";
+import {getActivityIcon} from "src/utils/activityIcons";
 import {formatMonthsToDateRange} from "src/utils/dateUtils";
 import {renderMultilineDouble} from "src/utils/textUtils";
 import type {Swiper as SwiperType} from "swiper";
@@ -40,6 +42,9 @@ import {A11y, Keyboard} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import styles from "src/pages/tourDetailsPage/TourDetailsPage.module.scss";
+
+const ANCHOR_SCHEDULE = "schedule";
+const ANCHOR_REVIEWS = "reviews";
 
 interface ScheduleAccordionItemProps {
   description: string;
@@ -69,45 +74,6 @@ interface AccordionItemData {
   content: { child: React.ReactNode };
 }
 
-const faqAccordionItems: AccordionItemData[] = [
-  {
-    trigger: {child: "Day 1. Arrival and meet-up with the group"},
-    content: {
-      child: (
-        <ScheduleAccordionItem
-          className={styles.scheduleAccordionItem}
-          // eslint-disable-next-line max-len
-          description="Upon arrival, our coordinator will greet you at the meeting point. Check-in at the hotel, time to rest, and a welcome briefing in the evening. We'll go over the tour program, shooting locations, weather conditions, and plans for the next morning."
-        />
-      ),
-    },
-  },
-  {
-    trigger: {child: "Day 2. Sunrise shoot and exploring the surroundings"},
-    content: {
-      child: (
-        <ScheduleAccordionItem
-          className={styles.scheduleAccordionItem}
-          // eslint-disable-next-line max-len
-          description="Upon arrival, our coordinator will greet you at the meeting point. Check-in at the hotel, time to rest, and a welcome briefing in the evening. We'll go over the tour program, shooting locations, weather conditions, and plans for the next morning."
-        />
-      ),
-    },
-  },
-  {
-    trigger: {child: "Day 3. Iconic landmarks and guided photography session"},
-    content: {
-      child: (
-        <ScheduleAccordionItem
-          className={styles.scheduleAccordionItem}
-          // eslint-disable-next-line max-len
-          description="Upon arrival, our coordinator will greet you at the meeting point. Check-in at the hotel, time to rest, and a welcome briefing in the evening. We'll go over the tour program, shooting locations, weather conditions, and plans for the next morning."
-        />
-      ),
-    },
-  },
-];
-
 function getScheduleAccordionItems(tour: TourView): AccordionItemData[] {
   if (!tour.dailyItinerary || tour.dailyItinerary.length === 0) {
     return [];
@@ -127,69 +93,14 @@ function getScheduleAccordionItems(tour: TourView): AccordionItemData[] {
   }));
 }
 
-const slidesForExtraTours = [
-  {
-    id: "1",
-    image: blogAndPhotography1,
-    link: PATHS.getTour("tuscany-spring-photo-tour"),
-    title: "Chianti Hills & Vineyards",
-    subtitle:
-      "Capture golden vineyards, rustic hilltop villages, and soft evening light across the legendary rolling hills of Chianti.",
-  },
-  {
-    id: "2",
-    image: blogAndPhotography2,
-    link: PATHS.getTour("morocco-photo-tour"),
-    title: "Your Guide to Iconic Tuscany Shots",
+// Const MOBILE_BREAKPOINT = 640;
+// const TABLET_BREAKPOINT = 920;
+// const DESKTOP_BREAKPOINT = 1224;
 
-    subtitle:
-      // eslint-disable-next-line max-len
-      "Explore essential techniques and hidden locations for creating cinematic images in Tuscany. Explore essential techniques and hidden locations for creating cinematic images in Tuscany.",
-  },
-  {
-    id: "3",
-    image: blogAndPhotography3,
-    link: PATHS.getTour("venice-carnival-photo-tour"),
-    title: "Inspiration for Your Next Photo Adventure",
-    subtitle:
-      "A curated blend of tips, stories, and expert advice for photographing Tuscany at its best.",
-  },
-  {
-    id: "4",
-    image: blogAndPhotography1,
-    link: PATHS.getTour("new-zealand-photo-tour"),
-    title: "Chianti Hills & Vineyards",
-    subtitle:
-      "Capture golden vineyards, rustic hilltop villages, and soft evening light across the legendary rolling hills of Chianti.",
-  },
-  {
-    id: "5",
-    image: blogAndPhotography2,
-    link: PATHS.getTour("japan-cherry-blossom-tour"),
-    title: "Your Guide to Iconic Tuscany Shots",
-
-    subtitle:
-      // eslint-disable-next-line max-len
-      "Explore essential techniques and hidden locations for creating cinematic images in Tuscany. Explore essential techniques and hidden locations for creating cinematic images in Tuscany.",
-  },
-  {
-    id: "6",
-    image: blogAndPhotography3,
-    link: PATHS.getTour("cyclades-sailing-tour"),
-    title: "Inspiration for Your Next Photo Adventure",
-    subtitle:
-      "A curated blend of tips, stories, and expert advice for photographing Tuscany at its best.",
-  },
-];
-
-const MOBILE_BREAKPOINT = 640;
-const TABLET_BREAKPOINT = 920;
-const DESKTOP_BREAKPOINT = 1224;
-
-const MOBILE_SLIDES_PER_VIEW = 1;
-const TABLET_SLIDES_PER_VIEW = 2;
-const DESKTOP_SLIDES_PER_VIEW = 3;
-const LARGE_DESKTOP_SLIDES_PER_VIEW = 4;
+// const MOBILE_SLIDES_PER_VIEW = 1.2;
+// const TABLET_SLIDES_PER_VIEW = 2.2;
+// const DESKTOP_SLIDES_PER_VIEW = 3.2;
+// const LARGE_DESKTOP_SLIDES_PER_VIEW = 4.2;
 
 const MOBILE_BREAKPOINT_GALLERY_SLIDER = 700;
 const TABLET_BREAKPOINT_GALLERY_SLIDER = 1250;
@@ -199,6 +110,26 @@ const MOBILE_SLIDES_PER_VIEW_GALLERY_SLIDER = 3;
 const TABLET_SLIDES_PER_VIEW_GALLERY_SLIDER = 4;
 const DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER = 5;
 const LARGE_DESKTOP_SLIDES_PER_VIEW_GALLERY_SLIDER = 6;
+
+const SIMILAR_TOURS_MOBILE_SMALL_BREAKPOINT = 330;
+const SIMILAR_TOURS_MOBILE_MID_BREAKPOINT = 520;
+const SIMILAR_TOURS_MOBILE_BREAKPOINT = 730;
+const SIMILAR_TOURS_TABLET_SMALL = 900;
+const SIMILAR_TOURS_TABLET = 910;
+const SIMILAR_TOURS_TABLET_LG = 1000;
+const SIMILAR_TOURS_DESKTOP_SMALL = 1130;
+const SIMILAR_TOURS_DESKTOP = 1350;
+
+const SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE = 1.01;
+const SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_MID = 1.2;
+const SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_LG = 1.7;
+const SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_SMALL = 2.2;
+const SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET = 2.3;
+const SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_LG = 2.8;
+const SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP_SMALL = 3.2;
+const SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP = 4;
+
+const WIDTH_FOR_ACTIVE_BUY_FORM_OPEN = 1210;
 
 export function TourDetailsPage() {
   const {slug} = useParams<{ slug: string }>();
@@ -218,6 +149,19 @@ export function TourDetailsPage() {
     travelers: 1,
     rooms: 0,
   });
+  const [similarTours, setSimilarTours] = useState<TourView[]>([]);
+  const [searchParams] = useSearchParams();
+
+  const isActionBuyFormOpenEnabled = () => {
+    return window.innerWidth < WIDTH_FOR_ACTIVE_BUY_FORM_OPEN;
+  };
+
+  useEffect(() => {
+    const isBuyFormOpen = searchParams.get("isBuyFormOpen") === "true";
+    if (isBuyFormOpen && isActionBuyFormOpenEnabled()) {
+      setIsBuyTravelModalOpen(true);
+    }
+  }, [searchParams]);
 
   const handleBookNow = async () => {
     if (!tour) {
@@ -255,7 +199,7 @@ export function TourDetailsPage() {
   };
 
   const buyTravelContent = (
-    <>
+    <div className={styles.buyTravelBlockContent}>
       <div className={styles.buyTravelBlockTitle}>
         Travel details
       </div>
@@ -268,7 +212,7 @@ export function TourDetailsPage() {
         className={styles.buyTravelInput}
         value={formData.name}
         onChange={(e) => setFormData(prev => ({...prev, name: e.target.value}))}
-        autoComplete="off"
+        autoComplete="on"
       />
       <p className={styles.buyTravelLabel}>
         Your Email
@@ -278,7 +222,7 @@ export function TourDetailsPage() {
         className={styles.buyTravelInput}
         value={formData.email}
         onChange={(e) => setFormData(prev => ({...prev, email: e.target.value}))}
-        autoComplete="off"
+        autoComplete="on"
       />
       <p className={styles.buyTravelLabel}>
         Your Phone
@@ -288,7 +232,7 @@ export function TourDetailsPage() {
         className={styles.buyTravelInput}
         value={formData.phone}
         onChange={(e) => setFormData(prev => ({...prev, phone: e.target.value}))}
-        autoComplete="off"
+        autoComplete="on"
       />
       <p className={styles.buyTravelLabel}>
         Travel dates
@@ -329,6 +273,10 @@ export function TourDetailsPage() {
           })) ?? []
         }
       />
+
+      <p className={styles.buyTravelLabel}>
+        Travelers
+      </p>
       <NumberInput
         value={formData.travelers}
         onChange={(value) => setFormData(prev => ({...prev, travelers: value}))}
@@ -356,7 +304,7 @@ export function TourDetailsPage() {
 
       <div className={styles.personalizationBlock}>
         <span>
-          Number of rooms
+          Single room supplement
         </span>
         <span>
           From
@@ -372,7 +320,7 @@ export function TourDetailsPage() {
         onChange={(value) => setFormData(prev => ({...prev, rooms: value}))}
         min={0}
         max={10}
-        description="Number of rooms"
+        description="Single room supplement"
         icon={people}
       />
 
@@ -401,7 +349,7 @@ export function TourDetailsPage() {
           {bookingLoading ? "Processing..." : "Book now"}
         </Button>
       </div>
-    </>
+    </div>
   );
 
   useEffect(() => {
@@ -425,17 +373,12 @@ export function TourDetailsPage() {
         if (t.photos && t.photos.length > 0) {
           setSelectedPhotoIndex(0);
         }
-        document.title = t.title || "Tour";
+        document.title = t.title;
 
-        // Preload images for accordion
-        // for (const day of t.dailyItinerary ?? []) {
-        //   if (!day.imgUrl) {
-        //     continue;
-        //   }
-        //   console.log("loaded", day.imgUrl);
-        //   const img = new Image();
-        //   img.src = day.imgUrl;
-        // }
+        const similar = await getSimilarToursByTourId(String(t.id));
+        if (alive) {
+          setSimilarTours(similar);
+        }
       } catch {
         if (!alive) {
           return;
@@ -759,7 +702,7 @@ export function TourDetailsPage() {
             </div>
           </div>
 
-          <hr />
+          <hr className={styles.desktopSeparator} />
           <div className={styles.tourDescriptionBlock}>
             <div className={styles.tourDescription}>
               <h2 className={styles.tourDescriptionTitle}>
@@ -792,7 +735,7 @@ export function TourDetailsPage() {
                 </div>
                 <div className={styles.summaryTag}>
                   <img
-                    src={flagRoundBlue}
+                    src={timerRoundBlue}
                     alt="flag icon"
                     loading="lazy"
                     className={styles.summaryTagImg}
@@ -848,7 +791,7 @@ export function TourDetailsPage() {
               <div className={styles.summaryTagsHorizontalPair}>
                 <div className={styles.summaryTag}>
                   <img
-                    src={flagRoundBlue}
+                    src={calendarRoundBlue}
                     alt="flag icon"
                     loading="lazy"
                     className={styles.summaryTagImg}
@@ -864,7 +807,7 @@ export function TourDetailsPage() {
                 </div>
                 <div className={styles.summaryTag}>
                   <img
-                    src={flagRoundBlue}
+                    src={timerRoundBlue}
                     alt="flag icon"
                     loading="lazy"
                     className={styles.summaryTagImg}
@@ -882,7 +825,8 @@ export function TourDetailsPage() {
             </div>
           </div>
 
-          <hr />
+          <hr className={styles.desktopSeparator} />
+          <hr className={styles.mobileSeparator} />
 
           <div className={styles.includedActivities}>
             <div className={styles.included}>
@@ -909,6 +853,8 @@ export function TourDetailsPage() {
               )}
             </div>
 
+            <hr className={styles.mobileSeparator} />
+
             <div className={styles.activities}>
               <h2 className={styles.includedActivitiesTitle}>
                 Activities
@@ -919,22 +865,26 @@ export function TourDetailsPage() {
                   key={i}
                 >
                   <img
-                    src={photoRoundBlue}
-                    alt="flag icon"
+                    src={getActivityIcon(activity.iconName)}
+                    alt="activity icon"
                     loading="lazy"
                     className={styles.includedImg}
                   />
                   <span className={styles.includedDescription}>
-                    {activity}
+                    {activity.activity}
                   </span>
                 </div>
               ))}
             </div>
           </div>
 
-          <hr />
+          <hr className={styles.desktopSeparator} />
+          <hr className={styles.mobileSeparator} />
 
-          <div className={styles.schedule}>
+          <div
+            id={ANCHOR_SCHEDULE}
+            className={styles.schedule}
+          >
             <h2 className={styles.scheduleTitle}>
               Schedule
             </h2>
@@ -956,7 +906,7 @@ export function TourDetailsPage() {
         <BuyTravelModal
           isOpen={isBuyTravelModalOpen}
           onClose={() => setIsBuyTravelModalOpen(false)}
-          showHeader={false}
+          showHeader={true}
         >
           {buyTravelContent}
         </BuyTravelModal>
@@ -984,10 +934,13 @@ export function TourDetailsPage() {
         </div>
       </section>
 
-      <div className={styles.whyLove}>
+      <div
+        id={ANCHOR_REVIEWS}
+        className={styles.whyLove}
+      >
         <div className={styles.whyLoveContent}>
           <h2 className={styles.whyLoveTitle}>
-            Why travelers love this
+            {tour.reviewsSectionName}
           </h2>
 
           <ReviewsSection />
@@ -1000,7 +953,17 @@ export function TourDetailsPage() {
         </h2>
 
         <Accordion
-          items={faqAccordionItems}
+          items={tour.faq.map(item => ({
+            trigger: {child: item.question},
+            content: {
+              child: (
+                <ScheduleAccordionItem
+                  className={styles.scheduleAccordionItem}
+                  description={item.answer}
+                />
+              ),
+            },
+          }))}
           type={accordionTypes.MULTIPLE}
           className={styles.accordion}
         />
@@ -1008,70 +971,72 @@ export function TourDetailsPage() {
 
       <h2 className={styles.similarToursTitle}>
         Similar tours
+
+        <Link
+          to={PATHS.TOURS}
+          className={styles.searchAllToursLink}
+        >
+          Search all
+          {" "}
+          <span className={styles.searchAllToursArrow}>
+            ➙
+          </span>
+        </Link>
       </h2>
 
       <div className={styles.toursSlider}>
-        <button
-          type="button"
-          aria-label="Previous"
-          className={`${styles.arrow} ${styles.arrowLeft}`}
-          onClick={() => swiperExtraToursRef.current?.slidePrev()}
-        >
-          <span>
-            <img
-              src={blueArrowCircleRight}
-              alt="right slider button"
-              loading="lazy"
-            />
-          </span>
-        </button>
-        <button
-          type="button"
-          aria-label="Next"
-          className={`${styles.arrow} ${styles.arrowRight}`}
-          onClick={() => swiperExtraToursRef.current?.slideNext()}
-        >
-          <span>
-            <img
-              src={blueArrowCircleRight}
-              alt="right slider button"
-              loading="lazy"
-            />
-          </span>
-        </button>
         <Swiper
           modules={[Keyboard, A11y]}
           onSwiper={(s) => (swiperExtraToursRef.current = s)}
-          loop={slidesForExtraTours.length > LARGE_DESKTOP_SLIDES_PER_VIEW}
-          loopAdditionalSlides={6}
-          slidesPerView={MOBILE_SLIDES_PER_VIEW}
+          loop={similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE}
+          slidesPerView={SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE}
           spaceBetween={24}
           speed={500}
           allowTouchMove
           keyboard={{enabled: true}}
-          className={styles.swiper}
+          className={clsx(styles.swiper, styles.similarToursSwiper)}
           breakpoints={{
-            [MOBILE_BREAKPOINT]: {
-              slidesPerView: TABLET_SLIDES_PER_VIEW,
-              loop: slidesForExtraTours.length > TABLET_SLIDES_PER_VIEW,
+            [SIMILAR_TOURS_MOBILE_SMALL_BREAKPOINT]: {
+              slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_MID,
+              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_MID,
             },
-            [TABLET_BREAKPOINT]: {
-              slidesPerView: DESKTOP_SLIDES_PER_VIEW,
-              loop: slidesForExtraTours.length > DESKTOP_SLIDES_PER_VIEW,
+            [SIMILAR_TOURS_MOBILE_MID_BREAKPOINT]: {
+              slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_LG,
+              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_LG,
             },
-            [DESKTOP_BREAKPOINT]: {
-              slidesPerView: LARGE_DESKTOP_SLIDES_PER_VIEW,
-              loop: slidesForExtraTours.length > LARGE_DESKTOP_SLIDES_PER_VIEW,
+            [SIMILAR_TOURS_MOBILE_BREAKPOINT]: {
+              slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_SMALL,
+              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_SMALL,
+            },
+            [SIMILAR_TOURS_TABLET_SMALL]: {
+              slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_SMALL,
+              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_SMALL,
+            },
+            [SIMILAR_TOURS_TABLET]: {
+              slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET,
+              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET,
+            },
+            [SIMILAR_TOURS_TABLET_LG]: {
+              slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_LG,
+              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_LG,
+            },
+            [SIMILAR_TOURS_DESKTOP_SMALL]: {
+              slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP_SMALL,
+              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP_SMALL,
+            },
+            [SIMILAR_TOURS_DESKTOP]: {
+              slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP,
+              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP,
             },
           }}
         >
-          {slidesForExtraTours.map((s) => (
+          {similarTours.map((s) => (
             <SwiperSlide
               key={s.id}
               className={styles.slide}
             >
               <TourCardExtended
-                tour={tour}
+                tour={s}
                 className={styles.tourCard}
               />
             </SwiperSlide>
@@ -1083,6 +1048,52 @@ export function TourDetailsPage() {
         // eslint-disable-next-line max-len
         subtitle="Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity"
         buttonText="Book Now"
+      />
+
+      <TimeoutPopup
+        title={tour.popUp1Title}
+        description={tour.popUp1Description}
+        imgUrl={tour.popUp1ImageUrl}
+        leftBtnCallback={() => {}}
+        leftBtn={<span className={styles.pupUpButton}>
+          Telegram
+          <img
+            src={telegramBlue}
+            alt=""
+          />
+        </span>}
+        rightBtnCallback={() => {}}
+        rightBtn={<span className={styles.pupUpButton}>
+          WhatsApp
+          <img
+            src={whatsappGreen}
+            alt=""
+          />
+        </span>}
+        delay={20}
+      />
+
+      <TimeoutPopup
+        title={tour.popUp2Title}
+        description={tour.popUp2Description}
+        imgUrl={tour.popUp2ImageUrl}
+        leftBtnCallback={() => {}}
+        leftBtn={<span className={styles.pupUpButton}>
+          Telegram
+          <img
+            src={telegramBlue}
+            alt=""
+          />
+        </span>}
+        rightBtnCallback={() => {}}
+        rightBtn={<span className={styles.pupUpButton}>
+          WhatsApp
+          <img
+            src={whatsappGreen}
+            alt=""
+          />
+        </span>}
+        delay={120}
       />
     </div>
   );

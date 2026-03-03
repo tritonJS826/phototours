@@ -38,5 +38,11 @@ export async function createBooking(data: BookingRequest): Promise<void> {
     throw new Error(msg);
   }
 
-  window.location.href = res.url;
+  const json: { redirectUrl: string } = await res.json();
+
+  if (!json.redirectUrl) {
+    throw new Error("No redirectUrl returned from backend");
+  }
+
+  window.location.href = json.redirectUrl;
 }

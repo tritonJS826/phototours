@@ -6,15 +6,12 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 20px;
 }
 
 .modalContent {
   background-color: white;
-  border-radius: 20px;
-  width: 100%;
-  max-width: 498px;
-  max-height: 90vh;
+  width: 100vw;
+  height: 100vh;
   overflow-y: auto;
 }
 

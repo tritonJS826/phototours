@@ -4,6 +4,7 @@ import (
 	"context"
 	"pt-general-go/internal/domain"
 	"pt-general-go/internal/repository"
+	"pt-general-go/internal/repository/mapper"
 	"strings"
 
 	"github.com/google/uuid"
@@ -241,7 +242,7 @@ func (s *TourService) buildTourFull(ctx context.Context, tour *domain.Tour) (*do
 		categories    []domain.Category
 		reviews       []domain.Review
 		reviewInfo    *domain.ReviewInfo
-		activities    []string
+		activities    []domain.Activity
 		included      []string
 		summary       []string
 	)
@@ -330,11 +331,11 @@ func (s *TourService) buildTourFull(ctx context.Context, tour *domain.Tour) (*do
 	})
 
 	errGroup.Go(func() error {
-		a, err := s.tourActivityRepository.GetTourActivityStringsByTourID(ctx, tour.ID)
+		a, err := s.tourActivityRepository.GetTourActivitiesByTourID(ctx, tour.ID)
 		if err != nil {
 			return err
 		}
-		activities = a
+		activities = mapper.MapDomainTourActivitiesToActivityStructs(a)
 		return nil
 	})
 
@@ -388,4 +389,8 @@ func (s *TourService) UpdateTourByID(ctx context.Context, id uuid.UUID, updateTo
 
 func (s *TourService) DeleteTourByID(ctx context.Context, id uuid.UUID) error {
 	return s.tourRepository.DeleteTourByID(ctx, id)
+}
+
+func (s *TourService) GetSimilarToursByTourID(ctx context.Context, tourID uuid.UUID) ([]domain.Tour, error) {
+	return s.tourRepository.GetSimilarToursByTourID(ctx, tourID)
 }

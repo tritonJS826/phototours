@@ -18,7 +18,7 @@
 .pict {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  // aspect-ratio: 16 / 9;
   overflow: hidden;
 }
 
@@ -73,7 +73,6 @@
 .title {
   font-size: 25px;
   font-weight: 700;
-  line-height: 1.35;
   color: #111;
   margin: 0;
   letter-spacing: -3%;
@@ -82,16 +81,28 @@
 }
 
 .description {
-  height: 73px;
+  height: 70px;
   display: -webkit-box;
   font-size: 17px;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  // -webkit-line-clamp: 3;
+  // line-clamp: 3;
+  // -webkit-box-orient: vertical;
   font-weight: 300;
   line-height: 1.35;
   font-family: "DM Sans", sans-serif;
+  overflow: hidden;;
+  position: relative;
+}
+
+.description::after {
+  content: "";
+  text-align: right;
+  position: absolute;
+  bottom: 2px;
+  right: 0;
+  width: 35%;
+  height: 20px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), white 90%);
 }
 
 .priceBlock {

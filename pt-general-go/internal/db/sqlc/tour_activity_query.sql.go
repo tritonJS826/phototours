@@ -12,23 +12,25 @@ import (
 )
 
 const createTourActivity = `-- name: CreateTourActivity :one
-INSERT INTO tour_activities (tour_id, activity)
-VALUES ($1, $2)
-RETURNING id, tour_id, activity, created_at
+INSERT INTO tour_activities (tour_id, activity, icon_name)
+VALUES ($1, $2, $3)
+RETURNING id, tour_id, activity, icon_name, created_at
 `
 
 type CreateTourActivityParams struct {
 	TourID   pgtype.UUID
 	Activity string
+	IconName string
 }
 
 func (q *Queries) CreateTourActivity(ctx context.Context, arg CreateTourActivityParams) (TourActivity, error) {
-	row := q.db.QueryRow(ctx, createTourActivity, arg.TourID, arg.Activity)
+	row := q.db.QueryRow(ctx, createTourActivity, arg.TourID, arg.Activity, arg.IconName)
 	var i TourActivity
 	err := row.Scan(
 		&i.ID,
 		&i.TourID,
 		&i.Activity,
+		&i.IconName,
 		&i.CreatedAt,
 	)
 	return i, err
@@ -53,7 +55,7 @@ func (q *Queries) DeleteTourActivity(ctx context.Context, id pgtype.UUID) error 
 }
 
 const getTourActivitiesByTourID = `-- name: GetTourActivitiesByTourID :many
-SELECT id, tour_id, activity, created_at
+SELECT id, tour_id, activity, icon_name, created_at
 FROM tour_activities
 WHERE tour_id = $1
 ORDER BY created_at ASC
@@ -72,6 +74,7 @@ func (q *Queries) GetTourActivitiesByTourID(ctx context.Context, tourID pgtype.U
 			&i.ID,
 			&i.TourID,
 			&i.Activity,
+			&i.IconName,
 			&i.CreatedAt,
 		); err != nil {
 			return nil, err
@@ -85,7 +88,7 @@ func (q *Queries) GetTourActivitiesByTourID(ctx context.Context, tourID pgtype.U
 }
 
 const getTourActivitiesByTourIDs = `-- name: GetTourActivitiesByTourIDs :many
-SELECT id, tour_id, activity, created_at
+SELECT id, tour_id, activity, icon_name, created_at
 FROM tour_activities
 WHERE tour_id = ANY($1::uuid[])
 ORDER BY created_at ASC
@@ -104,6 +107,7 @@ func (q *Queries) GetTourActivitiesByTourIDs(ctx context.Context, tourIds []pgty
 			&i.ID,
 			&i.TourID,
 			&i.Activity,
+			&i.IconName,
 			&i.CreatedAt,
 		); err != nil {
 			return nil, err

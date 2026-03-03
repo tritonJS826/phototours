@@ -1,14 +1,9 @@
 import {memo, useState} from "react";
 import {Link} from "react-router-dom";
-import {subscribeToNewsletter} from "src/services/newsletterService";
+import notificationCheckMark from "/images/notificationCheckMark.svg";
+import {CentralNotification} from "src/components/CentralNotification/CentralNotification";
+import {subscribe} from "src/services/sailsService";
 import styles from "src/components/NewsletterForm/NewsletterForm.module.scss";
-
-const MESSAGES = {
-  EMPTY_EMAIL: "Please enter your email address",
-  INVALID_EMAIL: "Please enter a valid email address",
-  SUCCESS: "Thank you for subscribing!",
-  ERROR: "Something went wrong. Please try again.",
-} as const;
 
 const BUTTON_TEXT = {
   SUBSCRIBE: "Subscribe",
@@ -21,91 +16,117 @@ const validateEmail = (email: string): boolean => {
   return emailRegex.test(email.trim());
 };
 
-const isSuccessMessage = (message: string): boolean => {
-  return message.toLowerCase().includes("thank you") ||
-         message.toLowerCase().includes("success");
+const isDuplicateError = (error: unknown): boolean => {
+  if (!(error instanceof Error)) {
+    return false;
+  }
+
+  return error.message.includes("DUPLICATE_DATA");
 };
 
 export const NewsletterForm = memo(function NewsletterForm() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [message, setMessage] = useState("");
+  const [isSuccessNotificationOpen, setIsSuccessNotificationOpen] = useState(false);
+  const [isDuplicateNotificationOpen, setIsDuplicateNotificationOpen] = useState(false);
+  const [isErrorNotificationOpen, setIsErrorNotificationOpen] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmitSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!email.trim()) {
-      setMessage(MESSAGES.EMPTY_EMAIL);
-
       return;
     }
 
     if (!validateEmail(email)) {
-      setMessage(MESSAGES.INVALID_EMAIL);
-
       return;
     }
 
     setIsSubmitting(true);
-    setMessage("");
 
     try {
-      const result = await subscribeToNewsletter(email, "footer");
-
-      setMessage(result.message || MESSAGES.SUCCESS);
+      await subscribe({email});
       setEmail("");
+      setIsSuccessNotificationOpen(true);
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : MESSAGES.ERROR);
+      if (isDuplicateError(error)) {
+        setIsDuplicateNotificationOpen(true);
+        setEmail("");
+      } else {
+        setIsErrorNotificationOpen(true);
+      }
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <form
-      className={styles.newsletterForm}
-      onSubmit={handleSubmit}
-      role="form"
-      aria-label="Newsletter subscription form"
-    >
-      <div className={styles.inputGroup}>
-        <div className={styles.inputWrapper}>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-            className={styles.emailInput}
+    <>
+      <form
+        className={styles.newsletterForm}
+        onSubmit={handleSubmitSubscribe}
+        role="form"
+        aria-label="Newsletter subscription form"
+        autoComplete="on"
+      >
+        <div className={styles.inputGroup}>
+          <div className={styles.inputWrapper}>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              className={styles.emailInput}
+              disabled={isSubmitting}
+              aria-label="Email address"
+              autoComplete="on"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className={styles.subscribeButton}
             disabled={isSubmitting}
-            aria-label="Email address"
-            required
-          />
+            aria-label="Subscribe to newsletter"
+          >
+            {isSubmitting ? BUTTON_TEXT.SUBSCRIBING : BUTTON_TEXT.SUBSCRIBE}
+          </button>
         </div>
-        <button
-          type="submit"
-          className={styles.subscribeButton}
-          disabled={isSubmitting}
-          aria-label="Subscribe to newsletter"
-        >
-          {isSubmitting ? BUTTON_TEXT.SUBSCRIBING : BUTTON_TEXT.SUBSCRIBE}
-        </button>
-      </div>
-      <span className={styles.privacyPolicyText}>
-        By submitting, you agree to our
-        {" "}
-        <Link
-          to="#"
-          className={styles.privacyLink}
-        >
-          Privacy Policy.
-        </Link>
-      </span>
+        <span className={styles.privacyPolicyText}>
+          By submitting, you agree to our
+          {" "}
+          <Link
+            to="#"
+            className={styles.privacyLink}
+          >
+            Privacy Policy.
+          </Link>
+        </span>
+      </form>
 
-      {message && (
-        <div className={`${styles.message} ${isSuccessMessage(message) ? styles.successMessage : styles.errorMessage}`}>
-          {message}
-        </div>
-      )}
-    </form>
+      <CentralNotification
+        isOpen={isSuccessNotificationOpen}
+        onClose={() => setIsSuccessNotificationOpen(false)}
+        imageUrl={notificationCheckMark}
+        title="You're on the list!"
+        subtitle="Welcome to Tuscany Photo Tours! You'll now receive exclusive updates, early offers, and photography tips straight to your inbox."
+      />
+
+      <CentralNotification
+        isOpen={isDuplicateNotificationOpen}
+        onClose={() => setIsDuplicateNotificationOpen(false)}
+        imageUrl={notificationCheckMark}
+        title="You're already in the list!"
+        subtitle="No worries! You're already subscribed to our newsletter. Stay tuned for exciting updates and offers."
+      />
+
+      <CentralNotification
+        isOpen={isErrorNotificationOpen}
+        onClose={() => setIsErrorNotificationOpen(false)}
+        imageUrl={notificationCheckMark}
+        title="Oops! Something went wrong"
+        subtitle="Please try again later. If the problem persists, contact us through other means."
+      />
+    </>
   );
 });

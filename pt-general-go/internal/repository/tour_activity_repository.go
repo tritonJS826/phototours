@@ -18,10 +18,11 @@ func NewTourActivityRepository(db db.Querier) *TourActivityRepository {
 	return &TourActivityRepository{db}
 }
 
-func (r *TourActivityRepository) CreateTourActivity(ctx context.Context, tourID uuid.UUID, activity string) (*domain.TourActivity, error) {
+func (r *TourActivityRepository) CreateTourActivity(ctx context.Context, tourID uuid.UUID, activity string, iconName string) (*domain.TourActivity, error) {
 	dbActivity, err := r.db.CreateTourActivity(ctx, db.CreateTourActivityParams{
 		TourID:   mapper.UUIDToPgUUID(tourID),
 		Activity: activity,
+		IconName: iconName,
 	})
 	if err != nil {
 		return nil, handleDBError(err)

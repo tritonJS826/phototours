@@ -5,6 +5,9 @@ SELECT
     user_id,
     rating,
     comment,
+    user_name,
+    link,
+    image,
     created_at
 FROM reviews
 WHERE tour_id = @tour_id
@@ -24,6 +27,9 @@ SELECT
     user_id,
     rating,
     comment,
+    user_name,
+    link,
+    image,
     created_at
 FROM reviews
 WHERE tour_id = ANY(@tour_ids::uuid[])
@@ -37,3 +43,32 @@ SELECT
 FROM reviews
 WHERE tour_id = ANY(@tour_ids::uuid[])
 GROUP BY tour_id;
+
+-- name: GetRandomReviews :many
+SELECT
+    id,
+    tour_id,
+    user_id,
+    rating,
+    comment,
+    user_name,
+    link,
+    image,
+    created_at
+FROM reviews
+ORDER BY RANDOM()
+LIMIT 20;
+
+-- name: GetReviewsForMain :many
+SELECT
+    id,
+    tour_id,
+    user_id,
+    rating,
+    comment,
+    user_name,
+    link,
+    image,
+    created_at
+FROM reviews
+LIMIT 20;

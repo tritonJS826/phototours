@@ -10,15 +10,15 @@ export function HeroTextSection(props: HeroSectionProps) {
   return (
     <section className={clsx(styles.heroSection, props.className)}>
       <h1 className={styles.heroTitle}>
-        <b>
-          Exclusive Photo
+        <p>
+          Exclusive
           {" "}
           <i className={styles.italic}>
-            Tours & Workshops:
+            Photo Tours & Workshops
           </i>
           {" "}
-          Signature Photo Expeditions Across the Globe
-        </b>
+          : Signature Photo Expeditions Across the Globe
+        </p>
       </h1>
       <p className={styles.subtitle}>
         Join our award-winning professional photographers and tour leaders on exclusive

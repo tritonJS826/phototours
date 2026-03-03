@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {LoginForm} from "src/components/Auth/LoginForm/LoginForm";
 import {RegisterForm} from "src/components/Auth/RegisterForm/RegisterForm";
+import {useBodyScrollLock} from "src/hooks/useBodyScrollLock";
 import styles from "src/components/Auth/AuthModal/AuthModal.module.scss";
 
 interface AuthModalProps {
@@ -12,6 +13,8 @@ interface AuthModalProps {
 
 export function AuthModal({isOpen, onClose, initialMode = "login", onSuccess}: AuthModalProps) {
   const [mode, setMode] = useState<"login" | "register">(initialMode);
+
+  useBodyScrollLock(isOpen);
 
   if (!isOpen) {
     return null;

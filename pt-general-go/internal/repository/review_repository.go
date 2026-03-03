@@ -70,3 +70,11 @@ func (r *ReviewRepository) GetReviewInfoByTourIDs(ctx context.Context, tourIDs [
 	}
 	return result, nil
 }
+
+func (r *ReviewRepository) GetReviewsForMain(ctx context.Context) ([]domain.Review, error) {
+	dbReviews, err := r.db.GetReviewsForMain(ctx)
+	if err != nil {
+		return nil, handleDBError(err)
+	}
+	return mapper.MapToDomainReviewsForMain(dbReviews), nil
+}

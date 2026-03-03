@@ -31,7 +31,7 @@
 }
 
 .logoContainer {
-  background-color: #5555558c;
+  background-color: #5555558C;
   border-radius: 9px;
   padding: 10px;
 }
@@ -70,10 +70,10 @@
   gap: 8px;
 
   a:hover {
-    color: rgb(209 209 209);
+    color: rgb(209, 209, 209);
   }
 
-  @media (width <=690px) {
+  @media (width <= 690px) {
     margin-right: 20px;
   }
 }
@@ -90,7 +90,7 @@
 
   &:hover {
     color: white;
-    background: #0e2ead;
+    background: #0E2EAD;
   }
 }
 
@@ -167,8 +167,8 @@
   text-align: center;
   font-weight: 700;
   font-size: 25px;
-
-  @media (width <=900px) {
+  
+  @media (width <= 900px) {
     text-align: left;
   }
 }
@@ -177,7 +177,7 @@
   font-size: 45px;
   margin: 50px 0 17px auto;
 
-  @media (width <=900px) {
+  @media (width <= 900px) {
     font-size: 32px;
   }
 }
@@ -244,7 +244,7 @@
   padding: 30px;
   border-radius: 20px;
 
-  @media (width <=550px) {
+  @media (width <= 550px) {
     padding: 20px;
   }
 }
@@ -253,7 +253,7 @@
   font-weight: 700;
   font-size: 45px;
 
-  @media (width <=550px) {
+  @media (width <= 550px) {
     font-size: 32px;
   }
 
@@ -301,9 +301,9 @@
   font-size: 45px;
   margin: 0 0 17px auto;
 
-  @media (width <=800px) {
-    font-size: 32px;
-  }
+  @media (width <= 800px) {
+      font-size: 32px;      
+    }
 }
 
 .reviewsSubTitle {
@@ -313,7 +313,7 @@
   max-width: 644px;
   margin-bottom: 20px;
   white-space: pre-wrap;
-  color: #38383f;
+  color: #38383F;
 }
 
 .faqBlock {
@@ -324,7 +324,7 @@
   flex-direction: column;
   align-items: center;
 
-  @media (width <=800px) {
+  @media (width <= 800px) {
     align-items: start;
   }
 }
@@ -334,10 +334,11 @@
   font-size: 45px;
   font-weight: 700;
   margin-bottom: 25px;
-
-  @media (width <=800px) {
-    font-size: 32px;
+  
+  @media (width <= 800px) {
+    font-size: 32px; 
   }
+  
 }
 
 .faqSubtitle {
@@ -347,8 +348,8 @@
   line-height: 1.35;
   text-align: center;
 
-  @media (width <=800px) {
-    text-align: left;
+  @media (width <= 800px) {
+    text-align: left; 
     font-size: 16px;
   }
 }
@@ -362,11 +363,11 @@
   max-width: 1490px;
   margin: 60px 0;
 
-  @media (width <=800px) {
+  @media (width <= 800px) {
     margin: 40px 0;
   }
 
-  @media (width <=740px) {
+  @media (width <= 740px) {
     grid-template-columns: repeat(1, 1fr);
   }
 }
@@ -381,7 +382,7 @@
   font-size: 20px;
   line-height: 135%;
   letter-spacing: 0%;
-  padding: 15px 0;
+  padding: 15px 0 15px 0;
   border-bottom: 1px solid white;
 }
 
@@ -416,7 +417,7 @@
   max-width: 440px;
   margin-top: 15px;
 
-  @media (width <=475px) {
+  @media (width <= 475px) {
     text-align: start;
   }
 }
@@ -427,9 +428,10 @@
   flex-wrap: wrap;
   gap: 12px;
 
-  @media (width <=965px) {
+  @media (width <= 965px) {
     flex-direction: column;
   }
+
 }
 
 .feedBackInput {
@@ -440,7 +442,7 @@
   height: 54px;
   border: none;
 
-  @media (width <=475px) {
+  @media (width <= 475px) {
     width: 100%;
   }
 }
@@ -448,7 +450,7 @@
 .feedBackPhoneInput {
   width: 360px;
 
-  @media (width <=475px) {
+  @media (width <= 475px) {
     width: 100%;
   }
 }
@@ -475,7 +477,7 @@
     background-color: #092388;
   }
 
-  @media (width <=965px) {
+  @media (width <= 965px) {
     width: 180px;
   }
 }
@@ -489,7 +491,7 @@
   line-height: 135%;
   letter-spacing: 0%;
 
-  @media (width <=800px) {
+  @media (width <= 800px) {
     font-size: 14px;
   }
 }
@@ -558,10 +560,10 @@
     justify-content: center;
     width: 53px;
     height: 53px;
-    background-color: rgb(255 255 255 / 15%);
+    background-color: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgb(255 255 255 / 30%);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 8px;
     cursor: pointer;
 
@@ -573,6 +575,7 @@
     }
   }
 }
+
 
 .pupUpButton {
   display: flex;

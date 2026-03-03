@@ -11,6 +11,64 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+const getRandomReviews = `-- name: GetRandomReviews :many
+SELECT
+    id,
+    tour_id,
+    user_id,
+    rating,
+    comment,
+    user_name,
+    link,
+    image,
+    created_at
+FROM reviews
+ORDER BY RANDOM()
+LIMIT 20
+`
+
+type GetRandomReviewsRow struct {
+	ID        pgtype.UUID
+	TourID    pgtype.UUID
+	UserID    pgtype.UUID
+	Rating    int32
+	Comment   pgtype.Text
+	UserName  string
+	Link      string
+	Image     string
+	CreatedAt pgtype.Timestamp
+}
+
+func (q *Queries) GetRandomReviews(ctx context.Context) ([]GetRandomReviewsRow, error) {
+	rows, err := q.db.Query(ctx, getRandomReviews)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []GetRandomReviewsRow{}
+	for rows.Next() {
+		var i GetRandomReviewsRow
+		if err := rows.Scan(
+			&i.ID,
+			&i.TourID,
+			&i.UserID,
+			&i.Rating,
+			&i.Comment,
+			&i.UserName,
+			&i.Link,
+			&i.Image,
+			&i.CreatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const getReviewAmountAndStarAmount = `-- name: GetReviewAmountAndStarAmount :one
 SELECT
     COUNT(*) as review_amount,
@@ -74,6 +132,9 @@ SELECT
     user_id,
     rating,
     comment,
+    user_name,
+    link,
+    image,
     created_at
 FROM reviews
 WHERE tour_id = $1
@@ -86,6 +147,9 @@ type GetReviewsByTourIDRow struct {
 	UserID    pgtype.UUID
 	Rating    int32
 	Comment   pgtype.Text
+	UserName  string
+	Link      string
+	Image     string
 	CreatedAt pgtype.Timestamp
 }
 
@@ -104,6 +168,9 @@ func (q *Queries) GetReviewsByTourID(ctx context.Context, tourID pgtype.UUID) ([
 			&i.UserID,
 			&i.Rating,
 			&i.Comment,
+			&i.UserName,
+			&i.Link,
+			&i.Image,
 			&i.CreatedAt,
 		); err != nil {
 			return nil, err
@@ -123,6 +190,9 @@ SELECT
     user_id,
     rating,
     comment,
+    user_name,
+    link,
+    image,
     created_at
 FROM reviews
 WHERE tour_id = ANY($1::uuid[])
@@ -135,6 +205,9 @@ type GetReviewsByTourIDsRow struct {
 	UserID    pgtype.UUID
 	Rating    int32
 	Comment   pgtype.Text
+	UserName  string
+	Link      string
+	Image     string
 	CreatedAt pgtype.Timestamp
 }
 
@@ -153,6 +226,66 @@ func (q *Queries) GetReviewsByTourIDs(ctx context.Context, tourIds []pgtype.UUID
 			&i.UserID,
 			&i.Rating,
 			&i.Comment,
+			&i.UserName,
+			&i.Link,
+			&i.Image,
+			&i.CreatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const getReviewsForMain = `-- name: GetReviewsForMain :many
+SELECT
+    id,
+    tour_id,
+    user_id,
+    rating,
+    comment,
+    user_name,
+    link,
+    image,
+    created_at
+FROM reviews
+LIMIT 20
+`
+
+type GetReviewsForMainRow struct {
+	ID        pgtype.UUID
+	TourID    pgtype.UUID
+	UserID    pgtype.UUID
+	Rating    int32
+	Comment   pgtype.Text
+	UserName  string
+	Link      string
+	Image     string
+	CreatedAt pgtype.Timestamp
+}
+
+func (q *Queries) GetReviewsForMain(ctx context.Context) ([]GetReviewsForMainRow, error) {
+	rows, err := q.db.Query(ctx, getReviewsForMain)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []GetReviewsForMainRow{}
+	for rows.Next() {
+		var i GetReviewsForMainRow
+		if err := rows.Scan(
+			&i.ID,
+			&i.TourID,
+			&i.UserID,
+			&i.Rating,
+			&i.Comment,
+			&i.UserName,
+			&i.Link,
+			&i.Image,
 			&i.CreatedAt,
 		); err != nil {
 			return nil, err

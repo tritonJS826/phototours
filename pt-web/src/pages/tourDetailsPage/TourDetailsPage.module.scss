@@ -12,7 +12,7 @@
   padding: 0 20px;
   max-width: calc(100% - 500px);
 
-  @media (width <=1100px) {
+  @media (width <= 1100px) {
     max-width: 100%;
   }
 }
@@ -34,11 +34,10 @@
   aspect-ratio: 16/9;
   width: 100%;
 
-  @media (width <=900px) {
+  @media (width <= 900px) {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
-
     // border-radius: 0;
   }
 }
@@ -48,7 +47,7 @@
   height: 100%;
   border-radius: 18px;
 
-  @media (width <=900px) {
+  @media (width <= 900px) {
     border-radius: 0;
   }
 }
@@ -131,7 +130,6 @@
     width: 90%;
     max-width: 1100px;
     aspect-ratio: 16/9;
-
     // background-color: red;
   }
 
@@ -266,8 +264,10 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 12px 20px;
+  column-gap: 20px;
+  row-gap: 12px;
   margin: 20px 0;
+
 }
 
 .tagIcon {
@@ -309,14 +309,16 @@
   // color
   border: 0;
   border-top: 1px solid #e0e0e0;
+
   position: relative;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
 
-  @media (width >=800px) {
+  @media (width >= 800px) {
     display: none;
   }
+
 }
 
 .desktopSeparator {
@@ -324,7 +326,7 @@
   border: 0;
   border-top: 1px solid #e0e0e0;
 
-  @media (width <=800px) {
+  @media (width <= 800px) {
     display: none;
   }
 }
@@ -333,7 +335,8 @@
   display: flex;
   flex-wrap: wrap-reverse;
   justify-content: start;
-  gap: 40px 60px;
+  column-gap: 60px;
+  row-gap: 40px;
   margin-bottom: 30px;
   margin-top: 20px;
 }
@@ -406,7 +409,7 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  @media (width <=816px) {
+  @media (width <= 816px) {
     grid-template-columns: 1fr;
     gap: 30px;
   }
@@ -471,7 +474,7 @@
 
 .faq {
   max-width: 1530px;
-  margin: 40px auto 80px;
+  margin: 40px auto 80px auto;
   padding: 0 20px;
 }
 
@@ -544,12 +547,12 @@
 .toursSlider {
   max-width: 1530px;
   margin: auto;
-  padding: 17px 20px 20px;
+  padding: 17px 20px 20px 20px;
   display: flex;
   gap: 20px;
   justify-content: center;
 
-  @media (width <=900px) {
+  @media (width <= 900px) {
     width: 100vw;
     margin-left: 0;
     margin-right: calc(-50vw + 50%);
@@ -557,19 +560,19 @@
 }
 
 .tourCard {
-  @media (width <=1500px) {
+  @media (width <= 1500px) {
     &:nth-child(4) {
       display: none;
     }
   }
 
-  @media (width <=950px) {
+  @media (width <= 950px) {
     &:nth-child(3) {
       display: none;
     }
   }
 
-  @media (width <=600px) {
+  @media (width <= 600px) {
     &:nth-child(2) {
       display: none;
     }
@@ -637,8 +640,8 @@
   min-width: 480px;
   margin-bottom: 40px;
 
-  @media (width <= 1100px) {
-    display: none;
+  @media (max-width: 1100px) {
+      display: none;
   }
 }
 
@@ -687,6 +690,13 @@
     display: none;
   }
 }
+.buyTravelBlockContent {
+  // in the modal we have fixed footer with 120px width
+  @media (width <= 1100px) {
+    margin-top: 20px;
+    margin-bottom: 120px;
+  }
+}
 
 .buyTravelBlockContent {
   // in the modal we have fixed footer with 120px width
@@ -704,8 +714,8 @@
   font-weight: 500;
   margin-bottom: 16px;
 
-  // title with close button already exist in the modal
-  @media (width <=1100px) {
+  // title with close button already exist in the modal 
+  @media (width <= 1100px) {
     display: none;
   }
 }
@@ -718,7 +728,7 @@
 }
 
 .buyTravelInput {
-  margin: 8px 24px;
+  margin: 8px 24px 8px 24px;
   padding: 16px 20px;
   width: 432px;
   border-radius: 10px;
@@ -855,7 +865,7 @@
   z-index: 100;
   border-top: 1px solid #e0e0e0;
 
-  @media (width <=1100px) {
+  @media (width <= 1100px) {
     display: flex;
     justify-content: space-between;
   }
@@ -882,7 +892,7 @@
   }
 }
 
-@media (width <=1100px) {
+@media (width <= 1100px) {
   .leftColumn {
     padding: 0 16px;
   }
@@ -893,6 +903,7 @@
 
   .buyTravelInput {
     margin: 8px 24px 8px 16px;
+    padding: 16px 20px;
     width: calc(100% - 32px);
     padding: 12px 16px;
   }
@@ -937,6 +948,7 @@
     width: 100%;
   }
 }
+
 
 .pupUpButton {
   display: inline-flex;

@@ -158,7 +158,7 @@ export function TourCardExtended({tour, className, travelers}: Props) {
             />
             <div className={styles.startEndInfoDescription}>
               <p className={styles.startEndInfoDescriptionTop}>
-                Tour starts
+                Tour&nbsp;starts
               </p>
               <p className={styles.startEndInfoDescriptionBottom}>
                 {tour.startLocation}

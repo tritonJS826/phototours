@@ -8,6 +8,7 @@
   padding: 20px 20px 0;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
 }
 
 .info {
@@ -37,26 +38,25 @@
 }
 
 .heroSectionBg {
-  background-image: url("/images/homeHero.avif");
+  background-image: url("https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771339565/645Z7289-Pano-Edit-Edit_6.png_n3ty5n.avif");
   background-size: cover;
-  background-position: center;
+  background-position: left;
   background-repeat: no-repeat;
   border-radius: 20px;
   padding: 20px;
+  aspect-ratio: 3/1;
+  position: relative;
+  min-height: 300px;
 }
 
 .heroSection {
+  position: absolute;
+  bottom: 30px;
   color: #fff;
   display: flex;
   flex-direction: column;
   max-width: 1200px;
-  margin: 80px auto;
-  text-align: center;
   font-size: 24px;
-
-  @media (width <= 830px) {
-    margin-bottom: auto;
-  }
 }
 
 .italic {
@@ -67,7 +67,14 @@
   margin-top: 15px;
   font-size: 20px;
   max-width: 680px;
-  align-self: center;
+
+  font-family: DM Sans;
+  font-weight: 500;
+  font-style: Italic;
+  font-size: 20px;
+  line-height: 1.15;
+  letter-spacing: 0%;
+
 }
 
 .victorBlock {
@@ -77,27 +84,28 @@
   justify-content: space-between;
   align-items: center;
 
-  @media (width <= 660px) {
+  @media (width <= 1250px) {
     margin-top: 20px;
 
     // flex-wrap: wrap;
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 }
 
 .victorImageBlock {
   width: 550px;
-  height: 500px;
+  // height: 500px;
   min-width: 330px;
   min-height: 300px;
   max-width: 100%;
-  border-radius: 18px;
   overflow: hidden;
 }
 
 .victorImage {
   width: 100%;
-  height: 100%;
+  // height: 100%;
+  aspect-ratio: 550/500;
+  border-radius: 18px;
 }
 
 .victorInfoBlock {
@@ -107,6 +115,10 @@
   min-width: 260px;
   overflow: hidden;
   overflow-wrap: break-word;
+
+  @media (width <= 1250px) {
+    max-width: 550px;
+  }
 }
 
 .victorSocial {
@@ -116,7 +128,6 @@
 
 .victorTitle {
   font-size: 42px;
-  font-style: bold;
   margin-top: 30px;
 }
 
@@ -152,6 +163,10 @@
     min-width: 147px;
     max-width: 147px;
   }
+
+  @media (width <= 880px) {
+    display: none;
+  }
 }
 
 .ourHistoryMain {
@@ -162,7 +177,6 @@
   margin-top: 40px;
   font-weight: 700;
   font-size: 45px;
-  font-style: bold;
   text-align: center;
 }
 
@@ -181,6 +195,7 @@
   font-style: italic;
   text-align: center;
   margin-top: 25px;
+  color: #151517;
 }
 
 .ourHistoryDescription3 {
@@ -188,7 +203,7 @@
   font-size: 20px;
   line-height: 1.35;
   text-align: center;
-  color: #707070;
+  color: #494949;
   margin-top: 25px;
   margin-bottom: 40px;
 }
@@ -228,7 +243,6 @@
 
 .whatMakesUsDifferentTitle {
   font-size: 45px;
-  font-style: bold;
   font-weight: 700;
 }
 
@@ -275,35 +289,6 @@
   font-weight: 400;
 }
 
-.ourMission {
-  height: 470px;
-  width: 100vw;
-  max-width: 2560px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  background-image: url("/images/aboutUsOurMission.avif");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 40px 20px;
-}
-
-// .ourMissionPlaceholder {
-//   position: absolute;
-//   max-width: 2560px;
-//   top: 0;
-//   left: 0;
-//   // it was hard to center this placeholder, so let's just make it super wide
-//   width: 100vw;
-//   height: 100%;
-//   background: #F0F0F0;
-//   z-index: -3;
-
-//   // background-color: red;
-// }
-
 .ourMissionContent {
   max-width: 1530px;
   margin-left: auto;
@@ -314,7 +299,6 @@
   font-size: 45px;
   color: #fff;
   font-weight: 700;
-  font-style: bold;
 }
 
 .ourMissionDescription {
@@ -340,7 +324,6 @@
 .ourValuesTitle {
   font-size: 45px;
   font-weight: 700;
-  font-style: bold;
   margin-bottom: 40px;
 }
 

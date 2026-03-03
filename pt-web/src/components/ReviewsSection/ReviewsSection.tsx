@@ -1,12 +1,15 @@
-import {useRef} from "react";
+import {useEffect, useRef, useState} from "react";
+import arrowRightBlack from "/images/arrowRightBlack.svg";
 import blueArrowCircleRight from "/images/blueArrowCircleRight.svg";
-import germanyFlag from "/images/germanyFlag.avif";
-import unitedKingdomFlag from "/images/unitedKingdomFlag.avif";
 import userStub1 from "/images/userStub1.avif";
 import userStub2 from "/images/userStub2.avif";
 import userStub3 from "/images/userStub3.avif";
 import clsx from "clsx";
-import {ReviewCard, ReviewCardProps} from "src/components/ReviewsSection/ReviewCard/ReviewCard";
+import {
+  ReviewCard,
+  ReviewCardProps,
+} from "src/components/ReviewsSection/ReviewCard/ReviewCard";
+import {getRandomReviews as getReviewsMain, Review} from "src/services/reviewsService";
 import type {Swiper as SwiperType} from "swiper";
 import {A11y, Autoplay, Keyboard} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
@@ -17,127 +20,100 @@ interface ToursSectionProps {
   className?: string;
 }
 
-const MOBILE_BREAKPOINT = 640;
-const TABLET_BREAKPOINT = 920;
-// Const DESKTOP_BREAKPOINT = 1224;s
+const MOBILE_BREAKPOINT = 320;
+const TABLET_BREAKPOINT = 650;
+const DESKTOP_BREAKPOINT = 1200;
 
-const MOBILE_SLIDES_PER_VIEW = 1;
-const TABLET_SLIDES_PER_VIEW = 2;
-const DESKTOP_SLIDES_PER_VIEW = 3;
+const MOBILE_SLIDES_PER_VIEW = 1.2;
+const TABLET_SLIDES_PER_VIEW = 2.4;
+const DESKTOP_SLIDES_PER_VIEW = 3.1;
+const LOOP_ADDITIONAL_SLIDES = 3;
+const MIN_SLIDES_FOR_LOOP = 1;
 
-const commentsDataStub: ReviewCardProps[] = [
-  {
-    id: "1",
-    userImg: userStub1,
-    title: "Emily Carter, UK",
-    subtitle: "The Most Magical Spring Experience",
-    // eslint-disable-next-line max-len
-    description: "It all began with a desire to visit Sicily. Islands, volcanoes, a catamaran… Back then, we didn't yet know that this would be the beginning of a much bigger story. Then came Iceland — magical, with its waterfalls, icy rivers, and the Blue Lagoon. After that, Provence — lavender fields, small towns, and sunrises that take your breath away. The Czech Republic, Moravia, Hungary — each country left its own unique mark. And ahead await the Balkans and Scotland.",
-    flagImg: germanyFlag,
-  },
-  {
-    id: "2",
-    userImg: userStub2,
-    title: "Liam Becker, Germany",
-    subtitle: "A Photographer's Spring Paradise",
-    // eslint-disable-next-line max-len
-    description: "Perfectly timed sunrise spots, soft morning mist, and endless green hills — Tuscany in spring feels unreal. Every shoot gave me portfolio-level shots, even without rushing. One of the most inspiring trips I've ever joined.",
-    flagImg: unitedKingdomFlag,
-  },
-  {
-    id: "3",
-    userImg: userStub3,
-    title: "Ava Thompson, USA",
-    subtitle: "Where Every Sunrise Feels Magical",
-    // eslint-disable-next-line max-len
-    description: "Spring Tuscany glows with pastel colors and gentle light that makes every moment feel cinematic. The atmosphere was calm, beautifully organized, and full of creativity. I left with photos that still take my breath away.",
-    flagImg: unitedKingdomFlag,
-  },
-  {
-    id: "4",
-    userImg: userStub1,
-    title: "Marcus Weber, France",
-    subtitle: "Beyond Photography Expectations",
-    // eslint-disable-next-line max-len
-    description: "The attention to detail in planning was exceptional. From sunrise locations to hidden gems, every spot offered unique photographic opportunities. The guidance on composition and lighting elevated my skills significantly.",
-    flagImg: germanyFlag,
-  },
-  {
-    id: "5",
-    userImg: userStub2,
-    title: "Sophie Laurent, Canada",
-    subtitle: "A Journey Through Light and Color",
-    // eslint-disable-next-line max-len
-    description: "Tuscany's landscapes are breathtaking, but experiencing them through a photographer's lens was transformative. The small group size allowed for personalized attention and incredible access to viewpoints.",
-    flagImg: unitedKingdomFlag,
-  },
-  {
-    id: "6",
-    userImg: userStub3,
-    title: "David Chen, Australia",
-    subtitle: "Professional Guidance, Stunning Results",
-    // eslint-disable-next-line max-len
-    description: "As an intermediate photographer, I learned more in these few days than in months of self-study. The instructor's expertise and the carefully chosen locations resulted in portfolio-worthy images.",
-    flagImg: germanyFlag,
-  },
-  {
-    id: "7",
-    userImg: userStub1,
-    title: "Marcus Weber, France",
-    subtitle: "Beyond Photography Expectations",
-    // eslint-disable-next-line max-len
-    description: "The attention to detail in planning was exceptional. From sunrise locations to hidden gems, every spot offered unique photographic opportunities. The guidance on composition and lighting elevated my skills significantly.",
-    flagImg: germanyFlag,
-  },
-  {
-    id: "8",
-    userImg: userStub2,
-    title: "Sophie Laurent, Canada",
-    subtitle: "A Journey Through Light and Color",
-    // eslint-disable-next-line max-len
-    description: "Tuscany's landscapes are breathtaking, but experiencing them through a photographer's lens was transformative. The small group size allowed for personalized attention and incredible access to viewpoints.",
-    flagImg: unitedKingdomFlag,
-  },
-  {
-    id: "9",
-    userImg: userStub3,
-    title: "David Chen, Australia",
-    subtitle: "Professional Guidance, Stunning Results",
-    // eslint-disable-next-line max-len
-    description: "As an intermediate photographer, I learned more in these few days than in months of self-study. The instructor's expertise and the carefully chosen locations resulted in portfolio-worthy images.",
-    flagImg: germanyFlag,
-  },
-  {
-    id: "10",
-    userImg: userStub1,
-    title: "Marcus Weber, France",
-    subtitle: "Beyond Photography Expectations",
-    // eslint-disable-next-line max-len
-    description: "The attention to detail in planning was exceptional. From sunrise locations to hidden gems, every spot offered unique photographic opportunities. The guidance on composition and lighting elevated my skills significantly.",
-    flagImg: germanyFlag,
-  },
-  {
-    id: "11",
-    userImg: userStub2,
-    title: "Sophie Laurent, Canada",
-    subtitle: "A Journey Through Light and Color",
-    // eslint-disable-next-line max-len
-    description: "Tuscany's landscapes are breathtaking, but experiencing them through a photographer's lens was transformative. The small group size allowed for personalized attention and incredible access to viewpoints.",
-    flagImg: unitedKingdomFlag,
-  },
-  {
-    id: "12",
-    userImg: userStub3,
-    title: "David Chen, Australia",
-    subtitle: "Professional Guidance, Stunning Results",
-    // eslint-disable-next-line max-len
-    description: "As an intermediate photographer, I learned more in these few days than in months of self-study. The instructor's expertise and the carefully chosen locations resulted in portfolio-worthy images.",
-    flagImg: germanyFlag,
-  },
-];
+const getRandomUserImage = () => {
+  const images = [userStub1, userStub2, userStub3];
+
+  return images[Math.floor(Math.random() * images.length)];
+};
+
+const mapReviewToCardProps = (review: Review): ReviewCardProps => {
+  const INDEX_OF_FIRST_SPACE = 1;
+  const titleParts = review.userName.split(" ");
+  const firstName = titleParts[0];
+  const surname = titleParts.slice(INDEX_OF_FIRST_SPACE).join(" ");
+
+  return ({
+    id: review.id,
+    userImg: review.image || getRandomUserImage(),
+    title: firstName,
+    secondTitle: surname,
+    subtitle: (
+      <span>
+        You can message
+        {" "}
+        {firstName}
+        {" "}
+        <a
+          style={{textDecoration: "underline"}}
+          href={review.link}
+        >
+          here
+        </a>
+      </span>
+    ),
+    description: review.comment,
+  });
+};
+
+const DEFAULT_FIRST_SLIDE = 1;
+const SLIDES_INCREMENT = 1;
 
 export function ReviewsSection(props: ToursSectionProps) {
   const swiperRef = useRef<SwiperType | null>(null);
+  const desktopSwiperRef = useRef<SwiperType | null>(null);
+  const [reviews, setReviews] = useState<ReviewCardProps[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentSlide, setCurrentSlide] = useState(DEFAULT_FIRST_SLIDE);
+  const totalSlides = reviews.length;
+
+  useEffect(() => {
+    const loadReviews = async () => {
+      try {
+        const apiReviews = await getReviewsMain();
+        if (apiReviews.length > 0) {
+          const mappedReviews = apiReviews.map(mapReviewToCardProps);
+          setReviews(mappedReviews);
+        }
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error("Failed to load reviews, using fallback data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadReviews();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <section className={clsx(styles.wrap, props.className)}>
+        <div className={styles.reviewsSlider}>
+          <div style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "300px",
+          }}
+          >
+            <p>
+              Loading reviews...
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className={clsx(styles.wrap, props.className)}>
@@ -145,12 +121,12 @@ export function ReviewsSection(props: ToursSectionProps) {
         <button
           type="button"
           aria-label="Previous"
-          className={`${styles.arrow} ${styles.arrowLeft}`}
+          className={clsx(styles.arrow, styles.arrowLeft)}
           onClick={() => swiperRef.current?.slidePrev()}
         >
           <span>
             <img
-              src={blueArrowCircleRight}
+              src={arrowRightBlack}
               alt="left slider button"
               loading="lazy"
             />
@@ -173,31 +149,118 @@ export function ReviewsSection(props: ToursSectionProps) {
         <Swiper
           modules={[Keyboard, A11y, Autoplay]}
           onSwiper={(s) => (swiperRef.current = s)}
-          loop={commentsDataStub.length > DESKTOP_SLIDES_PER_VIEW}
-          loopAdditionalSlides={3}
-          slidesPerView={MOBILE_SLIDES_PER_VIEW}
+          loop={totalSlides > MIN_SLIDES_FOR_LOOP}
+          loopAdditionalSlides={totalSlides > MIN_SLIDES_FOR_LOOP ? LOOP_ADDITIONAL_SLIDES : 0}
+          slidesPerView={1.2}
           spaceBetween={24}
           speed={500}
           allowTouchMove
           keyboard={{enabled: true}}
           autoplay={{
-            delay: 3000,
+            delay: 5000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
           className={styles.swiper}
+          style={{overflow: "visible"}}
           breakpoints={{
             [MOBILE_BREAKPOINT]: {
-              slidesPerView: TABLET_SLIDES_PER_VIEW,
-              loop: commentsDataStub.length > TABLET_SLIDES_PER_VIEW,
+              slidesPerView: MOBILE_SLIDES_PER_VIEW,
+              loop: totalSlides > MIN_SLIDES_FOR_LOOP,
             },
             [TABLET_BREAKPOINT]: {
-              slidesPerView: DESKTOP_SLIDES_PER_VIEW,
-              loop: commentsDataStub.length > DESKTOP_SLIDES_PER_VIEW,
+              slidesPerView: TABLET_SLIDES_PER_VIEW,
+              loop: totalSlides > MIN_SLIDES_FOR_LOOP,
+            },
+            [DESKTOP_BREAKPOINT]: {
+              slidesPerView: Math.min(DESKTOP_SLIDES_PER_VIEW, totalSlides),
+              loop: totalSlides > MIN_SLIDES_FOR_LOOP,
             },
           }}
         >
-          {commentsDataStub.map((review) => (
+          {reviews.map((review) => (
+            <SwiperSlide
+              key={review.id}
+              className={styles.reviewSlide}
+            >
+              <ReviewCard
+                key={review.id}
+                description={review.description}
+                id={review.id}
+                subtitle={review.subtitle}
+                secondTitle={review.secondTitle}
+                title={review.title}
+                userImg={review.userImg}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
+      <div className={styles.desktopSlider}>
+        <div className={styles.desktopNav}>
+          <button
+            type="button"
+            aria-label="Previous"
+            className={styles.desktopArrow}
+            onClick={() => desktopSwiperRef.current?.slidePrev()}
+          >
+            <span>
+              <img
+                src={arrowRightBlack}
+                alt="left slider button"
+                loading="lazy"
+              />
+            </span>
+          </button>
+          <span className={styles.slideCounter}>
+            {currentSlide}
+            /
+            {totalSlides}
+          </span>
+          <button
+            type="button"
+            aria-label="Next"
+            className={styles.desktopArrow}
+            onClick={() => desktopSwiperRef.current?.slideNext()}
+          >
+            <span>
+              <img
+                src={arrowRightBlack}
+                alt="right slider button"
+                loading="lazy"
+              />
+            </span>
+          </button>
+        </div>
+        <Swiper
+          modules={[Keyboard, A11y]}
+          onSwiper={(s) => (desktopSwiperRef.current = s)}
+          onSlideChange={(s) => setCurrentSlide(s.realIndex + SLIDES_INCREMENT)}
+          loop={totalSlides > MIN_SLIDES_FOR_LOOP}
+          loopAdditionalSlides={totalSlides > MIN_SLIDES_FOR_LOOP ? LOOP_ADDITIONAL_SLIDES : 0}
+          slidesPerView={Math.min(LOOP_ADDITIONAL_SLIDES, totalSlides)}
+          spaceBetween={24}
+          speed={500}
+          allowTouchMove={false}
+          keyboard={{enabled: true}}
+          className={styles.swiper}
+          breakpoints={{
+            [MOBILE_BREAKPOINT]: {
+              slidesPerView: MOBILE_SLIDES_PER_VIEW,
+              loop: totalSlides > MIN_SLIDES_FOR_LOOP,
+            },
+            [TABLET_BREAKPOINT]: {
+              slidesPerView: TABLET_SLIDES_PER_VIEW,
+              loop: totalSlides > MIN_SLIDES_FOR_LOOP,
+            },
+            [DESKTOP_BREAKPOINT]: {
+              slidesPerView: Math.min(DESKTOP_SLIDES_PER_VIEW, totalSlides),
+              loop: totalSlides > MIN_SLIDES_FOR_LOOP,
+            },
+          }}
+        >
+          {reviews.map((review) => (
             <SwiperSlide
               key={review.id}
               className={styles.reviewSlide}
@@ -208,8 +271,8 @@ export function ReviewsSection(props: ToursSectionProps) {
                 id={review.id}
                 subtitle={review.subtitle}
                 title={review.title}
+                secondTitle={review.secondTitle}
                 userImg={review.userImg}
-                flagImg={review.flagImg}
               />
             </SwiperSlide>
           ))}

@@ -23,8 +23,8 @@ const (
 	oauthToken     = zohoHost + "/oauth/v2/token"
 	apiOrg         = zohoAPIHost + "/crm/v3/org"
 	apiLeads       = zohoAPIHost + "/crm/v3/Leads"
-	// Check
-	apiContacts = zohoAPIHost + "/crm/v3/Contacts"
+	apiContacts    = zohoAPIHost + "/crm/v3/Contacts"
+	apiDeals       = zohoAPIHost + "/crm/v3/Deals"
 )
 
 var zohoScopes = []string{
@@ -53,6 +53,17 @@ type LeadCreateResponse struct {
 	} `json:"data"`
 }
 
+type DealCreateResponse struct {
+	Data []struct {
+		Code    string `json:"code"`
+		Details struct {
+			ID string `json:"id"`
+		} `json:"details"`
+		Message string `json:"message"`
+		Status  string `json:"status"`
+	} `json:"data"`
+}
+
 type BookingCreateResponse struct {
 	Data []struct {
 		Code    string `json:"code"`
@@ -69,11 +80,12 @@ type OrganizationInfo struct {
 }
 
 type ZohoRepository struct {
-	config       *config.ZohoConfig
-	httpClient   *http.Client
-	accessToken  string
-	refreshToken string
-	mu           sync.RWMutex
+	config         *config.ZohoConfig
+	httpClient     *http.Client
+	accessToken    string
+	refreshToken   string
+	tokenExpiresAt time.Time
+	mu             sync.RWMutex
 }
 
 func NewZohoRepository(cfg *config.ZohoConfig) *ZohoRepository {
@@ -99,9 +111,8 @@ func (r *ZohoRepository) GetAuthURL() string {
 }
 
 func (r *ZohoRepository) ExchangeCodeForTokens(ctx context.Context, code string) (*TokenResponse, error) {
-	if code == "" {
-		return nil, errors.New("authorization code cannot be empty")
-	}
+	// Safety margin before token expiration
+	const tokenSafetyMargin = 6 * time.Hour
 
 	data := url.Values{
 		"code":          {code},
@@ -145,9 +156,9 @@ func (r *ZohoRepository) ExchangeCodeForTokens(ctx context.Context, code string)
 
 	r.mu.Lock()
 	r.accessToken = tokenResp.AccessToken
-	if tokenResp.RefreshToken != "" {
-		r.refreshToken = tokenResp.RefreshToken
-	}
+	r.refreshToken = tokenResp.RefreshToken
+	// Set token expiration time with safety margin
+	r.tokenExpiresAt = time.Now().Add(time.Duration(tokenResp.ExpiresIn) * time.Second).Add(-tokenSafetyMargin)
 	r.mu.Unlock()
 
 	return &tokenResp, nil
@@ -201,8 +212,13 @@ func (r *ZohoRepository) RefreshAccessToken(ctx context.Context) (string, error)
 		return "", fmt.Errorf("failed to decode token response: %w", err)
 	}
 
+	// Safety margin before token expiration (official expiration time 60min)
+	const tokenSafetyMargin = 50 * time.Minute
+
 	r.mu.Lock()
 	r.accessToken = tokenResp.AccessToken
+	// Set token expiration time with safety margin
+	r.tokenExpiresAt = time.Now().Add(time.Duration(tokenResp.ExpiresIn) * time.Second).Add(-tokenSafetyMargin)
 	r.mu.Unlock()
 
 	return tokenResp.AccessToken, nil
@@ -245,13 +261,13 @@ func (r *ZohoRepository) GetOrganizationInfo(ctx context.Context) (*Organization
 	return &orgInfo, nil
 }
 
-func (r *ZohoRepository) CreateLead(ctx context.Context, lead *domain.Lead) (*LeadCreateResponse, error) {
+func (r *ZohoRepository) CreateLead(ctx context.Context, lead *domain.LeadZoho) (*LeadCreateResponse, error) {
 	token, err := r.getValidAccessToken(ctx)
 	if err != nil {
 		return nil, err
 	}
 
-	body := map[string][]*domain.Lead{
+	body := map[string][]*domain.LeadZoho{
 		"data": {lead},
 	}
 
@@ -291,22 +307,105 @@ func (r *ZohoRepository) CreateLead(ctx context.Context, lead *domain.Lead) (*Le
 	return &createResp, nil
 }
 
-func (r *ZohoRepository) CreateBookingRequest(ctx context.Context, booking *domain.BookingRequest) (*BookingCreateResponse, error) {
+func (r *ZohoRepository) CreateContact(
+	ctx context.Context,
+	contact *domain.ContactZoho,
+) error {
+
+	token, err := r.getValidAccessToken(ctx)
+	if err != nil {
+		return err
+	}
+
+	// гарантируем mandatory поле
+	if strings.TrimSpace(contact.LastName) == "" {
+		contact.LastName = "Website contact"
+	}
+
+	body := map[string][]*domain.ContactZoho{
+		"data": {contact},
+	}
+
+	jsonBody, err := json.Marshal(body)
+	if err != nil {
+		return fmt.Errorf("failed to marshal contact data: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(
+		ctx,
+		http.MethodPost,
+		apiContacts,
+		bytes.NewReader(jsonBody),
+	)
+	if err != nil {
+		return fmt.Errorf("failed to create request: %w", err)
+	}
+
+	req.Header.Set("Authorization", "Zoho-oauthtoken "+token)
+	req.Header.Set("Content-Type", "application/json")
+
+	resp, err := r.httpClient.Do(req)
+	if err != nil {
+		return fmt.Errorf("create contact request failed: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusCreated {
+		respBody, err := io.ReadAll(resp.Body)
+		if err != nil {
+			return fmt.Errorf("failed to read error response body: %w", err)
+		}
+		return fmt.Errorf(
+			"failed to create contact: %d %s - %s",
+			resp.StatusCode,
+			resp.Status,
+			string(respBody),
+		)
+	}
+
+	// if err := json.NewDecoder(resp.Body).Decode(&createResp); err != nil {
+	// 	return fmt.Errorf("failed to decode create contact response: %w", err)
+	// }
+
+	return nil
+}
+
+func (r *ZohoRepository) CreateDeal(
+	ctx context.Context,
+	deal *domain.DealZoho,
+) (*DealCreateResponse, error) {
+
 	token, err := r.getValidAccessToken(ctx)
 	if err != nil {
 		return nil, err
 	}
 
-	body := map[string][]*domain.BookingRequest{
-		"data": {booking},
+	// mandatory defaults
+	if strings.TrimSpace(deal.DealName) == "" {
+		deal.DealName = "Website Deal"
+	}
+	if strings.TrimSpace(deal.Stage) == "" {
+		deal.Stage = "Qualification"
+	}
+	if strings.TrimSpace(deal.ClosingDate) == "" {
+		deal.ClosingDate = time.Now().AddDate(0, 0, 14).Format("2006-01-02")
+	}
+
+	body := map[string][]*domain.DealZoho{
+		"data": {deal},
 	}
 
 	jsonBody, err := json.Marshal(body)
 	if err != nil {
-		return nil, fmt.Errorf("failed to marshal booking data: %w", err)
+		return nil, fmt.Errorf("failed to marshal deal data: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, http.MethodPost, apiContacts, bytes.NewReader(jsonBody))
+	req, err := http.NewRequestWithContext(
+		ctx,
+		http.MethodPost,
+		apiDeals,
+		bytes.NewReader(jsonBody),
+	)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create request: %w", err)
 	}
@@ -316,7 +415,7 @@ func (r *ZohoRepository) CreateBookingRequest(ctx context.Context, booking *doma
 
 	resp, err := r.httpClient.Do(req)
 	if err != nil {
-		return nil, fmt.Errorf("create booking request failed: %w", err)
+		return nil, fmt.Errorf("create deal request failed: %w", err)
 	}
 	defer resp.Body.Close()
 
@@ -325,13 +424,17 @@ func (r *ZohoRepository) CreateBookingRequest(ctx context.Context, booking *doma
 		if err != nil {
 			return nil, fmt.Errorf("failed to read error response body: %w", err)
 		}
-		return nil, fmt.Errorf("failed to create booking: %d %s - %s",
-			resp.StatusCode, resp.Status, string(respBody))
+		return nil, fmt.Errorf(
+			"failed to create deal: %d %s - %s",
+			resp.StatusCode,
+			resp.Status,
+			string(respBody),
+		)
 	}
 
-	var createResp BookingCreateResponse
+	var createResp DealCreateResponse
 	if err := json.NewDecoder(resp.Body).Decode(&createResp); err != nil {
-		return nil, fmt.Errorf("failed to decode create booking response: %w", err)
+		return nil, fmt.Errorf("failed to decode create deal response: %w", err)
 	}
 
 	return &createResp, nil
@@ -351,15 +454,68 @@ func (r *ZohoRepository) getValidAccessToken(ctx context.Context) (string, error
 	r.mu.RLock()
 	accessToken := r.accessToken
 	refreshToken := r.refreshToken
+	tokenExpiresAt := r.tokenExpiresAt
 	r.mu.RUnlock()
 
-	if accessToken != "" {
+	// Check if access token exists and is not expired
+	if accessToken != "" && time.Now().Before(tokenExpiresAt) {
 		return accessToken, nil
 	}
 
 	if refreshToken != "" {
-		return r.RefreshAccessToken(ctx)
+		newToken, err := r.RefreshAccessToken(ctx)
+		if err != nil {
+			return "", fmt.Errorf("failed to refresh access token: %w", err)
+		}
+		return newToken, nil
 	}
 
 	return "", errors.New("no access token available, please authenticate first")
+}
+
+func (r *ZohoRepository) UpdateDealStage(ctx context.Context, dealID, newStage string) error {
+	token, err := r.getValidAccessToken(ctx)
+	if err != nil {
+		return err
+	}
+
+	// Update deal data with new stage
+	updateData := map[string]interface{}{
+		"Stage": newStage,
+	}
+
+	body := map[string][]map[string]interface{}{
+		"data": {updateData},
+	}
+
+	jsonBody, err := json.Marshal(body)
+	if err != nil {
+		return fmt.Errorf("failed to marshal update data: %w", err)
+	}
+
+	updateURL := fmt.Sprintf("%s/%s", apiDeals, dealID)
+	req, err := http.NewRequestWithContext(ctx, http.MethodPatch, updateURL, bytes.NewReader(jsonBody))
+	if err != nil {
+		return fmt.Errorf("failed to create request: %w", err)
+	}
+
+	req.Header.Set("Authorization", "Zoho-oauthtoken "+token)
+	req.Header.Set("Content-Type", "application/json")
+
+	resp, err := r.httpClient.Do(req)
+	if err != nil {
+		return fmt.Errorf("update deal request failed: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusAccepted {
+		respBody, err := io.ReadAll(resp.Body)
+		if err != nil {
+			return fmt.Errorf("failed to read error response body: %w", err)
+		}
+		return fmt.Errorf("failed to update deal: %d %s - %s",
+			resp.StatusCode, resp.Status, string(respBody))
+	}
+
+	return nil
 }

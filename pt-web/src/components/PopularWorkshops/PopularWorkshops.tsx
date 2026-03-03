@@ -50,7 +50,7 @@ const slides = [
     id: "5",
     image:
            "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif",
-    link: PATHS.getTour("japan-cherry-blossom-tour"),
+    link: PATHS.getTour("japan-spring-tour"),
     title: "Your Guide to Iconic Tuscany Shots",
     subtitle: "Explore essential techniques and hidden locations for creating cinematic images in Tuscany.",
   },
@@ -68,16 +68,16 @@ const MOBILE_BREAKPOINT = 640;
 const TABLET_BREAKPOINT = 920;
 const DESKTOP_BREAKPOINT = 1224;
 
-const MOBILE_SLIDES_PER_VIEW = 1;
-const TABLET_SLIDES_PER_VIEW = 2;
-const DESKTOP_SLIDES_PER_VIEW = 2;
-const LARGE_DESKTOP_SLIDES_PER_VIEW = 3;
+const MOBILE_SLIDES_PER_VIEW = 1.2;
+const TABLET_SLIDES_PER_VIEW = 2.2;
+const DESKTOP_SLIDES_PER_VIEW = 2.2;
+const LARGE_DESKTOP_SLIDES_PER_VIEW = 3.2;
 
 export function PopularWorkshops({className = ""}: PopularWorkshopsProps) {
   const swiperRef = useRef<SwiperType | null>(null);
 
   return (
-    <section className={`${styles.wrap} ${className}`}>
+    <section className={clsx(styles.wrap, className)}>
       <button
         type="button"
         aria-label="Previous"
