@@ -1,4 +1,4 @@
-import stokksnesArticle from "src/data/articles/stokksnes-iceland.json";
+import stokksnesArticle from "src/data/articles/icelandic-rivers.json";
 import type {Article, ArticleSummary} from "src/types/article";
 
 const articles: Article[] = [
