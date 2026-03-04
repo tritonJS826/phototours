@@ -20,6 +20,7 @@ import {
   Menu,
   // ShoppingCart,
   // User,
+  X,
 } from "lucide-react";
 import {AuthModal} from "src/components/Auth";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
@@ -333,35 +334,92 @@ export function Header() {
       </div>
 
       {isMobileMenuOpen && (
-        <nav className={styles.mobileMenu}>
-          <ul>
-            <li>
-              <Link to={PATHS.HOME}>
-                Home
+        <div className={styles.mobileMenuOverlay}>
+          <div className={styles.mobileMenu}>
+            <button
+              className={styles.closeBtn}
+              onClick={() => setIsMobileMenuOpen(false)}
+              aria-label="Close menu"
+            >
+              <X size={28} />
+            </button>
+            <nav className={styles.mobileMenuNav}>
+              <ul>
+                <li>
+                  <Link
+                    to={PATHS.HOME}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={PATHS.TOURS}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Book Photo Tours
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={PATHS.ARTICLES}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Explore Articles
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={PATHS.ABOUT}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={PATHS.CONTACT}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Contact Us
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+            <div className={styles.mobileMenuFooter}>
+              <Link
+                to={PATHS.TOURS}
+                className={styles.exploreToursBtn}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Explore Tours
               </Link>
-            </li>
-            <li>
-              <Link to={PATHS.TOURS}>
-                Book Photo Tours
-              </Link>
-            </li>
-            <li>
-              <Link to={PATHS.ARTICLES}>
-                Explore Articles
-              </Link>
-            </li>
-            <li>
-              <Link to={PATHS.ABOUT}>
-                About Us
-              </Link>
-            </li>
-            <li>
-              <Link to={PATHS.CONTACT}>
-                Contact Us
-              </Link>
-            </li>
-          </ul>
-        </nav>
+              <div className={styles.socialContacts}>
+                <a href="tel:+1234567890" className={styles.socialContactItem}>
+                  <img src={phone} alt="Phone" />
+                  <span>Phone</span>
+                </a>
+                <a href="https://t.me/phototours" className={styles.socialContactItem}>
+                  <img src={telegram} alt="Telegram" />
+                  <span>Telegram</span>
+                </a>
+                <a href="https://wa.me/1234567890" className={styles.socialContactItem}>
+                  <img src={whatsapp} alt="WhatsApp" />
+                  <span>WhatsApp</span>
+                </a>
+                <a href="mailto:info@phototours.com" className={styles.socialContactItem}>
+                  <img src={email} alt="Email" />
+                  <span>Email</span>
+                </a>
+                <a href="https://instagram.com/phototours" className={styles.socialContactItem}>
+                  <img src={instagram} alt="Instagram" />
+                  <span>Instagram</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
 
       <AuthModal
