@@ -43,3 +43,15 @@ export function formatMonthsToDateRange(months: string[]): string {
 
   return `${firstMonth} - ${lastMonth}`;
 }
+
+const monthNames = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+export function formatDateToMonthDay(dateString: string): string {
+  const date = new Date(dateString);
+  const month = monthNames[date.getMonth()];
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${month} ${day}`;
+}

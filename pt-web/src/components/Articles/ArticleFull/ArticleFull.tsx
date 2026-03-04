@@ -1,9 +1,10 @@
 import {useState} from "react";
-import {Share} from "lucide-react";
+import copyUrlIcon from "/images/copyUrlIcon.svg";
 import {Breadcrumbs} from "src/components/Breadcrumbs/Breadcrumbs";
 import {Toast} from "src/components/Toast/Toast";
 import {PATHS} from "src/routes/routes";
 import type {Article, ArticleBlock} from "src/types/article";
+import {formatDateToMonthDay} from "src/utils/dateUtils";
 import styles from "src/components/Articles/ArticleFull/ArticleFull.module.scss";
 
 type Props = { article: Article };
@@ -93,6 +94,11 @@ export function ArticleFull({article}: Props) {
     <article className={styles.fullArt}>
       <div className={styles.fullPict}>
         <Breadcrumbs items={breadcrumbs} />
+
+        <p className={styles.createdAt}>
+          <div className={styles.createdAtIcon} />
+          {formatDateToMonthDay(article.publishedAt)}
+        </p>
         <img
           src={article.coverUrl}
           alt={article.alt ?? article.title}
@@ -111,12 +117,14 @@ export function ArticleFull({article}: Props) {
 
         <div className={styles.actions}>
           <button
-            className={styles.shareButton}
+            className={styles.copyLinkButton}
             onClick={handleShare}
             aria-label="Copy link"
           >
-            <Share size={18} />
-            Copy link
+            <img
+              src={copyUrlIcon}
+              alt="Copy link"
+            />
           </button>
 
         </div>

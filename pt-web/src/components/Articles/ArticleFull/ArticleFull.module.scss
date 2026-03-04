@@ -4,19 +4,62 @@
 .fullArt {
   max-width: 980px;
   margin: 0 auto;
-  padding: 0 vars.$spacing-lg vars.$spacing-xxxl;
+  padding: 20px;
 }
 
 .fullPict {
   width: 100%;
-  margin-bottom: vars.$spacing-xl;
 }
 
 .fullImg {
   width: 100%;
   height: auto;
-  border-radius: 25px;
+  border-radius: 18px;
   display: block;
+
+}
+
+.blockImage {
+  margin: 0;
+  
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+  }
+  
+  figcaption {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #151517;
+    text-align: center;
+  }
+
+  &:not(:first-child) {
+    margin-top: 40px;
+  }
+}
+
+
+.createdAt {
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 17px;
+  line-height: 135%;
+  color: #686868;
+  display: flex;
+  gap: 10px;
+  margin: 40px 0 20px 0;
+}
+
+.createdAtIcon {
+  width: 20px;
+  height: 20px;
+
+  background-color: #686868;
+  mask-image: url('/images/calendar.svg');
+  mask-repeat: no-repeat;
+  mask-size: contain;
 }
 
 .fullText {
@@ -26,35 +69,63 @@
 }
 
 .fullTitle {
-  font-size: 42px;
-  font-weight: 700;
-  color: #111;
-  margin: 0;
-  line-height: 1.2;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 120%;
+  letter-spacing: -2%;
+  margin-top: 40px;
+}
+
+.blockTitle {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 120%;
+  letter-spacing: -2%;
+  margin-top: 40px;
+}
+
+.blockText {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 145%;
+  letter-spacing: 0%;
+  margin-top: 20px;
+
+  @media (width <= 800px) {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #151517;
+  }
 }
 
 .actions {
   display: flex;
+  justify-content: flex-end;
   gap: 16px;
   margin-top: vars.$spacing-lg;
+  border-bottom: 1px solid #C0C0C0;
 }
 
-.shareButton {
+.copyLinkButton {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  background: #2f53de;
-  color: #fff;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: transparent;
   border: none;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 600;
+  border-radius: 8px;
   cursor: pointer;
   transition: background 0.2s ease;
 
   &:hover {
-    background: #0e2ead;
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  img {
+    width: 23px;
+    height: 23px;
   }
 }
 
@@ -107,4 +178,10 @@
   text-align: justify;
   font-size: vars.$font-size-md;
   line-height: 1.6;
+}
+
+.blockSeparator {
+  border: none;
+  border-top: 1px solid #C0C0C0;
+  margin-top: 40px;
 }

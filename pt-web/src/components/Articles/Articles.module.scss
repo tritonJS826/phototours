@@ -40,37 +40,4 @@
   gap: 24px;
 }
 
-.blockImage {
-  margin: 0;
 
-  img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-
-  figcaption {
-    margin-top: 8px;
-    font-size: 14px;
-    color: #151517;
-    text-align: center;
-  }
-}
-
-.blockTitle {
-  font-size: 24px;
-  font-weight: 600;
-  margin: 0;
-}
-
-.blockText {
-  font-size: 18px;
-  line-height: 1.7;
-  color: #151517;
-}
-
-.blockSeparator {
-  border: none;
-  border-top: 1px solid #C0C0C0;
-  margin: 32px 0;
-}

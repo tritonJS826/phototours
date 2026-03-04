@@ -1,6 +1,7 @@
 import {useEffect, useRef, useState} from "react";
 import {useParams} from "react-router-dom";
 import {ArticleFull} from "src/components/Articles/ArticleFull/ArticleFull";
+import {Loader} from "src/components/Loader/Loader";
 import {getArticleBySlug} from "src/services/articlesService";
 import type {Article} from "src/types/article";
 import styles from "src/pages/exploreArticles/ArticlePage/ArticlePage.module.scss";
@@ -59,16 +60,7 @@ export function ArticlePage() {
     <main className={styles.page}>
       <div className="container">
         {loading && (
-          <div
-            className={styles.loading}
-            role="status"
-            aria-live="polite"
-          >
-            <div className={`${styles.bar} ${styles["w-60"]}`} />
-            <div className={`${styles.bar} ${styles["w-80"]}`} />
-            <div className={`${styles.bar} ${styles["w-100"]}`} />
-            <div className={`${styles.bar} ${styles["w-40"]}`} />
-          </div>
+          <Loader />
         )}
 
         {!loading && err && (

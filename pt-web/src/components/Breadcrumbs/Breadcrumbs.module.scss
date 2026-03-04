@@ -16,9 +16,10 @@
   color: #666;
   text-decoration: none;
   transition: color 0.2s ease;
+  color: #2f53de;
 
   &:hover {
-    color: #2f53de;
+    // color: #2f53de;
   }
 }
 
@@ -29,4 +30,8 @@
 .current {
   color: #111;
   font-weight: 500;
+}
+
+.chevronRight {
+  font-size: 17px;
 }

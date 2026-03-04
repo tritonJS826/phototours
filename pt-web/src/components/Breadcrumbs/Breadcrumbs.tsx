@@ -1,5 +1,4 @@
 import {Link} from "react-router-dom";
-import {ChevronRight} from "lucide-react";
 import styles from "src/components/Breadcrumbs/Breadcrumbs.module.scss";
 
 type BreadcrumbItem = {
@@ -41,10 +40,11 @@ export function Breadcrumbs({items}: Props) {
                   {item.label}
                 </span>
               )}
-            {!isLast && <ChevronRight
-              size={16}
-              className={styles.separator}
-            />}
+            {!isLast && (
+              <span className={styles.chevronRight}>
+                »
+              </span>
+            )}
           </span>
         );
       })}
