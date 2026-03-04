@@ -12,7 +12,7 @@
 }
 
 .info {
-  margin-top: 70px;
+  margin-top: 30px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -27,6 +27,10 @@
 .infoHeader {
   font-size: 45px;
   font-weight: 700;
+
+  @media (width <= 800px) {
+    font-size: 36px;
+  }
 }
 
 .infoSubtitle {
@@ -35,6 +39,10 @@
   font-weight: 400;
   color: #38383f;
   margin-bottom: 20px;
+
+  @media (width <= 800px) {
+    font-size: 16px;
+  }
 }
 
 .heroSectionBg {
@@ -46,11 +54,12 @@
   padding: 20px;
   aspect-ratio: 3/1;
   position: relative;
-  min-height: 300px;
+  min-height: 220px;
 }
 
 .heroSection {
   position: absolute;
+  margin-right: 15px;
   bottom: 30px;
   color: #fff;
   display: flex;
@@ -74,6 +83,10 @@
   font-size: 20px;
   line-height: 1.15;
   letter-spacing: 0%;
+
+  @media (width <= 800px) {
+    font-size: 12px;
+  }
 
 }
 
@@ -129,15 +142,27 @@
 .victorTitle {
   font-size: 42px;
   margin-top: 30px;
+
+  @media (width <= 800px) {
+    font-size: 32px;
+  }
 }
 
 .victorDescription {
   margin-top: 30px;
+
+  @media (width <= 800px) {
+    font-size: 17px;
+  }
 }
 
 .victorDescription2 {
   margin-top: 30px;
   font-style: italic;
+
+  @media (width <= 800px) {
+    font-size: 16px;
+  }
 }
 
 .ourHistoryBlock {
@@ -178,6 +203,10 @@
   font-weight: 700;
   font-size: 45px;
   text-align: center;
+
+  @media (width <= 800px) {
+    font-size: 32px;
+  }
 }
 
 .ourHistoryDescription {
@@ -186,6 +215,10 @@
   line-height: 1.35;
   text-align: center;
   margin-top: 30px;
+
+  @media (width <= 800px) {
+    font-size: 16px;
+  }
 }
 
 .ourHistoryDescription2 {
@@ -196,6 +229,10 @@
   text-align: center;
   margin-top: 25px;
   color: #151517;
+
+  @media (width <= 800px) {
+    font-size: 16px;
+  }
 }
 
 .ourHistoryDescription3 {
@@ -206,6 +243,10 @@
   color: #494949;
   margin-top: 25px;
   margin-bottom: 40px;
+
+  @media (width <= 800px) {
+    font-size: 16px;
+  }
 }
 
 .ourHistoryRight {
@@ -218,6 +259,10 @@
     min-width: 147px;
     max-width: 147px;
   }
+
+  @media (width <= 880px) {
+    display: none;
+  }
 }
 
 .whatMakesUsDifferent {
@@ -225,6 +270,11 @@
   margin: 60px auto 0;
   position: relative;
   padding: 70px 0;
+
+  @media (width <= 880px) {
+    margin: 50px auto 0;
+    padding: 0 0;
+  }
 }
 
 // gray overlay
@@ -239,18 +289,27 @@
   background: #f0f0f0;
   height: 100%;
   z-index: -1;
+
+  @media (width <= 880px) {
+    display: none;
+  }
 }
 
 .whatMakesUsDifferentTitle {
   font-size: 45px;
   font-weight: 700;
+
+  @media (width <= 800px) {
+    font-size: 32px;
+  }
 }
 
 .whatMakesUsDifferentCards {
   margin-top: 40px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  column-gap: 20px;
+  row-gap: 30px;
 
   @media (width <= 800px) {
     grid-template-columns: repeat(2, 1fr);
@@ -278,15 +337,23 @@
 }
 
 .whatMakesUsDifferentCardTitle {
-  margin-top: 29px;
+  margin-top: 24px;
   font-size: 25px;
   font-weight: 600;
+
+  @media (width <= 880px) {
+    font-size: 20px;
+  }
 }
 
 .whatMakesUsDifferentCardDescription {
   margin-top: 11px;
   font-size: 17px;
   font-weight: 400;
+
+  @media (width <= 880px) {
+    font-size: 16px;
+  }
 }
 
 .ourMissionContent {
