@@ -46,6 +46,10 @@
   font-size: 24px;
   line-height: 120%;
   letter-spacing: -2%;
+
+  @media (width <= 900px) {
+    font-size: 20px;
+  }
 }
 
 .description {
@@ -60,6 +64,10 @@
   position: relative;
   color: #151517;
   text-align: justify;
+
+  @media (width <= 900px) {
+    font-size: 16px;
+  }
 }
 
 .description::after {

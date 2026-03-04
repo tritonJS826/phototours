@@ -1,4 +1,5 @@
 import {Navigate, Outlet} from "react-router-dom";
+import {Loader} from "src/components/Loader/Loader";
 import {useAuth} from "src/hooks/useAuth";
 import {PATHS} from "src/routes/routes";
 
@@ -8,7 +9,7 @@ export function ProtectedPageLayout() {
   if (isLoading) {
     return (
       <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "60vh"}}>
-        Loading...
+        <Loader />
       </div>
     );
   }

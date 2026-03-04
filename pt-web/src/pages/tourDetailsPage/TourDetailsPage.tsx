@@ -20,6 +20,7 @@ import {Accordion, accordionTypes} from "src/components/Accordion/Accordion";
 import {Button} from "src/components/Button/Button";
 import {Container} from "src/components/Container/Container";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
+import {Loader} from "src/components/Loader/Loader";
 import {NumberInput} from "src/components/NumberInput/NumberInput";
 import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
 import {TimeoutPopup} from "src/components/TimeoutPopup/TimeoutPopup";
@@ -417,13 +418,7 @@ export function TourDetailsPage() {
 
   if (loading) {
     return (
-      <section className={styles.wrap}>
-        <Container>
-          <div className={styles.state}>
-            Loading…
-          </div>
-        </Container>
-      </section>
+      <Loader />
     );
   }
 

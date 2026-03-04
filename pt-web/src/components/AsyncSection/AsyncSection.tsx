@@ -1,4 +1,5 @@
 import type {PropsWithChildren} from "react";
+import {Loader} from "src/components/Loader/Loader";
 import styles from "src/components/AsyncSection/AsyncSection.module.scss";
 
 type Props = PropsWithChildren<{
@@ -10,9 +11,7 @@ type Props = PropsWithChildren<{
 export function AsyncSection({loading, error, onRetry, children}: Props) {
   if (loading) {
     return (
-      <div className={styles.center}>
-        Loading…
-      </div>
+      <Loader />
     );
   }
   if (error) {
