@@ -1,6 +1,9 @@
 @use "../../styles/variables" as vars;
 @use "../../styles/mixins" as mixin;
 
+.divWrap {
+}
+
 .wrap {
   display: flex;
   margin: 30px auto 0;
@@ -955,4 +958,8 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
+}
+
+.feedBackDescriptionLong {
+  max-width: 730px;
 }

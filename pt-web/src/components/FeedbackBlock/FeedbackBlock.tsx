@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
 import notificationCheckMark from "/images/notificationCheckMark.svg";
+import clsx from "clsx";
 import {CentralNotification} from "src/components/CentralNotification/CentralNotification";
 import {InputPhone} from "src/components/InputPhone/InputPhone";
 import {submitContactMe} from "src/services/sailsService";
@@ -10,6 +11,8 @@ interface FeedbackBlockProps {
   title: string;
   subtitle: string;
   buttonText: string;
+
+  feedBackDescriptionCustomClass?: string;
 }
 
 export function FeedbackBlock(props: FeedbackBlockProps) {
@@ -50,7 +53,7 @@ export function FeedbackBlock(props: FeedbackBlockProps) {
           <h2 className={styles.feedBackTitle}>
             {props.title}
           </h2>
-          <p className={styles.feedBackDescription}>
+          <p className={clsx(styles.feedBackDescription, props.feedBackDescriptionCustomClass)}>
             {props.subtitle}
           </p>
           <div className={styles.feedbackFormContainer}>

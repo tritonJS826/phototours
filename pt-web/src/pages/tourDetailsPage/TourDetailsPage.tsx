@@ -446,7 +446,7 @@ export function TourDetailsPage() {
   const INCREMENT_1 = 1;
 
   return (
-    <div>
+    <div className={styles.divWrap}>
       <section className={styles.wrap}>
         <div className={styles.leftColumn}>
           <h1 className={styles.title}>
@@ -1043,6 +1043,7 @@ export function TourDetailsPage() {
         // eslint-disable-next-line max-len
         subtitle="Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity"
         buttonText="Book Now"
+        feedBackDescriptionCustomClass={styles.feedBackDescriptionLong}
       />
 
       <TimeoutPopup
