@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {ArticleCard} from "src/components/Articles/ArticleCard/ArticleCard";
+import {Loader} from "src/components/Loader/Loader";
 import {listArticles} from "src/services/articlesService";
 import type {ArticleSummary} from "src/types/article";
 import styles from "src/pages/exploreArticles/ArticlesPage/ArticlesPage.module.scss";
@@ -14,7 +15,7 @@ export function ArticlesPage() {
   }, []);
 
   if (items.length === 0) {
-    return null;
+    return <Loader />;
   }
 
   return (

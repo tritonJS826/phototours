@@ -9,9 +9,10 @@ SELECT
     alt,
     author,
     featured,
-    published_at
+    created_at,
+    blocks
 FROM articles
-ORDER BY featured DESC, published_at DESC
+ORDER BY created_at DESC
 LIMIT @limit_count OFFSET @offset_count;
 
 -- name: GetArticleBySlug :one
@@ -25,6 +26,7 @@ SELECT
     alt,
     author,
     featured,
-    published_at
+    created_at,
+    blocks
 FROM articles
 WHERE slug = @slug;

@@ -9,14 +9,12 @@ import styles from "src/components/Articles/ArticleFull/ArticleFull.module.scss"
 
 type Props = { article: Article };
 
-const TEXT_KEY_LAST_SYMBOLS = 20;
-
-function renderBlock(block: ArticleBlock) {
+function renderBlock(block: ArticleBlock, index: number) {
   switch (block.type) {
     case "image":
       return (
         <figure
-          key={block.src}
+          key={`${block.type}-${index}`}
           className={styles.blockImage}
         >
           <img
@@ -32,7 +30,7 @@ function renderBlock(block: ArticleBlock) {
     case "title":
       return (
         <h3
-          key={block.content}
+          key={`${block.type}-${index}`}
           className={styles.blockTitle}
         >
           {block.content}
@@ -41,7 +39,7 @@ function renderBlock(block: ArticleBlock) {
     case "text":
       return (
         <div
-          key={block.content.slice(0, TEXT_KEY_LAST_SYMBOLS)}
+          key={`${block.type}-${index}`}
           className={styles.blockText}
           dangerouslySetInnerHTML={{__html: block.content.replace(/\n/g, "<br/>")}}
         />
@@ -49,7 +47,7 @@ function renderBlock(block: ArticleBlock) {
     case "separator":
       return (
         <hr
-          key={block.type}
+          key={`${block.type}-${index}`}
           className={styles.blockSeparator}
         />
       );
@@ -62,7 +60,7 @@ function renderContent(article: Article) {
   if (article.blocks && article.blocks.length > 0) {
     return (
       <div className={styles.blocks}>
-        {article.blocks.map(renderBlock)}
+        {article.blocks.map((block, index) => renderBlock(block, index))}
       </div>
     );
   }
@@ -95,10 +93,10 @@ export function ArticleFull({article}: Props) {
       <div className={styles.fullPict}>
         <Breadcrumbs items={breadcrumbs} />
 
-        <p className={styles.createdAt}>
-          <div className={styles.createdAtIcon} />
-          {formatDateToMonthDay(article.publishedAt)}
-        </p>
+        <span className={styles.createdAt}>
+          <span className={styles.createdAtIcon} />
+          {formatDateToMonthDay(article.createdAt)}
+        </span>
         <img
           src={article.coverUrl}
           alt={article.alt ?? article.title}
@@ -109,9 +107,9 @@ export function ArticleFull({article}: Props) {
 
       <div className={styles.fullText}>
 
-        <h2 className={styles.fullTitle}>
+        {/* <h2 className={styles.fullTitle}>
           {article.title}
-        </h2>
+        </h2> */}
 
         {renderContent(article)}
 

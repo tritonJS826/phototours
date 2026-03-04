@@ -22,22 +22,24 @@ SELECT
     alt,
     author,
     featured,
-    published_at
+    created_at,
+    blocks
 FROM articles
 WHERE slug = $1
 `
 
 type GetArticleBySlugRow struct {
-	ID          pgtype.UUID
-	Slug        string
-	Title       string
-	Excerpt     string
-	Content     string
-	CoverUrl    string
-	Alt         pgtype.Text
-	Author      pgtype.Text
-	Featured    bool
-	PublishedAt pgtype.Timestamp
+	ID        pgtype.UUID
+	Slug      string
+	Title     string
+	Excerpt   string
+	Content   string
+	CoverUrl  string
+	Alt       pgtype.Text
+	Author    pgtype.Text
+	Featured  bool
+	CreatedAt pgtype.Timestamp
+	Blocks    []byte
 }
 
 func (q *Queries) GetArticleBySlug(ctx context.Context, slug string) (GetArticleBySlugRow, error) {
@@ -53,7 +55,8 @@ func (q *Queries) GetArticleBySlug(ctx context.Context, slug string) (GetArticle
 		&i.Alt,
 		&i.Author,
 		&i.Featured,
-		&i.PublishedAt,
+		&i.CreatedAt,
+		&i.Blocks,
 	)
 	return i, err
 }
@@ -69,9 +72,10 @@ SELECT
     alt,
     author,
     featured,
-    published_at
+    created_at,
+    blocks
 FROM articles
-ORDER BY featured DESC, published_at DESC
+ORDER BY created_at DESC
 LIMIT $2 OFFSET $1
 `
 
@@ -81,16 +85,17 @@ type GetArticlesParams struct {
 }
 
 type GetArticlesRow struct {
-	ID          pgtype.UUID
-	Slug        string
-	Title       string
-	Excerpt     string
-	Content     string
-	CoverUrl    string
-	Alt         pgtype.Text
-	Author      pgtype.Text
-	Featured    bool
-	PublishedAt pgtype.Timestamp
+	ID        pgtype.UUID
+	Slug      string
+	Title     string
+	Excerpt   string
+	Content   string
+	CoverUrl  string
+	Alt       pgtype.Text
+	Author    pgtype.Text
+	Featured  bool
+	CreatedAt pgtype.Timestamp
+	Blocks    []byte
 }
 
 func (q *Queries) GetArticles(ctx context.Context, arg GetArticlesParams) ([]GetArticlesRow, error) {
@@ -112,7 +117,8 @@ func (q *Queries) GetArticles(ctx context.Context, arg GetArticlesParams) ([]Get
 			&i.Alt,
 			&i.Author,
 			&i.Featured,
-			&i.PublishedAt,
+			&i.CreatedAt,
+			&i.Blocks,
 		); err != nil {
 			return nil, err
 		}

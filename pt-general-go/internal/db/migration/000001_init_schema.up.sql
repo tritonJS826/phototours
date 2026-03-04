@@ -41,8 +41,10 @@ CREATE TABLE articles (
     alt TEXT,
     author TEXT,
     featured BOOLEAN DEFAULT FALSE NOT NULL,
-    published_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL
+    created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    -- blocks: JSON array of {type: "image"|"text"|"title"|"separator", content?: string, src?: string, alt?: string}
+    blocks JSONB NOT NULL DEFAULT '[]'
 );
 CREATE TABLE guides (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

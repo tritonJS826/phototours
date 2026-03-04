@@ -2594,5 +2594,284 @@ VALUES
 (tour14_id, tour4_id),
 (tour14_id, tour3_id);
 
+-- ARTICLES
+INSERT INTO articles (id, slug, title, excerpt, content, cover_url, alt, author, featured, created_at, blocks)
+VALUES (
+  '66666666-6666-6666-6666-666666666601',
+  'icelandic-rivers',
+  'Icelandic rivers',
+  'These images were taken about 12 years ago by a remarkable photographer, Andrey Ermolayev, who, unfortunately, is no longer with us. I once wrote Andrey a message, and he replied — that message turned into a correspondence that stayed with me for a long time.
+He didn''t just tell me about the most beautiful places to shoot; he also shared many truly invaluable tips that shaped the way I approached this kind of photography.',
+  'These images were taken about 12 years ago by a remarkable photographer, Andrey Ermolayev, who, unfortunately, is no longer with us. I once wrote Andrey a message, and he replied — that message turned into a correspondence that stayed with me for a long time.
+He didn''t just tell me about the most beautiful places to shoot; he also shared many truly invaluable tips that shaped the way I approached this kind of photography.',
+  'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772633959/articleIclandicRivers_1_mln3cq.avif',
+  'Icelandic rivers',
+  'PhotoTours Team',
+  true,
+  '2026-03-01 10:00:00',
+  '[
+    {"type": "title", "content": "A story behind these images"},
+    {"type": "text", "content": "These images were taken about 12 years ago by a remarkable photographer, Andrey Ermolayev, who, unfortunately, is no longer with us. I once wrote Andrey a message, and he replied — that message turned into a correspondence that stayed with me for a long time.\nHe didn''t just tell me about the most beautiful places to shoot; he also shared many truly invaluable tips that shaped the way I approached this kind of photography."},
+    {"type": "separator"},
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772633962/articleIclandicRivers_2_twhzjt.avif", "alt": ""},
+    {"type": "title", "content": "Before drones: photography from the air"},
+    {"type": "text", "content": "Before drones were invented, this type of photography was far from cheap. You had to rent a small airplane, with one hour of flight costing around €1300, and shoot through a small opening in the window.\nI''ve done this four times in my life, and only one of those shoots I can truly call successful. On that day, I was incredibly lucky with both the weather and the light — something that doesn''t happen often in Iceland. Sometimes, you''d have to wait up to three days just for conditions suitable for flying."},
+    {"type": "separator"},
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772633957/articleIclandicRivers_3_dqqzpj.avif", "alt": ""},
+    {"type": "title", "content": "Tips for shooting rivers from a plane"},
+    {"type": "text", "content": "So, what advice can I give for this kind of shooting?\n• The ideal lens is a 24-105mm.\n• You can safely shoot with an open aperture.\n• I shot at a shutter speed of 1/800 seconds and used a polarizing filter to remove reflections."},
+    {"type": "separator"},
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772633962/articleIclandicRivers_7_lovbwy.avif", "alt": ""},
+    {"type": "title", "content": "What really matters in the air"},
+    {"type": "text", "content": "But the most important advice lies elsewhere.\nAlways wear gloves so your hands don''t freeze, but make sure your fingertips are free to handle the zoom. And most importantly — hold your lens very firmly. The plane flies at high speed, and the wind can literally rip the lens off your camera. The bayonet mount won''t save it.\nI know more than one person who lost their lenses this way. During the entire hour of the flight, I constantly kept my hand on the lens to secure it."},
+    {"type": "separator"},
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772633962/articleIclandicRivers_5_ikl856.avif", "alt": ""},
+    {"type": "title", "content": "Why planes still matter"},
+    {"type": "text", "content": "Shooting from a plane allows for some of the best images. You''re using a high-quality camera and lens that drones still can''t fully support. You also see much more, simply because the plane flies farther.\nThat said, you need to think and react quickly. Unlike a drone, a plane can''t hover. Often, if you miss a shot, there''s no second chance to recover it."},
+    {"type": "separator"},
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772633964/articleIclandicRivers_6_b671q2.avif", "alt": ""},
+    {"type": "title", "content": "Cost, risk, and reality"},
+    {"type": "text", "content": "As mentioned earlier, this type of photography is significantly more expensive and, perhaps, more dangerous. The most well-known pilot among photographers in Iceland, Diego Haraldur, who flew with many of my friends, tragically crashed his plane with three clients in 2022 during poor visibility."},
+    {"type": "separator"},
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772633962/articleIclandicRivers_7_lovbwy.avif", "alt": ""},
+    {"type": "title", "content": "What''s next"},
+    {"type": "text", "content": "All the photos in this post were taken from a plane. In the next post, I''ll share how to best capture rivers with a drone, give tips for drone photography, and tell some of the most interesting stories connected to it.\nShooting with drones isn''t easy either.\nStay tuned — and wishing you good luck and great light."}
+  ]'::jsonb
+), (
+  '66666666-6666-6666-6666-666666666602',
+  'val-dorcia',
+  'Val d’Orcia',
+  'Over the past 16 years, I have visited Tuscany nearly 50 times, experiencing its beauty in every season. However, autumn remains my favorite due to the increased likelihood of fog and the rich brown tones of freshly plowed soil.',
+  'Over the past 16 years, I have visited Tuscany nearly 50 times, experiencing its beauty in every season. However, autumn remains my favorite due to the increased likelihood of fog and the rich brown tones of freshly plowed soil.',
+  'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635334/valDorcia-1_bpku0z.avif',
+  'Val d’Orcia',
+  'PhotoTours Team',
+  true,
+  '2026-02-26 10:00:00',
+  '[
+    {"type": "title", "content": "Whispers of Autumn: Capturing the Misty Elegance of Val d''Orcia"},
+    {"type": "text", "content": "Over the past 16 years, I have visited Tuscany nearly 50 times, experiencing its beauty in every season. However, autumn remains my favorite due to the increased likelihood of fog and the rich brown tones of freshly plowed soil. The combination of these elements in Val d''Orcia creates a mystical atmosphere that is perfect for photography. To truly capture its essence, mastering the use of telephoto lenses, tripods, remote shutter releases, and panoramic techniques is essential."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635340/valDorcia-2_vru5jk.avif", "alt": ""},
+    {"type": "title", "content": "The Magic of Long Focal Lengths"},
+    {"type": "text", "content": "One of the most effective ways to photograph misty autumn landscapes is by using a telephoto lens. A long focal length (100-400mm or beyond) allows photographers to isolate details within the fog, emphasizing layers of trees, hills, and riverbanks. The compression effect of a telephoto lens enhances the depth of the scene, making distant elements appear closer together, which is particularly effective in foggy conditions where background elements subtly fade into the mist. Additionally, telephoto lenses are invaluable for capturing the landscapes of Val d''Orcia, as the best vantage points are often found in hilltop towns like Pienza, Montalcino, and Montepulciano, where the valley unfolds in stunning layers below."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635335/valDorcia-3_z5wure.avif", "alt": ""},
+    {"type": "title", "content": "Stability for Crisp Images"},
+    {"type": "text", "content": "Given the lower light conditions often found in misty landscapes, a sturdy tripod is a must. A telephoto lens magnifies any movement, so securing the camera on a reliable tripod ensures sharp, detailed images even with slower shutter speeds. Additionally, using a remote shutter release or a camera''s self-timer prevents vibrations caused by pressing the shutter button, further enhancing clarity. I have used tripods from Really Right Stuff and Gitzo for years without ever needing to replace them—only performing routine maintenance and care. Investing in a high-quality tripod ensures long-term reliability and optimal performance in challenging conditions."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635341/valDorcia-4_sh6sl4.avif", "alt": ""},
+    {"type": "title", "content": "The Art of Panoramic Photography"},
+    {"type": "text", "content": "While wide-angle lenses can capture sweeping views, panoramic photography with a telephoto lens provides a unique perspective on foggy autumn landscapes. By stitching multiple images together, I create high-resolution panoramic shots with intricate details and dynamic compositions. To achieve the best results:\n\n• Use manual exposure and focus settings to ensure consistency across frames.\n• Overlap each shot by at least 30% to make stitching seamless.\n• Keep the camera level on the tripod using a levelling base and ensure the horizon is straight both at the camera level and with the half-ball head for precision.\n• Always shoot in vertical orientation to maximize resolution and minimize distortion when stitching.\n• Disable image stabilization, especially on older DSLR lenses. When mounted on a tripod, image stabilization can introduce unwanted motion blur instead of improving sharpness.\n• Don''t be afraid to create multi-row panoramas by capturing additional vertical rows and overlapping them by 30%. This technique allows for even higher resolution and a broader perspective while maintaining the telephoto compression effect."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635339/valDorcia-5_edccj8.avif", "alt": ""},
+    {"type": "title", "content": "Mastering Light and Color in Fog"},
+    {"type": "text", "content": "Fog acts as a natural diffuser, softening light and reducing harsh contrasts. This creates an opportunity to capture delicate tonal transitions and rich autumn hues without the distraction of intense highlights or deep shadows. Shooting during the golden hour enhances the warmth of fall foliage, while a slightly higher exposure compensation (+0.3 to +1.0 EV) helps prevent the camera’s metering system from underexposing misty scenes."},
+    {"type": "text", "content": "Additionally, I use exposure bracketing, capturing three frames with a 1-stop bracket to ensure I retain both highlight and shadow details. This technique provides flexibility in post-processing, allowing for more balanced and natural-looking images."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635339/valDorcia-6_wuuptj.avif", "alt": ""},
+    {"type": "title", "content": "Final Thoughts"},
+    {"type": "text", "content": "Photographing Val d''Orcia in autumn is a rewarding experience that demands both technical skill and artistic vision. By harnessing the power of long focal lengths, stable support, remote triggers, and panoramic techniques, I can elevate my images to showcase the enchanting interplay of fog, color, and light. Whether capturing intimate details of the forest or sweeping river vistas, this approach ensures that the mystical beauty of autumn remains preserved through the lens."},
+    {"type": "text", "content": "That said, no matter how accomplished you are, if your goal is to create true fine art landscapes, it''s always best to travel with an experienced guide—one of whom I happen to know quite well 😉."},
+    {"type": "text", "content": "So grab your gear, embrace the morning mist, and let the magic of Val d''Orcia unfold in your photographs!"}
+  ]'::jsonb
+), (
+  '66666666-6666-6666-6666-666666666603',
+  'stockness-iceland',
+  'Stockness Iceland',
+  'A place beyond time — where black dunes rise like silent waves and Vestrahorn stands reflected in the shifting tides beneath Arctic skies.',
+  'A place beyond time — where black dunes rise like silent waves and Vestrahorn stands reflected in the shifting tides beneath Arctic skies.',
+  'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635307/stockssnesIceland-1_rc0ymq.avif',
+  'Stockness Iceland',
+  'PhotoTours Team',
+  true,
+  '2026-02-25 10:00:00',
+  '[
+    {"type": "title", "content": "A Place Beyond Time"},
+    {"type": "text", "content": "There is a place where the world feels untouched, where time lingers in the whispers of the wind and the hush of the tide. Stockness — wild, solemn, eternal.\n\nHere, black dunes rise like silent waves, sculpted by the restless breath of the North Atlantic. Slender blades of golden grass sway upon them, defying the cold embrace of the Arctic winds. They whisper secrets to the storm, bending but never breaking."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635308/stockssnesIceland-2_avzetn.avif", "alt": ""},
+
+    {"type": "title", "content": "Where Land, Sea, and Sky Merge"},
+    {"type": "text", "content": "Beyond the dunes, the mirror of the shoreline stretches wide, where sky and earth dissolve into a single reflection. The dark sands shimmer beneath fleeting clouds, their silver trails mirrored in the ebbing tide.\n\nIn moments of perfect stillness, the mighty Vestrahorn stands doubled in the water — a mountain gazing upon its own ghost."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635306/stockssnesIceland-3_mfsrey.avif", "alt": ""},
+
+    {"type": "title", "content": "Nightfall and Northern Lights"},
+    {"type": "text", "content": "And when the night unfolds its velvet cloak, the heavens awaken in a silent symphony of light. The Aurora Borealis dances upon the firmament, veils of emerald and violet swirling in celestial rhythm.\n\nTheir reflection trembles upon the wet sands, as if the stars themselves have fallen to earth."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635309/stockssnesIceland-4_k45pax.avif", "alt": ""},
+
+    {"type": "title", "content": "Photography Tips for Stockness"},
+    {"type": "text", "content": "Capturing the magic of Stockness requires patience and deep respect for the landscape.\n\nThe best compositions often emerge from areas untouched by footprints — a rare sight, but more likely during low tide, when the receding water smooths the sand. To preserve the pristine beauty of this place, step carefully and avoid disturbing the fragile dunes.\n\nA wide-angle lens is essential for emphasizing the vastness of the scene. Shooting panoramas with a nodal rail helps ensure perfect alignment, especially when capturing the grandeur of Vestrahorn against the sky.\n\nSince reflection shots often require standing in shallow water, waterproof overboots are highly recommended to keep your feet dry while composing the perfect frame."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635309/stockssnesIceland-5_nrh9gj.avif", "alt": ""},
+
+    {"type": "title", "content": "Respect for Nature and Landowners"},
+    {"type": "text", "content": "The road and tidal flats belong to local farmers, and access to Stockness is privately managed. A fee of approximately 10 euros is required to enter, payable at the nearby Viking Café. This fee helps maintain the area and manage the impact of visitors.\n\nWhen visiting, treat both nature and private property with respect. Stockness is more than a destination — it is a fragile dreamscape, where every gust of wind, ripple of water, and shifting shadow tells a story.\n\nHonor its beauty, and it will reward you with images that feel timeless."}
+  ]'::jsonb
+), (
+  '66666666-6666-6666-6666-666666666604',
+  'snow-in-venice-a-dream-come-true',
+  'Snow In Venice. A Dream Come True',
+  'Snow in Venice… a waking dream. A promise made years ago, fulfilled in a fleeting, once-in-a-lifetime moment during Carnival.',
+  'Snow in Venice… a waking dream. A promise made years ago, fulfilled in a fleeting, once-in-a-lifetime moment during Carnival.',
+  'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635280/snowInVenice-1_b3qtup.avif',
+  'Snow In Venice. A Dream Come True',
+  'PhotoTours Team',
+  true,
+  '2026-02-24 10:00:00',
+  '[
+    {"type": "title", "content": "A Promise Made Years Ago"},
+    {"type": "text", "content": "Snow in Venice… a waking dream.\n\nMany years ago, my friend Gleb Goloubetski, one of the greatest contemporary artists, once told me: \"If it ever snows in Venice, be ready. We have to be there the same day.\"\n\nThose words stayed with me. From that moment on, I dreamed of Venice. And finally, in 2011, that dream came true."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635289/snowInVenice-2_pyn4dw.avif", "alt": ""},
+
+    {"type": "title", "content": "Carnival Mornings"},
+    {"type": "text", "content": "I arrived in Venice for the Carnival, and snow was the last thing on my mind. It was spring, after all.\n\nAnother cold, damp morning found me at St. Mark’s Square, sharpening my speed-shooting skills as masked figures drifted through the mist. My usual partner had taken the day off, and the atmosphere felt calmer than the morning before. Still, even a quiet Carnival has its charm — and a little Jägermeister never hurts, though drinking alone is never quite the same.\n\nEverything was unfolding as expected.\n\nUntil it wasn’t."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635288/snowInVenice-3_oryiqq.avif", "alt": ""},
+
+    {"type": "title", "content": "When the Impossible Happens"},
+    {"type": "text", "content": "A fierce wind suddenly swept through the square, carrying with it something utterly unbelievable.\nSnow.\n\nThe costumed figures scattered instantly, fleeing for shelter, unwilling to face the storm. But a few of us — like-minded, snow-struck lunatics — managed to stop three or four of them and persuade them to pose.\nWe all knew this might be a once-in-a-lifetime moment.\n\nMy heart was racing. Snow fell, melted, and fell again. I ran through the city, jumped onto vaporettos, and shot non-stop. For the first time in my life, photography felt like a hunt — raw, instinctive, electric."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635301/snowInVenice-4_e0zup5.avif", "alt": ""},
+
+    {"type": "title", "content": "Gone Without a Trace"},
+    {"type": "text", "content": "Around 11 AM, I finally stumbled back to the hotel. My friends were just finishing breakfast when I burst in, breathless, trying to explain what I had just witnessed.\n\nHalf an hour later, we stepped outside together.\n\nThe snow was gone.\n\nNot a single trace remained.\n\nI pinched myself.\nHad I dreamed it all?"},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635289/snowInVenice-5_usv1nd.avif", "alt": ""},
+
+    {"type": "title", "content": "Returning to Venice"},
+    {"type": "text", "content": "This year, my Carnival photo tour in Venice was especially vivid. One of the reasons was the wonderful company — like-minded photographers who came not only for refined shots of masks but for that elusive feeling of the city itself, unmatched in atmosphere and beauty.\n\nVenice is a place where time dissolves into the canals, where early-morning silence is filled with the soft lapping of water and the distant echo of footsteps.\n\nAs Joseph Brodsky wrote in Watermark:\n\"This is the only city where even a man without a penny feels like a rich man.\"\n\"Venice is a celebration that stays with you, even when you are far from it.\"\n\nAnd during Carnival, when masks fill the city, narrow streets become theatrical stages, and sunlight gilds the surface of the water, you truly understand how unique this place is."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635299/snowInVenice-6_qc7v6b.avif", "alt": ""},
+
+    {"type": "title", "content": "Light, Color, and Chance"},
+    {"type": "text", "content": "This year, we were especially lucky with the weather. Bright sunlight flooded the palaces and squares, allowing us to create truly stunning images.\n\nThe light danced across marble facades, turning the city into a living painting — something worthy of the great masters of the past."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635299/snowInVenice-7_h7e5ek.avif", "alt": ""},
+
+    {"type": "title", "content": "Beyond Photography: The Taste of Venice"},
+    {"type": "text", "content": "Venice is not only a visual feast; it is also a gastronomic revelation.\nStep just a little away from the tourist routes, and you’ll discover small restaurants with magical cuisine. The freshest seafood, black squid-ink spaghetti, delicate octopus carpaccio — here, every meal becomes a pleasure.\n\nIn one such place, my favorite Osteria Antico Giardinetto, we enjoyed an exquisite risotto al frutti di mare prepared by the magical chef Virgilio."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635298/snowInVenice-8_dpztes.avif", "alt": ""},
+
+    {"type": "title", "content": "A City That Stays With You"},
+    {"type": "text", "content": "For me, Venice has always been more than just a city.\n\nIt is a dream.\nA memory.\nA reflection in the water.\n\nIt is a place where masks do not hide individuality but amplify it, turning each person into the hero of their own story. Every time I return, I discover something new — and yet, I always feel at home.\n\nAnd every photograph taken here is not just an image, but a small piece of eternity, captured in light and shadow."}
+  ]'::jsonb
+), (
+  '66666666-6666-6666-6666-666666666605',
+  'top-10-places-in-iceland-for-photography-tours-and-workshops',
+  'Top 10 Places in Iceland for Photography Tours and Workshops',
+  'Iceland is a dreamland for photographers, offering a surreal mix of fiery volcanoes, glacial landscapes, and rugged coastlines — a true haven for photography tours and workshops.',
+  'Iceland is a dreamland for photographers, offering a surreal mix of fiery volcanoes, glacial landscapes, and rugged coastlines — a true haven for photography tours and workshops.',
+  'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635324/top10PlacesInIcelandForPhotography-1_zs5vnf.avif',
+  'Top 10 Places in Iceland for Photography Tours and Workshops',
+  'PhotoTours Team',
+  true,
+  '2026-02-23 12:00:00',
+  '[
+    {"type": "text", "content": "Iceland is a dreamland for photographers, offering a surreal mix of fiery volcanoes, glacial landscapes, and rugged coastlines. It’s a place where nature’s drama unfolds in every direction, making it a haven for photo tours and workshops. If you’re planning a visit, these ten iconic destinations should be at the top of your list."},
+
+    {"type": "title", "content": "Jökulsárlón Glacier Lagoon"},
+    {"type": "text", "content": "Imagine standing on the shore of a vast lagoon filled with luminous blue icebergs. Nearby, Diamond Beach adds another layer of magic, where fragments of ice lie scattered on black volcanic sands.\n\nFor the best results, arrive about 30 minutes before sunrise. Use a wide-angle lens (16–35mm is ideal), a polarizing filter to reduce glare, and a graduated ND filter (around 0.45 soft transition) to balance the sky. A sturdy tripod and waterproof boots are essential. Try shutter speeds of 1–2 seconds to transform wave foam into elegant white streaks.\n\nAt sunset, the lagoon itself becomes ideal. Medium focal lengths (50–100mm) work beautifully for panoramas, especially with a leveling base and ball head."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635319/top10PlacesInIcelandForPhotography-2_l5toui.avif", "alt": ""},
+
+    {"type": "title", "content": "Landmannalaugar"},
+    {"type": "text", "content": "A kaleidoscope of rhyolite mountains glowing in red, orange, and green hues. Steam from geothermal springs adds atmosphere, while winding trails through lava fields offer endless compositions. Overcast light enhances the saturation of colors and creates soft, even tones."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635324/top10PlacesInIcelandForPhotography-3_vtrelt.avif", "alt": ""},
+
+    {"type": "title", "content": "Reynisfjara Black Sand Beach"},
+    {"type": "text", "content": "Dominated by the Reynisdrangar sea stacks and dramatic basalt columns, this beach is raw and powerful. Stormy weather intensifies the mood, while wide-angle lenses emphasize the scale of waves and cliffs. Always respect sneaker waves and ocean safety."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635326/top10PlacesInIcelandForPhotography-4_ypelen.avif", "alt": ""},
+
+    {"type": "title", "content": "Arnarstapi"},
+    {"type": "text", "content": "Located on the Snæfellsnes Peninsula, Arnarstapi offers sea cliffs, arches, and birdlife. The iconic Gatklettur rock arch creates natural framing opportunities, especially during sunset when soft side light enhances textures."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635329/top10PlacesInIcelandForPhotography-5_wiinkp.avif", "alt": ""},
+
+    {"type": "title", "content": "Kirkjufell and Kirkjufellsfoss"},
+    {"type": "text", "content": "Often called the most photographed mountain in Iceland, Kirkjufell pairs perfectly with the cascading foreground of Kirkjufellsfoss. Ideal for northern lights, midnight sun, or classic sunset reflections."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635322/top10PlacesInIcelandForPhotography-6_eb9mng.avif", "alt": ""},
+
+    {"type": "title", "content": "Dettifoss"},
+    {"type": "text", "content": "Europe’s most powerful waterfall. Wide-angle compositions emphasize its scale, while slower shutter speeds capture motion in the plunging water. The surrounding basalt terrain enhances the raw, primordial atmosphere."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635328/top10PlacesInIcelandForPhotography-7_puozkn.avif", "alt": ""},
+
+    {"type": "title", "content": "Seljalandsfoss"},
+    {"type": "text", "content": "Walk behind the cascading water curtain for a unique perspective. Sunset creates a golden glow through the waterfall, offering intimate yet grand compositions."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635331/top10PlacesInIcelandForPhotography-8_nrl5ty.avif", "alt": ""},
+
+    {"type": "title", "content": "Stokksnes and Vestrahorn"},
+    {"type": "text", "content": "Black sand dunes and golden grass lead toward the dramatic silhouette of Vestrahorn. Reflections in tidal pools create layered depth. Sunrise and sunset bring warm tones to this textured landscape."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635331/top10PlacesInIcelandForPhotography-9_aruncb.avif", "alt": ""},
+
+    {"type": "title", "content": "Svartifoss"},
+    {"type": "text", "content": "Surrounded by basalt columns resembling organ pipes, Svartifoss combines geometry and natural flow. Use longer exposures to create silky water contrasting with sharp rock formations."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635332/top10PlacesInIcelandForPhotography-10_p1eufc.avif", "alt": ""},
+
+    {"type": "title", "content": "Goðafoss"},
+    {"type": "text", "content": "The \"Waterfall of the Gods\" offers sweeping horseshoe compositions. Both elevated viewpoints and lower angles provide strong framing opportunities, especially in soft evening light."},
+
+
+    {"type": "title", "content": "Tips for Photography Tours in Iceland"},
+    {"type": "text", "content": "• Take advantage of long golden hours and diffused overcast light.\n• Summer offers midnight sun; winter brings snow and northern lights.\n• A sturdy tripod and waterproof gear are essential.\n• Respect nature and stay on marked paths."},
+    {"type": "title", "content": "Creative Long Exposure Example"},
+    {"type": "text", "content": "On one iconic northern beach, I experimented with multiple exposures. Using a neutral density filter and a sturdy tripod, I blended 7 exposures, each 11 seconds long, timed as waves rolled over smooth stones. The result was a gentle mist-like texture between the rocks — subtle, atmospheric, and unique."},
+
+    {"type": "text", "content": "Iceland is a never-ending source of inspiration. Whether you are a seasoned professional or an aspiring enthusiast, its landscapes will challenge and reward you equally.\n\nFor a smoother experience, consider using the free app Spoter to find the best photography spots, check weather forecasts, and improve your chances of capturing the perfect shot."}
+  ]'::jsonb
+), (
+  '66666666-6666-6666-6666-666666666606',
+  'moravian-waves-framing-the-poetry-of-the-land',
+  'Moravian',
+  'Moravia, with its undulating fields, velvety hills, and ever-changing textures, is a paradise for landscape photographers. For the past 17 years, I have explored these lands in every season, uncovering their beauty through the lens. Each photograph is a dance between light, weather, and the respectful presence of the photographer in nature.',
+  'Moravia, with its undulating fields, velvety hills, and ever-changing textures, is a paradise for landscape photographers. For the past 17 years, I have explored these lands in every season, uncovering their beauty through the lens. Each photograph is a dance between light, weather, and the respectful presence of the photographer in nature.',
+  'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635251/Moravia-1_oclegj.avif',
+  'Moravian Waves: Framing the Poetry of the Land',
+  'PhotoTours Team',
+  true,
+  '2026-02-22 10:00:00',
+  '[
+    {"type": "title", "content": "Moravian Waves: Framing the Poetry of the Land"},
+    {"type": "text", "content": "Moravia, located in the southeastern part of the Czech Republic, is often compared to Tuscany for its gentle slopes and rich agricultural patterns. Yet Moravia has its own distinct character—more subtle, more mysterious, and constantly changing with the seasons.\n\nFor the past 17 years, I have explored these lands in all weather conditions, uncovering their beauty through the lens. Photographing Moravia requires more than technical skill—it demands patience, understanding of the terrain, and deep respect for the farmers who cultivate these breathtaking fields. Each photograph becomes a dance between light, weather, and the mindful presence of the photographer."},
+
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635262/Moravia-2_tq2cnx.avif", "alt": ""},
+
+    {"type": "title", "content": "Choosing the Right Gear"},
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635258/Moravia-3_qlndrw.avif", "alt": ""},
+    {"type": "text", "content": "To fully capture the depth and textures of Moravian landscapes, I rely on lenses ranging from 35mm to 400mm.\n\nWide-angle lenses (35–50mm) help convey the vastness of the hills, ideal for sweeping compositions that include dramatic skies.\nMedium telephoto lenses (85–200mm) isolate rhythmic curves and flowing patterns.\nSuper telephoto lenses (300–400mm) create powerful compression, transforming rolling hills into abstract waves of shadow and light.\n\nDrones also play an essential role. Aerial perspectives reveal the true structure of the land—natural waves and precisely plowed patterns forming surreal mosaics. Fortunately, drone photography is permitted here, allowing for unique compositions from above."},
+
+    {"type": "title", "content": "The Importance of Weather"},
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635265/Moravia-4_ylkzcs.avif", "alt": ""},
+    {"type": "text", "content": "In Moravia, clarity of air is just as important as light itself. While sunrise and sunset offer beautiful tones, the most striking images are often taken on clear, sunny days with strong winds.\n\nPowerful winds remove moisture, dust, and atmospheric haze, revealing razor-sharp textures across distant hills. On still days, subtle haze can soften details and reduce contrast.\n\nCareful weather monitoring is essential. Satellite imagery, wind forecasts, and real-time updates help determine the best conditions. Planning around air clarity often makes the difference between a good image and an extraordinary one."},
+
+    {"type": "title", "content": "Mastering Backlight Photography"},
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635264/Moravia-5_tbhj14.avif", "alt": ""},
+    {"type": "text", "content": "Many of my favorite photographs are created in backlight conditions. When the sun illuminates the landscape from behind, it sculpts the terrain with dramatic shadows and highlights, emphasizing curves and depth.\n\nHowever, backlight introduces challenges such as lens flare and reduced contrast. Even with a lens hood, stray light can affect the image. My simple solution is a black umbrella, used to shield the lens from unwanted reflections. This small but effective tool preserves contrast and clarity, especially when shooting directly into the sun."},
+
+    {"type": "title", "content": "Respect for the Land"},
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635265/Moravia-6_e8hygx.avif", "alt": ""},
+    {"type": "text", "content": "Moravia’s fields are working agricultural land and the livelihood of local farmers. Much of the landscape is privately owned, and it is essential to respect property boundaries.\n\nI always stay on tractor paths and established trails, never stepping into cultivated fields or damaging crops. Respect for the land preserves both the environment and the relationship between photographers and the local community.\n\nWhenever possible, I speak with local farmers to better understand their work and the rhythm of the land. These conversations often deepen my connection to the landscape."},
+
+    {"type": "title", "content": "The Magic of the Seasons"},
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635263/Moravia-7_mqnquo.avif", "alt": ""},
+    {"type": "text", "content": "Moravia transforms dramatically throughout the year.\n\nSpring brings vibrant greens and misty mornings.\nSummer reveals golden waves of wheat under warm sunlight.\nAutumn paints the land with rich browns and deep textures.\nWinter, often underestimated, offers minimalist beauty with frost outlining the curves or snow softening the terrain.\n\nUnderstanding seasonal changes allows for careful planning and capturing the most compelling contrasts and moods."},
+
+    {"type": "title", "content": "Final Thoughts"},
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635260/Moravia-8_a0xstu.avif", "alt": ""},
+    {"type": "text", "content": "Moravia rewards patience and observation. Light and shadow constantly reshape the hills, while wind and seasons redefine textures.\n\nWhether using telephoto compression from a distance, aerial perspectives from a drone, or carefully crafted backlit compositions, the principle remains the same: respect nature, read the light, and wait for the precise moment when the land reveals its quiet poetry."}
+  ]'::jsonb
+);
+
 
 END $$;

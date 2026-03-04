@@ -25,7 +25,7 @@ export type ArticleBlock =
   | ArticleBlockSeparator;
 
 export type ArticleSummary = {
-  id: number;
+  id: string;
   slug: string;
   title: string;
   excerpt: string;
@@ -33,11 +33,11 @@ export type ArticleSummary = {
   alt?: string | null;
   author?: string | null;
   featured: boolean;
-  publishedAt: string;
+  createdAt: string;
 };
 
 export type Article = {
-  id: number;
+  id: string;
   slug: string;
   title: string;
   excerpt: string;
@@ -46,6 +46,6 @@ export type Article = {
   alt?: string | null;
   author?: string | null;
   featured: boolean;
-  publishedAt: string;
+  createdAt: string;
   blocks?: ArticleBlock[];
 };

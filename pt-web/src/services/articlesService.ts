@@ -1,21 +1,15 @@
-import {getArticleBySlug as getLocalArticleBySlug, getArticles as getLocalArticles} from "src/data/articles";
 import {Article, ArticleSummary} from "src/types/article";
 import {buildApiUrl} from "src/utils/apiBase";
 
 export const ARTICLES_SHOWCASE_LIMIT = 4;
 const HTTP_NOT_FOUND = 404;
-const USE_LOCAL_DATA = true;
 
 function build(path: string) {
   return buildApiUrl(path);
 }
 
 export async function listArticles(limit?: number): Promise<ArticleSummary[]> {
-  if (USE_LOCAL_DATA) {
-    return getLocalArticles(limit);
-  }
-
-  const url = new URL(build("general/articles"));
+  const url = new URL(build("/articles"));
   if (typeof limit === "number" && Number.isFinite(limit) && limit > 0) {
     url.searchParams.set("limit", String(limit));
   }
@@ -23,18 +17,15 @@ export async function listArticles(limit?: number): Promise<ArticleSummary[]> {
   if (!res.ok) {
     throw new Error("Failed to load articles");
   }
+  const result = await res.json();
 
-  return res.json();
+  return result;
 }
 
 export async function getArticleBySlug(
   slug: string,
   opts?: { signal?: AbortSignal },
 ): Promise<Article | null> {
-  if (USE_LOCAL_DATA) {
-    return getLocalArticleBySlug(slug) ?? null;
-  }
-
   const res = await fetch(build(`/articles/${encodeURIComponent(slug)}`), {
     headers: {"Content-Type": "application/json"},
     signal: opts?.signal,

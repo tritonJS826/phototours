@@ -274,17 +274,18 @@ func (ns NullRole) Value() (driver.Value, error) {
 }
 
 type Article struct {
-	ID          pgtype.UUID
-	Slug        string
-	Title       string
-	Excerpt     string
-	Content     string
-	CoverUrl    string
-	Alt         pgtype.Text
-	Author      pgtype.Text
-	Featured    bool
-	PublishedAt pgtype.Timestamp
-	UpdatedAt   pgtype.Timestamp
+	ID        pgtype.UUID
+	Slug      string
+	Title     string
+	Excerpt   string
+	Content   string
+	CoverUrl  string
+	Alt       pgtype.Text
+	Author    pgtype.Text
+	Featured  bool
+	CreatedAt pgtype.Timestamp
+	UpdatedAt pgtype.Timestamp
+	Blocks    []byte
 }
 
 type Booking struct {

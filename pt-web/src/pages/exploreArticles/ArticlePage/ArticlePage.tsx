@@ -2,6 +2,7 @@ import {useEffect, useRef, useState} from "react";
 import {useParams} from "react-router-dom";
 import {ArticleFull} from "src/components/Articles/ArticleFull/ArticleFull";
 import {Loader} from "src/components/Loader/Loader";
+import {NotFoundPage} from "src/pages/notFound/notFoundPage";
 import {getArticleBySlug} from "src/services/articlesService";
 import type {Article} from "src/types/article";
 import styles from "src/pages/exploreArticles/ArticlePage/ArticlePage.module.scss";
@@ -9,8 +10,8 @@ import styles from "src/pages/exploreArticles/ArticlePage/ArticlePage.module.scs
 export function ArticlePage() {
   const {slug} = useParams<{ slug: string }>();
   const [article, setArticle] = useState<Article | null>(null);
-  const [err, setErr] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
   const didMount = useRef(false);
 
   useEffect(() => {
@@ -20,7 +21,7 @@ export function ArticlePage() {
     didMount.current = true;
 
     if (!slug) {
-      setErr("Invalid article slug");
+      setError(true);
       setLoading(false);
 
       return;
@@ -31,11 +32,10 @@ export function ArticlePage() {
     (async () => {
       try {
         setLoading(true);
-        setErr("");
+        setError(false);
         const data = await getArticleBySlug(slug, {signal: abort.signal});
         if (!data) {
-          setErr("Article not found");
-          setArticle(null);
+          setError(true);
 
           return;
         }
@@ -43,8 +43,7 @@ export function ArticlePage() {
         document.title = `${data.title} — PhotoTours`;
       } catch {
         if (!abort.signal.aborted) {
-          setErr("Failed to load article");
-          setArticle(null);
+          setError(true);
         }
       } finally {
         if (!abort.signal.aborted) {
@@ -56,20 +55,22 @@ export function ArticlePage() {
     return () => abort.abort();
   }, [slug]);
 
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return (
+      <section>
+        <NotFoundPage />
+      </section>
+    );
+  }
+
   return (
     <main className={styles.page}>
       <div className="container">
-        {loading && (
-          <Loader />
-        )}
-
-        {!loading && err && (
-          <p className={styles.error}>
-            {err}
-          </p>
-        )}
-
-        {!loading && !err && article && (
+        {article && (
           <ArticleFull article={article} />
         )}
       </div>
