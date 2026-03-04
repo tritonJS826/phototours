@@ -8,6 +8,7 @@ import calendarRoundBlue from "/images/calendarRoundBlue.svg";
 import checkboxAccepted from "/images/checkboxAccepted.svg";
 import flagRoundBlue from "/images/flagRoundBlue.svg";
 import grayArrowRightCircle from "/images/grayArrowRightCircle.svg";
+import notificationError from "/images/notificationError.svg";
 import people from "/images/people.svg";
 import reviews from "/images/reviews.svg";
 import spotsLeft from "/images/spotsLeft.svg";
@@ -18,6 +19,7 @@ import whatsappGreen from "/images/whatsapp-green.svg";
 import clsx from "clsx";
 import {Accordion, accordionTypes} from "src/components/Accordion/Accordion";
 import {Button} from "src/components/Button/Button";
+import {CentralNotification} from "src/components/CentralNotification/CentralNotification";
 import {Container} from "src/components/Container/Container";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
 import {Loader} from "src/components/Loader/Loader";
@@ -152,6 +154,8 @@ export function TourDetailsPage() {
   });
   const [similarTours, setSimilarTours] = useState<TourView[]>([]);
   const [searchParams] = useSearchParams();
+  const [isErrorNotificationOpen, setIsErrorNotificationOpen] = useState(false);
+  const [formValidError, setFormValidError] = useState(false);
 
   const isActionBuyFormOpenEnabled = () => {
     return window.innerWidth < WIDTH_FOR_ACTIVE_BUY_FORM_OPEN;
@@ -174,7 +178,7 @@ export function TourDetailsPage() {
       const phone = formData.phone.trim();
 
       if (!name || !phone) {
-        alert("Please fill in your name and phone number");
+        setFormValidError(true);
         setBookingLoading(false);
 
         return;
@@ -193,7 +197,7 @@ export function TourDetailsPage() {
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error("Booking failed:", err);
-      alert(err instanceof Error ? err.message : "Booking failed, please fill the form");
+      setIsErrorNotificationOpen(true);
     } finally {
       setBookingLoading(false);
     }
@@ -1090,6 +1094,22 @@ export function TourDetailsPage() {
           />
         </span>}
         delay={120}
+      />
+
+      <CentralNotification
+        isOpen={isErrorNotificationOpen}
+        onClose={() => setIsErrorNotificationOpen(false)}
+        imageUrl={notificationError}
+        title="Oops! Something went wrong"
+        subtitle="Please try again later. If the problem persists, contact us through other means."
+      />
+
+      <CentralNotification
+        isOpen={formValidError}
+        onClose={() => setFormValidError(false)}
+        imageUrl={notificationError}
+        title="Please fill in all required fields"
+        subtitle="Make sure you have provided your name and phone number."
       />
     </div>
   );

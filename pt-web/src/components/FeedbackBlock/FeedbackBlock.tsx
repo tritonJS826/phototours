@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
 import notificationCheckMark from "/images/notificationCheckMark.svg";
+import notificationError from "/images/notificationError.svg";
 import clsx from "clsx";
 import {CentralNotification} from "src/components/CentralNotification/CentralNotification";
 import {InputPhone} from "src/components/InputPhone/InputPhone";
@@ -20,10 +21,11 @@ export function FeedbackBlock(props: FeedbackBlockProps) {
   const [name, setName] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isNotificationOpen, setIsContactMeSucceededNotificationOpen] = useState(false);
+  const [isErrorNotificationOpen, setIsErrorNotificationOpen] = useState(false);
 
   const handleSubmit = async () => {
     if (!name.trim() || !phoneNumber.trim()) {
-      alert("Please fill in both name and phone number");
+      setIsErrorNotificationOpen(true);
 
       return;
     }
@@ -38,7 +40,7 @@ export function FeedbackBlock(props: FeedbackBlockProps) {
       setName("");
       setPhoneNumber("");
     } catch (error) {
-      alert("Failed to submit contact request. Please try again.");
+      setIsErrorNotificationOpen(true);
       // eslint-disable-next-line no-console
       console.log(error);
     } finally {
@@ -98,9 +100,17 @@ export function FeedbackBlock(props: FeedbackBlockProps) {
         isOpen={isNotificationOpen}
         onClose={() => setIsContactMeSucceededNotificationOpen(false)}
         imageUrl={notificationCheckMark}
-        title="We’ve received your request!"
+        title="We've received your request!"
         // eslint-disable-next-line max-len
         subtitle="One of our travel experts will contact you soon using your details to help you choose the perfect destination and itinerary. Expect a call or message shortly."
+      />
+
+      <CentralNotification
+        isOpen={isErrorNotificationOpen}
+        onClose={() => setIsErrorNotificationOpen(false)}
+        imageUrl={notificationError}
+        title="Oops! Something went wrong"
+        subtitle="Please try again later. If the problem persists, contact us through other means."
       />
     </>
   );

@@ -1,4 +1,3 @@
-import {useEffect} from "react";
 import clsx from "clsx";
 import {X} from "lucide-react";
 import {useBodyScrollLock} from "src/hooks/useBodyScrollLock";

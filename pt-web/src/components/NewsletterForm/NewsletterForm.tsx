@@ -1,6 +1,7 @@
 import {memo, useState} from "react";
 import {Link} from "react-router-dom";
 import notificationCheckMark from "/images/notificationCheckMark.svg";
+import notificationError from "/images/notificationError.svg";
 import {CentralNotification} from "src/components/CentralNotification/CentralNotification";
 import {subscribe} from "src/services/sailsService";
 import styles from "src/components/NewsletterForm/NewsletterForm.module.scss";
@@ -123,7 +124,7 @@ export const NewsletterForm = memo(function NewsletterForm() {
       <CentralNotification
         isOpen={isErrorNotificationOpen}
         onClose={() => setIsErrorNotificationOpen(false)}
-        imageUrl={notificationCheckMark}
+        imageUrl={notificationError}
         title="Oops! Something went wrong"
         subtitle="Please try again later. If the problem persists, contact us through other means."
       />
