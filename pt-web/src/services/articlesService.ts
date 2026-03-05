@@ -4,12 +4,8 @@ import {buildApiUrl} from "src/utils/apiBase";
 export const ARTICLES_SHOWCASE_LIMIT = 4;
 const HTTP_NOT_FOUND = 404;
 
-function build(path: string) {
-  return buildApiUrl(path);
-}
-
 export async function listArticles(limit?: number): Promise<ArticleSummary[]> {
-  const url = new URL(build("/articles"));
+  const url = new URL(buildApiUrl("articles"));
   if (typeof limit === "number" && Number.isFinite(limit) && limit > 0) {
     url.searchParams.set("limit", String(limit));
   }
@@ -26,7 +22,7 @@ export async function getArticleBySlug(
   slug: string,
   opts?: { signal?: AbortSignal },
 ): Promise<Article | null> {
-  const res = await fetch(build(`/articles/${encodeURIComponent(slug)}`), {
+  const res = await fetch(buildApiUrl(`articles/${encodeURIComponent(slug)}`), {
     headers: {"Content-Type": "application/json"},
     signal: opts?.signal,
   });

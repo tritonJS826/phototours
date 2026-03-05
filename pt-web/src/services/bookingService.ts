@@ -16,7 +16,7 @@ export interface BookingRequest {
 }
 
 export async function createBooking(data: BookingRequest): Promise<void> {
-  const url = buildApiUrl("general/bookings");
+  const url = buildApiUrl("bookings");
 
   const res = await fetch(url, {
     method: "POST",
