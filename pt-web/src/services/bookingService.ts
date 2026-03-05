@@ -8,6 +8,11 @@ export interface BookingRequest {
   travelDate: string;
   travelers: number;
   rooms: number;
+  language?: string;
+  timezone?: string;
+  city?: string;
+  country?: string;
+  lastContactPage?: string;
 }
 
 export async function createBooking(data: BookingRequest): Promise<void> {

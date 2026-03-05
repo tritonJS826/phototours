@@ -26,13 +26,18 @@ type Booking struct {
 }
 
 type BookingRequest struct {
-	ID         uuid.UUID `json:"id,omitempty"`
-	Name       string    `json:"name"`
-	Phone      string    `json:"phone"`
-	TourID     uuid.UUID `json:"tourId"`
-	Email      string    `json:"email"`
-	TravelDate string    `json:"travelDate"`
-	Travelers  int       `json:"travelers"`
-	Rooms      int       `json:"rooms,omitempty"`
-	ZohoDealID string    `json:"zohoDealId,omitempty"`
+	ID              uuid.UUID `json:"id,omitempty"`
+	Name            string    `json:"name"`
+	Phone           string    `json:"phone"`
+	TourID          uuid.UUID `json:"tourId"`
+	Email           string    `json:"email"`
+	TravelDate      string    `json:"travelDate"`
+	Travelers       int       `json:"travelers"`
+	Rooms           int       `json:"rooms,omitempty"`
+	ZohoDealID      string    `json:"zohoDealId,omitempty"`
+	Language        string    `json:"language,omitempty"`
+	Timezone        string    `json:"timezone,omitempty"`
+	City            string    `json:"city,omitempty"`
+	Country         string    `json:"country,omitempty"`
+	LastContactPage string    `json:"lastContactPage,omitempty"`
 }

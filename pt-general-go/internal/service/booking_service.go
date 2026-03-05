@@ -67,6 +67,11 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 		ContactID:            "stub",
 		LeadID:               "stub",
 		Source:               "Website",
+		Language:             bookingRequest.Language,
+		Timezone:             bookingRequest.Timezone,
+		City:                 bookingRequest.City,
+		Country:              bookingRequest.Country,
+		LastContactPage:      bookingRequest.LastContactPage,
 	}
 
 	dealResp, err := s.zohoRepository.CreateDeal(ctx, deal)

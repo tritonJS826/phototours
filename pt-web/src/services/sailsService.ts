@@ -3,13 +3,20 @@ import {fetchData} from "src/services/httpHelper";
 export interface ContactMeRequest {
   name: string;
   phone: string;
+  language?: string;
+  timezone?: string;
+  city?: string;
+  country?: string;
+  lastContactPage?: string;
 }
 
 export interface ContactMeResponse {
   message: string;
 }
 
-export async function submitContactMe(data: ContactMeRequest): Promise<ContactMeResponse> {
+export async function submitContactMe(
+  data: ContactMeRequest,
+): Promise<ContactMeResponse> {
   return await fetchData<ContactMeResponse>("general/contact/me", {
     method: "POST",
     body: JSON.stringify(data),
@@ -18,6 +25,11 @@ export async function submitContactMe(data: ContactMeRequest): Promise<ContactMe
 
 export interface SubscribeRequest {
   email: string;
+  language?: string;
+  timezone?: string;
+  city?: string;
+  country?: string;
+  lastContactPage?: string;
 }
 
 export interface SubscribeResponse {
@@ -32,7 +44,9 @@ export interface SubscribeFullResponse extends SubscribeResponse {
   }>;
 }
 
-export async function subscribe(data: SubscribeRequest): Promise<SubscribeFullResponse> {
+export async function subscribe(
+  data: SubscribeRequest,
+): Promise<SubscribeFullResponse> {
   return await fetchData<SubscribeFullResponse>("general/subscribe", {
     method: "POST",
     body: JSON.stringify(data),

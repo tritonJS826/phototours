@@ -46,12 +46,14 @@ export function formatMonthsToDateRange(months: string[]): string {
 
 const monthNames = [
   "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
+  "July", "August", "September", "October", "November", "December",
 ];
 
 export function formatDateToMonthDay(dateString: string): string {
   const date = new Date(dateString);
   const month = monthNames[date.getMonth()];
+  // eslint-disable-next-line no-magic-numbers
   const day = String(date.getDate()).padStart(2, "0");
+
   return `${month} ${day}`;
 }

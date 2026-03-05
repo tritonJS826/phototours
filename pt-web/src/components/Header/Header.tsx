@@ -396,25 +396,65 @@ export function Header() {
                 Explore Tours
               </Link>
               <div className={styles.socialContacts}>
-                <a href="tel:+1234567890" className={styles.socialContactItem}>
-                  <img src={phone} alt="Phone" />
-                  <span>Phone</span>
+                <a
+                  href="tel:+1234567890"
+                  className={styles.socialContactItem}
+                >
+                  <img
+                    src={phone}
+                    alt="Phone"
+                  />
+                  <span>
+                    Phone
+                  </span>
                 </a>
-                <a href="https://t.me/phototours" className={styles.socialContactItem}>
-                  <img src={telegram} alt="Telegram" />
-                  <span>Telegram</span>
+                <a
+                  href="https://t.me/phototours"
+                  className={styles.socialContactItem}
+                >
+                  <img
+                    src={telegram}
+                    alt="Telegram"
+                  />
+                  <span>
+                    Telegram
+                  </span>
                 </a>
-                <a href="https://wa.me/1234567890" className={styles.socialContactItem}>
-                  <img src={whatsapp} alt="WhatsApp" />
-                  <span>WhatsApp</span>
+                <a
+                  href="https://wa.me/1234567890"
+                  className={styles.socialContactItem}
+                >
+                  <img
+                    src={whatsapp}
+                    alt="WhatsApp"
+                  />
+                  <span>
+                    WhatsApp
+                  </span>
                 </a>
-                <a href="mailto:info@phototours.com" className={styles.socialContactItem}>
-                  <img src={email} alt="Email" />
-                  <span>Email</span>
+                <a
+                  href="mailto:info@phototours.com"
+                  className={styles.socialContactItem}
+                >
+                  <img
+                    src={email}
+                    alt="Email"
+                  />
+                  <span>
+                    Email
+                  </span>
                 </a>
-                <a href="https://instagram.com/phototours" className={styles.socialContactItem}>
-                  <img src={instagram} alt="Instagram" />
-                  <span>Instagram</span>
+                <a
+                  href="https://instagram.com/phototours"
+                  className={styles.socialContactItem}
+                >
+                  <img
+                    src={instagram}
+                    alt="Instagram"
+                  />
+                  <span>
+                    Instagram
+                  </span>
                 </a>
               </div>
             </div>

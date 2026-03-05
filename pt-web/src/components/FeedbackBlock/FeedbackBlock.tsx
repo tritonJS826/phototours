@@ -6,6 +6,7 @@ import clsx from "clsx";
 import {CentralNotification} from "src/components/CentralNotification/CentralNotification";
 import {InputPhone} from "src/components/InputPhone/InputPhone";
 import {submitContactMe} from "src/services/sailsService";
+import {getUserInfo} from "src/utils/userInfo";
 import styles from "src/pages/homePage/HomePage.module.scss";
 
 interface FeedbackBlockProps {
@@ -20,7 +21,8 @@ export function FeedbackBlock(props: FeedbackBlockProps) {
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isNotificationOpen, setIsContactMeSucceededNotificationOpen] = useState(false);
+  const [isNotificationOpen, setIsContactMeSucceededNotificationOpen] =
+    useState(false);
   const [isErrorNotificationOpen, setIsErrorNotificationOpen] = useState(false);
 
   const handleSubmit = async () => {
@@ -32,9 +34,15 @@ export function FeedbackBlock(props: FeedbackBlockProps) {
 
     setIsSubmitting(true);
     try {
+      const userInfo = await getUserInfo();
       await submitContactMe({
         name: name.trim(),
         phone: phoneNumber.trim(),
+        language: userInfo.language,
+        timezone: userInfo.timezone,
+        city: userInfo.location?.city,
+        country: userInfo.location?.country_name,
+        lastContactPage: window.location.href,
       });
       setIsContactMeSucceededNotificationOpen(true);
       setName("");
@@ -55,7 +63,11 @@ export function FeedbackBlock(props: FeedbackBlockProps) {
           <h2 className={styles.feedBackTitle}>
             {props.title}
           </h2>
-          <p className={clsx(styles.feedBackDescription, props.feedBackDescriptionCustomClass)}>
+          <p className={clsx(
+            styles.feedBackDescription,
+            props.feedBackDescriptionCustomClass,
+          )}
+          >
             {props.subtitle}
           </p>
           <div className={styles.feedbackFormContainer}>

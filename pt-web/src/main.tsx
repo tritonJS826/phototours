@@ -3,7 +3,10 @@ import {createRoot} from "react-dom/client";
 import {BrowserRouter} from "react-router-dom";
 import {App} from "src/App";
 import {NotificationProvider} from "src/contexts/NotificationContext";
+import {getUserInfo} from "src/utils/userInfo";
 import "src/styles/main.scss";
+
+getUserInfo();
 
 const rootElement = document.getElementById("root");
 if (!rootElement) {

@@ -29,14 +29,19 @@ func (h *Handler) ContactMe(ctx *gin.Context) {
 	}
 
 	deal := &domain.DealZoho{
-		DealName:    contactReq.Name,
-		ClientPhone: contactReq.Phone,
-		Source:      "Website",
-		Stage:       "Incoming",
-		Pipeline:    "Photo Tours",
-		AccountID:   "stub",
-		ContactID:   "stub",
-		LeadID:      "stub",
+		DealName:        contactReq.Name,
+		ClientPhone:     contactReq.Phone,
+		Source:          "Website",
+		Stage:           "Incoming",
+		Pipeline:        "Photo Tours",
+		AccountID:       "stub",
+		ContactID:       "stub",
+		LeadID:          "stub",
+		Language:        contactReq.Language,
+		Timezone:        contactReq.Timezone,
+		City:            contactReq.City,
+		Country:         contactReq.Country,
+		LastContactPage: contactReq.LastContactPage,
 	}
 
 	err := h.services.BookingService.CreateDeal(ctx, deal)

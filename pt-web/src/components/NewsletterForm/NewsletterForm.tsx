@@ -4,6 +4,7 @@ import notificationCheckMark from "/images/notificationCheckMark.svg";
 import notificationError from "/images/notificationError.svg";
 import {CentralNotification} from "src/components/CentralNotification/CentralNotification";
 import {subscribe} from "src/services/sailsService";
+import {getUserInfo} from "src/utils/userInfo";
 import styles from "src/components/NewsletterForm/NewsletterForm.module.scss";
 
 const BUTTON_TEXT = {
@@ -28,8 +29,10 @@ const isDuplicateError = (error: unknown): boolean => {
 export const NewsletterForm = memo(function NewsletterForm() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccessNotificationOpen, setIsSuccessNotificationOpen] = useState(false);
-  const [isDuplicateNotificationOpen, setIsDuplicateNotificationOpen] = useState(false);
+  const [isSuccessNotificationOpen, setIsSuccessNotificationOpen] =
+    useState(false);
+  const [isDuplicateNotificationOpen, setIsDuplicateNotificationOpen] =
+    useState(false);
   const [isErrorNotificationOpen, setIsErrorNotificationOpen] = useState(false);
 
   const handleSubmitSubscribe = async (e: React.FormEvent) => {
@@ -46,7 +49,15 @@ export const NewsletterForm = memo(function NewsletterForm() {
     setIsSubmitting(true);
 
     try {
-      await subscribe({email});
+      const userInfo = await getUserInfo();
+      await subscribe({
+        email,
+        language: userInfo.language,
+        timezone: userInfo.timezone,
+        city: userInfo.location?.city,
+        country: userInfo.location?.country_name,
+        lastContactPage: window.location.href,
+      });
       setEmail("");
       setIsSuccessNotificationOpen(true);
     } catch (error) {

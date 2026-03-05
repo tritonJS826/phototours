@@ -35,11 +35,15 @@ import {
   type BookingRequest,
   createBooking,
 } from "src/services/bookingService";
-import {getSimilarToursByTourId, getTourBySlug} from "src/services/toursService";
+import {
+  getSimilarToursByTourId,
+  getTourBySlug,
+} from "src/services/toursService";
 import type {TourView} from "src/types/tour";
 import {getActivityIcon} from "src/utils/activityIcons";
 import {formatMonthsToDateRange} from "src/utils/dateUtils";
 import {renderMultilineDouble} from "src/utils/textUtils";
+import {getUserInfo} from "src/utils/userInfo";
 import type {Swiper as SwiperType} from "swiper";
 import {A11y, Keyboard} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
@@ -58,12 +62,10 @@ interface ScheduleAccordionItemProps {
 const ScheduleAccordionItem = (props: ScheduleAccordionItemProps) => {
   return (
     <div className={props.className}>
-      {props.image && (
-        <img
-          src={props.image}
-          alt="dayImage"
-        />
-      )}
+      {props.image && <img
+        src={props.image}
+        alt="dayImage"
+      />}
       <br />
       <p>
         {props.description}
@@ -184,6 +186,8 @@ export function TourDetailsPage() {
         return;
       }
 
+      const userInfo = await getUserInfo();
+
       const request: BookingRequest = {
         tourId: tour.id,
         name: name,
@@ -192,6 +196,11 @@ export function TourDetailsPage() {
         travelDate: formData.date,
         travelers: formData.travelers,
         rooms: formData.rooms,
+        language: userInfo.language,
+        timezone: userInfo.timezone,
+        city: userInfo.location?.city,
+        country: userInfo.location?.country_name,
+        lastContactPage: window.location.href,
       };
       await createBooking(request);
     } catch (err) {
@@ -216,7 +225,9 @@ export function TourDetailsPage() {
         type="text"
         className={styles.buyTravelInput}
         value={formData.name}
-        onChange={(e) => setFormData(prev => ({...prev, name: e.target.value}))}
+        onChange={(e) =>
+          setFormData((prev) => ({...prev, name: e.target.value}))
+        }
         autoComplete="on"
       />
       <p className={styles.buyTravelLabel}>
@@ -226,7 +237,9 @@ export function TourDetailsPage() {
         type="text"
         className={styles.buyTravelInput}
         value={formData.email}
-        onChange={(e) => setFormData(prev => ({...prev, email: e.target.value}))}
+        onChange={(e) =>
+          setFormData((prev) => ({...prev, email: e.target.value}))
+        }
         autoComplete="on"
       />
       <p className={styles.buyTravelLabel}>
@@ -236,7 +249,9 @@ export function TourDetailsPage() {
         type="text"
         className={styles.buyTravelInput}
         value={formData.phone}
-        onChange={(e) => setFormData(prev => ({...prev, phone: e.target.value}))}
+        onChange={(e) =>
+          setFormData((prev) => ({...prev, phone: e.target.value}))
+        }
         autoComplete="on"
       />
       <p className={styles.buyTravelLabel}>
@@ -271,7 +286,7 @@ export function TourDetailsPage() {
                 </div>,
                 isVisible: true,
                 onClick: () => {
-                  setFormData(prev => ({...prev, date}));
+                  setFormData((prev) => ({...prev, date}));
                 },
               },
             ],
@@ -284,7 +299,9 @@ export function TourDetailsPage() {
       </p>
       <NumberInput
         value={formData.travelers}
-        onChange={(value) => setFormData(prev => ({...prev, travelers: value}))}
+        onChange={(value) =>
+          setFormData((prev) => ({...prev, travelers: value}))
+        }
         min={1}
         max={10}
         description="Travelers"
@@ -322,7 +339,7 @@ export function TourDetailsPage() {
 
       <NumberInput
         value={formData.rooms}
-        onChange={(value) => setFormData(prev => ({...prev, rooms: value}))}
+        onChange={(value) => setFormData((prev) => ({...prev, rooms: value}))}
         min={0}
         max={10}
         description="Single room supplement"
@@ -421,9 +438,7 @@ export function TourDetailsPage() {
   }, [selectedPhotoIndex, tour?.photos]);
 
   if (loading) {
-    return (
-      <Loader />
-    );
+    return <Loader />;
   }
 
   if (error) {
@@ -471,7 +486,9 @@ export function TourDetailsPage() {
               allowTouchMove
               keyboard={{enabled: true}}
               className={styles.mainGallerySwiper}
-              onSlideChange={(swiper) => setSelectedPhotoIndex(swiper.activeIndex)}
+              onSlideChange={(swiper) =>
+                setSelectedPhotoIndex(swiper.activeIndex)
+              }
             >
               {photos.map((photo, i) => (
                 <SwiperSlide key={i}>
@@ -619,7 +636,9 @@ export function TourDetailsPage() {
                 allowTouchMove
                 keyboard={{enabled: true}}
                 className={styles.swiper}
-                onSlideChange={(swiper) => setSelectedPhotoIndex(swiper.activeIndex)}
+                onSlideChange={(swiper) =>
+                  setSelectedPhotoIndex(swiper.activeIndex)
+                }
               >
                 {photos.map((photo, i) => (
                   <SwiperSlide
@@ -649,7 +668,7 @@ export function TourDetailsPage() {
                 />
                 <span>
                   {tour.spotsLeft}
-&nbsp;spots&nbsp;left
+                  &nbsp;spots&nbsp;left
                 </span>
               </div>
 
@@ -662,7 +681,7 @@ export function TourDetailsPage() {
                 />
                 <span>
                   {tour.reviewAmount}
-&nbsp;reviews
+                  &nbsp;reviews
                 </span>
               </div>
             </div>
@@ -800,7 +819,9 @@ export function TourDetailsPage() {
                       Available:
                     </span>
                     <span className={styles.summaryTagRightPartDescription}>
-                      {formatMonthsToDateRange(tour.availableMonths ?? tour.dates ?? [])}
+                      {formatMonthsToDateRange(
+                        tour.availableMonths ?? tour.dates ?? [],
+                      )}
                     </span>
                   </div>
                 </div>
@@ -832,24 +853,22 @@ export function TourDetailsPage() {
               <h2 className={styles.includedActivitiesTitle}>
                 Included
               </h2>
-              {tour.included?.map((included, i) =>
-                (
-                  <div
-                    className={styles.oneIncludedActivity}
-                    key={i}
-                  >
-                    <img
-                      src={checkboxAccepted}
-                      alt="flag icon"
-                      loading="lazy"
-                      className={styles.includedImg}
-                    />
-                    <span className={styles.includedDescription}>
-                      {included}
-                    </span>
-                  </div>
-                ),
-              )}
+              {tour.included?.map((included, i) => (
+                <div
+                  className={styles.oneIncludedActivity}
+                  key={i}
+                >
+                  <img
+                    src={checkboxAccepted}
+                    alt="flag icon"
+                    loading="lazy"
+                    className={styles.includedImg}
+                  />
+                  <span className={styles.includedDescription}>
+                    {included}
+                  </span>
+                </div>
+              ))}
             </div>
 
             <hr className={styles.mobileSeparator} />
@@ -952,7 +971,7 @@ export function TourDetailsPage() {
         </h2>
 
         <Accordion
-          items={tour.faq.map(item => ({
+          items={tour.faq.map((item) => ({
             trigger: {child: item.question},
             content: {
               child: (
@@ -970,7 +989,6 @@ export function TourDetailsPage() {
 
       <h2 className={styles.similarToursTitle}>
         Similar tours
-
         <Link
           to={PATHS.TOURS}
           className={styles.searchAllToursLink}
@@ -997,19 +1015,25 @@ export function TourDetailsPage() {
           breakpoints={{
             [SIMILAR_TOURS_MOBILE_SMALL_BREAKPOINT]: {
               slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_MID,
-              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_MID,
+              loop:
+                similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_MID,
             },
             [SIMILAR_TOURS_MOBILE_MID_BREAKPOINT]: {
               slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_LG,
-              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_LG,
+              loop:
+                similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_LG,
             },
             [SIMILAR_TOURS_MOBILE_BREAKPOINT]: {
               slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_SMALL,
-              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_SMALL,
+              loop:
+                similarTours.length >
+                SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_SMALL,
             },
             [SIMILAR_TOURS_TABLET_SMALL]: {
               slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_SMALL,
-              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_SMALL,
+              loop:
+                similarTours.length >
+                SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_SMALL,
             },
             [SIMILAR_TOURS_TABLET]: {
               slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET,
@@ -1017,11 +1041,14 @@ export function TourDetailsPage() {
             },
             [SIMILAR_TOURS_TABLET_LG]: {
               slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_LG,
-              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_LG,
+              loop:
+                similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_LG,
             },
             [SIMILAR_TOURS_DESKTOP_SMALL]: {
               slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP_SMALL,
-              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP_SMALL,
+              loop:
+                similarTours.length >
+                SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP_SMALL,
             },
             [SIMILAR_TOURS_DESKTOP]: {
               slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP,
@@ -1055,21 +1082,25 @@ export function TourDetailsPage() {
         description={tour.popUp1Description}
         imgUrl={tour.popUp1ImageUrl}
         leftBtnCallback={() => {}}
-        leftBtn={<span className={styles.pupUpButton}>
-          Telegram
-          <img
-            src={telegramBlue}
-            alt=""
-          />
-        </span>}
+        leftBtn={
+          <span className={styles.pupUpButton}>
+            Telegram
+            <img
+              src={telegramBlue}
+              alt=""
+            />
+          </span>
+        }
         rightBtnCallback={() => {}}
-        rightBtn={<span className={styles.pupUpButton}>
-          WhatsApp
-          <img
-            src={whatsappGreen}
-            alt=""
-          />
-        </span>}
+        rightBtn={
+          <span className={styles.pupUpButton}>
+            WhatsApp
+            <img
+              src={whatsappGreen}
+              alt=""
+            />
+          </span>
+        }
         delay={20}
       />
 
@@ -1078,21 +1109,25 @@ export function TourDetailsPage() {
         description={tour.popUp2Description}
         imgUrl={tour.popUp2ImageUrl}
         leftBtnCallback={() => {}}
-        leftBtn={<span className={styles.pupUpButton}>
-          Telegram
-          <img
-            src={telegramBlue}
-            alt=""
-          />
-        </span>}
+        leftBtn={
+          <span className={styles.pupUpButton}>
+            Telegram
+            <img
+              src={telegramBlue}
+              alt=""
+            />
+          </span>
+        }
         rightBtnCallback={() => {}}
-        rightBtn={<span className={styles.pupUpButton}>
-          WhatsApp
-          <img
-            src={whatsappGreen}
-            alt=""
-          />
-        </span>}
+        rightBtn={
+          <span className={styles.pupUpButton}>
+            WhatsApp
+            <img
+              src={whatsappGreen}
+              alt=""
+            />
+          </span>
+        }
         delay={120}
       />
 

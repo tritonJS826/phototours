@@ -9,11 +9,16 @@ type LeadZoho struct {
 }
 
 type ContactZoho struct {
-	FirstName string `json:"First_Name,omitempty"`
-	LastName  string `json:"Last_Name"`
-	Email     string `json:"Email,omitempty"`
-	Phone     string `json:"Phone,omitempty"`
-	Mobile    string `json:"Mobile,omitempty"`
+	FirstName       string `json:"First_Name,omitempty"`
+	LastName        string `json:"Last_Name"`
+	Email           string `json:"Email,omitempty"`
+	Phone           string `json:"Phone,omitempty"`
+	Mobile          string `json:"Mobile,omitempty"`
+	Language        string `json:"Language,omitempty"`
+	Timezone        string `json:"Timezone,omitempty"`
+	City            string `json:"City,omitempty"`
+	Country         string `json:"Country,omitempty"`
+	LastContactPage string `json:"Last_Contact_Page,omitempty"`
 }
 
 type DealZoho struct {
@@ -28,7 +33,12 @@ type DealZoho struct {
 	Stage                string  `json:"Stage"`
 	Pipeline             string  `json:"Pipeline,omitempty"`
 	ClosingDate          string  `json:"Closing_Date,omitempty"` // YYYY-MM-DD
-	Source               string  `json:Source, omitempty`
+	Source               string  `json:"Source, omitempty"`
+	Language             string  `json:"Language,omitempty"`
+	Timezone             string  `json:"Timezone,omitempty"`
+	City                 string  `json:"City,omitempty"`
+	Country              string  `json:"Country,omitempty"`
+	LastContactPage      string  `json:"Last_Contact_Page,omitempty"`
 
 	// relations
 	AccountID string `json:"Account_Name,omitempty"`
