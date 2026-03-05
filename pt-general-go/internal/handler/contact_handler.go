@@ -28,44 +28,14 @@ func (h *Handler) ContactMe(ctx *gin.Context) {
 		return
 	}
 
-	// Check if contact exists, create if not
-	contactSearch, err := h.services.BookingService.GetContactByEmail(ctx, contactReq.Email)
-	if err != nil {
-		h.logger.Warn("failed to search for existing contact", zap.Error(err))
-	}
-
-	var contactID string
-	if contactSearch != nil && len(contactSearch.Data) > 0 {
-		contactID = contactSearch.Data[0].ID
-		h.logger.Info("Found existing contact", zap.String("contactID", contactID))
-	} else {
-		contact := &domain.ContactZoho{
-			Email:           contactReq.Email,
-			LastName:        contactReq.Name,
-			Phone:           contactReq.Phone,
-			Language:        contactReq.Language,
-			Timezone:        contactReq.Timezone,
-			City:            contactReq.City,
-			Country:         contactReq.Country,
-			LastContactPage: contactReq.LastContactPage,
-		}
-		err = h.services.BookingService.CreateContact(ctx, contact)
-		if err != nil {
-			h.logger.Error("failed to create contact in zoho", zap.Error(err))
-		}
-		contactID = "stub"
-		h.logger.Info("Created new contact in Zoho")
-	}
-
 	deal := &domain.DealZoho{
 		DealName:        contactReq.Name,
-		ClientEmail:     contactReq.Email,
 		ClientPhone:     contactReq.Phone,
 		Source:          "Website",
 		Stage:           "Incoming",
 		Pipeline:        "Photo Tours",
 		AccountID:       "stub",
-		ContactID:       contactID,
+		ContactID:       "stub",
 		LeadID:          "stub",
 		Language:        contactReq.Language,
 		Timezone:        contactReq.Timezone,
@@ -74,11 +44,25 @@ func (h *Handler) ContactMe(ctx *gin.Context) {
 		LastContactPage: contactReq.LastContactPage,
 	}
 
-	err = h.services.BookingService.CreateDeal(ctx, deal)
+	err := h.services.BookingService.CreateDeal(ctx, deal)
 	if err != nil {
 		h.logger.Error("failed to create lead in zoho", zap.Error(err))
 		h.handleError(ctx, err)
 		return
+	}
+
+	contact := &domain.ContactZoho{
+		LastName:        contactReq.Name,
+		Phone:           contactReq.Phone,
+		Language:        contactReq.Language,
+		Timezone:        contactReq.Timezone,
+		City:            contactReq.City,
+		Country:         contactReq.Country,
+		LastContactPage: contactReq.LastContactPage,
+	}
+	err = h.services.BookingService.CreateContact(ctx, contact)
+	if err != nil {
+		h.logger.Error("failed to create contact in zoho", zap.Error(err))
 	}
 
 	ctx.JSON(http.StatusCreated, dto.ContactMeResponse{
