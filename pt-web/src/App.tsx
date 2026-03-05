@@ -32,12 +32,62 @@ import {
   Metadata,
   MetaTag,
 } from "src/services/metadataService";
+import * as CookieConsent from "vanilla-cookieconsent";
+import "vanilla-cookieconsent/dist/cookieconsent.css";
 
 const helmetContext = {};
 
 export function App() {
   const location = useLocation();
   const [metadata, setMetadata] = useState<Metadata>(defaultMetadata);
+
+  // GDPR
+  useEffect(() => {
+    CookieConsent.run({
+      categories: {
+        necessary: {
+          enabled: true,
+          readOnly: true,
+        },
+        analytics: {},
+      },
+      language: {
+        default: "en",
+        translations: {
+          en: {
+            consentModal: {
+              title: "We value your privacy",
+              description:
+                // eslint-disable-next-line max-len
+                "We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking \"Accept All\", you consent to our use of cookies.",
+              acceptAllBtn: "Accept All",
+              acceptNecessaryBtn: "Reject All",
+              showPreferencesBtn: "Customize",
+            },
+            preferencesModal: {
+              title: "Cookie Preferences",
+              acceptAllBtn: "Accept All",
+              acceptNecessaryBtn: "Reject All",
+              savePreferencesBtn: "Save Preferences",
+              closeIconLabel: "Close",
+              sections: [
+                {
+                  title: "Necessary Cookies",
+                  description:
+                    "These cookies are essential for the website to function properly and cannot be disabled.",
+                },
+                {
+                  title: "Analytics Cookies",
+                  description:
+                    "These cookies help us understand how visitors interact with our website.",
+                },
+              ],
+            },
+          },
+        },
+      },
+    });
+  }, []);
 
   useEffect(() => {
     // Function to fetch metadata based on the current URL
