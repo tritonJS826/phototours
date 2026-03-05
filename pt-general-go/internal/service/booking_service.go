@@ -52,6 +52,36 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 		s.logger.Error("Failed to get tour from database", zap.Error(err), zap.Any("tourId", bookingRequest.TourID))
 	}
 
+	// Check if contact exists, create if not
+	var contactID string
+	contactSearch, err := s.zohoRepository.GetContactByEmail(ctx, bookingRequest.Email)
+	if err != nil {
+		s.logger.Warn("Failed to search for existing contact", zap.Error(err))
+	} else if contactSearch != nil && len(contactSearch.Data) > 0 {
+		contactID = contactSearch.Data[0].ID
+		s.logger.Info("Found existing contact", zap.String("contactID", contactID))
+	} else {
+		// Create new contact
+		contact := &domain.ContactZoho{
+			Email:           bookingRequest.Email,
+			LastName:        bookingRequest.Name,
+			Phone:           bookingRequest.Phone,
+			Language:        bookingRequest.Language,
+			Timezone:        bookingRequest.Timezone,
+			City:            bookingRequest.City,
+			Country:         bookingRequest.Country,
+			LastContactPage: bookingRequest.LastContactPage,
+		}
+		err = s.zohoRepository.CreateContact(ctx, contact)
+		if err != nil {
+			s.logger.Error("Failed to create contact in Zoho", zap.Error(err))
+			return "", err
+		}
+		// For new contacts, we can't get the ID easily from the response, so we'll use "stub"
+		contactID = "stub"
+		s.logger.Info("Created new contact in Zoho")
+	}
+
 	deal := &domain.DealZoho{
 		DealName:             bookingRequest.Name,
 		ClientEmail:          bookingRequest.Email,
@@ -64,7 +94,7 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 		Stage:                "In Progress",
 		Pipeline:             "Photo Tours",
 		AccountID:            "stub",
-		ContactID:            "stub",
+		ContactID:            contactID,
 		LeadID:               "stub",
 		Source:               "Website",
 		Language:             bookingRequest.Language,
@@ -141,6 +171,16 @@ func (s *BookingService) CreateContact(ctx context.Context, contact *domain.Cont
 	s.logger.Info("Created contact in Zoho")
 
 	return nil
+}
+
+func (s *BookingService) GetContactByEmail(ctx context.Context, email string) (*repository.ContactSearchResponse, error) {
+	resp, err := s.zohoRepository.GetContactByEmail(ctx, email)
+	if err != nil {
+		s.logger.Error("Failed to search contact by email in Zoho", zap.Error(err), zap.String("email", email))
+		return nil, err
+	}
+
+	return resp, nil
 }
 
 func (s *BookingService) HandleDepositSucceededWebhook(ctx context.Context, body []byte, signature string) error {

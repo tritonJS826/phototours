@@ -79,6 +79,13 @@ type OrganizationInfo struct {
 	Org []map[string]any `json:"org"`
 }
 
+type ContactSearchResponse struct {
+	Data []struct {
+		Email string `json:"Email"`
+		ID    string `json:"id"`
+	} `json:"data"`
+}
+
 type ZohoRepository struct {
 	config         *config.ZohoConfig
 	httpClient     *http.Client
@@ -368,6 +375,49 @@ func (r *ZohoRepository) CreateContact(
 	// }
 
 	return nil
+}
+
+func (r *ZohoRepository) GetContactByEmail(ctx context.Context, email string) (*ContactSearchResponse, error) {
+	if email == "" {
+		return nil, nil
+	}
+
+	token, err := r.getValidAccessToken(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	searchURL := apiContacts + "/search?criteria=(Email:equals:" + url.QueryEscape(email) + ")"
+
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, searchURL, nil)
+	if err != nil {
+		return nil, fmt.Errorf("failed to create search request: %w", err)
+	}
+
+	req.Header.Set("Authorization", "Zoho-oauthtoken "+token)
+	req.Header.Set("Content-Type", "application/json")
+
+	resp, err := r.httpClient.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("search contact request failed: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusNoContent {
+		respBody, err := io.ReadAll(resp.Body)
+		if err != nil {
+			return nil, fmt.Errorf("failed to read search response body: %w", err)
+		}
+		return nil, fmt.Errorf("failed to search contact: %d %s - %s",
+			resp.StatusCode, resp.Status, string(respBody))
+	}
+
+	var searchResp ContactSearchResponse
+	if err := json.NewDecoder(resp.Body).Decode(&searchResp); err != nil {
+		return nil, fmt.Errorf("failed to decode search response: %w", err)
+	}
+
+	return &searchResp, nil
 }
 
 func (r *ZohoRepository) CreateDeal(
