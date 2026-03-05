@@ -57,7 +57,9 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 	contactSearch, err := s.zohoRepository.GetContactByEmail(ctx, bookingRequest.Email)
 	if err != nil {
 		s.logger.Warn("Failed to search for existing contact", zap.Error(err))
-	} else if contactSearch != nil && len(contactSearch.Data) > 0 {
+	}
+
+	if contactSearch != nil && len(contactSearch.Data) > 0 {
 		contactID = contactSearch.Data[0].ID
 		s.logger.Info("Found existing contact", zap.String("contactID", contactID))
 	} else {
