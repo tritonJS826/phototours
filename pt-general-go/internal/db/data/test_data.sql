@@ -579,7 +579,7 @@ VALUES
       }
     ]}',
     guide1_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif', 10, 'Rome (FCO)', 'Rome (FCO)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif', 10, 'Auckland (AKL)', 'Auckland (AKL)',
     ARRAY['April','December','January'], ARRAY['English'], 16, 'Asia & Oceania', 12, 3, 'About Our New Zealand Photo Expedition',
     'Testimonials from Our New Zealand Photography Workshop Participants',
     'Get the New Zealand Insider Guide', 
@@ -849,7 +849,7 @@ VALUES
       }
     ]}',
     guide5_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430058/provence___A8B4955_Topaz_copy_upigxu.avif', 10, 'Rome (FCO)', 'Rome (FCO)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430058/provence___A8B4955_Topaz_copy_upigxu.avif', 10, 'Marseille (MRS)', 'Marseille (MRS)',
     ARRAY['June','July'], ARRAY['English'], 16, 'Europe', 16, 10, 'About Our Provence Photo Expedition',
     'Testimonials from Our Provence Photography Workshop Participants',
     'Get the Ultimate "Top 100 Global Locations" Map', 
@@ -952,7 +952,7 @@ VALUES
         }
     ]}',
     guide4_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430152/sicily__IMG_0599_dmi5yb.avif', 10, 'Rome (FCO)', 'Rome (FCO)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430152/sicily__IMG_0599_dmi5yb.avif', 10, 'Catania (CTA)', 'Catania (CTA)',
     ARRAY['June','July'], ARRAY['English'], 16, 'Europe', 16, 12, 'About Our Sicily & Aeolian Islands Photo Adventure',
     'Testimonials from Our Sicily & Aeolian Islands Photography Workshop Participants',
     'Get the Ultimate "Top 100 Global Locations" Map', 
@@ -1042,7 +1042,7 @@ VALUES
       }
     ]}',
     guide2_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429602/czech-fall__645Z8177-HDR-Pano-Topaz_v2ripe.avif', 10, 'Rome (FCO)', 'Rome (FCO)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429602/czech-fall__645Z8177-HDR-Pano-Topaz_v2ripe.avif', 10, 'Prague (PRG)', 'Prague (PRG)',
     ARRAY['October'], ARRAY['English'], 14, 'Europe', 14, 8, 'About Our Czechia Autumn Photo Expedition',
     'Testimonials from Our Czechia Photography Workshop Participants',
     'Get the Ultimate "Top 100 Global Locations" Map', 
@@ -1132,7 +1132,7 @@ VALUES
       }
     ]}',
     guide1_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430128/scotland__IMGP3471_Panorama-Dehancer_copy_mpyxma.avif', 10, 'Rome (FCO)', 'Rome (FCO)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430128/scotland__IMGP3471_Panorama-Dehancer_copy_mpyxma.avif', 10, 'Edinburgh (EDI)', 'Edinburgh (EDI)',
     ARRAY['October'], ARRAY['English'], 16, 'Europe', 16, 10, 'About Our Scotland Highlands & Islands Photo Expedition',
     'Scotland Photo Tour: Frequently Asked Questions',
     'Get the Ultimate "Top 100 Global Locations" Map', 
@@ -1330,7 +1330,7 @@ VALUES
       }
     ]}',
     guide5_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif', 10, 'Rome (FCO)', 'Rome (FCO)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif', 10, 'Haneda (HND)', 'Haneda (HND)',
     ARRAY['March','April','November','December'], ARRAY['English'], 14, 'Asia & Oceania', 14, 3, 'Immerse yourself in Japan''s rich cultural heritage',
     'Testimonials from Our Japan Autumn Photography Workshop Participants',
     'Get the Ultimate Japan Insider Guide', 
