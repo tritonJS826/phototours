@@ -169,107 +169,107 @@ INSERT INTO tours (
   pop_up2_image_url
 )
 VALUES
-(tour1_id, 'tuscany-spring-photo-tour', 'Spring Tuscany',
+    (tour1_id, 'tuscany-spring-photo-tour', 'Spring Tuscany',
      'Capture the essence of Italy on our Spring Tuscany Photo Tour. Experience the iconic emerald hills of the Val d''Orcia, misty sunrises at Podere Belvedere, and the medieval charm of Pienza. This immersive landscape photography workshop features expert-led shoots, cypress alleys, and the hidden gems of the region. Limited to a small group for a 10-day tour. Book your photography adventure today!',
-    'EASY', 3800.00,
-    '{"days": [
-      {
-        "day": 1,
-        "plan": "ARRIVAL & FIRST PHOTOGRAPHY SESSION",
-        "description": "Meeting at Fiumicino Airport (Rome). To ensure smooth logistics for the group, we recommend arriving in the first half of the day. If you arrive a day early, we will gladly pick you up from your hotel in the morning.\n\nWe’ll begin our Tuscany photo adventure with a traditional Italian lunch at a local seaside restaurant on Lungomare di Salute. This hidden gem in Fiumicino is loved by locals for its authentic seafood, far from tourist crowds - a true Roman culinary experience.\n\nAfter lunch, we’ll drive into the heart of Tuscany and check into our base: the historic Poggio Covili estate. World-famous for its majestic cypress-lined avenue, this is one of the most iconic photography locations in the region. We’ll end the day with a relaxed sunset photography session on-site, capturing golden-hour light over the rolling hills.",
-        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886464/tuscan-spring___1337705_98x132_200dpi_217-Edit_zcc3nn.avif"
-      },
-      {
-        "day": 2,
-        "plan": "PIENZA PANORAMAS & MADONNA DI VITALETA",
-        "description": "At sunrise, we head to one of the most breathtaking viewpoints in Italy - the panoramic overlook of Pienza. This UNESCO-listed Val d’Orcia landscape offers the quintessential Tuscan view. If morning mist appears, you’ll capture truly ethereal, world-class images.\n\nPhotography Tip: Telephoto lenses (up to 400mm) are ideal here for compressing the rolling hills and emphasizing texture.\n\nAfter the shoot, we’ll enjoy a classic Italian breakfast - cappuccino and dolce - in Pienza’s central square. You’ll have time for a relaxed walk through the Renaissance town redesigned by Pope Pius II and the chance to taste the famous Pecorino di Pienza.\n\nFollowing a midday rest at our villa, the evening is dedicated to photographing the iconic Chapel of Madonna di Vitaleta. A scenic 10-minute walk through the fields brings us to the chapel for a sunset shoot. We’ll finish the day with a gourmet dinner and well-earned relaxation.",
-        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8829-1_86x56_x5eivl.avif"
-      },
-      {
-        "day": 3,
-        "plan": "PODERE BELVEDERE & TUSCAN GASTRONOMY",
-        "description": "We start the day at the most photographed location in Tuscany - Podere Belvedere. This legendary villa, often wrapped in morning fog, is best captured at sunrise when the valley glows with soft golden light.\n\nAfter the shoot, we’ll enjoy coffee in the medieval town of San Quirico d’Orcia before returning to the villa for a midday break.\n\nIn the evening, we revisit Madonna di Vitaleta to photograph the chapel from new perspectives. Working efficiently, we’ll explore both wide-angle compositions and telephoto details as the colors of the sky change.\n\nDinner is at Fonte Alla Vena, one of our favorite local trattorias. Expect a true Tuscan country soul: rustic interiors, homemade olive oil, seasonal vegetables, traditional pici pasta, and Cinta Senese pork prepared from family recipes shared by Luciano, the owner.",
-        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886466/tuscan-spring___A8B9644_49%D1%8573-200dpi_105-Edit_ebbyoe.avif"
-      },
-      {
-        "day": 4,
-        "plan": "SAN GIMIGNANO & SIENA",
-        "description": "Our earliest start brings us on a 1.5-hour drive to photograph sunrise over San Gimignano - the famous “Medieval Manhattan” with its iconic stone towers.\n\nAfter the shoot, we’ll stop at Marcella’s renowned chocolaterie for coffee and artisan dolci. We’ll then stroll through the historic streets, visit the Duomo with Ghirlandaio’s frescoes, and climb the Torre Municipale for sweeping views of the Elsa Valley.\n\nNext, we travel to Siena for lunch at the historic Taverna San Giuseppe, famous for its tagliolini with truffles. The afternoon is dedicated to exploring Siena’s medieval alleys and the magnificent Siena Duomo - one of the most striking Gothic cathedrals in Italy.\n\nWe’ll photograph the city from a panoramic terrace, relax at Piazza del Campo - home of the Palio horse race - and return to our villa for a quiet dinner at a local trattoria.",
-        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886470/tuscan-spring___IGP6527_Panorama-Edit_copy_a2einq.avif"
-      },
-      {
-        "day": 5,
-        "plan": "MACCIANO MIST & CETONA",
-        "description": "Sunrise finds us in the valley near Macciano - rolling green fields, solitary farmhouses, and, if we’re lucky, atmospheric morning mist that defines springtime Tuscany.\n\nWe’ll photograph from several classic viewpoints, including the iconic zigzag cypress road at La Foce. Afterwards, we head to the non-touristic town of Cetona for coffee and street photography among its white stone streets.\n\nA special highlight may be a visit to the private gallery of renowned Tuscan artists Tazio Angellini and Fausta Ottolini, housed in a 10th-century cantina. If conditions allow, we may enjoy a glass of prosecco with Fausta.\n\nAfter lunch at the town’s best restaurant, we return to Podere Belvedere for a sunset shoot, capturing the estate in dramatically different light.",
-        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886477/tuscan-spring__Untitled_Panorama2_114%D1%85249-200dpi_299-Edit_tebrjd.avif"
-      },
-      {
-        "day": 6,
-        "plan": "MONTALCINO & BRUNELLO",
-        "description": "We greet sunrise overlooking Montalcino, capturing panoramic views of Val d’Orcia bathed in warm morning light. This hilltop town is the birthplace of Brunello di Montalcino - the king of Italian red wines.\n\nAfter a walk through town, we’ll visit the medieval fortress La Fortezza for an exclusive tasting of top Brunellos curated by the local winemakers’ association.\n\nFollowing a midday rest, we explore the Abbey of Sant’Antimo, founded by Charlemagne. This Romanesque masterpiece offers exceptional architectural photography, and if we’re lucky, we may hear monks’ Gregorian chants.\n\nThe afternoon continues with visits to boutique wine producers before ending the day with a sunset photography session near Torrenieri.",
-        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886464/tuscan-spring__180R1797_j6wetk.avif"
-      },
-      {
-        "day": 7,
-        "plan": "PITIGLIANO & SATURNIA",
-        "description": "At sunrise, we photograph Pitigliano - a dramatic town rising directly from a massive tuff cliff. Its seamless blend of nature and medieval architecture makes it one of Italy’s most striking photographic subjects.\n\nAfterwards, we explore the town’s narrow streets, visit the Duomo, and descend into the Etruscan catacombs carved into volcanic rock. We’ll visit a local family’s underground chamber to taste artisanal salsa with regional cheeses.\n\nBy midday, we relax at the Saturnia Hot Springs (Cascate del Mulino), enjoying the turquoise thermal pools.\n\nAt sunset, we photograph the rugged town of Sorano, hanging above a deep ravine. Dinner follows at Sette di Vino in Pienza - a cozy osteria celebrated for its cheese-driven Tuscan cuisine.",
-        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886470/tuscan-spring__IMGP0277_68%D1%8593-200dpi-Edit_fful6e.avif"
-      },
-      {
-        "day": 8,
-        "plan": "CRETE SENESI & PODERE BACCOLENO",
-        "description": "We begin the day near the quiet village of Mucigliano, photographing sunrise among classic Tuscan landscapes still untouched by mass tourism.\n\nOn our return, we travel through the Crete Senesi, famous for its lunar-like clay hills and minimalist ridges. We’ll stop frequently to photograph soft curves, long horizons, and dramatic light.\n\nAfter a midday siesta, we head to one of Tuscany’s most iconic locations: Podere Baccoleno. At sunset, we’ll photograph the legendary S-shaped cypress road - a timeless symbol of the Tuscan countryside.",
-        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__Untitled_Panorama1_65%D1%8587-200dpi_100-Edit_sprpmc.avif"
-      },
-      {
-        "day": 9,
-        "plan": "BAGNO VIGNONI & SAN GALGANO",
-        "description": "We welcome sunrise in Bagno Vignoni, famous for its ancient thermal pool and beloved by Andrei Tarkovsky, who filmed scenes of *Nostalghia* here. Rising steam at dawn creates a dreamlike atmosphere for fine-art photography.\n\nAfter cappuccino overlooking the water, we visit Sarteano for a family-run olive oil tasting and Radicofani to photograph an original Andrea della Robbia majolica.\n\nLater, we relax at the white limestone hot springs of Bagni San Filippo. In the evening, we photograph the roofless Gothic abbey of San Galgano and see the legendary sword in the stone. We conclude with a grand farewell dinner at one of the region’s finest restaurants.",
-        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886468/tuscan-spring___IGP1721-Edit_copy_qpch7f.avif"
-      },
-      {
-        "day": 10,
-        "plan": "FINAL SUNRISE & DEPARTURE",
-        "description": "For our final morning, we choose the sunrise location based on the latest weather forecast to capture the most dramatic closing shots of the journey.\n\nAfter the shoot and a final Tuscan breakfast, we drive to Rome, arriving at Fiumicino Airport around 12:00. We recommend booking return flights for the second half of the day.\n\nGuests extending their stay will be dropped off in central Rome to continue exploring the Eternal City at their own pace.",
-        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886464/tuscan-spring__400mm-f5_6-1s-iso200_ra1vyo.avif"
-      }
-    ]}',
-    '{"questions": [
-      {
-        "question": "1. What photography level is required for the Spring Tuscany Photo Tour? Can non-photographers participate?",
-        "answer": "We welcome photographers of all skill levels to our spring photo expeditions in Tuscany — from absolute beginners to seasoned professionals — as well as non-photographers. Our tour leaders are experts dedicated to helping participants refine their skills regardless of their starting point. You are welcome to join the shooting sessions with a professional camera or simply a mobile phone.\n\nExperiencing spring in Tuscany and the Val d’Orcia through the eyes of a professional photographer — who meticulously plans every detail, including the exact arrival time at each location — is a unique experience for both photographers and travelers alike. In our spring photo expedition, you avoid the tourist crowds and witness the authentic beauty of a region famous for its rolling mists, world-class wines, and gastronomy."
-      },
-      {
-        "question": "2. What should I bring with me for the Tuscany Photo Tour in spring?",
-        "answer": "We always provide specific gear recommendations for our Tuscany tours. If you plan to bring a camera, we recommend having a tripod and a selection of lenses: 24-70mm and 70-200mm are essential, while a 100-400mm lens is highly recommended.\n\nAfter booking your spot, you will receive a comprehensive manual with a checklist of everything you need for the photo tours and workshops — from camera gear to appropriate clothing. You can also schedule a consultation with your tour leader to ensure you are fully prepared for the trip."
-      },
-      {
-        "question": "3. What level of physical fitness is required for the Spring Tuscany Photo Tour?",
-        "answer": "The Spring Tuscany tour is rated as ’Easy’ and is suitable for participants with even minimal physical preparation. If you have health restrictions or concerns about your fitness, you can always contact our manager, who will help you assess the requirements for this specific spring expedition."
-      },
-      {
-        "question": "4. How many people are in the group for the Tuscany Photo Tour?",
-        "answer": "We specialize in small groups and value an individual approach for every participant in our Tuscany photo tours and workshops. Our priority is to ensure you gain valuable experience, new knowledge, and vivid memories while bringing home trophy shots from the Val d’Orcia for your portfolio or social media.\n\nTypically, the maximum group size for the Spring Tuscany photo tour is 7 participants, though in exceptional cases, it may be increased to 8."
-      },
-      {
-        "question": "5. Are flights included in the price of the Spring Tuscany tour and photo workshops?",
-        "answer": "Airfare and visas are not included in the cost, as our participants join us from all over the world. The following is included in the price:\n\n• Accommodation: Stay at the legendary Poggio Covili villa (single rooms or double rooms for couples).\n- Local Logistics: Transfers to and from the airport in Rome and all ground transportation between towns in a comfortable Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, on-site mentoring, and masterclasses, including post-processing.\n\nFor information regarding additional expenses during the Tuscany tour, please contact our managers."
-      },
-      {
-        "question": "6. What is included in the cost of the Spring Tuscany Photo Tour and workshops?",
-        "answer": "The price of the spring photo expedition in Tuscany includes:\n\n• Accommodation: Lodging at the iconic Poggio Covili villa (offering single occupancy or double rooms for couples).\n- Local Logistics: Airport transfers (Rome) and all transportation throughout the region in a high-end Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, on-site mentoring, and masterclasses, including post-processing.\n\nDetailed information about any extra costs can be requested from our management team."
-      }
-    ]}',
-    guide1_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__FUJI8847-Pano-Pano-Dehancer_copy_lgg7p7.avif', 10, 'Rome (FCO)', 'Rome (FCO)',
-    ARRAY['March','May'], ARRAY['English'], 16, 'Europe', 7, 4, 'About Our Tuscany Spring Photo Expedition',
-    'Testimonials from Our Tuscan Photography Workshop Participants',
-    'Get the Ultimate Val d’Orcia Insider Guide', 
-    'From secret photography spots to hidden gem wineries, get the best of Tuscany sent straight to your phone. Which messenger do you prefer?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__FUJI8847-Pano-Pano-Dehancer_copy_lgg7p7.avif',
-    'Want the full Tuscany Itinerary?',
-    'We’ll send you everything you need to know about our Spring Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__FUJI8847-Pano-Pano-Dehancer_copy_lgg7p7.avif'),
+      'EASY', 3800.00,
+      '{"days": [
+        {
+          "day": 1,
+          "plan": "ARRIVAL & FIRST PHOTOGRAPHY SESSION",
+          "description": "Meeting at Fiumicino Airport (Rome). To ensure smooth logistics for the group, we recommend arriving in the first half of the day. If you arrive a day early, we will gladly pick you up from your hotel in the morning.\n\nWe’ll begin our Tuscany photo adventure with a traditional Italian lunch at a local seaside restaurant on Lungomare di Salute. This hidden gem in Fiumicino is loved by locals for its authentic seafood, far from tourist crowds - a true Roman culinary experience.\n\nAfter lunch, we’ll drive into the heart of Tuscany and check into our base: the historic Poggio Covili estate. World-famous for its majestic cypress-lined avenue, this is one of the most iconic photography locations in the region. We’ll end the day with a relaxed sunset photography session on-site, capturing golden-hour light over the rolling hills.",
+          "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886464/tuscan-spring___1337705_98x132_200dpi_217-Edit_zcc3nn.avif"
+        },
+        {
+          "day": 2,
+          "plan": "PIENZA PANORAMAS & MADONNA DI VITALETA",
+          "description": "At sunrise, we head to one of the most breathtaking viewpoints in Italy - the panoramic overlook of Pienza. This UNESCO-listed Val d’Orcia landscape offers the quintessential Tuscan view. If morning mist appears, you’ll capture truly ethereal, world-class images.\n\nPhotography Tip: Telephoto lenses (up to 400mm) are ideal here for compressing the rolling hills and emphasizing texture.\n\nAfter the shoot, we’ll enjoy a classic Italian breakfast - cappuccino and dolce - in Pienza’s central square. You’ll have time for a relaxed walk through the Renaissance town redesigned by Pope Pius II and the chance to taste the famous Pecorino di Pienza.\n\nFollowing a midday rest at our villa, the evening is dedicated to photographing the iconic Chapel of Madonna di Vitaleta. A scenic 10-minute walk through the fields brings us to the chapel for a sunset shoot. We’ll finish the day with a gourmet dinner and well-earned relaxation.",
+          "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8829-1_86x56_x5eivl.avif"
+        },
+        {
+          "day": 3,
+          "plan": "PODERE BELVEDERE & TUSCAN GASTRONOMY",
+          "description": "We start the day at the most photographed location in Tuscany - Podere Belvedere. This legendary villa, often wrapped in morning fog, is best captured at sunrise when the valley glows with soft golden light.\n\nAfter the shoot, we’ll enjoy coffee in the medieval town of San Quirico d’Orcia before returning to the villa for a midday break.\n\nIn the evening, we revisit Madonna di Vitaleta to photograph the chapel from new perspectives. Working efficiently, we’ll explore both wide-angle compositions and telephoto details as the colors of the sky change.\n\nDinner is at Fonte Alla Vena, one of our favorite local trattorias. Expect a true Tuscan country soul: rustic interiors, homemade olive oil, seasonal vegetables, traditional pici pasta, and Cinta Senese pork prepared from family recipes shared by Luciano, the owner.",
+          "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886466/tuscan-spring___A8B9644_49%D1%8573-200dpi_105-Edit_ebbyoe.avif"
+        },
+        {
+          "day": 4,
+          "plan": "SAN GIMIGNANO & SIENA",
+          "description": "Our earliest start brings us on a 1.5-hour drive to photograph sunrise over San Gimignano - the famous “Medieval Manhattan” with its iconic stone towers.\n\nAfter the shoot, we’ll stop at Marcella’s renowned chocolaterie for coffee and artisan dolci. We’ll then stroll through the historic streets, visit the Duomo with Ghirlandaio’s frescoes, and climb the Torre Municipale for sweeping views of the Elsa Valley.\n\nNext, we travel to Siena for lunch at the historic Taverna San Giuseppe, famous for its tagliolini with truffles. The afternoon is dedicated to exploring Siena’s medieval alleys and the magnificent Siena Duomo - one of the most striking Gothic cathedrals in Italy.\n\nWe’ll photograph the city from a panoramic terrace, relax at Piazza del Campo - home of the Palio horse race - and return to our villa for a quiet dinner at a local trattoria.",
+          "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886470/tuscan-spring___IGP6527_Panorama-Edit_copy_a2einq.avif"
+        },
+        {
+          "day": 5,
+          "plan": "MACCIANO MIST & CETONA",
+          "description": "Sunrise finds us in the valley near Macciano - rolling green fields, solitary farmhouses, and, if we’re lucky, atmospheric morning mist that defines springtime Tuscany.\n\nWe’ll photograph from several classic viewpoints, including the iconic zigzag cypress road at La Foce. Afterwards, we head to the non-touristic town of Cetona for coffee and street photography among its white stone streets.\n\nA special highlight may be a visit to the private gallery of renowned Tuscan artists Tazio Angellini and Fausta Ottolini, housed in a 10th-century cantina. If conditions allow, we may enjoy a glass of prosecco with Fausta.\n\nAfter lunch at the town’s best restaurant, we return to Podere Belvedere for a sunset shoot, capturing the estate in dramatically different light.",
+          "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886477/tuscan-spring__Untitled_Panorama2_114%D1%85249-200dpi_299-Edit_tebrjd.avif"
+        },
+        {
+          "day": 6,
+          "plan": "MONTALCINO & BRUNELLO",
+          "description": "We greet sunrise overlooking Montalcino, capturing panoramic views of Val d’Orcia bathed in warm morning light. This hilltop town is the birthplace of Brunello di Montalcino - the king of Italian red wines.\n\nAfter a walk through town, we’ll visit the medieval fortress La Fortezza for an exclusive tasting of top Brunellos curated by the local winemakers’ association.\n\nFollowing a midday rest, we explore the Abbey of Sant’Antimo, founded by Charlemagne. This Romanesque masterpiece offers exceptional architectural photography, and if we’re lucky, we may hear monks’ Gregorian chants.\n\nThe afternoon continues with visits to boutique wine producers before ending the day with a sunset photography session near Torrenieri.",
+          "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886464/tuscan-spring__180R1797_j6wetk.avif"
+        },
+        {
+          "day": 7,
+          "plan": "PITIGLIANO & SATURNIA",
+          "description": "At sunrise, we photograph Pitigliano - a dramatic town rising directly from a massive tuff cliff. Its seamless blend of nature and medieval architecture makes it one of Italy’s most striking photographic subjects.\n\nAfterwards, we explore the town’s narrow streets, visit the Duomo, and descend into the Etruscan catacombs carved into volcanic rock. We’ll visit a local family’s underground chamber to taste artisanal salsa with regional cheeses.\n\nBy midday, we relax at the Saturnia Hot Springs (Cascate del Mulino), enjoying the turquoise thermal pools.\n\nAt sunset, we photograph the rugged town of Sorano, hanging above a deep ravine. Dinner follows at Sette di Vino in Pienza - a cozy osteria celebrated for its cheese-driven Tuscan cuisine.",
+          "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886470/tuscan-spring__IMGP0277_68%D1%8593-200dpi-Edit_fful6e.avif"
+        },
+        {
+          "day": 8,
+          "plan": "CRETE SENESI & PODERE BACCOLENO",
+          "description": "We begin the day near the quiet village of Mucigliano, photographing sunrise among classic Tuscan landscapes still untouched by mass tourism.\n\nOn our return, we travel through the Crete Senesi, famous for its lunar-like clay hills and minimalist ridges. We’ll stop frequently to photograph soft curves, long horizons, and dramatic light.\n\nAfter a midday siesta, we head to one of Tuscany’s most iconic locations: Podere Baccoleno. At sunset, we’ll photograph the legendary S-shaped cypress road - a timeless symbol of the Tuscan countryside.",
+          "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__Untitled_Panorama1_65%D1%8587-200dpi_100-Edit_sprpmc.avif"
+        },
+        {
+          "day": 9,
+          "plan": "BAGNO VIGNONI & SAN GALGANO",
+          "description": "We welcome sunrise in Bagno Vignoni, famous for its ancient thermal pool and beloved by Andrei Tarkovsky, who filmed scenes of *Nostalghia* here. Rising steam at dawn creates a dreamlike atmosphere for fine-art photography.\n\nAfter cappuccino overlooking the water, we visit Sarteano for a family-run olive oil tasting and Radicofani to photograph an original Andrea della Robbia majolica.\n\nLater, we relax at the white limestone hot springs of Bagni San Filippo. In the evening, we photograph the roofless Gothic abbey of San Galgano and see the legendary sword in the stone. We conclude with a grand farewell dinner at one of the region’s finest restaurants.",
+          "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886468/tuscan-spring___IGP1721-Edit_copy_qpch7f.avif"
+        },
+        {
+          "day": 10,
+          "plan": "FINAL SUNRISE & DEPARTURE",
+          "description": "For our final morning, we choose the sunrise location based on the latest weather forecast to capture the most dramatic closing shots of the journey.\n\nAfter the shoot and a final Tuscan breakfast, we drive to Rome, arriving at Fiumicino Airport around 12:00. We recommend booking return flights for the second half of the day.\n\nGuests extending their stay will be dropped off in central Rome to continue exploring the Eternal City at their own pace.",
+          "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886464/tuscan-spring__400mm-f5_6-1s-iso200_ra1vyo.avif"
+        }
+      ]}',
+      '{"questions": [
+        {
+          "question": "1. What photography level is required for the Spring Tuscany Photo Tour? Can non-photographers participate?",
+          "answer": "We welcome photographers of all skill levels to our spring photo expeditions in Tuscany — from absolute beginners to seasoned professionals — as well as non-photographers. Our tour leaders are experts dedicated to helping participants refine their skills regardless of their starting point. You are welcome to join the shooting sessions with a professional camera or simply a mobile phone.\n\nExperiencing spring in Tuscany and the Val d’Orcia through the eyes of a professional photographer — who meticulously plans every detail, including the exact arrival time at each location — is a unique experience for both photographers and travelers alike. In our spring photo expedition, you avoid the tourist crowds and witness the authentic beauty of a region famous for its rolling mists, world-class wines, and gastronomy."
+        },
+        {
+          "question": "2. What should I bring with me for the Tuscany Photo Tour in spring?",
+          "answer": "We always provide specific gear recommendations for our Tuscany tours. If you plan to bring a camera, we recommend having a tripod and a selection of lenses: 24-70mm and 70-200mm are essential, while a 100-400mm lens is highly recommended.\n\nAfter booking your spot, you will receive a comprehensive manual with a checklist of everything you need for the photo tours and workshops — from camera gear to appropriate clothing. You can also schedule a consultation with your tour leader to ensure you are fully prepared for the trip."
+        },
+        {
+          "question": "3. What level of physical fitness is required for the Spring Tuscany Photo Tour?",
+          "answer": "The Spring Tuscany tour is rated as ’Easy’ and is suitable for participants with even minimal physical preparation. If you have health restrictions or concerns about your fitness, you can always contact our manager, who will help you assess the requirements for this specific spring expedition."
+        },
+        {
+          "question": "4. How many people are in the group for the Tuscany Photo Tour?",
+          "answer": "We specialize in small groups and value an individual approach for every participant in our Tuscany photo tours and workshops. Our priority is to ensure you gain valuable experience, new knowledge, and vivid memories while bringing home trophy shots from the Val d’Orcia for your portfolio or social media.\n\nTypically, the maximum group size for the Spring Tuscany photo tour is 7 participants, though in exceptional cases, it may be increased to 8."
+        },
+        {
+          "question": "5. Are flights included in the price of the Spring Tuscany tour and photo workshops?",
+          "answer": "Airfare and visas are not included in the cost, as our participants join us from all over the world. The following is included in the price:\n\n• Accommodation: Stay at the legendary Poggio Covili villa (single rooms or double rooms for couples).\n- Local Logistics: Transfers to and from the airport in Rome and all ground transportation between towns in a comfortable Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, on-site mentoring, and masterclasses, including post-processing.\n\nFor information regarding additional expenses during the Tuscany tour, please contact our managers."
+        },
+        {
+          "question": "6. What is included in the cost of the Spring Tuscany Photo Tour and workshops?",
+          "answer": "The price of the spring photo expedition in Tuscany includes:\n\n• Accommodation: Lodging at the iconic Poggio Covili villa (offering single occupancy or double rooms for couples).\n- Local Logistics: Airport transfers (Rome) and all transportation throughout the region in a high-end Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, on-site mentoring, and masterclasses, including post-processing.\n\nDetailed information about any extra costs can be requested from our management team."
+        }
+      ]}',
+      guide1_id,
+      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__FUJI8847-Pano-Pano-Dehancer_copy_lgg7p7.avif', 10, 'Rome (FCO)', 'Rome (FCO)',
+      ARRAY['March','May'], ARRAY['English'], 16, 'Europe', 7, 4, 'About Our Tuscany Spring Photo Expedition',
+      'Testimonials from Our Tuscan Photography Workshop Participants',
+      'Get the Ultimate Val d’Orcia Insider Guide', 
+      'From secret photography spots to hidden gem wineries, get the best of Tuscany sent straight to your phone. Which messenger do you prefer?',
+      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__FUJI8847-Pano-Pano-Dehancer_copy_lgg7p7.avif',
+      'Want the full Tuscany Itinerary?',
+      'We’ll send you everything you need to know about our Spring Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
+      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__FUJI8847-Pano-Pano-Dehancer_copy_lgg7p7.avif'),
 
    (tour2_id, 'morocco-photo-tour', 'Morocco Photo Tour',
     'Experience the magic of Morocco on a visual journey from the blue-washed streets of Chefchaouen to the golden dunes of the Sahara Desert. Capture the vibrant souks of Marrakech, the ancient kasbahs of Ait Ben Haddou, and the majestic Atlas Mountains. This immersive photography workshop offers expert-led sunrise and sunset sessions in Morocco''s most iconic locations. Join our exclusive small group for an unforgettable adventure!',
@@ -579,7 +579,7 @@ VALUES
       }
     ]}',
     guide1_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif', 10, 'Auckland (AKL)', 'Auckland (AKL)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif', 21, 'Auckland (AKL)', 'Auckland (AKL)',
     ARRAY['April','December','January'], ARRAY['English'], 16, 'Asia & Oceania', 12, 3, 'About Our New Zealand Photo Expedition',
     'Testimonials from Our New Zealand Photography Workshop Participants',
     'Get the New Zealand Insider Guide', 
@@ -962,7 +962,7 @@ VALUES
     'We’ll send you everything you need to know about our Sicily & Aeolian Islands Photo Tour & Sailing Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430152/sicily__IMG_0599_dmi5yb.avif'),
 
- (tour9_id, 'czechia-autumn-tour', 'Czechia Autumn',
+   (tour9_id, 'czechia-autumn-tour', 'Czechia Autumn',
      'Capture the golden beauty of Czechia during peak autumn season. From Prague''s Gothic splendor to Bohemian castles and medieval towns, this 10-day journey showcases Central Europe''s finest fall colors. Expert guidance in small groups ensures optimal timing for golden hour and autumn foliage photography.',
      'EASY', 2900.00,
      '{"days":[
@@ -1052,7 +1052,7 @@ VALUES
     'We’ll send you everything you need to know about our Czechia Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429602/czech-fall__645Z8177-HDR-Pano-Topaz_v2ripe.avif'),
 
- (tour10_id, 'scotland-photography-tour', 'Scotland Highlands & Islands',
+  (tour10_id, 'scotland-photography-tour', 'Scotland Highlands & Islands',
    'Journey through the mystical Scottish Highlands and dramatic coastline. Capture lochs, castles, and the raw beauty of the Isle of Skye. This 10-day photography adventure includes remote landscapes, historic sites, and authentic Highland culture. Expert guidance in small groups ensures intimate shooting experiences.',
      'EASY', 3600.00,
      '{"days": [
@@ -1142,7 +1142,7 @@ VALUES
     'We’ll send you everything you need to know about our Scotland Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430128/scotland__IMGP3471_Panorama-Dehancer_copy_mpyxma.avif'),
 
-(tour11_id, 'tuscany-autumn-tour', 'Tuscany Autumn',
+  (tour11_id, 'tuscany-autumn-tour', 'Tuscany Autumn',
      'Experience Tuscany''s golden autumn season when vineyards turn gold and harvest creates authentic rural scenes. From rolling hills to medieval hill towns, capture the essence of Italian autumn culture. This 10-day workshop features wine harvest photography, truffle hunting, and golden light across iconic landscapes.',
      'EASY', 3800.00,
      '{"days": [
@@ -1235,7 +1235,7 @@ VALUES
     ]}',
     guide3_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430222/tuscany-fall___IMG7020-Pano-1_1-Dechancer_copy_g90yjy.avif', 10, 'Rome (FCO)', 'Rome (FCO)',
-    ARRAY['October','November'], ARRAY['English'], 16, 'Europe', 11, 5, 'Journey through the mystical Scottish Highlands',
+    ARRAY['October','November'], ARRAY['English'], 16, 'Europe', 11, 5, 'About Our Tuscany Autumn Photo Expedition',
     'Testimonials from Our Tuscan Photography Workshop Participants',
     'Get the Ultimate Val d’Orcia Insider Guide', 
     'From secret photography spots to hidden gem wineries, get the best of Tuscany sent straight to your phone. Which messenger do you prefer?',
@@ -1433,7 +1433,7 @@ VALUES
       ]}',
       guide5_id,
       'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777034/iceland__A8B5114-1-164x110_PRINT_topaz_Dehancer_usmbp6.avif', 10, 'Keflavík (KEF)', 'Keflavík (KEF)',
-      ARRAY['July','August','September'], ARRAY['English'], 14, 'Iceland', 14, 3, 'About Our Iceland Photo Expedition',
+      ARRAY['July','August','September'], ARRAY['English'], 14, 'Europe', 14, 3, 'About Our Iceland Photo Expedition',
       'Testimonials from Our Iceland Photography Workshop Participants',
       'Get the Ultimate "Top 100 Global Locations" Map', 
       'From the peaks of Iceland and New Zealand to the hidden corners of Japan and Italy, get our curated map of the world’s most breathtaking spots sent straight to your phone. Which messenger do you prefer?',
@@ -1505,7 +1505,7 @@ VALUES
     ]}',
     guide5_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 10, 'Haneda (HND)', 'Haneda (HND)',
-    ARRAY['March','April'], ARRAY['English'], 14, 'Asia & Oceania', 14, 3, 'About Our Japan Autumn Photo Expedition',
+    ARRAY['March','April'], ARRAY['English'], 14, 'Asia & Oceania', 14, 3, 'About Our Japan Spring Photo Expedition',
     'Testimonials from Our Japan Spring Photography Workshop Participants',
     'Get the Ultimate Japan Insider Guide', 
     'We’ll send you the Japan guide (routes, photo spots, tips) and a map with must-visit locations to see at least once in your life! Which messenger do you prefer?',
