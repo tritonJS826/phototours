@@ -1504,7 +1504,7 @@ VALUES
     '{"questions": [
     ]}',
     guide5_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 10, 'Tokyo', 'Tokyo',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 10, 'Haneda (HND)', 'Haneda (HND)',
     ARRAY['March','April'], ARRAY['English'], 14, 'Asia & Oceania', 14, 3, 'About Our Japan Autumn Photo Expedition',
     'Testimonials from Our Japan Spring Photography Workshop Participants',
     'Get the Ultimate Japan Insider Guide', 
