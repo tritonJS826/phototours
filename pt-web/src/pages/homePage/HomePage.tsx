@@ -67,7 +67,7 @@ const partners = [
 
 const accordionItemsLeft = [
   {
-    trigger: {child: "What photography level is required to join? Can non-photographers participate?"},
+    trigger: {child: "What photography level is required? Can non-photographers join?"},
     // eslint-disable-next-line max-len
     content: {child: "We welcome photographers of all skill levels, from absolute beginners to seasoned professionals, as well as non-photographers. Our tour leaders are experts dedicated to helping participants refine their skills, regardless of their starting point. You are welcome to shoot with a professional camera or simply a mobile phone.\n\nSeeing the world through the eyes of a professional photographer — who meticulously plans every detail, including the exact time of arrival at each location — is a unique experience for both photographers and travelers alike. On a photo tour, you avoid tourist crowds and witness the authentic beauty of the planet’s most stunning locations."},
   },
