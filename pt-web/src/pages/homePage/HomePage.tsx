@@ -20,6 +20,7 @@ import {Accordion, accordionTypes} from "src/components/Accordion/Accordion";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
 import {FeedbackBlock} from "src/components/FeedbackBlock/FeedbackBlock";
 import {Footer} from "src/components/Footer/Footer";
+import {SidebarMenu} from "src/components/Header/SidebarMenu";
 import {HeroTextSection} from "src/components/HeroSection/HeroSection";
 import {PartnersSlider} from "src/components/PartnersSlider/PartnersSlider";
 import {PopularDestinations} from "src/components/PopularDestinations/PopularDestinations";
@@ -303,37 +304,10 @@ export function HomePage() {
         </div>
       </div>
 
-      {isMobileMenuOpen && (
-        <nav className={styles.mobileMenu}>
-          <ul>
-            <li>
-              <Link to={PATHS.HOME}>
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to={PATHS.TOURS}>
-                Book Photo Tours
-              </Link>
-            </li>
-            <li>
-              <Link to={PATHS.ARTICLES}>
-                Explore Articles
-              </Link>
-            </li>
-            <li>
-              <Link to={PATHS.ABOUT}>
-                About Us
-              </Link>
-            </li>
-            <li>
-              <Link to={PATHS.CONTACT}>
-                Contact Us
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      )}
+      <SidebarMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+      />
 
       <PartnersSlider partners={partners} />
 
