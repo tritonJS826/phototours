@@ -137,7 +137,7 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 		},
 
 		Mode:       stripe.String(string(stripe.CheckoutSessionModePayment)),
-		SuccessURL: stripe.String("https://tuscany-photo-tours.com/tours/thank-you"),
+		SuccessURL: stripe.String("https://tuscany-photo-tours.com/thank-you"),
 		CancelURL:  stripe.String("https://tuscany-photo-tours.com/tours"),
 		Metadata: map[string]string{
 			"zoho_deal_id": dealID,
