@@ -4,4 +4,5 @@ export const envSchema = {
   API_BASE_PATH: str(),
   ENV_TYPE: str(),
   VITE_API_BASE_URL: str(),
+  GA_MEASUREMENT_ID: str(),
 };
