@@ -129,19 +129,6 @@ const RightBlockDark = () => {
         </li>
       </ul>
       <div className={styles.rightHeaderLinks}>
-        {/* <Link to={PATHS.CART}>
-          <img
-            src={cart}
-            alt="cart link"
-          />
-        </Link>
-        <Link to={PATHS.HOME}>
-          <img
-            src={user}
-            alt="user link"
-          />
-        </Link> */}
-
         <Dropdown
           trigger={
             <button
@@ -245,30 +232,9 @@ const RightBlockDark = () => {
 };
 
 export function HomePage() {
-  // Const [tours, setTours] = useState<TourView[]>([]);
-
-  // useEffect(() => {
-  //   // let mounted = true;
-  //   // (async () => {
-  //   //   try {
-  //   //     const data = await listTours();
-  //   //     if (mounted) {
-  //   //       setTours((data ?? []).slice(0, FEATURED_TOURS_LIMIT));
-  //   //     }
-  //   //   } catch {
-  //   //     if (mounted) {
-  //   //       setTours([]);
-  //   //     }
-  //   //   }
-  //   // })();
-
-  //   // return () => {
-  //   //   mounted = false;
-  //   // };
-  // }, []);
-
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isFirstPopUpVisible, setIsFirstPopUpVisible] = useState(false);
 
   return (
     <div>
@@ -440,10 +406,14 @@ export function HomePage() {
             alt=""
           />
         </span>}
+        onOpen={() => setIsFirstPopUpVisible(true)}
+        onClose={() => setIsFirstPopUpVisible(false)}
       />
 
       <TimeoutPopup
-        delay={120}
+        // 100 + 20 bc of the first popup
+        delay={100}
+        isDisabled={isFirstPopUpVisible}
         title="Find Your Perfect Photo Expedition"
         // eslint-disable-next-line max-len
         description="Let us help you find the trip that matches your style, skill level, and bucket list. Tell us what you're looking for. Which messenger do you prefer?"

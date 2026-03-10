@@ -159,6 +159,8 @@ export function TourDetailsPage() {
   const [isErrorNotificationOpen, setIsErrorNotificationOpen] = useState(false);
   const [formValidError, setFormValidError] = useState(false);
 
+  const [isFirstPopUpVisible, setIsFirstPopUpVisible] = useState(false);
+
   const isActionBuyFormOpenEnabled = () => {
     return window.innerWidth < WIDTH_FOR_ACTIVE_BUY_FORM_OPEN;
   };
@@ -1102,6 +1104,8 @@ export function TourDetailsPage() {
           </span>
         }
         delay={20}
+        onOpen={() => setIsFirstPopUpVisible(true)}
+        onClose={() => setIsFirstPopUpVisible(false)}
       />
 
       <TimeoutPopup
@@ -1128,7 +1132,8 @@ export function TourDetailsPage() {
             />
           </span>
         }
-        delay={120}
+        delay={100}
+        isDisabled={isFirstPopUpVisible}
       />
 
       <CentralNotification

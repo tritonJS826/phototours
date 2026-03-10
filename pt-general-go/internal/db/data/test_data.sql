@@ -1662,12 +1662,12 @@ VALUES
   (tour3_id, 'Ending place', 'Venice Marco Polo Airport (VCE)'),
   
   -- Tour 4: New Zealand
-  (tour4_id, 'Duration', '10 days'),
-  (tour4_id, 'Group Size', '7 participants'),
+  (tour4_id, 'Duration', '21 days'),
+  (tour4_id, 'Group Size', '11 participants'),
   (tour4_id, 'Languages', 'English'),
   (tour4_id, 'Difficulty', 'Easy'),
-  (tour4_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)'),
-  (tour4_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)'),
+  (tour4_id, 'Tour starts', 'Auckland (AKL)'),
+  (tour4_id, 'Ending place', 'Auckland (AKL)'),
   
   -- Tour 5: Cyclades
   (tour5_id, 'Duration', '7 days'),
@@ -1780,6 +1780,11 @@ VALUES
   (tour4_id, 'Photo shoots'),
   (tour4_id, 'Photo workshops'),
   (tour4_id, 'Expert photo guide'),
+  (tour4_id, 'Hobbiton movie set tour'),
+  (tour4_id, 'Geothermal parks access'),
+  (tour4_id, 'Manupirua hot springs speedboat'),
+  (tour4_id, 'Milford Sound premium cruise'),
+  (tour4_id, 'Domestic flights (included for the full itinerary'),
   
   -- Tour 5: Cyclades
   (tour5_id, 'Accommodation'),

@@ -4,6 +4,7 @@ import {useBodyScrollLock} from "src/hooks/useBodyScrollLock";
 import styles from "src/components/TimeoutPopup/TimeoutPopup.module.scss";
 
 interface TimeoutPopupProps {
+  isDisabled?: boolean;
   delay: number;
   imgUrl: string;
   title: string;
@@ -12,12 +13,15 @@ interface TimeoutPopupProps {
   rightBtn: string | ReactElement;
   leftBtnCallback: () => void;
   rightBtnCallback: () => void;
+  onOpen?: () => void;
+  onClose?: () => void;
 }
 
 const MILLISECONDS_IN_SECOND = 1000;
 
 export function TimeoutPopup({
   delay,
+  isDisabled,
   imgUrl,
   title,
   description,
@@ -25,11 +29,22 @@ export function TimeoutPopup({
   rightBtn,
   leftBtnCallback,
   rightBtnCallback,
+  onOpen,
+  onClose,
 }: TimeoutPopupProps) {
   const [isVisible, setIsVisible] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
+    if (isDisabled) {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+
+      return;
+    }
+
     if (timerRef.current) {
       return;
     }
@@ -37,6 +52,7 @@ export function TimeoutPopup({
     timerRef.current = setTimeout(() => {
       timerRef.current = null;
       setIsVisible(true);
+      onOpen?.();
     }, delay * MILLISECONDS_IN_SECOND);
 
     return () => {
@@ -45,17 +61,19 @@ export function TimeoutPopup({
         timerRef.current = null;
       }
     };
-  }, [delay]);
+  }, [delay, isDisabled]);
 
   useBodyScrollLock(isVisible);
 
   const handleClose = () => {
     setIsVisible(false);
+    onClose?.();
     leftBtnCallback();
   };
 
   const handleRightBtn = () => {
     setIsVisible(false);
+    onClose?.();
     rightBtnCallback();
   };
 
