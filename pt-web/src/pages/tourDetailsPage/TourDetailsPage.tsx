@@ -1075,7 +1075,7 @@ export function TourDetailsPage() {
         title="Reserve Your Spot for the Tuscany Photo Tour"
         // eslint-disable-next-line max-len
         subtitle="Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity"
-        buttonText="Book Now"
+        buttonText="Contact Me"
         feedBackDescriptionCustomClass={styles.feedBackDescriptionLong}
       />
 
