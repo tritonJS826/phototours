@@ -62,17 +62,28 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 	if contactSearch != nil && len(contactSearch.Data) > 0 {
 		contactID = contactSearch.Data[0].ID
 		s.logger.Info("Found existing contact", zap.String("contactID", contactID))
+
+		if bookingRequest.SubscriptionType != "" && bookingRequest.SubscriptionType != "None" {
+			updateContact := &domain.ContactZoho{
+				SubscriptionType: []string{bookingRequest.SubscriptionType},
+			}
+			err = s.zohoRepository.UpdateContact(ctx, contactID, updateContact)
+			if err != nil {
+				s.logger.Warn("Failed to update contact subscription type in Zoho", zap.Error(err))
+			}
+		}
 	} else {
 		// Create new contact
 		contact := &domain.ContactZoho{
-			Email:           bookingRequest.Email,
-			LastName:        bookingRequest.Name,
-			Phone:           bookingRequest.Phone,
-			Language:        bookingRequest.Language,
-			Timezone:        bookingRequest.Timezone,
-			City:            bookingRequest.City,
-			Country:         bookingRequest.Country,
-			LastContactPage: bookingRequest.LastContactPage,
+			Email:            bookingRequest.Email,
+			LastName:         bookingRequest.Name,
+			Phone:            bookingRequest.Phone,
+			Language:         bookingRequest.Language,
+			Timezone:         bookingRequest.Timezone,
+			City:             bookingRequest.City,
+			Country:          bookingRequest.Country,
+			LastContactPage:  bookingRequest.LastContactPage,
+			SubscriptionType: []string{bookingRequest.SubscriptionType},
 		}
 		err = s.zohoRepository.CreateContact(ctx, contact)
 		if err != nil {

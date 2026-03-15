@@ -569,3 +569,58 @@ func (r *ZohoRepository) UpdateDealStage(ctx context.Context, dealID, newStage s
 
 	return nil
 }
+
+func (r *ZohoRepository) UpdateContact(
+	ctx context.Context,
+	contactID string,
+	contact *domain.ContactZoho,
+) error {
+
+	token, err := r.getValidAccessToken(ctx)
+	if err != nil {
+		return err
+	}
+
+	body := map[string][]*domain.ContactZoho{
+		"data": {contact},
+	}
+
+	jsonBody, err := json.Marshal(body)
+	if err != nil {
+		return fmt.Errorf("failed to marshal contact data: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(
+		ctx,
+		http.MethodPatch,
+		apiContacts+"/"+contactID,
+		bytes.NewReader(jsonBody),
+	)
+	if err != nil {
+		return fmt.Errorf("failed to create request: %w", err)
+	}
+
+	req.Header.Set("Authorization", "Zoho-oauthtoken "+token)
+	req.Header.Set("Content-Type", "application/json")
+
+	resp, err := r.httpClient.Do(req)
+	if err != nil {
+		return fmt.Errorf("update contact request failed: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusAccepted {
+		respBody, err := io.ReadAll(resp.Body)
+		if err != nil {
+			return fmt.Errorf("failed to read error response body: %w", err)
+		}
+		return fmt.Errorf(
+			"failed to update contact: %d %s - %s",
+			resp.StatusCode,
+			resp.Status,
+			string(respBody),
+		)
+	}
+
+	return nil
+}
