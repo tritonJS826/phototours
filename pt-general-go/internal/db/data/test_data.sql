@@ -176,61 +176,61 @@ VALUES
         {
           "day": 1,
           "plan": "ARRIVAL & FIRST PHOTOGRAPHY SESSION",
-          "description": "Meeting at Fiumicino Airport (Rome). To ensure smooth logistics for the group, we recommend arriving in the first half of the day. If you arrive a day early, we will gladly pick you up from your hotel in the morning.\n\nWe’ll begin our Tuscany photo adventure with a traditional Italian lunch at a local seaside restaurant on Lungomare di Salute. This hidden gem in Fiumicino is loved by locals for its authentic seafood, far from tourist crowds - a true Roman culinary experience.\n\nAfter lunch, we’ll drive into the heart of Tuscany and check into our base: the historic Poggio Covili estate. World-famous for its majestic cypress-lined avenue, this is one of the most iconic photography locations in the region. We’ll end the day with a relaxed sunset photography session on-site, capturing golden-hour light over the rolling hills.",
+          "description": "Meeting at Fiumicino Airport (Rome). To ensure smooth logistics for the group, we recommend arriving in the first half of the day. If you arrive a day early, we will gladly pick you up from your hotel in the morning.\n\nWe’ll kick off our Tuscany photo adventure with a traditional Italian lunch at a local seaside restaurant on Lungomare di Salute. This hidden gem in Fiumicino is famous for its authentic seafood, away from the typical tourist crowds—a true Roman culinary experience to start our journey.\n\nAfter lunch, we’ll drive to the heart of the region and check into our base: the historic Poggio Covili. This estate is one of the most iconic photography locations in Tuscany, world-renowned for its majestic cypress-lined avenue. We will conclude our first day with a sunset photography session on-site, capturing the golden hour over the rolling hills in a relaxed atmosphere.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886464/tuscan-spring___1337705_98x132_200dpi_217-Edit_zcc3nn.avif"
         },
         {
           "day": 2,
           "plan": "PIENZA PANORAMAS & MADONNA DI VITALETA",
-          "description": "At sunrise, we head to one of the most breathtaking viewpoints in Italy - the panoramic overlook of Pienza. This UNESCO-listed Val d’Orcia landscape offers the quintessential Tuscan view. If morning mist appears, you’ll capture truly ethereal, world-class images.\n\nPhotography Tip: Telephoto lenses (up to 400mm) are ideal here for compressing the rolling hills and emphasizing texture.\n\nAfter the shoot, we’ll enjoy a classic Italian breakfast - cappuccino and dolce - in Pienza’s central square. You’ll have time for a relaxed walk through the Renaissance town redesigned by Pope Pius II and the chance to taste the famous Pecorino di Pienza.\n\nFollowing a midday rest at our villa, the evening is dedicated to photographing the iconic Chapel of Madonna di Vitaleta. A scenic 10-minute walk through the fields brings us to the chapel for a sunset shoot. We’ll finish the day with a gourmet dinner and well-earned relaxation.",
+          "description": "At sunrise, we head to what is arguably the most breathtaking vantage point in Italy: the panoramic overlook of Pienza. This location offers the quintessential view of the Val d’Orcia, a UNESCO World Heritage site. If we are blessed with the famous Tuscan morning mist, you will capture truly ethereal, world-class images of the rolling hills.\n\nPhotography Tip: To capture the scale and texture of the valley, we recommend using telephoto lenses (up to 400mm) for beautiful background compression.\n\nAfter our morning photography session, we’ll enjoy a classic Italian breakfast—cappuccino and dolce—in the town’s central square. You’ll then have time for a leisurely stroll through the Renaissance streets of Pienza, a city famously redesigned by Pope Pius II. Don''t miss the chance to taste the local Pecorino di Pienza, widely considered the finest sheep’s cheese in the world.\n\nAfter a midday rest at our villa, the evening is dedicated to one of the most iconic landmarks of Tuscany: the Chapel of Madonna di Vitaleta. A scenic 10-minute walk through the fields leads us directly to the chapel for a sunset shoot. We’ll wrap up the day with a gourmet dinner and well-deserved relaxation.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8829-1_86x56_x5eivl.avif"
         },
         {
           "day": 3,
-          "plan": "PODERE BELVEDERE & TUSCAN GASTRONOMY",
-          "description": "We start the day at the most photographed location in Tuscany - Podere Belvedere. This legendary villa, often wrapped in morning fog, is best captured at sunrise when the valley glows with soft golden light.\n\nAfter the shoot, we’ll enjoy coffee in the medieval town of San Quirico d’Orcia before returning to the villa for a midday break.\n\nIn the evening, we revisit Madonna di Vitaleta to photograph the chapel from new perspectives. Working efficiently, we’ll explore both wide-angle compositions and telephoto details as the colors of the sky change.\n\nDinner is at Fonte Alla Vena, one of our favorite local trattorias. Expect a true Tuscan country soul: rustic interiors, homemade olive oil, seasonal vegetables, traditional pici pasta, and Cinta Senese pork prepared from family recipes shared by Luciano, the owner.",
+          "plan": "THE ICONIC PODERE BELVEDERE & TUSCAN GASTRONOMY",
+          "description": "We begin our day at what is perhaps the most photographed location in all of Tuscany — Podere Belvedere. This truly iconic villa, surrounded by rolling hills and morning fog, is a masterpiece of light and shadow. While it looks stunning at any time, we will arrive for sunrise to capture the golden glow hitting the valley floor.\n\nFollowing the morning session, we’ll head to the charming medieval town of San Quirico d’Orcia for a fresh Italian coffee. After a relaxing midday break at our villa, the evening will be dedicated to capturing the legendary Madonna di Vitaleta chapel from new perspectives. By moving efficiently through the fields, we can experiment with both wide-angle compositions and telephoto details, capturing the chapel against the changing colors of the Tuscan sky.\n\nWe will conclude the day with an authentic culinary experience at Fonte Alla Vena, one of our favorite local trattorias. This cozy spot embodies the "country soul" of Italy, featuring rustic wooden beams and homemade olive oil. You’ll enjoy honest, farm-to-table food: seasonal vegetables, traditional Pici pasta, and the famous Cinta Senese pork, prepared according to family recipes shared by the owner, Luciano.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886466/tuscan-spring___A8B9644_49%D1%8573-200dpi_105-Edit_ebbyoe.avif"
         },
         {
           "day": 4,
-          "plan": "SAN GIMIGNANO & SIENA",
-          "description": "Our earliest start brings us on a 1.5-hour drive to photograph sunrise over San Gimignano - the famous “Medieval Manhattan” with its iconic stone towers.\n\nAfter the shoot, we’ll stop at Marcella’s renowned chocolaterie for coffee and artisan dolci. We’ll then stroll through the historic streets, visit the Duomo with Ghirlandaio’s frescoes, and climb the Torre Municipale for sweeping views of the Elsa Valley.\n\nNext, we travel to Siena for lunch at the historic Taverna San Giuseppe, famous for its tagliolini with truffles. The afternoon is dedicated to exploring Siena’s medieval alleys and the magnificent Siena Duomo - one of the most striking Gothic cathedrals in Italy.\n\nWe’ll photograph the city from a panoramic terrace, relax at Piazza del Campo - home of the Palio horse race - and return to our villa for a quiet dinner at a local trattoria.",
+          "plan": "SAN GIMIGNANO: THE MEDIEVAL MANHATTAN & SIENA’S GOTHIC SPLENDOR",
+          "description": "Today calls for our earliest start as we take our longest morning drive (approx. 1.5 hours) to witness the sunrise over San Gimignano. Known as the "Medieval Manhattan," this UNESCO World Heritage site is famous for its 13 iconic stone towers that pierce the Tuscan skyline.\n\nAfter our sunrise photography session, we’ll visit Marcella’s renowned chocolaterie for a morning coffee and artisan dolci. We’ll then take a slow, atmospheric walk through the town’s ancient streets, visiting the Duomo to admire Ghirlandaio’s frescoes and climbing the Torre Municipale for spectacular panoramic views of the Elsa Valley.\n\nNext, we head to Siena, widely considered the most beautiful medieval city in Italy. We’ll enjoy lunch at the historic Taverna San Giuseppe, famous for their legendary tagliolini with truffles. The afternoon is dedicated to exploring Siena’s labyrinthine alleys and the breathtaking Siena Duomo. This Gothic masterpiece is so striking that composer Richard Wagner was reportedly moved to tears by its ornate façade.\n\nTo capture the city''s scale, we’ll ascend to a panoramic terrace for high-angle urban photography. We’ll conclude our visit with a relaxing moment at the legendary Piazza del Campo, the shell-shaped square home to the world-famous Palio horse race. We’ll then return to our villa for a quiet dinner at a local trattoria.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886470/tuscan-spring___IGP6527_Panorama-Edit_copy_a2einq.avif"
         },
         {
           "day": 5,
-          "plan": "MACCIANO MIST & CETONA",
-          "description": "Sunrise finds us in the valley near Macciano - rolling green fields, solitary farmhouses, and, if we’re lucky, atmospheric morning mist that defines springtime Tuscany.\n\nWe’ll photograph from several classic viewpoints, including the iconic zigzag cypress road at La Foce. Afterwards, we head to the non-touristic town of Cetona for coffee and street photography among its white stone streets.\n\nA special highlight may be a visit to the private gallery of renowned Tuscan artists Tazio Angellini and Fausta Ottolini, housed in a 10th-century cantina. If conditions allow, we may enjoy a glass of prosecco with Fausta.\n\nAfter lunch at the town’s best restaurant, we return to Podere Belvedere for a sunset shoot, capturing the estate in dramatically different light.",
+          "plan": "MACCIANO MIST & THE HIDDEN GEMS OF CETONA",
+          "description": "Our sunrise photography session takes place in the picturesque valley near Macciano. Here, you’ll find the very essence of springtime Tuscany: vast, rolling green fields, solitary farmhouses, and—with a bit of luck—the ethereal morning mist that makes for award-winning landscape shots.\n\nWe will continue capturing the region’s beauty from several strategic vantage points, including the iconic zigzag cypress road at La Foce. Afterward, we’ll escape the tourist trail and head to the charming town of Cetona. Known for its immaculate white stone streets and authentic atmosphere, it’s the perfect spot for a morning coffee and some street photography.\n\nA special highlight of the day is a potential visit to the private gallery of renowned Tuscan artists Tazio Angellini and Fausta Ottolini. Their studio and apartments are tucked away in a magnificent 10th-century cantina. If our hosts are feeling up to visitors, we might enjoy a glass of chilled prosecco with Fausta—a rare glimpse into the local art scene that has reached as far as New York’s top exhibitions.\n\nAfter a gourmet lunch at the town’s finest restaurant, we return to the field. For sunset, we’ll revisit the legendary Podere Belvedere to capture it in a different light, refining our compositions of this world-famous landmark.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886477/tuscan-spring__Untitled_Panorama2_114%D1%85249-200dpi_299-Edit_tebrjd.avif"
         },
         {
           "day": 6,
-          "plan": "MONTALCINO & BRUNELLO",
-          "description": "We greet sunrise overlooking Montalcino, capturing panoramic views of Val d’Orcia bathed in warm morning light. This hilltop town is the birthplace of Brunello di Montalcino - the king of Italian red wines.\n\nAfter a walk through town, we’ll visit the medieval fortress La Fortezza for an exclusive tasting of top Brunellos curated by the local winemakers’ association.\n\nFollowing a midday rest, we explore the Abbey of Sant’Antimo, founded by Charlemagne. This Romanesque masterpiece offers exceptional architectural photography, and if we’re lucky, we may hear monks’ Gregorian chants.\n\nThe afternoon continues with visits to boutique wine producers before ending the day with a sunset photography session near Torrenieri.",
+          "plan": "MONTALCINO: BRUNELLO WINES & ANCIENT ABBEYS",
+          "description": "We begin our sunrise photography session on the hilltops overlooking the town of Montalcino. From this elevated vantage point, you’ll capture breathtaking panoramic views of the Val d’Orcia bathed in golden light. Montalcino is world-famous as the birthplace of Brunello di Montalcino, the "King of Red Wines" crafted from 100% Sangiovese grapes.\n\nAfter our morning shoot and a walk through the town’s medieval streets, we’ll head to the legendary La Fortezza. Inside this 14th-century fortress, we’ll enjoy an exclusive tasting of the finest Brunellos curated by the local winemakers'' association.\n\nFollowing a midday siesta, we’ll visit the spiritual heart of the region: the Abbey of Sant’Antimo. Founded by Charlemagne in the 8th century, this Romanesque masterpiece is a prime location for architectural photography. If we are lucky, the ethereal sound of monks'' Gregorian chants will echo through the stone vaults during our visit.\n\nThe afternoon is dedicated to a deeper "wine journey," visiting boutique Brunello producers for atmospheric tastings and a look at the traditional aging process. We will conclude this sensory day with a sunset photo session in the rolling hills near Torrenieri, capturing the dramatic shadows of the late afternoon sun.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886464/tuscan-spring__180R1797_j6wetk.avif"
         },
         {
           "day": 7,
-          "plan": "PITIGLIANO & SATURNIA",
-          "description": "At sunrise, we photograph Pitigliano - a dramatic town rising directly from a massive tuff cliff. Its seamless blend of nature and medieval architecture makes it one of Italy’s most striking photographic subjects.\n\nAfterwards, we explore the town’s narrow streets, visit the Duomo, and descend into the Etruscan catacombs carved into volcanic rock. We’ll visit a local family’s underground chamber to taste artisanal salsa with regional cheeses.\n\nBy midday, we relax at the Saturnia Hot Springs (Cascate del Mulino), enjoying the turquoise thermal pools.\n\nAt sunset, we photograph the rugged town of Sorano, hanging above a deep ravine. Dinner follows at Sette di Vino in Pienza - a cozy osteria celebrated for its cheese-driven Tuscan cuisine.",
+          "plan": "PITIGLIANO: THE TUFF CITY & SATURNIA HOT SPRINGS",
+          "description": "Today, we set out early to witness the sunrise over the breathtaking ancient town of Pitigliano. Perched dramatically on a massive tuff cliff, the town appears to grow directly out of the stone—a seamless integration of nature and medieval architecture. It is one of the most striking subjects for landscape and travel photography in all of Italy.\n\nAfter our sunrise session, we’ll enjoy a slow-paced walk through the narrow alleys, which offer endless opportunities for street photography. We’ll visit the historic Duomo and descend into the fascinating Etruscan catacombs. This vast underground city, carved into the volcanic rock by ancient inhabitants, still serves as private cellars for the locals today. We’ll even visit a local family''s chamber to taste artisanal salsa paired with regional cheeses in an authentic, centuries-old setting.\n\nBy midday, we’ll head to the world-famous Saturnia Hot Springs (Cascate del Mulino). These natural, terraced thermal pools with turquoise water are perfect for a relaxing soak and some unique lifestyle photography.\n\nFor sunset, we’ll capture another medieval marvel: Sorano. While it shares the tuff-rock foundation of Pitigliano, Sorano has a more rugged, dramatic character, hanging over a deep abyss. We’ll conclude the day with dinner at Sette di Vino in Pienza, an intimate osteria celebrated for its honest, cheese-driven Tuscan cuisine and cozy atmosphere.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886470/tuscan-spring__IMGP0277_68%D1%8593-200dpi-Edit_fful6e.avif"
         },
         {
           "day": 8,
-          "plan": "CRETE SENESI & PODERE BACCOLENO",
-          "description": "We begin the day near the quiet village of Mucigliano, photographing sunrise among classic Tuscan landscapes still untouched by mass tourism.\n\nOn our return, we travel through the Crete Senesi, famous for its lunar-like clay hills and minimalist ridges. We’ll stop frequently to photograph soft curves, long horizons, and dramatic light.\n\nAfter a midday siesta, we head to one of Tuscany’s most iconic locations: Podere Baccoleno. At sunset, we’ll photograph the legendary S-shaped cypress road - a timeless symbol of the Tuscan countryside.",
+          "plan": "CRETE SENESI & THE ICONIC PODERE BACCOLENO",
+          "description": "WWe begin our day greeting the sunrise near the secluded village of Mucigliano. This hidden gem offers classic Tuscan landscapes that remain largely undiscovered by mass tourism, providing us with a tranquil and exclusive environment for our morning photography session.\n\nOn our return journey, we will traverse the Crete Senesi, home to some of the most scenic roads in Italy. This region is famous for its unique, lunar-like clay hills and minimalist ridges. We will make frequent stops to capture the rolling horizons, soft geometric curves, and the dramatic interplay of light and shadow that defines this area.\n\nAfter a relaxing midday siesta at our villa, we head out for a spectacular sunset shoot at the iconic Podere Baccoleno. This is home to the world-famous winding cypress-lined road—an elegant S-curve that has become a symbol of Tuscany. It is undoubtedly one of the most rewarding locations for landscape photographers seeking that perfect, timeless shot of the Italian countryside.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__Untitled_Panorama1_65%D1%8587-200dpi_100-Edit_sprpmc.avif"
         },
         {
           "day": 9,
-          "plan": "BAGNO VIGNONI & SAN GALGANO",
-          "description": "We welcome sunrise in Bagno Vignoni, famous for its ancient thermal pool and beloved by Andrei Tarkovsky, who filmed scenes of *Nostalghia* here. Rising steam at dawn creates a dreamlike atmosphere for fine-art photography.\n\nAfter cappuccino overlooking the water, we visit Sarteano for a family-run olive oil tasting and Radicofani to photograph an original Andrea della Robbia majolica.\n\nLater, we relax at the white limestone hot springs of Bagni San Filippo. In the evening, we photograph the roofless Gothic abbey of San Galgano and see the legendary sword in the stone. We conclude with a grand farewell dinner at one of the region’s finest restaurants.",
+          "plan": "BAGNO VIGNONI: CINEMATIC MIST & THE SWORD IN THE STONE",
+          "description": "We welcome the sunrise in the enchanting village of Bagno Vignoni, home to the region''s oldest thermal springs. This location is steeped in cinematic history as the favorite Tuscan retreat of director Andrei Tarkovsky, who filmed the hauntingly beautiful final scenes of Nostalghia here. The steam rising from the central thermal pool at dawn creates a dreamlike atmosphere for fine-art photography.\n\nAfter our morning cappuccino overlooking the historic waters, we’ll explore two off-the-beaten-path gems:\n\nSarteano: We’ll visit a small family-run farm for an authentic olive oil tasting, sampling freshly pressed oil.\n\nRadicofani: A hilltop town where we’ll visit a local church to photograph an original Andrea della Robbia majolica masterpiece.\n\n For relaxation, we’ll head to the white limestone formations of the Bagni San Filippo hot springs.If the group’s creative energy is still high, our final evening session will be at the extraordinary Abbey of San Galgano.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886468/tuscan-spring___IGP1721-Edit_copy_qpch7f.avif"
         },
         {
           "day": 10,
           "plan": "FINAL SUNRISE & DEPARTURE",
-          "description": "For our final morning, we choose the sunrise location based on the latest weather forecast to capture the most dramatic closing shots of the journey.\n\nAfter the shoot and a final Tuscan breakfast, we drive to Rome, arriving at Fiumicino Airport around 12:00. We recommend booking return flights for the second half of the day.\n\nGuests extending their stay will be dropped off in central Rome to continue exploring the Eternal City at their own pace.",
+          "description": "For our final morning in Italy, we remain flexible: we will select the sunrise photography location based on the latest weather forecast to ensure we capture the most dramatic light and conditions for our closing shots. This "last call" for photography is the perfect opportunity to revisit a favorite spot or discover a new hidden angle.\n\nAfter the morning session and a final Tuscan breakfast, we will head back towards the capital. We will arrive at Rome Fiumicino Airport (FCO) at approximately 12:00 PM. We recommend scheduling your return flight for the second half of the day to allow for a stress-free departure.\n\nFor those planning to extend their Italian holiday, we will provide a drop-off in the heart of Rome, where you can continue exploring the Eternal City at your own pace.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886464/tuscan-spring__400mm-f5_6-1s-iso200_ra1vyo.avif"
         }
       ]}',
@@ -326,19 +326,19 @@ VALUES
       {
         "day": 9,
         "plan": "FEZ: MEDINA LABYRINTHS & THE LEGENDARY TANNERIES",
-        "description": "On the ninth day of our Morocco photo tour, we journey toward Fez (460 km, approx. 6.5 hours), traveling through the scenic vistas of the Atlas Mountains. Fez is the soul of ancient Morocco-a sprawling, living labyrinth where time has stood still for centuries. The Medina of Fez, a UNESCO World Heritage site, offers a sensory overload of spice aromas, craft workshops, and bustling narrow streets perfect for candid street photography.\n\nThe highlight for every photographer is the city’s world-famous tanneries. From the surrounding balconies, you’ll capture a breathtaking scene: dozens of stone vats filled with vibrant dyes-from saffron yellow to deep indigo. This is a raw, authentic look at traditional craftsmanship, where workers treat hides by hand exactly as their ancestors did. The contrast between the bright pigments, the ancient vats, and the hardworking silhouettes provides some of the most powerful and iconic images of Morocco.\n\nBeyond the leather workshops, the entire city serves as a street photography masterclass. Dramatic beams of light pierce the dark, covered alleys, creating theatrical high-contrast scenes. Whether you are framing a shopkeeper in a tiny stall or an elderly man in a traditional djellaba, Fez allows you to capture Morocco without embellishment-real life and ancient artistry revealed through your lens.",
+        "description": "On the ninth day of our Morocco photo tour, we journey toward Fez (460 km, approx. 6.5 hours), traveling through the scenic vistas of the Atlas Mountains. Fez is the soul of ancient Morocco—a sprawling, living labyrinth where time has stood still for centuries. The Medina of Fez, a UNESCO World Heritage site, offers a sensory overload of spice aromas, craft workshops, and bustling narrow streets perfect for candid street photography.\n\nThe highlight for every photographer is the city’s world-famous tanneries. From the surrounding balconies, you’ll capture a breathtaking scene: dozens of stone vats filled with vibrant dyes—from saffron yellow to deep indigo. This is a raw, authentic look at traditional craftsmanship, where workers treat hides by hand exactly as their ancestors did. The contrast between the bright pigments, the ancient vats, and the hardworking silhouettes provides some of the most powerful and iconic images of Morocco.\n\nBeyond the leather workshops, the entire city serves as a street photography masterclass. Dramatic beams of light pierce the dark, covered alleys, creating theatrical high-contrast scenes. Whether you are framing a shopkeeper in a tiny stall or an elderly man in a traditional djellaba, Fez allows you to capture Morocco without embellishment—real life and ancient artistry revealed through your lens.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429914/morocco___1506791-Edit_copy_qfpygh.avif"
       },
       {
         "day": 10,
         "plan": "THE MEDINA OF FEZ: A MASTERCLASS IN LIGHT & SHADOW",
-        "description": "Walking through the Medina of Fez is like stepping back in time. In this labyrinth of thousands of alleyways, the modern world disappears, replaced by the rhythmic sounds of artisan workshops and the scents of mint, leather, and spices. For a street photographer, it is an absolute paradise where every corner offers a new story: from an elderly man in a traditional djellaba to vibrant textile shops.\n\nThe true magic of Fez lies in its light. In the narrow, sun-drenched passages, light breaks through from above in sharp, cinematic beams. These slices of brightness transform the chaotic medina into a series of graphic compositions. This is the perfect environment for minimalist street photography, where you can capture a lone silhouette frozen in a rectangle of light against the deep shadows of the ancient walls.\n\nA walk through the medina becomes a creative game: you move with the light, waiting for the perfect moment when the chaos of the city aligns into a perfectly composed frame. Fez is a city of contrasts-vibrant yet austere, chaotic yet rhythmic-offering a profound experience for any travel photographer.",
+        "description": "Walking through the Medina of Fez is like stepping back in time. In this labyrinth of thousands of alleyways, the modern world disappears, replaced by the rhythmic sounds of artisan workshops and the scents of mint, leather, and spices. For a street photographer, it is an absolute paradise where every corner offers a new story: from an elderly man in a traditional djellaba to vibrant textile shops.\n\nThe true magic of Fez lies in its light. In the narrow, sun-drenched passages, light breaks through from above in sharp, cinematic beams. These slices of brightness transform the chaotic medina into a series of graphic compositions. This is the perfect environment for minimalist street photography, where you can capture a lone silhouette frozen in a rectangle of light against the deep shadows of the ancient walls.\n\nA walk through the medina becomes a creative game: you move with the light, waiting for the perfect moment when the chaos of the city aligns into a perfectly composed frame. Fez is a city of contrasts—vibrant yet austere, chaotic yet rhythmic—offering a profound experience for any travel photographer.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429914/morocco___1506791-Edit_copy_qfpygh.avif"
       },
       {
         "day": 11,
         "plan": "CHEFCHAOUEN: THE BLUE PEARL OF THE RIF MOUNTAINS",
-        "description": "On the eleventh day of our Morocco photography tour, we journey to the enchanting city of Chefchaouen (200 km, approx. 3.5 hours). Nestled deep in the Rif Mountains, this iconic \"Blue City\" is world-renowned for its striking azure-washed streets, walls, and doors. Life here moves at a tranquil, unhurried pace, making every alleyway feel like a meticulously composed frame.\n\nA walk through the Chefchaouen Medina is a masterclass in color and minimalist photography. The interplay of blue-and-white walls, vibrant flower pots, and ancient wooden doors provides endless inspiration for creative compositions. You will capture the city’s serene atmosphere through the soft play of sunlight and deep shadows, focusing on elegant details: a lone silhouette against an indigo backdrop, a cat resting on stone steps, or the bright splash of a basket of oranges.\n\nIn Chefchaouen, the shots find you. We will practice candid street photography, capturing local artisans at work and children playing in the winding stairways. This city is a perfect blend of harmony and visual therapy, ensuring that every corner you turn offers the potential for the highlight photo of your entire Morocco photo adventure.",
+        "description": "On the eleventh day of our Morocco photography tour, we journey to the enchanting city of Chefchaouen (200 km, approx. 3.5 hours). Nestled deep in the Rif Mountains, this iconic "Blue City" is world-renowned for its striking azure-washed streets, walls, and doors. Life here moves at a tranquil, unhurried pace, making every alleyway feel like a meticulously composed frame.\n\nA walk through the Chefchaouen Medina is a masterclass in color and minimalist photography. The interplay of blue-and-white walls, vibrant flower pots, and ancient wooden doors provides endless inspiration for creative compositions. You will capture the city’s serene atmosphere through the soft play of sunlight and deep shadows, focusing on elegant details: a lone silhouette against an indigo backdrop, a cat resting on stone steps, or the bright splash of a basket of oranges.\n\nIn Chefchaouen, the shots find you. We will practice candid street photography, capturing local artisans at work and children playing in the winding stairways. This city is a perfect blend of harmony and visual therapy, ensuring that every corner you turn offers the potential for the highlight photo of your entire Morocco photo adventure.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429919/morocco___1518289_Topaz-Edit_ygonku.avif"
       },
       {
@@ -439,7 +439,7 @@ VALUES
       },
       {
         "question": "5. Are flights included in the cost of the Venice photo expedition?",
-        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour price focuses on your premium experience within the city:\n\n• Accommodation: Lodging in a historic Venetian loft (twin-share with your partner or another participant of the same gender).\n- Expert Mentoring: All guided shooting sessions, workshops, on-site mentoring, and post-processing masterclasses.\n\nFor details on any additional personal expenses during the carnival, please reach out to our management team."
+        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour price focuses on your premium experience within the city:\n\n• Accommodation: Lodging in a historic Venetian loft (twin-share with your partner or another participant of the same gender).\n•Expert Mentoring: All guided shooting sessions, workshops, on-site mentoring, and post-processing masterclasses.\n\nFor details on any additional personal expenses during the carnival, please reach out to our management team."
       },
       {
         "question": "6. What exactly is covered in the Venice Carnival photo tour price?",
@@ -458,19 +458,19 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771393839/venice_2_1_ghkmly.avif'),
 
    (tour4_id, 'new-zealand-photo-tour', 'New Zealand',
-      'Discover the stunning landscapes of New Zealand from fjords to mountains. Capture the dramatic beauty of Milford Sound, the Southern Alps, and pristine lakes. This 10-day photography adventure features expert guidance, golden hour sessions, and diverse landscapes from glaciers to beaches. Small group ensures personalized instruction.',
+      'Embark on the ultimate New Zealand Photo Tour. This comprehensive workshop covers the most iconic landscapes of both the North and South Islands. From the emerald lakes of Tongariro to the majestic peaks of Mount Cook and the mystical Milford Sound, capture the breathtaking diversity of the ''Land of the Long White Cloud.'' Join our photography expedition!',
      'EASY', 4100.00,
      '{"days":[
       {
         "day": "1–2",
         "plan": "THE NORTH ISLAND. AUCKLAND: THE CITY OF SAILS & MURIWAI COAST",
-        "description": "Our New Zealand photography journey begins in Auckland, the country’s vibrant metropolitan heart. Known worldwide as the \"City of Sails\" due to the thousands of yachts dotting its harbors, Auckland is uniquely positioned on a narrow isthmus between the Tasman Sea and the Pacific Ocean.\n\nWe will spend two nights here to adjust to the new time zone and capture the urban landscape from the city’s premier viewpoints. For our first sunset session, we head north to Muriwai Regional Park. At Otakamiro Point, you will witness the breathtaking sight of a massive gannet colony perched above the crashing surf. As the sun sinks into the Tasman Sea-painting the sky in hues of gold, rose, and copper-these elegant birds provide an incredible subject for wildlife photography. Witnessing this pristine ecosystem in the soft, golden light is the perfect introduction to the natural wonders of your New Zealand photo tour.",
+        "description": "Our New Zealand photography journey begins in Auckland, the country’s vibrant metropolitan heart. Known worldwide as the "City of Sails" due to the thousands of yachts dotting its harbors, Auckland is uniquely positioned on a narrow isthmus between the Tasman Sea and the Pacific Ocean.\n\nWe will spend two nights here to adjust to the new time zone and capture the urban landscape from the city’s premier viewpoints. For our first sunset session, we head north to Muriwai Regional Park. At Otakamiro Point, you will witness the breathtaking sight of a massive gannet colony perched above the crashing surf. As the sun sinks into the Tasman Sea—painting the sky in hues of gold, rose, and copper—these elegant birds provide an incredible subject for wildlife photography. Witnessing this pristine ecosystem in the soft, golden light is the perfect introduction to the natural wonders of your New Zealand photo tour.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430004/new-zealand__IMG_1236-Dehancer_copy_3_ncthb6.avif"
       },
       {
         "day": "3",
         "plan": "THE NORTH ISLAND. HOBBITON AT SUNRISE & THE WAITOMO GLOWWORM CAVES",
-        "description": "Day three of our New Zealand expedition begins with a scenic drive to the heart of the Waikato region. Our destination is the world-famous Hobbiton Movie Set. Unlike standard tourist groups, we prioritize private sunrise access, allowing you to capture the Shire in the softest morning light. Imagine the first rays of sun illuminating the rolling green hills and cozy Hobbit holes, with smoking chimneys and dew-covered garden gates creating a true cinematic masterpiece.\n\nIn the afternoon, we transition from the pastoral beauty of the Shire to the subterranean wonder of the Waitomo Glowworm Caves. We descend into a silent, pitch-black world where the ceiling suddenly ignites with thousands of tiny, bioluminescent blue lights. These New Zealand glowworms create a living \"starry sky\" beneath the earth, their glow reflecting off the still cave waters like a shimmering mirror. Surrounded by ancient stalactites, this alien-like world offers some of the most surreal and unique opportunities for your New Zealand photography portfolio.",
+        "description": "Day three of our New Zealand expedition begins with a scenic drive to the heart of the Waikato region. Our destination is the world-famous Hobbiton Movie Set. Unlike standard tourist groups, we prioritize private sunrise access, allowing you to capture the Shire in the softest morning light. Imagine the first rays of sun illuminating the rolling green hills and cozy Hobbit holes, with smoking chimneys and dew-covered garden gates creating a true cinematic masterpiece.\n\nIn the afternoon, we transition from the pastoral beauty of the Shire to the subterranean wonder of the Waitomo Glowworm Caves. We descend into a silent, pitch-black world where the ceiling suddenly ignites with thousands of tiny, bioluminescent blue lights. These New Zealand glowworms create a living "starry sky" beneath the earth, their glow reflecting off the still cave waters like a shimmering mirror. Surrounded by ancient stalactites, this alien-like world offers some of the most surreal and unique opportunities for your New Zealand photography portfolio.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429989/new-zealand__IMG_0727-Dehancer_copy_3_hkjn1k.avif"
       },
       {
@@ -524,31 +524,31 @@ VALUES
       {
         "day": "16",
         "plan": "THE SOUTH ISLAND. LAKE WANAKA: THE LONE WILLOW & ALPINE SERENITY",
-        "description": "This day begins with a 3-hour journey toward Lake Wanaka. As we traverse the heart of the island, we’ll pass through idyllic high-country landscapes where emerald valleys and grazing sheep offer classic New Zealand vistas at every turn.\n\nWe have a dedicated overnight stay in Wanaka with a singular focus: capturing the world-famous \"That Wanaka Tree.\" This solitary willow, growing directly out of the lake’s crystal-clear waters just meters from the shore, is a masterpiece of natural symmetry.\n\nThe silhouette of the tree against the backdrop of the Southern Alps creates a graphic, serene composition. At sunrise, we often catch perfect mirror-like reflections, while the sunset provides a soft, tranquil glow. Regardless of the weather, this location offers atmospheric shots stripped of all distractions.",
+        "description": "This day begins with a 3-hour journey toward Lake Wanaka. As we traverse the heart of the island, we’ll pass through idyllic high-country landscapes where emerald valleys and grazing sheep offer classic New Zealand vistas at every turn.\n\nWe have a dedicated overnight stay in Wanaka with a singular focus: capturing the world-famous "That Wanaka Tree." This solitary willow, growing directly out of the lake’s crystal-clear waters just meters from the shore, is a masterpiece of natural symmetry.\n\nThe scene is a dream for those who love minimalist fine-art photography. The silhouette of the tree against the backdrop of the Southern Alps creates a graphic, serene composition. At sunrise, we often catch perfect mirror-like reflections, while the sunset provides a soft, tranquil glow. Regardless of the weather, this location offers atmospheric shots stripped of all distractions. Whether shrouded in mountain mist or bathed in golden light, Lake Wanaka never fails to deliver a portfolio-defining image.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif"
       },
       {
         "day": "17-18",
         "plan": "THE SOUTH ISLAND. FOX GLACIER: ICE ARCHITECTURE & THE MIRROR LAKE",
-        "description": "We head to the rugged West Coast of the South Island, arriving at Fox Glacier (Te Moeka o Tuawe) after a scenic drive. This region is a rare natural laboratory where you can witness the raw power of geological forces. Here, the glacier descends into the lush greenery of the rainforest, creating a striking contrast between alpine ice and dense bush.\n\nHighlights include the Fox Glacier Viewpoint and Lake Matheson, known worldwide as the \"Mirror Lake.\" On a calm day, the lake offers a flawless reflection of Mount Cook (Aoraki) and Mount Tasman. We will time our visit for a sunset session to capture that perfect alpine glow.\n\nFor those seeking the ultimate perspective, an optional helicopter flight with a glacier landing (Heli-hike) can be arranged, providing unparalleled access to pristine upper ice fields.",
+        "description": "We head to the rugged West Coast of the South Island, arriving at Fox Glacier (Te Moeka o Tuawe) after a scenic drive. This region is a rare natural laboratory where you can witness the raw power of geological forces. Here, the glacier descends into the lush greenery of the rainforest, creating a striking contrast: the bite of alpine air paired with the fragrant humidity of the bush.\n\nYou will capture the intricate architecture of the ice — deep blue crevasses and silt-grey flows framed by towering mountain walls. Our highlights include:\n\nFox Glacier Viewpoint: A short walk offering a direct, unadorned view of the glacier’s tongue. It is a minimalist masterclass of stone, ice, and sky.\n\nLake Matheson: Known worldwide as the "Mirror Lake," this is a bucket-list location for photographers. On a calm day, the lake offers a flawless reflection of Mount Cook (Aoraki) and Mount Tasman. We will time our visit for a sunset session to capture that perfect, symmetrical alpine glow.\n\nThe surrounding area is a photographer''s playground of waterfalls and moss-draped "goblin forests." For those seeking the ultimate perspective, we can arrange an optional helicopter flight with a glacier landing (Heli-hike), providing unparalleled access to the pristine upper ice fields. This juxtaposition of flora and massive ice flows is what gives Fox Glacier its unique energy for your New Zealand photography portfolio.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430001/new-zealand__IMG_2673-HDR-Dehancer_copy_3_vwuar6.avif"
       },
       {
         "day": "19",
         "plan": "THE SOUTH ISLAND. THE WILD WEST COAST: PUNAKAIKI & MOTUKIEKIE",
-        "description": "Today we journey north to Paparoa National Park, where dense rainforest meets the crashing Tasman Sea.\n\nOur primary destination is Punakaiki and the Pancake Rocks. During high tide, the ocean surges into vertical vents, creating powerful blowholes that blast saltwater into the air—an extraordinary subject for dynamic coastal photography.\n\nFor our evening session, we visit Motukiekie Beach, famous for its sea stacks and natural arches rising from the Pacific. At low tide, vibrant starfish appear along the rocks, offering vivid foreground elements for your compositions.\n\nNote on Safety: Motukiekie is entirely tide-dependent and requires careful timing. If conditions allow, we will capture sunset light reflecting across mirror-like wet sands.",
+        "description": "Today we journey north to Paparoa National Park, the rugged heart of the West Coast. This is a place where dense, primeval rainforest meets the crashing Tasman Sea, creating a canvas of constant motion and raw energy.\n\nOur primary destination is Punakaiki and the Pancake Rocks. These ancient limestone formations, resembling giant stacks of pancakes, are a geological wonder. During high tide, the ocean surges into vertical vents, creating thunderous blowholes that blast saltwater high into the air. We will time our visit for sunset to capture the high-energy drama of the spray against the shifting light.\n\nFor our evening session, we have a spectacular alternative: Motukiekie Beach. This is a truly wild stretch of coastline, famous for its majestic sea stacks and natural stone arches rising from the Pacific. At low tide, the receding water reveals vibrant starfish clinging to the dark rocks—vivid crimson and orange accents that provide a perfect foreground for your landscape photography.\n\nNote on Safety: Motukiekie is a "live" location that demands respect. It is entirely tide-dependent and unpredictable. If the tidal window allows, we will capture the warm sunset light as it hits the sea stacks and reflects off the vast, mirror-like wet sands, offering some of the most powerful rewards in your New Zealand photography portfolio.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772024062/IMG_3780-Pano-Dehanc.jpg_yvcsa2.avif"
       },
       {
         "day": "20",
         "plan": "THE SOUTH ISLAND. ARTHUR’S PASS: THE ALPINE CROSSING & CASTLE HILL",
-        "description": "We journey into the heart of the Southern Alps, entering the dramatic landscapes of Arthur’s Pass.\n\nOur first focus is Devils Punchbowl Falls, a 131-meter cascade surrounded by dark alpine cliffs—ideal for long-exposure photography.\n\nWe then explore Castle Hill (Kura Tawhiti), where massive limestone boulders form a surreal stone labyrinth. During golden hour, low light carves deep shadows into the formations, creating cinematic compositions.\n\nKeep your cameras ready for the Kea, the world’s only alpine parrot, often seen in this region.",
+        "description": "We journey into the heart of the Southern Alps, entering a rugged alpine corridor of sheer mountain passes and prehistoric rock fields. Arthur’s Pass is a location of extreme contrasts, offering photographers a vast array of moods and textures within a single day.\n\nOur first focus is the Devils Punchbowl Falls. A short climb brings us to the base of this thundering 131-meter cascade. In overcast weather, the dark, wet cliffs and the brilliant white veil of water create a high-contrast, moody atmosphere perfect for long-exposure photography.\n\nWe then transition to a completely different world: Castle Hill (Kura Tawhiti). Thousands of massive limestone boulders are scattered across the rolling hills like a surreal, ancient labyrinth. During the golden hour, the low sun carves deep shadows into the stone, making the landscape appear like a cinematic set from a fantasy epic.\n\nThroughout the day, keep your cameras ready for the Kea—the world’s only alpine parrot. These intelligent and incredibly photogenic birds are the true masters of the pass, adding a lively element to your wildlife portfolio. In Arthur’s Pass, the shifting light ensures that every frame is a unique testament to the raw beauty of the New Zealand wilderness.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772024139/Devils_Punchbowl_Fal.jpg_yyap4v.avif"
       },
       {
         "day": "21",
         "plan": "THE SOUTH ISLAND. CHRISTCHURCH & DEPARTURE",
-        "description": "On the final day of our New Zealand expedition, we begin our journey back to Christchurch Airport (approx. a 1.5-hour drive), concluding our 21-day photographic odyssey.\n\nFor those returning to the starting point, arrival back in Auckland is scheduled for 8:15 PM. Please ensure your onward travel arrangements account for this timing.\n\nOptional Extension: For those wishing to continue the adventure, we can arrange a bespoke deep-sea fishing excursion in Kaikoura—where the mountains meet the sea—providing a memorable finale to your New Zealand photography tour.",
+        "description": "On the final day of our New Zealand expedition, we begin our journey back to Christchurch Airport (approx. a 1.5-hour drive). This marks the conclusion of our 21-day photographic odyssey through the North and South Islands.\n\nFlight Information: For those returning to the starting point, we are scheduled to arrive back in Auckland at 8:15 PM. Please ensure your international flight connections or onward travel plans are booked with this timing in mind to allow for a smooth transition.\n\nExtend Your Adventure: For those who aren’t quite ready to say goodbye to Middle-earth (New Zealand), we offer an optional extension. Stay one more day, and we can organize a bespoke deep-sea fishing excursion in Kaikoura—a world-renowned marine hub where the mountains meet the sea. It is the perfect way to cap off an unforgettable New Zealand photography tour.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429975/new-zealand___IGP7593-Edit_copy_3_xfb5mg.avif"
       }
     ]}',
@@ -590,7 +590,7 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif'),
 
    (tour5_id, 'cyclades-sailing-tour', 'Cyclades Sailing',
-     'Set sail through the stunning Cyclades islands for a 7-day photography adventure. Capture the iconic white-washed villages of Santorini, ancient ruins of Delos, and hidden beaches accessible only by boat. Experience authentic Greek island life, golden hour sailing, and night photography under Mediterranean skies. Small group with expert photo guidance.',
+     'Experience our Cyclades Photo Tour aboard a private sailing catamaran. Capture the iconic white-washed beauty of Santorini and the surreal moonscapes of Milos. This photography workshop offers unique sea-access viewpoints, sunrise sessions at Sarakiniko, and golden hour shoots from the water. Master your skills while sailing the Aegean Sea in style. Book your photography adventure!',
      'EASY', 3200.00,
      '{"days": [
       {
@@ -655,11 +655,11 @@ VALUES
       },
       {
         "question": "5. Are flights included in the tour price?",
-        "answer": "Since our participants join us from all over the world, airfare and visas are not included. Your booking focuses on the premium experience provided once you arrive at the starting port:\n\n• Accommodation: Lodging on board the catamaran.\n- Logistics: All in-tour transportation and professional skipper & crew services, airport transfers (Athens) in a Mercedes E vehicle.\n- Education: Guided sunrise and sunset photo sessions, workshops, and post-processing lessons.\n\nFor details on additional personal expenses, please reach out to our management team."
+        "answer": "Since our participants join us from all over the world, airfare and visas are not included. Your booking focuses on the premium experience provided once you arrive at the starting port:\n\n• Accommodation: Lodging on board the catamaran.\n• Logistics: All in-tour transportation and professional skipper & crew services, airport transfers (Athens) in a Mercedes E vehicle.\n• Education: Guided sunrise and sunset photo sessions, workshops, and post-processing lessons.\n\nFor details on additional personal expenses, please reach out to our management team."
       },
       {
         "question": "6. What exactly is included in the cost?",
-        "answer": "Your booking provides a comprehensive and stress-free Greek island photography expedition:\n\n• Accommodation & Sailing: Stay on the catamaran and professional maritime services.\n- Logistics: All in-tour transportation and professional skipper & crew services, airport transfers (Athens) in a Mercedes E vehicle.\n- Expert Mentoring: Daily photo shoots and professional workshops.\n- Creative Growth: Focused editing and post-processing sessions to help you bring home trophy shots.\n- Unique Experiences: A blend of cultural experiences and high-end travel photography."
+        "answer": "Your booking provides a comprehensive and stress-free Greek island photography expedition:\n\n• Accommodation & Sailing: Stay on the catamaran and professional maritime services.\n• Logistics: All in-tour transportation and professional skipper & crew services, airport transfers (Athens) in a Mercedes E vehicle.\n• Expert Mentoring: Daily photo shoots and professional workshops.\n• Creative Growth: Focused editing and post-processing sessions to help you bring home trophy shots.\n• Unique Experiences: A blend of cultural experiences and high-end travel photography."
       }
     ]}',
     guide4_id,
@@ -674,7 +674,7 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429871/cyclades__IMG_8808-Pano_copy_jkdqjj.avif'),
 
    (tour6_id, 'cinque-terre-umbria-tour', 'Cinque-Terre & Umbria',
-     'Explore the colorful cliffside villages of Cinque-Terre and the medieval hill towns of Umbria. This 10-day journey captures the essence of coastal Italy and its rural heartland. Photograph dramatic seascapes, vineyards, ancient architecture, and authentic Italian life. Expert guidance in small group settings.',
+     'Capture Italy’s soul on our Cinque Terre & Umbria Photo Tour. From the vibrant cliffside villages of the Italian Riviera to the misty medieval towns of Umbria. This photography workshop features sunrise in Manarola, sunset in Orvieto, and the iconic 'dying city' of Civita di Bagnoregio. Master landscape and street photography in a small group. Book your adventure!',
      'EASY', 3500.00,
      '{"days": [
       {
@@ -776,7 +776,7 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429687/cinque-terre-umbria__OSKIN_4052_GenFill_copy_ytmtp1.avif'),
 
    (tour7_id, 'provence-photography-tour', 'Provence Lavender & Villages',
-     'Discover the enchanting landscapes of Provence during peak lavender season. Capture endless purple fields, medieval villages, and golden light. This 10-day photography workshop includes intimate knowledge of hidden locations, optimal timing for lavender bloom, and authentic Provençal experiences. Small group with personalized instruction.',
+     'Capture the magic of Southern France on our Provence & Camargue Photo Tour. From the endless lavender fields of Valensole to the iconic wild white horses running through the marshes of Camargue. This photography workshop offers expert guidance on landscape, action, and travel photography. Join us for an unforgettable journey through purple blooms and wild nature!',
      'EASY', 3900.00,
      '{"days": [
       {
@@ -860,7 +860,7 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430058/provence___A8B4955_Topaz_copy_upigxu.avif'),
 
    (tour8_id, 'sicily-aeolian-tour', 'Sicily & Aeolian Islands',
-     'Experience the dramatic beauty of Sicily and the volcanic Aeolian Islands. Capture Mount Etna’s power, ancient Greek ruins, and Stromboli’s nightly eruptions. This 10-day adventure combines Sicilian culture, volcanic landscapes, and Mediterranean seascapes with expert photo guidance in intimate small groups.',
+     'Embark on a luxury Sicily & Aeolian Islands Yacht Photo Tour. Capture the dramatic eruptions of Stromboli, the turquoise bays of Panarea, and the historic streets of Lipari. This sailing photography workshop offers a unique perspective of the volcanic archipelago from the water. Master landscape and night photography. Join our private adventure!',
      'MEDIUM', 3900.00,
      '{"days": [
       {
@@ -944,11 +944,11 @@ VALUES
         },
         {
           "question": "5. Are flights included in the tour price?",
-          "answer": "Since our participants join us from all over the world, airfare and visas are not included. Your booking focuses on the experience provided from the moment you land at Catania Airport (CTA):\n\n• Accommodation: Lodging on board the catamaran.\n- Logistics: All in-tour transportation and professional skipper & crew services, airport transfers (Catania).\n- Education: Guided sunrise and sunset photo sessions, workshops, and post-processing lessons."
+          "answer": "Since our participants join us from all over the world, airfare and visas are not included. Your booking focuses on the experience provided from the moment you land at Catania Airport (CTA):\n\n• Accommodation: Lodging on board the catamaran.\n• Logistics: All in-tour transportation and professional skipper & crew services, airport transfers (Catania).\n• Education: Guided sunrise and sunset photo sessions, workshops, and post-processing lessons."
         },
         {
           "question": "6. What exactly is included in the cost?",
-          "answer": "Your booking provides a comprehensive and stress-free 10-day photography expedition:\n\n• Accommodation: Lodging on board the catamaran.\n- Logistics: All in-tour transportation and professional skipper & crew services, airport transfers (Catania).\n- Education: Guided sunrise and sunset photo sessions, workshops, and post-processing lessons."
+          "answer": "Your booking provides a comprehensive and stress-free 10-day photography expedition:\n\n• Accommodation: Lodging on board the catamaran.\n• Logistics: All in-tour transportation and professional skipper & crew services, airport transfers (Catania).\n• Education: Guided sunrise and sunset photo sessions, workshops, and post-processing lessons."
         }
     ]}',
     guide4_id,
@@ -963,7 +963,7 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430152/sicily__IMG_0599_dmi5yb.avif'),
 
    (tour9_id, 'czechia-autumn-tour', 'Czechia Autumn',
-     'Capture the golden beauty of Czechia during peak autumn season. From Prague’s Gothic splendor to Bohemian castles and medieval towns, this 10-day journey showcases Central Europe’s finest fall colors. Expert guidance in small groups ensures optimal timing for golden hour and autumn foliage photography.',
+     'Discover the magic of Autumn in Czechia on our exclusive photography tour. From the misty, cobblestone streets of Prague and historic castles to the rolling ''Moravian Tuscany'' vineyards. This photography workshop offers expert guidance on landscape and architectural photography in the heart of Europe. Capture the golden light and moody landscapes with us. Book your adventure today!',
      'EASY', 2900.00,
      '{"days":[
       {
@@ -1053,7 +1053,7 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429602/czech-fall__645Z8177-HDR-Pano-Topaz_v2ripe.avif'),
 
   (tour10_id, 'scotland-photography-tour', 'Scotland Highlands & Islands',
-   'Journey through the mystical Scottish Highlands and dramatic coastline. Capture lochs, castles, and the raw beauty of the Isle of Skye. This 10-day photography adventure includes remote landscapes, historic sites, and authentic Highland culture. Expert guidance in small groups ensures intimate shooting experiences.',
+   'Join our Scotland Photo Tour and document the untamed beauty of the Highlands. From the dramatic peaks of Quiraing and the Old Man of Storr on the Isle of Skye to historic castles and misty glens. This landscape photography workshop offers expert guidance on capturing mood and light in the heart of Scotland. Book your adventure today!',
      'EASY', 3600.00,
      '{"days": [
       {
@@ -1143,67 +1143,67 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430128/scotland__IMGP3471_Panorama-Dehancer_copy_mpyxma.avif'),
 
   (tour11_id, 'tuscany-autumn-tour', 'Tuscany Autumn',
-     'Experience Tuscany’s golden autumn season when vineyards turn gold and harvest creates authentic rural scenes. From rolling hills to medieval hill towns, capture the essence of Italian autumn culture. This 10-day workshop features wine harvest photography, truffle hunting, and golden light across iconic landscapes.',
+     'Join our Autumn photo tour in Tuscany to capture the world’s most iconic landscapes. From the misty rolling hills of Val d’Orcia and historic cypress alleys to the medieval charm of Pienza and Siena, this landscape photography workshop offers expert guidance on mastering the light in the heart of Italy. Experience the ultimate Tuscan creative escape. Book your photo adventure now',
      'EASY', 3800.00,
      '{"days": [
       {
         "day": "1",
         "plan": "ARRIVAL: ROMAN SEAFOOD & THE CYPRESS ALLEYS OF POGGIO COVILI",
-        "description": "Our autumn photography tour in Tuscany begins with a meeting at Rome Fiumicino Airport. We recommend arriving in the first half of the day (or the day before, in which case we will collect you from your hotel in the morning). We’ll start our journey with a traditional lunch on the Lungomare di Salute, famous for its exceptional seafood restaurants. After lunch, we drive north to check in at Podere Poggio Covili estate. Our first session will be a sunset shoot of the estate’s iconic cypress-lined driveway.",
+        "description": "Our autumn photography tour in Tuscany begins with a meeting at Rome Fiumicino Airport. To ensure smooth logistics, we recommend arriving in the first half of the day (or the day before, in which case we will collect you from your hotel in the morning). We’ll start our journey with a traditional lunch on the Lungomare di Salute. This area in Fiumicino is famous for its exceptional seafood restaurants—frequented by Romans and virtually unknown to tourists. It’s an authentic start to our Italian experience, where the prices are fair and the atmosphere is genuinely local.\n\nAfter lunch, we drive north into the heart of the region to check in at our base accommodation: the historic Podere Poggio Covili estate. This is undoubtedly one of the most famous and beautiful locations in all of Tuscany. We’ve timed our arrival so your first session will be a sunset shoot of the estate’s iconic cypress-lined driveway. It’s the perfect way to begin your Tuscany landscape photography workshop while allowing you to ease into the creative rhythm after your travels.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430241/tuscany-fall__645Z7289-Pano-Edit-Edit_flkznq.avif"
       },
       {
         "day": "2",
         "plan": "PIENZA DAWN & THE VITALETA CHAPEL",
-        "description": "At sunrise, we head to the panoramic viewpoint of Pienza, capturing the essence of Val d’Orcia and its rolling fog if present. Use long lenses up to 400mm for hill compression and distant villas. Afterward, enjoy cappuccino and dolce in Pienza’s central square, and stroll through its historic streets sampling local Pecorino. In the evening, we photograph the iconic Chapel of Madonna di Vitaleta before a Tuscan dinner at our estate.",
+        "description": "At sunrise, we head to what is widely considered the most beautiful vantage point in Tuscany — the very essence of the Val d’Orcia. Our destination is the panoramic viewpoint of Pienza. Under the right light, and especially if we are fortunate enough to catch the legendary rolling fog, you will leave this location with a dozen unique and magnificent shots.\n\nTo capture the compression of the hills and distant villas, we recommend using long lenses up to 400mm. After our morning session, we’ll enjoy a classic cappuccino and dolce at a café in the central square. You’ll then have time for a slow stroll through the streets of Pienza, a town masterfully designed by Pope Pius II. Don''t forget to sample the local Pecorino, arguably the world’s finest sheep cheese, for which the town is famous.\n\nAfter resting at our estate, we will head out for an evening shoot of one of the most iconic landmarks in Italy: the Chapel of Madonna di Vitaleta. A pleasant 10-minute walk through the fields brings us directly to the chapel. We’ll conclude the day with a wonderful Tuscan dinner and a well-earned rest.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430200/tuscany-fall___IGP2436-Pano-2_copy_nrghbe.avif"
       },
       {
         "day": "3",
         "plan": "PODERE BELVEDERE & THE RUSTIC SOUL OF TUSCANY",
-        "description": "Sunrise at Podere Belvedere provides an iconic landscape opportunity. After coffee in San Quirico d’Orcia and a midday rest, we return for evening photography at Madonna di Vitaleta, capturing it from various perspectives. Dinner will be at Fonte Alla Vena, a cozy trattoria offering traditional Tuscan cuisine and local wines.",
+        "description": "We greet the sunrise at perhaps the most photographed spot in all of Tuscany — the legendary Podere Belvedere. This truly iconic location is a masterpiece of light and shadow, looking equally stunning at both sunrise and sunset. After our morning session, we will enjoy a coffee in the historic streets of San Quirico d’Orcia, followed by a relaxing midday siesta at our estate.\n\nIn the evening, we return to the fields to capture the most famous small church in the region — Madonna di Vitaleta. By moving efficiently, we’ll have the opportunity to photograph this landmark from various perspectives, utilizing both wide-angle and telephoto lenses to highlight its solitary beauty. We will conclude the day with dinner at one of our favorite local gems, Fonte Alla Vena.\n\nThis cozy trattoria embodies the rustic soul of Val d’Orcia with its wooden beams and family atmosphere. It’s a place for "honest food": local vegetables, traditional pici pasta with rich sauces, and Cinta Senese pork prepared according to family recipes. The owner, Luciano, always welcomes us with homemade olive oil and wine, making it the perfect end to a day of landscape photography.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430183/tuscany-fall___IGP1507-Pano-Topaz_174x110_PRINT_DEHANCER-Edit_zq02wq.avif"
       },
       {
         "day": "4",
         "plan": "MEDIEVAL TOWERS & THE MAJESTY OF SIENA",
-        "description": "We start with sunrise over San Gimignano, photographing its 13 medieval towers. After coffee and sweets at Marcella’s, explore the town’s Duomo and climb Torre Municipale. Journey to Siena for lunch at Taverna San Giuseppe, explore the Duomo, ascend the viewing terrace for skyline shots, and visit Piazza del Campo. Evening return to our base with a quiet dinner.",
+        "description": "Today, we wake earlier than usual for our longest drive (approximately 1.5 hours) to witness the sunrise over San Gimignano. Known as the "Medieval New York," this town is famous for its 13 stone towers built by rival noble families. After our morning session, we’ll stop at Marcella’s renowned chocolate shop for coffee and her signature dolce. We will then take a leisurely walk through the historic center, visiting the Duomo to see frescoes by Ghirlandaio and climbing the Torre Municipale, the town’s tallest tower.\n\nFrom there, we journey to Siena, widely considered the most beautiful of Tuscany’s larger cities. We’ll enjoy lunch at the historic Taverna San Giuseppe, famous for its exceptional tagliolini with truffles. Our exploration continues through winding medieval streets to the Siena Cathedral (Duomo di Siena). Its ornate façade is so moving that it reportedly brought the composer Richard Wagner to tears.\n\nWe will ascend to the viewing terrace to capture the city’s skyline from above. Finally, we’ll spend time at the legendary Piazza del Campo, the site of the world-famous Palio horse race. In the evening, we return to our base for a quiet dinner at a local restaurant near our estate.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430278/tuscany-fall__IMG_0327_Panorama_73x238_200dpi_276-Edit_cnkaz6.avif"
       },
       {
         "day": "5",
         "plan": "THE MISTS OF MACCIANO & THE ARTISTS OF CETONA",
-        "description": "Sunrise in the Macciano valley captures rolling fields and morning fog. Visit additional viewpoints including La Foce, then explore Cetona’s streets and the private gallery of Tazio Angelini and Fausta Ottolini. After lunch, return to the valley for a sunset shoot at Podere Belvedere.",
+        "description": "We begin our sunrise session in the valley near Macciano, where the first rays of light reveal the gentle rolling fields, solitary farmhouses, and — with luck — a delicate veil of drifting morning fog. This atmosphere captures the quintessential charm of autumn in Tuscany.\n\nFollowing the morning light, we will capture several more viewpoints, including the famous perspective of La Foce, before heading to the quiet, non-touristic town of Cetona. Here, among the white stone streets, we aim to visit the private gallery of renowned Tuscan artists Tazio Angelini and Fausta Ottolini. Their gallery is housed in an extraordinary 10th-century cantina. If Fausta is feeling well, we will share a glass of chilled prosecco with her—a rare opportunity to connect with artists who have represented Italy at major contemporary exhibitions worldwide.\n\nAfter lunch at the finest restaurant in town, we return to the heart of the valley. For our sunset shoot, we will revisit the iconic Podere Belvedere to capture it under the changing evening light, perfecting our landscape photography portfolio.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430304/tuscany-fall__IMGP4193_147x110_PRINT_Dehancer-gigapixel-standard-scale-2_00x_copy_biyqpf.avif"
       },
       {
         "day": "6",
         "plan": "MONTALCINO: THE KING OF WINES & ANCIENT ABBEYS",
-        "description": "Sunrise photography over Val d’Orcia from Montalcino. Visit Montalcino Fortress for Brunello wine tasting, then explore the Abbey of Sant’Antimo and experience Gregorian chants. Afternoon dedicated to local boutique wine tastings, concluding with a sunset session in the rolling fields near Torrenieri.",
+        "description": "We begin our day with a sunrise session at the incredible viewpoints of Val d’Orcia, capturing the sweeping vistas from the hilltop of Montalcino. This historic town is the world-renowned birthplace of Brunello di Montalcino, the "king of red wines," crafted from the native Sangiovese grape.\n\nFollowing our shoot and a walk through the charming town center, we will visit the legendary Montalcino Fortress (La Fortezza). Here, at the winemakers'' association, we will enjoy a tasting of the finest Brunello vintages within ancient stone walls. After a midday rest, our journey continues to the Abbey of Sant’Antimo, founded by Charlemagne. We will explore the 8th-century church and, if we are fortunate, hear the ethereal Gregorian chants of the monks in their traditional white robes.\n\nThe afternoon is dedicated to the local wine culture, featuring private tastings at boutique Brunello producers in a cozy, homelike atmosphere. It is a day of sensory delight and cultural discovery, concluding with a sunset photography session in the rolling fields near Torrenieri.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430194/tuscany-fall___IGP2532-Edit_80x60_20-Edit_ku2g6d.avif"
       },
       {
         "day": "7",
         "plan": "TUFF CITIES & THERMAL SPRINGS: PITIGLIANO, SATURNIA & SORANO",
-        "description": "Early visit to Pitigliano for street photography, local Duomo, and Etruscan catacombs. Explore private Etruscan cellars. Head to Cascate di Saturnia for midday relaxation in thermal pools. Sunset session in Sorano for dramatic tuff-rock landscapes, ending with dinner at Sette di Vino in Pienza.",
+        "description": "We begin our day early in the ancient town of Pitigliano. Perched harmoniously atop a massive tuff cliff, the town appears to be a natural extension of the rock itself. It is a premier location for street photography, offering countless intimate frames within its historic lanes. We will visit the local Duomo and explore the extensive network of Etruscan catacombs that form a hidden city beneath the streets.\n\nA highlight of the morning is a visit to our local friends, who will show us their private underground cellars carved by the Etruscans. After exploring the depths of Pitigliano, we head to the world-famous Cascate di Saturnia. Here, we will relax and recharge in the warm, natural thermal pools of the tiered white falls—a perfect midday break for any travel photography tour.\n\nFor our sunset session, we will document the medieval wonder of Sorano. While similar to Pitigliano in its tuff-rock construction, Sorano has a more rugged, dramatic character, hanging precariously over a deep abyss. We conclude the day with an intimate dinner in Pienza at Sette di Vino, a beloved local osteria known for its thoughtful, simple Tuscan dishes and authentic atmosphere.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430179/tuscany-fall___6457517-Pano-1_Dechancer_copy_skb6ar.avif"
       },
       {
         "day": "8",
         "plan": "CRETE SENESI: THE HIDDEN VALLEYS & PODERE BACCOLENO",
-        "description": "Sunrise near Mucigliano to photograph off-the-beaten-path Tuscan landscapes. Journey along Crete Senesi for scenic stops and photography. After a midday rest, sunset shoot at Podere Baccoleno, capturing the whimsical cypress-lined road.",
+        "description": "We will greet the sunrise near the small town of Mucigliano, surrounded by classic Tuscan landscapes that remain blissfully off the beaten path for most tourists and photographers. This location offers a serene and authentic start to our day, focusing on the raw beauty of the rolling hills.\n\nFollowing the morning session, we will journey along one of the most beautiful scenic routes in Tuscany — the Crete Senesi. This road is a masterpiece of natural geometry, and we will make frequent stops to capture its unique lunar-like terrain and solitary villas. After a well-deserved extended midday rest at our estate, we will head out for our sunset shoot. Our destination is the famous Podere Baccoleno, renowned for its whimsical, winding cypress-lined road. It is the perfect location to practice landscape composition and capture one of the most iconic silhouettes in the world.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430209/tuscany-fall___IGP2931-Pano_42%D1%85128-200dpi_190-Edit_uz3odu.avif"
       },
       {
         "day": "9",
         "plan": "THERMAL MISTS & THE ROOFLESS ABBEY",
-        "description": "Sunrise in Bagno Vignoni with views of the ancient thermal pool. Visit Sarteano for olive oil tasting and Radicofani for Andrea della Robbia artwork. Relax at Bagni San Filippo hot springs. Final evening session at the roofless Abbey of San Galgano, photographing Gothic arches and nearby chapel, concluding with a farewell dinner.",
+        "description": "We will meet the sunrise in the historic village of Bagno Vignoni, home to the oldest known hot springs in the region. This location holds a special place in cinematic history as the favorite village of director Andrei Tarkovsky, who filmed the haunting final scenes of Nostalghia here. With a view of the ancient thermal pool, we will enjoy our traditional morning cappuccino.\n\nOur journey continues with introductory visits to two authentic, off-the-beaten-path towns. In Sarteano, we will enjoy a tasting of freshly pressed olive oil at a small family fattoria. In Radicofani, we will visit a local church to see an original majolica masterpiece by Andrea della Robbia.\n\nIn the afternoon, we will relax in the mineral-rich waters of the Bagni San Filippo natural hot springs. For our final evening session, we head to the remarkable roofless Abbey of San Galgano. We will capture the abbey as the evening lights illuminate its grand Gothic arches and visit the nearby chapel containing the real sword in the stone — the historic prototype for the legendary Excalibur. We will conclude our journey with a grand farewell dinner at one of the region''s finest restaurants.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430300/tuscany-fall__IMG_9480_mgim5z.avif"
       },
       {
         "day": "10",
         "plan": "FINAL LIGHT OVER TUSCANY & DEPARTURE",
-        "description": "Last sunrise photography location selected based on weather. Drive back to Rome Fiumicino Airport, arriving around 12:00. Return flights should be scheduled for the afternoon. Optionally, extend stay in Rome city center for further exploration.",
+        "description": "On our final morning, we will select our last sunrise photography location based on the weather forecast to ensure we capture the most atmospheric light one last time. After the session, we will begin our drive back toward Rome.\n\nWe will arrive at Rome Fiumicino Airport (FCO) at approximately 12:00. Please ensure your return flight is scheduled for the second half of the day to allow for a relaxed departure. For those wishing to extend their stay and explore the historic wonders of Rome, we will be happy to drop you off in the city center. This concludes our Autumn in Tuscany photo tour, leaving you with a professional portfolio of Italy''s most iconic landscapes.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430188/tuscany-fall___IGP0818-Pano_vehnrk.avif"
       }
     ]}',
@@ -1230,7 +1230,7 @@ VALUES
       },
       {
         "question": "6. What is included in the cost of the Autumn Tuscany Photo Tour and workshops?",
-        "answer": "Your booking provides a comprehensive, stress-free experience:\n\n• Accommodation: Lodging at the legendary Poggio Covili villa (available as single occupancy or double rooms for couples).\n- Logistics: All airport transfers (Rome) and regional travel in a high-comfort Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, photo workshops, on-site mentoring, and masterclasses, including post-processing.\n\nDetailed information about any extra costs can be requested from our management team."
+        "answer": "Your booking provides a comprehensive, stress-free experience:\n\n• Accommodation: Lodging at the legendary Poggio Covili villa (available as single occupancy or double rooms for couples).\n• Logistics: All airport transfers (Rome) and regional travel in a high-comfort Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, photo workshops, on-site mentoring, and masterclasses, including post-processing.\n\nDetailed information about any extra costs can be requested from our management team."
       }
     ]}',
     guide3_id,
@@ -1245,61 +1245,61 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430222/tuscany-fall___IMG7020-Pano-1_1-Dechancer_copy_g90yjy.avif'),
 
   (tour12_id, 'japan-atumn-tour', 'Japan Autumn',
-    'Immerse yourself in Japan’s rich cultural heritage and modern innovation. From ancient temples in Kyoto to neon-lit Tokyo streets, capture the fascinating contrast of traditional and contemporary Japan. This 10-day photography workshop includes expert guidance, cultural experiences, and optimal timing for seasonal beauty.',
+    'Embark on our Japan Autumn Photo Tour to document the breathtaking Momiji season. From the neon streets of Tokyo and the iconic reflection of Mount Fuji to the serene zen gardens and hidden temples of Kyoto. This landscape photography workshop offers expert guidance in capturing the vibrant red maples and timeless spirit of Japan. Limited spots available — join us now!',
     'EASY', 4500.00,
     '{"days": [
       {
         "day": "1",
         "plan": "ARRIVAL IN TOKYO: FUTURISTIC IMMERSION",
-        "description": "Arrival at Haneda Airport. Acclimatization and personal time. Visit teamLab Borderless Tokyo for immersive digital art photography, capturing luminous corridors, glowing projections, and infinite reflections.",
+        "description": "Our signature Japan autumn photo tour begins with a warm welcome at Haneda Airport. The first day is dedicated to acclimatization and personal time to explore the city at your own pace. We will start our journey by visiting one of Tokyo''s most visually stunning highlights: teamLab Borderless Tokyo. This is not a traditional museum; it is a total immersion into a digital world where art and technology merge into a living environment.\n\nAs you step inside, all boundaries disappear—ceilings and walls vanish, leaving only light, color, sound, and movement. For a photographer, teamLab Tokyo is both a paradise and a creative challenge. Each room offers endless compositions: luminous corridors, silhouettes against glowing backgrounds, and infinite reflections. Whether you are capturing digital flowers blooming on the walls or projections of koi fish scattering under your feet, the images look like scenes from a dream.\n\nThe essence of this experience is becoming part of the artwork itself. Your movements reshape the environment, providing unique opportunities for creative street and abstract photography. This is where Tokyo reveals its most futuristic face, serving as the perfect introduction to the diversity of our Japan photography workshop.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128120/japan_fall__1825037_kklwz5.avif"
       },
       {
         "day": "2",
         "plan": "TOKYO’S AUTUMN PARKS: THE COLORS OF MOMIJI",
-        "description": "Explore Ueno, Shinjuku Gyoen, and Yoyogi Parks to capture autumn foliage. Ueno offers energetic ginkgo and maple photography; Shinjuku Gyoen provides serene reflections; Yoyogi Park captures lifestyle and candid portraits in golden autumn light.",
+        "description": "What are the must-see locations in Tokyo? On our Japan photo tour, we head straight to the capital’s most breathtaking green spaces to document the Momiji season. We will explore Ueno, Shinjuku Gyoen, and Yoyogi — three parks that each reveal a distinct face of Tokyo when the maple leaves ignite in shades of crimson and gold.\n\nUeno Park is vibrant and energetic. Here, ginkgo-lined paths transform into golden tunnels, providing a lively backdrop for candid street photography. Red maples reflect in the ponds while ancient temples and traditional tea houses peek through the fiery foliage. It is a celebratory atmosphere where the city’s heritage meets the bright colors of autumn.\n\nIn contrast, Shinjuku Gyoen offers a meditative experience. A peaceful oasis amidst the skyscrapers of Shinjuku, this garden is a masterpiece of Japanese harmony. For a photographer, this location is all about clean compositions, serene reflections on the water, and the subtle details of the Momiji season: a single glowing branch or a red canopy mirrored in a still pond.\n\nWe conclude the day at Yoyogi Park, the city''s most "bohemian" space. Here, the atmosphere is relaxed and free, perfect for capturing spontaneous portraits and the joy of autumn. Musicians, dancers, and families picnicking under yellow ginkgoes provide endless opportunities for lifestyle photography in the warm, golden light. Together, these parks offer a comprehensive experience of autumn in the Japanese megalopolis.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128149/japan_fall_5_1827923-Edit_x1heje.avif"
       },
       {
         "day": "3",
         "plan": "KYOTO: THE CRIMSON PATHS OF FUSHIMI INARI",
-        "description": "Travel to Kyoto for sunrise at Fushimi Inari Shrine. Photograph thousands of red torii gates, moss-covered lanterns, and Kitsune statues. Capture panoramic views of Kyoto rooftops and the mystical crimson corridors.",
+        "description": "We head south to Kyoto — Japan’s ancient capital for over a millennium — to witness some of the country''s most spectacular autumn foliage. Our primary focus is the legendary Fushimi Inari Shrine, a location that captivates from the first moment with its thousands of vibrant red torii gates winding up the mountainside.\n\nTo capture the true essence of this site, we arrive in the early morning. At this hour, the soft sunlight filters through the gaps between the wooden gates, painting the path with golden stripes and creating a mystical atmosphere for landscape and architectural photography. As we climb higher, the crowds thin out, allowing for clean, powerful compositions of the continuous crimson corridor.\n\nAlong the trail, you will discover countless stone foxes (Kitsune), the sacred messengers of Inari. Moss-covered lanterns and narrow side paths offer incredible depth and texture for your Japan photo tour portfolio. The journey concludes with an expansive panoramic view over the rooftops of Kyoto, providing a striking contrast to the quiet, shaded forest of torii gates below. Fushimi Inari is more than a landmark; it is a fully immersive experience.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128157/japan_fall_10_A8B9746_cv8ocl.avif"
       },
       {
         "day": "4",
         "plan": "KYOTO: BAMBOO GROVES, GOLDEN PAVILIONS & GEISHA TRADITIONS",
-        "description": "Sunrise photoshoot in Arashiyama and Bamboo Grove. Visit Kiyomizu-dera and Kinkaku-ji (Golden Pavilion) for architectural and landscape photography. Evening in Gion district to photograph Geiko and Maiko in traditional attire along Hanami-koji lanes.",
+        "description": "We begin our second day in Kyoto with a sunrise photoshoot in the scenic Arashiyama district. Located away from the bustling city center, Arashiyama offers a glimpse into rural Japan with its tranquil atmosphere. We will walk through Kameyama Park before entering the world-famous Bamboo Grove, where the towering green stalks create a unique play of light and shadow.\n\nNext, we visit the iconic Kiyomizu-dera, or the "Temple of Pure Water." In autumn, the temple’s massive wooden stage is framed by a sea of fiery red and orange maple leaves, providing one of the most picturesque panoramas in the country. This is a prime location for capturing the scale and architectural beauty of ancient Kyoto.\n\nIn the afternoon, our Japan photography workshop takes us to the shimmering Kinkaku-ji — the Golden Pavilion. Built in 1398 as a shogun''s villa and later converted into a Zen Buddhist temple, its gold-leaf exterior reflects brilliantly in the surrounding Mirror Pond, especially when contrasted against the vibrant autumn foliage.\n\nAs evening falls, we head to the historic Gion district. This is the spiritual home of the Geisha and the best place to witness Japan’s living traditions. At twilight, we will explore the narrow lanes of Hanami-koji, looking for the elegant kimonos and white makeup of Geiko or Maiko as they head to their appointments. We will share professional tips on how to successfully and respectfully capture these rare encounters.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772046394/image_598_3.png_qxuxrg.avif"
       },
       {
         "day": "5-6",
         "plan": "JIGOKUDANI MONKEY PARK: WILDLIFE & WELLNESS",
-        "description": "Two nights in Jigokudani region. Sunrise and sunset wildlife photography with Japanese macaques in natural hot springs. Free time to enjoy mountain walks and thermal spas. Capture emotive animal behavior and serene landscapes.",
+        "description": "Heading back to the northeast, we will travel to Jigokudani and spend two nights in this remarkable mountain region. Our schedule is designed around the best light; at sunrise and sunset, we will hold wildlife photography sessions with the local macaques. Between shoots, you will have the opportunity to visit traditional mountain hot springs and thermal spas, or take relaxing walks through the local town.\n\nJigokudani Monkey Park, often called the Snow Monkey Park, was established in 1964 as a protected area for a local troop of Japanese macaques. Although they are wild animals, these monkeys pass through the park’s territory every day, giving us a unique opportunity to observe and photograph them up close in their natural habitat.\n\nFor many people, soaking in a hot bath is the best way to relieve stress—and as recent research shows, the same is true for monkeys. Scientists observing the macaques discovered that bathing in hot springs helps them reduce stress levels and maintain body heat. For us, this provides an exceptional opportunity to capture unforgettable, emotive images as part of our 10-day photography tour in Japan.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128185/japan_fall_IMG_4886-Edit_copy_anlhrt.avif"
       },
       {
         "day": "7",
         "plan": "MATSUMOTO: THE CROW CASTLE & THE WORLD OF YAYOI KUSAMA",
-        "description": "Photograph Matsumoto Castle (Crow Castle) and its autumn garden reflections. Explore castle interiors with samurai armor. Visit Matsumoto City Museum of Art, featuring Yayoi Kusama’s installations, including infinity mirror rooms and signature dot environments.",
+        "description": "Our photography tour in Japan continues at Matsumoto Castle, one of the country''s most impressive and premier feudal-era fortresses. In autumn, the castle gardens transform into a picturesque paradise, where vibrant shades of red and orange maples are reflected in the still waters of the surrounding moat.\n\nKnown as the "Crow Castle" due to its iconic black façade and wing-like roofs, this structure has remarkably preserved its original wooden and stone interiors. Its austere, isolated presence amidst the modern city provides a powerful subject for architectural photography. Having served as the residence for 23 lords across six ruling families, the castle also houses an extensive collection of feudal armor, weapons, and early firearms, offering a deep look into Japan’s samurai heritage.\n\nThe next highlight of our Japan photo tour is the Matsumoto City Museum of Art, featuring a permanent collection by the world-renowned artist Yayoi Kusama. Born in Matsumoto, Kusama used art to channel her unique visions into global masterpieces. For a photographer, her installations are a dream: from rooms covered in her signature glowing dots to mesmerizing infinity mirror spaces that offer a glimpse into a boundless reality. Capturing these immersive environments is a highlight of our creative journey through the heart of Japan.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128148/japan_fall_8_FUJI6050-HDR-Edit_copy_ye7kjz.avif"
       },
       {
         "day": "8",
         "plan": "MOUNT FUJI: THE MOMIJI CORRIDOR & LAKE KAWAGUCHIKO",
-        "description": "Travel to Lake Kawaguchiko for sunrise photography of Mount Fuji framed by autumn maple leaves. Capture reflections on the lake, the Maple Corridor, and sunset transitions with vivid skies. Focus on landscape composition and seasonal color contrasts.",
+        "description": "On the eighth day of our Japan photography tour, we head southwest to Lake Kawaguchiko — one of the premier locations to photograph the magnificent Mount Fuji. In autumn, during the peak of the Momiji season, vibrant red and golden maples frame the lake’s calm surface, with the snow-capped peak of Fuji rising majestically in the background. The entire scene feels like a living watercolor painting.\n\nOur morning session begins when the air is crisp and the lake is smooth as a mirror, offering a perfect Mount Fuji reflection. As the day progresses and the light strengthens, the fiery red maples create a striking contrast against the deep blue sky and the mountain''s white summit.\n\nA highlight of the day is the famous Maple Corridor, which transforms into a tunnel of intense autumnal colors. Walking through this corridor, Mount Fuji reveals itself through the fiery leaves, acting as the undeniable protagonist of the landscape. At sunset, we capture the transition of the sky into pink and violet hues, while the mountain darkens into a powerful silhouette. Mount Fuji from Lake Kawaguchiko is a masterclass in the harmony of strength and softness — a moment that defines the ultimate landscape photography workshop in Japan.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall__1828304-cover_k269sd.avif"
       },
       {
         "day": "9",
         "plan": "CHUREITO PAGODA: THE ICONIC SUNRISE",
-        "description": "Ascend 398 steps to Chureito Pagoda in Arakurayama Sengen Park for sunrise. Capture the red pagoda with Mount Fuji in the background, framed by vibrant Momiji foliage. Focus on architectural harmony and natural scenic beauty.",
+        "description": "Even after a full day at Lake Kawaguchiko, our photography tour in Japan continues to reveal its secrets. Our morning mission takes us to one of the most iconic viewpoints in the world: the Chureito Pagoda. To capture this breathtaking scene, we will ascend 398 steps through Arakurayama Sengen Park to reach the observation deck just in time for sunrise.\n\nThe five-story red pagoda, built as a peace memorial, offers a perfect foreground for Mount Fuji, especially when framed by the vibrant autumn leaves of the Momiji season. This location is the ultimate symbol of harmony between traditional Japanese design and the raw power of nature. Capturing the first light hitting the pagoda with the majestic peak of Fuji in the background is a definitive highlight for any landscape photography workshop.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif"
       },
       {
         "day": "10",
         "plan": "RETURN TO TOKYO & DEPARTURE",
-        "description": "Return to Tokyo. Depart from Haneda or Narita Airport in the afternoon. Optional city drop-offs for those extending their stay. End of Japan photography tour with a world-class portfolio of landscapes, wildlife, and cultural experiences.",
+        "description": "Return to Tokyo — the final day of our photo tour in Japan and your departure. We will head back to the capital, concluding our journey through the vibrant colors of the momiji season and the iconic landscapes.\n\nPlease make sure to book your return flight from Haneda or Narita Airport for the second half of the day to allow for a smooth and relaxed transfer. For those who wish to stay longer and continue exploring the neon streets of Tokyo, we will be happy to assist with city drop-offs. This marks the end of an unforgettable Japan photography workshop, leaving you with a world-class portfolio of the Land of the Rising Sun.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772046576/image_598_5_cdog3m.avif"
       }
     ]}',
@@ -1322,11 +1322,11 @@ VALUES
       },
       {
         "question": "5. Are international flights included in the tour cost?",
-        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour officially starts and ends in Tokyo. The following is included in the tour price:\n\n• Accommodation: 10 days of high-quality lodging, including an Authentic Ryokan (special overnight stay).\n• Logistics: Airport transfers (Haneda) and all regional travel within the tour.\n- Meals: Daily breakfasts are included.\n- Expert Mentoring: All sunrise and sunset photo sessions, workshops, and on-site guidance.\n- Education: Dedicated editing and post-processing sessions."
+        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour officially starts and ends in Tokyo. The following is included in the tour price:\n\n• Accommodation: 10 days of high-quality lodging, including an Authentic Ryokan (special overnight stay).\n• Logistics: Airport transfers (Haneda) and all regional travel within the tour.\n• Meals: Daily breakfasts are included.\n• Expert Mentoring: All sunrise and sunset photo sessions, workshops, and on-site guidance.\n• Education: Dedicated editing and post-processing sessions."
       },
       {
         "question": "6. What exactly is included in the 10-day Japan photo tour?",
-        "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n- Professional Guidance: Daily shoots and workshops led by an expert photo guide.\n- Unique Cultural Stays: An immersive Ryokan experience and visits to the Jigokudani Monkey Park.\n- Creative Growth: In-depth editing and post-processing sessions to refine your portfolio.\n- Logistics: All transportation, accommodation, and breakfasts throughout the 10-day itinerary."
+        "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n• Professional Guidance: Daily shoots and workshops led by an expert photo guide.\n• Unique Cultural Stays: An immersive Ryokan experience and visits to the Jigokudani Monkey Park.\n• Creative Growth: In-depth editing and post-processing sessions to refine your portfolio.\n• Logistics: All transportation, accommodation, and breakfasts throughout the 10-day itinerary."
       }
     ]}',
     guide5_id,
@@ -1347,61 +1347,61 @@ VALUES
         {
           "day": "1",
           "plan": "ARRIVAL IN REYKJAVIK: SCANDINAVIAN VIBES",
-          "description": "Arrival at Keflavik Airport. Acclimatization and exploration of Reykjavik: Hallgrímskirkja Church, Harpa Concert Hall, harbor houses. Sunset session at Sun Voyager monument. Overnight at Reykjavik campsite in off-road caravans.",
+          "description": "Welcome to our Iceland off-road caravan photo tour. We will meet you at Keflavik Airport (KEF). Since our first night is spent in Reykjavik, you can arrive at any time. As the northernmost capital in the world, Reykjavik perfectly blends Scandinavian coziness with a modern, creative spirit. For a photographer, the city is a treasure trove of subjects: the futuristic silhouette of Hallgrímskirkja Church, the mesmerizing light reflections on the glass panels of the Harpa Concert Hall, and the vibrant colors of the harbor’s wooden houses.\n\nThe city truly comes alive during the "Golden Hour." The first rays of the sun illuminate Faxaflói Bay, while the evening glow makes the colorful roofs even more vivid. If we are lucky with the weather, we might even witness the Northern Lights dancing over the capital—a magical introduction to our journey.\n\nThis is a day for acclimatization. We will enjoy a walk through the harbor, soak in the famous local hot baths, and capture a sunset session at the Sun Voyager monument. We will spend our first night at a Reykjavik campsite, getting accustomed to our specialized off-road caravans that will be our home for the duration of this Iceland photography workshop.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772046872/image.png_5_q0twhe.avif"
         },
         {
           "day": "2",
           "plan": "THE SOUTH COAST: HIDDEN FALLS & VOLCANIC SANDS",
-          "description": "Drive south toward Vík. Photograph Gljúfrabúi, Seljalandsfoss (walk behind the falls), and Reynisfjara black sand beach with basalt columns and Reynisdrangar sea stacks. Opportunities to photograph Atlantic Puffins. Overnight at coastal campsite.",
+          "description": "Early in the morning, we head south toward Vík, the southernmost village in Iceland. Our specialized 4x4 off-road caravans allow us to navigate this rugged terrain with ease. En route, we will document four of the island’s most spectacular waterfalls, starting with the "hidden gem," Gljúfrabúi. Tucked away inside a narrow canyon, this waterfall is a masterclass in light management; our photo guide will provide a detailed briefing on how to capture its ethereal atmosphere in such a confined space.\n\nAs the sun begins to dip, we reach the iconic Seljalandsfoss. This is one of the few waterfalls in the world where you can walk entirely behind the cascading curtain of water, offering a unique "inside-out" perspective for your landscape photography portfolio.\n\nWe will spend the golden hour at Reynisfjara, the world-famous black sand beach. The contrast of the volcanic sand, white Atlantic foam, and the towering basalt columns creates an otherworldly palette. On the horizon, the dark Reynisdrangar sea stacks rise from the waves like petrified trolls. This location is also our first opportunity to photograph Atlantic Puffins nesting in the cliffs. After a sunset session on the shore, we will retire to our coastal campsite to rest and recharge.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777216/iceland_645Z6169-HDR-Pano-Dehancer_uaao9y.avif"
         },
         {
           "day": "3",
           "plan": "FROM CLIFFSIDE SUNRISES TO THE ICE LAGOON",
-          "description": "Sunrise at Dyrhólaey promontory capturing stone arch, black sands, and puffins. Visit Skógafoss and Kvernufoss waterfalls. Hike Fjaðrárgljúfur Canyon. Sunset session at Jökulsárlón Glacier Lagoon photographing blue icebergs.",
+          "description": "We begin our day with a sunrise session at the majestic Dyrhólaey promontory. As the first rays break through the ocean mist, the black sands below are painted in gold and pink. From the clifftops, you can capture the iconic stone arch and a panoramic view of the Atlantic coast stretching to the horizon. This is a prime spot for bird photography, as puffins glide above the basalt cliffs. Pro tip: Bring a 24-70mm lens for landscapes and up to 400mm for the puffins.\n\nNext, we journey to the powerhouse of the south, Skógafoss. Standing 60 meters high, its massive spray often creates vivid rainbows. We aim to arrive early to beat the crowds, ensuring clean compositions. Just a short drive away lies Kvernufoss, a "hidden" waterfall nestled in a gorge where we can walk behind the curtain of water for a unique perspective.\n\nOur Iceland 4x4 expedition then heads east toward Skaftafell, stopping at the dramatic Fjaðrárgljúfur Canyon for a hike along its winding ancient cliffs. We will conclude this epic day at the world-famous Jökulsárlón Glacier Lagoon. Here, we will photograph massive blue icebergs drifting toward the ocean, capturing the magical interplay of ice and the setting sun in the golden backlight.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777171/iceland_1_IGP4228-Pano_109x162_200dpi_topaz_copy_lt6mdc.avif"
         },
         {
           "day": "4",
           "plan": "DIAMOND BEACH & THE BASALT CROWNS OF SVARTIFOSS",
-          "description": "Sunrise photography at Diamond Beach with glistening ice on black sands. Afternoon walk on Svínafellsjökull glacier. Evening shoot at Svartifoss waterfall framed by basalt columns for long-exposure compositions.",
+          "description": "This marks the most sleepless—yet undoubtedly most rewarding—night of our Iceland photography workshop. We will greet the sunrise at the world-famous Diamond Beach, where the Atlantic waves wash glistening ice sculptures onto the anthracite-black volcanic sand. Capturing these crystalline blocks in the first golden rays of the sun is a bucket-list experience for every landscape photographer. We will prioritize finding the perfect "diamond" to frame against the crashing surf for that definitive long-exposure shot.\n\nDuring the afternoon, we will take a meditative walk on the Svínafellsjökull glacier, exploring the deep blue textures of the ancient ice. As evening approaches, we journey to Svartifoss, often called the most elegant waterfall in Iceland. Its narrow, transparent stream is perfectly framed by a dramatic amphitheater of dark basalt columns. This natural geometric marvel famously inspired the design of the Hallgrímskirkja church in Reykjavík. To ensure we have the place to ourselves, we will begin our shoot around 21:00, utilizing the soft light and avoiding the daytime tourist crowds.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777114/iceland__A8B9047_inm0cr.avif"
         },
         {
           "day": "5",
           "plan": "THE NORTHERN FRONTIER: GEOTHERMAL MÝVATN & HVERIR",
-          "description": "Drive north to Lake Mývatn (5 hours). Explore Hverir geothermal fields with steaming mud pots and multicolored mineral deposits. Evening relaxation in intimate local thermal lagoon for recovery before northern landscapes.",
+          "description": "On the fifth day of our Iceland photography tour, we journey north to the volcanic shores of Lake Mývatn, where we will base ourselves for two nights. This is our longest drive (approximately 5 hours), taking us into a region where the landscapes differ drastically from the south. After establishing our camp, we will explore the surreal fields of Hverir, a place where the Earth literally breathes and boils beneath your feet.\n\nHverir offers an otherworldly landscape of bubbling mud pots, columns of steam, and multicolored mineral deposits. The palette of ochre, crimson, and deep blues creates the impression of another planet. For a photographer, it is a goldmine of abstract compositions and dramatic textures. The low light of the morning or evening turns the steam into mystical veils, perfect for those seeking images with character and raw energy rather than classic postcards.\n\nTo restore our strength after the long drive, we will spend the evening in a local thermal lagoon. We prefer this spot to the famous Blue Lagoon for its intimate atmosphere, saunas with stunning vistas, and the simple luxury of enjoying a cold drink directly in the mineral-rich waters. It is the perfect recovery session before the final, intense leg of our 4x4 off-road adventure.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777576/iceland_P1168464-Pano_71x110_200dpi-Dechancer_copy_otbumz.avif"
         },
         {
           "day": "6",
           "plan": "NORTHERN GIANTS: DETTIFOSS, WHALES & LEGENDS",
-          "description": "Morning at Dettifoss and Selfoss waterfalls for dramatic landscapes. Whale-watching expedition from Húsavík with opportunities to photograph humpback whales. Evening visit to Grjótagjá cave and sunset session at Goðafoss waterfall.",
+          "description": "We begin our morning at Dettifoss, the most powerful and mystical waterfall in Europe. As you stand before its turbulent, muddy stream, you will recognize the primal landscape from the opening scenes of Ridley Scott’s Prometheus. After capturing the sheer force of Dettifoss, we will take a short hike to the nearby Selfoss, where dozens of delicate streams cascade along the walls of a dramatic canyon, offering a stark contrast in scale and texture.\n\nNext, our Iceland photography workshop heads to the charming fishing village of Húsavík, the whale-watching capital of Iceland. We will board a traditional boat for an expedition into the bay. While nature is unpredictable, there is a 90% success rate for spotting these magnificent giants. Capturing the iconic "tail slap" or seeing a humpback whale surface just meters from the hull is an exhilarating challenge for any wildlife photographer. The trip concludes with a signature hot cocoa served by the captain.\n\nIn the evening, we return to the Mývatn area to visit the Grjótagjá cave, a hidden thermal spring inside a lava fissure famously featured in Game of Thrones. We will end the day with a sunset session at Goðafoss, the "Waterfall of the Gods." This horseshoe-shaped wonder holds immense historical significance as the site where pagan idols were cast away when Iceland adopted Christianity. It is one of the most balanced and photogenic compositions in the north.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777563/iceland_IMGP7904GOTOV_u1zhcd.avif"
         },
         {
           "day": "7",
           "plan": "THE NORTHWEST FRONTIER: SEALS OF HVAMMSTANGI",
-          "description": "Travel to Hvammstangi for seal-watching photography. Capture harbor and grey seals in golden evening light along rugged bays and rocky shores. Overnight at local campsite.",
+          "description": "Our Iceland off-road caravan photo tour journeys to the northwest of the island to the coastal town of Hvammstangi. This region is renowned as the seal-watching capital of Iceland. After setting up our camp, we will head to the rugged bays and rocky outcrops for an evening wildlife photography session.\n\nThe shoreline here is home to colonies of harbor seals and grey seals, often seen basking on the rocks in the low evening sun or swimming in the crystalline waters of the Atlantic. For a photographer, this is a perfect opportunity to practice animal portraiture and capture the serene connection between the land and the ocean.\n\nBeyond their photogenic appeal, seals are deeply woven into Icelandic folklore as magical creatures, or selkies, capable of shedding their skins to become human. Historically vital to the survival of early settlers, these "magical" animals remain an integral part of Iceland''s natural heritage. Photographing them in the golden light of the northwest is a highlight of any Iceland photography workshop.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772047381/_MG_8513_nczs7b.avif"
         },
         {
           "day": "8",
           "plan": "THE SHAPES OF WEST ICELAND: HVÍTSERKUR & KIRKJUFELL",
-          "description": "Sunrise photography at Hvítserkur basalt stack. Journey to Snæfellsnes Peninsula, exploring lava fields and coastal villages. Sunset session at Mount Kirkjufell with cascading waterfalls.",
+          "description": "We begin our day at first light to capture the legendary Hvítserkur. This unique basalt stack, rising 15 meters from the sea, remarkably resembles a prehistoric dinosaur drinking from the Atlantic. The rising sun brings out the incredible textures of the rock, making it a masterpiece for landscape photography. After the session, we break camp and journey toward the Snæfellsnes Peninsula.\n\nOften called "Iceland in Miniature," this 90-kilometer stretch of land encapsulates the country''s diverse beauty: from ancient lava fields and coastal fishing villages to the crowning jewel, the Snæfellsjökull glacier. This glacier famously served as the entrance to the subterranean world in Jules Verne’s Journey to the Center of the Earth.\n\nOur primary goal for the evening is to document the most photographed peak in the country: Mount Kirkjufell. Known to Game of Thrones fans as the "Arrowhead Mountain," its distinct conical shape, framed by a series of cascading waterfalls, provides the ultimate composition. Capturing the twilight glow over Kirkjufell is a definitive highlight of our Iceland off-road caravan photo tour.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777582/iceland_P1189383-Pano_107x186_200dpi_topaz_cgfckg.avif"
         },
         {
           "day": "9",
           "plan": "THE WESTERN WONDERS: ARNARSTAPI, LAVA FALLS & GEYSIR",
-          "description": "Explore Arnarstapi-Hellnar coastline for long-exposure photography. Photograph Hraunfossar lava waterfalls. Evening session in Haukadalur Valley capturing Strokkur geyser eruptions.",
+          "description": "We begin our morning exploring the rugged southern coastline of the Snæfellsnes Peninsula. The shoreline between Arnarstapi and Hellnar is a masterpiece of natural erosion, featuring towering cliffs and dramatic stone arches rising from the Atlantic. This area offers incredible opportunities for long-exposure photography, capturing the white surf against the dark, jagged basalt.\n\nAs we journey inland, we will stop at the extraordinary Hraunfossar, or "Lava Waterfalls." Unlike traditional falls, Hraunfossar is a series of springs that emerge directly from the Hallmundarhraun lava field, cascading over 900 meters into the turquoise waters of the Hvítá River. The contrast between the crystal-clear blue water and the rust-colored lava rocks creates a unique color palette for your Iceland photography workshop.\n\nWe conclude the day in the Haukadalur Valley, the spiritual home of all geysers. While the "Great Geysir" remains quiet, its younger brother, Strokkur, erupts every few minutes, shooting boiling water up to 30 meters into the air. For a photographer, this is a lesson in timing and anticipation. Capturing the "blue bubble" just before it bursts into a powerful fountain is a thrill like no other. We will spend the evening documenting these dynamic eruptions against the shifting light of the Icelandic sky.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777076/iceland__A8B6891_157x110_PRINT_Dehancer_nv6jjf.avif"
         },
         {
           "day": "10",
           "plan": "THE LAST ERUPTION & RETURN TO REYKJAVIK",
-          "description": "Early morning sunrise session at Strokkur geyser. Break camp and return to Reykjavik for final campsite setup. Optional late flight from Keflavik or extra night in Reykjavik. Conclusion of Iceland off-road caravan photography tour.",
+          "description": "We will wake up before dawn to capture one of Iceland’s most iconic spectacles: the Strokkur geyser illuminated by the first rays of the rising sun. If the weather is on our side, the backlit steam and the golden glow of the erupting water will provide the perfect grand finale for your landscape photography portfolio.\n\nAfter the morning session, we will break camp and begin our journey back to Reykjavik. We expect to arrive in the city after lunch, where we will set up our final camp at the Reykjavik campground. This marks the conclusion of our Iceland off-road caravan photo tour. Depending on your schedule, you can catch a return flight from Keflavik Airport (KEF) late this evening or spend an extra night in the capital to reflect on the incredible journey through the Highlands and beyond.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777185/iceland_645Z3212-Edit_bqcuvd.avif"
         }
       ]}',
@@ -1424,11 +1424,11 @@ VALUES
         },
         {
           "question": "5. Are international flights included in the tour cost?",
-          "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour officially starts and ends at Keflavík Airport (KEF). The following is included in the tour price:\n\n• Accommodation: 10 days of accommodation in a specialized camper trailer, allowing us to stay in close proximity to key shooting locations.\n• Logistics: Airport transfers (Keflavík) and all regional travel in a specialized vehicle.\n- Expert Mentoring: All sunrise and sunset photo sessions, workshops, and on-site guidance.\n- Education: Dedicated editing and post-processing sessions.\n\nFor information regarding additional personal expenses, please reach out to our management team."
+          "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour officially starts and ends at Keflavík Airport (KEF). The following is included in the tour price:\n\n• Accommodation: 10 days of accommodation in a specialized camper trailer, allowing us to stay in close proximity to key shooting locations.\n• Logistics: Airport transfers (Keflavík) and all regional travel in a specialized vehicle.\n- Expert Mentoring: All sunrise and sunset photo sessions, workshops, and on-site guidance.\n• Education: Dedicated editing and post-processing sessions.\n\nFor information regarding additional personal expenses, please reach out to our management team."
         },
         {
           "question": "6. What exactly is included in the 10-day Iceland photo tour?",
-          "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n• Accommodation: 10 days of accommodation in a specialized camper trailer, allowing us to stay in close proximity to key shooting locations.\n• Logistics: Airport transfers (Keflavík) and all regional travel in a specialized vehicle.\n- Expert Mentoring: All sunrise and sunset photo sessions, workshops, and on-site guidance.\n- Education: Dedicated editing and post-processing sessions."
+          "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n• Accommodation: 10 days of accommodation in a specialized camper trailer, allowing us to stay in close proximity to key shooting locations.\n• Logistics: Airport transfers (Keflavík) and all regional travel in a specialized vehicle.\n• Expert Mentoring: All sunrise and sunset photo sessions, workshops, and on-site guidance.\n• Education: Dedicated editing and post-processing sessions."
         }
       ]}',
       guide5_id,
@@ -1443,65 +1443,89 @@ VALUES
       'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777034/iceland__A8B5114-1-164x110_PRINT_topaz_Dehancer_usmbp6.avif'),
 
   (tour14_id, 'japan-spring-tour', 'Japan Spring',
-     'Embark on our Japan Autumn Photo Tour to document the breathtaking Momiji season. From the neon streets of Tokyo and the iconic reflection of Mount Fuji to the serene zen gardens and hidden temples of Kyoto. This landscape photography workshop offers expert guidance in capturing the vibrant red maples and timeless spirit of Japan. Limited spots available — join us now!',
+     'Embark on our Japan Spring Photo Tour to document the breathtaking Momiji season. From the neon streets of Tokyo and the iconic reflection of Mount Fuji to the serene zen gardens and hidden temples of Kyoto. This landscape photography workshop offers expert guidance in capturing the vibrant red maples and timeless spirit of Japan. Limited spots available — join us now!',
      'EASY', 4500.00,
      '{"days": [
       {
         "day": "1",
         "plan": "ARRIVAL IN TOKYO: FUTURISTIC IMMERSION",
-        "description": "Arrival at Haneda Airport. Acclimatization and personal time. Visit teamLab Borderless Tokyo for immersive digital art photography, capturing luminous corridors, glowing projections, and infinite reflections.",
-        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429726/japan-spring___A8B8512-Edit_woxvlh.avif"
+        "description": "Our signature Japan autumn photo tour begins with a warm welcome at Haneda Airport. The first day is dedicated to acclimatization and personal time to explore the city at your own pace. We will start our journey by visiting one of Tokyo''s most visually stunning highlights: teamLab Borderless Tokyo. This is not a traditional museum; it is a total immersion into a digital world where art and technology merge into a living environment.\n\nAs you step inside, all boundaries disappear—ceilings and walls vanish, leaving only light, color, sound, and movement. For a photographer, teamLab Tokyo is both a paradise and a creative challenge. Each room offers endless compositions: luminous corridors, silhouettes against glowing backgrounds, and infinite reflections. Whether you are capturing digital flowers blooming on the walls or projections of koi fish scattering under your feet, the images look like scenes from a dream.\n\nThe essence of this experience is becoming part of the artwork itself. Your movements reshape the environment, providing unique opportunities for creative street and abstract photography. This is where Tokyo reveals its most futuristic face, serving as the perfect introduction to the diversity of our Japan photography workshop.",
+        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128120/japan_fall__1825037_kklwz5.avif"
       },
       {
         "day": "2",
         "plan": "TOKYO’S AUTUMN PARKS: THE COLORS OF MOMIJI",
-        "description": "Explore Ueno, Shinjuku Gyoen, and Yoyogi Parks to capture autumn foliage. Ueno offers energetic ginkgo and maple photography; Shinjuku Gyoen provides serene reflections; Yoyogi Park captures lifestyle and candid portraits in golden autumn light.",
-        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif"
+        "description": "What are the must-see locations in Tokyo? On our Japan photo tour, we head straight to the capital’s most breathtaking green spaces to document the Momiji season. We will explore Ueno, Shinjuku Gyoen, and Yoyogi — three parks that each reveal a distinct face of Tokyo when the maple leaves ignite in shades of crimson and gold.\n\nUeno Park is vibrant and energetic. Here, ginkgo-lined paths transform into golden tunnels, providing a lively backdrop for candid street photography. Red maples reflect in the ponds while ancient temples and traditional tea houses peek through the fiery foliage. It is a celebratory atmosphere where the city’s heritage meets the bright colors of autumn.\n\nIn contrast, Shinjuku Gyoen offers a meditative experience. A peaceful oasis amidst the skyscrapers of Shinjuku, this garden is a masterpiece of Japanese harmony. For a photographer, this location is all about clean compositions, serene reflections on the water, and the subtle details of the Momiji season: a single glowing branch or a red canopy mirrored in a still pond.\n\nWe conclude the day at Yoyogi Park, the city''s most "bohemian" space. Here, the atmosphere is relaxed and free, perfect for capturing spontaneous portraits and the joy of autumn. Musicians, dancers, and families picnicking under yellow ginkgoes provide endless opportunities for lifestyle photography in the warm, golden light. Together, these parks offer a comprehensive experience of autumn in the Japanese megalopolis.",
+        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128149/japan_fall_5_1827923-Edit_x1heje.avif"
       },
       {
         "day": "3",
         "plan": "KYOTO: THE CRIMSON PATHS OF FUSHIMI INARI",
-        "description": "Travel to Kyoto for sunrise at Fushimi Inari Shrine. Photograph thousands of red torii gates, moss-covered lanterns, and Kitsune statues. Capture panoramic views of Kyoto rooftops and the mystical crimson corridors.",
-        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429828/japan-spring__P1040398-Edit_x4p5iq.avif"
+        "description": "We head south to Kyoto — Japan’s ancient capital for over a millennium — to witness some of the country''s most spectacular autumn foliage. Our primary focus is the legendary Fushimi Inari Shrine, a location that captivates from the first moment with its thousands of vibrant red torii gates winding up the mountainside.\n\nTo capture the true essence of this site, we arrive in the early morning. At this hour, the soft sunlight filters through the gaps between the wooden gates, painting the path with golden stripes and creating a mystical atmosphere for landscape and architectural photography. As we climb higher, the crowds thin out, allowing for clean, powerful compositions of the continuous crimson corridor.\n\nAlong the trail, you will discover countless stone foxes (Kitsune), the sacred messengers of Inari. Moss-covered lanterns and narrow side paths offer incredible depth and texture for your Japan photo tour portfolio. The journey concludes with an expansive panoramic view over the rooftops of Kyoto, providing a striking contrast to the quiet, shaded forest of torii gates below. Fushimi Inari is more than a landmark; it is a fully immersive experience.",
+        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128157/japan_fall_10_A8B9746_cv8ocl.avif"
       },
       {
         "day": "4",
         "plan": "KYOTO: BAMBOO GROVES, GOLDEN PAVILIONS & GEISHA TRADITIONS",
-        "description": "Sunrise photoshoot in Arashiyama and Bamboo Grove. Visit Kiyomizu-dera and Kinkaku-ji (Golden Pavilion) for architectural and landscape photography. Evening in Gion district to photograph Geiko and Maiko in traditional attire along Hanami-koji lanes.",
-        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429725/japan-spring___A8B9101_v3cbqt.avif"
+        "description": "We begin our second day in Kyoto with a sunrise photoshoot in the scenic Arashiyama district. Located away from the bustling city center, Arashiyama offers a glimpse into rural Japan with its tranquil atmosphere. We will walk through Kameyama Park before entering the world-famous Bamboo Grove, where the towering green stalks create a unique play of light and shadow.\n\nNext, we visit the iconic Kiyomizu-dera, or the "Temple of Pure Water." In autumn, the temple’s massive wooden stage is framed by a sea of fiery red and orange maple leaves, providing one of the most picturesque panoramas in the country. This is a prime location for capturing the scale and architectural beauty of ancient Kyoto.\n\nIn the afternoon, our Japan photography workshop takes us to the shimmering Kinkaku-ji — the Golden Pavilion. Built in 1398 as a shogun''s villa and later converted into a Zen Buddhist temple, its gold-leaf exterior reflects brilliantly in the surrounding Mirror Pond, especially when contrasted against the vibrant autumn foliage.\n\nAs evening falls, we head to the historic Gion district. This is the spiritual home of the Geisha and the best place to witness Japan’s living traditions. At twilight, we will explore the narrow lanes of Hanami-koji, looking for the elegant kimonos and white makeup of Geiko or Maiko as they head to their appointments. We will share professional tips on how to successfully and respectfully capture these rare encounters.",
+        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772046394/image_598_3.png_qxuxrg.avif"
       },
       {
         "day": "5-6",
         "plan": "JIGOKUDANI MONKEY PARK: WILDLIFE & WELLNESS",
-        "description": "Two nights in Jigokudani region. Sunrise and sunset wildlife photography with Japanese macaques in natural hot springs. Free time to enjoy mountain walks and thermal spas. Capture emotive animal behavior and serene landscapes.",
-        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429798/japan-spring___IMG2449_slc8ai.avif"
+        "description": "Heading back to the northeast, we will travel to Jigokudani and spend two nights in this remarkable mountain region. Our schedule is designed around the best light; at sunrise and sunset, we will hold wildlife photography sessions with the local macaques. Between shoots, you will have the opportunity to visit traditional mountain hot springs and thermal spas, or take relaxing walks through the local town.\n\nJigokudani Monkey Park, often called the Snow Monkey Park, was established in 1964 as a protected area for a local troop of Japanese macaques. Although they are wild animals, these monkeys pass through the park’s territory every day, giving us a unique opportunity to observe and photograph them up close in their natural habitat.\n\nFor many people, soaking in a hot bath is the best way to relieve stress—and as recent research shows, the same is true for monkeys. Scientists observing the macaques discovered that bathing in hot springs helps them reduce stress levels and maintain body heat. For us, this provides an exceptional opportunity to capture unforgettable, emotive images as part of our 10-day photography tour in Japan.",
+        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128185/japan_fall_IMG_4886-Edit_copy_anlhrt.avif"
       },
       {
         "day": "7",
         "plan": "MATSUMOTO: THE CROW CASTLE & THE WORLD OF YAYOI KUSAMA",
-        "description": "Photograph Matsumoto Castle (Crow Castle) and its autumn garden reflections. Explore castle interiors with samurai armor. Visit Matsumoto City Museum of Art, featuring Yayoi Kusama’s installations, including infinity mirror rooms and signature dot environments.",
-        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429703/japan-spring___1827029-Pano_lgecpg.avif"
+        "description": "Our photography tour in Japan continues at Matsumoto Castle, one of the country''s most impressive and premier feudal-era fortresses. In autumn, the castle gardens transform into a picturesque paradise, where vibrant shades of red and orange maples are reflected in the still waters of the surrounding moat.\n\nKnown as the "Crow Castle" due to its iconic black façade and wing-like roofs, this structure has remarkably preserved its original wooden and stone interiors. Its austere, isolated presence amidst the modern city provides a powerful subject for architectural photography. Having served as the residence for 23 lords across six ruling families, the castle also houses an extensive collection of feudal armor, weapons, and early firearms, offering a deep look into Japan’s samurai heritage.\n\nThe next highlight of our Japan photo tour is the Matsumoto City Museum of Art, featuring a permanent collection by the world-renowned artist Yayoi Kusama. Born in Matsumoto, Kusama used art to channel her unique visions into global masterpieces. For a photographer, her installations are a dream: from rooms covered in her signature glowing dots to mesmerizing infinity mirror spaces that offer a glimpse into a boundless reality. Capturing these immersive environments is a highlight of our creative journey through the heart of Japan.",
+        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128148/japan_fall_8_FUJI6050-HDR-Edit_copy_ye7kjz.avif"
       },
       {
         "day": "8",
         "plan": "MOUNT FUJI: THE MOMIJI CORRIDOR & LAKE KAWAGUCHIKO",
-        "description": "Travel to Lake Kawaguchiko for sunrise photography of Mount Fuji framed by autumn maple leaves. Capture reflections on the lake, the Maple Corridor, and sunset transitions with vivid skies. Focus on landscape composition and seasonal color contrasts.",
-        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429761/japan-spring___IMG2246_exbnwk.avif"
+        "description": "On the eighth day of our Japan photography tour, we head southwest to Lake Kawaguchiko — one of the premier locations to photograph the magnificent Mount Fuji. In autumn, during the peak of the Momiji season, vibrant red and golden maples frame the lake’s calm surface, with the snow-capped peak of Fuji rising majestically in the background. The entire scene feels like a living watercolor painting.\n\nOur morning session begins when the air is crisp and the lake is smooth as a mirror, offering a perfect Mount Fuji reflection. As the day progresses and the light strengthens, the fiery red maples create a striking contrast against the deep blue sky and the mountain''s white summit.\n\nA highlight of the day is the famous Maple Corridor, which transforms into a tunnel of intense autumnal colors. Walking through this corridor, Mount Fuji reveals itself through the fiery leaves, acting as the undeniable protagonist of the landscape. At sunset, we capture the transition of the sky into pink and violet hues, while the mountain darkens into a powerful silhouette. Mount Fuji from Lake Kawaguchiko is a masterclass in the harmony of strength and softness — a moment that defines the ultimate landscape photography workshop in Japan.",
+        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall__1828304-cover_k269sd.avif"
       },
       {
         "day": "9",
         "plan": "CHUREITO PAGODA: THE ICONIC SUNRISE",
-        "description": "Ascend 398 steps to Chureito Pagoda in Arakurayama Sengen Park for sunrise. Capture the red pagoda with Mount Fuji in the background, framed by vibrant Momiji foliage. Focus on architectural harmony and natural scenic beauty.",
-        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429741/japan-spring___A8B9292-Pano_kgzfq0.avif"
+        "description": "Even after a full day at Lake Kawaguchiko, our photography tour in Japan continues to reveal its secrets. Our morning mission takes us to one of the most iconic viewpoints in the world: the Chureito Pagoda. To capture this breathtaking scene, we will ascend 398 steps through Arakurayama Sengen Park to reach the observation deck just in time for sunrise.\n\nThe five-story red pagoda, built as a peace memorial, offers a perfect foreground for Mount Fuji, especially when framed by the vibrant autumn leaves of the Momiji season. This location is the ultimate symbol of harmony between traditional Japanese design and the raw power of nature. Capturing the first light hitting the pagoda with the majestic peak of Fuji in the background is a definitive highlight for any landscape photography workshop.",
+        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif"
       },
       {
         "day": "10",
         "plan": "RETURN TO TOKYO & DEPARTURE",
-        "description": "Return to Tokyo. Depart from Haneda or Narita Airport in the afternoon. Optional city drop-offs for those extending their stay. End of Japan photography tour with a world-class portfolio of landscapes, wildlife, and cultural experiences.",
-        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429729/japan-spring___A8B8673-Edit_okewev.avif"
+        "description": "Return to Tokyo — the final day of our photo tour in Japan and your departure. We will head back to the capital, concluding our journey through the vibrant colors of the momiji season and the iconic landscapes.\n\nPlease make sure to book your return flight from Haneda or Narita Airport for the second half of the day to allow for a smooth and relaxed transfer. For those who wish to stay longer and continue exploring the neon streets of Tokyo, we will be happy to assist with city drop-offs. This marks the end of an unforgettable Japan photography workshop, leaving you with a world-class portfolio of the Land of the Rising Sun.",
+        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772046576/image_598_5_cdog3m.avif"
       }
     ]}',
     '{"questions": [
+      {
+        "question": "1. What photography level is required for the Japan Autumn Photo Tour? Can non-photographers join?",
+        "answer": "We welcome photographers of all skill levels, from beginners to professionals, as well as non-photographers who wish to experience the vibrant colors of Japan’s autumn. Our tour leaders are experts dedicated to helping participants refine their skills through personalized on-site mentoring. You are welcome to join our shooting sessions with a professional camera or a mobile phone.\n\nExperiencing Tokyo, the serene shrines, and the legendary landscapes through the eyes of a professional photographer — who plans every detail for the best light — is a transformative experience. On this Japan autumn photo tour, you will avoid the typical tourist crowds to capture the authentic soul of the country, from bustling street scenes to the tranquility of ancient gardens."
+      },
+      {
+        "question": "2. What gear should I pack for an autumn photo tour in Japan?",
+        "answer": "We provide specific technical recommendations for every participant. If you are joining with a camera, we suggest a tripod and a versatile lens kit: a wide-angle lens for urban Tokyo architecture and a telephoto lens (such as 70–200mm) to capture the unique details of the Jigokudani Monkey Park.\n\nOnce your spot is reserved, you will receive a comprehensive manual covering everything from technical equipment to appropriate clothing for the Japanese autumn. You can also schedule a personal consultation with your expert photo guide to ensure you are fully prepared."
+      },
+      {
+        "question": "3. What level of physical fitness is required for this expedition?",
+        "answer": "The Japan autumn photo tour is rated as ’Easy’ and is suitable for participants with standard physical preparation. Most iconic locations are easily accessible, allowing us to focus entirely on the creative process. If you have any specific health concerns or questions about the pace of the trip, our manager is available to discuss the requirements with you directly."
+      },
+      {
+        "question": "4. How many people are in the group?",
+        "answer": "We prioritize an intimate atmosphere and a personalized approach for every participant. Our goal is to ensure you gain valuable experience and return home with a portfolio of ’trophy shots’ from the most cinematic corners of Japan.\n\nThe group size for our Japan photography workshop is limited to 10 participants. This size ensures that everyone receives individual attention during our shooting sessions and editing workshops."
+      },
+      {
+        "question": "5. Are international flights included in the tour cost?",
+        "answer": "Since our participants join us from all over the world, airfare and visas are not included. The tour officially starts and ends in Tokyo. The following is included in the tour price:\n\n• Accommodation: 10 days of high-quality lodging, including an Authentic Ryokan (special overnight stay).\n• Logistics: Airport transfers (Haneda) and all regional travel within the tour.\n• Meals: Daily breakfasts are included.\n• Expert Mentoring: All sunrise and sunset photo sessions, workshops, and on-site guidance.\n• Education: Dedicated editing and post-processing sessions."
+      },
+      {
+        "question": "6. What exactly is included in the 10-day Japan photo tour?",
+        "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n• Professional Guidance: Daily shoots and workshops led by an expert photo guide.\n• Unique Cultural Stays: An immersive Ryokan experience and visits to the Jigokudani Monkey Park.\n• Creative Growth: In-depth editing and post-processing sessions to refine your portfolio.\n• Logistics: All transportation, accommodation, and breakfasts throughout the 10-day itinerary."
+      }
     ]}',
     guide5_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 10, 'Haneda (HND)', 'Haneda (HND)',
@@ -1575,17 +1599,16 @@ VALUES
 (tour7_id, 'Cultural Experiences', 'culturalExperiences'),
 (tour7_id, 'Flamingo & Birdlife Shoots', 'flamingoBirdLifeShoots'),
 (tour7_id, 'Wild Horses Photo Session', 'wildHorsesPhotoSessions'),
-(tour7_id, 'Scenic Horse Riding Experience', 'extraHorse'),
+(tour7_id, 'Scenic Horse Riding', 'extraHorse'),
 
 -- Tour 8: Sicily and Aeolian Islands
 (tour8_id, 'Sunrise Photo Sessions', 'sunrise'),
 (tour8_id, 'Sunset Photo Sessions', 'sunset'),
 (tour8_id, 'Photography Workshops', 'photographyWorkshops'),
 (tour8_id, 'Editing & Post-Processing Sessions', 'editingPostProcessingSessions'),
-(tour8_id, 'Cultural Experiences', 'culturalExperiences'),
 (tour8_id, 'Catamaran Life Experience', 'boatCoastalPhotography'),
 (tour8_id, 'Sea-to-Land Landscape Photography', 'specialOvernightStay'),
-(tour8_id, 'Landscape Photography Sessions', 'landscapePhotography'),
+(tour8_id, 'Cultural Experiences', 'culturalExperiences'),
 
 -- Tour 9: Czechia (autumn)
 (tour9_id, 'Sunrise Photo Sessions', 'sunrise'),
@@ -1613,25 +1636,25 @@ VALUES
 (tour12_id, 'Sunset Photo Sessions', 'sunset'),
 (tour12_id, 'Photography Workshops', 'photographyWorkshops'),
 (tour12_id, 'Editing & Post-Processing Sessions', 'editingPostProcessingSessions'),
-(tour12_id, 'Cultural Experiences', 'culturalExperiences'),
 (tour12_id, 'Authentic Ryokan (Special Overnight Stay)', 'authenticRyokanStaySpecialOvernightStay'),
 (tour12_id, 'Jigokudani Monkey Park Visit', 'wildlifeNature'),
+(tour12_id, 'Cultural Experiences', 'culturalExperiences'),
 
--- Tour 13: Japan Spring
-(tour14_id, 'Sunrise Photo Sessions', 'sunrise'),
-(tour14_id, 'Sunset Photo Sessions', 'sunset'),
-(tour14_id, 'Photography Workshops', 'photographyWorkshops'),
-(tour14_id, 'Editing & Post-Processing Sessions', 'editingPostProcessingSessions'),
-(tour14_id, 'Cultural Experiences', 'culturalExperiences'),
-(tour14_id, 'Authentic Ryokan (Special Overnight Stay)', 'authenticRyokanstayspecialovernightstay'),
-(tour14_id, 'Jigokudani Monkey Park Visit', 'wildlifeNature'),
-
--- Tour 14: Iceland
+-- Tour 13: Iceland
 (tour13_id, 'Sunrise Photo Sessions', 'sunrise'),
 (tour13_id, 'Sunset Photo Sessions', 'sunset'),
 (tour13_id, 'Photography Workshops', 'photographyWorkshops'),
 (tour13_id, 'Editing & Post-Processing Sessions', 'editingPostProcessingSessions'),
-(tour13_id, 'Cultural Experiences', 'culturalExperiences');
+(tour13_id, 'Cultural Experiences', 'culturalExperiences'),
+
+-- Tour 14: Japan Spring
+(tour14_id, 'Sunrise Photo Sessions', 'sunrise'),
+(tour14_id, 'Sunset Photo Sessions', 'sunset'),
+(tour14_id, 'Photography Workshops', 'photographyWorkshops'),
+(tour14_id, 'Editing & Post-Processing Sessions', 'editingPostProcessingSessions'),
+(tour14_id, 'Authentic Ryokan (Special Overnight Stay)', 'authenticRyokanstayspecialovernightstay'),
+(tour14_id, 'Jigokudani Monkey Park Visit', 'wildlifeNature'),
+(tour14_id, 'Cultural Experiences', 'culturalExperiences');
 
 
  -- TOUR SUMMARY
@@ -1642,7 +1665,7 @@ VALUES
   (tour1_id, 'Group Size', '7 participants'),
   (tour1_id, 'Languages', 'English'),
   (tour1_id, 'Difficulty', 'Easy'),
-  (tour1_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)'),
+  (tour1_id, 'Tour starts', 'Rome, Fiumicino Airport(FCO)'),
   (tour1_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)'),
   
   -- Tour 2: Morocco
@@ -1690,32 +1713,32 @@ VALUES
   (tour7_id, 'Group Size', '7 participants'),
   (tour7_id, 'Languages', 'English'),
   (tour7_id, 'Difficulty', 'Easy'),
-  (tour7_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)'),
-  (tour7_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)'),
+  (tour7_id, 'Tour starts', 'Marseille Airport (MRS)'),
+  (tour7_id, 'Ending place', 'Marseille Airport (MRS)'),
   
   -- Tour 8: Sicily & Aeolian Islands
   (tour8_id, 'Duration', '10 days'),
   (tour8_id, 'Group Size', '7 participants'),
   (tour8_id, 'Languages', 'English'),
   (tour8_id, 'Difficulty', 'Easy'),
-  (tour8_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)'),
-  (tour8_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)'),
+  (tour8_id, 'Tour starts', 'Catania Airport (CTA)'),
+  (tour8_id, 'Ending place', 'Catania Airport (CTA)'),
   
   -- Tour 9: Czechia Autumn
   (tour9_id, 'Duration', '10 days'),
   (tour9_id, 'Group Size', '7 participants'),
   (tour9_id, 'Languages', 'English'),
   (tour9_id, 'Difficulty', 'Easy'),
-  (tour9_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)'),
-  (tour9_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)'),
+  (tour9_id, 'Tour starts', 'Prague Airport (PRG)'),
+  (tour9_id, 'Ending place', 'Prague Airport (PRG)'),
   
   -- Tour 10: Scotland Highlands
-  (tour10_id, 'Duration', '10 days'),
+  (tour10_id, 'Duration', '8 days'),
   (tour10_id, 'Group Size', '7 participants'),
   (tour10_id, 'Languages', 'English'),
   (tour10_id, 'Difficulty', 'Easy'),
-  (tour10_id, 'Tour starts', 'Rome, Fiumicino Airport (FCO)'),
-  (tour10_id, 'Ending place', 'Rome, Fiumicino Airport (FCO)'),
+  (tour10_id, 'Tour starts', 'Edinburgh Airport (EDI)'),
+  (tour10_id, 'Ending place', 'Edinburgh Airport (EDI)'),
   
   -- Tour 11: Tuscany Autumn
   (tour11_id, 'Duration', '10 days'),
@@ -1742,7 +1765,6 @@ VALUES
   (tour13_id, 'Ending place', 'Keflavík Airport (KEF)'),
   
   -- Tour 14: japan-spring
-  (tour14_id, 'replace me', '10 days'),
   (tour14_id, 'Duration', '10 days'),
   (tour14_id, 'Group Size', '7 participants'),
   (tour14_id, 'Languages', 'English'),
@@ -1815,6 +1837,8 @@ VALUES
   (tour8_id, 'Photo shoots'),
   (tour8_id, 'Photo workshops'),
   (tour8_id, 'Expert photo guide'),
+  (tour8_id, 'Professional skipper & crew services'),
+  (tour8_id, 'Catamaran cruise'),
   
   -- Tour 9: Czechia Autumn
   (tour9_id, 'Accommodation'),
@@ -1851,7 +1875,7 @@ VALUES
   (tour13_id, 'Photo workshops'),
   (tour13_id, 'Expert photo guide'),
 
-  -- Tour 14: Japan autumn
+  -- Tour 14: Japan spring
   (tour14_id, 'Accommodation'),
   (tour14_id, 'In-tour transportation'),
   (tour14_id, 'Photo shoots'),
