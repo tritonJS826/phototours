@@ -738,6 +738,14 @@
   border: 1px solid #2f53de;
 }
 
+.phoneInput {
+  margin: 8px 24px 8px 24px;
+  width: 432px;
+  border-radius: 10px;
+  border: 1px solid #2f53de;
+  overflow: hidden;
+}
+
 .locationInputBlock {
   border: 1px solid #2f53de;
   display: flex;
@@ -906,9 +914,14 @@
 
   .buyTravelInput {
     margin: 8px 24px 8px 16px;
-    padding: 16px 20px;
     width: calc(100% - 32px);
     padding: 12px 16px;
+  }
+
+  .phoneInput {
+    width: calc(100% - 32px);
+    margin: 8px 24px 8px 16px;
+
   }
 
   .locationInputBlock {

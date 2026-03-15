@@ -22,6 +22,7 @@ import {Button} from "src/components/Button/Button";
 import {CentralNotification} from "src/components/CentralNotification/CentralNotification";
 import {Container} from "src/components/Container/Container";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
+import {InputPhone} from "src/components/InputPhone/InputPhone";
 import {Loader} from "src/components/Loader/Loader";
 import {NumberInput} from "src/components/NumberInput/NumberInput";
 import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
@@ -247,14 +248,13 @@ export function TourDetailsPage() {
       <p className={styles.buyTravelLabel}>
         Your Phone
       </p>
-      <input
-        type="text"
-        className={styles.buyTravelInput}
+      <InputPhone
+        defaultCountry="us"
         value={formData.phone}
-        onChange={(e) =>
-          setFormData((prev) => ({...prev, phone: e.target.value}))
+        className={styles.phoneInput}
+        onChange={(phone) =>
+          setFormData((prev) => ({...prev, phone}))
         }
-        autoComplete="on"
       />
       <p className={styles.buyTravelLabel}>
         Travel dates
