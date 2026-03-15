@@ -737,11 +737,21 @@
 }
 
 .phoneInput {
-  margin: 8px 24px 8px 24px;
+  margin: 8px 24px;
   width: 430px;
+  height: 56px;
   border-radius: 10px;
   border: 1px solid #2f53de;
-  overflow: hidden;
+
+  // get rid of nested orders in input
+  input {
+    border: none !important;
+  }
+  button {
+    border-top: none !important;
+    border-left: none !important;
+    border-bottom: none !important;
+  }
 }
 
 .locationInputBlock {
