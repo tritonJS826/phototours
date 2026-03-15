@@ -30,13 +30,14 @@ func (h *Handler) Subscribe(ctx *gin.Context) {
 
 	// Create Zoho contact
 	contact := &domain.ContactZoho{
-		Email:           subscribeReq.Email,
-		LastName:        "unknown",
-		Language:        subscribeReq.Language,
-		Timezone:        subscribeReq.Timezone,
-		City:            subscribeReq.City,
-		Country:         subscribeReq.Country,
-		LastContactPage: subscribeReq.LastContactPage,
+		Email:            subscribeReq.Email,
+		LastName:         "unknown",
+		Language:         subscribeReq.Language,
+		Timezone:         subscribeReq.Timezone,
+		City:             subscribeReq.City,
+		Country:          subscribeReq.Country,
+		LastContactPage:  subscribeReq.LastContactPage,
+		SubscriptionType: []string{"Marketing"},
 	}
 
 	err := h.services.BookingService.CreateContact(ctx, contact)

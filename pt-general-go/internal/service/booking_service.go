@@ -106,6 +106,12 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 		LastContactPage:      bookingRequest.LastContactPage,
 	}
 
+	if bookingRequest.SubscriptionType != "" && bookingRequest.SubscriptionType != "None" {
+		deal.SubscriptionType = []string{bookingRequest.SubscriptionType}
+	} else {
+		deal.SubscriptionType = []string{"None"}
+	}
+
 	dealResp, err := s.zohoRepository.CreateDeal(ctx, deal)
 	if err != nil {
 		s.logger.Error("Failed to create deal in Zoho", zap.Error(err), zap.Any("deal", deal))

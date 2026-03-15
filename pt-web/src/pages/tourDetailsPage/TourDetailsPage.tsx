@@ -66,8 +66,8 @@ const ScheduleAccordionItem = (props: ScheduleAccordionItemProps) => {
         <img
           src={props.image}
           alt="dayImage"
-        />)
-      }
+        />
+      )}
       <br />
       <p>
         {props.description}
@@ -160,6 +160,8 @@ export function TourDetailsPage() {
   const [searchParams] = useSearchParams();
   const [isErrorNotificationOpen, setIsErrorNotificationOpen] = useState(false);
   const [formValidError, setFormValidError] = useState(false);
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [agreedToMarketing, setAgreedToMarketing] = useState(false);
 
   const [isFirstPopUpVisible, setIsFirstPopUpVisible] = useState(false);
 
@@ -205,6 +207,7 @@ export function TourDetailsPage() {
         city: userInfo.location?.city,
         country: userInfo.location?.country_name,
         lastContactPage: window.location.href,
+        subscriptionType: agreedToMarketing ? "Marketing" : "None",
       };
       await createBooking(request);
     } catch (err) {
@@ -347,6 +350,45 @@ export function TourDetailsPage() {
         icon={people}
       />
 
+      <div className={styles.checkboxGroup}>
+        <label className={styles.checkboxLabel}>
+          <input
+            type="checkbox"
+            checked={agreedToTerms}
+            onChange={(e) => setAgreedToTerms(e.target.checked)}
+          />
+          <span>
+            I agree to the
+            {" "}
+            <a
+              href="/privacy-policy"
+              target="_blank"
+            >
+              Privacy Policy
+            </a>
+            {" "}
+            and
+            {" "}
+            <a
+              href="/terms-of-service"
+              target="_blank"
+            >
+              Terms of Service
+            </a>
+          </span>
+        </label>
+        <label className={styles.checkboxLabel}>
+          <input
+            type="checkbox"
+            checked={agreedToMarketing}
+            onChange={(e) => setAgreedToMarketing(e.target.checked)}
+          />
+          <span>
+            I agree to receive updates about new tours and special offers
+          </span>
+        </label>
+      </div>
+
       <div className={styles.buyTravelFooter}>
         <div className={styles.buyTravelFooterLeft}>
           <span className={styles.buyTravelFooterLeftTop}>
@@ -367,7 +409,7 @@ export function TourDetailsPage() {
           size="md"
           variant="primary"
           onClick={handleBookNow}
-          disabled={bookingLoading}
+          disabled={bookingLoading || !agreedToTerms}
         >
           {bookingLoading ? "Processing..." : "Book now"}
         </Button>

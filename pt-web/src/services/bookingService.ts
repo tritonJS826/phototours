@@ -13,6 +13,7 @@ export interface BookingRequest {
   city?: string;
   country?: string;
   lastContactPage?: string;
+  subscriptionType?: string;
 }
 
 export async function createBooking(data: BookingRequest): Promise<void> {
