@@ -50,8 +50,7 @@ const COPY = {
   },
   reviews: {
     title: "Reviews",
-    subtitle:
-      "Testimonials from Our Photo Tours & Workshop Participants",
+    subtitle: "Testimonials from Our Photo Tours & Workshop Participants",
   },
   articles: {
     title: "Best travel tips for Iceland",
@@ -132,10 +131,7 @@ const RightBlockDark = () => {
         <Dropdown
           trigger={
             <button
-              className={clsx(
-                styles.contactUsDropdownTrigger,
-                {[styles.contactUsDropdownTriggerOpen]: isContactDropdownOpen},
-              )}
+              className={clsx(styles.contactUsDropdownTrigger, {[styles.contactUsDropdownTriggerOpen]: isContactDropdownOpen})}
               onClick={() => {}}
             >
               Contact Us
@@ -156,13 +152,16 @@ const RightBlockDark = () => {
                   id: "Phone",
                   isPreventDefaultUsed: false,
                   value: (
-                    <div className={styles.contactUsItem}>
+                    <a
+                      href="tel:+1234567890"
+                      className={styles.contactUsItem}
+                    >
                       <img
                         src={phone}
                         alt="user link"
                       />
                       Phone
-                    </div>
+                    </a>
                   ),
                   isVisible: true,
                 },
@@ -170,13 +169,18 @@ const RightBlockDark = () => {
                   id: "Telegram",
                   isPreventDefaultUsed: false,
                   value: (
-                    <div className={styles.contactUsItem}>
+                    <a
+                      href="https://t.me/tuscanyphototours_bot"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.contactUsItem}
+                    >
                       <img
                         src={telegram}
                         alt="user link"
                       />
                       Telegram
-                    </div>
+                    </a>
                   ),
                   isVisible: true,
                 },
@@ -184,13 +188,18 @@ const RightBlockDark = () => {
                   id: "WhatsApp",
                   isPreventDefaultUsed: false,
                   value: (
-                    <div className={styles.contactUsItem}>
+                    <a
+                      href="https://wa.me/1234567890"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.contactUsItem}
+                    >
                       <img
                         src={whatsapp}
                         alt="user link"
                       />
                       WhatsApp
-                    </div>
+                    </a>
                   ),
                   isVisible: true,
                 },
@@ -198,13 +207,16 @@ const RightBlockDark = () => {
                   id: "Email",
                   isPreventDefaultUsed: false,
                   value: (
-                    <div className={styles.contactUsItem}>
+                    <a
+                      href="mailto:info@tuscany-photo-tours.com"
+                      className={styles.contactUsItem}
+                    >
                       <img
                         src={email}
                         alt="user link"
                       />
                       Email
-                    </div>
+                    </a>
                   ),
                   isVisible: true,
                 },
@@ -212,13 +224,18 @@ const RightBlockDark = () => {
                   id: "Instagram",
                   isPreventDefaultUsed: false,
                   value: (
-                    <div className={clsx(styles.contactUsItem, styles.lastChild)}>
+                    <a
+                      href="https://instagram.com/tuscany.phototours"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={clsx(styles.contactUsItem, styles.lastChild)}
+                    >
                       <img
                         src={instagram}
                         alt="user link"
                       />
                       Instagram
-                    </div>
+                    </a>
                   ),
                   isVisible: true,
                 },
@@ -319,7 +336,8 @@ export function HomePage() {
               </i>
             </h3>
             <p className={styles.blogAndPhotographyText}>
-              Insights, tips, and stories to help you elevate your photography and explore Tuscany with confidence.
+              Insights, tips, and stories to help you elevate your photography
+              and explore Tuscany with confidence.
             </p>
             <Link
               to={PATHS.TOURS}
@@ -370,7 +388,6 @@ export function HomePage() {
             type={accordionTypes.MULTIPLE}
             className={styles.accordion}
             itemClassName={styles.accordionItem}
-
           />
         </div>
       </div>
@@ -386,26 +403,40 @@ export function HomePage() {
         delay={20}
         title={"Get the Ultimate \"Top 100 Global Locations\" Map"}
         // eslint-disable-next-line max-len
-        description="From the peaks of Iceland and New Zealand to the hidden corners of Japan and Italy, get our curated map of the world’s most breathtaking spots sent straight to your phone. Which messenger do you prefer?"
+        description="From the peaks of Iceland and New Zealand to the hidden corners of Japan and Italy, get our curated map of the world's most breathtaking spots sent straight to your phone. Which messenger do you prefer?"
         imgUrl="https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771361885/20SecPopUpImage_h6vybz.avif"
         leftBtnCallback={() => {}}
-        leftBtn={<p className={styles.pupUpButton}>
-          <span>
-            Telegram
-          </span>
-          <img
-            src={telegramBlue}
-            alt=""
-          />
-        </p>}
+        leftBtn={
+          <a
+            href="https://t.me/tuscanyphototours_bot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.pupUpButton}
+          >
+            <span>
+              Telegram
+            </span>
+            <img
+              src={telegramBlue}
+              alt=""
+            />
+          </a>
+        }
         rightBtnCallback={() => {}}
-        rightBtn={<span className={styles.pupUpButton}>
-          WhatsApp
-          <img
-            src={whatsappGreen}
-            alt=""
-          />
-        </span>}
+        rightBtn={
+          <a
+            href="https://wa.me/1234567890"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.pupUpButton}
+          >
+            WhatsApp
+            <img
+              src={whatsappGreen}
+              alt=""
+            />
+          </a>
+        }
         onOpen={() => setIsFirstPopUpVisible(true)}
         onClose={() => setIsFirstPopUpVisible(false)}
       />
@@ -419,21 +450,65 @@ export function HomePage() {
         description="Let us help you find the trip that matches your style, skill level, and bucket list. Tell us what you're looking for. Which messenger do you prefer?"
         imgUrl="https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771361885/20SecPopUpImage_h6vybz.avif"
         leftBtnCallback={() => {}}
-        leftBtn={<span className={styles.pupUpButton}>
-          Telegram
-          <img
-            src={telegramBlue}
-            alt=""
-          />
-        </span>}
+        leftBtn={
+          <a
+            href="https://t.me/tuscanyphototours_bot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.pupUpButton}
+          >
+            Telegram
+            <img
+              src={telegramBlue}
+              alt=""
+            />
+          </a>
+        }
         rightBtnCallback={() => {}}
-        rightBtn={<span className={styles.pupUpButton}>
-          WhatsApp
-          <img
-            src={whatsappGreen}
-            alt=""
-          />
-        </span>}
+        rightBtn={
+          <a
+            href="https://wa.me/1234567890"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.pupUpButton}
+          >
+            WhatsApp
+            <img
+              src={whatsappGreen}
+              alt=""
+            />
+          </a>
+        }
+      />
+
+      <TimeoutPopup
+        // 100 + 20 bc of the first popup
+        delay={100}
+        isDisabled={isFirstPopUpVisible}
+        title="Find Your Perfect Photo Expedition"
+        // eslint-disable-next-line max-len
+        description="Let us help you find the trip that matches your style, skill level, and bucket list. Tell us what you're looking for. Which messenger do you prefer?"
+        imgUrl="https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771361885/20SecPopUpImage_h6vybz.avif"
+        leftBtnCallback={() => {}}
+        leftBtn={
+          <span className={styles.pupUpButton}>
+            Telegram
+            <img
+              src={telegramBlue}
+              alt=""
+            />
+          </span>
+        }
+        rightBtnCallback={() => {}}
+        rightBtn={
+          <span className={styles.pupUpButton}>
+            WhatsApp
+            <img
+              src={whatsappGreen}
+              alt=""
+            />
+          </span>
+        }
       />
     </div>
   );

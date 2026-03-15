@@ -1,8 +1,4 @@
-import React, {
-  useEffect,
-  // UseRef,
-  useState,
-} from "react";
+import React, {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import email from "/images/email.svg";
 import instagram from "/images/instagram.svg";
@@ -230,10 +226,10 @@ export function Header() {
               <Dropdown
                 trigger={
                   <button
-                    className={clsx(
-                      styles.contactUsDropdownTrigger,
-                      {[styles.contactUsDropdownTriggerOpen]: isContactDropdownOpen},
-                    )}
+                    className={clsx(styles.contactUsDropdownTrigger, {
+                      [styles.contactUsDropdownTriggerOpen]:
+                        isContactDropdownOpen,
+                    })}
                     onClick={() => {}}
                   >
                     Contact&nbsp;Us
@@ -254,13 +250,16 @@ export function Header() {
                         id: "Phone",
                         isPreventDefaultUsed: false,
                         value: (
-                          <div className={styles.contactUsItem}>
+                          <a
+                            href="tel:+1234567890"
+                            className={styles.contactUsItem}
+                          >
                             <img
                               src={phone}
                               alt="user link"
                             />
                             Phone
-                          </div>
+                          </a>
                         ),
                         isVisible: true,
                       },
@@ -268,13 +267,18 @@ export function Header() {
                         id: "Telegram",
                         isPreventDefaultUsed: false,
                         value: (
-                          <div className={styles.contactUsItem}>
+                          <a
+                            href="https://t.me/tuscanyphototours_bot"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.contactUsItem}
+                          >
                             <img
                               src={telegram}
                               alt="user link"
                             />
                             Telegram
-                          </div>
+                          </a>
                         ),
                         isVisible: true,
                       },
@@ -282,13 +286,18 @@ export function Header() {
                         id: "WhatsApp",
                         isPreventDefaultUsed: false,
                         value: (
-                          <div className={styles.contactUsItem}>
+                          <a
+                            href="https://wa.me/1234567890"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.contactUsItem}
+                          >
                             <img
                               src={whatsapp}
                               alt="user link"
                             />
                             WhatsApp
-                          </div>
+                          </a>
                         ),
                         isVisible: true,
                       },
@@ -296,13 +305,16 @@ export function Header() {
                         id: "Email",
                         isPreventDefaultUsed: false,
                         value: (
-                          <div className={styles.contactUsItem}>
+                          <a
+                            href="mailto:info@tuscany-photo-tours.com"
+                            className={styles.contactUsItem}
+                          >
                             <img
                               src={email}
                               alt="user link"
                             />
                             Email
-                          </div>
+                          </a>
                         ),
                         isVisible: true,
                       },
@@ -310,17 +322,21 @@ export function Header() {
                         id: "Instagram",
                         isPreventDefaultUsed: false,
                         value: (
-                          <div className={clsx(
-                            styles.contactUsItem,
-                            styles.lastChild,
-                          )}
+                          <a
+                            href="https://instagram.com/tuscany.phototours"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={clsx(
+                              styles.contactUsItem,
+                              styles.lastChild,
+                            )}
                           >
                             <img
                               src={instagram}
                               alt="user link"
                             />
                             Instagram
-                          </div>
+                          </a>
                         ),
                         isVisible: true,
                       },

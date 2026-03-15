@@ -20,8 +20,9 @@ export const ContactUs = () => {
             Tuscany Photo Tours
           </h1>
           <p className={styles.infoSubtitle}>
-            Connect with us to start planning your next great photography expedition or
-            to explore professional collaboration opportunities within our community
+            Connect with us to start planning your next great photography
+            expedition or to explore professional collaboration opportunities
+            within our community
           </p>
         </div>
         <div className={styles.infoRight}>
@@ -57,28 +58,46 @@ export const ContactUs = () => {
               social media
             </span>
             <span className={styles.infoRightMiniBlockDescription}>
-              <a className={styles.socialMediaImage}>
+              <a
+                href="mailto:info@tuscany-photo-tours.com"
+                className={styles.socialMediaImage}
+              >
                 <img
                   className={styles.socialMediIcon}
                   src={email}
                   alt="user link"
                 />
               </a>
-              <a className={styles.socialMediaImage}>
+              <a
+                href="https://t.me/tuscanyphototours_bot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialMediaImage}
+              >
                 <img
                   className={styles.socialMediIcon}
                   src={telegram}
                   alt="user link"
                 />
               </a>
-              <a className={styles.socialMediaImage}>
+              <a
+                href="https://wa.me/1234567890"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialMediaImage}
+              >
                 <img
                   className={styles.socialMediIcon}
                   src={whatsapp}
                   alt="user link"
                 />
               </a>
-              <a className={styles.socialMediaImage}>
+              <a
+                href="https://instagram.com/tuscany.phototours"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialMediaImage}
+              >
                 <img
                   className={styles.socialMediIcon}
                   src={instagram}
@@ -93,4 +112,3 @@ export const ContactUs = () => {
     </main>
   );
 };
-

@@ -2,7 +2,6 @@ import {useEffect, useRef, useState} from "react";
 // Import {Helmet} from "react-helmet-async";
 import {Link, useParams, useSearchParams} from "react-router-dom";
 import arrowsToRight from "/images/arrowsToRight.svg";
-// Import blueArrowCircleRight from "/images/blueArrowCircleRight.svg";
 import calendar from "/images/calendar-blue.svg";
 import calendarRoundBlue from "/images/calendarRoundBlue.svg";
 import checkboxAccepted from "/images/checkboxAccepted.svg";
@@ -63,10 +62,12 @@ interface ScheduleAccordionItemProps {
 const ScheduleAccordionItem = (props: ScheduleAccordionItemProps) => {
   return (
     <div className={props.className}>
-      {props.image && <img
-        src={props.image}
-        alt="dayImage"
-      />}
+      {props.image && (
+        <img
+          src={props.image}
+          alt="dayImage"
+        />)
+      }
       <br />
       <p>
         {props.description}
@@ -252,9 +253,7 @@ export function TourDetailsPage() {
         defaultCountry="us"
         value={formData.phone}
         className={styles.phoneInput}
-        onChange={(phone) =>
-          setFormData((prev) => ({...prev, phone}))
-        }
+        onChange={(phone) => setFormData((prev) => ({...prev, phone}))}
       />
       <p className={styles.buyTravelLabel}>
         Travel dates
@@ -1085,23 +1084,33 @@ export function TourDetailsPage() {
         imgUrl={tour.popUp1ImageUrl}
         leftBtnCallback={() => {}}
         leftBtn={
-          <span className={styles.pupUpButton}>
+          <a
+            href="https://t.me/tuscanyphototours_bot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.pupUpButton}
+          >
             Telegram
             <img
               src={telegramBlue}
               alt=""
             />
-          </span>
+          </a>
         }
         rightBtnCallback={() => {}}
         rightBtn={
-          <span className={styles.pupUpButton}>
+          <a
+            href="https://wa.me/1234567890"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.pupUpButton}
+          >
             WhatsApp
             <img
               src={whatsappGreen}
               alt=""
             />
-          </span>
+          </a>
         }
         delay={20}
         onOpen={() => setIsFirstPopUpVisible(true)}
@@ -1114,23 +1123,33 @@ export function TourDetailsPage() {
         imgUrl={tour.popUp2ImageUrl}
         leftBtnCallback={() => {}}
         leftBtn={
-          <span className={styles.pupUpButton}>
+          <a
+            href="https://t.me/tuscanyphototours_bot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.pupUpButton}
+          >
             Telegram
             <img
               src={telegramBlue}
               alt=""
             />
-          </span>
+          </a>
         }
         rightBtnCallback={() => {}}
         rightBtn={
-          <span className={styles.pupUpButton}>
+          <a
+            href="https://wa.me/1234567890"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.pupUpButton}
+          >
             WhatsApp
             <img
               src={whatsappGreen}
               alt=""
             />
-          </span>
+          </a>
         }
         delay={100}
         isDisabled={isFirstPopUpVisible}

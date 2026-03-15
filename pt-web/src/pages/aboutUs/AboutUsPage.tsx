@@ -1,7 +1,10 @@
 import cameraBlue from "/images/cameraBlue.svg";
+import email from "/images/email.svg";
 import infinityBlue from "/images/infinityBlue.svg";
+import instagram from "/images/instagram.svg";
 import mapMarkerBlue from "/images/mapMarkerBlue.svg";
 import smallGroup from "/images/smallGroupBlue.svg";
+import telegram from "/images/telegram.svg";
 import {FeedbackBlock} from "src/pages/homePage/HomePage";
 import styles from "src/pages/aboutUs/AboutUsPage.module.scss";
 
@@ -19,10 +22,10 @@ export function AboutUs() {
               Get in Touch: Let’s Plan Your Ultimate Photography Journey
             </h1>
             <p className={styles.infoSubtitle}>
-              Expert guidance • Hidden gems • Total immersion • Small group exclusivity
+              Expert guidance • Hidden gems • Total immersion • Small group
+              exclusivity
             </p>
           </div>
-
         </div>
 
         <div className={styles.heroSectionBg}>
@@ -36,30 +39,50 @@ export function AboutUs() {
 
         <div className={styles.victorBlock}>
           <div className={styles.victorInfoBlock}>
-            {/* <div className={styles.victorSocial}>
-              <img
-                src={blueEmailAbout}
-                alt="email"
-              />
-              <img
-                src={blueTelegramAbout}
-                alt="instagram"
-              />
-              <img
-                src={blueInstagramAbout}
-                alt="telegram"
-              />
-            </div> */}
+            <div className={styles.victorSocial}>
+              <a
+                href="mailto:info@tuscany-photo-tours.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={email}
+                  alt="email"
+                />
+              </a>
+              <a
+                href="https://t.me/tuscanyphototours_bot"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={telegram}
+                  alt="telegram"
+                />
+              </a>
+              <a
+                href="https://instagram.com/tuscany.phototours"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={instagram}
+                  alt="instagram"
+                />
+              </a>
+            </div>
             <h2 className={styles.victorTitle}>
               Pavel Oskin
             </h2>
             <p className={styles.victorDescription}>
-              CEO and landscape photographer based in Prague with over 15 years of experience leading workshops and photo tours around the world.
+              CEO and landscape photographer based in Prague with over 15 years
+              of experience leading workshops and photo tours around the world.
             </p>
             <p className={styles.victorDescription2}>
-              Epson Pano Awards winner (12 medals), NatGeo author, and FEP member. 600+ travelers and photographers
-              have joined Pavel’s tours. With Pavel and his team,
-              you’re always in the right place at the right time for the perfect shot!
+              Epson Pano Awards winner (12 medals), NatGeo author, and FEP
+              member. 600+ travelers and photographers have joined Pavel’s
+              tours. With Pavel and his team, you’re always in the right place
+              at the right time for the perfect shot!
             </p>
           </div>
 
@@ -85,18 +108,23 @@ export function AboutUs() {
               Our Mission
             </h2>
             <p className={styles.ourHistoryDescription}>
-              Tuscany Photo Tours was founded with a singular vision: to bridge the gap between signature
-              travel and photographic education. We believe that
-              the world’s most extraordinary locations deserve more than just a passing glance — they deserve to be captured with intent.
+              Tuscany Photo Tours was founded with a singular vision: to bridge
+              the gap between signature travel and photographic education. We
+              believe that the world’s most extraordinary locations deserve more
+              than just a passing glance — they deserve to be captured with
+              intent.
             </p>
             <p className={styles.ourHistoryDescription2}>
-              Our purpose is simple: to provide the opportunity to
-              visit picturesque spots and to empower you with the skills and access needed to create your own photographic masterpieces.
+              Our purpose is simple: to provide the opportunity to visit
+              picturesque spots and to empower you with the skills and access
+              needed to create your own photographic masterpieces.
             </p>
             <p className={styles.ourHistoryDescription3}>
-              Drawing on over 15 years of experience, we curate exclusive expeditions to the most cinematic corners of our planet.
-              From the volcanic heart of New Zealand to the misty hills of Tuscany,
-              we ensure you are always in the right place at the right time to capture the perfect shot.
+              Drawing on over 15 years of experience, we curate exclusive
+              expeditions to the most cinematic corners of our planet. From the
+              volcanic heart of New Zealand to the misty hills of Tuscany, we
+              ensure you are always in the right place at the right time to
+              capture the perfect shot.
             </p>
           </div>
           <div className={styles.ourHistoryRight}>
@@ -125,7 +153,8 @@ export function AboutUs() {
                 Expert Guidance
               </h3>
               <p className={styles.whatMakesUsDifferentCardDescription}>
-                Experienced photographers guide you through composition, lighting, and shooting techniques on location.
+                Experienced photographers guide you through composition,
+                lighting, and shooting techniques on location.
               </p>
             </div>
             <div className={styles.whatMakesUsDifferentCard}>
@@ -140,7 +169,8 @@ export function AboutUs() {
                 Hidden Gems
               </h3>
               <p className={styles.whatMakesUsDifferentCardDescription}>
-                We select iconic and lesser-known locations for unique and breathtaking shots in every season.
+                We select iconic and lesser-known locations for unique and
+                breathtaking shots in every season.
               </p>
             </div>
             <div className={styles.whatMakesUsDifferentCard}>
@@ -155,7 +185,8 @@ export function AboutUs() {
                 Total Immersion
               </h3>
               <p className={styles.whatMakesUsDifferentCardDescription}>
-                We handle logistics with local experts, so you can fully focus on the creative process.
+                We handle logistics with local experts, so you can fully focus
+                on the creative process.
               </p>
             </div>
             <div className={styles.whatMakesUsDifferentCard}>
@@ -170,7 +201,8 @@ export function AboutUs() {
                 Small Groups
               </h3>
               <p className={styles.whatMakesUsDifferentCardDescription}>
-                Groups of 6–10 participants ensure personal attention and individual mentoring.
+                Groups of 6–10 participants ensure personal attention and
+                individual mentoring.
               </p>
             </div>
           </div>
@@ -185,4 +217,3 @@ export function AboutUs() {
     </div>
   );
 }
-

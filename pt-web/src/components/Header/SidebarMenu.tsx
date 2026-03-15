@@ -73,7 +73,9 @@ export function SidebarMenu({isOpen, onClose}: SidebarMenuProps) {
               </span>
             </a>
             <a
-              href="https://t.me/phototours"
+              href="https://t.me/tuscanyphototours_bot"
+              target="_blank"
+              rel="noopener noreferrer"
               className={styles.socialContactItem}
             >
               <img
@@ -86,6 +88,8 @@ export function SidebarMenu({isOpen, onClose}: SidebarMenuProps) {
             </a>
             <a
               href="https://wa.me/1234567890"
+              target="_blank"
+              rel="noopener noreferrer"
               className={styles.socialContactItem}
             >
               <img
@@ -97,7 +101,7 @@ export function SidebarMenu({isOpen, onClose}: SidebarMenuProps) {
               </span>
             </a>
             <a
-              href="mailto:info@phototours.com"
+              href="mailto:info@tuscany-photo-tours.com"
               className={styles.socialContactItem}
             >
               <img
@@ -109,7 +113,9 @@ export function SidebarMenu({isOpen, onClose}: SidebarMenuProps) {
               </span>
             </a>
             <a
-              href="https://instagram.com/phototours"
+              href="https://instagram.com/tuscany.phototours"
+              target="_blank"
+              rel="noopener noreferrer"
               className={styles.socialContactItem}
             >
               <img
