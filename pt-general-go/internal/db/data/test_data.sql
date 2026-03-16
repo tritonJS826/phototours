@@ -375,7 +375,7 @@ VALUES
       }
     ]}',
     guide1_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429914/morocco___A8B2183_90x63-topaz-denoiseraw-sharpen-color_copy_d6h1s7.avif', 6, 'Casablanca', 'Casablanca',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429914/morocco___A8B2183_90x63-topaz-denoiseraw-sharpen-color_copy_d6h1s7.avif', 6, 'Casablanca (CMN)', 'Casablanca (CMN)',
     ARRAY['January','February'], ARRAY['English','French'], 16, 'Africa', 12, 9, 'About Our Morocco Photo Expedition',
     'Testimonials from Our Morocco Photography Workshop Participants',
     'Get the Morocco Insider Guide', 
@@ -663,7 +663,7 @@ VALUES
       }
     ]}',
     guide4_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429871/cyclades__IMG_8808-Pano_copy_jkdqjj.avif', 7, 'Athens, Greece', 'Athens, Greece',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429871/cyclades__IMG_8808-Pano_copy_jkdqjj.avif', 7, 'Athens (ATH)', 'Athens  (ATH)',
     ARRAY['May'], ARRAY['English'], 16, 'Europe', 11, 6, 'Set sail through the stunning Cyclades islands',
     'Testimonials from Our Cyclades Photography Workshop Participants',
     'Get the Ultimate "Top 100 Global Locations" Map', 
@@ -1432,7 +1432,7 @@ VALUES
         }
       ]}',
       guide5_id,
-      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777034/iceland__A8B5114-1-164x110_PRINT_topaz_Dehancer_usmbp6.avif', 10, 'Keflavík (KEF)', 'Keflavík (KEF)',
+      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777034/iceland__A8B5114-1-164x110_PRINT_topaz_Dehancer_usmbp6.avif', 10, 'Reykjavik (KEF)', 'Reykjavik (KEF)',
       ARRAY['July','August','September'], ARRAY['English'], 14, 'Europe', 14, 3, 'About Our Iceland Photo Expedition',
       'Testimonials from Our Iceland Photography Workshop Participants',
       'Get the Ultimate "Top 100 Global Locations" Map', 
@@ -1528,7 +1528,7 @@ VALUES
       }
     ]}',
     guide5_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 10, 'Haneda (HND)', 'Haneda (HND)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 10, 'Tokyo (TYO)', 'Tokyo (TYO)',
     ARRAY['March','April'], ARRAY['English'], 14, 'Asia & Oceania', 14, 3, 'About Our Japan Spring Photo Expedition',
     'Testimonials from Our Japan Spring Photography Workshop Participants',
     'Get the Ultimate Japan Insider Guide', 
@@ -1673,8 +1673,8 @@ VALUES
   (tour2_id, 'Group Size', '7 participants'),
   (tour2_id, 'Languages', 'English'),
   (tour2_id, 'Difficulty', 'Easy'),
-  (tour2_id, 'Tour starts', 'Casablanca'),
-  (tour2_id, 'Ending place', 'Casablanca'),
+  (tour2_id, 'Tour starts', 'Casablanca (CMN)'),
+  (tour2_id, 'Ending place', 'Casablanca (CMN)'),
   
   -- Tour 3: Venice Carnival
   (tour3_id, 'Duration', '5 days'),
@@ -1697,8 +1697,8 @@ VALUES
   (tour5_id, 'Group Size', '11 participants'),
   (tour5_id, 'Languages', 'English'),
   (tour5_id, 'Difficulty', 'Easy'),
-  (tour5_id, 'Tour starts', 'Athens International Airport (ATH)'),
-  (tour5_id, 'Ending place', 'Athens International Airport (ATH)'),
+  (tour5_id, 'Tour starts', 'Athens (ATH)'),
+  (tour5_id, 'Ending place', 'Athens (ATH)'),
   
   -- Tour 6: Cinque-Terre & Umbria
   (tour6_id, 'Duration', '10 days'),
@@ -1753,24 +1753,24 @@ VALUES
   (tour12_id, 'Group Size', '10 participants'),
   (tour12_id, 'Languages', 'English'),
   (tour12_id, 'Difficulty', 'Easy'),
-  (tour12_id, 'Tour starts', 'Tokyo, Haneda Airport (HND)'),
-  (tour12_id, 'Ending place', 'Tokyo, Haneda Airport (HND)'),
+  (tour12_id, 'Tour starts', 'Tokyo (TYO)'),
+  (tour12_id, 'Ending place', 'Tokyo (TYO)'),
 
   -- Tour 13: iceland
   (tour13_id, 'Duration', '10 days'),
   (tour13_id, 'Group Size', '6 participants'),
   (tour13_id, 'Languages', 'English'),
   (tour13_id, 'Difficulty', 'Easy'),
-  (tour13_id, 'Tour starts', 'Keflavík Airport (KEF)'),
-  (tour13_id, 'Ending place', 'Keflavík Airport (KEF)'),
+  (tour13_id, 'Tour starts', 'Reykjavik (KEF)'),
+  (tour13_id, 'Ending place', 'Reykjavik (KEF)'),
   
   -- Tour 14: japan-spring
   (tour14_id, 'Duration', '10 days'),
   (tour14_id, 'Group Size', '7 participants'),
   (tour14_id, 'Languages', 'English'),
   (tour14_id, 'Difficulty', 'Easy'),
-  (tour14_id, 'Tour starts', 'Tokyo, Haneda Airport (HND)'),
-  (tour14_id, 'Ending place', 'Tokyo, Haneda Airport (HND)');
+  (tour14_id, 'Tour starts', 'Tokyo (TYO)'),
+  (tour14_id, 'Ending place', 'Tokyo (TYO)');
 
  -- TOUR INCLUDED
 INSERT INTO tour_included (tour_id, included)
