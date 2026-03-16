@@ -212,7 +212,7 @@ func (s *TourService) GetAllTours(ctx context.Context, limit, offset int32, filt
 		if reviewInfo == nil {
 			reviewInfo = &domain.ReviewInfo{
 				ReviewAmount: 0,
-				StarAmount:   0,
+				StarAmount:   5,
 			}
 		}
 
