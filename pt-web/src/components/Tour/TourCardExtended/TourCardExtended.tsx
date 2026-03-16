@@ -20,17 +20,10 @@ type Props = {
 };
 
 const STARS_FRACTIONAL_DIGITS = 1;
-const DEFAULT_TRAVELERS_AMOUNT = 1;
 const ONE_TRAVELER_AMOUNT = 1;
 
 export function TourCardExtended(props: Props) {
-  const travelerCount = props.travelers || DEFAULT_TRAVELERS_AMOUNT;
-  const basePrice = Number(props.tour.price ?? 0);
-
-  const totalPrice = basePrice * props.travelers; //  * TravelerCount
-  const price = totalPrice.toLocaleString();
   const cover = props.tour.coverUrl || props.tour.photos?.[0] || "";
-  // Const tourUrl = `/tours/${tour.slug}`;
 
   return (
     <article className={clsx(styles.card, props.className)}>
@@ -195,7 +188,7 @@ export function TourCardExtended(props: Props) {
               From
               {" "}
               <b>
-                {price}
+                {props.tour.price * props.travelers}
               </b>
               {" "}
               USD
@@ -203,10 +196,10 @@ export function TourCardExtended(props: Props) {
             <div className={styles.priceBlockBottom}>
               Price for
               {" "}
-              {travelerCount}
+              {props.travelers}
               {" "}
               traveler
-              {travelerCount > ONE_TRAVELER_AMOUNT ? "s" : ""}
+              {props.travelers > ONE_TRAVELER_AMOUNT ? "s" : ""}
             </div>
           </div>
 

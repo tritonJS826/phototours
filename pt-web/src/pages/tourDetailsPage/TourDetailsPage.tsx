@@ -894,10 +894,10 @@ export function TourDetailsPage() {
                   />
                   <div className={styles.summaryTagRightPart}>
                     <span className={styles.summaryTagRightPartTitle}>
-                      Ending place:
+                      Starting place:
                     </span>
                     <span className={styles.summaryTagRightPartDescription}>
-                      {tour.endLocation}
+                      {tour.startLocation}
                     </span>
                   </div>
                 </div>

@@ -128,7 +128,7 @@ function mapTourToView(dto: TourDTO): TourView {
 
   const faq = dto.faq.questions;
 
-  const STUB_NUMBER = 4.3;
+  const STUB_NUMBER = 5;
   const DEFAULT_GROUP_SIZE = 10;
   const DEFAULT_SPOTS_LEFT = 1;
 
