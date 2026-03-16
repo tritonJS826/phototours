@@ -302,6 +302,7 @@ export function TourDetailsPage() {
         Travelers
       </p>
       <NumberInput
+        className={styles.travelersAmountInput}
         value={formData.travelers}
         onChange={(value) =>
           setFormData((prev) => ({...prev, travelers: value}))
@@ -342,6 +343,7 @@ export function TourDetailsPage() {
       </div>
 
       <NumberInput
+        className={styles.roomsSupplement}
         value={formData.rooms}
         onChange={(value) => setFormData((prev) => ({...prev, rooms: value}))}
         min={0}
