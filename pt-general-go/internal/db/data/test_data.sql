@@ -1330,7 +1330,7 @@ VALUES
       }
     ]}',
     guide5_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif', 10, 'Haneda (HND)', 'Haneda (HND)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif', 10, 'Tokyo (TYO)', 'Tokyo (TYO)',
     ARRAY['March','April','November','December'], ARRAY['English'], 14, 'Asia & Oceania', 14, 3, 'Immerse yourself in Japan’s rich cultural heritage',
     'Testimonials from Our Japan Autumn Photography Workshop Participants',
     'Get the Ultimate Japan Insider Guide', 
