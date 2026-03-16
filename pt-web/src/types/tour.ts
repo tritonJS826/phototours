@@ -43,6 +43,7 @@ export interface TourView {
   title: string;
   description: string;
   price: number;
+  singleRoomSupplement?: number;
 
   startLocation?: string;
   endLocation?: string;

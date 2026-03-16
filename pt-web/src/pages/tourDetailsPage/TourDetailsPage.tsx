@@ -53,6 +53,10 @@ import styles from "src/pages/tourDetailsPage/TourDetailsPage.module.scss";
 const ANCHOR_SCHEDULE = "schedule";
 const ANCHOR_REVIEWS = "reviews";
 
+const ONE_TRAVELER = 1;
+const ONE_ROOM = 1;
+const ONE_ROOM_PRICE = 100;
+
 interface ScheduleAccordionItemProps {
   description: string;
   image?: string;
@@ -62,12 +66,10 @@ interface ScheduleAccordionItemProps {
 const ScheduleAccordionItem = (props: ScheduleAccordionItemProps) => {
   return (
     <div className={props.className}>
-      {props.image && (
-        <img
-          src={props.image}
-          alt="dayImage"
-        />
-      )}
+      {props.image && <img
+        src={props.image}
+        alt="dayImage"
+      />}
       <br />
       <p>
         {props.description}
@@ -164,6 +166,12 @@ export function TourDetailsPage() {
   const [agreedToMarketing, setAgreedToMarketing] = useState(false);
 
   const [isFirstPopUpVisible, setIsFirstPopUpVisible] = useState(false);
+
+  const singleRoomSupplementPrice = tour?.singleRoomSupplement ?? ONE_ROOM_PRICE;
+  const totalPrice = tour
+    ? (tour.price * formData.travelers) +
+      (singleRoomSupplementPrice * formData.rooms)
+    : 0;
 
   const isActionBuyFormOpenEnabled = () => {
     return window.innerWidth < WIDTH_FOR_ACTIVE_BUY_FORM_OPEN;
@@ -308,7 +316,7 @@ export function TourDetailsPage() {
           setFormData((prev) => ({...prev, travelers: value}))
         }
         min={1}
-        max={10}
+        max={20}
         description="Travelers"
         icon={people}
       />
@@ -337,7 +345,8 @@ export function TourDetailsPage() {
           From
           {" "}
           <span className={styles.blueText}>
-            100$
+            {singleRoomSupplementPrice}
+            $
           </span>
         </span>
       </div>
@@ -347,7 +356,7 @@ export function TourDetailsPage() {
         value={formData.rooms}
         onChange={(value) => setFormData((prev) => ({...prev, rooms: value}))}
         min={0}
-        max={10}
+        max={20}
         description="Single room supplement"
         icon={people}
       />
@@ -397,13 +406,19 @@ export function TourDetailsPage() {
             Total
             {" "}
             <b className={styles.boldPrice}>
-              {tour?.price ?? "2000"}
+              {totalPrice}
             </b>
             {" "}
             USD
           </span>
           <span className={styles.buyTravelFooterLeftBottom}>
-            Price for 1 traveler
+            {formData.travelers}
+            {" "}
+            traveler
+            {formData.travelers > ONE_TRAVELER ? "s" : ""}
+            {formData.rooms > 0
+              ? ` + ${formData.rooms} room${formData.rooms > ONE_ROOM ? "s" : ""}`
+              : ""}
           </span>
         </div>
         <Button
@@ -979,13 +994,19 @@ export function TourDetailsPage() {
               Total
               {" "}
               <b className={styles.boldPrice}>
-                {tour?.price ?? "2000"}
+                {totalPrice}
               </b>
               {" "}
               USD
             </span>
             <span className={styles.buyTravelFooterLeftBottom}>
-              Price for 1 traveler
+              {formData.travelers}
+              {" "}
+              traveler
+              {formData.travelers > ONE_TRAVELER ? "s" : ""}
+              {formData.rooms > 0
+                ? ` + ${formData.rooms} room${formData.rooms > ONE_ROOM ? "s" : ""}`
+                : ""}
             </span>
           </div>
           <Button
