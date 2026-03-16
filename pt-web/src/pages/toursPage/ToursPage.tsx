@@ -16,6 +16,8 @@ import {type ToursFilter} from "src/services/toursService";
 import {TourView} from "src/types/tour";
 import styles from "src/pages/toursPage/ToursPage.module.scss";
 
+const ONE_TRAVELER = 1;
+
 export function ToursPage() {
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -125,8 +127,6 @@ export function ToursPage() {
     setPriceRange({min: 300, max: 9900});
     setSearchParams(new URLSearchParams()); // Clear URL params
   };
-
-  const ONE_TRAVELER = 1;
 
   const filtersContent = (
     <>
@@ -293,7 +293,7 @@ export function ToursPage() {
           alt="Photo Tour Logo"
         />
         <label className={styles.priceLabel}>
-          Price
+          Price for 1 traveler
         </label>
       </div>
 
@@ -426,7 +426,7 @@ export function ToursPage() {
                     key={tour.id}
                     tour={tour}
                     className={styles.tourCard}
-                    travelers={filters.travelers}
+                    travelers={filters.travelers ?? ONE_TRAVELER}
                   />))}
               </div>
 

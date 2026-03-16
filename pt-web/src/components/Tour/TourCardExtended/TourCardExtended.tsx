@@ -16,41 +16,41 @@ import styles from "src/components/Tour/TourCardExtended/TourCardExtended.module
 type Props = {
   tour: TourView;
   className: string;
-  travelers?: number;
+  travelers: number;
 };
 
 const STARS_FRACTIONAL_DIGITS = 1;
 const DEFAULT_TRAVELERS_AMOUNT = 1;
 const ONE_TRAVELER_AMOUNT = 1;
 
-export function TourCardExtended({tour, className, travelers}: Props) {
-  const travelerCount = travelers || DEFAULT_TRAVELERS_AMOUNT;
-  const basePrice = Number(tour.price ?? 0);
+export function TourCardExtended(props: Props) {
+  const travelerCount = props.travelers || DEFAULT_TRAVELERS_AMOUNT;
+  const basePrice = Number(props.tour.price ?? 0);
 
-  const totalPrice = basePrice; //  * TravelerCount
+  const totalPrice = basePrice * props.travelers; //  * TravelerCount
   const price = totalPrice.toLocaleString();
-  const cover = tour.coverUrl || tour.photos?.[0] || "";
+  const cover = props.tour.coverUrl || props.tour.photos?.[0] || "";
   // Const tourUrl = `/tours/${tour.slug}`;
 
   return (
-    <article className={clsx(styles.card, className)}>
+    <article className={clsx(styles.card, props.className)}>
       <Link
-        to={PATHS.getTour(tour.slug)}
+        to={PATHS.getTour(props.tour.slug)}
         className={styles.link}
-        aria-label={tour.title}
+        aria-label={props.tour.title}
       >
         <div className={styles.pict}>
           {cover && (
             <img
               src={cover}
-              alt={tour.title}
+              alt={props.tour.title}
               className={styles.img}
               loading="lazy"
             />
           )}
           <div className={styles.stars}>
             <span className={styles.starsAmount}>
-              {tour.starAmount.toFixed(STARS_FRACTIONAL_DIGITS)}
+              {props.tour.starAmount.toFixed(STARS_FRACTIONAL_DIGITS)}
             </span>
             <img
               src={star}
@@ -72,7 +72,7 @@ export function TourCardExtended({tour, className, travelers}: Props) {
               loading="lazy"
             />
             <span>
-              {tour.spotsLeft}
+              {props.tour.spotsLeft}
 &nbsp;spots&nbsp;left
             </span>
           </div>
@@ -85,7 +85,7 @@ export function TourCardExtended({tour, className, travelers}: Props) {
               loading="lazy"
             />
             <span>
-              {tour.reviewAmount}
+              {props.tour.reviewAmount}
 &nbsp;reviews
             </span>
           </div>
@@ -128,7 +128,7 @@ export function TourCardExtended({tour, className, travelers}: Props) {
 
       <div className={styles.body}>
         <h3 className={styles.title}>
-          {tour.title}
+          {props.tour.title}
         </h3>
 
         <div className={styles.startEndInfo}>
@@ -144,7 +144,7 @@ export function TourCardExtended({tour, className, travelers}: Props) {
                 Duration
               </p>
               <p className={styles.startEndInfoDescriptionBottom}>
-                {tour.durationDays}
+                {props.tour.durationDays}
               </p>
             </div>
           </div>
@@ -161,7 +161,7 @@ export function TourCardExtended({tour, className, travelers}: Props) {
                 Tour&nbsp;starts
               </p>
               <p className={styles.startEndInfoDescriptionBottom}>
-                {tour.startLocation}
+                {props.tour.startLocation}
               </p>
             </div>
           </div>
@@ -178,7 +178,7 @@ export function TourCardExtended({tour, className, travelers}: Props) {
                 Ending place
               </p>
               <p className={styles.startEndInfoDescriptionBottom}>
-                {tour.endLocation}
+                {props.tour.endLocation}
               </p>
             </div>
           </div>
@@ -186,7 +186,7 @@ export function TourCardExtended({tour, className, travelers}: Props) {
         </div>
 
         <p className={styles.description}>
-          {renderMultilineDouble(tour.description)}
+          {renderMultilineDouble(props.tour.description)}
         </p>
 
         <div className={styles.cardFooter}>
@@ -212,7 +212,7 @@ export function TourCardExtended({tour, className, travelers}: Props) {
 
           <Button
             as={Link}
-            to={PATHS.getTour(tour.slug)}
+            to={PATHS.getTour(props.tour.slug)}
             className={styles.primaryButton}
             size="md"
             variant="primary"

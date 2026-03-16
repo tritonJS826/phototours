@@ -22,7 +22,7 @@ type TourDTO = {
   slug: string;
   title: string;
   description: string;
-  price?: number | string;
+  price: number;
   startLocation?: string;
   endLocation?: string;
   durationDays?: number;
@@ -127,9 +127,6 @@ function mapTourToView(dto: TourDTO): TourView {
     })) ?? [];
 
   const faq = dto.faq.questions;
-  const priceRaw = dto.price === "" ? undefined : dto.price;
-  const priceNum = typeof priceRaw === "number" ? priceRaw : priceRaw ? Number(priceRaw) : undefined;
-  const price = Number.isFinite(priceNum) && (priceNum as number) > 0 ? (priceNum as number) : undefined;
 
   const STUB_NUMBER = 4.3;
   const DEFAULT_GROUP_SIZE = 10;
@@ -142,7 +139,7 @@ function mapTourToView(dto: TourDTO): TourView {
     slug: dto.slug,
     title: dto.title,
     description: dto.description,
-    price,
+    price: dto.price,
     startLocation: dto.startLocation,
     endLocation: dto.endLocation,
     durationDays: dto.durationDays,

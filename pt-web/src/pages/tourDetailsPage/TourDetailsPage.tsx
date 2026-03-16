@@ -1109,6 +1109,7 @@ export function TourDetailsPage() {
               <TourCardExtended
                 tour={s}
                 className={styles.tourCard}
+                travelers={1}
               />
             </SwiperSlide>
           ))}

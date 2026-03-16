@@ -42,7 +42,7 @@ export interface TourView {
   slug: string;
   title: string;
   description: string;
-  price?: number;
+  price: number;
 
   startLocation?: string;
   endLocation?: string;
