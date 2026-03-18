@@ -91,12 +91,12 @@ const accordionItemsRight = [
   {
     trigger: {child: "Are flights included in the price?"},
     // eslint-disable-next-line max-len
-    content: {child: "Our tour prices do not include airfare or visas, as our participants join us from all over the world. The standard price includes: \n\n Accommodation: Twin-share room with your partner or another participant of the same gender. \n\n Local Logistics: Airport transfers and all transportation between locations in a comfortable vehicle (typically a Mercedes). \n\n Expert Mentoring: All shooting sessions, on-site mentoring, and workshops, including post-processing. In some tours, breakfast, additional activities, and entrance fees are also included. Please check the specific tour page for full details or contact us for clarification."},
+    content: {child: "Our tour prices do not include airfare or visas, as our participants join us from all over the world. The standard price includes: \n\n• Accommodation: Twin-share room with your partner or another participant of the same gender. \n\n• Local Logistics: Airport transfers and all transportation between locations in a comfortable vehicle (typically a Mercedes). \n\n• Expert Mentoring: All shooting sessions, on-site mentoring, and workshops, including post-processing. In some tours, breakfast, additional activities, and entrance fees are also included. Please check the specific tour page for full details or contact us for clarification."},
   },
   {
     trigger: {child: "What is included in the cost?"},
     // eslint-disable-next-line max-len
-    content: {child: "The cost of all our photo tours & photography workshops includes: \n\n Accommodation: Double or single occupancy options. \n\n Local Logistics: Airport transfers and ground transportation between cities and locations. \n\n Expert Mentoring: All shooting sessions, on-site mentoring, and workshops, including post-processing. \n\n Depending on the destination, breakfasts, extra activities, and entrance tickets may also be part of the package. Detailed information is available on each tour's page."},
+    content: {child: "The cost of all our photo tours & photography workshops includes: \n\n• Accommodation: Double or single occupancy options. \n\n• Local Logistics: Airport transfers and ground transportation between cities and locations. \n\n• Expert Mentoring: All shooting sessions, on-site mentoring, and workshops, including post-processing. \n\n Depending on the destination, breakfasts, extra activities, and entrance tickets may also be part of the package. Detailed information is available on each tour's page."},
   },
 ];
 

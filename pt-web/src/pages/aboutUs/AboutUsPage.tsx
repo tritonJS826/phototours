@@ -1,10 +1,7 @@
 import cameraBlue from "/images/cameraBlue.svg";
-import email from "/images/email.svg";
 import infinityBlue from "/images/infinityBlue.svg";
-import instagram from "/images/instagram.svg";
 import mapMarkerBlue from "/images/mapMarkerBlue.svg";
 import smallGroup from "/images/smallGroupBlue.svg";
-import telegram from "/images/telegram.svg";
 import {FeedbackBlock} from "src/pages/homePage/HomePage";
 import styles from "src/pages/aboutUs/AboutUsPage.module.scss";
 
@@ -39,38 +36,6 @@ export function AboutUs() {
 
         <div className={styles.victorBlock}>
           <div className={styles.victorInfoBlock}>
-            <div className={styles.victorSocial}>
-              <a
-                href="mailto:info@tuscany-photo-tours.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src={email}
-                  alt="email"
-                />
-              </a>
-              <a
-                href="https://t.me/tuscanyphototours_bot"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src={telegram}
-                  alt="telegram"
-                />
-              </a>
-              <a
-                href="https://instagram.com/tuscany.phototours"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src={instagram}
-                  alt="instagram"
-                />
-              </a>
-            </div>
             <h2 className={styles.victorTitle}>
               Pavel Oskin
             </h2>
