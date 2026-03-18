@@ -1,4 +1,5 @@
 import email from "/images/email.svg";
+import facebook from "/images/facebook.svg";
 import instagram from "/images/instagram.svg";
 import telegram from "/images/telegram.svg";
 import whatsapp from "/images/whatsapp.svg";
@@ -101,6 +102,18 @@ export const ContactUs = () => {
                 <img
                   className={styles.socialMediIcon}
                   src={instagram}
+                  alt="user link"
+                />
+              </a>
+              <a
+                href="https://facebook.com/tuscanyphototours"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialMediaImage}
+              >
+                <img
+                  className={styles.socialMediIcon}
+                  src={facebook}
                   alt="user link"
                 />
               </a>

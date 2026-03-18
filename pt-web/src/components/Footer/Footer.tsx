@@ -44,7 +44,7 @@ const FOOTER_COLUMNS: FooterColumn[] = [
       {id: "email-us", text: "Email us", href: "mailto:info@tuscanyphototours.com"},
       // eslint-disable-next-line max-len
       {id: "workWithUs", text: "Work with us", href: "mailto:info@tuscanyphototours.com?subject=Job%20Inquiry%20%E2%80%93%20%5BPosition%20Name%5D%20%E2%80%93%20%5BApplicant%20Name%5D"},
-      {id: "getInTouch", text: "Get in touch", href: "https://tuscany-photo-tours.com/contact"},
+      {id: "getInTouch", text: "Get in touch", href: "/contact"},
     ],
   },
   {
