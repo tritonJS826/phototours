@@ -17,50 +17,50 @@ const slides = [
   {
     id: "1",
     image:
-          "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__IMGP8844obr_146x110_topaz_PRINT_yvqehs.avif",
-    link: PATHS.getTour("tuscany-spring-photo-tour"),
-    title: "Chianti Hills & Vineyards",
-    subtitle: "Capture golden vineyards, rustic hilltop villages, and soft evening light across the legendary rolling hills of Chianti.",
+          "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772633959/articleIclandicRivers_1_mln3cq.avif",
+    link: PATHS.getArticle("icelandic-rivers"),
+    title: "Icelandic rivers",
+    subtitle: "These images were taken about 12 years ago by a remarkable photographer, Andrey Ermolayev, who, unfortunately...",
   },
   {
     id: "2",
     image:
-           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429914/morocco___A8B2183_90x63-topaz-denoiseraw-sharpen-color_copy_d6h1s7.avif",
-    link: PATHS.getTour("morocco-photo-tour"),
-    title: "Your Guide to Iconic Tuscany Shots",
-    subtitle: "Explore essential techniques and hidden locations for creating cinematic images in Tuscany.",
+           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635334/valDorcia-1_bpku0z.avif",
+    link: PATHS.getArticle("val-dorcia"),
+    title: "Val d’Orcia",
+    subtitle: "Over the past 16 years, I have visited Tuscany nearly 50 times, experiencing its beauty in every season. However...",
   },
   {
     id: "3",
     image:
-           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430346/venice__FUJI4667_Dehancer_ovjl23.avif",
-    link: PATHS.getTour("venice-carnival-photo-tour"),
-    title: "Inspiration for Your Next Photo Adventure",
-    subtitle: "A curated blend of tips, stories, and expert advice for photographing Tuscany at its best.",
+           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635307/stockssnesIceland-1_rc0ymq.avif",
+    link: PATHS.getArticle("stockness-iceland"),
+    title: "Stockness Iceland",
+    subtitle: "A place beyond time — where black dunes rise like silent waves and Vestrahorn stands reflected in the shifting...",
   },
   {
     id: "4",
     image:
-           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif",
-    link: PATHS.getTour("new-zealand-photo-tour"),
-    title: "Chianti Hills & Vineyards",
-    subtitle: "Capture golden vineyards, rustic hilltop villages, and soft evening light across the legendary rolling hills of Chianti.",
+           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635280/snowInVenice-1_b3qtup.avif",
+    link: PATHS.getArticle("snow-in-venice-a-dream-come-true"),
+    title: "Snow In Venice. A Dream Come True",
+    subtitle: "Snow in Venice… a waking dream. A promise made years ago, fulfilled in a fleeting, once-in-a-lifetime moment during...",
   },
   {
     id: "5",
     image:
-           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif",
-    link: PATHS.getTour("japan-spring-tour"),
-    title: "Your Guide to Iconic Tuscany Shots",
-    subtitle: "Explore essential techniques and hidden locations for creating cinematic images in Tuscany.",
+           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635324/top10PlacesInIcelandForPhotography-1_zs5vnf.avif",
+    link: PATHS.getArticle("top-10-places-in-iceland-for-photography-tours-and-workshops"),
+    title: "Top 10 Places in Iceland",
+    subtitle: "Iceland is a dreamland for photographers, offering a surreal mix of fiery volcanoes, glacial landscapes...",
   },
   {
     id: "6",
     image:
-           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429871/cyclades__IMG_8808-Pano_copy_jkdqjj.avif",
-    link: PATHS.getTour("cyclades-sailing-tour"),
-    title: "Inspiration for Your Next Photo Adventure",
-    subtitle: "A curated blend of tips, stories, and expert advice for photographing Tuscany at its best.",
+           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635251/Moravia-1_oclegj.avif",
+    link: PATHS.getArticle("moravian-waves-framing-the-poetry-of-the-land"),
+    title: "Moravian",
+    subtitle: "Moravia, with its undulating fields, velvety hills, and ever-changing textures, is a paradise for...",
   },
 ];
 

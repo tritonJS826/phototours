@@ -14,10 +14,10 @@ export function HeroTextSection(props: HeroSectionProps) {
           Exclusive
           {" "}
           <i className={styles.italic}>
-            Photo Tours & Workshops
+            Photo Tours & Workshops:
           </i>
           {" "}
-          : Signature Photo Expeditions Across the Globe
+          Signature Photo Expeditions Across the Globe
         </p>
       </h1>
       <p className={styles.subtitle}>
