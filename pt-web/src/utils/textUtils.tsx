@@ -14,3 +14,10 @@ export function renderMultilineDouble(text: string) {
       </span>
     ));
 }
+
+/**
+ * Usage: 'TOKYO (TYO)' => Tokyo
+ */
+export function removeParenthesisAtEnd(str: string): string {
+  return str.replace(/\s*\([^)]*\)$/, "");
+}

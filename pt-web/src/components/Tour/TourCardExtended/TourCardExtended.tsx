@@ -10,7 +10,7 @@ import clsx from "clsx";
 import {Button} from "src/components/Button/Button";
 import {PATHS} from "src/routes/routes";
 import type {TourView} from "src/types/tour";
-import {renderMultilineDouble} from "src/utils/textUtils";
+import {removeParenthesisAtEnd, renderMultilineDouble} from "src/utils/textUtils";
 import styles from "src/components/Tour/TourCardExtended/TourCardExtended.module.scss";
 
 type Props = {
@@ -154,7 +154,7 @@ export function TourCardExtended(props: Props) {
                 Tour&nbsp;starts
               </p>
               <p className={styles.startEndInfoDescriptionBottom}>
-                {props.tour.startLocation}
+                {removeParenthesisAtEnd(props.tour.startLocation)}
               </p>
             </div>
           </div>
@@ -171,7 +171,7 @@ export function TourCardExtended(props: Props) {
                 Ending place
               </p>
               <p className={styles.startEndInfoDescriptionBottom}>
-                {props.tour.endLocation}
+                {removeParenthesisAtEnd(props.tour.endLocation)}
               </p>
             </div>
           </div>

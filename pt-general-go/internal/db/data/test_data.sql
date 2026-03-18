@@ -375,8 +375,8 @@ VALUES
       }
     ]}',
     guide1_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429914/morocco___A8B2183_90x63-topaz-denoiseraw-sharpen-color_copy_d6h1s7.avif', 6, 'Casablanca (CMN)', 'Casablanca (CMN)',
-    ARRAY['January','February'], ARRAY['English','French'], 16, 'Africa', 12, 9, 'About Our Morocco Photo Expedition',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429914/morocco___A8B2183_90x63-topaz-denoiseraw-sharpen-color_copy_d6h1s7.avif', 12, 'Casablanca (CMN)', 'Casablanca (CMN)',
+    ARRAY['January','February'], ARRAY['English','French'], 16, 'Africa', 7, 9, 'About Our Morocco Photo Expedition',
     'Testimonials from Our Morocco Photography Workshop Participants',
     'Get the Morocco Insider Guide', 
     'From hidden Sahara shooting spots to our private map of "must-see" locations, get the best of Morocco sent straight to your phone. Which messenger do you prefer?',
@@ -849,8 +849,8 @@ VALUES
       }
     ]}',
     guide5_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430058/provence___A8B4955_Topaz_copy_upigxu.avif', 10, 'Marseille (MRS)', 'Marseille (MRS)',
-    ARRAY['June','July'], ARRAY['English'], 16, 'Europe', 16, 10, 'About Our Provence & Camargue Photo Expedition',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430058/provence___A8B4955_Topaz_copy_upigxu.avif', 7, 'Marseille (MRS)', 'Marseille (MRS)',
+    ARRAY['June','July'], ARRAY['English'], 16, 'Europe', 7, 10, 'About Our Provence & Camargue Photo Expedition',
     'Testimonials from Our Provence Photography Workshop Participants',
     'Get the Ultimate "Top 100 Global Locations" Map', 
     'From the peaks of Iceland and New Zealand to the hidden corners of Japan and France, get our curated map of the world’s most breathtaking spots sent straight to your phone. Which messenger do you prefer?',
@@ -861,7 +861,7 @@ VALUES
 
    (tour8_id, 'sicily-aeolian-tour', 'Sicily & Aeolian Islands',
      'Embark on a luxury Sicily & Aeolian Islands Yacht Photo Tour. Capture the dramatic eruptions of Stromboli, the turquoise bays of Panarea, and the historic streets of Lipari. This sailing photography workshop offers a unique perspective of the volcanic archipelago from the water. Master landscape and night photography. Join our private adventure!',
-     'MEDIUM', 3900.00,
+     'EASY', 3900.00,
      '{"days": [
       {
         "day": "1",
@@ -953,7 +953,7 @@ VALUES
     ]}',
     guide4_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430152/sicily__IMG_0599_dmi5yb.avif', 10, 'Catania (CTA)', 'Catania (CTA)',
-    ARRAY['June','July'], ARRAY['English'], 16, 'Europe', 16, 12, 'About Our Sicily & the Aeolian Islands Photo Expedition',
+    ARRAY['June','July'], ARRAY['English'], 16, 'Europe', 7, 12, 'About Our Sicily & the Aeolian Islands Photo Expedition',
     'Testimonials from Our Sicily & Aeolian Islands Photography Workshop Participants',
     'Get the Ultimate "Top 100 Global Locations" Map', 
     'From the peaks of Iceland and New Zealand to the hidden corners of Japan and Italy, get our curated map of the world’s most breathtaking spots sent straight to your phone. Which messenger do you prefer?',
@@ -1043,7 +1043,7 @@ VALUES
     ]}',
     guide2_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429602/czech-fall__645Z8177-HDR-Pano-Topaz_v2ripe.avif', 10, 'Prague (PRG)', 'Prague (PRG)',
-    ARRAY['October'], ARRAY['English'], 14, 'Europe', 14, 8, 'About Our Czechia Photo Expedition',
+    ARRAY['October'], ARRAY['English'], 14, 'Europe', 7, 8, 'About Our Czechia Photo Expedition',
     'Testimonials from Our Czechia Photography Workshop Participants',
     'Get the Ultimate "Top 100 Global Locations" Map', 
     'From the peaks of Iceland and New Zealand to the hidden corners of Japan and Czechia, get our curated map of the world’s most breathtaking spots sent straight to your phone. Which messenger do you prefer?',
@@ -1132,8 +1132,8 @@ VALUES
       }
     ]}',
     guide1_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430128/scotland__IMGP3471_Panorama-Dehancer_copy_mpyxma.avif', 10, 'Edinburgh (EDI)', 'Edinburgh (EDI)',
-    ARRAY['October'], ARRAY['English'], 16, 'Europe', 16, 10, 'About Our Scotland Photo Expedition',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430128/scotland__IMGP3471_Panorama-Dehancer_copy_mpyxma.avif', 8, 'Edinburgh (EDI)', 'Edinburgh (EDI)',
+    ARRAY['October'], ARRAY['English'], 16, 'Europe', 16, 7, 'About Our Scotland Photo Expedition',
     'Scotland Photo Tour: Frequently Asked Questions',
     'Get the Ultimate "Top 100 Global Locations" Map', 
     'From the peaks of Iceland and New Zealand to the hidden corners of Japan and Scotland, get our curated map of the world’s most breathtaking spots sent straight to your phone. Which messenger do you prefer?',
@@ -1235,7 +1235,7 @@ VALUES
     ]}',
     guide3_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430222/tuscany-fall___IMG7020-Pano-1_1-Dechancer_copy_g90yjy.avif', 10, 'Rome (FCO)', 'Rome (FCO)',
-    ARRAY['October','November'], ARRAY['English'], 16, 'Europe', 11, 5, 'About Our Tuscany Autumn Photo Expedition',
+    ARRAY['October','November'], ARRAY['English'], 16, 'Europe', 7, 5, 'About Our Tuscany Autumn Photo Expedition',
     'Testimonials from Our Tuscan Photography Workshop Participants',
     'Get the Ultimate Val d’Orcia Insider Guide', 
     'From secret photography spots to hidden gem wineries, get the best of Tuscany sent straight to your phone. Which messenger do you prefer?',
@@ -1331,7 +1331,7 @@ VALUES
     ]}',
     guide5_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif', 10, 'Tokyo (TYO)', 'Tokyo (TYO)',
-    ARRAY['March','April','November','December'], ARRAY['English'], 14, 'Asia & Oceania', 14, 3, 'Immerse yourself in Japan’s rich cultural heritage',
+    ARRAY['March','April','November','December'], ARRAY['English'], 14, 'Asia & Oceania', 10, 3, 'Immerse yourself in Japan’s rich cultural heritage',
     'Testimonials from Our Japan Autumn Photography Workshop Participants',
     'Get the Ultimate Japan Insider Guide', 
     'We’ll send you the Japan guide (routes, photo spots, tips) and a map with must-visit locations to see at least once in your life! Which messenger do you prefer?',
@@ -1433,7 +1433,7 @@ VALUES
       ]}',
       guide5_id,
       'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777034/iceland__A8B5114-1-164x110_PRINT_topaz_Dehancer_usmbp6.avif', 10, 'Reykjavik (KEF)', 'Reykjavik (KEF)',
-      ARRAY['July','August','September'], ARRAY['English'], 14, 'Europe', 14, 3, 'About Our Iceland Photo Expedition',
+      ARRAY['July','August','September'], ARRAY['English'], 14, 'Europe', 6, 3, 'About Our Iceland Photo Expedition',
       'Testimonials from Our Iceland Photography Workshop Participants',
       'Get the Ultimate "Top 100 Global Locations" Map', 
       'From the peaks of Iceland and New Zealand to the hidden corners of Japan and Italy, get our curated map of the world’s most breathtaking spots sent straight to your phone. Which messenger do you prefer?',
@@ -1529,7 +1529,7 @@ VALUES
     ]}',
     guide5_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 10, 'Tokyo (TYO)', 'Tokyo (TYO)',
-    ARRAY['March','April'], ARRAY['English'], 14, 'Asia & Oceania', 14, 3, 'About Our Japan Spring Photo Expedition',
+    ARRAY['March','April'], ARRAY['English'], 14, 'Asia & Oceania', 10, 3, 'About Our Japan Spring Photo Expedition',
     'Testimonials from Our Japan Spring Photography Workshop Participants',
     'Get the Ultimate Japan Insider Guide', 
     'We’ll send you the Japan guide (routes, photo spots, tips) and a map with must-visit locations to see at least once in your life! Which messenger do you prefer?',
@@ -1709,7 +1709,7 @@ VALUES
   (tour6_id, 'Ending place', 'Florence Airport (FLR)'),
   
   -- Tour 7: Provence
-  (tour7_id, 'Duration', '10 days'),
+  (tour7_id, 'Duration', '7 days'),
   (tour7_id, 'Group Size', '7 participants'),
   (tour7_id, 'Languages', 'English'),
   (tour7_id, 'Difficulty', 'Easy'),
@@ -1766,7 +1766,7 @@ VALUES
   
   -- Tour 14: japan-spring
   (tour14_id, 'Duration', '10 days'),
-  (tour14_id, 'Group Size', '7 participants'),
+  (tour14_id, 'Group Size', '10 participants'),
   (tour14_id, 'Languages', 'English'),
   (tour14_id, 'Difficulty', 'Easy'),
   (tour14_id, 'Tour starts', 'Tokyo (TYO)'),
@@ -1864,6 +1864,7 @@ VALUES
   -- Tour 12: Japan autumn
   (tour12_id, 'Accommodation'),
   (tour12_id, 'In-tour transportation'),
+  (tour12_id, 'Breakfasts'),
   (tour12_id, 'Photo shoots'),
   (tour12_id, 'Photo workshops'),
   (tour12_id, 'Expert photo guide'),
@@ -1878,6 +1879,7 @@ VALUES
   -- Tour 14: Japan spring
   (tour14_id, 'Accommodation'),
   (tour14_id, 'In-tour transportation'),
+  (tour14_id, 'Breakfasts'),
   (tour14_id, 'Photo shoots'),
   (tour14_id, 'Photo workshops'),
   (tour14_id, 'Expert photo guide');

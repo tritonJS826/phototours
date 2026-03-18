@@ -45,9 +45,9 @@ export interface TourView {
   price: number;
   singleRoomSupplement?: number;
 
-  startLocation?: string;
-  endLocation?: string;
-  durationDays?: number;
+  startLocation: string;
+  endLocation: string;
+  durationDays: number;
   languages?: string[];
   difficulty?: Difficulty;
   minAge?: number | null;
