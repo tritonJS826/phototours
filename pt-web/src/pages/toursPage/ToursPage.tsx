@@ -169,7 +169,7 @@ export function ToursPage() {
                 },
               },
               {
-                id: "location-japan",
+                id: "location-asia-oceania",
                 isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
                   Asia & Oceania
@@ -180,7 +180,7 @@ export function ToursPage() {
                 },
               },
               {
-                id: "location-north-africa",
+                id: "location-africa",
                 isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
                   Africa

@@ -52,39 +52,36 @@ export function TourSearchForm() {
             dropdownSubMenuItems: [
               {
                 id: "location-europe",
-                isPreventDefaultUsed: true,
+                isPreventDefaultUsed: false,
                 value: <div className={styles.tourLocationItem}>
                   Europe
                 </div>,
                 isVisible: true,
-                onClick: () => setSearchData(prev => ({...prev, location: "Europe"})),
+                onClick: () => {
+                  setSearchData(prev => ({...prev, location: "Europe"}));
+                },
               },
               {
-                id: "location-japan",
-                isPreventDefaultUsed: true,
+                id: "location-asia-oceania",
+                isPreventDefaultUsed: false,
                 value: <div className={styles.tourLocationItem}>
-                  Japan
+                  Asia & Oceania
                 </div>,
                 isVisible: true,
-                onClick: () => setSearchData(prev => ({...prev, location: "Japan"})),
+                onClick: () => {
+                  setSearchData(prev => ({...prev, location: "Asia & Oceania"}));
+                },
               },
               {
-                id: "location-north-africa",
-                isPreventDefaultUsed: true,
+                id: "location-africa",
+                isPreventDefaultUsed: false,
                 value: <div className={styles.tourLocationItem}>
                   Africa
                 </div>,
                 isVisible: true,
-                onClick: () => setSearchData(prev => ({...prev, location: "Africa"})),
-              },
-              {
-                id: "location-oceania",
-                isPreventDefaultUsed: true,
-                value: <div className={styles.tourLocationItem}>
-                  Oceania
-                </div>,
-                isVisible: true,
-                onClick: () => setSearchData(prev => ({...prev, location: "Oceania"})),
+                onClick: () => {
+                  setSearchData(prev => ({...prev, location: "Africa"}));
+                },
               },
             ],
           },
@@ -195,7 +192,7 @@ export function TourSearchForm() {
                       value={searchData.travelers}
                       onChange={(newValue) => setSearchData(prev => ({...prev, travelers: newValue}))}
                       min={1}
-                      max={99}
+                      max={20}
                       className={styles.dropdownNumberInput}
                     />
                   </div>
