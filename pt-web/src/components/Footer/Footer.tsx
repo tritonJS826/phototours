@@ -25,13 +25,6 @@ interface FooterColumn {
   links: FooterLink[];
 }
 
-interface SocialLink {
-  id: string;
-  img: string;
-  href: string;
-  title: string;
-}
-
 const FOOTER_COLUMNS: FooterColumn[] = [
   {
     id: "pages",
@@ -66,24 +59,26 @@ const FOOTER_COLUMNS: FooterColumn[] = [
   },
 ];
 
+interface SocialLink {
+  id: string;
+  img: string;
+  title: string;
+}
 const SOCIAL_LINKS: SocialLink[] = [
   {
     id: "mastercardLogo",
     img: mastercardLogo,
-    href: "#",
-    title: "Visit Instagram",
+    title: "Mastercard",
   },
   {
     id: "stripeLogo",
     img: stripeLogo,
-    href: "#",
-    title: "Visit Facebook",
+    title: "Stripe",
   },
   {
     id: "visaLogo",
     img: visaLogo,
-    href: "#",
-    title: "Visit YouTube",
+    title: "Visa",
   },
 ];
 
@@ -104,12 +99,7 @@ export const Footer = function Footer() {
     return (
       <a
         key={social.id}
-        href={social.href}
-        target="_blank"
-        rel="noopener noreferrer"
         className={styles.socialIcon}
-        title={social.title}
-        aria-label={social.title}
       >
         <img
           src={social.img}
