@@ -32,6 +32,7 @@ import {
   Metadata,
   MetaTag,
 } from "src/services/metadataService";
+import {useAnchorScroll} from "src/utils/pageUtils";
 import * as CookieConsent from "vanilla-cookieconsent";
 import "vanilla-cookieconsent/dist/cookieconsent.css";
 
@@ -40,6 +41,8 @@ const helmetContext = {};
 export function App() {
   const location = useLocation();
   const [metadata, setMetadata] = useState<Metadata>(defaultMetadata);
+
+  useAnchorScroll();
 
   // GDPR
   useEffect(() => {

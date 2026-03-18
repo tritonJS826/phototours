@@ -358,7 +358,10 @@ export function HomePage() {
       </div>
 
       <div className={styles.blockWrapper}>
-        <h2 className={styles.reviewsTitle}>
+        <h2
+          className={styles.reviewsTitle}
+          id="reviews-block"
+        >
           {COPY.reviews.title}
         </h2>
         <p className={styles.reviewsSubTitle}>
@@ -368,7 +371,10 @@ export function HomePage() {
       </div>
 
       <div className={styles.faqBlock}>
-        <h3 className={styles.faqTitle}>
+        <h3
+          className={styles.faqTitle}
+          id="faq-block"
+        >
           FAQ
         </h3>
         <p className={styles.faqSubtitle}>

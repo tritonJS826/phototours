@@ -40,16 +40,18 @@ const FOOTER_COLUMNS: FooterColumn[] = [
       {id: "explore-tours", text: "Explore Tours", href: "/tours"},
       {id: "about", text: "About Us", href: "/about"},
       {id: "blog", text: "Blog", href: "/articles"},
-      {id: "contacts", text: "Contacts", href: "/contact"},
+      {id: "faq", text: "FAQ", href: "/#faq-block"},
+      {id: "reviews", text: "Reviews", href: "/#reviews-block"},
     ],
   },
   {
     id: "contacts",
     title: "Contacts",
     links: [
-      {id: "email-us", text: "Email us", href: "/contact"},
-      {id: "getInTouch", text: "Get in touch", href: "/contact"},
-      {id: "workWithUs", text: "Work with us", href: "/contact"},
+      {id: "email-us", text: "Email us", href: "mailto:info@tuscanyphototours.com"},
+      // eslint-disable-next-line max-len
+      {id: "workWithUs", text: "Work with us", href: "mailto:info@tuscanyphototours.com?subject=Job%20Inquiry%20%E2%80%93%20%5BPosition%20Name%5D%20%E2%80%93%20%5BApplicant%20Name%5D"},
+      {id: "getInTouch", text: "Get in touch", href: "https://tuscany-photo-tours.com/contact"},
     ],
   },
   {
