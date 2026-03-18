@@ -39,7 +39,7 @@ export const ContactUs = () => {
               collaborations
             </span>
             <span className={styles.infoRightMiniBlockDescription}>
-              partners@tuscanyphototours.com
+              marketing@tuscanyphototours.com
             </span>
           </div>
           <div className={styles.infoRightMiniBlock}>
