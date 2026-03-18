@@ -292,6 +292,7 @@ a.primaryHeaderLink {
     width: 100%;
     max-height: calc(100vh - 60px);
     overflow-y: auto;
+    overscroll-behavior: contain;
     background: #fff;
     border-top: 1px solid #e0e0e0;
     box-shadow: 0 12px 30px rgb(0 0 0 / 18%);
@@ -411,7 +412,7 @@ a.primaryHeaderLink {
 
   .mobileMenuFooter {
     padding-top: 24px;
-    padding-bottom: 40px;
+    padding-bottom: 10px;
   }
 
   .exploreToursBtn {
