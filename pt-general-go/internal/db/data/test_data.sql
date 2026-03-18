@@ -218,13 +218,13 @@ VALUES
         {
           "day": 8,
           "plan": "CRETE SENESI & THE ICONIC PODERE BACCOLENO",
-          "description": "WWe begin our day greeting the sunrise near the secluded village of Mucigliano. This hidden gem offers classic Tuscan landscapes that remain largely undiscovered by mass tourism, providing us with a tranquil and exclusive environment for our morning photography session.\n\nOn our return journey, we will traverse the Crete Senesi, home to some of the most scenic roads in Italy. This region is famous for its unique, lunar-like clay hills and minimalist ridges. We will make frequent stops to capture the rolling horizons, soft geometric curves, and the dramatic interplay of light and shadow that defines this area.\n\nAfter a relaxing midday siesta at our villa, we head out for a spectacular sunset shoot at the iconic Podere Baccoleno. This is home to the world-famous winding cypress-lined road—an elegant S-curve that has become a symbol of Tuscany. It is undoubtedly one of the most rewarding locations for landscape photographers seeking that perfect, timeless shot of the Italian countryside.",
+          "description": "We begin our day greeting the sunrise near the secluded village of Mucigliano. This hidden gem offers classic Tuscan landscapes that remain largely undiscovered by mass tourism, providing us with a tranquil and exclusive environment for our morning photography session.\n\nOn our return journey, we will traverse the Crete Senesi, home to some of the most scenic roads in Italy. This region is famous for its unique, lunar-like clay hills and minimalist ridges. We will make frequent stops to capture the rolling horizons, soft geometric curves, and the dramatic interplay of light and shadow that defines this area.\n\nAfter a relaxing midday siesta at our villa, we head out for a spectacular sunset shoot at the iconic Podere Baccoleno. This is home to the world-famous winding cypress-lined road—an elegant S-curve that has become a symbol of Tuscany. It is undoubtedly one of the most rewarding locations for landscape photographers seeking that perfect, timeless shot of the Italian countryside.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886476/tuscan-spring__Untitled_Panorama1_65%D1%8587-200dpi_100-Edit_sprpmc.avif"
         },
         {
           "day": 9,
           "plan": "BAGNO VIGNONI: CINEMATIC MIST & THE SWORD IN THE STONE",
-          "description": "We welcome the sunrise in the enchanting village of Bagno Vignoni, home to the region''s oldest thermal springs. This location is steeped in cinematic history as the favorite Tuscan retreat of director Andrei Tarkovsky, who filmed the hauntingly beautiful final scenes of Nostalghia here. The steam rising from the central thermal pool at dawn creates a dreamlike atmosphere for fine-art photography.\n\nAfter our morning cappuccino overlooking the historic waters, we’ll explore two off-the-beaten-path gems:\n\nSarteano: We’ll visit a small family-run farm for an authentic olive oil tasting, sampling freshly pressed oil.\n\nRadicofani: A hilltop town where we’ll visit a local church to photograph an original Andrea della Robbia majolica masterpiece.\n\n For relaxation, we’ll head to the white limestone formations of the Bagni San Filippo hot springs.If the group’s creative energy is still high, our final evening session will be at the extraordinary Abbey of San Galgano.",
+          "description": "We welcome the sunrise in the enchanting village of Bagno Vignoni, home to the region''s oldest thermal springs. This location is steeped in cinematic history as the favorite Tuscan retreat of director Andrei Tarkovsky, who filmed the hauntingly beautiful final scenes of Nostalghia here. The steam rising from the central thermal pool at dawn creates a dreamlike atmosphere for fine-art photography.\n\nAfter our morning cappuccino overlooking the historic waters, we’ll explore two off-the-beaten-path gems:\n\nSarteano: We’ll visit a small family-run farm for an authentic olive oil tasting, sampling freshly pressed oil.\n\nRadicofani: A hilltop town where we’ll visit a local church to photograph an original Andrea della Robbia majolica masterpiece.\n\nFor relaxation, we’ll head to the white limestone formations of the Bagni San Filippo hot springs. If the group’s creative energy is still high, our final evening session will be at the extraordinary Abbey of San Galgano. This roofless Gothic monastery is a marvel of architectural photography, especially under the blue hour lights. Inside the nearby Rotonda di Montesiepi, we’ll see the legendary sword in the stone—the historical prototype of Excalibur. We will conclude our journey with a grand farewell dinner at one of the region’s premier restaurants.",
           "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886468/tuscan-spring___IGP1721-Edit_copy_qpch7f.avif"
         },
         {
@@ -376,7 +376,7 @@ VALUES
     ]}',
     guide1_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429914/morocco___A8B2183_90x63-topaz-denoiseraw-sharpen-color_copy_d6h1s7.avif', 12, 'Casablanca (CMN)', 'Casablanca (CMN)',
-    ARRAY['January','February'], ARRAY['English','French'], 16, 'Africa', 7, 9, 'About Our Morocco Photo Expedition',
+    ARRAY['January','February'], ARRAY['English'], 16, 'Africa', 7, 9, 'About Our Morocco Photo Expedition',
     'Testimonials from Our Morocco Photography Workshop Participants',
     'Get the Morocco Insider Guide', 
     'From hidden Sahara shooting spots to our private map of "must-see" locations, get the best of Morocco sent straight to your phone. Which messenger do you prefer?',
@@ -447,7 +447,7 @@ VALUES
       }
     ]}',
     guide2_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771393839/venice_2_1_ghkmly.avif', 5, 'Venice (VCE)', 'Venice (VCE)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771393839/venice_2_1_ghkmly.avif', 12, 'Venice (VCE)', 'Venice (VCE)',
     ARRAY['February'], ARRAY['English'], 12, 'Europe', 7, 5, 'About Our Venice Carnival Photo Experience',
     'Testimonials from Our Venice Carnival Photography Workshop Participants',
     'Get the Ultimate "Top 100 Global Locations" Map', 
@@ -580,7 +580,7 @@ VALUES
     ]}',
     guide1_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif', 21, 'Auckland (AKL)', 'Auckland (AKL)',
-    ARRAY['April','December','January'], ARRAY['English'], 16, 'Asia & Oceania', 12, 3, 'About Our New Zealand Photo Expedition',
+    ARRAY['April','December','January'], ARRAY['English'], 16, 'Asia & Oceania', 11, 3, 'About Our New Zealand Photo Expedition',
     'Testimonials from Our New Zealand Photography Workshop Participants',
     'Get the New Zealand Insider Guide', 
     'Unlock the Ultimate NZ Guide & "Top 100 Photo Locations" Map. Get access to our expert routes, pro photography tips, and a digital map of the world’s most breathtaking spots. Which messenger do you prefer?',
@@ -766,7 +766,7 @@ VALUES
     ]}',
     guide3_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429687/cinque-terre-umbria__OSKIN_4052_GenFill_copy_ytmtp1.avif', 10, 'Florence (FLR)', 'Florence (FLR)',
-    ARRAY['June'], ARRAY['English'], 14, 'Europe', 14, 7, 'Discover the enchanting landscapes of Provence',
+    ARRAY['June'], ARRAY['English'], 14, 'Europe', 7, 7, 'About Our Cinque Terre & Umbria Photo Tour',
     'Testimonials from Our Cyclades Photography Workshop Participants',
     'Get the Ultimate "Top 100 Global Locations" Map', 
     'From the peaks of Iceland to the hidden corners of Japan and Italy, get our curated map of the world’s most breathtaking spots sent straight to your phone. Which messenger do you prefer?',
@@ -1806,7 +1806,7 @@ VALUES
   (tour4_id, 'Geothermal parks access'),
   (tour4_id, 'Manupirua hot springs speedboat'),
   (tour4_id, 'Milford Sound premium cruise'),
-  (tour4_id, 'Domestic flights (included for the full itinerary'),
+  (tour4_id, 'Domestic flights (included for the full itinerary)'),
   
   -- Tour 5: Cyclades
   (tour5_id, 'Accommodation'),
