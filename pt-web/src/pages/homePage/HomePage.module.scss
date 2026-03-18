@@ -402,6 +402,10 @@
   margin: 60px auto;
   color: #fff;
   align-items: center;
+
+  @media (width <= 575px) {
+    align-items: start;
+  }
 }
 
 .feedBackTitle {
@@ -418,7 +422,7 @@
   max-width: 440px;
   
   
-  @media (width <= 475px) {
+  @media (width <= 575px) {
     text-align: start;
   }
 }
@@ -443,7 +447,7 @@
   height: 54px;
   border: none;
 
-  @media (width <= 475px) {
+  @media (width <= 575px) {
     width: 100%;
   }
 }
@@ -451,7 +455,7 @@
 .feedBackPhoneInput {
   width: 360px;
 
-  @media (width <= 475px) {
+  @media (width <= 575px) {
     width: 100%;
   }
 }
