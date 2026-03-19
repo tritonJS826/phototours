@@ -28,7 +28,7 @@
   font-size: 45px;
   font-weight: 700;
 
-  @media (width <= 800px) {
+  @media (width <= 880px) {
     font-size: 36px;
   }
 }
@@ -40,7 +40,7 @@
   color: #38383f;
   margin-bottom: 20px;
 
-  @media (width <= 800px) {
+  @media (width <= 880px) {
     font-size: 16px;
   }
 }
@@ -84,7 +84,7 @@
   line-height: 1.15;
   letter-spacing: 0%;
 
-  @media (width <= 800px) {
+  @media (width <= 880px) {
     font-size: 12px;
   }
 
@@ -132,6 +132,10 @@
   @media (width <= 1250px) {
     max-width: 550px;
   }
+
+  @media (width <= 880px) {
+    max-width: none;
+  }
 }
 
 .victorSocial {
@@ -143,7 +147,7 @@
   font-size: 42px;
   margin-top: 30px;
 
-  @media (width <= 800px) {
+  @media (width <= 880px) {
     font-size: 32px;
   }
 }
@@ -151,7 +155,7 @@
 .victorDescription {
   margin-top: 30px;
 
-  @media (width <= 800px) {
+  @media (width <= 880px) {
     font-size: 17px;
   }
 }
@@ -160,7 +164,7 @@
   margin-top: 30px;
   font-style: italic;
 
-  @media (width <= 800px) {
+  @media (width <= 880px) {
     font-size: 16px;
   }
 }
@@ -196,6 +200,10 @@
 
 .ourHistoryMain {
   max-width: 869px;
+
+  @media (width <= 880px) {
+    max-width: none;
+  }
 }
 
 .ourHistoryTitle {
@@ -204,7 +212,9 @@
   font-size: 45px;
   text-align: center;
 
-  @media (width <= 800px) {
+  @media (width <= 880px) {
+    margin-top: 0;
+    text-align: left;
     font-size: 32px;
   }
 }
@@ -216,8 +226,10 @@
   text-align: center;
   margin-top: 30px;
 
-  @media (width <= 800px) {
+  @media (width <= 880px) {
     font-size: 16px;
+    // max-width: 550px;
+    text-align: left;
   }
 }
 
@@ -230,8 +242,10 @@
   margin-top: 25px;
   color: #151517;
 
-  @media (width <= 800px) {
+  @media (width <= 880px) {
     font-size: 16px;
+    // max-width: 550px;
+    text-align: left;
   }
 }
 
@@ -244,8 +258,10 @@
   margin-top: 25px;
   margin-bottom: 40px;
 
-  @media (width <= 800px) {
+  @media (width <= 880px) {
     font-size: 16px;
+    // max-width: 550px;
+    text-align: left;
   }
 }
 
@@ -299,7 +315,7 @@
   font-size: 45px;
   font-weight: 700;
 
-  @media (width <= 800px) {
+  @media (width <= 880px) {
     font-size: 32px;
   }
 }
@@ -311,7 +327,7 @@
   column-gap: 20px;
   row-gap: 30px;
 
-  @media (width <= 800px) {
+  @media (width <= 880px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -399,7 +415,7 @@
   gap: 60px;
   grid-template-columns: repeat(4, 1fr);
 
-  @media (width <= 800px) {
+  @media (width <= 880px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
