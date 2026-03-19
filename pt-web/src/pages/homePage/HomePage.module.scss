@@ -513,6 +513,7 @@
 
   .mobileMenu {
     display: block;
+
     background: #fff;
     border-top: 1px solid #e0e0e0;
 
@@ -546,7 +547,8 @@
     left: 0;
     right: 0;
     width: calc(100% - 40px);
-    max-height: calc(100vh - 110px);
+    // max-height: calc(100vh - 110px);
+    height: 100dvh;
     overflow-y: auto;
     background: #fff;
     border-top: 1px solid #e0e0e0;

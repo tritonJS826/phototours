@@ -51,6 +51,17 @@ export function TourSearchForm() {
           {
             dropdownSubMenuItems: [
               {
+                id: "location-all",
+                isPreventDefaultUsed: false,
+                value: <div className={styles.tourLocationItem}>
+                  All
+                </div>,
+                isVisible: true,
+                onClick: () => {
+                  setSearchData(prev => ({...prev, location: ""}));
+                },
+              },
+              {
                 id: "location-europe",
                 isPreventDefaultUsed: false,
                 value: <div className={styles.tourLocationItem}>
@@ -114,6 +125,15 @@ export function TourSearchForm() {
         dropdownMenuItems={[
           {
             dropdownSubMenuItems: [
+              {
+                id: "season-all",
+                isPreventDefaultUsed: true,
+                value: <div className={styles.tourLocationItem}>
+                  All
+                </div>,
+                isVisible: true,
+                onClick: () => setSearchData(prev => ({...prev, season: ""})),
+              },
               {
                 id: "winter",
                 isPreventDefaultUsed: true,

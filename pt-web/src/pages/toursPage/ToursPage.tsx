@@ -158,6 +158,17 @@ export function ToursPage() {
           {
             dropdownSubMenuItems: [
               {
+                id: "location-all",
+                isPreventDefaultUsed: false,
+                value: <div className={styles.dropdownItem}>
+                  All
+                </div>,
+                isVisible: true,
+                onClick: () => {
+                  setFilters(prev => ({...prev, location: ""}));
+                },
+              },
+              {
                 id: "location-europe",
                 isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
@@ -222,6 +233,17 @@ export function ToursPage() {
         dropdownMenuItems={[
           {
             dropdownSubMenuItems: [
+              {
+                id: "season-all",
+                isPreventDefaultUsed: false,
+                value: <div className={styles.dropdownItem}>
+                  All
+                </div>,
+                isVisible: true,
+                onClick: () => {
+                  setFilters(prev => ({...prev, season: ""}));
+                },
+              },
               {
                 id: "winter",
                 isPreventDefaultUsed: false,
