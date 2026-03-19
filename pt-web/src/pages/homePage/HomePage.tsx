@@ -340,7 +340,7 @@ export function HomePage() {
               and explore Tuscany with confidence.
             </p>
             <Link
-              to={PATHS.TOURS}
+              to={PATHS.ARTICLES}
               className={styles.blogAndPhotographyButton}
             >
               Read more
