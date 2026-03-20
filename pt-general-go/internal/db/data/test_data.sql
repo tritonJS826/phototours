@@ -386,7 +386,7 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429914/morocco___A8B2183_90x63-topaz-denoiseraw-sharpen-color_copy_d6h1s7.avif'),
 
    (tour3_id, 'venice-carnival-photo-tour', 'Venice Carnival',
-     'Join our Venice Carnival Photo Tour for an unforgettable creative experience. Capture the elegance of Venetian masks and elaborate costumes against the backdrop of St. Mark’s Square. This photography workshop includes private shoots in historic palaces, gondola sessions, and hidden gems of Venice. Master your skills at sunrise and sunset. Limited small group tour. Book your photography adventure!',
+     'Join our Venice Carnival Photo Tour for an unforgettable creative experience. Capture the elegance of Venetian masks and elaborate costumes against the backdrop of St. Mark’s Square. This photography workshop includes private shoots in historic places, gondola sessions, and hidden gems of Venice. Master your skills at sunrise and sunset. Limited small group tour. Book your photography adventure!',
      'EASY', 2500.00,
     '{"days": [
       {
@@ -447,7 +447,7 @@ VALUES
       }
     ]}',
     guide2_id,
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771393839/venice_2_1_ghkmly.avif', 12, 'Venice (VCE)', 'Venice (VCE)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771393839/venice_2_1_ghkmly.avif', 5, 'Venice (VCE)', 'Venice (VCE)',
     ARRAY['February'], ARRAY['English'], 12, 'Europe', 7, 5, 'About Our Venice Carnival Photo Experience',
     'Testimonials from Our Venice Carnival Photography Workshop Participants',
     'Get the Ultimate "Top 100 Global Locations" Map', 

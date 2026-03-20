@@ -336,8 +336,7 @@ export function HomePage() {
               </i>
             </h3>
             <p className={styles.blogAndPhotographyText}>
-              Insights, tips, and stories to help you elevate your photography
-              and explore Tuscany with confidence.
+              Expert insights, practical tips, and stories designed to elevate your photography and uncover the world's hidden gems.
             </p>
             <Link
               to={PATHS.ARTICLES}

@@ -452,6 +452,23 @@ export function TourDetailsPage() {
     </div>
   );
 
+  const resetForm = () => {
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      date: "",
+      travelers: 1,
+      rooms: 0,
+    });
+    setFormValidError(false);
+    setNameError(false);
+    setEmailError(false);
+    setPhoneError(false);
+    setAgreedToTerms(false);
+    setAgreedToMarketing(false);
+  };
+
   useEffect(() => {
     if (!slug) {
       setError("Missing tour id");
@@ -460,6 +477,8 @@ export function TourDetailsPage() {
       return;
     }
     let alive = true;
+
+    resetForm();
 
     (async () => {
       try {
