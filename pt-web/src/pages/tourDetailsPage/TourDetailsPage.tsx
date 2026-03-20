@@ -356,7 +356,7 @@ export function TourDetailsPage() {
         value={formData.rooms}
         onChange={(value) => setFormData((prev) => ({...prev, rooms: value}))}
         min={0}
-        max={20}
+        max={formData.travelers}
         description="Single room supplement"
         icon={people}
       />

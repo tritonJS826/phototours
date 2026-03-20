@@ -40,6 +40,7 @@ export const Button = forwardRef(
       variant ? styles[variant] : "",
       size ? styles[size] : "",
       block ? styles.block : "",
+      rest.disabled ? styles.disabled : "",
       className ? className : "",
     ]
       .filter(Boolean)
