@@ -162,6 +162,9 @@ export function TourDetailsPage() {
   const [searchParams] = useSearchParams();
   const [isErrorNotificationOpen, setIsErrorNotificationOpen] = useState(false);
   const [formValidError, setFormValidError] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [agreedToMarketing, setAgreedToMarketing] = useState(false);
 
@@ -195,6 +198,16 @@ export function TourDetailsPage() {
 
       if (!name || !phone) {
         setFormValidError(true);
+        if (!name) {
+          setNameError(true);
+        }
+        if (!formData.email.trim()) {
+          setEmailError(true);
+        }
+        const MIN_PHONE_NUMBER_LENGTH = 7;
+        if (phone.length < MIN_PHONE_NUMBER_LENGTH) {
+          setPhoneError(true);
+        }
         setBookingLoading(false);
 
         return;
@@ -238,11 +251,12 @@ export function TourDetailsPage() {
       </p>
       <input
         type="text"
-        className={styles.buyTravelInput}
+        className={clsx(styles.buyTravelInput, nameError && styles.inputError)}
         value={formData.name}
-        onChange={(e) =>
-          setFormData((prev) => ({...prev, name: e.target.value}))
-        }
+        onChange={(e) => {
+          setFormData((prev) => ({...prev, name: e.target.value}));
+          setNameError(false);
+        }}
         autoComplete="on"
       />
       <p className={styles.buyTravelLabel}>
@@ -250,11 +264,12 @@ export function TourDetailsPage() {
       </p>
       <input
         type="text"
-        className={styles.buyTravelInput}
+        className={clsx(styles.buyTravelInput, emailError && styles.inputError)}
         value={formData.email}
-        onChange={(e) =>
-          setFormData((prev) => ({...prev, email: e.target.value}))
-        }
+        onChange={(e) => {
+          setFormData((prev) => ({...prev, email: e.target.value}));
+          setEmailError(false);
+        }}
         autoComplete="on"
       />
       <p className={styles.buyTravelLabel}>
@@ -263,8 +278,11 @@ export function TourDetailsPage() {
       <InputPhone
         defaultCountry="us"
         value={formData.phone}
-        className={styles.phoneInput}
-        onChange={(phone) => setFormData((prev) => ({...prev, phone}))}
+        className={clsx(styles.phoneInput, phoneError && styles.inputError)}
+        onChange={(phone) => {
+          setFormData((prev) => ({...prev, phone}));
+          setPhoneError(false);
+        }}
       />
       <p className={styles.buyTravelLabel}>
         Travel dates
