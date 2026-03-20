@@ -7,6 +7,7 @@ import (
 	"pt-general-go/internal/config"
 	"pt-general-go/internal/domain"
 	"pt-general-go/internal/repository"
+	"time"
 
 	"github.com/stripe/stripe-go/v84"
 	"github.com/stripe/stripe-go/v84/checkout/session"
@@ -115,6 +116,7 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 		City:                 bookingRequest.City,
 		Country:              bookingRequest.Country,
 		LastContactPage:      bookingRequest.LastContactPage,
+		DepositPaymentDate:   time.Now().Format("2006-01-02"),
 	}
 
 	if bookingRequest.SubscriptionType != "" && bookingRequest.SubscriptionType != "None" {

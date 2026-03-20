@@ -33,8 +33,9 @@ type DealZoho struct {
 	TourName             string   `json:"Tour_Name,omitempty"`
 	Stage                string   `json:"Stage"`
 	Pipeline             string   `json:"Pipeline,omitempty"`
-	ClosingDate          string   `json:"Closing_Date,omitempty"` // YYYY-MM-DD
-	Source               string   `json:"Source, omitempty"`
+	ClosingDate          string   `json:"Closing_Date,omitempty"`         // YYYY-MM-DD
+	DepositPaymentDate   string   `json:"Deposit_Payment_Date,omitempty"` // YYYY-MM-DD
+	Source               string   `json:"Source,omitempty"`
 	Language             string   `json:"Language,omitempty"`
 	Timezone             string   `json:"Timezone,omitempty"`
 	City                 string   `json:"City,omitempty"`
