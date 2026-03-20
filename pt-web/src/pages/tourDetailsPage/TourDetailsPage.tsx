@@ -1070,7 +1070,9 @@ export function TourDetailsPage() {
 
       <div className={styles.faq}>
         <h2 className={styles.faqTitle}>
-          FAQ
+          {tour.title}
+          {" "}
+          Photo Tour: Frequently Asked Questions
         </h2>
 
         <Accordion

@@ -127,7 +127,7 @@ export function TourSearchForm() {
             dropdownSubMenuItems: [
               {
                 id: "season-all",
-                isPreventDefaultUsed: true,
+                isPreventDefaultUsed: false,
                 value: <div className={styles.tourLocationItem}>
                   All
                 </div>,
@@ -136,7 +136,7 @@ export function TourSearchForm() {
               },
               {
                 id: "winter",
-                isPreventDefaultUsed: true,
+                isPreventDefaultUsed: false,
                 value: <div className={styles.tourLocationItem}>
                   Winter
                 </div>,
@@ -145,7 +145,7 @@ export function TourSearchForm() {
               },
               {
                 id: "spring",
-                isPreventDefaultUsed: true,
+                isPreventDefaultUsed: false,
                 value: <div className={styles.tourLocationItem}>
                   Spring
                 </div>,
@@ -154,7 +154,7 @@ export function TourSearchForm() {
               },
               {
                 id: "summer",
-                isPreventDefaultUsed: true,
+                isPreventDefaultUsed: false,
                 value: <div className={styles.tourLocationItem}>
                   Summer
                 </div>,
@@ -163,7 +163,7 @@ export function TourSearchForm() {
               },
               {
                 id: "autumn",
-                isPreventDefaultUsed: true,
+                isPreventDefaultUsed: false,
                 value: <div className={styles.tourLocationItem}>
                   Autumn
                 </div>,
