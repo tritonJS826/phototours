@@ -271,7 +271,7 @@ VALUES
       'We’ll send you everything you need to know about our Spring Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
       'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__FUJI8847-Pano-Pano-Dehancer_copy_lgg7p7.avif'),
 
-   (tour2_id, 'morocco-photo-tour', 'Morocco Photo Tour',
+   (tour2_id, 'morocco-photo-tour', 'Morocco',
     'Experience the magic of Morocco on a visual journey from the blue-washed streets of Chefchaouen to the golden dunes of the Sahara Desert. Capture the vibrant souks of Marrakech, the ancient kasbahs of Ait Ben Haddou, and the majestic Atlas Mountains. This immersive photography workshop offers expert-led sunrise and sunset sessions in Morocco’s most iconic locations. Join our exclusive small group for an unforgettable adventure!',
     'EASY', 3200.00,
     '{"days":[
@@ -504,49 +504,49 @@ VALUES
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772023247/IMGP6456-Dehancer_co.jpg_bdgfzu.avif"
       },
       {
-      "day": "11-12",
+      "day": "1-2",
       "plan": "THE SOUTH ISLAND. GLACIAL MAJESTY OF LAKE PUKAKI",
       "description": "Our journey on the South Island starts with a 3.5-hour drive from Christchurch to the shores of Lake Pukaki, where we will stay for two nights. This location is a landscape photographer’s dream. The lake’s unique electric-blue water, tinted by glacial flour, acts as a perfect mirror for the surrounding Southern Alps.\n\nSunrise here is particularly spectacular, as the peaks glow in hues of rose and gold, while dusk drapes the mountains in soft purple shadows. Along the road to the Tasman Glacier, we will stop at Peter’s Lookout and other iconic vantage points. These locations offer sweeping panoramas of glacial valleys where the light is constantly shifting — from dramatic morning mists to the warm, textured glow of the golden hour.\n\nThe highlight of this leg is our excursion to the Tasman Glacier View. Following a scenic drive through the heart of the Alps, a short trek leads us to a stunning overlook. From here, you can capture the immense scale of the blue icefalls, deep crevasses, and the terminal glacial lake. This region is unparalleled for panoramic photography, atmospheric ice details, and capturing the raw, elemental beauty of New Zealand’s high country.",
       "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429979/new-zealand___IGP8045-Pano-Dehancer_copy_3_lugbli.avif"
       },
       {
-        "day": "13",
+        "day": "3",
         "plan": "THE SOUTH ISLAND. THE MYSTERY OF THE MOERAKI BOULDERS",
         "description": "We journey to the coast (approx. a 2-hour drive) to encounter one of New Zealand’s most surreal sights: the Moeraki Boulders. These massive, perfectly spherical monoliths are scattered along the shoreline, providing a unique focal point for long-exposure photography.\n\nAs the tide rolls in, the waves wrap around these ancient stones, leaving behind ethereal trails of sea foam. During the golden hours, the wet sand reflects the sky and the boulders themselves, creating minimalist, graphic scenes. Though their near-perfect symmetry seems artificial, these boulders are a geological marvel known as septarian concretions, formed millions of years ago on the seabed and exposed over eons of erosion.\n\nFor any landscape photographer, Moeraki is an invaluable location where form, space, and the movement of the tide converge. We will dedicate both a sunrise and a sunset session to this incredible site, ensuring you capture the quiet, prehistoric energy of the coast for your New Zealand photography portfolio.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429981/new-zealand__1Y0A9662_copy_3_ebxx2n.avif"
       },
       {
-        "day": "14-15",
+        "day": "4-5",
         "plan": "THE SOUTH ISLAND. MILFORD SOUND: THE EIGHTH WONDER OF THE WORLD",
         "description": "Our journey continues toward Te Anau, the gateway to Fiordland National Park—the undisputed jewel of our expedition. While the 4.5-hour drive is long, we make several scenic stops to capture the shifting landscapes of the high country.\n\nMilford Sound (Piopiotahi) is a sanctuary for landscape photography. This deep, narrow fiord is flanked by sheer rock faces rising 1,200 meters directly from dark, still waters. The peaks are often shrouded in mist, creating moody, cinematic compositions. After rainfall, hundreds of temporary waterfalls cascade down the cliffs, adding a sense of raw energy to your frames.\n\nIncluded in your tour is an exclusive premium cruise experience. This unhurried voyage takes us deep into the heart of the fiord, past lush rainforests and thundering waterfalls. With an intimate atmosphere on board, a glass of champagne, and locally sourced canapés, you can focus entirely on your craft.\n\nAs sunset approaches, the light softens into a palette of violet and rose. We will photograph the golden hour from the shore, capturing the towering peaks and their reflections in the prehistoric silence of this ancient landscape before returning to Te Anau for the night.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772023881/Milford_sound.jpg_dr86qe.avif"
       },
       {
-        "day": "16",
+        "day": "6",
         "plan": "THE SOUTH ISLAND. LAKE WANAKA: THE LONE WILLOW & ALPINE SERENITY",
         "description": "This day begins with a 3-hour journey toward Lake Wanaka. As we traverse the heart of the island, we’ll pass through idyllic high-country landscapes where emerald valleys and grazing sheep offer classic New Zealand vistas at every turn.\n\nWe have a dedicated overnight stay in Wanaka with a singular focus: capturing the world-famous \"That Wanaka Tree.\" This solitary willow, growing directly out of the lake’s crystal-clear waters just meters from the shore, is a masterpiece of natural symmetry.\n\nThe scene is a dream for those who love minimalist fine-art photography. The silhouette of the tree against the backdrop of the Southern Alps creates a graphic, serene composition. At sunrise, we often catch perfect mirror-like reflections, while the sunset provides a soft, tranquil glow. Regardless of the weather, this location offers atmospheric shots stripped of all distractions. Whether shrouded in mountain mist or bathed in golden light, Lake Wanaka never fails to deliver a portfolio-defining image.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif"
       },
       {
-        "day": "17-18",
+        "day": "7-8",
         "plan": "THE SOUTH ISLAND. FOX GLACIER: ICE ARCHITECTURE & THE MIRROR LAKE",
         "description": "We head to the rugged West Coast of the South Island, arriving at Fox Glacier (Te Moeka o Tuawe) after a scenic drive. This region is a rare natural laboratory where you can witness the raw power of geological forces. Here, the glacier descends into the lush greenery of the rainforest, creating a striking contrast: the bite of alpine air paired with the fragrant humidity of the bush.\n\nYou will capture the intricate architecture of the ice — deep blue crevasses and silt-grey flows framed by towering mountain walls. Our highlights include:\n\nFox Glacier Viewpoint: A short walk offering a direct, unadorned view of the glacier’s tongue. It is a minimalist masterclass of stone, ice, and sky.\n\nLake Matheson: Known worldwide as the \"Mirror Lake\", this is a bucket-list location for photographers. On a calm day, the lake offers a flawless reflection of Mount Cook (Aoraki) and Mount Tasman. We will time our visit for a sunset session to capture that perfect, symmetrical alpine glow.\n\nThe surrounding area is a photographer''s playground of waterfalls and moss-draped \"goblin forests.\" For those seeking the ultimate perspective, we can arrange an optional helicopter flight with a glacier landing (Heli-hike), providing unparalleled access to the pristine upper ice fields. This juxtaposition of flora and massive ice flows is what gives Fox Glacier its unique energy for your New Zealand photography portfolio.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430001/new-zealand__IMG_2673-HDR-Dehancer_copy_3_vwuar6.avif"
       },
       {
-        "day": "19",
+        "day": "9",
         "plan": "THE SOUTH ISLAND. THE WILD WEST COAST: PUNAKAIKI & MOTUKIEKIE",
         "description": "Today we journey north to Paparoa National Park, the rugged heart of the West Coast. This is a place where dense, primeval rainforest meets the crashing Tasman Sea, creating a canvas of constant motion and raw energy.\n\nOur primary destination is Punakaiki and the Pancake Rocks. These ancient limestone formations, resembling giant stacks of pancakes, are a geological wonder. During high tide, the ocean surges into vertical vents, creating thunderous blowholes that blast saltwater high into the air. We will time our visit for sunset to capture the high-energy drama of the spray against the shifting light.\n\nFor our evening session, we have a spectacular alternative: Motukiekie Beach. This is a truly wild stretch of coastline, famous for its majestic sea stacks and natural stone arches rising from the Pacific. At low tide, the receding water reveals vibrant starfish clinging to the dark rocks—vivid crimson and orange accents that provide a perfect foreground for your landscape photography.\n\nNote on Safety: Motukiekie is a \"live\" location that demands respect. It is entirely tide-dependent and unpredictable. If the tidal window allows, we will capture the warm sunset light as it hits the sea stacks and reflects off the vast, mirror-like wet sands, offering some of the most powerful rewards in your New Zealand photography portfolio.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772024062/IMG_3780-Pano-Dehanc.jpg_yvcsa2.avif"
       },
       {
-        "day": "20",
+        "day": "10",
         "plan": "THE SOUTH ISLAND. ARTHUR’S PASS: THE ALPINE CROSSING & CASTLE HILL",
         "description": "We journey into the heart of the Southern Alps, entering a rugged alpine corridor of sheer mountain passes and prehistoric rock fields. Arthur’s Pass is a location of extreme contrasts, offering photographers a vast array of moods and textures within a single day.\n\nOur first focus is the Devils Punchbowl Falls. A short climb brings us to the base of this thundering 131-meter cascade. In overcast weather, the dark, wet cliffs and the brilliant white veil of water create a high-contrast, moody atmosphere perfect for long-exposure photography.\n\nWe then transition to a completely different world: Castle Hill (Kura Tawhiti). Thousands of massive limestone boulders are scattered across the rolling hills like a surreal, ancient labyrinth. During the golden hour, the low sun carves deep shadows into the stone, making the landscape appear like a cinematic set from a fantasy epic.\n\nThroughout the day, keep your cameras ready for the Kea—the world’s only alpine parrot. These intelligent and incredibly photogenic birds are the true masters of the pass, adding a lively element to your wildlife portfolio. In Arthur’s Pass, the shifting light ensures that every frame is a unique testament to the raw beauty of the New Zealand wilderness.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772024139/Devils_Punchbowl_Fal.jpg_yyap4v.avif"
       },
       {
-        "day": "21",
+        "day": "11",
         "plan": "THE SOUTH ISLAND. CHRISTCHURCH & DEPARTURE",
         "description": "On the final day of our New Zealand expedition, we begin our journey back to Christchurch Airport (approx. a 1.5-hour drive). This marks the conclusion of our 21-day photographic odyssey through the North and South Islands.\n\nFlight Information: For those returning to the starting point, we are scheduled to arrive back in Auckland at 8:15 PM. Please ensure your international flight connections or onward travel plans are booked with this timing in mind to allow for a smooth transition.\n\nExtend Your Adventure: For those who aren’t quite ready to say goodbye to Middle-earth (New Zealand), we offer an optional extension. Stay one more day, and we can organize a bespoke deep-sea fishing excursion in Kaikoura—a world-renowned marine hub where the mountains meet the sea. It is the perfect way to cap off an unforgettable New Zealand photography tour.",
         "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429975/new-zealand___IGP7593-Edit_copy_3_xfb5mg.avif"
@@ -580,7 +580,7 @@ VALUES
     ]}',
     guide1_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif', 21, 'Auckland (AKL)', 'Auckland (AKL)',
-    ARRAY['April','December','January'], ARRAY['English'], 16, 'Asia & Oceania', 11, 3, 'About Our New Zealand Photo Expedition',
+    ARRAY['December', 'April'], ARRAY['English'], 16, 'Asia & Oceania', 11, 3, 'About Our New Zealand Photo Expedition',
     'Testimonials from Our New Zealand Photography Workshop Participants',
     'Get the New Zealand Insider Guide', 
     'Unlock the Ultimate NZ Guide & "Top 100 Photo Locations" Map. Get access to our expert routes, pro photography tips, and a digital map of the world’s most breathtaking spots. Which messenger do you prefer?',
@@ -664,7 +664,7 @@ VALUES
     ]}',
     guide4_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429871/cyclades__IMG_8808-Pano_copy_jkdqjj.avif', 7, 'Athens (ATH)', 'Athens  (ATH)',
-    ARRAY['May'], ARRAY['English'], 16, 'Europe', 11, 6, 'Set sail through the stunning Cyclades islands',
+    ARRAY['May'], ARRAY['English'], 16, 'Europe', 11, 6, 'About Our Cyclades Photo Expedition',
     'Testimonials from Our Cyclades Photography Workshop Participants',
     'Get the Ultimate "Top 100 Global Locations" Map', 
     'From the peaks of Iceland to the hidden corners of Japan and Italy, get our curated map of the world’s most breathtaking spots sent straight to your phone. Which messenger do you prefer?',
@@ -767,7 +767,7 @@ VALUES
     guide3_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429687/cinque-terre-umbria__OSKIN_4052_GenFill_copy_ytmtp1.avif', 10, 'Florence (FLR)', 'Florence (FLR)',
     ARRAY['June'], ARRAY['English'], 14, 'Europe', 7, 7, 'About Our Cinque Terre & Umbria Photo Tour',
-    'Testimonials from Our Cyclades Photography Workshop Participants',
+    'Testimonials from Our Cinque Terre & Umbria Photo Tour Photography Workshop Participants',
     'Get the Ultimate "Top 100 Global Locations" Map', 
     'From the peaks of Iceland to the hidden corners of Japan and Italy, get our curated map of the world’s most breathtaking spots sent straight to your phone. Which messenger do you prefer?',
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429687/cinque-terre-umbria__OSKIN_4052_GenFill_copy_ytmtp1.avif',
@@ -775,7 +775,7 @@ VALUES
     'We’ll send you everything you need to know about our Cinque-Terre & Umbria Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429687/cinque-terre-umbria__OSKIN_4052_GenFill_copy_ytmtp1.avif'),
 
-   (tour7_id, 'provence-photography-tour', 'Provence Lavender & Villages',
+   (tour7_id, 'provence-photography-tour', 'Provence',
      'Capture the magic of Southern France on our Provence & Camargue Photo Tour. From the endless lavender fields of Valensole to the iconic wild white horses running through the marshes of Camargue. This photography workshop offers expert guidance on landscape, action, and travel photography. Join us for an unforgettable journey through purple blooms and wild nature!',
      'EASY', 3900.00,
      '{"days": [
@@ -1052,7 +1052,7 @@ VALUES
     'We’ll send you everything you need to know about our Czechia Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429602/czech-fall__645Z8177-HDR-Pano-Topaz_v2ripe.avif'),
 
-  (tour10_id, 'scotland-photography-tour', 'Scotland Highlands & Islands',
+  (tour10_id, 'scotland-photography-tour', 'Scotland',
    'Join our Scotland Photo Tour and document the untamed beauty of the Highlands. From the dramatic peaks of Quiraing and the Old Man of Storr on the Isle of Skye to historic castles and misty glens. This landscape photography workshop offers expert guidance on capturing mood and light in the heart of Scotland. Book your adventure today!',
      'EASY', 3600.00,
      '{"days": [
@@ -1133,8 +1133,8 @@ VALUES
     ]}',
     guide1_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430128/scotland__IMGP3471_Panorama-Dehancer_copy_mpyxma.avif', 8, 'Edinburgh (EDI)', 'Edinburgh (EDI)',
-    ARRAY['October'], ARRAY['English'], 16, 'Europe', 16, 7, 'About Our Scotland Photo Expedition',
-    'Scotland Photo Tour: Frequently Asked Questions',
+    ARRAY['October'], ARRAY['English'], 16, 'Europe', 7, 7, 'About Our Scotland Photo Expedition',
+    'Testimonials from Our Scotland Photography Workshop Participants',
     'Get the Ultimate "Top 100 Global Locations" Map', 
     'From the peaks of Iceland and New Zealand to the hidden corners of Japan and Scotland, get our curated map of the world’s most breathtaking spots sent straight to your phone. Which messenger do you prefer?',
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430128/scotland__IMGP3471_Panorama-Dehancer_copy_mpyxma.avif',
@@ -1143,7 +1143,7 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430128/scotland__IMGP3471_Panorama-Dehancer_copy_mpyxma.avif'),
 
   (tour11_id, 'tuscany-autumn-tour', 'Tuscany Autumn',
-     'Join our Autumn photo tour in Tuscany to capture the world’s most iconic landscapes. From the misty rolling hills of Val d’Orcia and historic cypress alleys to the medieval charm of Pienza and Siena, this landscape photography workshop offers expert guidance on mastering the light in the heart of Italy. Experience the ultimate Tuscan creative escape. Book your photo adventure now',
+     'Join our Autumn photo tour in Tuscany to capture the world’s most iconic landscapes. From the misty rolling hills of Val d’Orcia and historic cypress alleys to the medieval charm of Pienza and Siena, this landscape photography workshop offers expert guidance on mastering the light in the heart of Italy. Experience the ultimate Tuscan creative escape. Book your photo adventure now!',
      'EASY', 3800.00,
      '{"days": [
       {
@@ -1331,7 +1331,7 @@ VALUES
     ]}',
     guide5_id,
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif', 10, 'Tokyo (TYO)', 'Tokyo (TYO)',
-    ARRAY['March','April','November','December'], ARRAY['English'], 14, 'Asia & Oceania', 10, 3, 'Immerse yourself in Japan’s rich cultural heritage',
+    ARRAY['November','December'], ARRAY['English'], 14, 'Asia & Oceania', 10, 3, 'About Our Japan Autumn Photo Expedition',
     'Testimonials from Our Japan Autumn Photography Workshop Participants',
     'Get the Ultimate Japan Insider Guide', 
     'We’ll send you the Japan guide (routes, photo spots, tips) and a map with must-visit locations to see at least once in your life! Which messenger do you prefer?',

@@ -29,7 +29,7 @@ export function AboutUs() {
           <section className={styles.heroSection}>
             <p className={styles.subtitle}>
               Small groups • Iconic locations • Professional photo mentoring to
-              help you create award-winning shots on cinematic Tuscan routes.
+              help you create award-winning shots on cinematic routes.
             </p>
           </section>
         </div>
