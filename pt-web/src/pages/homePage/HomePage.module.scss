@@ -354,6 +354,12 @@
   }
 }
 
+.faqTitleSeparator {
+  @media (width <= 540px) {
+    display: none;
+  }
+}
+
 .accordions {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

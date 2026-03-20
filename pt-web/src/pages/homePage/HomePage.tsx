@@ -379,7 +379,7 @@ export function HomePage() {
         </h3>
         <p className={styles.faqSubtitle}>
           Photography Tours and Expeditions: Frequently Asked Questions.
-          <br />
+          <br className={styles.faqTitleSeparator} />
           Find answers to common questions about our journeys and logistics.
         </p>
         <div className={styles.accordions}>
