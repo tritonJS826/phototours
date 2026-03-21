@@ -13,6 +13,8 @@ tuscany-photo-tours.com {
     }
     
     handle /general/* {
+        encode zstd gzip
+
         reverse_proxy pt-general-go:8000 {
             header_up Host {http.reverse_proxy.upstream.hostport}
             header_up X-Real-IP {http.request.remote.host}
