@@ -25,20 +25,18 @@ type TourDTO = {
   startLocation: string;
   endLocation: string;
   durationDays: number;
-  languages?: string[];
+  languages: string[];
   difficulty?: TourView["difficulty"];
-  minAge?: number | null;
+  minAge: number | null;
   availableMonths?: string[];
   coverUrl: string;
   photos: Array<string | UrlObj>;
-  included?: string[];
-  activities?: Array<{ activity: string; iconName: string }>;
-  summary?: string[];
+  included: string[];
+  activities: Array<{ activity: string; iconName: string }>;
+  summary: string[];
   dates: Array<DatesObj>;
-  program?: {
-    days?: Array<{ day: number; plan: string; description: string; imgUrl: string }>;
-    included?: string[];
-    activities?: string[];
+  program: {
+    days: Array<{ day: number; plan: string; description: string; imgUrl: string }>;
   };
   faq: {
     questions: Array<{

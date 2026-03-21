@@ -48,7 +48,6 @@ export function useTourBySlug(slug: string) {
       return getTourBySlug(slug);
     },
     enabled: !!slug,
-    refetchOnMount: false,
   });
 }
 
@@ -60,6 +59,5 @@ export function useSimilarTours(tourId: string) {
     ),
     queryFn: () => getSimilarToursByTourId(tourId),
     enabled: !!tourId,
-    refetchOnMount: false,
   });
 }
