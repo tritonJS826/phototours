@@ -43,7 +43,7 @@ export function ToursPage() {
 
   const [filters, setFilters] = useState<ToursFilter>(getFiltersFromURL());
   const [priceRange, setPriceRange] = useState({min: 2500, max: 9900});
-  const {allTours, loading, error, reload} = useTours(filters);
+  const {data: allTours, isLoading: loading, error, refetch: reload} = useTours(filters);
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
   useEffect(() => {
@@ -406,7 +406,7 @@ export function ToursPage() {
 
           <AsyncSection
             loading={loading}
-            error={error ?? undefined}
+            error={error ? error.message : undefined}
             onRetry={reload}
           >
             <div className={styles.verticalContainer}>
@@ -425,7 +425,7 @@ export function ToursPage() {
                 <div />
 
               </div>
-              {(data === null || data.length === 0) && !loading && (
+              {(data === undefined) && !loading && (
                 <div className={styles.noTours}>
                   <h2 className={styles.noToursTitle}>
                     No tours found

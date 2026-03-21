@@ -1,20 +1,12 @@
-import {useEffect, useState} from "react";
 import {ArticleCard} from "src/components/Articles/ArticleCard/ArticleCard";
 import {Loader} from "src/components/Loader/Loader";
-import {listArticles} from "src/services/articlesService";
-import type {ArticleSummary} from "src/types/article";
+import {useArticles} from "src/hooks/useArticles";
 import styles from "src/pages/exploreArticles/ArticlesPage/ArticlesPage.module.scss";
 
 export function ArticlesPage() {
-  const [items, setItems] = useState<ArticleSummary[]>([]);
+  const {data: items, isLoading} = useArticles();
 
-  useEffect(() => {
-    listArticles()
-      .then(setItems)
-      .catch(() => setItems([]));
-  }, []);
-
-  if (items.length === 0) {
+  if (isLoading || !items) {
     return <Loader />;
   }
 

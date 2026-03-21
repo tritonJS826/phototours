@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react";
+import {useRef, useState} from "react";
 import arrowRightBlack from "/images/arrowRightBlack.svg";
 import blueArrowCircleRight from "/images/blueArrowCircleRight.svg";
 import userStub1 from "/images/userStub1.avif";
@@ -9,7 +9,8 @@ import {
   ReviewCard,
   ReviewCardProps,
 } from "src/components/ReviewsSection/ReviewCard/ReviewCard";
-import {getRandomReviews as getReviewsMain, Review} from "src/services/reviewsService";
+import {useReviews} from "src/hooks/useReviews";
+import {Review} from "src/services/reviewsService";
 import type {Swiper as SwiperType} from "swiper";
 import {A11y, Autoplay, Keyboard} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
@@ -71,29 +72,16 @@ const SLIDES_INCREMENT = 1;
 export function ReviewsSection(props: ToursSectionProps) {
   const swiperRef = useRef<SwiperType | null>(null);
   const desktopSwiperRef = useRef<SwiperType | null>(null);
+  const {data: apiReviews, isLoading} = useReviews();
   const [reviews, setReviews] = useState<ReviewCardProps[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(DEFAULT_FIRST_SLIDE);
+
+  if (apiReviews && reviews.length === 0 && apiReviews.length > 0) {
+    const mappedReviews = apiReviews.map(mapReviewToCardProps);
+    setReviews(mappedReviews);
+  }
+
   const totalSlides = reviews.length;
-
-  useEffect(() => {
-    const loadReviews = async () => {
-      try {
-        const apiReviews = await getReviewsMain();
-        if (apiReviews.length > 0) {
-          const mappedReviews = apiReviews.map(mapReviewToCardProps);
-          setReviews(mappedReviews);
-        }
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error("Failed to load reviews, using fallback data:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    loadReviews();
-  }, []);
 
   if (isLoading) {
     return (

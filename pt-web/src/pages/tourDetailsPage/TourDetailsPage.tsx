@@ -27,6 +27,7 @@ import {NumberInput} from "src/components/NumberInput/NumberInput";
 import {ReviewsSection} from "src/components/ReviewsSection/ReviewsSection";
 import {TimeoutPopup} from "src/components/TimeoutPopup/TimeoutPopup";
 import {TourCardExtended} from "src/components/Tour/TourCardExtended/TourCardExtended";
+import {useSimilarTours, useTourBySlug} from "src/hooks/useTours";
 import {FeedbackBlock} from "src/pages/homePage/HomePage";
 import {NotFoundPage} from "src/pages/notFound/notFoundPage";
 import {BuyTravelModal} from "src/pages/tourDetailsPage/BuyTravelModal";
@@ -35,10 +36,6 @@ import {
   type BookingRequest,
   createBooking,
 } from "src/services/bookingService";
-import {
-  getSimilarToursByTourId,
-  getTourBySlug,
-} from "src/services/toursService";
 import type {TourView} from "src/types/tour";
 import {getActivityIcon} from "src/utils/activityIcons";
 import {formatMonthsToDateRange} from "src/utils/dateUtils";
@@ -143,9 +140,9 @@ const WIDTH_FOR_ACTIVE_BUY_FORM_OPEN = 1210;
 export function TourDetailsPage() {
   const {slug} = useParams<{ slug: string }>();
 
-  const [tour, setTour] = useState<TourView | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const {data: tour, isLoading: loading, error} = useTourBySlug(slug ?? "");
+  const {data: similarTours} = useSimilarTours(String(tour?.id ?? ""));
+
   const [isBuyTravelModalOpen, setIsBuyTravelModalOpen] = useState(false);
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(0);
   const [bookingLoading, setBookingLoading] = useState(false);
@@ -158,7 +155,6 @@ export function TourDetailsPage() {
     travelers: 1,
     rooms: 0,
   });
-  const [similarTours, setSimilarTours] = useState<TourView[]>([]);
   const [searchParams] = useSearchParams();
   const [isErrorNotificationOpen, setIsErrorNotificationOpen] = useState(false);
   const [formValidError, setFormValidError] = useState(false);
@@ -471,52 +467,19 @@ export function TourDetailsPage() {
   };
 
   useEffect(() => {
-    if (!slug) {
-      setError("Missing tour id");
-      setLoading(false);
-
-      return;
-    }
-    let alive = true;
-
     resetForm();
-
-    (async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const t = await getTourBySlug(slug);
-        if (!alive) {
-          return;
-        }
-        setTour(t);
-        if (t.photos && t.photos.length > 0) {
-          setSelectedPhotoIndex(0);
-        }
-        document.title = t.title;
-
-        const similar = await getSimilarToursByTourId(String(t.id));
-        if (alive) {
-          setSimilarTours(similar);
-        }
-      } catch {
-        if (!alive) {
-          return;
-        }
-        setError("Tour not found");
-      } finally {
-        if (alive) {
-          setLoading(false);
-        }
-      }
-    })();
-
-    return () => {
-      alive = false;
-    };
   }, [slug]);
 
-  const photos = tour?.photos || [];
+  useEffect(() => {
+    if (tour?.photos && tour.photos.length > 0) {
+      setSelectedPhotoIndex(0);
+    }
+    if (tour?.title) {
+      document.title = tour.title;
+    }
+  }, [tour]);
+
+  const photos = tour?.photos ?? [];
 
   const swiperExtraToursRef = useRef<SwiperType | null>(null);
   const swiperGalleryRef = useRef<SwiperType | null>(null);
@@ -1111,7 +1074,7 @@ export function TourDetailsPage() {
         <Swiper
           modules={[Keyboard, A11y]}
           onSwiper={(s) => (swiperExtraToursRef.current = s)}
-          loop={similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE}
+          loop={(similarTours ?? []).length > SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE}
           slidesPerView={SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE}
           spaceBetween={24}
           speed={500}
@@ -1122,47 +1085,47 @@ export function TourDetailsPage() {
             [SIMILAR_TOURS_MOBILE_SMALL_BREAKPOINT]: {
               slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_MID,
               loop:
-                similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_MID,
+                (similarTours ?? []).length > SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_MID,
             },
             [SIMILAR_TOURS_MOBILE_MID_BREAKPOINT]: {
               slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_LG,
               loop:
-                similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_LG,
+                (similarTours ?? []).length > SIMILAR_TOURS_SLIDES_PER_VIEW_MOBILE_LG,
             },
             [SIMILAR_TOURS_MOBILE_BREAKPOINT]: {
               slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_SMALL,
               loop:
-                similarTours.length >
+                (similarTours ?? []).length >
                 SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_SMALL,
             },
             [SIMILAR_TOURS_TABLET_SMALL]: {
               slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_SMALL,
               loop:
-                similarTours.length >
+                (similarTours ?? []).length >
                 SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_SMALL,
             },
             [SIMILAR_TOURS_TABLET]: {
               slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET,
-              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET,
+              loop: (similarTours ?? []).length > SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET,
             },
             [SIMILAR_TOURS_TABLET_LG]: {
               slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_LG,
               loop:
-                similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_LG,
+                (similarTours ?? []).length > SIMILAR_TOURS_SLIDES_PER_VIEW_TABLET_LG,
             },
             [SIMILAR_TOURS_DESKTOP_SMALL]: {
               slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP_SMALL,
               loop:
-                similarTours.length >
+                (similarTours ?? []).length >
                 SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP_SMALL,
             },
             [SIMILAR_TOURS_DESKTOP]: {
               slidesPerView: SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP,
-              loop: similarTours.length > SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP,
+              loop: (similarTours ?? []).length > SIMILAR_TOURS_SLIDES_PER_VIEW_DESKTOP,
             },
           }}
         >
-          {similarTours.map((s) => (
+          {(similarTours ?? []).map((s) => (
             <SwiperSlide
               key={s.id}
               className={styles.slide}

@@ -11,9 +11,9 @@ interface ToursSectionProps {
 const DEFAULT_LIMIT = 6;
 
 export function ToursSection({limit, className = ""}: ToursSectionProps) {
-  const {allTours: data, loading, error, reload} = useTours();
+  const {data, isLoading, error, refetch} = useTours();
 
-  if (loading) {
+  if (isLoading) {
     return (
       <section className={`${styles.wrap} ${className}`}>
         <div className={styles.state}>
@@ -33,7 +33,7 @@ export function ToursSection({limit, className = ""}: ToursSectionProps) {
           <button
             type="button"
             className={styles.retry}
-            onClick={reload}
+            onClick={() => refetch()}
           >
             Retry
           </button>
