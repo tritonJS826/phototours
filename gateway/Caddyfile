@@ -3,6 +3,7 @@
 }
 
 tuscany-photo-tours.com {
+    encode zstd gzip
     # HTTPS on standard port 443 (Caddy handles this automatically)
     # HTTP requests will be automatically redirected to HTTPS
     reverse_proxy pt-web:5174 {
@@ -13,8 +14,6 @@ tuscany-photo-tours.com {
     }
     
     handle /general/* {
-        encode zstd gzip
-
         reverse_proxy pt-general-go:8000 {
             header_up Host {http.reverse_proxy.upstream.hostport}
             header_up X-Real-IP {http.request.remote.host}
