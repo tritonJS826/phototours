@@ -83,7 +83,7 @@ export function ArticleFull({article}: Props) {
   };
 
   const breadcrumbs = [
-    {label: "Home", href: PATHS.HOME_TOP},
+    {label: "Home", href: PATHS.HOME},
     {label: "Blog", href: PATHS.ARTICLES},
     {label: article.title},
   ];

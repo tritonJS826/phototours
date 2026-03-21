@@ -130,7 +130,7 @@ export function App() {
       </Helmet>
       <Routes>
         <Route
-          path={PATHS.HOME_TOP}
+          path={PATHS.HOME}
           element={<HomePage />}
         />
         <Route element={<AppLayout />}>

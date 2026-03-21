@@ -7,6 +7,7 @@ import {persistQueryClient} from "@tanstack/react-query-persist-client";
 import {App} from "src/App";
 import {NotificationProvider} from "src/contexts/NotificationContext";
 import {env} from "src/utils/env/env";
+import {ScrollToTop} from "src/utils/pageUtils";
 import {getUserInfo} from "src/utils/userInfo";
 import "src/styles/main.scss";
 
@@ -47,6 +48,7 @@ const renderApp = () => {
     <StrictMode>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
+          <ScrollToTop />
           <NotificationProvider>
             <App />
           </NotificationProvider>
