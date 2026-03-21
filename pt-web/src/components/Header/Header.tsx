@@ -86,7 +86,7 @@ export function Header() {
         </button>
         <div className={styles.headerLogo}>
           <Link
-            to={PATHS.HOME}
+            to={PATHS.HOME_TOP}
             aria-label="Homepage"
           >
             <img

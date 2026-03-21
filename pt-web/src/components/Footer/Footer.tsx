@@ -119,7 +119,7 @@ export const Footer = function Footer() {
         <div className={styles.mainContent}>
           <div className={styles.logoColumn}>
             <Link
-              to={PATHS.HOME}
+              to={PATHS.HOME_TOP}
               aria-label="Homepage"
             >
               <img

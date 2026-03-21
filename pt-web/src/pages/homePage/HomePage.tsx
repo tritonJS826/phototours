@@ -272,7 +272,7 @@ export function HomePage() {
               <Menu />
             </button>
             <Link
-              to={PATHS.HOME}
+              to={PATHS.HOME_TOP}
               aria-label="Homepage"
             >
               <div className={styles.logoContainer}>

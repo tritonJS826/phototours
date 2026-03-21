@@ -15,7 +15,7 @@ export interface SidebarMenuProps {
 }
 
 const menuLinks = [
-  {to: PATHS.HOME, label: "Home"},
+  {to: PATHS.HOME_TOP, label: "Home"},
   {to: PATHS.TOURS, label: "Book Photo Tours"},
   {to: PATHS.ARTICLES, label: "Blog"},
   {to: PATHS.ABOUT, label: "About Us"},
