@@ -18,7 +18,7 @@
     transform: scale(1.1);
     background: linear-gradient(to right, transparent, white);
     pointer-events: none;
-    z-index: 1;
+    z-index: vars.$z-index-base;
 
     // no whit fade out on desktop
     @media (width >= 1430px) {
@@ -94,7 +94,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 3;
+  z-index: vars.$z-index-card;
   width: 35px;
   height: 80px;
   border-radius: 20px;

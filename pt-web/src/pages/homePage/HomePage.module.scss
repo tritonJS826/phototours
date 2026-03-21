@@ -42,7 +42,7 @@
   justify-content: space-between;
   font-size: 16px;
   position: relative;
-  z-index: 10;
+  z-index: vars.$z-index-header;
 }
 
 // gray overlay
@@ -558,7 +558,7 @@
     background: #fff;
     border-top: 1px solid #e0e0e0;
     box-shadow: 0 12px 30px rgb(0 0 0 / 18%);
-    z-index: 200;
+    z-index: vars.$z-index-modal-overlay;
     border-radius: 20px;
     margin: 0 20px;
   }

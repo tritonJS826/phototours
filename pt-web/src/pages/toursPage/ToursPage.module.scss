@@ -44,6 +44,10 @@
   margin-bottom: 8px;
 }
 
+.filtersDropdownContent {
+  z-index: vars.$z-index-dropdown-in-modal;
+}
+
 // .filterHeader {
 //   display: flex;
 //   justify-content: space-between;
@@ -140,11 +144,11 @@
 }
 
 .range#min {
-  z-index: 3;
+  z-index: vars.$z-index-card;
 }
 
 .range#max {
-  z-index: 2;
+  z-index: vars.$z-index-dropdown-item;
 }
 
 /* активная синяя линия */
@@ -157,7 +161,7 @@
   height: 6px;
   background: #2b56f6;
   border-radius: 3px;
-  z-index: 1;
+  z-index: vars.$z-index-base;
 }
 
 /* бегунок */
@@ -172,7 +176,7 @@
   box-shadow: 0 2px 6px rgb(0 0 0 / 25%);
   cursor: pointer;
   position: relative;
-  z-index: 5;
+  z-index: vars.$z-index-sticky;
 }
 
 .range::-moz-range-thumb {
@@ -184,7 +188,7 @@
   border: 2px solid #2b56f6;
   box-shadow: 0 2px 6px rgb(0 0 0 / 25%);
   cursor: pointer;
-  z-index: 5;
+  z-index: vars.$z-index-sticky;
 }
 
 .range::-moz-range-track {
@@ -275,7 +279,7 @@
   border: none;
   box-shadow: 0 4px 12px rgb(0 0 0 / 20%);
   cursor: pointer;
-  z-index: 100;
+  z-index: vars.$z-index-section;
   align-items: center;
   justify-content: center;
 

@@ -102,11 +102,7 @@ $logo-width: 180px;
 $logo-height: 90px;
 $logo-mobile-width: 140px;
 $logo-mobile-height: 70px;
-$z-index-notification: 1000;
-$z-header: 100;
-$z-modal: 1000;
-$z-overlay: 1100;
-$dropdownZIndex: 3333;
+
 $btn-padding: $padding-button;
 $btn-border-radius: 5px;
 $btn-font-size: 16px;
@@ -137,3 +133,19 @@ $color-danger-light: #f8d7da;
 $padding-badge: 2px 6px;
 $color-danger: #dc3545;
 $padding-btn: $padding-button;
+
+
+$z-index-base: 1;
+$z-index-dropdown-item: 2;
+$z-index-card: 3;
+$z-index-sticky: 5;
+$z-index-header: 10;
+$z-index-section: 100;
+$z-index-dropdown: 150;
+$z-index-modal-overlay: 200;
+$z-index-notification: 1000;
+$z-index-modal-content: 1000;
+$z-index-modal-top: 1001;
+$z-index-modal-high: 2222;
+$z-index-dropdown-in-modal: 3333;
+$z-index-topmost: 9999;

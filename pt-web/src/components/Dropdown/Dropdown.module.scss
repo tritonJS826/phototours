@@ -6,7 +6,7 @@ $dropdownMaxHeight: 50vh;
 
 .dropdownContent,
 .dropdownMenuSubContent {
-  z-index: $dropdownZIndex;
+  z-index: $z-index-dropdown;
   max-height: $dropdownMaxHeight;
   border: 1px solid #2f53de;
   border-radius: 8px;

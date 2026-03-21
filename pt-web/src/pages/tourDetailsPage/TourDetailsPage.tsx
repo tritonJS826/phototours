@@ -288,6 +288,7 @@ export function TourDetailsPage() {
         Travel dates
       </p>
       <Dropdown
+        contentClassName={styles.buyTravelDropdownContent}
         trigger={
           <div className={styles.locationInputBlock}>
             <img

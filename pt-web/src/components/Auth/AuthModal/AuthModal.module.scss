@@ -1,3 +1,5 @@
+@use "src/styles/variables" as vars;
+
 .modalOverlay {
   position: fixed;
   inset: 0;
@@ -6,7 +8,7 @@
   justify-content: center;
   background: rgb(0 0 0 / 50%);
   backdrop-filter: blur(4px);
-  z-index: 1000;
+  z-index: vars.$z-index-modal-content;
 }
 
 .modalContent {

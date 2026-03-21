@@ -220,7 +220,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: vars.$z-index-modal-content;
   padding: 16px;
 }
 

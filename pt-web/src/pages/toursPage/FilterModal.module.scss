@@ -1,3 +1,5 @@
+@use "src/styles/variables" as vars;
+
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -8,7 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: vars.$z-index-modal-content;
   padding: 20px;
 }
 

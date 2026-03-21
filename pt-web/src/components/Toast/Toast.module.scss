@@ -1,3 +1,5 @@
+@use "src/styles/variables" as vars;
+
 .toast {
   position: fixed;
   bottom: 32px;
@@ -12,7 +14,7 @@
   border-radius: 12px;
   font-size: 14px;
   font-weight: 500;
-  z-index: 1000;
+  z-index: vars.$z-index-modal-content;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }

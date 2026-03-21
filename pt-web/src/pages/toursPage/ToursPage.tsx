@@ -42,7 +42,7 @@ export function ToursPage() {
   };
 
   const [filters, setFilters] = useState<ToursFilter>(getFiltersFromURL());
-  const [priceRange, setPriceRange] = useState({min: 300, max: 9900});
+  const [priceRange, setPriceRange] = useState({min: 2500, max: 9900});
   const {allTours, loading, error, reload} = useTours(filters);
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
@@ -124,7 +124,7 @@ export function ToursPage() {
 
   const handleResetAll = () => {
     setFilters({});
-    setPriceRange({min: 300, max: 9900});
+    setPriceRange({min: 2500, max: 9900});
     setSearchParams(new URLSearchParams()); // Clear URL params
   };
 
@@ -134,6 +134,7 @@ export function ToursPage() {
         Location
       </label>
       <Dropdown
+        contentClassName={styles.filtersDropdownContent}
         trigger={(
           <div className={styles.locationInputBlock}>
             <img
@@ -210,6 +211,7 @@ export function ToursPage() {
         Select season
       </label>
       <Dropdown
+        contentClassName={styles.filtersDropdownContent}
         trigger={(
           <div className={styles.locationInputBlock}>
             <img
@@ -324,7 +326,7 @@ export function ToursPage() {
         <div className={styles.rangeWrapper}>
           <input
             type="range"
-            min="300"
+            min="2500"
             max="9900"
             step="100"
             value={priceRange.min}
@@ -334,7 +336,7 @@ export function ToursPage() {
           />
           <input
             type="range"
-            min="300"
+            min="2500"
             max="9900"
             step="100"
             value={priceRange.max}

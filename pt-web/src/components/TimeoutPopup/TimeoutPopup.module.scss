@@ -1,3 +1,5 @@
+@use "src/styles/variables" as vars;
+
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -9,7 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: vars.$z-index-modal-content;
   padding: 16px;
 }
 
@@ -37,7 +39,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  z-index: vars.$z-index-base;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.5);

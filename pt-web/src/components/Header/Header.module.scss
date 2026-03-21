@@ -75,7 +75,7 @@
   justify-content: end;
   font-size: 16px;
   position: relative;
-  z-index: 10;
+  z-index: vars.$z-index-header;
 }
 
 .leftHeaderLinks {
@@ -297,7 +297,7 @@ a.primaryHeaderLink {
     background: #fff;
     border-top: 1px solid #e0e0e0;
     box-shadow: 0 12px 30px rgb(0 0 0 / 18%);
-    z-index: 200;
+    z-index: vars.$z-index-modal-overlay;
   }
 
   .headerContainer {
@@ -352,7 +352,7 @@ a.primaryHeaderLink {
   width: 100dvw;
   height: 100dvh;
   background: #fff;
-  z-index: 9999;
+  z-index: vars.$z-index-topmost;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -485,7 +485,7 @@ a.primaryHeaderLink {
     max-height: calc(100vh - 110px);
     overflow-y: auto;
     box-shadow: 0 12px 30px rgb(0 0 0 / 18%);
-    z-index: 200;
+    z-index: vars.$z-index-modal-overlay;
     border-radius: 20px;
     margin: 0 20px;
 
