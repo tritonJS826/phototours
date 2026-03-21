@@ -33,10 +33,10 @@ export interface DtoPublicProfileDTO {
     firstName?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof DtoPublicProfileDTO
      */
-    id?: number;
+    id?: string;
     /**
      * 
      * @type {string}

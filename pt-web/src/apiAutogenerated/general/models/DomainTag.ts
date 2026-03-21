@@ -21,10 +21,10 @@ import { mapValues } from '../runtime';
 export interface DomainTag {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof DomainTag
      */
-    id?: number;
+    id?: string;
     /**
      * 
      * @type {string}

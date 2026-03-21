@@ -45,10 +45,10 @@ export interface DtoUserDTO {
     firstName?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof DtoUserDTO
      */
-    id?: number;
+    id?: string;
     /**
      * 
      * @type {string}

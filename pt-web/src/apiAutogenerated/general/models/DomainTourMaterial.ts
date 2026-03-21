@@ -35,10 +35,10 @@ export interface DomainTourMaterial {
     createdAt?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof DomainTourMaterial
      */
-    id?: number;
+    id?: string;
     /**
      * 
      * @type {string}
@@ -47,10 +47,10 @@ export interface DomainTourMaterial {
     title?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof DomainTourMaterial
      */
-    tourId?: number;
+    tourId?: string;
     /**
      * 
      * @type {DomainMaterialType}

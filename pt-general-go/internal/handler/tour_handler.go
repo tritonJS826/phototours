@@ -81,7 +81,7 @@ func (h *Handler) GetTourByID(ctx *gin.Context) {
 
 // GetTourBySlug godoc
 // @Summary Get tour by slug
-// @Description Get full tour information by slug including guide, dates, photos, videos, materials, tags, and categories
+// @Description Get full tour information by slug including guide, dates, photos
 // @Tags tours
 // @Accept json
 // @Produce json

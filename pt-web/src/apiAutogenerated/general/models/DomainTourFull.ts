@@ -13,6 +13,20 @@
  */
 
 import { mapValues } from '../runtime';
+import type { DomainActivity } from './DomainActivity';
+import {
+    DomainActivityFromJSON,
+    DomainActivityFromJSONTyped,
+    DomainActivityToJSON,
+    DomainActivityToJSONTyped,
+} from './DomainActivity';
+import type { DomainReview } from './DomainReview';
+import {
+    DomainReviewFromJSON,
+    DomainReviewFromJSONTyped,
+    DomainReviewToJSON,
+    DomainReviewToJSONTyped,
+} from './DomainReview';
 import type { DomainTourDate } from './DomainTourDate';
 import {
     DomainTourDateFromJSON,
@@ -20,13 +34,6 @@ import {
     DomainTourDateToJSON,
     DomainTourDateToJSONTyped,
 } from './DomainTourDate';
-import type { DomainTourMaterial } from './DomainTourMaterial';
-import {
-    DomainTourMaterialFromJSON,
-    DomainTourMaterialFromJSONTyped,
-    DomainTourMaterialToJSON,
-    DomainTourMaterialToJSONTyped,
-} from './DomainTourMaterial';
 import type { DomainPhoto } from './DomainPhoto';
 import {
     DomainPhotoFromJSON,
@@ -34,34 +41,6 @@ import {
     DomainPhotoToJSON,
     DomainPhotoToJSONTyped,
 } from './DomainPhoto';
-import type { DomainGuide } from './DomainGuide';
-import {
-    DomainGuideFromJSON,
-    DomainGuideFromJSONTyped,
-    DomainGuideToJSON,
-    DomainGuideToJSONTyped,
-} from './DomainGuide';
-import type { DomainCategory } from './DomainCategory';
-import {
-    DomainCategoryFromJSON,
-    DomainCategoryFromJSONTyped,
-    DomainCategoryToJSON,
-    DomainCategoryToJSONTyped,
-} from './DomainCategory';
-import type { DomainVideo } from './DomainVideo';
-import {
-    DomainVideoFromJSON,
-    DomainVideoFromJSONTyped,
-    DomainVideoToJSON,
-    DomainVideoToJSONTyped,
-} from './DomainVideo';
-import type { DomainTag } from './DomainTag';
-import {
-    DomainTagFromJSON,
-    DomainTagFromJSONTyped,
-    DomainTagToJSON,
-    DomainTagToJSONTyped,
-} from './DomainTag';
 import type { DomainDifficultyLevel } from './DomainDifficultyLevel';
 import {
     DomainDifficultyLevelFromJSON,
@@ -78,16 +57,16 @@ import {
 export interface DomainTourFull {
     /**
      * 
+     * @type {Array<DomainActivity>}
+     * @memberof DomainTourFull
+     */
+    activities?: Array<DomainActivity>;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof DomainTourFull
      */
     availableMonths?: Array<string>;
-    /**
-     * 
-     * @type {Array<DomainCategory>}
-     * @memberof DomainTourFull
-     */
-    categories?: Array<DomainCategory>;
     /**
      * 
      * @type {string}
@@ -100,6 +79,18 @@ export interface DomainTourFull {
      * @memberof DomainTourFull
      */
     createdAt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainTourFull
+     */
+    ctaDescription?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainTourFull
+     */
+    ctaTitle?: string;
     /**
      * 
      * @type {Array<DomainTourDate>}
@@ -132,22 +123,28 @@ export interface DomainTourFull {
     endLocation?: string;
     /**
      * 
-     * @type {DomainGuide}
+     * @type {object}
      * @memberof DomainTourFull
      */
-    guide?: DomainGuide;
+    faq?: object;
     /**
      * 
      * @type {number}
      * @memberof DomainTourFull
      */
-    guideId?: number;
+    groupSize?: number;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof DomainTourFull
      */
-    id?: number;
+    id?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof DomainTourFull
+     */
+    included?: Array<string>;
     /**
      * 
      * @type {Array<string>}
@@ -156,10 +153,10 @@ export interface DomainTourFull {
     languages?: Array<string>;
     /**
      * 
-     * @type {Array<DomainTourMaterial>}
+     * @type {string}
      * @memberof DomainTourFull
      */
-    materials?: Array<DomainTourMaterial>;
+    location?: string;
     /**
      * 
      * @type {number}
@@ -174,6 +171,42 @@ export interface DomainTourFull {
     photos?: Array<DomainPhoto>;
     /**
      * 
+     * @type {string}
+     * @memberof DomainTourFull
+     */
+    popUp1Description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainTourFull
+     */
+    popUp1ImageUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainTourFull
+     */
+    popUp1Title?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainTourFull
+     */
+    popUp2Description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainTourFull
+     */
+    popUp2ImageUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainTourFull
+     */
+    popUp2Title?: string;
+    /**
+     * 
      * @type {number}
      * @memberof DomainTourFull
      */
@@ -186,10 +219,40 @@ export interface DomainTourFull {
     program?: object;
     /**
      * 
+     * @type {number}
+     * @memberof DomainTourFull
+     */
+    reviewAmount?: number;
+    /**
+     * 
+     * @type {Array<DomainReview>}
+     * @memberof DomainTourFull
+     */
+    reviews?: Array<DomainReview>;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainTourFull
+     */
+    reviewsSectionName?: string;
+    /**
+     * 
      * @type {string}
      * @memberof DomainTourFull
      */
     slug?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DomainTourFull
+     */
+    spotsLeft?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DomainTourFull
+     */
+    starAmount?: number;
     /**
      * 
      * @type {string}
@@ -198,10 +261,16 @@ export interface DomainTourFull {
     startLocation?: string;
     /**
      * 
-     * @type {Array<DomainTag>}
+     * @type {string}
      * @memberof DomainTourFull
      */
-    tags?: Array<DomainTag>;
+    subtitle?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof DomainTourFull
+     */
+    summary?: Array<string>;
     /**
      * 
      * @type {string}
@@ -214,12 +283,6 @@ export interface DomainTourFull {
      * @memberof DomainTourFull
      */
     updatedAt?: string;
-    /**
-     * 
-     * @type {Array<DomainVideo>}
-     * @memberof DomainTourFull
-     */
-    videos?: Array<DomainVideo>;
 }
 
 
@@ -241,30 +304,44 @@ export function DomainTourFullFromJSONTyped(json: any, ignoreDiscriminator: bool
     }
     return {
         
+        'activities': json['activities'] == null ? undefined : ((json['activities'] as Array<any>).map(DomainActivityFromJSON)),
         'availableMonths': json['availableMonths'] == null ? undefined : json['availableMonths'],
-        'categories': json['categories'] == null ? undefined : ((json['categories'] as Array<any>).map(DomainCategoryFromJSON)),
         'coverUrl': json['coverUrl'] == null ? undefined : json['coverUrl'],
         'createdAt': json['createdAt'] == null ? undefined : json['createdAt'],
+        'ctaDescription': json['ctaDescription'] == null ? undefined : json['ctaDescription'],
+        'ctaTitle': json['ctaTitle'] == null ? undefined : json['ctaTitle'],
         'dates': json['dates'] == null ? undefined : ((json['dates'] as Array<any>).map(DomainTourDateFromJSON)),
         'description': json['description'] == null ? undefined : json['description'],
         'difficulty': json['difficulty'] == null ? undefined : DomainDifficultyLevelFromJSON(json['difficulty']),
         'durationDays': json['durationDays'] == null ? undefined : json['durationDays'],
         'endLocation': json['endLocation'] == null ? undefined : json['endLocation'],
-        'guide': json['guide'] == null ? undefined : DomainGuideFromJSON(json['guide']),
-        'guideId': json['guideId'] == null ? undefined : json['guideId'],
+        'faq': json['faq'] == null ? undefined : json['faq'],
+        'groupSize': json['groupSize'] == null ? undefined : json['groupSize'],
         'id': json['id'] == null ? undefined : json['id'],
+        'included': json['included'] == null ? undefined : json['included'],
         'languages': json['languages'] == null ? undefined : json['languages'],
-        'materials': json['materials'] == null ? undefined : ((json['materials'] as Array<any>).map(DomainTourMaterialFromJSON)),
+        'location': json['location'] == null ? undefined : json['location'],
         'minAge': json['minAge'] == null ? undefined : json['minAge'],
         'photos': json['photos'] == null ? undefined : ((json['photos'] as Array<any>).map(DomainPhotoFromJSON)),
+        'popUp1Description': json['popUp1Description'] == null ? undefined : json['popUp1Description'],
+        'popUp1ImageUrl': json['popUp1ImageUrl'] == null ? undefined : json['popUp1ImageUrl'],
+        'popUp1Title': json['popUp1Title'] == null ? undefined : json['popUp1Title'],
+        'popUp2Description': json['popUp2Description'] == null ? undefined : json['popUp2Description'],
+        'popUp2ImageUrl': json['popUp2ImageUrl'] == null ? undefined : json['popUp2ImageUrl'],
+        'popUp2Title': json['popUp2Title'] == null ? undefined : json['popUp2Title'],
         'price': json['price'] == null ? undefined : json['price'],
         'program': json['program'] == null ? undefined : json['program'],
+        'reviewAmount': json['reviewAmount'] == null ? undefined : json['reviewAmount'],
+        'reviews': json['reviews'] == null ? undefined : ((json['reviews'] as Array<any>).map(DomainReviewFromJSON)),
+        'reviewsSectionName': json['reviewsSectionName'] == null ? undefined : json['reviewsSectionName'],
         'slug': json['slug'] == null ? undefined : json['slug'],
+        'spotsLeft': json['spotsLeft'] == null ? undefined : json['spotsLeft'],
+        'starAmount': json['starAmount'] == null ? undefined : json['starAmount'],
         'startLocation': json['startLocation'] == null ? undefined : json['startLocation'],
-        'tags': json['tags'] == null ? undefined : ((json['tags'] as Array<any>).map(DomainTagFromJSON)),
+        'subtitle': json['subtitle'] == null ? undefined : json['subtitle'],
+        'summary': json['summary'] == null ? undefined : json['summary'],
         'title': json['title'] == null ? undefined : json['title'],
         'updatedAt': json['updatedAt'] == null ? undefined : json['updatedAt'],
-        'videos': json['videos'] == null ? undefined : ((json['videos'] as Array<any>).map(DomainVideoFromJSON)),
     };
 }
 
@@ -279,30 +356,44 @@ export function DomainTourFullToJSONTyped(value?: DomainTourFull | null, ignoreD
 
     return {
         
+        'activities': value['activities'] == null ? undefined : ((value['activities'] as Array<any>).map(DomainActivityToJSON)),
         'availableMonths': value['availableMonths'],
-        'categories': value['categories'] == null ? undefined : ((value['categories'] as Array<any>).map(DomainCategoryToJSON)),
         'coverUrl': value['coverUrl'],
         'createdAt': value['createdAt'],
+        'ctaDescription': value['ctaDescription'],
+        'ctaTitle': value['ctaTitle'],
         'dates': value['dates'] == null ? undefined : ((value['dates'] as Array<any>).map(DomainTourDateToJSON)),
         'description': value['description'],
         'difficulty': DomainDifficultyLevelToJSON(value['difficulty']),
         'durationDays': value['durationDays'],
         'endLocation': value['endLocation'],
-        'guide': DomainGuideToJSON(value['guide']),
-        'guideId': value['guideId'],
+        'faq': value['faq'],
+        'groupSize': value['groupSize'],
         'id': value['id'],
+        'included': value['included'],
         'languages': value['languages'],
-        'materials': value['materials'] == null ? undefined : ((value['materials'] as Array<any>).map(DomainTourMaterialToJSON)),
+        'location': value['location'],
         'minAge': value['minAge'],
         'photos': value['photos'] == null ? undefined : ((value['photos'] as Array<any>).map(DomainPhotoToJSON)),
+        'popUp1Description': value['popUp1Description'],
+        'popUp1ImageUrl': value['popUp1ImageUrl'],
+        'popUp1Title': value['popUp1Title'],
+        'popUp2Description': value['popUp2Description'],
+        'popUp2ImageUrl': value['popUp2ImageUrl'],
+        'popUp2Title': value['popUp2Title'],
         'price': value['price'],
         'program': value['program'],
+        'reviewAmount': value['reviewAmount'],
+        'reviews': value['reviews'] == null ? undefined : ((value['reviews'] as Array<any>).map(DomainReviewToJSON)),
+        'reviewsSectionName': value['reviewsSectionName'],
         'slug': value['slug'],
+        'spotsLeft': value['spotsLeft'],
+        'starAmount': value['starAmount'],
         'startLocation': value['startLocation'],
-        'tags': value['tags'] == null ? undefined : ((value['tags'] as Array<any>).map(DomainTagToJSON)),
+        'subtitle': value['subtitle'],
+        'summary': value['summary'],
         'title': value['title'],
         'updatedAt': value['updatedAt'],
-        'videos': value['videos'] == null ? undefined : ((value['videos'] as Array<any>).map(DomainVideoToJSON)),
     };
 }
 

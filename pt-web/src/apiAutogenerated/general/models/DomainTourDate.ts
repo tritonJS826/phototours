@@ -30,7 +30,13 @@ export interface DomainTourDate {
      * @type {string}
      * @memberof DomainTourDate
      */
-    date?: string;
+    dateFrom?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainTourDate
+     */
+    dateTo?: string;
     /**
      * 
      * @type {number}
@@ -39,10 +45,10 @@ export interface DomainTourDate {
     groupSize?: number;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof DomainTourDate
      */
-    id?: number;
+    id?: string;
     /**
      * 
      * @type {boolean}
@@ -51,10 +57,10 @@ export interface DomainTourDate {
     isAvailable?: boolean;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof DomainTourDate
      */
-    tourId?: number;
+    tourId?: string;
     /**
      * 
      * @type {string}
@@ -81,7 +87,8 @@ export function DomainTourDateFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'createdAt': json['createdAt'] == null ? undefined : json['createdAt'],
-        'date': json['date'] == null ? undefined : json['date'],
+        'dateFrom': json['dateFrom'] == null ? undefined : json['dateFrom'],
+        'dateTo': json['dateTo'] == null ? undefined : json['dateTo'],
         'groupSize': json['groupSize'] == null ? undefined : json['groupSize'],
         'id': json['id'] == null ? undefined : json['id'],
         'isAvailable': json['isAvailable'] == null ? undefined : json['isAvailable'],
@@ -102,7 +109,8 @@ export function DomainTourDateToJSONTyped(value?: DomainTourDate | null, ignoreD
     return {
         
         'createdAt': value['createdAt'],
-        'date': value['date'],
+        'dateFrom': value['dateFrom'],
+        'dateTo': value['dateTo'],
         'groupSize': value['groupSize'],
         'id': value['id'],
         'isAvailable': value['isAvailable'],

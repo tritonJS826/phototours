@@ -44,16 +44,20 @@ export interface ToursGetRequest {
 }
 
 export interface ToursIdDeleteRequest {
-    id: number;
+    id: string;
 }
 
 export interface ToursIdGetRequest {
-    id: number;
+    id: string;
 }
 
 export interface ToursIdPatchRequest {
-    id: number;
+    id: string;
     request: DtoUpdateTourRequest;
+}
+
+export interface ToursIdSimilarGetRequest {
+    id: string;
 }
 
 export interface ToursPostRequest {
@@ -73,7 +77,7 @@ export class ToursApi extends runtime.BaseAPI {
      * Get a paginated list of tours with optional filters (location, date range, group size, price range, season)
      * Get all tours
      */
-    async toursGetRaw(requestParameters: ToursGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DomainTour>>> {
+    async toursGetRaw(requestParameters: ToursGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DomainTourFull>>> {
         const queryParameters: any = {};
 
         if (requestParameters['page'] != null) {
@@ -124,14 +128,14 @@ export class ToursApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DomainTourFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DomainTourFullFromJSON));
     }
 
     /**
      * Get a paginated list of tours with optional filters (location, date range, group size, price range, season)
      * Get all tours
      */
-    async toursGet(requestParameters: ToursGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DomainTour>> {
+    async toursGet(requestParameters: ToursGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DomainTourFull>> {
         const response = await this.toursGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -267,6 +271,45 @@ export class ToursApi extends runtime.BaseAPI {
      */
     async toursIdPatch(requestParameters: ToursIdPatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DomainTour> {
         const response = await this.toursIdPatchRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get similar tours for a given tour
+     * Get similar tours by tour ID
+     */
+    async toursIdSimilarGetRaw(requestParameters: ToursIdSimilarGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DomainTour>>> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling toursIdSimilarGet().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/tours/{id}/similar`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DomainTourFromJSON));
+    }
+
+    /**
+     * Get similar tours for a given tour
+     * Get similar tours by tour ID
+     */
+    async toursIdSimilarGet(requestParameters: ToursIdSimilarGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DomainTour>> {
+        const response = await this.toursIdSimilarGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

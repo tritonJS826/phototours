@@ -116,28 +116,6 @@ CREATE TABLE reviews (
     CONSTRAINT review_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT review_user_id_fk FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
-CREATE TABLE tags (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name TEXT NOT NULL UNIQUE
-);
-CREATE TABLE tour_tags (
-    tag_id UUID NOT NULL,
-    tour_id UUID NOT NULL,
-    PRIMARY KEY (tag_id, tour_id),
-    CONSTRAINT tour_tags_tag_id_fk FOREIGN KEY (tag_id) REFERENCES tags(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT tour_tags_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE
-);
-CREATE TABLE categories (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name TEXT NOT NULL UNIQUE
-);
-CREATE TABLE tour_categories (
-    category_id UUID NOT NULL,
-    tour_id UUID NOT NULL,
-    PRIMARY KEY (category_id, tour_id),
-    CONSTRAINT tour_categories_category_id_fk FOREIGN KEY (category_id) REFERENCES categories(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT tour_categories_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE
-);
 CREATE TABLE bookings (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL,

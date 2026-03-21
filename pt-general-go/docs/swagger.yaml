@@ -1,22 +1,43 @@
 basePath: /general
 definitions:
+  domain.Activity:
+    properties:
+      activity:
+        type: string
+      iconName:
+        type: string
+    type: object
   domain.BookingRequest:
     properties:
-      name:
-        minLength: 1
+      city:
         type: string
-      phone:
-        minLength: 1
+      country:
         type: string
-    required:
-    - name
-    - phone
-    type: object
-  domain.Category:
-    properties:
+      email:
+        type: string
       id:
         type: string
+      language:
+        type: string
+      lastContactPage:
+        type: string
       name:
+        type: string
+      phone:
+        type: string
+      rooms:
+        type: integer
+      subscriptionType:
+        type: string
+      timezone:
+        type: string
+      tourId:
+        type: string
+      travelDate:
+        type: string
+      travelers:
+        type: integer
+      zohoDealId:
         type: string
     type: object
   domain.DifficultyLevel:
@@ -29,25 +50,6 @@ definitions:
     - DifficultyLevelEASY
     - DifficultyLevelMEDIUM
     - DifficultyLevelHARD
-  domain.Guide:
-    properties:
-      createdAt:
-        type: string
-      experience:
-        type: string
-      id:
-        type: string
-      specializations:
-        items:
-          type: string
-        type: array
-      updatedAt:
-        type: string
-      user:
-        $ref: '#/definitions/domain.User'
-      userId:
-        type: string
-    type: object
   domain.Login:
     properties:
       email:
@@ -58,20 +60,6 @@ definitions:
     - email
     - password
     type: object
-  domain.MaterialType:
-    enum:
-    - PDF
-    - IMAGE
-    - VIDEO
-    - LINK
-    - AUDIO
-    type: string
-    x-enum-varnames:
-    - MaterialTypePDF
-    - MaterialTypeImage
-    - MaterialTypeVideo
-    - MaterialTypeLink
-    - MaterialTypeAudio
   domain.PageMetadata:
     properties:
       tags:
@@ -121,28 +109,17 @@ definitions:
         type: string
       id:
         type: string
+      image:
+        type: string
+      link:
+        type: string
       rating:
         type: integer
       tourId:
         type: string
       userId:
         type: string
-    type: object
-  domain.Role:
-    enum:
-    - ADMIN
-    - CLIENT
-    - GUIDE
-    type: string
-    x-enum-varnames:
-    - RoleAdmin
-    - RoleClient
-    - RoleGuide
-  domain.Tag:
-    properties:
-      id:
-        type: string
-      name:
+      userName:
         type: string
     type: object
   domain.Tour:
@@ -155,6 +132,10 @@ definitions:
         type: string
       createdAt:
         type: string
+      ctaDescription:
+        type: string
+      ctaTitle:
+        type: string
       description:
         type: string
       difficulty:
@@ -163,23 +144,45 @@ definitions:
         type: integer
       endLocation:
         type: string
-      guideId:
-        type: string
+      faq:
+        type: object
+      groupSize:
+        type: integer
       id:
         type: string
       languages:
         items:
           type: string
         type: array
+      location:
+        type: string
       minAge:
         type: integer
+      popUp1Description:
+        type: string
+      popUp1ImageUrl:
+        type: string
+      popUp1Title:
+        type: string
+      popUp2Description:
+        type: string
+      popUp2ImageUrl:
+        type: string
+      popUp2Title:
+        type: string
       price:
         type: number
       program:
         type: object
+      reviewsSectionName:
+        type: string
       slug:
         type: string
+      spotsLeft:
+        type: integer
       startLocation:
+        type: string
+      subtitle:
         type: string
       title:
         type: string
@@ -207,17 +210,21 @@ definitions:
     type: object
   domain.TourFull:
     properties:
+      activities:
+        items:
+          $ref: '#/definitions/domain.Activity'
+        type: array
       availableMonths:
         items:
           type: string
         type: array
-      categories:
-        items:
-          $ref: '#/definitions/domain.Category'
-        type: array
       coverUrl:
         type: string
       createdAt:
+        type: string
+      ctaDescription:
+        type: string
+      ctaTitle:
         type: string
       dates:
         items:
@@ -231,26 +238,40 @@ definitions:
         type: integer
       endLocation:
         type: string
-      guide:
-        $ref: '#/definitions/domain.Guide'
-      guideId:
-        type: string
+      faq:
+        type: object
+      groupSize:
+        type: integer
       id:
         type: string
+      included:
+        items:
+          type: string
+        type: array
       languages:
         items:
           type: string
         type: array
-      materials:
-        items:
-          $ref: '#/definitions/domain.TourMaterial'
-        type: array
+      location:
+        type: string
       minAge:
         type: integer
       photos:
         items:
           $ref: '#/definitions/domain.Photo'
         type: array
+      popUp1Description:
+        type: string
+      popUp1ImageUrl:
+        type: string
+      popUp1Title:
+        type: string
+      popUp2Description:
+        type: string
+      popUp2ImageUrl:
+        type: string
+      popUp2Title:
+        type: string
       price:
         type: number
       program:
@@ -261,74 +282,36 @@ definitions:
         items:
           $ref: '#/definitions/domain.Review'
         type: array
+      reviewsSectionName:
+        type: string
       slug:
         type: string
+      spotsLeft:
+        type: integer
       starAmount:
         type: number
       startLocation:
         type: string
-      tags:
+      subtitle:
+        type: string
+      summary:
         items:
-          $ref: '#/definitions/domain.Tag'
+          type: string
         type: array
       title:
         type: string
       updatedAt:
         type: string
-      videos:
-        items:
-          $ref: '#/definitions/domain.Video'
-        type: array
     type: object
-  domain.TourMaterial:
+  dto.ArticleBlockDTO:
     properties:
-      createdAt:
+      alt:
         type: string
-      id:
+      content:
         type: string
-      title:
-        type: string
-      tourId:
+      src:
         type: string
       type:
-        $ref: '#/definitions/domain.MaterialType'
-      url:
-        type: string
-    type: object
-  domain.User:
-    properties:
-      bio:
-        type: string
-      createdAt:
-        type: string
-      email:
-        type: string
-      firstName:
-        type: string
-      id:
-        type: string
-      lastName:
-        type: string
-      phone:
-        type: string
-      profilePicUrl:
-        type: string
-      role:
-        $ref: '#/definitions/domain.Role'
-      updatedAt:
-        type: string
-    type: object
-  domain.Video:
-    properties:
-      createdAt:
-        type: string
-      description:
-        type: string
-      id:
-        type: string
-      tourId:
-        type: string
-      url:
         type: string
     type: object
   dto.ArticleDetailDTO:
@@ -337,17 +320,21 @@ definitions:
         type: string
       author:
         type: string
+      blocks:
+        items:
+          $ref: '#/definitions/dto.ArticleBlockDTO'
+        type: array
       content:
         type: string
       coverUrl:
+        type: string
+      createdAt:
         type: string
       excerpt:
         type: string
       featured:
         type: boolean
       id:
-        type: string
-      publishedAt:
         type: string
       slug:
         type: string
@@ -362,13 +349,13 @@ definitions:
         type: string
       coverUrl:
         type: string
+      createdAt:
+        type: string
       excerpt:
         type: string
       featured:
         type: boolean
       id:
-        type: string
-      publishedAt:
         type: string
       slug:
         type: string
@@ -393,9 +380,37 @@ definitions:
     - currentPassword
     - newPassword
     type: object
+  dto.ContactMeRequest:
+    properties:
+      city:
+        type: string
+      country:
+        type: string
+      language:
+        type: string
+      lastContactPage:
+        type: string
+      name:
+        example: John Doe
+        type: string
+      phone:
+        example: "+1234567890"
+        type: string
+      timezone:
+        type: string
+    required:
+    - name
+    - phone
+    type: object
+  dto.ContactMeResponse:
+    properties:
+      message:
+        example: Contact request submitted successfully
+        type: string
+    type: object
   dto.CreateBookingResponse:
     properties:
-      redirect_url:
+      redirectUrl:
         example: https://stripe.com
         type: string
     type: object
@@ -424,9 +439,6 @@ definitions:
       endLocation:
         example: Astana
         type: string
-      guideId:
-        example: 123e4567-e89b-12d3-a456-426614174000
-        type: string
       languages:
         example:
         - English
@@ -442,6 +454,9 @@ definitions:
         type: number
       program:
         type: object
+      reviewsSectionName:
+        example: Why travelers love this
+        type: string
       slug:
         example: mountain-adventure
         type: string
@@ -467,6 +482,30 @@ definitions:
       lastName:
         type: string
       profilePicUrl:
+        type: string
+    type: object
+  dto.SubscribeRequest:
+    properties:
+      city:
+        type: string
+      country:
+        type: string
+      email:
+        example: user@example.com
+        type: string
+      language:
+        type: string
+      lastContactPage:
+        type: string
+      timezone:
+        type: string
+    required:
+    - email
+    type: object
+  dto.SubscribeResponse:
+    properties:
+      message:
+        example: Successfully subscribed to newsletter
         type: string
     type: object
   dto.UpdatePageMetadataRequest:
@@ -510,9 +549,6 @@ definitions:
       endLocation:
         example: Osh
         type: string
-      guideId:
-        example: 123e4567-e89b-12d3-a456-426614174000
-        type: string
       languages:
         example:
         - English
@@ -529,6 +565,9 @@ definitions:
         type: number
       program:
         type: object
+      reviewsSectionName:
+        example: Why travelers love this
+        type: string
       slug:
         example: mountain-adventure-updated
         type: string
@@ -881,6 +920,69 @@ paths:
       summary: Create a new booking request
       tags:
       - bookings
+  /contact/me:
+    post:
+      consumes:
+      - application/json
+      description: Submit a contact me request with name and phone number
+      parameters:
+      - description: Contact me request data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ContactMeRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.ContactMeResponse'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Submit contact me request
+      tags:
+      - contact
+  /general/bookings/deposit-succeeded:
+    post:
+      consumes:
+      - application/json
+      description: Webhook endpoint for Stripe deposit succeeded events
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Handle Stripe deposit succeeded webhook
+      tags:
+      - webhooks
   /page-metadata:
     delete:
       consumes:
@@ -1070,6 +1172,61 @@ paths:
       summary: Create page metadata (Admin only)
       tags:
       - page-metadata
+  /reviews/main:
+    get:
+      description: Get 20 reviews from the database for the main page
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/domain.Review'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get 20 reviews for main page
+      tags:
+      - reviews
+  /subscribe:
+    post:
+      consumes:
+      - application/json
+      description: Subscribe to newsletter with email address
+      parameters:
+      - description: Subscribe request data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.SubscribeRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.SubscribeResponse'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Subscribe to newsletter
+      tags:
+      - subscribe
   /tours:
     get:
       consumes:
@@ -1122,7 +1279,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/domain.Tour'
+              $ref: '#/definitions/domain.TourFull'
             type: array
         "400":
           description: Bad Request
@@ -1332,6 +1489,41 @@ paths:
       security:
       - BearerAuth: []
       summary: Update tour by ID (Guide/Admin only)
+      tags:
+      - tours
+  /tours/{id}/similar:
+    get:
+      consumes:
+      - application/json
+      description: Get similar tours for a given tour
+      parameters:
+      - description: Tour ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/domain.Tour'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get similar tours by tour ID
       tags:
       - tours
   /tours/slug/{slug}:

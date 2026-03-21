@@ -57,12 +57,6 @@ export interface DtoUpdateTourRequest {
     endLocation?: string;
     /**
      * 
-     * @type {number}
-     * @memberof DtoUpdateTourRequest
-     */
-    guideId?: number;
-    /**
-     * 
      * @type {Array<string>}
      * @memberof DtoUpdateTourRequest
      */
@@ -85,6 +79,12 @@ export interface DtoUpdateTourRequest {
      * @memberof DtoUpdateTourRequest
      */
     program?: object;
+    /**
+     * 
+     * @type {string}
+     * @memberof DtoUpdateTourRequest
+     */
+    reviewsSectionName?: string;
     /**
      * 
      * @type {string}
@@ -128,11 +128,11 @@ export function DtoUpdateTourRequestFromJSONTyped(json: any, ignoreDiscriminator
         'difficulty': json['difficulty'] == null ? undefined : json['difficulty'],
         'durationDays': json['durationDays'] == null ? undefined : json['durationDays'],
         'endLocation': json['endLocation'] == null ? undefined : json['endLocation'],
-        'guideId': json['guideId'] == null ? undefined : json['guideId'],
         'languages': json['languages'] == null ? undefined : json['languages'],
         'minAge': json['minAge'] == null ? undefined : json['minAge'],
         'price': json['price'] == null ? undefined : json['price'],
         'program': json['program'] == null ? undefined : json['program'],
+        'reviewsSectionName': json['reviewsSectionName'] == null ? undefined : json['reviewsSectionName'],
         'slug': json['slug'] == null ? undefined : json['slug'],
         'startLocation': json['startLocation'] == null ? undefined : json['startLocation'],
         'title': json['title'] == null ? undefined : json['title'],
@@ -156,11 +156,11 @@ export function DtoUpdateTourRequestToJSONTyped(value?: DtoUpdateTourRequest | n
         'difficulty': value['difficulty'],
         'durationDays': value['durationDays'],
         'endLocation': value['endLocation'],
-        'guideId': value['guideId'],
         'languages': value['languages'],
         'minAge': value['minAge'],
         'price': value['price'],
         'program': value['program'],
+        'reviewsSectionName': value['reviewsSectionName'],
         'slug': value['slug'],
         'startLocation': value['startLocation'],
         'title': value['title'],

@@ -188,8 +188,6 @@ type Tour struct {
 type TourFull struct {
 	Dates      []TourDate `json:"dates"`
 	Photos     []Photo    `json:"photos"`
-	Tags       []Tag      `json:"tags"`
-	Categories []Category `json:"categories"`
 	Reviews    []Review   `json:"reviews"`
 	Summary    []string   `json:"summary"`
 	Activities []Activity `json:"activities"`
@@ -205,17 +203,10 @@ type Activity struct {
 }
 
 type TourPreview struct {
-	Dates      []TourDate `json:"dates"`
-	Tags       []Tag      `json:"tags"`
-	Categories []Category `json:"categories"`
+	Dates []TourDate `json:"dates"`
 	Tour
 	StarAmount   float64 `json:"starAmount"`
 	ReviewAmount int64   `json:"reviewAmount"`
-}
-
-type Category struct {
-	Name string    `json:"name"`
-	ID   uuid.UUID `json:"id"`
 }
 
 type PageMetadatum struct {
@@ -277,16 +268,6 @@ type Review struct {
 type ReviewInfo struct {
 	ReviewAmount int64
 	StarAmount   float64
-}
-
-type Tag struct {
-	Name string    `json:"name"`
-	ID   uuid.UUID `json:"id"`
-}
-
-type TourCategory struct {
-	CategoryID uuid.UUID `json:"categoryId"`
-	TourID     uuid.UUID `json:"tourId"`
 }
 
 type TourDate struct {
@@ -354,11 +335,6 @@ func (f *TourFilter) Validate() error {
 	}
 
 	return nil
-}
-
-type TourTag struct {
-	TagID  uuid.UUID `json:"tagId"`
-	TourID uuid.UUID `json:"tourId"`
 }
 
 type TourActivity struct {

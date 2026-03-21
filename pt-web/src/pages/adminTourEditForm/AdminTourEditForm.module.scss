@@ -43,26 +43,6 @@
   }
 }
 
-.materialsFieldset {
-  border: vars.$border-width-thin solid vars.$color-border;
-  padding: vars.$spacing-xl;
-  border-radius: vars.$radius-medium;
-  margin-top: vars.$spacing-xl;
-  background: vars.$color-bg-white;
-}
-
-.materialCard {
-  display: flex;
-  flex-direction: column;
-  gap: vars.$gap-md;
-  padding: vars.$spacing-lg;
-  margin-bottom: vars.$spacing-lg;
-  border: vars.$border-width-thin solid vars.$color-border;
-  border-radius: vars.$radius-medium;
-  box-shadow: vars.$shadow-light;
-  background-color: vars.$color-bg-white;
-}
-
 .inputText,
 .inputSelect {
   padding: vars.$padding-input;
@@ -98,17 +78,6 @@
   left: 0;
   top: 0;
   cursor: pointer;
-}
-
-.materialLink {
-  color: vars.$color-primary;
-  text-decoration: none;
-  font-size: vars.$font-size-sm;
-  transition: color vars.$transition-normal;
-
-  &:hover {
-    color: vars.$color-primary-hover;
-  }
 }
 
 .removeButton,

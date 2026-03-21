@@ -50,6 +50,18 @@ export interface DomainTour {
      * @type {string}
      * @memberof DomainTour
      */
+    ctaDescription?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainTour
+     */
+    ctaTitle?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainTour
+     */
     description?: string;
     /**
      * 
@@ -71,16 +83,22 @@ export interface DomainTour {
     endLocation?: string;
     /**
      * 
-     * @type {number}
+     * @type {object}
      * @memberof DomainTour
      */
-    guideId?: number;
+    faq?: object;
     /**
      * 
      * @type {number}
      * @memberof DomainTour
      */
-    id?: number;
+    groupSize?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainTour
+     */
+    id?: string;
     /**
      * 
      * @type {Array<string>}
@@ -89,10 +107,52 @@ export interface DomainTour {
     languages?: Array<string>;
     /**
      * 
+     * @type {string}
+     * @memberof DomainTour
+     */
+    location?: string;
+    /**
+     * 
      * @type {number}
      * @memberof DomainTour
      */
     minAge?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainTour
+     */
+    popUp1Description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainTour
+     */
+    popUp1ImageUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainTour
+     */
+    popUp1Title?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainTour
+     */
+    popUp2Description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainTour
+     */
+    popUp2ImageUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainTour
+     */
+    popUp2Title?: string;
     /**
      * 
      * @type {number}
@@ -110,13 +170,31 @@ export interface DomainTour {
      * @type {string}
      * @memberof DomainTour
      */
+    reviewsSectionName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainTour
+     */
     slug?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DomainTour
+     */
+    spotsLeft?: number;
     /**
      * 
      * @type {string}
      * @memberof DomainTour
      */
     startLocation?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainTour
+     */
+    subtitle?: string;
     /**
      * 
      * @type {string}
@@ -153,18 +231,31 @@ export function DomainTourFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'availableMonths': json['availableMonths'] == null ? undefined : json['availableMonths'],
         'coverUrl': json['coverUrl'] == null ? undefined : json['coverUrl'],
         'createdAt': json['createdAt'] == null ? undefined : json['createdAt'],
+        'ctaDescription': json['ctaDescription'] == null ? undefined : json['ctaDescription'],
+        'ctaTitle': json['ctaTitle'] == null ? undefined : json['ctaTitle'],
         'description': json['description'] == null ? undefined : json['description'],
         'difficulty': json['difficulty'] == null ? undefined : DomainDifficultyLevelFromJSON(json['difficulty']),
         'durationDays': json['durationDays'] == null ? undefined : json['durationDays'],
         'endLocation': json['endLocation'] == null ? undefined : json['endLocation'],
-        'guideId': json['guideId'] == null ? undefined : json['guideId'],
+        'faq': json['faq'] == null ? undefined : json['faq'],
+        'groupSize': json['groupSize'] == null ? undefined : json['groupSize'],
         'id': json['id'] == null ? undefined : json['id'],
         'languages': json['languages'] == null ? undefined : json['languages'],
+        'location': json['location'] == null ? undefined : json['location'],
         'minAge': json['minAge'] == null ? undefined : json['minAge'],
+        'popUp1Description': json['popUp1Description'] == null ? undefined : json['popUp1Description'],
+        'popUp1ImageUrl': json['popUp1ImageUrl'] == null ? undefined : json['popUp1ImageUrl'],
+        'popUp1Title': json['popUp1Title'] == null ? undefined : json['popUp1Title'],
+        'popUp2Description': json['popUp2Description'] == null ? undefined : json['popUp2Description'],
+        'popUp2ImageUrl': json['popUp2ImageUrl'] == null ? undefined : json['popUp2ImageUrl'],
+        'popUp2Title': json['popUp2Title'] == null ? undefined : json['popUp2Title'],
         'price': json['price'] == null ? undefined : json['price'],
         'program': json['program'] == null ? undefined : json['program'],
+        'reviewsSectionName': json['reviewsSectionName'] == null ? undefined : json['reviewsSectionName'],
         'slug': json['slug'] == null ? undefined : json['slug'],
+        'spotsLeft': json['spotsLeft'] == null ? undefined : json['spotsLeft'],
         'startLocation': json['startLocation'] == null ? undefined : json['startLocation'],
+        'subtitle': json['subtitle'] == null ? undefined : json['subtitle'],
         'title': json['title'] == null ? undefined : json['title'],
         'updatedAt': json['updatedAt'] == null ? undefined : json['updatedAt'],
     };
@@ -184,18 +275,31 @@ export function DomainTourToJSONTyped(value?: DomainTour | null, ignoreDiscrimin
         'availableMonths': value['availableMonths'],
         'coverUrl': value['coverUrl'],
         'createdAt': value['createdAt'],
+        'ctaDescription': value['ctaDescription'],
+        'ctaTitle': value['ctaTitle'],
         'description': value['description'],
         'difficulty': DomainDifficultyLevelToJSON(value['difficulty']),
         'durationDays': value['durationDays'],
         'endLocation': value['endLocation'],
-        'guideId': value['guideId'],
+        'faq': value['faq'],
+        'groupSize': value['groupSize'],
         'id': value['id'],
         'languages': value['languages'],
+        'location': value['location'],
         'minAge': value['minAge'],
+        'popUp1Description': value['popUp1Description'],
+        'popUp1ImageUrl': value['popUp1ImageUrl'],
+        'popUp1Title': value['popUp1Title'],
+        'popUp2Description': value['popUp2Description'],
+        'popUp2ImageUrl': value['popUp2ImageUrl'],
+        'popUp2Title': value['popUp2Title'],
         'price': value['price'],
         'program': value['program'],
+        'reviewsSectionName': value['reviewsSectionName'],
         'slug': value['slug'],
+        'spotsLeft': value['spotsLeft'],
         'startLocation': value['startLocation'],
+        'subtitle': value['subtitle'],
         'title': value['title'],
         'updatedAt': value['updatedAt'],
     };

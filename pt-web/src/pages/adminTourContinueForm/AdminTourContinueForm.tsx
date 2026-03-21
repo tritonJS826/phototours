@@ -11,7 +11,6 @@ export const AdminTourContinueForm = () => {
   const id = params.id;
   const navigate = useNavigate();
 
-  const [tags, setTags] = useState("");
   const [dates, setDates] = useState("");
   const [photos, setPhotos] = useState<File[]>([]);
   const [videos, setVideos] = useState<File[]>([]);
@@ -58,16 +57,8 @@ export const AdminTourContinueForm = () => {
     setLoading(true);
 
     try {
-      const tagsList = tags.split(",").map(t => t.trim()).filter(t => t.length > ZERO);
       const datesList = dates.split(",").map(d => d.trim()).filter(d => d.length > ZERO);
 
-      if (id && tagsList.length > ZERO) {
-        await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/tags`, {
-          method: "PATCH",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({tags: tagsList}),
-        });
-      }
       if (id && datesList.length > ZERO) {
         await fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/dates`, {
           method: "PATCH",
@@ -112,17 +103,6 @@ export const AdminTourContinueForm = () => {
       <h2 className={styles.formTitle}>
         More Tour Details
       </h2>
-
-      <label className={styles.formLabel}>
-        Tags (comma separated):
-        <input
-          className={styles.formInput}
-          name="tags"
-          value={tags}
-          onChange={(e) => setTags(e.target.value)}
-          placeholder="e.g. adventure, hiking, family"
-        />
-      </label>
 
       <label className={styles.formLabel}>
         Dates (comma separated):

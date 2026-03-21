@@ -42,6 +42,12 @@ export interface DtoArticleSummaryDTO {
      * @type {string}
      * @memberof DtoArticleSummaryDTO
      */
+    createdAt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DtoArticleSummaryDTO
+     */
     excerpt?: string;
     /**
      * 
@@ -51,16 +57,10 @@ export interface DtoArticleSummaryDTO {
     featured?: boolean;
     /**
      * 
-     * @type {number}
-     * @memberof DtoArticleSummaryDTO
-     */
-    id?: number;
-    /**
-     * 
      * @type {string}
      * @memberof DtoArticleSummaryDTO
      */
-    publishedAt?: string;
+    id?: string;
     /**
      * 
      * @type {string}
@@ -95,10 +95,10 @@ export function DtoArticleSummaryDTOFromJSONTyped(json: any, ignoreDiscriminator
         'alt': json['alt'] == null ? undefined : json['alt'],
         'author': json['author'] == null ? undefined : json['author'],
         'coverUrl': json['coverUrl'] == null ? undefined : json['coverUrl'],
+        'createdAt': json['createdAt'] == null ? undefined : json['createdAt'],
         'excerpt': json['excerpt'] == null ? undefined : json['excerpt'],
         'featured': json['featured'] == null ? undefined : json['featured'],
         'id': json['id'] == null ? undefined : json['id'],
-        'publishedAt': json['publishedAt'] == null ? undefined : json['publishedAt'],
         'slug': json['slug'] == null ? undefined : json['slug'],
         'title': json['title'] == null ? undefined : json['title'],
     };
@@ -118,10 +118,10 @@ export function DtoArticleSummaryDTOToJSONTyped(value?: DtoArticleSummaryDTO | n
         'alt': value['alt'],
         'author': value['author'],
         'coverUrl': value['coverUrl'],
+        'createdAt': value['createdAt'],
         'excerpt': value['excerpt'],
         'featured': value['featured'],
         'id': value['id'],
-        'publishedAt': value['publishedAt'],
         'slug': value['slug'],
         'title': value['title'],
     };

@@ -21,10 +21,10 @@ import { mapValues } from '../runtime';
 export interface DomainCategory {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof DomainCategory
      */
-    id?: number;
+    id?: string;
     /**
      * 
      * @type {string}

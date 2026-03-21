@@ -1,19 +1,22 @@
 # ToursApi
 
-All URIs are relative to _http://localhost:8000/general_
+All URIs are relative to *http://localhost:8000/general*
 
-| Method                                               | HTTP request               | Description                          |
-| ---------------------------------------------------- | -------------------------- | ------------------------------------ |
-| [**toursGet**](ToursApi.md#toursget)                 | **GET** /tours             | Get all tours                        |
-| [**toursIdDelete**](ToursApi.md#toursiddelete)       | **DELETE** /tours/{id}     | Delete tour by ID (Guide/Admin only) |
-| [**toursIdGet**](ToursApi.md#toursidget)             | **GET** /tours/{id}        | Get tour by ID                       |
-| [**toursIdPatch**](ToursApi.md#toursidpatch)         | **PATCH** /tours/{id}      | Update tour by ID (Guide/Admin only) |
-| [**toursPost**](ToursApi.md#tourspost)               | **POST** /tours            | Create a new tour (Guide/Admin only) |
-| [**toursSlugSlugGet**](ToursApi.md#toursslugslugget) | **GET** /tours/slug/{slug} | Get tour by slug                     |
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**toursGet**](ToursApi.md#toursget) | **GET** /tours | Get all tours |
+| [**toursIdDelete**](ToursApi.md#toursiddelete) | **DELETE** /tours/{id} | Delete tour by ID (Guide/Admin only) |
+| [**toursIdGet**](ToursApi.md#toursidget) | **GET** /tours/{id} | Get tour by ID |
+| [**toursIdPatch**](ToursApi.md#toursidpatch) | **PATCH** /tours/{id} | Update tour by ID (Guide/Admin only) |
+| [**toursIdSimilarGet**](ToursApi.md#toursidsimilarget) | **GET** /tours/{id}/similar | Get similar tours by tour ID |
+| [**toursPost**](ToursApi.md#tourspost) | **POST** /tours | Create a new tour (Guide/Admin only) |
+| [**toursSlugSlugGet**](ToursApi.md#toursslugslugget) | **GET** /tours/slug/{slug} | Get tour by slug |
+
+
 
 ## toursGet
 
-> Array&lt;DomainTour&gt; toursGet(page, limit, location, dateFrom, dateTo, groupSize, priceMin, priceMax, season)
+> Array&lt;DomainTourFull&gt; toursGet(page, limit, location, dateFrom, dateTo, groupSize, priceMin, priceMax, season)
 
 Get all tours
 
@@ -22,8 +25,11 @@ Get a paginated list of tours with optional filters (location, date range, group
 ### Example
 
 ```ts
-import { Configuration, ToursApi } from "";
-import type { ToursGetRequest } from "";
+import {
+  Configuration,
+  ToursApi,
+} from '';
+import type { ToursGetRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -64,21 +70,22 @@ example().catch(console.error);
 
 ### Parameters
 
-| Name          | Type     | Description                                       | Notes                                |
-| ------------- | -------- | ------------------------------------------------- | ------------------------------------ |
-| **page**      | `number` | Page number                                       | [Optional] [Defaults to `1`]         |
-| **limit**     | `number` | Items per page (max 100)                          | [Optional] [Defaults to `20`]        |
-| **location**  | `string` | Filter by location                                | [Optional] [Defaults to `undefined`] |
-| **dateFrom**  | `string` | Filter by start date (YYYY-MM-DD)                 | [Optional] [Defaults to `undefined`] |
-| **dateTo**    | `string` | Filter by end date (YYYY-MM-DD)                   | [Optional] [Defaults to `undefined`] |
-| **groupSize** | `number` | Filter by minimum group size                      | [Optional] [Defaults to `undefined`] |
-| **priceMin**  | `number` | Filter by minimum price                           | [Optional] [Defaults to `undefined`] |
-| **priceMax**  | `number` | Filter by maximum price                           | [Optional] [Defaults to `undefined`] |
-| **season**    | `string` | Filter by season (winter, spring, summer, autumn) | [Optional] [Defaults to `undefined`] |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **page** | `number` | Page number | [Optional] [Defaults to `1`] |
+| **limit** | `number` | Items per page (max 100) | [Optional] [Defaults to `20`] |
+| **location** | `string` | Filter by location | [Optional] [Defaults to `undefined`] |
+| **dateFrom** | `string` | Filter by start date (YYYY-MM-DD) | [Optional] [Defaults to `undefined`] |
+| **dateTo** | `string` | Filter by end date (YYYY-MM-DD) | [Optional] [Defaults to `undefined`] |
+| **groupSize** | `number` | Filter by minimum group size | [Optional] [Defaults to `undefined`] |
+| **priceMin** | `number` | Filter by minimum price | [Optional] [Defaults to `undefined`] |
+| **priceMax** | `number` | Filter by maximum price | [Optional] [Defaults to `undefined`] |
+| **season** | `string` | Filter by season (winter, spring, summer, autumn) | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
-[**Array&lt;DomainTour&gt;**](DomainTour.md)
+[**Array&lt;DomainTourFull&gt;**](DomainTourFull.md)
 
 ### Authorization
 
@@ -89,15 +96,16 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: `application/json`
 
-### HTTP response details
 
-| Status code | Description           | Response headers |
-| ----------- | --------------------- | ---------------- |
-| **200**     | OK                    | -                |
-| **400**     | Bad Request           | -                |
-| **500**     | Internal Server Error | -                |
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
 
 ## toursIdDelete
 
@@ -110,20 +118,23 @@ Delete a tour by ID (requires guide or admin role)
 ### Example
 
 ```ts
-import { Configuration, ToursApi } from "";
-import type { ToursIdDeleteRequest } from "";
+import {
+  Configuration,
+  ToursApi,
+} from '';
+import type { ToursIdDeleteRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
-  const config = new Configuration({
+  const config = new Configuration({ 
     // To configure API key authorization: BearerAuth
     apiKey: "YOUR API KEY",
   });
   const api = new ToursApi(config);
 
   const body = {
-    // number | Tour ID
-    id: 56,
+    // string | Tour ID (UUID)
+    id: id_example,
   } satisfies ToursIdDeleteRequest;
 
   try {
@@ -140,9 +151,10 @@ example().catch(console.error);
 
 ### Parameters
 
-| Name   | Type     | Description | Notes                     |
-| ------ | -------- | ----------- | ------------------------- |
-| **id** | `number` | Tour ID     | [Defaults to `undefined`] |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | `string` | Tour ID (UUID) | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -157,18 +169,19 @@ example().catch(console.error);
 - **Content-Type**: Not defined
 - **Accept**: `application/json`
 
-### HTTP response details
 
-| Status code | Description           | Response headers |
-| ----------- | --------------------- | ---------------- |
-| **204**     | No Content            | -                |
-| **400**     | Bad Request           | -                |
-| **401**     | Unauthorized          | -                |
-| **403**     | Forbidden             | -                |
-| **404**     | Not Found             | -                |
-| **500**     | Internal Server Error | -                |
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | No Content |  -  |
+| **400** | Bad Request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+| **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
 
 ## toursIdGet
 
@@ -181,16 +194,19 @@ Get full tour information by ID including guide, dates, photos, videos, material
 ### Example
 
 ```ts
-import { Configuration, ToursApi } from "";
-import type { ToursIdGetRequest } from "";
+import {
+  Configuration,
+  ToursApi,
+} from '';
+import type { ToursIdGetRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new ToursApi();
 
   const body = {
-    // number | Tour ID
-    id: 56,
+    // string | Tour ID (UUID)
+    id: id_example,
   } satisfies ToursIdGetRequest;
 
   try {
@@ -207,9 +223,10 @@ example().catch(console.error);
 
 ### Parameters
 
-| Name   | Type     | Description | Notes                     |
-| ------ | -------- | ----------- | ------------------------- |
-| **id** | `number` | Tour ID     | [Defaults to `undefined`] |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | `string` | Tour ID (UUID) | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -224,16 +241,17 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: `application/json`
 
-### HTTP response details
 
-| Status code | Description           | Response headers |
-| ----------- | --------------------- | ---------------- |
-| **200**     | OK                    | -                |
-| **400**     | Bad Request           | -                |
-| **404**     | Not Found             | -                |
-| **500**     | Internal Server Error | -                |
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **404** | Not Found |  -  |
+| **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
 
 ## toursIdPatch
 
@@ -254,15 +272,15 @@ import type { ToursIdPatchRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
-  const config = new Configuration({
+  const config = new Configuration({ 
     // To configure API key authorization: BearerAuth
     apiKey: "YOUR API KEY",
   });
   const api = new ToursApi(config);
 
   const body = {
-    // number | Tour ID
-    id: 56,
+    // string | Tour ID (UUID)
+    id: id_example,
     // DtoUpdateTourRequest | Update data
     request: ...,
   } satisfies ToursIdPatchRequest;
@@ -281,10 +299,11 @@ example().catch(console.error);
 
 ### Parameters
 
-| Name        | Type                                            | Description | Notes                     |
-| ----------- | ----------------------------------------------- | ----------- | ------------------------- |
-| **id**      | `number`                                        | Tour ID     | [Defaults to `undefined`] |
-| **request** | [DtoUpdateTourRequest](DtoUpdateTourRequest.md) | Update data |                           |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | `string` | Tour ID (UUID) | [Defaults to `undefined`] |
+| **request** | [DtoUpdateTourRequest](DtoUpdateTourRequest.md) | Update data | |
 
 ### Return type
 
@@ -299,18 +318,88 @@ example().catch(console.error);
 - **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
-### HTTP response details
 
-| Status code | Description           | Response headers |
-| ----------- | --------------------- | ---------------- |
-| **200**     | OK                    | -                |
-| **400**     | Bad Request           | -                |
-| **401**     | Unauthorized          | -                |
-| **403**     | Forbidden             | -                |
-| **404**     | Not Found             | -                |
-| **500**     | Internal Server Error | -                |
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+| **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## toursIdSimilarGet
+
+> Array&lt;DomainTour&gt; toursIdSimilarGet(id)
+
+Get similar tours by tour ID
+
+Get similar tours for a given tour
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ToursApi,
+} from '';
+import type { ToursIdSimilarGetRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ToursApi();
+
+  const body = {
+    // string | Tour ID (UUID)
+    id: id_example,
+  } satisfies ToursIdSimilarGetRequest;
+
+  try {
+    const data = await api.toursIdSimilarGet(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | `string` | Tour ID (UUID) | [Defaults to `undefined`] |
+
+### Return type
+
+[**Array&lt;DomainTour&gt;**](DomainTour.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
 
 ## toursPost
 
@@ -331,7 +420,7 @@ import type { ToursPostRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
-  const config = new Configuration({
+  const config = new Configuration({ 
     // To configure API key authorization: BearerAuth
     apiKey: "YOUR API KEY",
   });
@@ -356,9 +445,10 @@ example().catch(console.error);
 
 ### Parameters
 
-| Name        | Type                                            | Description | Notes |
-| ----------- | ----------------------------------------------- | ----------- | ----- |
-| **request** | [DtoCreateTourRequest](DtoCreateTourRequest.md) | Tour data   |       |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **request** | [DtoCreateTourRequest](DtoCreateTourRequest.md) | Tour data | |
 
 ### Return type
 
@@ -373,17 +463,18 @@ example().catch(console.error);
 - **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
-### HTTP response details
 
-| Status code | Description           | Response headers |
-| ----------- | --------------------- | ---------------- |
-| **201**     | Created               | -                |
-| **400**     | Bad Request           | -                |
-| **401**     | Unauthorized          | -                |
-| **403**     | Forbidden             | -                |
-| **500**     | Internal Server Error | -                |
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Created |  -  |
+| **400** | Bad Request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
 
 ## toursSlugSlugGet
 
@@ -396,8 +487,11 @@ Get full tour information by slug including guide, dates, photos, videos, materi
 ### Example
 
 ```ts
-import { Configuration, ToursApi } from "";
-import type { ToursSlugSlugGetRequest } from "";
+import {
+  Configuration,
+  ToursApi,
+} from '';
+import type { ToursSlugSlugGetRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -422,9 +516,10 @@ example().catch(console.error);
 
 ### Parameters
 
-| Name     | Type     | Description | Notes                     |
-| -------- | -------- | ----------- | ------------------------- |
-| **slug** | `string` | Tour slug   | [Defaults to `undefined`] |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **slug** | `string` | Tour slug | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -439,13 +534,14 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: `application/json`
 
-### HTTP response details
 
-| Status code | Description           | Response headers |
-| ----------- | --------------------- | ---------------- |
-| **200**     | OK                    | -                |
-| **400**     | Bad Request           | -                |
-| **404**     | Not Found             | -                |
-| **500**     | Internal Server Error | -                |
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **404** | Not Found |  -  |
+| **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+

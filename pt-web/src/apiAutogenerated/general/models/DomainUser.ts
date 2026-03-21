@@ -53,10 +53,10 @@ export interface DomainUser {
     firstName?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof DomainUser
      */
-    id?: number;
+    id?: string;
     /**
      * 
      * @type {string}

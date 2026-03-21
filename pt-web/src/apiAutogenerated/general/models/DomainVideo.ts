@@ -33,16 +33,16 @@ export interface DomainVideo {
     description?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof DomainVideo
      */
-    id?: number;
+    id?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof DomainVideo
      */
-    tourId?: number;
+    tourId?: string;
     /**
      * 
      * @type {string}

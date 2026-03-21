@@ -11,13 +11,6 @@ export enum DifficultyLevel {
   PRO = "PRO",
 }
 
-export enum MaterialType {
-  PDF = "PDF",
-  VIDEO = "VIDEO",
-  ROUTE = "ROUTE",
-  TIPS = "TIPS",
-}
-
 export interface TourDay {
   day: number;
   plan: string;
@@ -61,9 +54,6 @@ export interface TourView {
   dailyItinerary?: TourDay[];
   faq: FaqItem[];
 
-  tags?: string[];
-  categories?: string[];
-
   activities: TourActivity[];
   included: string[];
   summary: string[];
@@ -88,15 +78,6 @@ export interface TourView {
   reviewsSectionName?: string;
 }
 
-export interface TourMaterial {
-  id?: number;
-  file?: File;
-  url?: string;
-  title: string;
-  type: MaterialType;
-  isNew?: boolean;
-}
-
 export interface TourDataFromApi {
   title: string;
   description: string;
@@ -104,11 +85,8 @@ export interface TourDataFromApi {
   difficulty: DifficultyLevel;
   price: number | "";
   program: string | { text: string };
-  tags: string | Array<{ name?: string }>;
   dates: string | Array<{ date?: string }>;
-  materials: TourMaterial[];
   photos: File[];
-  videos: File[];
 }
 
 export interface TourData {
@@ -118,9 +96,7 @@ export interface TourData {
   difficulty: DifficultyLevel;
   price: number | "";
   program: string;
-  tags: string;
   dates: string;
-  materials: TourMaterial[];
   photos: File[];
   videos: File[];
 }

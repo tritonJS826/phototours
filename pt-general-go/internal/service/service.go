@@ -27,10 +27,8 @@ func NewService(repo *repository.Repository, cfg *config.Config, logger *zap.Log
 		PageMetadataService: NewPageMetadataService(repo.PageMetadataRepository),
 		ReviewService:       NewReviewService(repo.ReviewRepository, logger),
 		TourService: NewTourService(
-			repo.CategoryRepository,
 			repo.PhotoRepository,
 			repo.ReviewRepository,
-			repo.TagRepository,
 			repo.TourRepository,
 			repo.TourActivityRepository,
 			repo.TourDateRepository,

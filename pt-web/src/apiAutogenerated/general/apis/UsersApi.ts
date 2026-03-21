@@ -31,7 +31,7 @@ export interface UsersGetRequest {
 }
 
 export interface UsersIdPublicGetRequest {
-    id: number;
+    id: string;
 }
 
 /**

@@ -1,11 +1,13 @@
 # ArticlesApi
 
-All URIs are relative to _http://localhost:8000/general_
+All URIs are relative to *http://localhost:8000/general*
 
-| Method                                                | HTTP request             | Description         |
-| ----------------------------------------------------- | ------------------------ | ------------------- |
-| [**articlesGet**](ArticlesApi.md#articlesget)         | **GET** /articles        | Get all articles    |
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**articlesGet**](ArticlesApi.md#articlesget) | **GET** /articles | Get all articles |
 | [**articlesSlugGet**](ArticlesApi.md#articlesslugget) | **GET** /articles/{slug} | Get article by slug |
+
+
 
 ## articlesGet
 
@@ -18,8 +20,11 @@ Get a paginated list of articles
 ### Example
 
 ```ts
-import { Configuration, ArticlesApi } from "";
-import type { ArticlesGetRequest } from "";
+import {
+  Configuration,
+  ArticlesApi,
+} from '';
+import type { ArticlesGetRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -46,9 +51,10 @@ example().catch(console.error);
 
 ### Parameters
 
-| Name      | Type     | Description              | Notes                         |
-| --------- | -------- | ------------------------ | ----------------------------- |
-| **page**  | `number` | Page number              | [Optional] [Defaults to `1`]  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **page** | `number` | Page number | [Optional] [Defaults to `1`] |
 | **limit** | `number` | Items per page (max 100) | [Optional] [Defaults to `20`] |
 
 ### Return type
@@ -64,15 +70,16 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: `application/json`
 
-### HTTP response details
 
-| Status code | Description           | Response headers |
-| ----------- | --------------------- | ---------------- |
-| **200**     | OK                    | -                |
-| **400**     | Bad Request           | -                |
-| **500**     | Internal Server Error | -                |
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
 
 ## articlesSlugGet
 
@@ -85,8 +92,11 @@ Get detailed article information by slug
 ### Example
 
 ```ts
-import { Configuration, ArticlesApi } from "";
-import type { ArticlesSlugGetRequest } from "";
+import {
+  Configuration,
+  ArticlesApi,
+} from '';
+import type { ArticlesSlugGetRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -111,8 +121,9 @@ example().catch(console.error);
 
 ### Parameters
 
-| Name     | Type     | Description  | Notes                     |
-| -------- | -------- | ------------ | ------------------------- |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
 | **slug** | `string` | Article slug | [Defaults to `undefined`] |
 
 ### Return type
@@ -128,12 +139,13 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: `application/json`
 
-### HTTP response details
 
-| Status code | Description           | Response headers |
-| ----------- | --------------------- | ---------------- |
-| **200**     | OK                    | -                |
-| **404**     | Not Found             | -                |
-| **500**     | Internal Server Error | -                |
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **404** | Not Found |  -  |
+| **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+

@@ -41,10 +41,10 @@ export interface DomainGuide {
     experience?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof DomainGuide
      */
-    id?: number;
+    id?: string;
     /**
      * 
      * @type {Array<string>}
@@ -65,10 +65,10 @@ export interface DomainGuide {
     user?: DomainUser;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof DomainGuide
      */
-    userId?: number;
+    userId?: string;
 }
 
 /**

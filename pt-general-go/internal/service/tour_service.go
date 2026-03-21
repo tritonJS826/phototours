@@ -13,10 +13,8 @@ import (
 )
 
 type TourService struct {
-	categoryRepository     *repository.CategoryRepository
 	photoRepository        *repository.PhotoRepository
 	reviewRepository       *repository.ReviewRepository
-	tagRepository          *repository.TagRepository
 	tourRepository         *repository.TourRepository
 	tourActivityRepository *repository.TourActivityRepository
 	tourDateRepository     *repository.TourDateRepository
@@ -26,10 +24,8 @@ type TourService struct {
 }
 
 func NewTourService(
-	categoryRepository *repository.CategoryRepository,
 	photoRepository *repository.PhotoRepository,
 	reviewRepository *repository.ReviewRepository,
-	tagRepository *repository.TagRepository,
 	tourRepository *repository.TourRepository,
 	tourActivityRepository *repository.TourActivityRepository,
 	tourDateRepository *repository.TourDateRepository,
@@ -38,10 +34,8 @@ func NewTourService(
 	logger *zap.Logger,
 ) *TourService {
 	return &TourService{
-		categoryRepository:     categoryRepository,
 		photoRepository:        photoRepository,
 		reviewRepository:       reviewRepository,
-		tagRepository:          tagRepository,
 		tourDateRepository:     tourDateRepository,
 		tourRepository:         tourRepository,
 		tourActivityRepository: tourActivityRepository,
@@ -114,8 +108,6 @@ func (s *TourService) GetAllTours(ctx context.Context, limit, offset int32, filt
 	var (
 		photosMap     map[uuid.UUID][]domain.Photo
 		tourDatesMap  map[uuid.UUID][]domain.TourDate
-		tagsMap       map[uuid.UUID][]domain.Tag
-		categoriesMap map[uuid.UUID][]domain.Category
 		reviewsMap    map[uuid.UUID][]domain.Review
 		reviewInfoMap map[uuid.UUID]*domain.ReviewInfo
 		activitiesMap map[uuid.UUID][]domain.TourActivity
@@ -132,18 +124,6 @@ func (s *TourService) GetAllTours(ctx context.Context, limit, offset int32, filt
 	errGroup.Go(func() error {
 		var err error
 		tourDatesMap, err = s.tourDateRepository.GetTourDatesByTourIDs(ctx, tourIDs)
-		return err
-	})
-
-	errGroup.Go(func() error {
-		var err error
-		tagsMap, err = s.tagRepository.GetTagsByTourIDs(ctx, tourIDs)
-		return err
-	})
-
-	errGroup.Go(func() error {
-		var err error
-		categoriesMap, err = s.categoryRepository.GetCategoriesByTourIDs(ctx, tourIDs)
 		return err
 	})
 
@@ -210,8 +190,6 @@ func (s *TourService) GetAllTours(ctx context.Context, limit, offset int32, filt
 			Tour:         tour,
 			Photos:       photosMap[tour.ID],
 			Dates:        tourDatesMap[tour.ID],
-			Tags:         tagsMap[tour.ID],
-			Categories:   categoriesMap[tour.ID],
 			Reviews:      reviewsMap[tour.ID],
 			Summary:      summary,
 			Activities:   mapper.MapDomainTourActivitiesToActivityStructs(activities),
@@ -230,8 +208,6 @@ func (s *TourService) buildTourFull(ctx context.Context, tour *domain.Tour) (*do
 	var (
 		photos     []domain.Photo
 		tourDates  []domain.TourDate
-		tags       []domain.Tag
-		categories []domain.Category
 		reviews    []domain.Review
 		reviewInfo *domain.ReviewInfo
 		activities []domain.Activity
@@ -254,24 +230,6 @@ func (s *TourService) buildTourFull(ctx context.Context, tour *domain.Tour) (*do
 			return err
 		}
 		tourDates = td
-		return nil
-	})
-
-	errGroup.Go(func() error {
-		t, err := s.tagRepository.GetTagsByTourID(ctx, tour.ID)
-		if err != nil {
-			return err
-		}
-		tags = t
-		return nil
-	})
-
-	errGroup.Go(func() error {
-		c, err := s.categoryRepository.GetCategoriesByTourID(ctx, tour.ID)
-		if err != nil {
-			return err
-		}
-		categories = c
 		return nil
 	})
 
@@ -328,8 +286,6 @@ func (s *TourService) buildTourFull(ctx context.Context, tour *domain.Tour) (*do
 		Tour:         *tour,
 		Photos:       photos,
 		Dates:        tourDates,
-		Tags:         tags,
-		Categories:   categories,
 		Reviews:      reviews,
 		Summary:      summary,
 		Activities:   activities,

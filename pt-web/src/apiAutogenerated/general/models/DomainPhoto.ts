@@ -33,16 +33,16 @@ export interface DomainPhoto {
     description?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof DomainPhoto
      */
-    id?: number;
+    id?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof DomainPhoto
      */
-    tourId?: number;
+    tourId?: string;
     /**
      * 
      * @type {string}

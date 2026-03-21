@@ -1,23 +1,25 @@
+
 # DtoCreateTourRequest
+
 
 ## Properties
 
-| Name              | Type                |
-| ----------------- | ------------------- |
-| `availableMonths` | Array&lt;string&gt; |
-| `coverUrl`        | string              |
-| `description`     | string              |
-| `difficulty`      | string              |
-| `durationDays`    | number              |
-| `endLocation`     | string              |
-| `guideId`         | number              |
-| `languages`       | Array&lt;string&gt; |
-| `minAge`          | number              |
-| `price`           | number              |
-| `program`         | object              |
-| `slug`            | string              |
-| `startLocation`   | string              |
-| `title`           | string              |
+Name | Type
+------------ | -------------
+`availableMonths` | Array&lt;string&gt;
+`coverUrl` | string
+`description` | string
+`difficulty` | string
+`durationDays` | number
+`endLocation` | string
+`languages` | Array&lt;string&gt;
+`minAge` | number
+`price` | number
+`program` | object
+`reviewsSectionName` | string
+`slug` | string
+`startLocation` | string
+`title` | string
 
 ## Example
 
@@ -32,11 +34,11 @@ const example = {
   "difficulty": MEDIUM,
   "durationDays": 7,
   "endLocation": Astana,
-  "guideId": 1,
   "languages": [English, Russian],
   "minAge": 18,
   "price": 1500.0,
   "program": null,
+  "reviewsSectionName": Why travelers love this,
   "slug": mountain-adventure,
   "startLocation": Almaty,
   "title": Mountain Adventure,
@@ -54,3 +56,5 @@ console.log(exampleParsed)
 ```
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+

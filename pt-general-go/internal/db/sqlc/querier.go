@@ -28,8 +28,6 @@ type Querier interface {
 	DeleteTourSummaryByTourID(ctx context.Context, tourID pgtype.UUID) error
 	GetArticleBySlug(ctx context.Context, slug string) (GetArticleBySlugRow, error)
 	GetArticles(ctx context.Context, arg GetArticlesParams) ([]GetArticlesRow, error)
-	GetCategoriesByTourID(ctx context.Context, tourID pgtype.UUID) ([]Category, error)
-	GetCategoriesByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]GetCategoriesByTourIDsRow, error)
 	GetPageMetadata(ctx context.Context, url string) (GetPageMetadataRow, error)
 	GetPhotosByTourID(ctx context.Context, tourID pgtype.UUID) ([]Photo, error)
 	GetPhotosByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]Photo, error)
@@ -40,8 +38,6 @@ type Querier interface {
 	GetReviewsByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]GetReviewsByTourIDsRow, error)
 	GetReviewsForMain(ctx context.Context) ([]GetReviewsForMainRow, error)
 	GetSimilarToursByTourID(ctx context.Context, tourID pgtype.UUID) ([]GetSimilarToursByTourIDRow, error)
-	GetTagsByTourID(ctx context.Context, tourID pgtype.UUID) ([]Tag, error)
-	GetTagsByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]GetTagsByTourIDsRow, error)
 	GetTourActivitiesByTourID(ctx context.Context, tourID pgtype.UUID) ([]TourActivity, error)
 	GetTourActivitiesByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]TourActivity, error)
 	GetTourByID(ctx context.Context, id pgtype.UUID) (GetTourByIDRow, error)

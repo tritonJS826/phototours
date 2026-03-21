@@ -496,6 +496,102 @@ const docTemplate = `{
                 }
             }
         },
+        "/contact/me": {
+            "post": {
+                "description": "Submit a contact me request with name and phone number",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "contact"
+                ],
+                "summary": "Submit contact me request",
+                "parameters": [
+                    {
+                        "description": "Contact me request data",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.ContactMeRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ContactMeResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/general/bookings/deposit-succeeded": {
+            "post": {
+                "description": "Webhook endpoint for Stripe deposit succeeded events",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "webhooks"
+                ],
+                "summary": "Handle Stripe deposit succeeded webhook",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/page-metadata": {
             "get": {
                 "description": "Get metadata for a specific page URL",
@@ -787,6 +883,90 @@ const docTemplate = `{
                 }
             }
         },
+        "/reviews/main": {
+            "get": {
+                "description": "Get 20 reviews from the database for the main page",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "reviews"
+                ],
+                "summary": "Get 20 reviews for main page",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/domain.Review"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/subscribe": {
+            "post": {
+                "description": "Subscribe to newsletter with email address",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "subscribe"
+                ],
+                "summary": "Subscribe to newsletter",
+                "parameters": [
+                    {
+                        "description": "Subscribe request data",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SubscribeRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/dto.SubscribeResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/tours": {
             "get": {
                 "description": "Get a paginated list of tours with optional filters (location, date range, group size, price range, season)",
@@ -864,7 +1044,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/domain.Tour"
+                                "$ref": "#/definitions/domain.TourFull"
                             }
                         }
                     },
@@ -1246,6 +1426,59 @@ const docTemplate = `{
                 }
             }
         },
+        "/tours/{id}/similar": {
+            "get": {
+                "description": "Get similar tours for a given tour",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "tours"
+                ],
+                "summary": "Get similar tours by tour ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Tour ID (UUID)",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/domain.Tour"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/users": {
             "get": {
                 "security": [
@@ -1390,30 +1623,63 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "domain.BookingRequest": {
+        "domain.Activity": {
             "type": "object",
-            "required": [
-                "name",
-                "phone"
-            ],
             "properties": {
-                "name": {
-                    "type": "string",
-                    "minLength": 1
+                "activity": {
+                    "type": "string"
                 },
-                "phone": {
-                    "type": "string",
-                    "minLength": 1
+                "iconName": {
+                    "type": "string"
                 }
             }
         },
-        "domain.Category": {
+        "domain.BookingRequest": {
             "type": "object",
             "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
                 "id": {
                     "type": "string"
                 },
+                "language": {
+                    "type": "string"
+                },
+                "lastContactPage": {
+                    "type": "string"
+                },
                 "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "rooms": {
+                    "type": "integer"
+                },
+                "subscriptionType": {
+                    "type": "string"
+                },
+                "timezone": {
+                    "type": "string"
+                },
+                "tourId": {
+                    "type": "string"
+                },
+                "travelDate": {
+                    "type": "string"
+                },
+                "travelers": {
+                    "type": "integer"
+                },
+                "zohoDealId": {
                     "type": "string"
                 }
             }
@@ -1431,35 +1697,6 @@ const docTemplate = `{
                 "DifficultyLevelHARD"
             ]
         },
-        "domain.Guide": {
-            "type": "object",
-            "properties": {
-                "createdAt": {
-                    "type": "string"
-                },
-                "experience": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "specializations": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "updatedAt": {
-                    "type": "string"
-                },
-                "user": {
-                    "$ref": "#/definitions/domain.User"
-                },
-                "userId": {
-                    "type": "string"
-                }
-            }
-        },
         "domain.Login": {
             "type": "object",
             "required": [
@@ -1474,23 +1711,6 @@ const docTemplate = `{
                     "type": "string"
                 }
             }
-        },
-        "domain.MaterialType": {
-            "type": "string",
-            "enum": [
-                "PDF",
-                "IMAGE",
-                "VIDEO",
-                "LINK",
-                "AUDIO"
-            ],
-            "x-enum-varnames": [
-                "MaterialTypePDF",
-                "MaterialTypeImage",
-                "MaterialTypeVideo",
-                "MaterialTypeLink",
-                "MaterialTypeAudio"
-            ]
         },
         "domain.PageMetadata": {
             "type": "object",
@@ -1564,6 +1784,12 @@ const docTemplate = `{
                 "id": {
                     "type": "string"
                 },
+                "image": {
+                    "type": "string"
+                },
+                "link": {
+                    "type": "string"
+                },
                 "rating": {
                     "type": "integer"
                 },
@@ -1572,29 +1798,8 @@ const docTemplate = `{
                 },
                 "userId": {
                     "type": "string"
-                }
-            }
-        },
-        "domain.Role": {
-            "type": "string",
-            "enum": [
-                "ADMIN",
-                "CLIENT",
-                "GUIDE"
-            ],
-            "x-enum-varnames": [
-                "RoleAdmin",
-                "RoleClient",
-                "RoleGuide"
-            ]
-        },
-        "domain.Tag": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
                 },
-                "name": {
+                "userName": {
                     "type": "string"
                 }
             }
@@ -1614,6 +1819,12 @@ const docTemplate = `{
                 "createdAt": {
                     "type": "string"
                 },
+                "ctaDescription": {
+                    "type": "string"
+                },
+                "ctaTitle": {
+                    "type": "string"
+                },
                 "description": {
                     "type": "string"
                 },
@@ -1626,8 +1837,11 @@ const docTemplate = `{
                 "endLocation": {
                     "type": "string"
                 },
-                "guideId": {
-                    "type": "string"
+                "faq": {
+                    "type": "object"
+                },
+                "groupSize": {
+                    "type": "integer"
                 },
                 "id": {
                     "type": "string"
@@ -1638,8 +1852,29 @@ const docTemplate = `{
                         "type": "string"
                     }
                 },
+                "location": {
+                    "type": "string"
+                },
                 "minAge": {
                     "type": "integer"
+                },
+                "popUp1Description": {
+                    "type": "string"
+                },
+                "popUp1ImageUrl": {
+                    "type": "string"
+                },
+                "popUp1Title": {
+                    "type": "string"
+                },
+                "popUp2Description": {
+                    "type": "string"
+                },
+                "popUp2ImageUrl": {
+                    "type": "string"
+                },
+                "popUp2Title": {
+                    "type": "string"
                 },
                 "price": {
                     "type": "number"
@@ -1647,10 +1882,19 @@ const docTemplate = `{
                 "program": {
                     "type": "object"
                 },
+                "reviewsSectionName": {
+                    "type": "string"
+                },
                 "slug": {
                     "type": "string"
                 },
+                "spotsLeft": {
+                    "type": "integer"
+                },
                 "startLocation": {
+                    "type": "string"
+                },
+                "subtitle": {
                     "type": "string"
                 },
                 "title": {
@@ -1693,22 +1937,28 @@ const docTemplate = `{
         "domain.TourFull": {
             "type": "object",
             "properties": {
+                "activities": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/domain.Activity"
+                    }
+                },
                 "availableMonths": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     }
                 },
-                "categories": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/domain.Category"
-                    }
-                },
                 "coverUrl": {
                     "type": "string"
                 },
                 "createdAt": {
+                    "type": "string"
+                },
+                "ctaDescription": {
+                    "type": "string"
+                },
+                "ctaTitle": {
                     "type": "string"
                 },
                 "dates": {
@@ -1729,14 +1979,20 @@ const docTemplate = `{
                 "endLocation": {
                     "type": "string"
                 },
-                "guide": {
-                    "$ref": "#/definitions/domain.Guide"
+                "faq": {
+                    "type": "object"
                 },
-                "guideId": {
-                    "type": "string"
+                "groupSize": {
+                    "type": "integer"
                 },
                 "id": {
                     "type": "string"
+                },
+                "included": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "languages": {
                     "type": "array",
@@ -1744,11 +2000,8 @@ const docTemplate = `{
                         "type": "string"
                     }
                 },
-                "materials": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/domain.TourMaterial"
-                    }
+                "location": {
+                    "type": "string"
                 },
                 "minAge": {
                     "type": "integer"
@@ -1758,6 +2011,24 @@ const docTemplate = `{
                     "items": {
                         "$ref": "#/definitions/domain.Photo"
                     }
+                },
+                "popUp1Description": {
+                    "type": "string"
+                },
+                "popUp1ImageUrl": {
+                    "type": "string"
+                },
+                "popUp1Title": {
+                    "type": "string"
+                },
+                "popUp2Description": {
+                    "type": "string"
+                },
+                "popUp2ImageUrl": {
+                    "type": "string"
+                },
+                "popUp2Title": {
+                    "type": "string"
                 },
                 "price": {
                     "type": "number"
@@ -1774,8 +2045,14 @@ const docTemplate = `{
                         "$ref": "#/definitions/domain.Review"
                     }
                 },
+                "reviewsSectionName": {
+                    "type": "string"
+                },
                 "slug": {
                     "type": "string"
+                },
+                "spotsLeft": {
+                    "type": "integer"
                 },
                 "starAmount": {
                     "type": "number"
@@ -1783,10 +2060,13 @@ const docTemplate = `{
                 "startLocation": {
                     "type": "string"
                 },
-                "tags": {
+                "subtitle": {
+                    "type": "string"
+                },
+                "summary": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/domain.Tag"
+                        "type": "string"
                     }
                 },
                 "title": {
@@ -1794,89 +2074,22 @@ const docTemplate = `{
                 },
                 "updatedAt": {
                     "type": "string"
-                },
-                "videos": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/domain.Video"
-                    }
                 }
             }
         },
-        "domain.TourMaterial": {
+        "dto.ArticleBlockDTO": {
             "type": "object",
             "properties": {
-                "createdAt": {
+                "alt": {
                     "type": "string"
                 },
-                "id": {
+                "content": {
                     "type": "string"
                 },
-                "title": {
-                    "type": "string"
-                },
-                "tourId": {
+                "src": {
                     "type": "string"
                 },
                 "type": {
-                    "$ref": "#/definitions/domain.MaterialType"
-                },
-                "url": {
-                    "type": "string"
-                }
-            }
-        },
-        "domain.User": {
-            "type": "object",
-            "properties": {
-                "bio": {
-                    "type": "string"
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
-                },
-                "firstName": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "lastName": {
-                    "type": "string"
-                },
-                "phone": {
-                    "type": "string"
-                },
-                "profilePicUrl": {
-                    "type": "string"
-                },
-                "role": {
-                    "$ref": "#/definitions/domain.Role"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            }
-        },
-        "domain.Video": {
-            "type": "object",
-            "properties": {
-                "createdAt": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "tourId": {
-                    "type": "string"
-                },
-                "url": {
                     "type": "string"
                 }
             }
@@ -1890,10 +2103,19 @@ const docTemplate = `{
                 "author": {
                     "type": "string"
                 },
+                "blocks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.ArticleBlockDTO"
+                    }
+                },
                 "content": {
                     "type": "string"
                 },
                 "coverUrl": {
+                    "type": "string"
+                },
+                "createdAt": {
                     "type": "string"
                 },
                 "excerpt": {
@@ -1903,9 +2125,6 @@ const docTemplate = `{
                     "type": "boolean"
                 },
                 "id": {
-                    "type": "string"
-                },
-                "publishedAt": {
                     "type": "string"
                 },
                 "slug": {
@@ -1928,6 +2147,9 @@ const docTemplate = `{
                 "coverUrl": {
                     "type": "string"
                 },
+                "createdAt": {
+                    "type": "string"
+                },
                 "excerpt": {
                     "type": "string"
                 },
@@ -1935,9 +2157,6 @@ const docTemplate = `{
                     "type": "boolean"
                 },
                 "id": {
-                    "type": "string"
-                },
-                "publishedAt": {
                     "type": "string"
                 },
                 "slug": {
@@ -1975,10 +2194,51 @@ const docTemplate = `{
                 }
             }
         },
+        "dto.ContactMeRequest": {
+            "type": "object",
+            "required": [
+                "name",
+                "phone"
+            ],
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "language": {
+                    "type": "string"
+                },
+                "lastContactPage": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "John Doe"
+                },
+                "phone": {
+                    "type": "string",
+                    "example": "+1234567890"
+                },
+                "timezone": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.ContactMeResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "Contact request submitted successfully"
+                }
+            }
+        },
         "dto.CreateBookingResponse": {
             "type": "object",
             "properties": {
-                "redirect_url": {
+                "redirectUrl": {
                     "type": "string",
                     "example": "https://stripe.com"
                 }
@@ -2023,10 +2283,6 @@ const docTemplate = `{
                     "type": "string",
                     "example": "Astana"
                 },
-                "guideId": {
-                    "type": "string",
-                    "example": "123e4567-e89b-12d3-a456-426614174000"
-                },
                 "languages": {
                     "type": "array",
                     "items": {
@@ -2047,6 +2303,10 @@ const docTemplate = `{
                 },
                 "program": {
                     "type": "object"
+                },
+                "reviewsSectionName": {
+                    "type": "string",
+                    "example": "Why travelers love this"
                 },
                 "slug": {
                     "type": "string",
@@ -2079,6 +2339,42 @@ const docTemplate = `{
                 },
                 "profilePicUrl": {
                     "type": "string"
+                }
+            }
+        },
+        "dto.SubscribeRequest": {
+            "type": "object",
+            "required": [
+                "email"
+            ],
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "user@example.com"
+                },
+                "language": {
+                    "type": "string"
+                },
+                "lastContactPage": {
+                    "type": "string"
+                },
+                "timezone": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SubscribeResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "Successfully subscribed to newsletter"
                 }
             }
         },
@@ -2138,10 +2434,6 @@ const docTemplate = `{
                     "type": "string",
                     "example": "Osh"
                 },
-                "guideId": {
-                    "type": "string",
-                    "example": "123e4567-e89b-12d3-a456-426614174000"
-                },
                 "languages": {
                     "type": "array",
                     "items": {
@@ -2163,6 +2455,10 @@ const docTemplate = `{
                 },
                 "program": {
                     "type": "object"
+                },
+                "reviewsSectionName": {
+                    "type": "string",
+                    "example": "Why travelers love this"
                 },
                 "slug": {
                     "type": "string",

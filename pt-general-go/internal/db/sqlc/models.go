@@ -262,11 +262,6 @@ type BookingRequest struct {
 	UpdatedAt pgtype.Timestamp
 }
 
-type Category struct {
-	ID   pgtype.UUID
-	Name string
-}
-
 type PageMetadatum struct {
 	Url       string
 	Tags      string
@@ -311,11 +306,6 @@ type SimilarTour struct {
 	SimilarTourID pgtype.UUID
 }
 
-type Tag struct {
-	ID   pgtype.UUID
-	Name string
-}
-
 type Tour struct {
 	ID                 pgtype.UUID
 	Slug               string
@@ -357,11 +347,6 @@ type TourActivity struct {
 	CreatedAt pgtype.Timestamp
 }
 
-type TourCategory struct {
-	CategoryID pgtype.UUID
-	TourID     pgtype.UUID
-}
-
 type TourDate struct {
 	ID          pgtype.UUID
 	TourID      pgtype.UUID
@@ -386,11 +371,6 @@ type TourSummary struct {
 	Name      string
 	Value     string
 	CreatedAt pgtype.Timestamp
-}
-
-type TourTag struct {
-	TagID  pgtype.UUID
-	TourID pgtype.UUID
 }
 
 type User struct {

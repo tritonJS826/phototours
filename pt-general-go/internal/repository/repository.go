@@ -17,12 +17,10 @@ import (
 type Repository struct {
 	ArticleRepository        *ArticleRepository
 	BookingRequestRepository *BookingRequestRepository
-	CategoryRepository       *CategoryRepository
 	PageMetadataRepository   *PageMetadataRepository
 	PhotoRepository          *PhotoRepository
 	ResetRepository          *ResetRepository
 	ReviewRepository         *ReviewRepository
-	TagRepository            *TagRepository
 	TourRepository           *TourRepository
 	TourActivityRepository   *TourActivityRepository
 	TourDateRepository       *TourDateRepository
@@ -38,12 +36,10 @@ func NewRepository(cfg *config.Config, dbPool *pgxpool.Pool, cld *cloudinary.Clo
 	return &Repository{
 		ArticleRepository:        NewArticleRepository(queries),
 		BookingRequestRepository: NewBookingRequestRepository(queries),
-		CategoryRepository:       NewCategoryRepository(queries),
 		PageMetadataRepository:   NewPageMetadataRepository(queries),
 		PhotoRepository:          NewPhotoRepository(queries),
 		ResetRepository:          NewResetRepository(queries, dbPool, cfg),
 		ReviewRepository:         NewReviewRepository(queries),
-		TagRepository:            NewTagRepository(queries),
 		TourRepository:           NewTourRepository(queries),
 		TourActivityRepository:   NewTourActivityRepository(queries),
 		TourDateRepository:       NewTourDateRepository(queries),

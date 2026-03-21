@@ -2,7 +2,7 @@ import {useEffect, useRef, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {Button} from "src/components/Button/Button";
 import {fetchData} from "src/services/httpHelper";
-import {DifficultyLevel, MaterialType, TourData, TourDataFromApi, TourMaterial} from "src/types/tour";
+import {DifficultyLevel, TourData, TourDataFromApi} from "src/types/tour";
 import styles from "src/pages/adminTourEditForm/AdminTourEditForm.module.scss";
 
 export const AdminTourEdit = () => {
@@ -17,9 +17,7 @@ export const AdminTourEdit = () => {
     difficulty: DifficultyLevel.BEGINNER,
     price: "",
     program: "",
-    tags: "",
     dates: "",
-    materials: [],
     photos: [],
     videos: [],
   });
@@ -38,25 +36,11 @@ export const AdminTourEdit = () => {
       try {
         const data = await fetchData<TourDataFromApi>(`/tours/${id}`);
 
-        const normalizedTags = Array.isArray(data.tags)
-          ? data.tags.map((t: string | { name?: string }) => (typeof t === "string" ? t : t.name || "")).join(", ")
-          : data.tags || "";
-
         const normalizedDates = Array.isArray(data.dates)
           ? data.dates.map((d: string | { date?: string }) =>
             typeof d === "string" ? d : d.date?.split("T")[0] || "",
           ).join(", ")
           : data.dates || "";
-
-        const normalizedMaterials = Array.isArray(data.materials)
-          ? data.materials.map((m: { id?: number; url?: string; title?: string; type?: MaterialType }) => ({
-            id: m.id,
-            url: m.url,
-            title: m.title || "",
-            type: m.type || MaterialType.PDF,
-            isNew: false,
-          }))
-          : [];
 
         const normalizedProgram = typeof data.program === "string"
           ? data.program
@@ -71,9 +55,7 @@ export const AdminTourEdit = () => {
           difficulty: data.difficulty || "BEGINNER",
           price: data.price || "",
           program: normalizedProgram,
-          tags: normalizedTags,
           dates: normalizedDates,
-          materials: normalizedMaterials,
           photos: [],
           videos: [],
         });
@@ -99,15 +81,6 @@ export const AdminTourEdit = () => {
     }));
   };
 
-  const handleMaterialChange = (index: number, field: keyof TourMaterial, value: string) => {
-    setFormData(prev => {
-      const newMaterials = [...prev.materials];
-      newMaterials[index] = {...newMaterials[index], [field]: value};
-
-      return {...prev, materials: newMaterials};
-    });
-  };
-
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
       return;
@@ -119,20 +92,6 @@ export const AdminTourEdit = () => {
       ...prev,
       [name]: [...prev[name as "photos" | "videos"], ...files],
     }));
-  };
-
-  const handleMaterialFileChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
-    if (!e.target.files?.[0]) {
-      return;
-    }
-    const file = e.target.files[0];
-
-    setFormData(prev => {
-      const newMaterials = [...prev.materials];
-      newMaterials[index] = {...newMaterials[index], file};
-
-      return {...prev, materials: newMaterials};
-    });
   };
 
   const handleDrop = (e: React.DragEvent) => {
@@ -148,70 +107,6 @@ export const AdminTourEdit = () => {
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
-  };
-
-  const addMaterial = () => {
-    setFormData(prev => ({
-      ...prev,
-      materials: [
-        ...prev.materials,
-        {title: "", type: MaterialType.PDF, isNew: true},
-      ],
-    }));
-  };
-
-  const removeMaterial = async (index: number) => {
-    const material = formData.materials[index];
-
-    if (material.id) {
-      try {
-        await fetch(
-          `${import.meta.env.VITE_API_BASE_URL}/tours/materials/${material.id}`,
-          {method: "DELETE"},
-        );
-      } catch {
-        setError("Failed to remove material");
-
-        return;
-      }
-    }
-
-    setFormData(prev => {
-      const newMaterials = [...prev.materials];
-      newMaterials.splice(index, REMOVE_COUNT);
-
-      return {...prev, materials: newMaterials};
-    });
-  };
-
-  const uploadMaterials = async () => {
-    const uploadPromises = formData.materials
-      .filter(m => m.isNew && m.file)
-      .map(async (material) => {
-        if (!material.file) {
-          throw new Error(`File "${material.title}" is required`);
-        }
-        const materialFormData = new FormData();
-        materialFormData.append("file", material.file);
-        materialFormData.append("title", material.title);
-        materialFormData.append("type", material.type);
-
-        const res = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL}/tours/${id}/materials`,
-          {
-            method: "PATCH",
-            body: materialFormData,
-          },
-        );
-
-        if (!res.ok) {
-          throw new Error("Failed to upload material");
-        }
-
-        return res.json();
-      });
-
-    return Promise.all(uploadPromises);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -232,14 +127,6 @@ export const AdminTourEdit = () => {
           program: {text: formData.program},
         }),
       });
-
-      const tags = formData.tags.split(",").map(t => t.trim()).filter(Boolean);
-      if (tags.length) {
-        await fetchData(`/tours/${id}/tags`, {
-          method: "PATCH",
-          body: JSON.stringify({tags}),
-        });
-      }
 
       const dates = formData.dates.split(",").map(d => d.trim()).filter(Boolean);
       if (dates.length) {
@@ -272,8 +159,6 @@ export const AdminTourEdit = () => {
           });
         }),
       );
-
-      await uploadMaterials();
 
       navigate("/admin");
     } catch (err) {
@@ -388,69 +273,6 @@ export const AdminTourEdit = () => {
         value={formData.dates}
         onChange={handleChange}
       />
-
-      <fieldset className={styles.materialsFieldset}>
-        <legend>
-          Materials
-        </legend>
-        {formData.materials.map((material, index) => (
-          <div
-            key={index}
-            className={styles.materialCard}
-          >
-            <input
-              type="text"
-              placeholder="Title"
-              value={material.title}
-              onChange={(e) => handleMaterialChange(index, "title", e.target.value)}
-              className={styles.inputText}
-              required
-            />
-
-            <select
-              value={material.type}
-              onChange={(e) => handleMaterialChange(index, "type", e.target.value)}
-              className={styles.inputSelect}
-              required
-            >
-              {Object.values(MaterialType).map((type) => (
-                <option
-                  key={type}
-                  value={type}
-                >
-                  {type}
-                </option>
-              ))}
-            </select>
-
-            <label className={styles.fileUpload}>
-              {material.file?.name || material.url || "Upload File"}
-              <input
-                type="file"
-                accept="*/*"
-                onChange={(e) => handleMaterialFileChange(e, index)}
-                style={{display: "none"}}
-              />
-            </label>
-
-            <button
-              type="button"
-              onClick={() => removeMaterial(index)}
-              className={styles.removeButton}
-            >
-              Delete
-            </button>
-          </div>
-        ))}
-
-        <button
-          type="button"
-          onClick={addMaterial}
-          className={styles.addButton}
-        >
-          Edd Material
-        </button>
-      </fieldset>
 
       <label className={styles.label}>
         Photos

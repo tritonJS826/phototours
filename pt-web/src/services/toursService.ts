@@ -8,7 +8,6 @@ export const QUERY_PARAMS = {
   START_DATE: "startDate",
   END_DATE: "endDate",
   TRAVELERS: "travelers",
-  TAGS: "tags",
   MONTH: "month",
 } as const;
 
@@ -47,8 +46,6 @@ type TourDTO = {
       answer: string;
     }>;
   };
-  tags?: Array<string | { name: string }>;
-  categories?: Array<string | { name: string }>;
   starAmount: number;
   groupSize: number;
   spotsLeft: number;
@@ -68,21 +65,6 @@ type TourDTO = {
 function toUrl(v: string | UrlObj): string {
   return typeof v === "string" ? v : v.url;
 }
-
-function toName(v: string | { name?: string }): string {
-  return typeof v === "string" ? v : v.name ?? "";
-}
-
-// Function toIsoDate(value: string): string {
-//   const ISO_DATE_LENGTH = 10;
-//   const ts = Date.parse(value);
-//   if (!Number.isNaN(ts)) {
-//     return new Date(ts).toISOString().slice(0, ISO_DATE_LENGTH);
-//   }
-//   const i = value.indexOf("T");
-
-//   return i >= 0 ? value.slice(0, i) : value;
-// }
 
 function toShortDate(value: string): string {
   const ts = Date.parse(value);
@@ -115,8 +97,6 @@ function mapTourToView(dto: TourDTO): TourView {
       return undefined;
     })
     .filter(Boolean) as string[];
-  const tags = (dto.tags ?? []).map(toName).filter(Boolean);
-  const categories = (dto.categories ?? []).map(toName).filter(Boolean);
   const dailyItinerary =
     dto.program?.days?.map(d => ({
       day: d.day,
@@ -152,8 +132,6 @@ function mapTourToView(dto: TourDTO): TourView {
     dailyItinerary,
     reviewsSectionName: dto.reviewsSectionName,
     faq,
-    tags,
-    categories,
     activities: (dto.activities ?? []).map(a => ({
       activity: typeof a === "string" ? a : a.activity,
       iconName: typeof a === "string" ? "" : a.iconName,
@@ -179,7 +157,6 @@ export type ToursFilter = {
   startDate?: string;
   endDate?: string;
   travelers?: number;
-  tags?: string[];
   month?: string;
   season?: string;
 };
@@ -197,9 +174,6 @@ export async function listTours(filter?: ToursFilter): Promise<TourView[]> {
   }
   if (filter?.travelers) {
     params.set(QUERY_PARAMS.TRAVELERS, String(filter.travelers));
-  }
-  if (filter?.tags?.length) {
-    params.set(QUERY_PARAMS.TAGS, filter.tags.join(","));
   }
   if (filter?.month) {
     params.set(QUERY_PARAMS.MONTH, filter.month);

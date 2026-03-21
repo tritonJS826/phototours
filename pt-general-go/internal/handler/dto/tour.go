@@ -27,10 +27,8 @@ type TourDTO struct {
 
 type TourFullDTO struct {
 	TourDTO
-	Dates      []TourDateDTO `json:"dates"`
-	Photos     []PhotoDTO    `json:"photos"`
-	Tags       []TagDTO      `json:"tags"`
-	Categories []CategoryDTO `json:"categories"`
+	Dates  []TourDateDTO `json:"dates"`
+	Photos []PhotoDTO    `json:"photos"`
 }
 
 type TourDateDTO struct {
@@ -49,16 +47,6 @@ type PhotoDTO struct {
 	CreatedAt   string  `json:"createdAt" example:"2024-01-15T10:00:00Z"`
 	ID          string  `json:"id" example:"123e4567-e89b-12d3-a456-426614174000"`
 	TourID      string  `json:"tourId" example:"123e4567-e89b-12d3-a456-426614174000"`
-}
-
-type TagDTO struct {
-	Name string `json:"name" example:"Adventure"`
-	ID   string `json:"id" example:"123e4567-e89b-12d3-a456-426614174000"`
-}
-
-type CategoryDTO struct {
-	Name string `json:"name" example:"Mountain Tours"`
-	ID   string `json:"id" example:"123e4567-e89b-12d3-a456-426614174000"`
 }
 
 type CreateTourRequest struct {
