@@ -320,9 +320,12 @@ export function TourDetailsPage() {
       <NumberInput
         className={styles.travelersAmountInput}
         value={formData.travelers}
-        onChange={(value) =>
-          setFormData((prev) => ({...prev, travelers: value}))
-        }
+        onChange={(value) => {
+          setFormData((prev) => ({...prev, travelers: value}));
+          if (formData.rooms > value) {
+            setFormData((prev) => ({...prev, rooms: value}));
+          }
+        }}
         min={1}
         max={20}
         description="Travelers"
