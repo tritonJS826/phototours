@@ -76,6 +76,7 @@ const ScheduleAccordionItem = (props: ScheduleAccordionItemProps) => {
 };
 
 interface AccordionItemData {
+  id: string;
   trigger: { child: React.ReactNode };
   content: { child: React.ReactNode };
 }
@@ -85,7 +86,8 @@ function getScheduleAccordionItems(tour: TourView): AccordionItemData[] {
     return [];
   }
 
-  return tour.dailyItinerary.map((day) => ({
+  return tour.dailyItinerary.map((day, index) => ({
+    id: `day-${day.day}-${index}`,
     trigger: {child: `Day ${day.day}. ${day.plan || ""}`},
     content: {
       child: (
@@ -98,15 +100,6 @@ function getScheduleAccordionItems(tour: TourView): AccordionItemData[] {
     },
   }));
 }
-
-// Const MOBILE_BREAKPOINT = 640;
-// const TABLET_BREAKPOINT = 920;
-// const DESKTOP_BREAKPOINT = 1224;
-
-// const MOBILE_SLIDES_PER_VIEW = 1.2;
-// const TABLET_SLIDES_PER_VIEW = 2.2;
-// const DESKTOP_SLIDES_PER_VIEW = 3.2;
-// const LARGE_DESKTOP_SLIDES_PER_VIEW = 4.2;
 
 const MOBILE_BREAKPOINT_GALLERY_SLIDER = 700;
 const TABLET_BREAKPOINT_GALLERY_SLIDER = 1250;
@@ -1040,7 +1033,8 @@ export function TourDetailsPage() {
         </h2>
 
         <Accordion
-          items={tour.faq.map((item) => ({
+          items={tour.faq.map((item, index) => ({
+            id: item.id ?? `faq-${index}`,
             trigger: {child: item.question},
             content: {
               child: (

@@ -156,12 +156,6 @@
   font-weight: vars.$font-weight-bold;
 }
 
-.guide {
-  font-size: vars.$font-size-sm;
-  color: vars.$color-light;
-  margin: 0;
-}
-
 @media (width <= #{vars.$breakpoint-tablet}) {
   .header {
     flex-wrap: wrap;

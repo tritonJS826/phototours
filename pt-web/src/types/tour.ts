@@ -26,6 +26,7 @@ export interface TourDay {
 }
 
 export interface FaqItem {
+  id?: string;
   question: string;
   answer: string;
 }
@@ -55,13 +56,10 @@ export interface TourView {
 
   coverUrl: string;
   photos: string[];
-  videos?: string[];
 
   dates: string[];
   dailyItinerary?: TourDay[];
   faq: FaqItem[];
-
-  guide?: { id: number; name?: string };
 
   tags?: string[];
   categories?: string[];
@@ -106,7 +104,6 @@ export interface TourDataFromApi {
   difficulty: DifficultyLevel;
   price: number | "";
   program: string | { text: string };
-  guideId: number | "";
   tags: string | Array<{ name?: string }>;
   dates: string | Array<{ date?: string }>;
   materials: TourMaterial[];
@@ -121,20 +118,9 @@ export interface TourData {
   difficulty: DifficultyLevel;
   price: number | "";
   program: string;
-  guideId: number | "";
   tags: string;
   dates: string;
   materials: TourMaterial[];
   photos: File[];
   videos: File[];
 }
-
-export type Guide = {
-  id: number;
-  experience: string;
-  user: {
-    id: number;
-    firstName: string;
-    lastName: string;
-  };
-};

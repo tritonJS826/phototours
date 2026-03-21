@@ -18,7 +18,6 @@ type Repository struct {
 	ArticleRepository        *ArticleRepository
 	BookingRequestRepository *BookingRequestRepository
 	CategoryRepository       *CategoryRepository
-	GuideRepository          *GuideRepository
 	PageMetadataRepository   *PageMetadataRepository
 	PhotoRepository          *PhotoRepository
 	ResetRepository          *ResetRepository
@@ -28,11 +27,9 @@ type Repository struct {
 	TourActivityRepository   *TourActivityRepository
 	TourDateRepository       *TourDateRepository
 	TourIncludedRepository   *TourIncludedRepository
-	TourMaterialRepository   *TourMaterialRepository
 	TourSummaryRepository    *TourSummaryRepository
 	UploadRepository         *UploadRepository
 	UserRepository           *UserRepository
-	VideoRepository          *VideoRepository
 	ZohoRepository           *ZohoRepository
 }
 
@@ -42,7 +39,6 @@ func NewRepository(cfg *config.Config, dbPool *pgxpool.Pool, cld *cloudinary.Clo
 		ArticleRepository:        NewArticleRepository(queries),
 		BookingRequestRepository: NewBookingRequestRepository(queries),
 		CategoryRepository:       NewCategoryRepository(queries),
-		GuideRepository:          NewGuideRepository(queries),
 		PageMetadataRepository:   NewPageMetadataRepository(queries),
 		PhotoRepository:          NewPhotoRepository(queries),
 		ResetRepository:          NewResetRepository(queries, dbPool, cfg),
@@ -52,11 +48,9 @@ func NewRepository(cfg *config.Config, dbPool *pgxpool.Pool, cld *cloudinary.Clo
 		TourActivityRepository:   NewTourActivityRepository(queries),
 		TourDateRepository:       NewTourDateRepository(queries),
 		TourIncludedRepository:   NewTourIncludedRepository(queries),
-		TourMaterialRepository:   NewTourMaterialRepository(queries),
 		TourSummaryRepository:    NewTourSummaryRepository(queries),
 		UserRepository:           NewUserRepository(queries),
 		UploadRepository:         NewUploadRepository(cld, cfg.CloudinaryConfig.UploadFolder),
-		VideoRepository:          NewVideoRepository(queries),
 		ZohoRepository:           NewZohoRepository(&cfg.ZohoConfig),
 	}
 }

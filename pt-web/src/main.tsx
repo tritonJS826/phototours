@@ -14,12 +14,13 @@ const DB_NAME = "react-query-cache";
 const DB_VERSION = 1;
 const STORE_NAME = "cache";
 
-// 10 min before stale
+// 10 minutes
 // eslint-disable-next-line no-magic-numbers
 const CACHE_DURATION_MS = 10 * 60 * 1000;
-// 20 minute before removing data
+
+// 30 days before clearing indexdb
 // eslint-disable-next-line no-magic-numbers
-const CACHE_GC_DURATION_MS = 20 * 60 * 1000;
+const CACHE_GC_DURATION_MS = 30 * 1440 * 60 * 1000;
 
 function openDB(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
@@ -95,29 +96,35 @@ const persister = {
   },
 };
 
-persistQueryClient({
+const renderApp = () => {
+  const rootElement = document.getElementById("root");
+  if (!rootElement) {
+    throw new Error("Root element not found");
+  }
+
+  createRoot(rootElement).render(
+    <StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <NotificationProvider>
+            <App />
+          </NotificationProvider>
+        </BrowserRouter>
+      </QueryClientProvider>
+    </StrictMode>,
+  );
+};
+
+const [, persistPromise] = persistQueryClient({
   queryClient,
   persister,
   maxAge: CACHE_DURATION_MS,
 });
 
-ReactGA.initialize(env.VITE_API_BASE_URL);
-
-getUserInfo();
-
-const rootElement = document.getElementById("root");
-if (!rootElement) {
-  throw new Error("Root element not found");
-}
-
-createRoot(rootElement).render(
-  <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <NotificationProvider>
-          <App />
-        </NotificationProvider>
-      </BrowserRouter>
-    </QueryClientProvider>
-  </StrictMode>,
-);
+persistPromise
+  .catch(() => {})
+  .finally(() => {
+    ReactGA.initialize(env.VITE_API_BASE_URL);
+    getUserInfo();
+    renderApp();
+  });

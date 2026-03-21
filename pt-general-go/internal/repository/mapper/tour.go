@@ -50,7 +50,6 @@ func MapToDomainTour(row db.Tour) *domain.Tour {
 	if row.CoverUrl.Valid {
 		tour.CoverURL = &row.CoverUrl.String
 	}
-	tour.GuideID = PgUUIDToUUIDPtr(row.GuideID)
 	if row.GroupSize.Valid {
 		tour.GroupSize = &row.GroupSize.Int32
 	}
@@ -109,7 +108,6 @@ func MapToDomainCreateTour(row db.CreateTourRow) *domain.Tour {
 	if row.CoverUrl.Valid {
 		tour.CoverURL = &row.CoverUrl.String
 	}
-	tour.GuideID = PgUUIDToUUIDPtr(row.GuideID)
 	if row.GroupSize.Valid {
 		tour.GroupSize = &row.GroupSize.Int32
 	}
@@ -168,7 +166,6 @@ func MapToDomainGetTourByID(row db.GetTourByIDRow) *domain.Tour {
 	if row.CoverUrl.Valid {
 		tour.CoverURL = &row.CoverUrl.String
 	}
-	tour.GuideID = PgUUIDToUUIDPtr(row.GuideID)
 	if row.GroupSize.Valid {
 		tour.GroupSize = &row.GroupSize.Int32
 	}
@@ -227,7 +224,6 @@ func MapToDomainGetTourBySlug(row db.GetTourBySlugRow) *domain.Tour {
 	if row.CoverUrl.Valid {
 		tour.CoverURL = &row.CoverUrl.String
 	}
-	tour.GuideID = PgUUIDToUUIDPtr(row.GuideID)
 	if row.GroupSize.Valid {
 		tour.GroupSize = &row.GroupSize.Int32
 	}
@@ -286,7 +282,6 @@ func MapToDomainUpdateTourByID(row db.UpdateTourByIDRow) *domain.Tour {
 	if row.CoverUrl.Valid {
 		tour.CoverURL = &row.CoverUrl.String
 	}
-	tour.GuideID = PgUUIDToUUIDPtr(row.GuideID)
 	if row.GroupSize.Valid {
 		tour.GroupSize = &row.GroupSize.Int32
 	}
@@ -347,7 +342,6 @@ func MapToDomainTours(rows []db.GetToursRow) []domain.Tour {
 		if row.CoverUrl.Valid {
 			tour.CoverURL = &row.CoverUrl.String
 		}
-		tour.GuideID = PgUUIDToUUIDPtr(row.GuideID)
 		if row.GroupSize.Valid {
 			tour.GroupSize = &row.GroupSize.Int32
 		}
@@ -410,7 +404,6 @@ func MapToDomainSimilarTours(rows []db.GetSimilarToursByTourIDRow) []domain.Tour
 		if row.CoverUrl.Valid {
 			tour.CoverURL = &row.CoverUrl.String
 		}
-		tour.GuideID = PgUUIDToUUIDPtr(row.GuideID)
 		if row.GroupSize.Valid {
 			tour.GroupSize = &row.GroupSize.Int32
 		}

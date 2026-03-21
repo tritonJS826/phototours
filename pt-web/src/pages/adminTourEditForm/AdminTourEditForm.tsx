@@ -2,7 +2,7 @@ import {useEffect, useRef, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {Button} from "src/components/Button/Button";
 import {fetchData} from "src/services/httpHelper";
-import {DifficultyLevel, Guide, MaterialType, TourData, TourDataFromApi, TourMaterial} from "src/types/tour";
+import {DifficultyLevel, MaterialType, TourData, TourDataFromApi, TourMaterial} from "src/types/tour";
 import styles from "src/pages/adminTourEditForm/AdminTourEditForm.module.scss";
 
 export const AdminTourEdit = () => {
@@ -17,7 +17,6 @@ export const AdminTourEdit = () => {
     difficulty: DifficultyLevel.BEGINNER,
     price: "",
     program: "",
-    guideId: "",
     tags: "",
     dates: "",
     materials: [],
@@ -28,21 +27,8 @@ export const AdminTourEdit = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
-  const [guides, setGuides] = useState<Guide[]>([]);
 
   const REMOVE_COUNT = 1;
-
-  useEffect(() => {
-    const fetchGuides = async () => {
-      try {
-        const data = await fetchData<Guide[]>("general/tours/guides");
-        setGuides(data);
-      } catch (err: unknown) {
-        setError(err instanceof Error ? err.message : "Error loading guides");
-      }
-    };
-    fetchGuides();
-  }, []);
 
   useEffect(() => {
     if (!id) {
@@ -85,7 +71,6 @@ export const AdminTourEdit = () => {
           difficulty: data.difficulty || "BEGINNER",
           price: data.price || "",
           program: normalizedProgram,
-          guideId: data.guideId || "",
           tags: normalizedTags,
           dates: normalizedDates,
           materials: normalizedMaterials,
@@ -108,7 +93,7 @@ export const AdminTourEdit = () => {
     const {name, value} = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: name === "price" || name === "guideId"
+      [name]: name === "price"
         ? (value === "" ? "" : Number(value))
         : value,
     }));
@@ -245,7 +230,6 @@ export const AdminTourEdit = () => {
           difficulty: formData.difficulty,
           price: Number(formData.price),
           program: {text: formData.program},
-          guideId: Number(formData.guideId),
         }),
       });
 
@@ -393,39 +377,6 @@ export const AdminTourEdit = () => {
         value={formData.program}
         onChange={handleChange}
         rows={6}
-      />
-
-      <label className={styles.label}>
-        Guide
-        <select
-          className={styles.inputSelectText}
-          name="guideId"
-          value={formData.guideId}
-          onChange={handleChange}
-          required
-        >
-          {guides.map((guide: Guide) => (
-            <option
-              key={guide.id}
-              value={guide.id}
-            >
-              {guide.user.firstName}
-              {" "}
-              {guide.user.lastName}
-              {" "}
-            </option>
-          ))}
-        </select>
-      </label>
-
-      <label className={styles.label}>
-        Tags (comma-separated)
-      </label>
-      <input
-        className={styles.inputSelectText}
-        name="tags"
-        value={formData.tags}
-        onChange={handleChange}
       />
 
       <label className={styles.label}>

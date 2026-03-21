@@ -28,7 +28,6 @@ func NewService(repo *repository.Repository, cfg *config.Config, logger *zap.Log
 		ReviewService:       NewReviewService(repo.ReviewRepository, logger),
 		TourService: NewTourService(
 			repo.CategoryRepository,
-			repo.GuideRepository,
 			repo.PhotoRepository,
 			repo.ReviewRepository,
 			repo.TagRepository,
@@ -36,9 +35,7 @@ func NewService(repo *repository.Repository, cfg *config.Config, logger *zap.Log
 			repo.TourActivityRepository,
 			repo.TourDateRepository,
 			repo.TourIncludedRepository,
-			repo.TourMaterialRepository,
 			repo.TourSummaryRepository,
-			repo.VideoRepository,
 			logger,
 		),
 		UserService: NewUserService(repo.UserRepository, logger),

@@ -26,7 +26,6 @@ INSERT INTO tours (
     cover_url,
     languages,
     available_months,
-    guide_id,
     group_size,
     spots_left,
     subtitle,
@@ -64,8 +63,7 @@ INSERT INTO tours (
     $22,
     $23,
     $24,
-    $25,
-    $26
+    $25
 ) RETURNING
     id,
     slug,
@@ -75,7 +73,6 @@ INSERT INTO tours (
     price,
     program,
     faq,
-    guide_id,
     cover_url,
     duration_days,
     end_location,
@@ -114,7 +111,6 @@ type CreateTourParams struct {
 	CoverUrl           pgtype.Text
 	Languages          []string
 	AvailableMonths    []string
-	GuideID            pgtype.UUID
 	GroupSize          pgtype.Int4
 	SpotsLeft          pgtype.Int4
 	Subtitle           pgtype.Text
@@ -138,7 +134,6 @@ type CreateTourRow struct {
 	Price              pgtype.Float8
 	Program            []byte
 	Faq                []byte
-	GuideID            pgtype.UUID
 	CoverUrl           pgtype.Text
 	DurationDays       pgtype.Int4
 	EndLocation        pgtype.Text
@@ -178,7 +173,6 @@ func (q *Queries) CreateTour(ctx context.Context, arg CreateTourParams) (CreateT
 		arg.CoverUrl,
 		arg.Languages,
 		arg.AvailableMonths,
-		arg.GuideID,
 		arg.GroupSize,
 		arg.SpotsLeft,
 		arg.Subtitle,
@@ -202,7 +196,6 @@ func (q *Queries) CreateTour(ctx context.Context, arg CreateTourParams) (CreateT
 		&i.Price,
 		&i.Program,
 		&i.Faq,
-		&i.GuideID,
 		&i.CoverUrl,
 		&i.DurationDays,
 		&i.EndLocation,
@@ -252,7 +245,6 @@ SELECT
     price,
     program,
     faq,
-    guide_id,
     cover_url,
     duration_days,
     end_location,
@@ -288,7 +280,6 @@ type GetTourByIDRow struct {
 	Price              pgtype.Float8
 	Program            []byte
 	Faq                []byte
-	GuideID            pgtype.UUID
 	CoverUrl           pgtype.Text
 	DurationDays       pgtype.Int4
 	EndLocation        pgtype.Text
@@ -325,7 +316,6 @@ func (q *Queries) GetTourByID(ctx context.Context, id pgtype.UUID) (GetTourByIDR
 		&i.Price,
 		&i.Program,
 		&i.Faq,
-		&i.GuideID,
 		&i.CoverUrl,
 		&i.DurationDays,
 		&i.EndLocation,
@@ -362,7 +352,6 @@ SELECT
     price,
     program,
     faq,
-    guide_id,
     cover_url,
     duration_days,
     end_location,
@@ -398,7 +387,6 @@ type GetTourBySlugRow struct {
 	Price              pgtype.Float8
 	Program            []byte
 	Faq                []byte
-	GuideID            pgtype.UUID
 	CoverUrl           pgtype.Text
 	DurationDays       pgtype.Int4
 	EndLocation        pgtype.Text
@@ -435,7 +423,6 @@ func (q *Queries) GetTourBySlug(ctx context.Context, slug string) (GetTourBySlug
 		&i.Price,
 		&i.Program,
 		&i.Faq,
-		&i.GuideID,
 		&i.CoverUrl,
 		&i.DurationDays,
 		&i.EndLocation,
@@ -472,7 +459,6 @@ SELECT DISTINCT
     tours.price,
     tours.program,
     tours.faq,
-    tours.guide_id,
     tours.cover_url,
     tours.duration_days,
     tours.end_location,
@@ -532,7 +518,6 @@ type GetToursRow struct {
 	Price              pgtype.Float8
 	Program            []byte
 	Faq                []byte
-	GuideID            pgtype.UUID
 	CoverUrl           pgtype.Text
 	DurationDays       pgtype.Int4
 	EndLocation        pgtype.Text
@@ -585,7 +570,6 @@ func (q *Queries) GetTours(ctx context.Context, arg GetToursParams) ([]GetToursR
 			&i.Price,
 			&i.Program,
 			&i.Faq,
-			&i.GuideID,
 			&i.CoverUrl,
 			&i.DurationDays,
 			&i.EndLocation,
@@ -636,21 +620,20 @@ SET
     cover_url = COALESCE($12, cover_url),
     languages = COALESCE($13, languages),
     available_months = COALESCE($14, available_months),
-    guide_id = COALESCE($15, guide_id),
-    group_size = COALESCE($16, group_size),
-    spots_left = COALESCE($17, spots_left),
-    subtitle = COALESCE($18, subtitle),
-    pop_up1_title = COALESCE($19, pop_up1_title),
-    pop_up1_description = COALESCE($20, pop_up1_description),
-    pop_up2_title = COALESCE($21, pop_up2_title),
-    pop_up2_description = COALESCE($22, pop_up2_description),
-    pop_up1_image_url = COALESCE($23, pop_up1_image_url),
-    pop_up2_image_url = COALESCE($24, pop_up2_image_url),
-    cta_title = COALESCE($25, cta_title),
-    cta_description = COALESCE($26, cta_description),
-    reviews_section_name = COALESCE($27, reviews_section_name),
+    group_size = COALESCE($15, group_size),
+    spots_left = COALESCE($16, spots_left),
+    subtitle = COALESCE($17, subtitle),
+    pop_up1_title = COALESCE($18, pop_up1_title),
+    pop_up1_description = COALESCE($19, pop_up1_description),
+    pop_up2_title = COALESCE($20, pop_up2_title),
+    pop_up2_description = COALESCE($21, pop_up2_description),
+    pop_up1_image_url = COALESCE($22, pop_up1_image_url),
+    pop_up2_image_url = COALESCE($23, pop_up2_image_url),
+    cta_title = COALESCE($24, cta_title),
+    cta_description = COALESCE($25, cta_description),
+    reviews_section_name = COALESCE($26, reviews_section_name),
     updated_at = NOW()
-WHERE id = $28
+WHERE id = $27
 RETURNING
     id,
     slug,
@@ -660,7 +643,6 @@ RETURNING
     price,
     program,
     faq,
-    guide_id,
     cover_url,
     duration_days,
     end_location,
@@ -700,7 +682,6 @@ type UpdateTourByIDParams struct {
 	CoverUrl           pgtype.Text
 	Languages          []string
 	AvailableMonths    []string
-	GuideID            pgtype.UUID
 	GroupSize          pgtype.Int4
 	SpotsLeft          pgtype.Int4
 	Subtitle           pgtype.Text
@@ -725,7 +706,6 @@ type UpdateTourByIDRow struct {
 	Price              pgtype.Float8
 	Program            []byte
 	Faq                []byte
-	GuideID            pgtype.UUID
 	CoverUrl           pgtype.Text
 	DurationDays       pgtype.Int4
 	EndLocation        pgtype.Text
@@ -766,7 +746,6 @@ func (q *Queries) UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) 
 		arg.CoverUrl,
 		arg.Languages,
 		arg.AvailableMonths,
-		arg.GuideID,
 		arg.GroupSize,
 		arg.SpotsLeft,
 		arg.Subtitle,
@@ -791,7 +770,6 @@ func (q *Queries) UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) 
 		&i.Price,
 		&i.Program,
 		&i.Faq,
-		&i.GuideID,
 		&i.CoverUrl,
 		&i.DurationDays,
 		&i.EndLocation,

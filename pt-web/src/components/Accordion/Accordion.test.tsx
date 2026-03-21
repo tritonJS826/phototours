@@ -8,10 +8,12 @@ const SECOND_CONTENT = "content2";
 
 const ACCORDION_ITEMS_EXAMPLE = [
   {
+    id: "first-item",
     trigger: {child: FIRST_TRIGGER, dataCy: FIRST_TRIGGER},
     content: {child: FIRST_CONTENT, dataCy: FIRST_CONTENT},
   },
   {
+    id: "second-item",
     trigger: {child: SECOND_TRIGGER, dataCy: SECOND_TRIGGER},
     content: {child: SECOND_CONTENT, dataCy: SECOND_CONTENT},
   },

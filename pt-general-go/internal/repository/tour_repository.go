@@ -62,10 +62,6 @@ func (r *TourRepository) CreateTour(ctx context.Context, createTour *domain.Crea
 		params.CoverUrl = pgtype.Text{String: *createTour.CoverURL, Valid: true}
 	}
 
-	if createTour.GuideID != nil {
-		params.GuideID = mapper.UUIDPtrToPgUUID(createTour.GuideID)
-	}
-
 	if createTour.GroupSize != nil {
 		params.GroupSize = pgtype.Int4{Int32: *createTour.GroupSize, Valid: true}
 	}
@@ -184,9 +180,6 @@ func (r *TourRepository) UpdateTourByID(ctx context.Context, id uuid.UUID, req *
 	}
 	if req.CoverURL != nil {
 		params.CoverUrl = pgtype.Text{String: *req.CoverURL, Valid: true}
-	}
-	if req.GuideID != nil {
-		params.GuideID = mapper.UUIDPtrToPgUUID(req.GuideID)
 	}
 	if req.Languages != nil {
 		params.Languages = *req.Languages

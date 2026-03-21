@@ -13,10 +13,12 @@ type Story = StoryObj<typeof meta>;
 
 const itemsExample = [
   {
+    id: "accessible",
     trigger: {child: "Is it accessible?"},
     content: {child: "Yes. It adheres to the WAI-ARIA design pattern."},
   },
   {
+    id: "unstyled",
     trigger: {child: "Is it unstyled?"},
     content: {
       child:
@@ -24,6 +26,7 @@ const itemsExample = [
     },
   },
   {
+    id: "animated",
     trigger: {child: "Can it be animated?"},
     content: {child: "Yes! You can animate the Accordion with CSS or JavaScript."},
   },
@@ -45,6 +48,7 @@ export const SingleItem: Story = {
     className: "accordion-example",
     items: [
       {
+        id: "accessible",
         trigger: {child: "Is it accessible?"},
         content: {child: "Yes. It adheres to the WAI-ARIA design pattern."},
       },

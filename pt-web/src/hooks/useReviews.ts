@@ -10,5 +10,6 @@ export function useReviews() {
   return useQuery({
     queryKey: REVIEW_KEYS.random(),
     queryFn: getRandomReviews,
+    refetchOnMount: false,
   });
 }

@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Button} from "src/components/Button/Button";
 import styles from "src/pages/adminCreateTourForm/AdminCreateTourForm.module.scss";
@@ -9,16 +9,12 @@ const DIFFICULTY_PRO = "PRO";
 const ZERO = 0;
 const TEN = 10;
 
-type GuideUser = { id: number; firstName: string; lastName: string };
-type Guide = { id: number; experience: string; user: GuideUser | null };
-
 type FormState = {
   title: string;
   description: string;
   difficulty: string;
   price: string;
   program: string;
-  guideId: string;
   startLocation: string;
   endLocation: string;
   durationDays: string;
@@ -81,7 +77,6 @@ export const AdminCreateTourForm = () => {
     difficulty: DIFFICULTY_BEGINNER,
     price: "",
     program: "",
-    guideId: "",
     startLocation: "",
     endLocation: "",
     durationDays: "",
@@ -92,25 +87,6 @@ export const AdminCreateTourForm = () => {
   });
 
   const [error, setError] = useState("");
-  const [guides, setGuides] = useState<Guide[]>([]);
-
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const url = `${import.meta.env.VITE_API_BASE_URL}/tours/guides`;
-        const res = await fetch(url);
-        if (!res.ok) {
-          return;
-        }
-
-        const data = await res.json();
-        setGuides(data);
-      } catch {
-        void 0;
-      }
-    };
-    load();
-  }, []);
 
   const handleText = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -143,9 +119,6 @@ export const AdminCreateTourForm = () => {
       const minAgeNumber = parseInt(formData.minAge, TEN);
       const minAge = Number.isFinite(minAgeNumber) ? minAgeNumber : undefined;
 
-      const g = parseInt(formData.guideId, TEN);
-      const hasGuide = Number.isInteger(g) && g > ZERO ? g : undefined;
-
       const languages = toArray(formData.languages);
       const availableMonths = toArray(formData.availableMonths);
 
@@ -171,9 +144,6 @@ export const AdminCreateTourForm = () => {
         availableMonths:
           availableMonths.length > ZERO ? availableMonths : undefined,
       };
-      if (hasGuide !== undefined) {
-        body.guideId = hasGuide;
-      }
 
       const url = `${import.meta.env.VITE_API_BASE_URL}/tours`;
       const response = await fetch(url, {
@@ -355,28 +325,6 @@ export const AdminCreateTourForm = () => {
           value={formData.availableMonths}
           onChange={handleText}
         />
-      </label>
-
-      <label>
-        Guide
-        <select
-          className={styles.selectTextInput}
-          name="guideId"
-          value={formData.guideId}
-          onChange={handleSelect}
-        >
-          <option value="">
-            -- No guide --
-          </option>
-          {guides.map(g => (
-            <option
-              key={g.id}
-              value={String(g.id)}
-            >
-              {g.user ? `${g.user.firstName} ${g.user.lastName}` : `Guide ${g.id}`}
-            </option>
-          ))}
-        </select>
       </label>
 
       {error.length > ZERO && <p className={styles.error}>

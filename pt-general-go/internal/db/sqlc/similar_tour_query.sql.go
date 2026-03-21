@@ -21,7 +21,6 @@ SELECT
     tours.price,
     tours.program,
     tours.faq,
-    tours.guide_id,
     tours.cover_url,
     tours.duration_days,
     tours.end_location,
@@ -58,7 +57,6 @@ type GetSimilarToursByTourIDRow struct {
 	Price              pgtype.Float8
 	Program            []byte
 	Faq                []byte
-	GuideID            pgtype.UUID
 	CoverUrl           pgtype.Text
 	DurationDays       pgtype.Int4
 	EndLocation        pgtype.Text
@@ -101,7 +99,6 @@ func (q *Queries) GetSimilarToursByTourID(ctx context.Context, tourID pgtype.UUI
 			&i.Price,
 			&i.Program,
 			&i.Faq,
-			&i.GuideID,
 			&i.CoverUrl,
 			&i.DurationDays,
 			&i.EndLocation,

@@ -6,18 +6,9 @@ import {buildPath, PATHS} from "src/routes/routes";
 import {fetchData} from "src/services/httpHelper";
 import styles from "src/pages/adminPage/AdminPage.module.scss";
 
-type Guide = {
-  id: number;
-  userId: number;
-  experience: string;
-  specializations: string[];
-  user?: { id: number; firstName: string; lastName: string };
-};
-
 type Tour = {
   id: number;
   title: string;
-  guide?: Guide;
   photos?: { id: number; url: string }[];
 };
 
@@ -49,12 +40,8 @@ export function AdminPage() {
 
   const filteredTours = tours?.filter((tour) => {
     const titleMatch = tour.title?.toLowerCase().includes(searchTerm.toLowerCase());
-    const guideName = tour.guide?.user
-      ? `${tour.guide.user.firstName} ${tour.guide.user.lastName}`.toLowerCase()
-      : "";
-    const guideMatch = guideName.includes(searchTerm.toLowerCase());
 
-    return titleMatch || guideMatch;
+    return titleMatch;
   });
 
   return (
@@ -155,11 +142,6 @@ export function AdminPage() {
                     <h3>
                       {tour.title}
                     </h3>
-                    <p className={styles.guide}>
-                      {tour.guide?.user
-                        ? `${tour.guide.user.firstName} ${tour.guide.user.lastName}`
-                        : "—"}
-                    </p>
                   </div>
                 </div>
               ))

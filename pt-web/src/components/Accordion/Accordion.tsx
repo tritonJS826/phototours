@@ -1,4 +1,3 @@
-import {useId} from "react";
 import {Root as RadixAccordionRoot} from "@radix-ui/react-accordion";
 import clsx from "clsx";
 import {AccordionContentProps} from "src/components/Accordion/AccordionContent/AccordionContent";
@@ -29,6 +28,11 @@ export enum accordionTypes {
 interface AccordionItemData {
 
   /**
+   * Unique identifier for the accordion item. Required.
+   */
+  id: string;
+
+  /**
    * The trigger element that users can interact with to expand or collapse the item.
    */
   trigger: AccordionTriggerProps;
@@ -45,7 +49,7 @@ interface AccordionItemData {
 interface AccordionProps {
 
   /**
-   * An array of objects representing the accordion items, each containing a trigger (ReactNode) and content (ReactNode) element.
+   * An array of objects representing the accordion items, each containing an id (string), trigger (ReactNode) and content (ReactNode) element.
    */
   items: AccordionItemData[];
 
@@ -89,11 +93,7 @@ export const Accordion = (props: AccordionProps) => {
       className={clsx(props.className)}
       type={props.type ?? accordionTypes.SINGLE}
     >
-      {props.items.map((item) => {
-        const uniqueId = useId();
-
-        return renderAccordionItem(item, uniqueId, props.itemClassName);
-      })}
+      {props.items.map((item) => renderAccordionItem(item, item.id, props.itemClassName))}
     </RadixAccordionRoot>
   );
 };

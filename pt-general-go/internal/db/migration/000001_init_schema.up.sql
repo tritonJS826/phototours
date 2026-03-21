@@ -1,6 +1,5 @@
 CREATE TYPE role AS ENUM ('CLIENT', 'GUIDE', 'ADMIN');
 CREATE TYPE difficulty_level AS ENUM ('EASY', 'MEDIUM', 'HARD');
-CREATE TYPE material_type AS ENUM ('PDF', 'IMAGE', 'VIDEO', 'LINK', 'AUDIO');
 CREATE TYPE booking_status AS ENUM ('PENDING', 'CONFIRMED', 'CANCELLED');
 CREATE TYPE payment_method AS ENUM ('CARD', 'PAYPAL', 'BANK_TRANSFER', 'CASH');
 CREATE TYPE payment_status AS ENUM ('PENDING', 'COMPLETED', 'FAILED', 'REFUNDED');
@@ -46,15 +45,6 @@ CREATE TABLE articles (
     -- blocks: JSON array of {type: "image"|"text"|"title"|"separator", content?: string, src?: string, alt?: string}
     blocks JSONB NOT NULL DEFAULT '[]'
 );
-CREATE TABLE guides (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id UUID NOT NULL UNIQUE,
-    experience TEXT,
-    specializations TEXT [],
-    created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    CONSTRAINT guide_user_id_fk FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE RESTRICT
-);
 CREATE TABLE tours (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     slug TEXT NOT NULL UNIQUE DEFAULT gen_random_uuid()::text,
@@ -67,7 +57,6 @@ CREATE TABLE tours (
     -- {questions: [question: string, answer: string]}
     faq JSONB NOT NULL, 
     reviews_section_name TEXT NOT NULL,
-    guide_id UUID,
     cover_url TEXT,
     duration_days INTEGER,
     end_location TEXT,
@@ -88,9 +77,7 @@ CREATE TABLE tours (
     cta_title TEXT NOT NULL DEFAULT '',
     cta_description TEXT NOT NULL DEFAULT '',
     created_at TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT tour_guide_id_fk FOREIGN KEY (guide_id) REFERENCES guides(id) ON UPDATE CASCADE ON DELETE
-    SET NULL
+    updated_at TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE TRIGGER set_updated_at_trigger_tours BEFORE
 UPDATE ON tours FOR EACH ROW EXECUTE FUNCTION set_updated_at();
@@ -108,15 +95,6 @@ CREATE TABLE tour_dates (
 );
 CREATE TRIGGER set_updated_at_trigger_tour_dates BEFORE
 UPDATE ON tour_dates FOR EACH ROW EXECUTE FUNCTION set_updated_at();
-CREATE TABLE tour_materials (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    tour_id UUID NOT NULL,
-    title TEXT NOT NULL,
-    url TEXT NOT NULL,
-    type material_type NOT NULL,
-    created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    CONSTRAINT tour_material_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE
-);
 CREATE TABLE photos (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     tour_id UUID NOT NULL,
@@ -124,14 +102,6 @@ CREATE TABLE photos (
     description TEXT,
     created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     CONSTRAINT photo_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE
-);
-CREATE TABLE videos (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    tour_id UUID NOT NULL,
-    url TEXT NOT NULL,
-    description TEXT,
-    created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    CONSTRAINT video_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 CREATE TABLE reviews (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

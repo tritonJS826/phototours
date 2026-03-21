@@ -24,7 +24,6 @@ type CreateTourParams struct {
 	StartLocation      *string         `json:"startLocation"`
 	Price              *float64        `json:"price"`
 	DurationDays       *int32          `json:"durationDays"`
-	GuideID            *uuid.UUID      `json:"guideId"`
 	Slug               *string         `json:"slug"`
 	CoverURL           *string         `json:"coverUrl"`
 	Description        string          `json:"description"`
@@ -51,8 +50,7 @@ type CreateTourParams struct {
 func (t *CreateTourParams) Validate() error {
 	if strings.TrimSpace(t.Title) == "" ||
 		strings.TrimSpace(t.Description) == "" ||
-		strings.TrimSpace(t.Difficulty) == "" ||
-		t.GuideID == nil {
+		strings.TrimSpace(t.Difficulty) == "" {
 		return fmt.Errorf("%w: Missing necessary fields", ErrValidation)
 	}
 
@@ -79,7 +77,6 @@ type UpdateTourParams struct {
 	EndLocation        *string          `json:"endLocation"`
 	Price              *float64         `json:"price"`
 	StartLocation      *string          `json:"startLocation"`
-	GuideID            *uuid.UUID       `json:"guideId"`
 	CoverURL           *string          `json:"coverUrl"`
 	Difficulty         *DifficultyLevel `json:"difficulty"`
 	Description        *string          `json:"description"`
@@ -107,7 +104,6 @@ func (r *UpdateTourParams) Validate() error {
 		r.EndLocation == nil &&
 		r.Price == nil &&
 		r.StartLocation == nil &&
-		r.GuideID == nil &&
 		r.CoverURL == nil &&
 		r.Difficulty == nil &&
 		r.Description == nil &&
@@ -165,7 +161,6 @@ type Tour struct {
 	Price              *float64        `json:"price"`
 	StartLocation      *string         `json:"startLocation"`
 	Location           *string         `json:"location"`
-	GuideID            *uuid.UUID      `json:"guideId"`
 	CoverURL           *string         `json:"coverUrl"`
 	Difficulty         DifficultyLevel `json:"difficulty"`
 	Description        string          `json:"description"`
@@ -191,17 +186,14 @@ type Tour struct {
 }
 
 type TourFull struct {
-	Guide      *Guide         `json:"guide"`
-	Dates      []TourDate     `json:"dates"`
-	Photos     []Photo        `json:"photos"`
-	Videos     []Video        `json:"videos"`
-	Materials  []TourMaterial `json:"materials"`
-	Tags       []Tag          `json:"tags"`
-	Categories []Category     `json:"categories"`
-	Reviews    []Review       `json:"reviews"`
-	Summary    []string       `json:"summary"`
-	Activities []Activity     `json:"activities"`
-	Included   []string       `json:"included"`
+	Dates      []TourDate `json:"dates"`
+	Photos     []Photo    `json:"photos"`
+	Tags       []Tag      `json:"tags"`
+	Categories []Category `json:"categories"`
+	Reviews    []Review   `json:"reviews"`
+	Summary    []string   `json:"summary"`
+	Activities []Activity `json:"activities"`
+	Included   []string   `json:"included"`
 	Tour
 	StarAmount   float64 `json:"starAmount"`
 	ReviewAmount int64   `json:"reviewAmount"`
@@ -224,16 +216,6 @@ type TourPreview struct {
 type Category struct {
 	Name string    `json:"name"`
 	ID   uuid.UUID `json:"id"`
-}
-
-type Guide struct {
-	CreatedAt       time.Time `json:"createdAt"`
-	UpdatedAt       time.Time `json:"updatedAt"`
-	Experience      *string   `json:"experience"`
-	User            *User     `json:"user"`
-	Specializations []string  `json:"specializations"`
-	ID              uuid.UUID `json:"id"`
-	UserID          uuid.UUID `json:"userId"`
 }
 
 type PageMetadatum struct {
@@ -374,36 +356,9 @@ func (f *TourFilter) Validate() error {
 	return nil
 }
 
-type MaterialType string
-
-const (
-	MaterialTypePDF   MaterialType = "PDF"
-	MaterialTypeImage MaterialType = "IMAGE"
-	MaterialTypeVideo MaterialType = "VIDEO"
-	MaterialTypeLink  MaterialType = "LINK"
-	MaterialTypeAudio MaterialType = "AUDIO"
-)
-
-type TourMaterial struct {
-	CreatedAt time.Time    `json:"createdAt"`
-	Title     string       `json:"title"`
-	URL       string       `json:"url"`
-	Type      MaterialType `json:"type"`
-	ID        uuid.UUID    `json:"id"`
-	TourID    uuid.UUID    `json:"tourId"`
-}
-
 type TourTag struct {
 	TagID  uuid.UUID `json:"tagId"`
 	TourID uuid.UUID `json:"tourId"`
-}
-
-type Video struct {
-	CreatedAt   time.Time `json:"createdAt"`
-	Description *string   `json:"description"`
-	URL         string    `json:"url"`
-	ID          uuid.UUID `json:"id"`
-	TourID      uuid.UUID `json:"tourId"`
 }
 
 type TourActivity struct {

@@ -31,8 +31,7 @@ type TourDTO = {
   minAge?: number | null;
   availableMonths?: string[];
   coverUrl: string;
-  photos?: Array<string | UrlObj>;
-  videos?: Array<string | UrlObj>;
+  photos: Array<string | UrlObj>;
   included?: string[];
   activities?: Array<{ activity: string; iconName: string }>;
   summary?: string[];
@@ -48,7 +47,6 @@ type TourDTO = {
       answer: string;
     }>;
   };
-  guide?: { id: number; name?: string };
   tags?: Array<string | { name: string }>;
   categories?: Array<string | { name: string }>;
   starAmount: number;
@@ -100,7 +98,6 @@ function toShortDate(value: string): string {
 
 function mapTourToView(dto: TourDTO): TourView {
   const photoUrls = (dto.photos ?? []).map(x => fileUrl(toUrl(x)));
-  const videoUrls = (dto.videos ?? []).map(toUrl);
   const dates = (dto.dates ?? [])
     .map((d) => {
       const from = d.dateFrom;
@@ -151,12 +148,10 @@ function mapTourToView(dto: TourDTO): TourView {
     availableMonths: dto.availableMonths ?? [],
     coverUrl: dto.coverUrl,
     photos: photoUrls,
-    videos: videoUrls,
     dates,
     dailyItinerary,
     reviewsSectionName: dto.reviewsSectionName,
     faq,
-    guide: dto.guide ? {id: dto.guide.id, name: dto.guide.name} : undefined,
     tags,
     categories,
     activities: (dto.activities ?? []).map(a => ({

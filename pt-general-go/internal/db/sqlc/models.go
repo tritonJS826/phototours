@@ -97,51 +97,6 @@ func (ns NullDifficultyLevel) Value() (driver.Value, error) {
 	return string(ns.DifficultyLevel), nil
 }
 
-type MaterialType string
-
-const (
-	MaterialTypePDF   MaterialType = "PDF"
-	MaterialTypeIMAGE MaterialType = "IMAGE"
-	MaterialTypeVIDEO MaterialType = "VIDEO"
-	MaterialTypeLINK  MaterialType = "LINK"
-	MaterialTypeAUDIO MaterialType = "AUDIO"
-)
-
-func (e *MaterialType) Scan(src interface{}) error {
-	switch s := src.(type) {
-	case []byte:
-		*e = MaterialType(s)
-	case string:
-		*e = MaterialType(s)
-	default:
-		return fmt.Errorf("unsupported scan type for MaterialType: %T", src)
-	}
-	return nil
-}
-
-type NullMaterialType struct {
-	MaterialType MaterialType
-	Valid        bool // Valid is true if MaterialType is not NULL
-}
-
-// Scan implements the Scanner interface.
-func (ns *NullMaterialType) Scan(value interface{}) error {
-	if value == nil {
-		ns.MaterialType, ns.Valid = "", false
-		return nil
-	}
-	ns.Valid = true
-	return ns.MaterialType.Scan(value)
-}
-
-// Value implements the driver Valuer interface.
-func (ns NullMaterialType) Value() (driver.Value, error) {
-	if !ns.Valid {
-		return nil, nil
-	}
-	return string(ns.MaterialType), nil
-}
-
 type PaymentMethod string
 
 const (
@@ -312,15 +267,6 @@ type Category struct {
 	Name string
 }
 
-type Guide struct {
-	ID              pgtype.UUID
-	UserID          pgtype.UUID
-	Experience      pgtype.Text
-	Specializations []string
-	CreatedAt       pgtype.Timestamp
-	UpdatedAt       pgtype.Timestamp
-}
-
 type PageMetadatum struct {
 	Url       string
 	Tags      string
@@ -380,7 +326,6 @@ type Tour struct {
 	Program            []byte
 	Faq                []byte
 	ReviewsSectionName string
-	GuideID            pgtype.UUID
 	CoverUrl           pgtype.Text
 	DurationDays       pgtype.Int4
 	EndLocation        pgtype.Text
@@ -435,15 +380,6 @@ type TourIncluded struct {
 	CreatedAt pgtype.Timestamp
 }
 
-type TourMaterial struct {
-	ID        pgtype.UUID
-	TourID    pgtype.UUID
-	Title     string
-	Url       string
-	Type      MaterialType
-	CreatedAt pgtype.Timestamp
-}
-
 type TourSummary struct {
 	ID        pgtype.UUID
 	TourID    pgtype.UUID
@@ -469,12 +405,4 @@ type User struct {
 	Role          Role
 	CreatedAt     pgtype.Timestamp
 	UpdatedAt     pgtype.Timestamp
-}
-
-type Video struct {
-	ID          pgtype.UUID
-	TourID      pgtype.UUID
-	Url         string
-	Description pgtype.Text
-	CreatedAt   pgtype.Timestamp
 }

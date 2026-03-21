@@ -8,7 +8,6 @@ SELECT
     tours.price,
     tours.program,
     tours.faq,
-    tours.guide_id,
     tours.cover_url,
     tours.duration_days,
     tours.end_location,
