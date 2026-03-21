@@ -82,6 +82,10 @@ export interface TourView {
   popUp2Description: string;
   popUp2ImageUrl: string;
 
+  // CTA fields for feedback block
+  ctaTitle: string;
+  ctaDescription: string;
+
   // Reviews section dynamic title
   reviewsSectionName?: string;
 }

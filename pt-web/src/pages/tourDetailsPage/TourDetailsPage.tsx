@@ -1177,9 +1177,8 @@ export function TourDetailsPage() {
         </Swiper>
       </div>
       <FeedbackBlock
-        title="Reserve Your Spot for the Tuscany Photo Tour"
-        // eslint-disable-next-line max-len
-        subtitle="Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity"
+        title={tour.ctaTitle}
+        subtitle={tour.ctaDescription}
         buttonText="Contact Me"
         feedBackDescriptionCustomClass={styles.feedBackDescriptionLong}
       />

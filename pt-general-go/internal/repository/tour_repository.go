@@ -34,6 +34,8 @@ func (r *TourRepository) CreateTour(ctx context.Context, createTour *domain.Crea
 		PopUp2Description: createTour.PopUp2Description,
 		PopUp1ImageUrl:    createTour.PopUp1ImageUrl,
 		PopUp2ImageUrl:    createTour.PopUp2ImageUrl,
+		CtaTitle:          createTour.CtaTitle,
+		CtaDescription:    createTour.CtaDescription,
 	}
 
 	if createTour.Price != nil {

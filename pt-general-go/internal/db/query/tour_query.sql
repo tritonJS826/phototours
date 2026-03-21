@@ -23,6 +23,8 @@ INSERT INTO tours (
     pop_up2_description,
     pop_up1_image_url,
     pop_up2_image_url,
+    cta_title,
+    cta_description,
     reviews_section_name
 ) VALUES (
     @title,
@@ -48,6 +50,8 @@ INSERT INTO tours (
     @pop_up2_description,
     @pop_up1_image_url,
     @pop_up2_image_url,
+    @cta_title,
+    @cta_description,
     @reviews_section_name
 ) RETURNING
     id,
@@ -76,6 +80,8 @@ INSERT INTO tours (
     pop_up2_description,
     pop_up1_image_url,
     pop_up2_image_url,
+    cta_title,
+    cta_description,
     reviews_section_name,
     created_at,
     updated_at;
@@ -108,6 +114,8 @@ SELECT
     pop_up2_description,
     pop_up1_image_url,
     pop_up2_image_url,
+    cta_title,
+    cta_description,
     reviews_section_name,
     created_at,
     updated_at
@@ -142,6 +150,8 @@ SELECT
     pop_up2_description,
     pop_up1_image_url,
     pop_up2_image_url,
+    cta_title,
+    cta_description,
     reviews_section_name,
     created_at,
     updated_at
@@ -176,6 +186,8 @@ SELECT DISTINCT
     tours.pop_up2_description,
     tours.pop_up1_image_url,
     tours.pop_up2_image_url,
+    tours.cta_title,
+    tours.cta_description,
     tours.reviews_section_name,
     tours.created_at,
     tours.updated_at
@@ -221,6 +233,8 @@ SET
     pop_up2_description = COALESCE(sqlc.narg(pop_up2_description), pop_up2_description),
     pop_up1_image_url = COALESCE(sqlc.narg(pop_up1_image_url), pop_up1_image_url),
     pop_up2_image_url = COALESCE(sqlc.narg(pop_up2_image_url), pop_up2_image_url),
+    cta_title = COALESCE(sqlc.narg(cta_title), cta_title),
+    cta_description = COALESCE(sqlc.narg(cta_description), cta_description),
     reviews_section_name = COALESCE(sqlc.narg(reviews_section_name), reviews_section_name),
     updated_at = NOW()
 WHERE id = @id
@@ -251,6 +265,8 @@ RETURNING
     pop_up2_description,
     pop_up1_image_url,
     pop_up2_image_url,
+    cta_title,
+    cta_description,
     reviews_section_name,
     created_at,
     updated_at;

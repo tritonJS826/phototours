@@ -36,6 +36,8 @@ INSERT INTO tours (
     pop_up2_description,
     pop_up1_image_url,
     pop_up2_image_url,
+    cta_title,
+    cta_description,
     reviews_section_name
 ) VALUES (
     $1,
@@ -61,7 +63,9 @@ INSERT INTO tours (
     $21,
     $22,
     $23,
-    $24
+    $24,
+    $25,
+    $26
 ) RETURNING
     id,
     slug,
@@ -89,6 +93,8 @@ INSERT INTO tours (
     pop_up2_description,
     pop_up1_image_url,
     pop_up2_image_url,
+    cta_title,
+    cta_description,
     reviews_section_name,
     created_at,
     updated_at
@@ -118,6 +124,8 @@ type CreateTourParams struct {
 	PopUp2Description  string
 	PopUp1ImageUrl     string
 	PopUp2ImageUrl     string
+	CtaTitle           string
+	CtaDescription     string
 	ReviewsSectionName string
 }
 
@@ -148,6 +156,8 @@ type CreateTourRow struct {
 	PopUp2Description  string
 	PopUp1ImageUrl     string
 	PopUp2ImageUrl     string
+	CtaTitle           string
+	CtaDescription     string
 	ReviewsSectionName string
 	CreatedAt          pgtype.Timestamp
 	UpdatedAt          pgtype.Timestamp
@@ -178,6 +188,8 @@ func (q *Queries) CreateTour(ctx context.Context, arg CreateTourParams) (CreateT
 		arg.PopUp2Description,
 		arg.PopUp1ImageUrl,
 		arg.PopUp2ImageUrl,
+		arg.CtaTitle,
+		arg.CtaDescription,
 		arg.ReviewsSectionName,
 	)
 	var i CreateTourRow
@@ -208,6 +220,8 @@ func (q *Queries) CreateTour(ctx context.Context, arg CreateTourParams) (CreateT
 		&i.PopUp2Description,
 		&i.PopUp1ImageUrl,
 		&i.PopUp2ImageUrl,
+		&i.CtaTitle,
+		&i.CtaDescription,
 		&i.ReviewsSectionName,
 		&i.CreatedAt,
 		&i.UpdatedAt,
@@ -256,6 +270,8 @@ SELECT
     pop_up2_description,
     pop_up1_image_url,
     pop_up2_image_url,
+    cta_title,
+    cta_description,
     reviews_section_name,
     created_at,
     updated_at
@@ -290,6 +306,8 @@ type GetTourByIDRow struct {
 	PopUp2Description  string
 	PopUp1ImageUrl     string
 	PopUp2ImageUrl     string
+	CtaTitle           string
+	CtaDescription     string
 	ReviewsSectionName string
 	CreatedAt          pgtype.Timestamp
 	UpdatedAt          pgtype.Timestamp
@@ -325,6 +343,8 @@ func (q *Queries) GetTourByID(ctx context.Context, id pgtype.UUID) (GetTourByIDR
 		&i.PopUp2Description,
 		&i.PopUp1ImageUrl,
 		&i.PopUp2ImageUrl,
+		&i.CtaTitle,
+		&i.CtaDescription,
 		&i.ReviewsSectionName,
 		&i.CreatedAt,
 		&i.UpdatedAt,
@@ -360,6 +380,8 @@ SELECT
     pop_up2_description,
     pop_up1_image_url,
     pop_up2_image_url,
+    cta_title,
+    cta_description,
     reviews_section_name,
     created_at,
     updated_at
@@ -394,6 +416,8 @@ type GetTourBySlugRow struct {
 	PopUp2Description  string
 	PopUp1ImageUrl     string
 	PopUp2ImageUrl     string
+	CtaTitle           string
+	CtaDescription     string
 	ReviewsSectionName string
 	CreatedAt          pgtype.Timestamp
 	UpdatedAt          pgtype.Timestamp
@@ -429,6 +453,8 @@ func (q *Queries) GetTourBySlug(ctx context.Context, slug string) (GetTourBySlug
 		&i.PopUp2Description,
 		&i.PopUp1ImageUrl,
 		&i.PopUp2ImageUrl,
+		&i.CtaTitle,
+		&i.CtaDescription,
 		&i.ReviewsSectionName,
 		&i.CreatedAt,
 		&i.UpdatedAt,
@@ -464,6 +490,8 @@ SELECT DISTINCT
     tours.pop_up2_description,
     tours.pop_up1_image_url,
     tours.pop_up2_image_url,
+    tours.cta_title,
+    tours.cta_description,
     tours.reviews_section_name,
     tours.created_at,
     tours.updated_at
@@ -522,6 +550,8 @@ type GetToursRow struct {
 	PopUp2Description  string
 	PopUp1ImageUrl     string
 	PopUp2ImageUrl     string
+	CtaTitle           string
+	CtaDescription     string
 	ReviewsSectionName string
 	CreatedAt          pgtype.Timestamp
 	UpdatedAt          pgtype.Timestamp
@@ -573,6 +603,8 @@ func (q *Queries) GetTours(ctx context.Context, arg GetToursParams) ([]GetToursR
 			&i.PopUp2Description,
 			&i.PopUp1ImageUrl,
 			&i.PopUp2ImageUrl,
+			&i.CtaTitle,
+			&i.CtaDescription,
 			&i.ReviewsSectionName,
 			&i.CreatedAt,
 			&i.UpdatedAt,
@@ -614,9 +646,11 @@ SET
     pop_up2_description = COALESCE($22, pop_up2_description),
     pop_up1_image_url = COALESCE($23, pop_up1_image_url),
     pop_up2_image_url = COALESCE($24, pop_up2_image_url),
-    reviews_section_name = COALESCE($25, reviews_section_name),
+    cta_title = COALESCE($25, cta_title),
+    cta_description = COALESCE($26, cta_description),
+    reviews_section_name = COALESCE($27, reviews_section_name),
     updated_at = NOW()
-WHERE id = $26
+WHERE id = $28
 RETURNING
     id,
     slug,
@@ -644,6 +678,8 @@ RETURNING
     pop_up2_description,
     pop_up1_image_url,
     pop_up2_image_url,
+    cta_title,
+    cta_description,
     reviews_section_name,
     created_at,
     updated_at
@@ -674,6 +710,8 @@ type UpdateTourByIDParams struct {
 	PopUp2Description  pgtype.Text
 	PopUp1ImageUrl     pgtype.Text
 	PopUp2ImageUrl     pgtype.Text
+	CtaTitle           pgtype.Text
+	CtaDescription     pgtype.Text
 	ReviewsSectionName pgtype.Text
 	ID                 pgtype.UUID
 }
@@ -705,6 +743,8 @@ type UpdateTourByIDRow struct {
 	PopUp2Description  string
 	PopUp1ImageUrl     string
 	PopUp2ImageUrl     string
+	CtaTitle           string
+	CtaDescription     string
 	ReviewsSectionName string
 	CreatedAt          pgtype.Timestamp
 	UpdatedAt          pgtype.Timestamp
@@ -736,6 +776,8 @@ func (q *Queries) UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) 
 		arg.PopUp2Description,
 		arg.PopUp1ImageUrl,
 		arg.PopUp2ImageUrl,
+		arg.CtaTitle,
+		arg.CtaDescription,
 		arg.ReviewsSectionName,
 		arg.ID,
 	)
@@ -767,6 +809,8 @@ func (q *Queries) UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) 
 		&i.PopUp2Description,
 		&i.PopUp1ImageUrl,
 		&i.PopUp2ImageUrl,
+		&i.CtaTitle,
+		&i.CtaDescription,
 		&i.ReviewsSectionName,
 		&i.CreatedAt,
 		&i.UpdatedAt,

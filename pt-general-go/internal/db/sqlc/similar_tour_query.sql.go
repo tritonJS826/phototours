@@ -39,6 +39,8 @@ SELECT
     tours.pop_up2_description,
     tours.pop_up1_image_url,
     tours.pop_up2_image_url,
+    tours.cta_title,
+    tours.cta_description,
     tours.reviews_section_name,
     tours.created_at,
     tours.updated_at
@@ -74,6 +76,8 @@ type GetSimilarToursByTourIDRow struct {
 	PopUp2Description  string
 	PopUp1ImageUrl     string
 	PopUp2ImageUrl     string
+	CtaTitle           string
+	CtaDescription     string
 	ReviewsSectionName string
 	CreatedAt          pgtype.Timestamp
 	UpdatedAt          pgtype.Timestamp
@@ -115,6 +119,8 @@ func (q *Queries) GetSimilarToursByTourID(ctx context.Context, tourID pgtype.UUI
 			&i.PopUp2Description,
 			&i.PopUp1ImageUrl,
 			&i.PopUp2ImageUrl,
+			&i.CtaTitle,
+			&i.CtaDescription,
 			&i.ReviewsSectionName,
 			&i.CreatedAt,
 			&i.UpdatedAt,

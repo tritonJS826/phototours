@@ -43,6 +43,8 @@ type CreateTourParams struct {
 	PopUp2Description  string          `json:"popUp2Description"`
 	PopUp1ImageUrl     string          `json:"popUp1ImageUrl"`
 	PopUp2ImageUrl     string          `json:"popUp2ImageUrl"`
+	CtaTitle           string          `json:"ctaTitle"`
+	CtaDescription     string          `json:"ctaDescription"`
 	ReviewsSectionName string          `json:"reviewsSectionName"`
 }
 
@@ -182,6 +184,8 @@ type Tour struct {
 	PopUp2Description  string          `json:"popUp2Description"`
 	PopUp1ImageUrl     string          `json:"popUp1ImageUrl"`
 	PopUp2ImageUrl     string          `json:"popUp2ImageUrl"`
+	CtaTitle           string          `json:"ctaTitle"`
+	CtaDescription     string          `json:"ctaDescription"`
 	ReviewsSectionName string          `json:"reviewsSectionName"`
 	ID                 uuid.UUID       `json:"id"`
 }

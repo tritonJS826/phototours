@@ -398,6 +398,8 @@ type Tour struct {
 	PopUp2Title        string
 	PopUp2Description  string
 	PopUp2ImageUrl     string
+	CtaTitle           string
+	CtaDescription     string
 	CreatedAt          pgtype.Timestamp
 	UpdatedAt          pgtype.Timestamp
 }

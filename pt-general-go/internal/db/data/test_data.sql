@@ -166,7 +166,9 @@ INSERT INTO tours (
   pop_up1_image_url,
   pop_up2_title,
   pop_up2_description,
-  pop_up2_image_url
+  pop_up2_image_url,
+  cta_title,
+  cta_description
 )
 VALUES
     (tour1_id, 'tuscany-spring-photo-tour', 'Spring Tuscany',
@@ -269,7 +271,9 @@ VALUES
       'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__FUJI8847-Pano-Pano-Dehancer_copy_lgg7p7.avif',
       'Want the full Tuscany Itinerary?',
       'We’ll send you everything you need to know about our Spring Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
-      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__FUJI8847-Pano-Pano-Dehancer_copy_lgg7p7.avif'),
+      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__FUJI8847-Pano-Pano-Dehancer_copy_lgg7p7.avif',
+      'Reserve Your Spot for the Tuscany Photo Tour',
+      'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
    (tour2_id, 'morocco-photo-tour', 'Morocco',
     'Experience the magic of Morocco on a visual journey from the blue-washed streets of Chefchaouen to the golden dunes of the Sahara Desert. Capture the vibrant souks of Marrakech, the ancient kasbahs of Ait Ben Haddou, and the majestic Atlas Mountains. This immersive photography workshop offers expert-led sunrise and sunset sessions in Morocco’s most iconic locations. Join our exclusive small group for an unforgettable adventure!',
@@ -383,7 +387,9 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429914/morocco___A8B2183_90x63-topaz-denoiseraw-sharpen-color_copy_d6h1s7.avif',
     'Want the full Morocco Itinerary?',
     'We’ll send you everything you need to know about our Morocco Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429914/morocco___A8B2183_90x63-topaz-denoiseraw-sharpen-color_copy_d6h1s7.avif'),
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429914/morocco___A8B2183_90x63-topaz-denoiseraw-sharpen-color_copy_d6h1s7.avif',
+    'Reserve Your Spot for the Morocco Photo Tour',
+    'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
    (tour3_id, 'venice-carnival-photo-tour', 'Venice Carnival',
      'Join our Venice Carnival Photo Tour for an unforgettable creative experience. Capture the elegance of Venetian masks and elaborate costumes against the backdrop of St. Mark’s Square. This photography workshop includes private shoots in historic places, gondola sessions, and hidden gems of Venice. Master your skills at sunrise and sunset. Limited small group tour. Book your photography adventure!',
@@ -455,7 +461,9 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771393839/venice_2_1_ghkmly.avif',
     'Want the full Venice Carnival Itinerary?',
     'We’ll send you everything you need to know about our Venice Carnival Photo Tour—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771393839/venice_2_1_ghkmly.avif'),
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771393839/venice_2_1_ghkmly.avif',
+    'Reserve Your Spot for the Venice Carnival Photo Tour',
+    'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
    (tour4_id, 'new-zealand-photo-tour', 'New Zealand',
       'Embark on the ultimate New Zealand Photo Tour. This comprehensive workshop covers the most iconic landscapes of both the North and South Islands. From the emerald lakes of Tongariro to the majestic peaks of Mount Cook and the mystical Milford Sound, capture the breathtaking diversity of the ''Land of the Long White Cloud.'' Join our photography expedition!',
@@ -587,7 +595,9 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif',
     'Want the full New Zealand Itinerary?',
     'We’ll send you everything you need to know about our New Zealand Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif'),
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif',
+    'Reserve Your Spot for the New Zealand Photo Tour',
+    'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
    (tour5_id, 'cyclades-sailing-tour', 'Cyclades Sailing',
      'Experience our Cyclades Photo Tour aboard a private sailing catamaran. Capture the iconic white-washed beauty of Santorini and the surreal moonscapes of Milos. This photography workshop offers unique sea-access viewpoints, sunrise sessions at Sarakiniko, and golden hour shoots from the water. Master your skills while sailing the Aegean Sea in style. Book your photography adventure!',
@@ -671,7 +681,9 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429871/cyclades__IMG_8808-Pano_copy_jkdqjj.avif',
     'Want the full Cyclades Itinerary?',
     'We’ll send you everything you need to know about our Cyclades Photo Tour & Sailing Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429871/cyclades__IMG_8808-Pano_copy_jkdqjj.avif'),
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429871/cyclades__IMG_8808-Pano_copy_jkdqjj.avif',
+    'Reserve Your Spot for the Cyclades Photo Tour',
+    'Portfolio-ready shots • Expert light & composition coaching • Live-aboard sailing expedition • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
    (tour6_id, 'cinque-terre-umbria-tour', 'Cinque-Terre & Umbria',
      'Capture Italy’s soul on our Cinque Terre & Umbria Photo Tour. From the vibrant cliffside villages of the Italian Riviera to the misty medieval towns of Umbria. This photography workshop features sunrise in Manarola, sunset in Orvieto, and the iconic ''dying city'' of Civita di Bagnoregio. Master landscape and street photography in a small group. Book your adventure!',
@@ -773,7 +785,9 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429687/cinque-terre-umbria__OSKIN_4052_GenFill_copy_ytmtp1.avif',
     'Want the full Cinque-Terre & Umbria Itinerary?',
     'We’ll send you everything you need to know about our Cinque-Terre & Umbria Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429687/cinque-terre-umbria__OSKIN_4052_GenFill_copy_ytmtp1.avif'),
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429687/cinque-terre-umbria__OSKIN_4052_GenFill_copy_ytmtp1.avif',
+    'Reserve Your Spot for the Cinque Terre & Umbria Photo Tour',
+    'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
    (tour7_id, 'provence-photography-tour', 'Provence',
      'Capture the magic of Southern France on our Provence & Camargue Photo Tour. From the endless lavender fields of Valensole to the iconic wild white horses running through the marshes of Camargue. This photography workshop offers expert guidance on landscape, action, and travel photography. Join us for an unforgettable journey through purple blooms and wild nature!',
@@ -857,7 +871,9 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430058/provence___A8B4955_Topaz_copy_upigxu.avif',
     'Want the full Provence Itinerary?',
     'We’ll send you everything you need to know about our Provence Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430058/provence___A8B4955_Topaz_copy_upigxu.avif'),
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430058/provence___A8B4955_Topaz_copy_upigxu.avif',
+    'Reserve Your Spot for the Provence Photo Tour',
+    'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
    (tour8_id, 'sicily-aeolian-tour', 'Sicily & Aeolian Islands',
      'Embark on a luxury Sicily & Aeolian Islands Yacht Photo Tour. Capture the dramatic eruptions of Stromboli, the turquoise bays of Panarea, and the historic streets of Lipari. This sailing photography workshop offers a unique perspective of the volcanic archipelago from the water. Master landscape and night photography. Join our private adventure!',
@@ -960,7 +976,9 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430152/sicily__IMG_0599_dmi5yb.avif',
     'Want the full Sicily & Aeolian Islands Itinerary?',
     'We’ll send you everything you need to know about our Sicily & Aeolian Islands Photo Tour & Sailing Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430152/sicily__IMG_0599_dmi5yb.avif'),
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430152/sicily__IMG_0599_dmi5yb.avif',
+    'Reserve Your Spot for the Sicily & Aeolian Islands Photo Tour',
+    'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
    (tour9_id, 'czechia-autumn-tour', 'Czechia Autumn',
      'Discover the magic of Autumn in Czechia on our exclusive photography tour. From the misty, cobblestone streets of Prague and historic castles to the rolling ''Moravian Tuscany'' vineyards. This photography workshop offers expert guidance on landscape and architectural photography in the heart of Europe. Capture the golden light and moody landscapes with us. Book your adventure today!',
@@ -1050,7 +1068,9 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429602/czech-fall__645Z8177-HDR-Pano-Topaz_v2ripe.avif',
     'Want the full Czechia Itinerary?',
     'We’ll send you everything you need to know about our Czechia Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429602/czech-fall__645Z8177-HDR-Pano-Topaz_v2ripe.avif'),
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429602/czech-fall__645Z8177-HDR-Pano-Topaz_v2ripe.avif',
+    'Reserve Your Spot for the Czechia Photo Tour',
+    'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
   (tour10_id, 'scotland-photography-tour', 'Scotland',
    'Join our Scotland Photo Tour and document the untamed beauty of the Highlands. From the dramatic peaks of Quiraing and the Old Man of Storr on the Isle of Skye to historic castles and misty glens. This landscape photography workshop offers expert guidance on capturing mood and light in the heart of Scotland. Book your adventure today!',
@@ -1140,7 +1160,9 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430128/scotland__IMGP3471_Panorama-Dehancer_copy_mpyxma.avif',
     'Want the full Scotland Itinerary?',
     'We’ll send you everything you need to know about our Scotland Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430128/scotland__IMGP3471_Panorama-Dehancer_copy_mpyxma.avif'),
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430128/scotland__IMGP3471_Panorama-Dehancer_copy_mpyxma.avif',
+    'Reserve Your Spot for the Scotland Photo Tour',
+    'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
   (tour11_id, 'tuscany-autumn-tour', 'Tuscany Autumn',
      'Join our Autumn photo tour in Tuscany to capture the world’s most iconic landscapes. From the misty rolling hills of Val d’Orcia and historic cypress alleys to the medieval charm of Pienza and Siena, this landscape photography workshop offers expert guidance on mastering the light in the heart of Italy. Experience the ultimate Tuscan creative escape. Book your photo adventure now!',
@@ -1242,7 +1264,9 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430222/tuscany-fall___IMG7020-Pano-1_1-Dechancer_copy_g90yjy.avif',
     'Want the full Tuscany Itinerary?',
     'We’ll send you everything you need to know about our Tuscany Autumn Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430222/tuscany-fall___IMG7020-Pano-1_1-Dechancer_copy_g90yjy.avif'),
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430222/tuscany-fall___IMG7020-Pano-1_1-Dechancer_copy_g90yjy.avif',
+    'Reserve Your Spot for the Tuscany Autumn Photo Tour',
+    'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
   (tour12_id, 'japan-atumn-tour', 'Japan Autumn',
     'Embark on our Japan Autumn Photo Tour to document the breathtaking Momiji season. From the neon streets of Tokyo and the iconic reflection of Mount Fuji to the serene zen gardens and hidden temples of Kyoto. This landscape photography workshop offers expert guidance in capturing the vibrant red maples and timeless spirit of Japan. Limited spots available — join us now!',
@@ -1338,7 +1362,9 @@ VALUES
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif',
     'Want the full Japan Itinerary?',
     'We’ll send you everything you need to know about our Japan Autumn Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif'),
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif',
+    'Reserve Your Spot for the Japan Autumn Photo Tour',
+    'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
   (tour13_id, 'iceland-tour', 'Iceland',
      'Join our exclusive Iceland Off-Road Photo Expedition for the ultimate wilderness experience. Venture deep into the rugged interior and the heart of the Highlands, accessible only by specialized 4x4 vehicles. From the volcanic landscapes to hidden glaciers and obsidian deserts, master your landscape photography in Europe’s last great wilderness. Start your adventure with us!',
@@ -1440,7 +1466,9 @@ VALUES
       'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777034/iceland__A8B5114-1-164x110_PRINT_topaz_Dehancer_usmbp6.avif',
       'Want the full Iceland Itinerary?',
       'We’ll send you everything you need to know about our Iceland Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
-      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777034/iceland__A8B5114-1-164x110_PRINT_topaz_Dehancer_usmbp6.avif'),
+      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777034/iceland__A8B5114-1-164x110_PRINT_topaz_Dehancer_usmbp6.avif',
+      'Reserve Your Spot for the Iceland Photo Tour',
+      'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
   (tour14_id, 'japan-spring-tour', 'Japan Spring',
      'Embark on our Japan Spring Photo Tour to document the breathtaking Momiji season. From the neon streets of Tokyo and the iconic reflection of Mount Fuji to the serene zen gardens and hidden temples of Kyoto. This landscape photography workshop offers expert guidance in capturing the vibrant red maples and timeless spirit of Japan. Limited spots available — join us now!',
@@ -1535,8 +1563,10 @@ VALUES
     'We’ll send you the Japan guide (routes, photo spots, tips) and a map with must-visit locations to see at least once in your life! Which messenger do you prefer?',
     'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif',
     'Want the full Japan Itinerary?',
-    'We’ll send you everything you need to know about our Japan Autumn Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif');
+    'We’ll send you everything you need to know about our Japan Spring Photo Expedition—including locations, workshop details, pricing, and our accommodations. Where should we send the details?',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif',
+    'Reserve Your Spot for the Japan Spring Photo Tour',
+    'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity');
 
 
 

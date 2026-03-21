@@ -23,9 +23,9 @@ type TourDTO = {
   title: string;
   description: string;
   price: number;
-  startLocation?: string;
-  endLocation?: string;
-  durationDays?: number;
+  startLocation: string;
+  endLocation: string;
+  durationDays: number;
   languages?: string[];
   difficulty?: TourView["difficulty"];
   minAge?: number | null;
@@ -63,6 +63,8 @@ type TourDTO = {
   popUp2Description: string;
   popUp2ImageUrl: string;
   popUp2Title: string;
+  ctaTitle: string;
+  ctaDescription: string;
 };
 
 function toUrl(v: string | UrlObj): string {
@@ -172,6 +174,8 @@ function mapTourToView(dto: TourDTO): TourView {
     popUp2Description: dto.popUp2Description,
     popUp2ImageUrl: dto.popUp2ImageUrl,
     popUp2Title: dto.popUp2Title,
+    ctaTitle: dto.ctaTitle,
+    ctaDescription: dto.ctaDescription,
   };
 }
 

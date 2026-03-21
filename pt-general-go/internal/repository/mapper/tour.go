@@ -24,6 +24,8 @@ func MapToDomainTour(row db.Tour) *domain.Tour {
 		PopUp2Description:  row.PopUp2Description,
 		PopUp1ImageUrl:     row.PopUp1ImageUrl,
 		PopUp2ImageUrl:     row.PopUp2ImageUrl,
+		CtaTitle:           row.CtaTitle,
+		CtaDescription:     row.CtaDescription,
 		ReviewsSectionName: row.ReviewsSectionName,
 	}
 
@@ -81,6 +83,8 @@ func MapToDomainCreateTour(row db.CreateTourRow) *domain.Tour {
 		PopUp2Description:  row.PopUp2Description,
 		PopUp1ImageUrl:     row.PopUp1ImageUrl,
 		PopUp2ImageUrl:     row.PopUp2ImageUrl,
+		CtaTitle:           row.CtaTitle,
+		CtaDescription:     row.CtaDescription,
 		ReviewsSectionName: row.ReviewsSectionName,
 	}
 
@@ -138,6 +142,8 @@ func MapToDomainGetTourByID(row db.GetTourByIDRow) *domain.Tour {
 		PopUp2Description:  row.PopUp2Description,
 		PopUp1ImageUrl:     row.PopUp1ImageUrl,
 		PopUp2ImageUrl:     row.PopUp2ImageUrl,
+		CtaTitle:           row.CtaTitle,
+		CtaDescription:     row.CtaDescription,
 		ReviewsSectionName: row.ReviewsSectionName,
 	}
 
@@ -195,6 +201,8 @@ func MapToDomainGetTourBySlug(row db.GetTourBySlugRow) *domain.Tour {
 		PopUp2Description:  row.PopUp2Description,
 		PopUp1ImageUrl:     row.PopUp1ImageUrl,
 		PopUp2ImageUrl:     row.PopUp2ImageUrl,
+		CtaTitle:           row.CtaTitle,
+		CtaDescription:     row.CtaDescription,
 		ReviewsSectionName: row.ReviewsSectionName,
 	}
 
@@ -252,6 +260,8 @@ func MapToDomainUpdateTourByID(row db.UpdateTourByIDRow) *domain.Tour {
 		PopUp2Description:  row.PopUp2Description,
 		PopUp1ImageUrl:     row.PopUp1ImageUrl,
 		PopUp2ImageUrl:     row.PopUp2ImageUrl,
+		CtaTitle:           row.CtaTitle,
+		CtaDescription:     row.CtaDescription,
 		ReviewsSectionName: row.ReviewsSectionName,
 	}
 
@@ -311,6 +321,8 @@ func MapToDomainTours(rows []db.GetToursRow) []domain.Tour {
 			PopUp2Description:  row.PopUp2Description,
 			PopUp1ImageUrl:     row.PopUp1ImageUrl,
 			PopUp2ImageUrl:     row.PopUp2ImageUrl,
+			CtaTitle:           row.CtaTitle,
+			CtaDescription:     row.CtaDescription,
 			ReviewsSectionName: row.ReviewsSectionName,
 		}
 
@@ -372,6 +384,8 @@ func MapToDomainSimilarTours(rows []db.GetSimilarToursByTourIDRow) []domain.Tour
 			PopUp2Description:  row.PopUp2Description,
 			PopUp1ImageUrl:     row.PopUp1ImageUrl,
 			PopUp2ImageUrl:     row.PopUp2ImageUrl,
+			CtaTitle:           row.CtaTitle,
+			CtaDescription:     row.CtaDescription,
 			ReviewsSectionName: row.ReviewsSectionName,
 		}
 
