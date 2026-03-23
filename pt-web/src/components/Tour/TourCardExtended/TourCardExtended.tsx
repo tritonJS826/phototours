@@ -138,6 +138,7 @@ export function TourCardExtended(props: Props) {
               </p>
               <p className={styles.startEndInfoDescriptionBottom}>
                 {props.tour.durationDays}
+&nbsp;days
               </p>
             </div>
           </div>

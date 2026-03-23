@@ -106,7 +106,7 @@ type CreateTourParams struct {
 	Price              pgtype.Float8
 	StartLocation      pgtype.Text
 	EndLocation        pgtype.Text
-	DurationDays       pgtype.Int4
+	DurationDays       pgtype.Text
 	MinAge             pgtype.Int4
 	CoverUrl           pgtype.Text
 	Languages          []string
@@ -135,7 +135,7 @@ type CreateTourRow struct {
 	Program            []byte
 	Faq                []byte
 	CoverUrl           pgtype.Text
-	DurationDays       pgtype.Int4
+	DurationDays       string
 	EndLocation        pgtype.Text
 	AvailableMonths    []string
 	Languages          []string
@@ -281,7 +281,7 @@ type GetTourByIDRow struct {
 	Program            []byte
 	Faq                []byte
 	CoverUrl           pgtype.Text
-	DurationDays       pgtype.Int4
+	DurationDays       string
 	EndLocation        pgtype.Text
 	AvailableMonths    []string
 	Languages          []string
@@ -388,7 +388,7 @@ type GetTourBySlugRow struct {
 	Program            []byte
 	Faq                []byte
 	CoverUrl           pgtype.Text
-	DurationDays       pgtype.Int4
+	DurationDays       string
 	EndLocation        pgtype.Text
 	AvailableMonths    []string
 	Languages          []string
@@ -519,7 +519,7 @@ type GetToursRow struct {
 	Program            []byte
 	Faq                []byte
 	CoverUrl           pgtype.Text
-	DurationDays       pgtype.Int4
+	DurationDays       string
 	EndLocation        pgtype.Text
 	AvailableMonths    []string
 	Languages          []string
@@ -677,7 +677,7 @@ type UpdateTourByIDParams struct {
 	Price              pgtype.Float8
 	StartLocation      pgtype.Text
 	EndLocation        pgtype.Text
-	DurationDays       pgtype.Int4
+	DurationDays       pgtype.Text
 	MinAge             pgtype.Int4
 	CoverUrl           pgtype.Text
 	Languages          []string
@@ -707,7 +707,7 @@ type UpdateTourByIDRow struct {
 	Program            []byte
 	Faq                []byte
 	CoverUrl           pgtype.Text
-	DurationDays       pgtype.Int4
+	DurationDays       string
 	EndLocation        pgtype.Text
 	AvailableMonths    []string
 	Languages          []string

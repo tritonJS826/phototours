@@ -317,7 +317,7 @@ type Tour struct {
 	Faq                []byte
 	ReviewsSectionName string
 	CoverUrl           pgtype.Text
-	DurationDays       pgtype.Int4
+	DurationDays       string
 	EndLocation        pgtype.Text
 	AvailableMonths    []string
 	Languages          []string

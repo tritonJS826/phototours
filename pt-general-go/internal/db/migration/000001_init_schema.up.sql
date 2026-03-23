@@ -58,7 +58,8 @@ CREATE TABLE tours (
     faq JSONB NOT NULL, 
     reviews_section_name TEXT NOT NULL,
     cover_url TEXT,
-    duration_days INTEGER,
+    -- probably change on list of numbers later
+    duration_days TEXT NOT NULL,
     end_location TEXT,
     available_months TEXT [] DEFAULT ARRAY []::TEXT [] NOT NULL,
     languages TEXT [] DEFAULT ARRAY []::TEXT [] NOT NULL,

@@ -38,29 +38,12 @@ func (r *TourRepository) CreateTour(ctx context.Context, createTour *domain.Crea
 		CtaDescription:    createTour.CtaDescription,
 	}
 
-	if createTour.Price != nil {
-		params.Price = pgtype.Float8{Float64: *createTour.Price, Valid: true}
-	}
-
-	if createTour.StartLocation != nil {
-		params.StartLocation = pgtype.Text{String: *createTour.StartLocation, Valid: true}
-	}
-
-	if createTour.EndLocation != nil {
-		params.EndLocation = pgtype.Text{String: *createTour.EndLocation, Valid: true}
-	}
-
-	if createTour.DurationDays != nil {
-		params.DurationDays = pgtype.Int4{Int32: *createTour.DurationDays, Valid: true}
-	}
-
-	if createTour.MinAge != nil {
-		params.MinAge = pgtype.Int4{Int32: *createTour.MinAge, Valid: true}
-	}
-
-	if createTour.CoverURL != nil {
-		params.CoverUrl = pgtype.Text{String: *createTour.CoverURL, Valid: true}
-	}
+	params.Price = pgtype.Float8{Float64: createTour.Price, Valid: true}
+	params.StartLocation = pgtype.Text{String: createTour.StartLocation, Valid: true}
+	params.EndLocation = pgtype.Text{String: createTour.EndLocation, Valid: true}
+	params.DurationDays = pgtype.Text{String: createTour.DurationDays, Valid: true}
+	params.MinAge = pgtype.Int4{Int32: createTour.MinAge, Valid: true}
+	params.CoverUrl = pgtype.Text{String: createTour.CoverURL, Valid: true}
 
 	if createTour.GroupSize != nil {
 		params.GroupSize = pgtype.Int4{Int32: *createTour.GroupSize, Valid: true}
@@ -173,7 +156,7 @@ func (r *TourRepository) UpdateTourByID(ctx context.Context, id uuid.UUID, req *
 		params.EndLocation = pgtype.Text{String: *req.EndLocation, Valid: true}
 	}
 	if req.DurationDays != nil {
-		params.DurationDays = pgtype.Int4{Int32: *req.DurationDays, Valid: true}
+		params.DurationDays = pgtype.Text{String: *req.DurationDays, Valid: true}
 	}
 	if req.MinAge != nil {
 		params.MinAge = pgtype.Int4{Int32: *req.MinAge, Valid: true}

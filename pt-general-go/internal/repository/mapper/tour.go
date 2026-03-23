@@ -27,6 +27,7 @@ func MapToDomainTour(row db.Tour) *domain.Tour {
 		CtaTitle:           row.CtaTitle,
 		CtaDescription:     row.CtaDescription,
 		ReviewsSectionName: row.ReviewsSectionName,
+		DurationDays:       &row.DurationDays,
 	}
 
 	if row.Price.Valid {
@@ -41,9 +42,7 @@ func MapToDomainTour(row db.Tour) *domain.Tour {
 	if row.Location.Valid {
 		tour.Location = &row.Location.String
 	}
-	if row.DurationDays.Valid {
-		tour.DurationDays = &row.DurationDays.Int32
-	}
+
 	if row.MinAge.Valid {
 		tour.MinAge = &row.MinAge.Int32
 	}
@@ -85,6 +84,7 @@ func MapToDomainCreateTour(row db.CreateTourRow) *domain.Tour {
 		CtaTitle:           row.CtaTitle,
 		CtaDescription:     row.CtaDescription,
 		ReviewsSectionName: row.ReviewsSectionName,
+		DurationDays:       &row.DurationDays,
 	}
 
 	if row.Price.Valid {
@@ -99,9 +99,7 @@ func MapToDomainCreateTour(row db.CreateTourRow) *domain.Tour {
 	if row.Location.Valid {
 		tour.Location = &row.Location.String
 	}
-	if row.DurationDays.Valid {
-		tour.DurationDays = &row.DurationDays.Int32
-	}
+
 	if row.MinAge.Valid {
 		tour.MinAge = &row.MinAge.Int32
 	}
@@ -143,6 +141,7 @@ func MapToDomainGetTourByID(row db.GetTourByIDRow) *domain.Tour {
 		CtaTitle:           row.CtaTitle,
 		CtaDescription:     row.CtaDescription,
 		ReviewsSectionName: row.ReviewsSectionName,
+		DurationDays:       &row.DurationDays,
 	}
 
 	if row.Price.Valid {
@@ -157,9 +156,7 @@ func MapToDomainGetTourByID(row db.GetTourByIDRow) *domain.Tour {
 	if row.Location.Valid {
 		tour.Location = &row.Location.String
 	}
-	if row.DurationDays.Valid {
-		tour.DurationDays = &row.DurationDays.Int32
-	}
+
 	if row.MinAge.Valid {
 		tour.MinAge = &row.MinAge.Int32
 	}
@@ -201,6 +198,7 @@ func MapToDomainGetTourBySlug(row db.GetTourBySlugRow) *domain.Tour {
 		CtaTitle:           row.CtaTitle,
 		CtaDescription:     row.CtaDescription,
 		ReviewsSectionName: row.ReviewsSectionName,
+		DurationDays:       &row.DurationDays,
 	}
 
 	if row.Price.Valid {
@@ -214,9 +212,6 @@ func MapToDomainGetTourBySlug(row db.GetTourBySlugRow) *domain.Tour {
 	}
 	if row.Location.Valid {
 		tour.Location = &row.Location.String
-	}
-	if row.DurationDays.Valid {
-		tour.DurationDays = &row.DurationDays.Int32
 	}
 	if row.MinAge.Valid {
 		tour.MinAge = &row.MinAge.Int32
@@ -259,6 +254,7 @@ func MapToDomainUpdateTourByID(row db.UpdateTourByIDRow) *domain.Tour {
 		CtaTitle:           row.CtaTitle,
 		CtaDescription:     row.CtaDescription,
 		ReviewsSectionName: row.ReviewsSectionName,
+		DurationDays:       &row.DurationDays,
 	}
 
 	if row.Price.Valid {
@@ -272,9 +268,6 @@ func MapToDomainUpdateTourByID(row db.UpdateTourByIDRow) *domain.Tour {
 	}
 	if row.Location.Valid {
 		tour.Location = &row.Location.String
-	}
-	if row.DurationDays.Valid {
-		tour.DurationDays = &row.DurationDays.Int32
 	}
 	if row.MinAge.Valid {
 		tour.MinAge = &row.MinAge.Int32
@@ -319,6 +312,7 @@ func MapToDomainTours(rows []db.GetToursRow) []domain.Tour {
 			CtaTitle:           row.CtaTitle,
 			CtaDescription:     row.CtaDescription,
 			ReviewsSectionName: row.ReviewsSectionName,
+			DurationDays:       &row.DurationDays,
 		}
 
 		if row.Price.Valid {
@@ -333,9 +327,7 @@ func MapToDomainTours(rows []db.GetToursRow) []domain.Tour {
 		if row.Location.Valid {
 			tour.Location = &row.Location.String
 		}
-		if row.DurationDays.Valid {
-			tour.DurationDays = &row.DurationDays.Int32
-		}
+
 		if row.MinAge.Valid {
 			tour.MinAge = &row.MinAge.Int32
 		}
@@ -381,6 +373,7 @@ func MapToDomainSimilarTours(rows []db.GetSimilarToursByTourIDRow) []domain.Tour
 			CtaTitle:           row.CtaTitle,
 			CtaDescription:     row.CtaDescription,
 			ReviewsSectionName: row.ReviewsSectionName,
+			DurationDays:       &row.DurationDays,
 		}
 
 		if row.Price.Valid {
@@ -394,9 +387,6 @@ func MapToDomainSimilarTours(rows []db.GetSimilarToursByTourIDRow) []domain.Tour
 		}
 		if row.Location.Valid {
 			tour.Location = &row.Location.String
-		}
-		if row.DurationDays.Valid {
-			tour.DurationDays = &row.DurationDays.Int32
 		}
 		if row.MinAge.Valid {
 			tour.MinAge = &row.MinAge.Int32

@@ -245,7 +245,7 @@ VALUES
           "answer": "The price of the spring photo expedition in Tuscany includes:\n\n• Accommodation: Lodging at the iconic Poggio Covili villa (offering single occupancy or double rooms for couples).\n• Local Logistics: Airport transfers (Rome) and all transportation throughout the region in a high-end Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, on-site mentoring, and masterclasses, including post-processing.\n\nDetailed information about any extra costs can be requested from our management team."
         }
       ]}',
-      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__FUJI8847-Pano-Pano-Dehancer_copy_lgg7p7.avif', 10, 'Rome (FCO)', 'Rome (FCO)',
+      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1768886469/tuscan-spring__FUJI8847-Pano-Pano-Dehancer_copy_lgg7p7.avif', '10', 'Rome (FCO)', 'Rome (FCO)',
       ARRAY['March','May'], ARRAY['English'], 16, 'Europe', 7, 4, 'About Our Tuscany Spring Photo Expedition',
       'Testimonials from Our Tuscan Photography Workshop Participants',
       'Get the Ultimate Val d’Orcia Insider Guide', 
@@ -360,7 +360,7 @@ VALUES
         "answer": "Your booking provides a comprehensive, stress-free expedition:\n\n• Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n• Logistics: Airport transfers (Casablanca) and all regional travel in a premium, air-conditioned Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, on-site mentoring, and masterclasses, including post-processing.\n\nDetailed information about any extra costs can be requested from our management team."
       }
     ]}',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429914/morocco___A8B2183_90x63-topaz-denoiseraw-sharpen-color_copy_d6h1s7.avif', 12, 'Casablanca (CMN)', 'Casablanca (CMN)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429914/morocco___A8B2183_90x63-topaz-denoiseraw-sharpen-color_copy_d6h1s7.avif', '12', 'Casablanca (CMN)', 'Casablanca (CMN)',
     ARRAY['January','February'], ARRAY['English'], 16, 'Africa', 7, 9, 'About Our Morocco Photo Expedition',
     'Testimonials from Our Morocco Photography Workshop Participants',
     'Get the Morocco Insider Guide', 
@@ -433,7 +433,7 @@ VALUES
         "answer": "Your booking ensures a seamless and professional photography experience:\n\n• Accommodation: Lodging in a historic Venetian loft (twin-share with your partner or another participant of the same gender).\n- Expert Mentoring: All guided shooting sessions, workshops, on-site mentoring, and post-processing masterclasses.\n\nDetailed information about specific inclusions or extra costs can be requested from our managers."
       }
     ]}',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771393839/venice_2_1_ghkmly.avif', 5, 'Venice (VCE)', 'Venice (VCE)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771393839/venice_2_1_ghkmly.avif', '5', 'Venice (VCE)', 'Venice (VCE)',
     ARRAY['February'], ARRAY['English'], 12, 'Europe', 7, 5, 'About Our Venice Carnival Photo Experience',
     'Testimonials from Our Venice Carnival Photography Workshop Participants',
     'Get the Ultimate "Top 100 Global Locations" Map', 
@@ -566,7 +566,7 @@ VALUES
         "answer": "Your booking provides a comprehensive, stress-free photography and travel experience tailored to your chosen route:\n\n• Full Itinerary (Both Islands): All domestic flights between the North and South Islands are included in the price.\n• North Island Only: The tour starts and ends in Auckland; no domestic flights are required for this portion.\n• South Island Only: You will need to arrange your own transport to the starting point on the South Island, or contact us to coordinate with the main group’s arrival.\n\nThe standard tour price covers accommodation (twin-share rooms in high-quality hotels with your partner or another participant of the same gender), expert mentoring, and all local ground transportation for your chosen duration (10, 11, or 21 days)."
       }
     ]}',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif', 21, 'Auckland (AKL)', 'Auckland (AKL)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429985/new-zealand___IGP8438-Pano-Dehancer_copy_3_ymdyii.avif', '10,11 or 21', 'Auckland (AKL)', 'Auckland (AKL)',
     ARRAY['December', 'April'], ARRAY['English'], 16, 'Asia & Oceania', 11, 3, 'About Our New Zealand Photo Expedition',
     'Testimonials from Our New Zealand Photography Workshop Participants',
     'Get the New Zealand Insider Guide', 
@@ -651,7 +651,7 @@ VALUES
         "answer": "Your booking provides a comprehensive and stress-free Greek island photography expedition:\n\n• Accommodation & Sailing: Stay on the catamaran and professional maritime services.\n• Logistics: All in-tour transportation and professional skipper & crew services, airport transfers (Athens) in a Mercedes E vehicle.\n• Expert Mentoring: Daily photo shoots and professional workshops.\n• Creative Growth: Focused editing and post-processing sessions to help you bring home trophy shots.\n• Unique Experiences: A blend of cultural experiences and high-end travel photography."
       }
     ]}',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429871/cyclades__IMG_8808-Pano_copy_jkdqjj.avif', 7, 'Athens (ATH)', 'Athens  (ATH)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429871/cyclades__IMG_8808-Pano_copy_jkdqjj.avif', '7', 'Athens (ATH)', 'Athens  (ATH)',
     ARRAY['May'], ARRAY['English'], 16, 'Europe', 11, 6, 'About Our Cyclades Photo Expedition',
     'Testimonials from Our Cyclades Photography Workshop Participants',
     'Get the Ultimate "Top 100 Global Locations" Map', 
@@ -754,7 +754,7 @@ VALUES
         "answer": "Your booking provides a comprehensive, stress-free photography experience:\n\n• Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n• Logistics: Airport transfers (Florence) and all regional travel in a Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing."
       }
     ]}',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429687/cinque-terre-umbria__OSKIN_4052_GenFill_copy_ytmtp1.avif', 10, 'Florence (FLR)', 'Florence (FLR)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429687/cinque-terre-umbria__OSKIN_4052_GenFill_copy_ytmtp1.avif', '10', 'Florence (FLR)', 'Florence (FLR)',
     ARRAY['June'], ARRAY['English'], 14, 'Europe', 7, 7, 'About Our Cinque Terre & Umbria Photo Tour',
     'Testimonials from Our Cinque Terre & Umbria Photo Tour Photography Workshop Participants',
     'Get the Ultimate "Top 100 Global Locations" Map', 
@@ -839,7 +839,7 @@ VALUES
         "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n• Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n• Logistics: Airport transfers (Marseille) and all regional travel in a Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing."
       }
     ]}',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430058/provence___A8B4955_Topaz_copy_upigxu.avif', 7, 'Marseille (MRS)', 'Marseille (MRS)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430058/provence___A8B4955_Topaz_copy_upigxu.avif', '7', 'Marseille (MRS)', 'Marseille (MRS)',
     ARRAY['June','July'], ARRAY['English'], 16, 'Europe', 7, 10, 'About Our Provence & Camargue Photo Expedition',
     'Testimonials from Our Provence Photography Workshop Participants',
     'Get the Ultimate "Top 100 Global Locations" Map', 
@@ -943,7 +943,7 @@ VALUES
           "answer": "Your booking provides a comprehensive and stress-free 10-day photography expedition:\n\n• Accommodation: Lodging on board the catamaran.\n• Logistics: All in-tour transportation and professional skipper & crew services, airport transfers (Catania).\n• Education: Guided sunrise and sunset photo sessions, workshops, and post-processing lessons."
         }
     ]}',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430152/sicily__IMG_0599_dmi5yb.avif', 10, 'Catania (CTA)', 'Catania (CTA)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430152/sicily__IMG_0599_dmi5yb.avif', '10', 'Catania (CTA)', 'Catania (CTA)',
     ARRAY['June','July'], ARRAY['English'], 16, 'Europe', 7, 12, 'About Our Sicily & the Aeolian Islands Photo Expedition',
     'Testimonials from Our Sicily & Aeolian Islands Photography Workshop Participants',
     'Get the Ultimate "Top 100 Global Locations" Map', 
@@ -1034,7 +1034,7 @@ VALUES
         "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n• Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n• Logistics: Airport transfers (Prague) and all regional travel in a premium Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing."
       }
     ]}',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429602/czech-fall__645Z8177-HDR-Pano-Topaz_v2ripe.avif', 10, 'Prague (PRG)', 'Prague (PRG)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429602/czech-fall__645Z8177-HDR-Pano-Topaz_v2ripe.avif', '10', 'Prague (PRG)', 'Prague (PRG)',
     ARRAY['October'], ARRAY['English'], 14, 'Europe', 7, 8, 'About Our Czechia Photo Expedition',
     'Testimonials from Our Czechia Photography Workshop Participants',
     'Get the Ultimate "Top 100 Global Locations" Map', 
@@ -1125,7 +1125,7 @@ VALUES
         "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n• Accommodation: Twin-share rooms in high-quality hotels with your partner or another participant of the same gender.\n• Logistics: Airport transfers and all regional travel in a premium vehicle.\n• Expert Mentoring: All shooting sessions, workshops, on-site mentoring, and masterclasses, including post-processing."
       }
     ]}',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430128/scotland__IMGP3471_Panorama-Dehancer_copy_mpyxma.avif', 8, 'Edinburgh (EDI)', 'Edinburgh (EDI)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430128/scotland__IMGP3471_Panorama-Dehancer_copy_mpyxma.avif', '8', 'Edinburgh (EDI)', 'Edinburgh (EDI)',
     ARRAY['October'], ARRAY['English'], 16, 'Europe', 7, 7, 'About Our Scotland Photo Expedition',
     'Testimonials from Our Scotland Photography Workshop Participants',
     'Get the Ultimate "Top 100 Global Locations" Map', 
@@ -1228,7 +1228,7 @@ VALUES
         "answer": "Your booking provides a comprehensive, stress-free experience:\n\n• Accommodation: Lodging at the legendary Poggio Covili villa (available as single occupancy or double rooms for couples).\n• Logistics: All airport transfers (Rome) and regional travel in a high-comfort Mercedes vehicle.\n• Expert Mentoring: All shooting sessions, photo workshops, on-site mentoring, and masterclasses, including post-processing.\n\nDetailed information about any extra costs can be requested from our management team."
       }
     ]}',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430222/tuscany-fall___IMG7020-Pano-1_1-Dechancer_copy_g90yjy.avif', 10, 'Rome (FCO)', 'Rome (FCO)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769430222/tuscany-fall___IMG7020-Pano-1_1-Dechancer_copy_g90yjy.avif', '10', 'Rome (FCO)', 'Rome (FCO)',
     ARRAY['October','November'], ARRAY['English'], 16, 'Europe', 7, 5, 'About Our Tuscany Autumn Photo Expedition',
     'Testimonials from Our Tuscan Photography Workshop Participants',
     'Get the Ultimate Val d’Orcia Insider Guide', 
@@ -1325,7 +1325,7 @@ VALUES
         "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n• Professional Guidance: Daily shoots and workshops led by an expert photo guide.\n• Unique Cultural Stays: An immersive Ryokan experience and visits to the Jigokudani Monkey Park.\n• Creative Growth: In-depth editing and post-processing sessions to refine your portfolio.\n• Logistics: All transportation, accommodation, and breakfasts throughout the 10-day itinerary."
       }
     ]}',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif', 10, 'Tokyo (TYO)', 'Tokyo (TYO)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1770128122/japan_fall_1_IMG3488-Pano-Edit-Cover_2_2_lusnab.avif', '10', 'Tokyo (TYO)', 'Tokyo (TYO)',
     ARRAY['November','December'], ARRAY['English'], 14, 'Asia & Oceania', 10, 3, 'About Our Japan Autumn Photo Expedition',
     'Testimonials from Our Japan Autumn Photography Workshop Participants',
     'Get the Ultimate Japan Insider Guide', 
@@ -1428,7 +1428,7 @@ VALUES
           "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n• Accommodation: 10 days of accommodation in a specialized camper trailer, allowing us to stay in close proximity to key shooting locations.\n• Logistics: Airport transfers (Keflavík) and all regional travel in a specialized vehicle.\n• Expert Mentoring: All sunrise and sunset photo sessions, workshops, and on-site guidance.\n• Education: Dedicated editing and post-processing sessions."
         }
       ]}',
-      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777034/iceland__A8B5114-1-164x110_PRINT_topaz_Dehancer_usmbp6.avif', 10, 'Reykjavik (KEF)', 'Reykjavik (KEF)',
+      'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769777034/iceland__A8B5114-1-164x110_PRINT_topaz_Dehancer_usmbp6.avif', '10', 'Reykjavik (KEF)', 'Reykjavik (KEF)',
       ARRAY['July','August','September'], ARRAY['English'], 14, 'Europe', 6, 3, 'About Our Iceland Photo Expedition',
       'Testimonials from Our Iceland Photography Workshop Participants',
       'Get the Ultimate "Top 100 Global Locations" Map', 
@@ -1522,10 +1522,10 @@ VALUES
       },
       {
         "question": "6. What exactly is included in the 10-day Japan photo tour?",
-        "answer": "Your booking provides a comprehensive, stress-free photography and cultural experience:\n\n• Professional Guidance: Daily shoots and workshops led by an expert photo guide.\n• Unique Cultural Stays: An immersive Ryokan experience and visits to the Jigokudani Monkey Park.\n• Creative Growth: In-depth editing and post-processing sessions to refine your portfolio.\n• Logistics: All transportation, accommodation, and breakfasts throughout the 10-day itinerary."
+        "answer": "Your booking provides a comprehensive, stress-free photography and culztural experience:\n\n• Professional Guidance: Daily shoots and workshops led by an expert photo guide.\n• Unique Cultural Stays: An immersive Ryokan experience and visits to the Jigokudani Monkey Park.\n• Creative Growth: In-depth editing and post-processing sessions to refine your portfolio.\n• Logistics: All transportation, accommodation, and breakfasts throughout the 10-day itinerary."
       }
     ]}',
-    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', 10, 'Tokyo (TYO)', 'Tokyo (TYO)',
+    'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429835/japan-spring__P1040001-Edit_imq7un.avif', '10', 'Tokyo (TYO)', 'Tokyo (TYO)',
     ARRAY['March','April'], ARRAY['English'], 14, 'Asia & Oceania', 10, 3, 'About Our Japan Spring Photo Expedition',
     'Testimonials from Our Japan Spring Photography Workshop Participants',
     'Get the Ultimate Japan Insider Guide', 

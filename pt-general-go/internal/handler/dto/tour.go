@@ -6,12 +6,12 @@ import (
 )
 
 type TourDTO struct {
-	Price              *float64        `json:"price" example:"1500.00"`
-	MinAge             *int32          `json:"minAge" example:"18"`
-	EndLocation        *string         `json:"endLocation" example:"Astana"`
-	StartLocation      *string         `json:"startLocation" example:"Almaty"`
-	DurationDays       *int32          `json:"durationDays" example:"7"`
-	CoverURL           *string         `json:"coverUrl" example:"https://example.com/cover.jpg"`
+	Price              float64         `json:"price" example:"1500.00"`
+	MinAge             int32           `json:"minAge" example:"18"`
+	EndLocation        string          `json:"endLocation" example:"Astana"`
+	StartLocation      string          `json:"startLocation" example:"Almaty"`
+	DurationDays       string          `json:"durationDays" example:"7"`
+	CoverURL           string          `json:"coverUrl" example:"https://example.com/cover.jpg"`
 	Description        string          `json:"description" example:"An exciting mountain tour"`
 	Difficulty         string          `json:"difficulty" example:"MEDIUM"`
 	Slug               string          `json:"slug" example:"mountain-adventure"`
@@ -55,7 +55,7 @@ type CreateTourRequest struct {
 	Difficulty         string          `json:"difficulty" binding:"required" example:"MEDIUM"`
 	Slug               *string         `json:"slug" example:"mountain-adventure"`
 	CoverURL           *string         `json:"coverUrl" example:"https://example.com/cover.jpg"`
-	DurationDays       *int32          `json:"durationDays" example:"7"`
+	DurationDays       *string         `json:"durationDays" example:"7"`
 	Price              *float64        `json:"price" example:"1500.00"`
 	StartLocation      *string         `json:"startLocation" example:"Almaty"`
 	EndLocation        *string         `json:"endLocation" example:"Astana"`
@@ -73,7 +73,7 @@ type UpdateTourRequest struct {
 	Difficulty         *string          `json:"difficulty" example:"HARD"`
 	CoverURL           *string          `json:"coverUrl" example:"https://example.com/new-cover.jpg"`
 	Price              *float64         `json:"price" example:"2000.00"`
-	DurationDays       *int32           `json:"durationDays" example:"10"`
+	DurationDays       *string          `json:"durationDays" example:"10"`
 	StartLocation      *string          `json:"startLocation" example:"Bishkek"`
 	EndLocation        *string          `json:"endLocation" example:"Osh"`
 	MinAge             *int32           `json:"minAge" example:"21"`

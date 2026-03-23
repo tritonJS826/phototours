@@ -58,7 +58,7 @@ type GetSimilarToursByTourIDRow struct {
 	Program            []byte
 	Faq                []byte
 	CoverUrl           pgtype.Text
-	DurationDays       pgtype.Int4
+	DurationDays       string
 	EndLocation        pgtype.Text
 	AvailableMonths    []string
 	Languages          []string

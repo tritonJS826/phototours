@@ -19,13 +19,13 @@ const (
 )
 
 type CreateTourParams struct {
-	MinAge             *int32          `json:"minAge"`
-	EndLocation        *string         `json:"endLocation"`
-	StartLocation      *string         `json:"startLocation"`
-	Price              *float64        `json:"price"`
-	DurationDays       *int32          `json:"durationDays"`
-	Slug               *string         `json:"slug"`
-	CoverURL           *string         `json:"coverUrl"`
+	MinAge             int32           `json:"minAge"`
+	EndLocation        string          `json:"endLocation"`
+	StartLocation      string          `json:"startLocation"`
+	Price              float64         `json:"price"`
+	DurationDays       string          `json:"durationDays"`
+	Slug               string          `json:"slug"`
+	CoverURL           string          `json:"coverUrl"`
 	Description        string          `json:"description"`
 	Difficulty         string          `json:"difficulty"`
 	Title              string          `json:"title"`
@@ -72,7 +72,7 @@ func (t *CreateTourParams) Validate() error {
 }
 
 type UpdateTourParams struct {
-	DurationDays       *int32           `json:"durationDays"`
+	DurationDays       *string          `json:"durationDays"`
 	MinAge             *int32           `json:"minAge"`
 	EndLocation        *string          `json:"endLocation"`
 	Price              *float64         `json:"price"`
@@ -133,8 +133,8 @@ func (r *UpdateTourParams) Validate() error {
 	if r.MinAge != nil && *r.MinAge < 0 {
 		return errors.New("minAge cannot be negative")
 	}
-	if r.DurationDays != nil && *r.DurationDays <= 0 {
-		return errors.New("durationDays must be positive")
+	if r.DurationDays != nil && strings.TrimSpace(*r.DurationDays) == "" {
+		return errors.New("durationDays cannot be empty")
 	}
 	if r.Title != nil && strings.TrimSpace(*r.Title) == "" {
 		return errors.New("title cannot be empty")
@@ -155,7 +155,7 @@ func (r *UpdateTourParams) Validate() error {
 type Tour struct {
 	UpdatedAt          time.Time       `json:"updatedAt"`
 	CreatedAt          time.Time       `json:"createdAt"`
-	DurationDays       *int32          `json:"durationDays"`
+	DurationDays       *string         `json:"durationDays"`
 	MinAge             *int32          `json:"minAge"`
 	EndLocation        *string         `json:"endLocation"`
 	Price              *float64        `json:"price"`

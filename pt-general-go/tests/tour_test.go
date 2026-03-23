@@ -41,12 +41,12 @@ func (s *APITestSuite) createTour() (*domain.CreateTourParams, uuid.UUID) {
 		Description:     "Amazing tour",
 		Difficulty:      "EASY",
 		Program:         json.RawMessage(`{"days":[{"day":1,"title":"Intro"}]}`),
-		Price:           floatPtr(199.99),
-		StartLocation:   strPtr("City A"),
-		EndLocation:     strPtr("City B"),
-		DurationDays:    int32Ptr(3),
-		MinAge:          int32Ptr(10),
-		CoverURL:        strPtr("http://img"),
+		Price:           199.99,
+		StartLocation:   "City A",
+		EndLocation:     "City B",
+		DurationDays:    "3",
+		MinAge:          10,
+		CoverURL:        "http://img",
 		Languages:       []string{"en", "ru"},
 		AvailableMonths: []string{"June", "July"},
 	}
@@ -181,7 +181,7 @@ func (s *APITestSuite) TestUpdateTourByID_AllFields() {
 		Price:           floatPtr(499.99),
 		StartLocation:   strPtr("New Start"),
 		EndLocation:     strPtr("New End"),
-		DurationDays:    int32Ptr(7),
+		DurationDays:    strPtr("7"),
 		MinAge:          int32Ptr(16),
 		CoverURL:        strPtr("http://new.jpg"),
 		Languages:       &newLangs,
@@ -206,7 +206,7 @@ func (s *APITestSuite) TestUpdateTourByID_AllFields() {
 	s.Equal(499.99, *tour.Price)
 	s.Equal("New Start", *tour.StartLocation)
 	s.Equal("New End", *tour.EndLocation)
-	s.Equal(int32(7), *tour.DurationDays)
+	s.Equal("7", *tour.DurationDays)
 	s.Equal(int32(16), *tour.MinAge)
 	s.Equal("http://new.jpg", *tour.CoverURL)
 	s.ElementsMatch(newLangs, tour.Languages)
@@ -265,7 +265,7 @@ func (s *APITestSuite) TestUpdateTourByID_PriceAndDurationDays() {
 
 	update := domain.UpdateTourParams{
 		Price:        floatPtr(599.99),
-		DurationDays: int32Ptr(14),
+		DurationDays: strPtr("14"),
 	}
 
 	body, err := json.Marshal(update)
