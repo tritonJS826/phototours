@@ -319,7 +319,7 @@ VALUES
         "day": 10,
         "plan": "THE MEDINA OF FEZ: A MASTERCLASS IN LIGHT & SHADOW",
         "description": "Walking through the Medina of Fez is like stepping back in time. In this labyrinth of thousands of alleyways, the modern world disappears, replaced by the rhythmic sounds of artisan workshops and the scents of mint, leather, and spices. For a street photographer, it is an absolute paradise where every corner offers a new story: from an elderly man in a traditional djellaba to vibrant textile shops.\n\nThe true magic of Fez lies in its light. In the narrow, sun-drenched passages, light breaks through from above in sharp, cinematic beams. These slices of brightness transform the chaotic medina into a series of graphic compositions. This is the perfect environment for minimalist street photography, where you can capture a lone silhouette frozen in a rectangle of light against the deep shadows of the ancient walls.\n\nA walk through the medina becomes a creative game: you move with the light, waiting for the perfect moment when the chaos of the city aligns into a perfectly composed frame. Fez is a city of contrasts—vibrant yet austere, chaotic yet rhythmic—offering a profound experience for any travel photographer.",
-        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1769429914/morocco___1506791-Edit_copy_qfpygh.avif"
+        "imgUrl": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1774293398/morocco___2944615579_ojoxls.avif"
       },
       {
         "day": 11,
