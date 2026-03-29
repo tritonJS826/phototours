@@ -156,7 +156,7 @@ INSERT INTO tours (
 VALUES
     (tour1_id, 'tuscany-spring-photo-tour', 'Spring Tuscany',
      'Capture the essence of Italy on our Spring Tuscany Photo Tour. Experience the iconic emerald hills of the Val d’Orcia, misty sunrises at Podere Belvedere, and the medieval charm of Pienza. This immersive landscape photography workshop features expert-led shoots, cypress alleys, and the hidden gems of the region. Limited to a small group for a 10-day tour. Book your photography adventure today!',
-      'EASY', 3800.00,
+      'EASY', 5320.00,
       '{"days": [
         {
           "day": 1,
@@ -259,7 +259,7 @@ VALUES
 
    (tour2_id, 'morocco-photo-tour', 'Morocco',
     'Experience the magic of Morocco on a visual journey from the blue-washed streets of Chefchaouen to the golden dunes of the Sahara Desert. Capture the vibrant souks of Marrakech, the ancient kasbahs of Ait Ben Haddou, and the majestic Atlas Mountains. This immersive photography workshop offers expert-led sunrise and sunset sessions in Morocco’s most iconic locations. Join our exclusive small group for an unforgettable adventure!',
-    'EASY', 3200.00,
+    'EASY', 4480.00,
     '{"days":[
       {
         "day": 1,
@@ -374,7 +374,7 @@ VALUES
 
    (tour3_id, 'venice-carnival-photo-tour', 'Venice Carnival',
      'Join our Venice Carnival Photo Tour for an unforgettable creative experience. Capture the elegance of Venetian masks and elaborate costumes against the backdrop of St. Mark’s Square. This photography workshop includes private shoots in historic places, gondola sessions, and hidden gems of Venice. Master your skills at sunrise and sunset. Limited small group tour. Book your photography adventure!',
-     'EASY', 2500.00,
+     'EASY', 3500.00,
     '{"days": [
       {
         "day": 1,
@@ -447,7 +447,7 @@ VALUES
 
    (tour4_id, 'new-zealand-photo-tour', 'New Zealand',
       'Embark on the ultimate New Zealand Photo Tour. This comprehensive workshop covers the most iconic landscapes of both the North and South Islands. From the emerald lakes of Tongariro to the majestic peaks of Mount Cook and the mystical Milford Sound, capture the breathtaking diversity of the ''Land of the Long White Cloud.'' Join our photography expedition!',
-     'EASY', 4100.00,
+     'EASY', 5740.00,
      '{"days":[
       {
         "day": "1–2",
@@ -580,7 +580,7 @@ VALUES
 
    (tour5_id, 'cyclades-sailing-tour', 'Cyclades Sailing',
      'Experience our Cyclades Photo Tour aboard a private sailing catamaran. Capture the iconic white-washed beauty of Santorini and the surreal moonscapes of Milos. This photography workshop offers unique sea-access viewpoints, sunrise sessions at Sarakiniko, and golden hour shoots from the water. Master your skills while sailing the Aegean Sea in style. Book your photography adventure!',
-     'EASY', 3200.00,
+     'EASY', 4480.00,
      '{"days": [
       {
         "day": "1",
@@ -665,7 +665,7 @@ VALUES
 
    (tour6_id, 'cinque-terre-umbria-tour', 'Cinque-Terre & Umbria',
      'Capture Italy’s soul on our Cinque Terre & Umbria Photo Tour. From the vibrant cliffside villages of the Italian Riviera to the misty medieval towns of Umbria. This photography workshop features sunrise in Manarola, sunset in Orvieto, and the iconic ''dying city'' of Civita di Bagnoregio. Master landscape and street photography in a small group. Book your adventure!',
-     'EASY', 3500.00,
+     'EASY', 4900.00,
      '{"days": [
       {
         "day": "1",
@@ -768,7 +768,7 @@ VALUES
 
    (tour7_id, 'provence-photography-tour', 'Provence',
      'Capture the magic of Southern France on our Provence & Camargue Photo Tour. From the endless lavender fields of Valensole to the iconic wild white horses running through the marshes of Camargue. This photography workshop offers expert guidance on landscape, action, and travel photography. Join us for an unforgettable journey through purple blooms and wild nature!',
-     'EASY', 3900.00,
+     'EASY', 5460.00,
      '{"days": [
       {
         "day": "1",
@@ -853,7 +853,7 @@ VALUES
 
    (tour8_id, 'sicily-aeolian-tour', 'Sicily & Aeolian Islands',
      'Embark on a luxury Sicily & Aeolian Islands Yacht Photo Tour. Capture the dramatic eruptions of Stromboli, the turquoise bays of Panarea, and the historic streets of Lipari. This sailing photography workshop offers a unique perspective of the volcanic archipelago from the water. Master landscape and night photography. Join our private adventure!',
-     'EASY', 3900.00,
+     'EASY', 5460.00,
      '{"days": [
       {
         "day": "1",
@@ -957,7 +957,7 @@ VALUES
 
    (tour9_id, 'czechia-autumn-tour', 'Czechia Autumn',
      'Discover the magic of Autumn in Czechia on our exclusive photography tour. From the misty, cobblestone streets of Prague and historic castles to the rolling ''Moravian Tuscany'' vineyards. This photography workshop offers expert guidance on landscape and architectural photography in the heart of Europe. Capture the golden light and moody landscapes with us. Book your adventure today!',
-     'EASY', 2900.00,
+     'EASY', 4060.00,
      '{"days":[
       {
         "day": "1",
@@ -1048,7 +1048,7 @@ VALUES
 
   (tour10_id, 'scotland-photography-tour', 'Scotland',
    'Join our Scotland Photo Tour and document the untamed beauty of the Highlands. From the dramatic peaks of Quiraing and the Old Man of Storr on the Isle of Skye to historic castles and misty glens. This landscape photography workshop offers expert guidance on capturing mood and light in the heart of Scotland. Book your adventure today!',
-     'EASY', 3600.00,
+     'EASY', 5040.00,
      '{"days": [
       {
         "day": "1",
@@ -1139,7 +1139,7 @@ VALUES
 
   (tour11_id, 'tuscany-autumn-tour', 'Tuscany Autumn',
      'Join our Autumn photo tour in Tuscany to capture the world’s most iconic landscapes. From the misty rolling hills of Val d’Orcia and historic cypress alleys to the medieval charm of Pienza and Siena, this landscape photography workshop offers expert guidance on mastering the light in the heart of Italy. Experience the ultimate Tuscan creative escape. Book your photo adventure now!',
-     'EASY', 3800.00,
+     'EASY', 5320.00,
      '{"days": [
       {
         "day": "1",
@@ -1242,7 +1242,7 @@ VALUES
 
   (tour12_id, 'japan-atumn-tour', 'Japan Autumn',
     'Embark on our Japan Autumn Photo Tour to document the breathtaking Momiji season. From the neon streets of Tokyo and the iconic reflection of Mount Fuji to the serene zen gardens and hidden temples of Kyoto. This landscape photography workshop offers expert guidance in capturing the vibrant red maples and timeless spirit of Japan. Limited spots available — join us now!',
-    'EASY', 4500.00,
+    'EASY', 6300.00,
     '{"days": [
       {
         "day": "1",
@@ -1339,7 +1339,7 @@ VALUES
 
   (tour13_id, 'iceland-tour', 'Iceland',
      'Join our exclusive Iceland Off-Road Photo Expedition for the ultimate wilderness experience. Venture deep into the rugged interior and the heart of the Highlands, accessible only by specialized 4x4 vehicles. From the volcanic landscapes to hidden glaciers and obsidian deserts, master your landscape photography in Europe’s last great wilderness. Start your adventure with us!',
-     'EASY', 4450.00,
+     'EASY', 6230.00,
      '{"days": [
         {
           "day": "1",
@@ -1442,7 +1442,7 @@ VALUES
 
   (tour14_id, 'japan-spring-tour', 'Japan Spring',
      'Embark on our Japan Spring Photo Tour to document the breathtaking Momiji season. From the neon streets of Tokyo and the iconic reflection of Mount Fuji to the serene zen gardens and hidden temples of Kyoto. This landscape photography workshop offers expert guidance in capturing the vibrant red maples and timeless spirit of Japan. Limited spots available — join us now!',
-     'EASY', 4500.00,
+     'EASY', 6300.00,
      '{"days": [
       {
         "day": "1",
@@ -2372,20 +2372,20 @@ VALUES
 -- BOOKINGS
 INSERT INTO bookings (id, tour_date_id, user_id, status, participants, total_price)
 VALUES
-  -- (booking1_id, tour_date1_id, user3_id, 'CONFIRMED', 2, 2500.00),
-  -- (booking2_id, tour_date3_id, user4_id, 'PENDING', 1, 180.00),
-  -- (booking3_id, tour_date4_id, user7_id, 'CONFIRMED', 3, 1950.00),
-  -- (booking4_id, tour_date5_id, user8_id, 'CANCELLED', 2, 3600.00),
-  (booking5_id, tour_date5_id, user10_id, 'CONFIRMED', 1, 950.00);
+  -- (booking1_id, tour_date1_id, user3_id, 'CONFIRMED', 2, 3500.00),
+  -- (booking2_id, tour_date3_id, user4_id, 'PENDING', 1, 252.00),
+  -- (booking3_id, tour_date4_id, user7_id, 'CONFIRMED', 3, 2730.00),
+  -- (booking4_id, tour_date5_id, user8_id, 'CANCELLED', 2, 5040.00),
+  (booking5_id, tour_date5_id, user10_id, 'CONFIRMED', 1, 1330.00);
 
 -- PAYMENTS
 INSERT INTO payments (booking_id, amount, payment_method, status, transaction_id)
 VALUES
-  -- (booking1_id, 2500.00, 'CARD', 'COMPLETED', 'TXN123ABC'),
-  -- (booking2_id, 180.00, 'PAYPAL', 'PENDING', 'TXN987XYZ'),
-  -- (booking3_id, 1950.00, 'BANK_TRANSFER', 'COMPLETED', 'TXN654QWE'),
-  -- (booking4_id, 3600.00, 'CARD', 'REFUNDED', 'TXN444RTY'),
-  (booking5_id, 950.00, 'CARD', 'COMPLETED', 'TXN999BNM');
+  -- (booking1_id, 3500.00, 'CARD', 'COMPLETED', 'TXN123ABC'),
+  -- (booking2_id, 252.00, 'PAYPAL', 'PENDING', 'TXN987XYZ'),
+  -- (booking3_id, 2730.00, 'BANK_TRANSFER', 'COMPLETED', 'TXN654QWE'),
+  -- (booking4_id, 5040.00, 'CARD', 'REFUNDED', 'TXN444RTY'),
+  (booking5_id, 1330.00, 'CARD', 'COMPLETED', 'TXN999BNM');
 
 -- REVIEWS
 INSERT INTO reviews (tour_id, user_id, rating, comment, user_name, link, image)
