@@ -6,6 +6,8 @@ SELECT
     date_to,
     group_size,
     is_available,
+    price,
+    description,
     created_at,
     updated_at
 FROM tour_dates
@@ -19,6 +21,8 @@ SELECT
     date_to,
     group_size,
     is_available,
+    price,
+    description,
     created_at,
     updated_at
 FROM tour_dates

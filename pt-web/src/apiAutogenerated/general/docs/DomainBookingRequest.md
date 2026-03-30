@@ -10,6 +10,7 @@ Name | Type
 `country` | string
 `email` | string
 `id` | string
+`isVip` | boolean
 `language` | string
 `lastContactPage` | string
 `name` | string
@@ -33,6 +34,7 @@ const example = {
   "country": null,
   "email": null,
   "id": null,
+  "isVip": null,
   "language": null,
   "lastContactPage": null,
   "name": null,

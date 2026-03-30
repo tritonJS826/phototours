@@ -8,6 +8,7 @@ export interface BookingRequest {
   travelDate: string;
   travelers: number;
   rooms: number;
+  isVip?: boolean;
   language?: string;
   timezone?: string;
   city?: string;

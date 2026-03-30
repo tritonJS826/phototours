@@ -9,9 +9,11 @@ Name | Type
 `createdAt` | string
 `dateFrom` | string
 `dateTo` | string
+`description` | string
 `groupSize` | number
 `id` | string
 `isAvailable` | boolean
+`price` | number
 `tourId` | string
 `updatedAt` | string
 
@@ -25,9 +27,11 @@ const example = {
   "createdAt": null,
   "dateFrom": null,
   "dateTo": null,
+  "description": null,
   "groupSize": null,
   "id": null,
   "isAvailable": null,
+  "price": null,
   "tourId": null,
   "updatedAt": null,
 } satisfies DomainTourDate

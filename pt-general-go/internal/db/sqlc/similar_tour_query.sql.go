@@ -18,7 +18,10 @@ SELECT
     tours.title,
     tours.description,
     tours.difficulty,
-    tours.price,
+    tours.is_show_vip,
+    tours.is_show_rooms,
+    tours.vip_price,
+    tours.room_price,
     tours.program,
     tours.faq,
     tours.cover_url,
@@ -54,7 +57,10 @@ type GetSimilarToursByTourIDRow struct {
 	Title              string
 	Description        string
 	Difficulty         DifficultyLevel
-	Price              pgtype.Float8
+	IsShowVip          bool
+	IsShowRooms        bool
+	VipPrice           int32
+	RoomPrice          int32
 	Program            []byte
 	Faq                []byte
 	CoverUrl           pgtype.Text
@@ -96,7 +102,10 @@ func (q *Queries) GetSimilarToursByTourID(ctx context.Context, tourID pgtype.UUI
 			&i.Title,
 			&i.Description,
 			&i.Difficulty,
-			&i.Price,
+			&i.IsShowVip,
+			&i.IsShowRooms,
+			&i.VipPrice,
+			&i.RoomPrice,
 			&i.Program,
 			&i.Faq,
 			&i.CoverUrl,

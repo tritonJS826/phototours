@@ -71,10 +71,10 @@ export interface DomainTour {
     difficulty?: DomainDifficultyLevel;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof DomainTour
      */
-    durationDays?: number;
+    durationDays?: string;
     /**
      * 
      * @type {string}
@@ -99,6 +99,18 @@ export interface DomainTour {
      * @memberof DomainTour
      */
     id?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DomainTour
+     */
+    isShowRooms?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DomainTour
+     */
+    isShowVip?: boolean;
     /**
      * 
      * @type {Array<string>}
@@ -155,12 +167,6 @@ export interface DomainTour {
     popUp2Title?: string;
     /**
      * 
-     * @type {number}
-     * @memberof DomainTour
-     */
-    price?: number;
-    /**
-     * 
      * @type {object}
      * @memberof DomainTour
      */
@@ -171,6 +177,12 @@ export interface DomainTour {
      * @memberof DomainTour
      */
     reviewsSectionName?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DomainTour
+     */
+    roomPrice?: number;
     /**
      * 
      * @type {string}
@@ -207,6 +219,12 @@ export interface DomainTour {
      * @memberof DomainTour
      */
     updatedAt?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DomainTour
+     */
+    vipPrice?: number;
 }
 
 
@@ -240,6 +258,8 @@ export function DomainTourFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'faq': json['faq'] == null ? undefined : json['faq'],
         'groupSize': json['groupSize'] == null ? undefined : json['groupSize'],
         'id': json['id'] == null ? undefined : json['id'],
+        'isShowRooms': json['isShowRooms'] == null ? undefined : json['isShowRooms'],
+        'isShowVip': json['isShowVip'] == null ? undefined : json['isShowVip'],
         'languages': json['languages'] == null ? undefined : json['languages'],
         'location': json['location'] == null ? undefined : json['location'],
         'minAge': json['minAge'] == null ? undefined : json['minAge'],
@@ -249,15 +269,16 @@ export function DomainTourFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'popUp2Description': json['popUp2Description'] == null ? undefined : json['popUp2Description'],
         'popUp2ImageUrl': json['popUp2ImageUrl'] == null ? undefined : json['popUp2ImageUrl'],
         'popUp2Title': json['popUp2Title'] == null ? undefined : json['popUp2Title'],
-        'price': json['price'] == null ? undefined : json['price'],
         'program': json['program'] == null ? undefined : json['program'],
         'reviewsSectionName': json['reviewsSectionName'] == null ? undefined : json['reviewsSectionName'],
+        'roomPrice': json['roomPrice'] == null ? undefined : json['roomPrice'],
         'slug': json['slug'] == null ? undefined : json['slug'],
         'spotsLeft': json['spotsLeft'] == null ? undefined : json['spotsLeft'],
         'startLocation': json['startLocation'] == null ? undefined : json['startLocation'],
         'subtitle': json['subtitle'] == null ? undefined : json['subtitle'],
         'title': json['title'] == null ? undefined : json['title'],
         'updatedAt': json['updatedAt'] == null ? undefined : json['updatedAt'],
+        'vipPrice': json['vipPrice'] == null ? undefined : json['vipPrice'],
     };
 }
 
@@ -284,6 +305,8 @@ export function DomainTourToJSONTyped(value?: DomainTour | null, ignoreDiscrimin
         'faq': value['faq'],
         'groupSize': value['groupSize'],
         'id': value['id'],
+        'isShowRooms': value['isShowRooms'],
+        'isShowVip': value['isShowVip'],
         'languages': value['languages'],
         'location': value['location'],
         'minAge': value['minAge'],
@@ -293,15 +316,16 @@ export function DomainTourToJSONTyped(value?: DomainTour | null, ignoreDiscrimin
         'popUp2Description': value['popUp2Description'],
         'popUp2ImageUrl': value['popUp2ImageUrl'],
         'popUp2Title': value['popUp2Title'],
-        'price': value['price'],
         'program': value['program'],
         'reviewsSectionName': value['reviewsSectionName'],
+        'roomPrice': value['roomPrice'],
         'slug': value['slug'],
         'spotsLeft': value['spotsLeft'],
         'startLocation': value['startLocation'],
         'subtitle': value['subtitle'],
         'title': value['title'],
         'updatedAt': value['updatedAt'],
+        'vipPrice': value['vipPrice'],
     };
 }
 

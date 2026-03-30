@@ -12,6 +12,10 @@ func MapToDomainTour(row db.Tour) *domain.Tour {
 		Title:              row.Title,
 		Description:        row.Description,
 		Difficulty:         domain.DifficultyLevel(row.Difficulty),
+		IsShowVip:          row.IsShowVip,
+		IsShowRooms:        row.IsShowRooms,
+		VipPrice:           row.VipPrice,
+		RoomPrice:          row.RoomPrice,
 		Program:            row.Program,
 		FAQ:                row.Faq,
 		Languages:          row.Languages,
@@ -30,9 +34,6 @@ func MapToDomainTour(row db.Tour) *domain.Tour {
 		DurationDays:       &row.DurationDays,
 	}
 
-	if row.Price.Valid {
-		tour.Price = &row.Price.Float64
-	}
 	if row.StartLocation.Valid {
 		tour.StartLocation = &row.StartLocation.String
 	}
@@ -69,6 +70,10 @@ func MapToDomainCreateTour(row db.CreateTourRow) *domain.Tour {
 		Title:              row.Title,
 		Description:        row.Description,
 		Difficulty:         domain.DifficultyLevel(row.Difficulty),
+		IsShowVip:          row.IsShowVip,
+		IsShowRooms:        row.IsShowRooms,
+		VipPrice:           row.VipPrice,
+		RoomPrice:          row.RoomPrice,
 		Program:            row.Program,
 		FAQ:                row.Faq,
 		Languages:          row.Languages,
@@ -87,9 +92,6 @@ func MapToDomainCreateTour(row db.CreateTourRow) *domain.Tour {
 		DurationDays:       &row.DurationDays,
 	}
 
-	if row.Price.Valid {
-		tour.Price = &row.Price.Float64
-	}
 	if row.StartLocation.Valid {
 		tour.StartLocation = &row.StartLocation.String
 	}
@@ -126,6 +128,10 @@ func MapToDomainGetTourByID(row db.GetTourByIDRow) *domain.Tour {
 		Title:              row.Title,
 		Description:        row.Description,
 		Difficulty:         domain.DifficultyLevel(row.Difficulty),
+		IsShowVip:          row.IsShowVip,
+		IsShowRooms:        row.IsShowRooms,
+		VipPrice:           row.VipPrice,
+		RoomPrice:          row.RoomPrice,
 		Program:            row.Program,
 		FAQ:                row.Faq,
 		Languages:          row.Languages,
@@ -144,9 +150,6 @@ func MapToDomainGetTourByID(row db.GetTourByIDRow) *domain.Tour {
 		DurationDays:       &row.DurationDays,
 	}
 
-	if row.Price.Valid {
-		tour.Price = &row.Price.Float64
-	}
 	if row.StartLocation.Valid {
 		tour.StartLocation = &row.StartLocation.String
 	}
@@ -183,6 +186,10 @@ func MapToDomainGetTourBySlug(row db.GetTourBySlugRow) *domain.Tour {
 		Title:              row.Title,
 		Description:        row.Description,
 		Difficulty:         domain.DifficultyLevel(row.Difficulty),
+		IsShowVip:          row.IsShowVip,
+		IsShowRooms:        row.IsShowRooms,
+		VipPrice:           row.VipPrice,
+		RoomPrice:          row.RoomPrice,
 		Program:            row.Program,
 		FAQ:                row.Faq,
 		Languages:          row.Languages,
@@ -201,9 +208,6 @@ func MapToDomainGetTourBySlug(row db.GetTourBySlugRow) *domain.Tour {
 		DurationDays:       &row.DurationDays,
 	}
 
-	if row.Price.Valid {
-		tour.Price = &row.Price.Float64
-	}
 	if row.StartLocation.Valid {
 		tour.StartLocation = &row.StartLocation.String
 	}
@@ -239,6 +243,10 @@ func MapToDomainUpdateTourByID(row db.UpdateTourByIDRow) *domain.Tour {
 		Title:              row.Title,
 		Description:        row.Description,
 		Difficulty:         domain.DifficultyLevel(row.Difficulty),
+		IsShowVip:          row.IsShowVip,
+		IsShowRooms:        row.IsShowRooms,
+		VipPrice:           row.VipPrice,
+		RoomPrice:          row.RoomPrice,
 		Program:            row.Program,
 		FAQ:                row.Faq,
 		Languages:          row.Languages,
@@ -257,9 +265,6 @@ func MapToDomainUpdateTourByID(row db.UpdateTourByIDRow) *domain.Tour {
 		DurationDays:       &row.DurationDays,
 	}
 
-	if row.Price.Valid {
-		tour.Price = &row.Price.Float64
-	}
 	if row.StartLocation.Valid {
 		tour.StartLocation = &row.StartLocation.String
 	}
@@ -297,6 +302,10 @@ func MapToDomainTours(rows []db.GetToursRow) []domain.Tour {
 			Title:              row.Title,
 			Description:        row.Description,
 			Difficulty:         domain.DifficultyLevel(row.Difficulty),
+			IsShowVip:          row.IsShowVip,
+			IsShowRooms:        row.IsShowRooms,
+			VipPrice:           row.VipPrice,
+			RoomPrice:          row.RoomPrice,
 			Program:            row.Program,
 			FAQ:                row.Faq,
 			Languages:          row.Languages,
@@ -315,9 +324,6 @@ func MapToDomainTours(rows []db.GetToursRow) []domain.Tour {
 			DurationDays:       &row.DurationDays,
 		}
 
-		if row.Price.Valid {
-			tour.Price = &row.Price.Float64
-		}
 		if row.StartLocation.Valid {
 			tour.StartLocation = &row.StartLocation.String
 		}
@@ -358,6 +364,10 @@ func MapToDomainSimilarTours(rows []db.GetSimilarToursByTourIDRow) []domain.Tour
 			Title:              row.Title,
 			Description:        row.Description,
 			Difficulty:         domain.DifficultyLevel(row.Difficulty),
+			IsShowVip:          row.IsShowVip,
+			IsShowRooms:        row.IsShowRooms,
+			VipPrice:           row.VipPrice,
+			RoomPrice:          row.RoomPrice,
 			Program:            row.Program,
 			FAQ:                row.Faq,
 			Languages:          row.Languages,
@@ -376,9 +386,6 @@ func MapToDomainSimilarTours(rows []db.GetSimilarToursByTourIDRow) []domain.Tour
 			DurationDays:       &row.DurationDays,
 		}
 
-		if row.Price.Valid {
-			tour.Price = &row.Price.Float64
-		}
 		if row.StartLocation.Valid {
 			tour.StartLocation = &row.StartLocation.String
 		}

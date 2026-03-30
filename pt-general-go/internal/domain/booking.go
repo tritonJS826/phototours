@@ -34,6 +34,7 @@ type BookingRequest struct {
 	TravelDate       string    `json:"travelDate"`
 	Travelers        int       `json:"travelers"`
 	Rooms            int       `json:"rooms,omitempty"`
+	IsVip            bool      `json:"isVip,omitempty"`
 	ZohoDealID       string    `json:"zohoDealId,omitempty"`
 	Language         string    `json:"language,omitempty"`
 	Timezone         string    `json:"timezone,omitempty"`

@@ -53,6 +53,16 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 		s.logger.Error("Failed to get tour from database", zap.Error(err), zap.Any("tourId", bookingRequest.TourID))
 	}
 
+	tourDates, err := s.tourRepository.GetTourDatesByTourID(ctx, bookingRequest.TourID)
+	if err != nil {
+		s.logger.Error("Failed to get tour dates from database", zap.Error(err), zap.Any("tourId", bookingRequest.TourID))
+	}
+
+	var tourPrice float64
+	if len(tourDates) > 0 && tourDates[0].Price != nil {
+		tourPrice = *tourDates[0].Price
+	}
+
 	// Check if contact exists, create if not
 	var contactID string
 	contactSearch, err := s.zohoRepository.GetContactByEmail(ctx, bookingRequest.Email)
@@ -103,7 +113,7 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 		TravelDates:          bookingRequest.TravelDate,
 		Travelers:            bookingRequest.Travelers,
 		SingleRoomSupplement: bookingRequest.Rooms,
-		Amount:               *tour.Price,
+		Amount:               tourPrice,
 		TourName:             tour.Title,
 		Stage:                "In Progress",
 		Pipeline:             "Photo Tours",

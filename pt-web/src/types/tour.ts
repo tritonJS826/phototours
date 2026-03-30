@@ -29,6 +29,13 @@ export interface TourActivity {
   iconName: string;
 }
 
+export interface TourDateView {
+  dateFrom: string;
+  dateTo: string;
+  price: number;
+  description: string;
+}
+
 export interface TourView {
   id: number;
   starAmount: number;
@@ -36,7 +43,6 @@ export interface TourView {
   slug: string;
   title: string;
   description: string;
-  price: number;
   singleRoomSupplement?: number;
 
   startLocation: string;
@@ -50,7 +56,7 @@ export interface TourView {
   coverUrl: string;
   photos: string[];
 
-  dates: string[];
+  dates: TourDateView[];
   dailyItinerary?: TourDay[];
   faq: FaqItem[];
 
@@ -61,6 +67,12 @@ export interface TourView {
   groupSize: number;
   spotsLeft: number;
   subtitle: string;
+
+  // VIP and Room fields
+  isShowVip: boolean;
+  isShowRooms: boolean;
+  vipPrice: number;
+  roomPrice: number;
 
   // Popup-related fields
   popUp1Title: string;

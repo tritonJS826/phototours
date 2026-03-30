@@ -359,7 +359,7 @@ export class ToursApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get full tour information by slug including guide, dates, photos, videos, materials, tags, and categories
+     * Get full tour information by slug including guide, dates, photos
      * Get tour by slug
      */
     async toursSlugSlugGetRaw(requestParameters: ToursSlugSlugGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DomainTourFull>> {
@@ -389,7 +389,7 @@ export class ToursApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get full tour information by slug including guide, dates, photos, videos, materials, tags, and categories
+     * Get full tour information by slug including guide, dates, photos
      * Get tour by slug
      */
     async toursSlugSlugGet(requestParameters: ToursSlugSlugGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DomainTourFull> {

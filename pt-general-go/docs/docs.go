@@ -1144,7 +1144,7 @@ const docTemplate = `{
         },
         "/tours/slug/{slug}": {
             "get": {
-                "description": "Get full tour information by slug including guide, dates, photos, videos, materials, tags, and categories",
+                "description": "Get full tour information by slug including guide, dates, photos",
                 "consumes": [
                     "application/json"
                 ],
@@ -1649,6 +1649,9 @@ const docTemplate = `{
                 "id": {
                     "type": "string"
                 },
+                "isVip": {
+                    "type": "boolean"
+                },
                 "language": {
                     "type": "string"
                 },
@@ -1832,7 +1835,7 @@ const docTemplate = `{
                     "$ref": "#/definitions/domain.DifficultyLevel"
                 },
                 "durationDays": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "endLocation": {
                     "type": "string"
@@ -1845,6 +1848,12 @@ const docTemplate = `{
                 },
                 "id": {
                     "type": "string"
+                },
+                "isShowRooms": {
+                    "type": "boolean"
+                },
+                "isShowVip": {
+                    "type": "boolean"
                 },
                 "languages": {
                     "type": "array",
@@ -1876,14 +1885,14 @@ const docTemplate = `{
                 "popUp2Title": {
                     "type": "string"
                 },
-                "price": {
-                    "type": "number"
-                },
                 "program": {
                     "type": "object"
                 },
                 "reviewsSectionName": {
                     "type": "string"
+                },
+                "roomPrice": {
+                    "type": "integer"
                 },
                 "slug": {
                     "type": "string"
@@ -1902,6 +1911,9 @@ const docTemplate = `{
                 },
                 "updatedAt": {
                     "type": "string"
+                },
+                "vipPrice": {
+                    "type": "integer"
                 }
             }
         },
@@ -1917,6 +1929,9 @@ const docTemplate = `{
                 "dateTo": {
                     "type": "string"
                 },
+                "description": {
+                    "type": "string"
+                },
                 "groupSize": {
                     "type": "integer"
                 },
@@ -1925,6 +1940,9 @@ const docTemplate = `{
                 },
                 "isAvailable": {
                     "type": "boolean"
+                },
+                "price": {
+                    "type": "number"
                 },
                 "tourId": {
                     "type": "string"
@@ -1974,7 +1992,7 @@ const docTemplate = `{
                     "$ref": "#/definitions/domain.DifficultyLevel"
                 },
                 "durationDays": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "endLocation": {
                     "type": "string"
@@ -1993,6 +2011,12 @@ const docTemplate = `{
                     "items": {
                         "type": "string"
                     }
+                },
+                "isShowRooms": {
+                    "type": "boolean"
+                },
+                "isShowVip": {
+                    "type": "boolean"
                 },
                 "languages": {
                     "type": "array",
@@ -2030,9 +2054,6 @@ const docTemplate = `{
                 "popUp2Title": {
                     "type": "string"
                 },
-                "price": {
-                    "type": "number"
-                },
                 "program": {
                     "type": "object"
                 },
@@ -2047,6 +2068,9 @@ const docTemplate = `{
                 },
                 "reviewsSectionName": {
                     "type": "string"
+                },
+                "roomPrice": {
+                    "type": "integer"
                 },
                 "slug": {
                     "type": "string"
@@ -2074,6 +2098,9 @@ const docTemplate = `{
                 },
                 "updatedAt": {
                     "type": "string"
+                },
+                "vipPrice": {
+                    "type": "integer"
                 }
             }
         },
@@ -2276,12 +2303,20 @@ const docTemplate = `{
                     "example": "MEDIUM"
                 },
                 "durationDays": {
-                    "type": "integer",
-                    "example": 7
+                    "type": "string",
+                    "example": "7"
                 },
                 "endLocation": {
                     "type": "string",
                     "example": "Astana"
+                },
+                "isShowRooms": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "isShowVip": {
+                    "type": "boolean",
+                    "example": true
                 },
                 "languages": {
                     "type": "array",
@@ -2297,16 +2332,16 @@ const docTemplate = `{
                     "type": "integer",
                     "example": 18
                 },
-                "price": {
-                    "type": "number",
-                    "example": 1500
-                },
                 "program": {
                     "type": "object"
                 },
                 "reviewsSectionName": {
                     "type": "string",
                     "example": "Why travelers love this"
+                },
+                "roomPrice": {
+                    "type": "integer",
+                    "example": 200
                 },
                 "slug": {
                     "type": "string",
@@ -2319,6 +2354,10 @@ const docTemplate = `{
                 "title": {
                     "type": "string",
                     "example": "Mountain Adventure"
+                },
+                "vipPrice": {
+                    "type": "integer",
+                    "example": 500
                 }
             }
         },
@@ -2427,12 +2466,20 @@ const docTemplate = `{
                     "example": "HARD"
                 },
                 "durationDays": {
-                    "type": "integer",
-                    "example": 10
+                    "type": "string",
+                    "example": "10"
                 },
                 "endLocation": {
                     "type": "string",
                     "example": "Osh"
+                },
+                "isShowRooms": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "isShowVip": {
+                    "type": "boolean",
+                    "example": true
                 },
                 "languages": {
                     "type": "array",
@@ -2449,16 +2496,16 @@ const docTemplate = `{
                     "type": "integer",
                     "example": 21
                 },
-                "price": {
-                    "type": "number",
-                    "example": 2000
-                },
                 "program": {
                     "type": "object"
                 },
                 "reviewsSectionName": {
                     "type": "string",
                     "example": "Why travelers love this"
+                },
+                "roomPrice": {
+                    "type": "integer",
+                    "example": 200
                 },
                 "slug": {
                     "type": "string",
@@ -2471,6 +2518,10 @@ const docTemplate = `{
                 "title": {
                     "type": "string",
                     "example": "Mountain Adventure Updated"
+                },
+                "vipPrice": {
+                    "type": "integer",
+                    "example": 500
                 }
             }
         },

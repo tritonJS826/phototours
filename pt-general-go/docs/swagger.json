@@ -1142,7 +1142,7 @@
         },
         "/tours/slug/{slug}": {
             "get": {
-                "description": "Get full tour information by slug including guide, dates, photos, videos, materials, tags, and categories",
+                "description": "Get full tour information by slug including guide, dates, photos",
                 "consumes": [
                     "application/json"
                 ],
@@ -1647,6 +1647,9 @@
                 "id": {
                     "type": "string"
                 },
+                "isVip": {
+                    "type": "boolean"
+                },
                 "language": {
                     "type": "string"
                 },
@@ -1830,7 +1833,7 @@
                     "$ref": "#/definitions/domain.DifficultyLevel"
                 },
                 "durationDays": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "endLocation": {
                     "type": "string"
@@ -1843,6 +1846,12 @@
                 },
                 "id": {
                     "type": "string"
+                },
+                "isShowRooms": {
+                    "type": "boolean"
+                },
+                "isShowVip": {
+                    "type": "boolean"
                 },
                 "languages": {
                     "type": "array",
@@ -1874,14 +1883,14 @@
                 "popUp2Title": {
                     "type": "string"
                 },
-                "price": {
-                    "type": "number"
-                },
                 "program": {
                     "type": "object"
                 },
                 "reviewsSectionName": {
                     "type": "string"
+                },
+                "roomPrice": {
+                    "type": "integer"
                 },
                 "slug": {
                     "type": "string"
@@ -1900,6 +1909,9 @@
                 },
                 "updatedAt": {
                     "type": "string"
+                },
+                "vipPrice": {
+                    "type": "integer"
                 }
             }
         },
@@ -1915,6 +1927,9 @@
                 "dateTo": {
                     "type": "string"
                 },
+                "description": {
+                    "type": "string"
+                },
                 "groupSize": {
                     "type": "integer"
                 },
@@ -1923,6 +1938,9 @@
                 },
                 "isAvailable": {
                     "type": "boolean"
+                },
+                "price": {
+                    "type": "number"
                 },
                 "tourId": {
                     "type": "string"
@@ -1972,7 +1990,7 @@
                     "$ref": "#/definitions/domain.DifficultyLevel"
                 },
                 "durationDays": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "endLocation": {
                     "type": "string"
@@ -1991,6 +2009,12 @@
                     "items": {
                         "type": "string"
                     }
+                },
+                "isShowRooms": {
+                    "type": "boolean"
+                },
+                "isShowVip": {
+                    "type": "boolean"
                 },
                 "languages": {
                     "type": "array",
@@ -2028,9 +2052,6 @@
                 "popUp2Title": {
                     "type": "string"
                 },
-                "price": {
-                    "type": "number"
-                },
                 "program": {
                     "type": "object"
                 },
@@ -2045,6 +2066,9 @@
                 },
                 "reviewsSectionName": {
                     "type": "string"
+                },
+                "roomPrice": {
+                    "type": "integer"
                 },
                 "slug": {
                     "type": "string"
@@ -2072,6 +2096,9 @@
                 },
                 "updatedAt": {
                     "type": "string"
+                },
+                "vipPrice": {
+                    "type": "integer"
                 }
             }
         },
@@ -2274,12 +2301,20 @@
                     "example": "MEDIUM"
                 },
                 "durationDays": {
-                    "type": "integer",
-                    "example": 7
+                    "type": "string",
+                    "example": "7"
                 },
                 "endLocation": {
                     "type": "string",
                     "example": "Astana"
+                },
+                "isShowRooms": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "isShowVip": {
+                    "type": "boolean",
+                    "example": true
                 },
                 "languages": {
                     "type": "array",
@@ -2295,16 +2330,16 @@
                     "type": "integer",
                     "example": 18
                 },
-                "price": {
-                    "type": "number",
-                    "example": 1500
-                },
                 "program": {
                     "type": "object"
                 },
                 "reviewsSectionName": {
                     "type": "string",
                     "example": "Why travelers love this"
+                },
+                "roomPrice": {
+                    "type": "integer",
+                    "example": 200
                 },
                 "slug": {
                     "type": "string",
@@ -2317,6 +2352,10 @@
                 "title": {
                     "type": "string",
                     "example": "Mountain Adventure"
+                },
+                "vipPrice": {
+                    "type": "integer",
+                    "example": 500
                 }
             }
         },
@@ -2425,12 +2464,20 @@
                     "example": "HARD"
                 },
                 "durationDays": {
-                    "type": "integer",
-                    "example": 10
+                    "type": "string",
+                    "example": "10"
                 },
                 "endLocation": {
                     "type": "string",
                     "example": "Osh"
+                },
+                "isShowRooms": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "isShowVip": {
+                    "type": "boolean",
+                    "example": true
                 },
                 "languages": {
                     "type": "array",
@@ -2447,16 +2494,16 @@
                     "type": "integer",
                     "example": 21
                 },
-                "price": {
-                    "type": "number",
-                    "example": 2000
-                },
                 "program": {
                     "type": "object"
                 },
                 "reviewsSectionName": {
                     "type": "string",
                     "example": "Why travelers love this"
+                },
+                "roomPrice": {
+                    "type": "integer",
+                    "example": 200
                 },
                 "slug": {
                     "type": "string",
@@ -2469,6 +2516,10 @@
                 "title": {
                     "type": "string",
                     "example": "Mountain Adventure Updated"
+                },
+                "vipPrice": {
+                    "type": "integer",
+                    "example": 500
                 }
             }
         },

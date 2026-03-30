@@ -51,7 +51,10 @@ CREATE TABLE tours (
     title TEXT NOT NULL,
     description TEXT NOT NULL,
     difficulty difficulty_level NOT NULL,
-    price DOUBLE PRECISION,
+    is_show_vip BOOLEAN DEFAULT FALSE NOT NULL,
+    is_show_rooms BOOLEAN DEFAULT FALSE NOT NULL,
+    vip_price INTEGER DEFAULT 0 NOT NULL,
+    room_price INTEGER DEFAULT 0 NOT NULL,
     -- {days: [{day: number|string, plan: string, description:string, imgUrl?: string}]}
     program JSONB NOT NULL,
     -- {questions: [question: string, answer: string]}
@@ -89,6 +92,8 @@ CREATE TABLE tour_dates (
     date_to TIMESTAMP(3) NOT NULL,
     group_size INTEGER NOT NULL,
     is_available BOOLEAN NOT NULL DEFAULT TRUE,
+    price DOUBLE PRECISION,
+    description TEXT NOT NULL DEFAULT '',
     created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP NOT NULL,
     CONSTRAINT tour_date_tour_id_fk FOREIGN KEY (tour_id) REFERENCES tours(id) ON UPDATE CASCADE ON DELETE CASCADE,

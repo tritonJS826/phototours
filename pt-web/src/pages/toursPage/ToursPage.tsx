@@ -98,11 +98,12 @@ export function ToursPage() {
 
     return allTours.filter(tour => {
       // Price filtering with travelers multiplier
-      if (!tour.price) {
+      const tourPrice = tour.dates?.[0]?.price;
+      if (!tourPrice) {
         return true;
       } // Include tours without price
       // const travelerCount = filters.travelers || DEFAULT_TRAVELERS;
-      const totalPrice = tour.price; // * TravelerCount;
+      const totalPrice = tourPrice; // * TravelerCount;
       const priceMatch = totalPrice >= priceRange.min && totalPrice <= priceRange.max;
 
       // Season filtering

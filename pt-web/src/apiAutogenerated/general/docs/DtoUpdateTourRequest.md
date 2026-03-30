@@ -10,16 +10,19 @@ Name | Type
 `coverUrl` | string
 `description` | string
 `difficulty` | string
-`durationDays` | number
+`durationDays` | string
 `endLocation` | string
+`isShowRooms` | boolean
+`isShowVip` | boolean
 `languages` | Array&lt;string&gt;
 `minAge` | number
-`price` | number
 `program` | object
 `reviewsSectionName` | string
+`roomPrice` | number
 `slug` | string
 `startLocation` | string
 `title` | string
+`vipPrice` | number
 
 ## Example
 
@@ -34,14 +37,17 @@ const example = {
   "difficulty": HARD,
   "durationDays": 10,
   "endLocation": Osh,
+  "isShowRooms": true,
+  "isShowVip": true,
   "languages": [English, Russian, Kazakh],
   "minAge": 21,
-  "price": 2000.0,
   "program": null,
   "reviewsSectionName": Why travelers love this,
+  "roomPrice": 200,
   "slug": mountain-adventure-updated,
   "startLocation": Bishkek,
   "title": Mountain Adventure Updated,
+  "vipPrice": 500,
 } satisfies DtoUpdateTourRequest
 
 console.log(example)

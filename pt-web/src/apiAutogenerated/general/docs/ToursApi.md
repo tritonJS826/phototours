@@ -482,7 +482,7 @@ example().catch(console.error);
 
 Get tour by slug
 
-Get full tour information by slug including guide, dates, photos, videos, materials, tags, and categories
+Get full tour information by slug including guide, dates, photos
 
 ### Example
 

@@ -13,11 +13,13 @@ Name | Type
 `ctaTitle` | string
 `description` | string
 `difficulty` | [DomainDifficultyLevel](DomainDifficultyLevel.md)
-`durationDays` | number
+`durationDays` | string
 `endLocation` | string
 `faq` | object
 `groupSize` | number
 `id` | string
+`isShowRooms` | boolean
+`isShowVip` | boolean
 `languages` | Array&lt;string&gt;
 `location` | string
 `minAge` | number
@@ -27,15 +29,16 @@ Name | Type
 `popUp2Description` | string
 `popUp2ImageUrl` | string
 `popUp2Title` | string
-`price` | number
 `program` | object
 `reviewsSectionName` | string
+`roomPrice` | number
 `slug` | string
 `spotsLeft` | number
 `startLocation` | string
 `subtitle` | string
 `title` | string
 `updatedAt` | string
+`vipPrice` | number
 
 ## Example
 
@@ -56,6 +59,8 @@ const example = {
   "faq": null,
   "groupSize": null,
   "id": null,
+  "isShowRooms": null,
+  "isShowVip": null,
   "languages": null,
   "location": null,
   "minAge": null,
@@ -65,15 +70,16 @@ const example = {
   "popUp2Description": null,
   "popUp2ImageUrl": null,
   "popUp2Title": null,
-  "price": null,
   "program": null,
   "reviewsSectionName": null,
+  "roomPrice": null,
   "slug": null,
   "spotsLeft": null,
   "startLocation": null,
   "subtitle": null,
   "title": null,
   "updatedAt": null,
+  "vipPrice": null,
 } satisfies DomainTour
 
 console.log(example)

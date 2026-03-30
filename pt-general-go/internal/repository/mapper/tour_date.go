@@ -7,10 +7,10 @@ import (
 	"github.com/google/uuid"
 )
 
-func MapToDomainTourDates(dbTourDates []db.TourDate) []domain.TourDate {
+func MapToDomainTourDates(dbTourDates []db.GetTourDatesByTourIDRow) []domain.TourDate {
 	tourDates := make([]domain.TourDate, 0, len(dbTourDates))
 	for _, dbTourDate := range dbTourDates {
-		tourDates = append(tourDates, domain.TourDate{
+		tourDate := domain.TourDate{
 			ID:          PgUUIDToUUID(dbTourDate.ID),
 			TourID:      PgUUIDToUUID(dbTourDate.TourID),
 			DateFrom:    dbTourDate.DateFrom.Time,
@@ -19,17 +19,22 @@ func MapToDomainTourDates(dbTourDates []db.TourDate) []domain.TourDate {
 			CreatedAt:   dbTourDate.CreatedAt.Time,
 			UpdatedAt:   dbTourDate.UpdatedAt.Time,
 			GroupSize:   dbTourDate.GroupSize,
-		})
+			Description: dbTourDate.Description,
+		}
+		if dbTourDate.Price.Valid {
+			tourDate.Price = &dbTourDate.Price.Float64
+		}
+		tourDates = append(tourDates, tourDate)
 	}
 	return tourDates
 }
 
-func MapToDomainTourDatesByTourIDs(dbTourDates []db.TourDate) map[uuid.UUID][]domain.TourDate {
+func MapToDomainTourDatesByTourIDs(dbTourDates []db.GetTourDatesByTourIDsRow) map[uuid.UUID][]domain.TourDate {
 	result := make(map[uuid.UUID][]domain.TourDate)
 	for _, dbTourDate := range dbTourDates {
 		tourID := PgUUIDToUUID(dbTourDate.TourID)
 		dates := result[tourID]
-		result[tourID] = append(dates, domain.TourDate{
+		tourDate := domain.TourDate{
 			ID:          PgUUIDToUUID(dbTourDate.ID),
 			TourID:      tourID,
 			DateFrom:    dbTourDate.DateFrom.Time,
@@ -38,7 +43,12 @@ func MapToDomainTourDatesByTourIDs(dbTourDates []db.TourDate) map[uuid.UUID][]do
 			CreatedAt:   dbTourDate.CreatedAt.Time,
 			UpdatedAt:   dbTourDate.UpdatedAt.Time,
 			GroupSize:   dbTourDate.GroupSize,
-		})
+			Description: dbTourDate.Description,
+		}
+		if dbTourDate.Price.Valid {
+			tourDate.Price = &dbTourDate.Price.Float64
+		}
+		result[tourID] = append(dates, tourDate)
 	}
 	return result
 }

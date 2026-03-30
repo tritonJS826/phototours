@@ -15,12 +15,14 @@ Name | Type
 `dates` | [Array&lt;DomainTourDate&gt;](DomainTourDate.md)
 `description` | string
 `difficulty` | [DomainDifficultyLevel](DomainDifficultyLevel.md)
-`durationDays` | number
+`durationDays` | string
 `endLocation` | string
 `faq` | object
 `groupSize` | number
 `id` | string
 `included` | Array&lt;string&gt;
+`isShowRooms` | boolean
+`isShowVip` | boolean
 `languages` | Array&lt;string&gt;
 `location` | string
 `minAge` | number
@@ -31,11 +33,11 @@ Name | Type
 `popUp2Description` | string
 `popUp2ImageUrl` | string
 `popUp2Title` | string
-`price` | number
 `program` | object
 `reviewAmount` | number
 `reviews` | [Array&lt;DomainReview&gt;](DomainReview.md)
 `reviewsSectionName` | string
+`roomPrice` | number
 `slug` | string
 `spotsLeft` | number
 `starAmount` | number
@@ -44,6 +46,7 @@ Name | Type
 `summary` | Array&lt;string&gt;
 `title` | string
 `updatedAt` | string
+`vipPrice` | number
 
 ## Example
 
@@ -67,6 +70,8 @@ const example = {
   "groupSize": null,
   "id": null,
   "included": null,
+  "isShowRooms": null,
+  "isShowVip": null,
   "languages": null,
   "location": null,
   "minAge": null,
@@ -77,11 +82,11 @@ const example = {
   "popUp2Description": null,
   "popUp2ImageUrl": null,
   "popUp2Title": null,
-  "price": null,
   "program": null,
   "reviewAmount": null,
   "reviews": null,
   "reviewsSectionName": null,
+  "roomPrice": null,
   "slug": null,
   "spotsLeft": null,
   "starAmount": null,
@@ -90,6 +95,7 @@ const example = {
   "summary": null,
   "title": null,
   "updatedAt": null,
+  "vipPrice": null,
 } satisfies DomainTourFull
 
 console.log(example)

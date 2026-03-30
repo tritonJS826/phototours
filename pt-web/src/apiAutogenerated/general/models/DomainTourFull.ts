@@ -111,10 +111,10 @@ export interface DomainTourFull {
     difficulty?: DomainDifficultyLevel;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof DomainTourFull
      */
-    durationDays?: number;
+    durationDays?: string;
     /**
      * 
      * @type {string}
@@ -145,6 +145,18 @@ export interface DomainTourFull {
      * @memberof DomainTourFull
      */
     included?: Array<string>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DomainTourFull
+     */
+    isShowRooms?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DomainTourFull
+     */
+    isShowVip?: boolean;
     /**
      * 
      * @type {Array<string>}
@@ -207,12 +219,6 @@ export interface DomainTourFull {
     popUp2Title?: string;
     /**
      * 
-     * @type {number}
-     * @memberof DomainTourFull
-     */
-    price?: number;
-    /**
-     * 
      * @type {object}
      * @memberof DomainTourFull
      */
@@ -235,6 +241,12 @@ export interface DomainTourFull {
      * @memberof DomainTourFull
      */
     reviewsSectionName?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DomainTourFull
+     */
+    roomPrice?: number;
     /**
      * 
      * @type {string}
@@ -283,6 +295,12 @@ export interface DomainTourFull {
      * @memberof DomainTourFull
      */
     updatedAt?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DomainTourFull
+     */
+    vipPrice?: number;
 }
 
 
@@ -319,6 +337,8 @@ export function DomainTourFullFromJSONTyped(json: any, ignoreDiscriminator: bool
         'groupSize': json['groupSize'] == null ? undefined : json['groupSize'],
         'id': json['id'] == null ? undefined : json['id'],
         'included': json['included'] == null ? undefined : json['included'],
+        'isShowRooms': json['isShowRooms'] == null ? undefined : json['isShowRooms'],
+        'isShowVip': json['isShowVip'] == null ? undefined : json['isShowVip'],
         'languages': json['languages'] == null ? undefined : json['languages'],
         'location': json['location'] == null ? undefined : json['location'],
         'minAge': json['minAge'] == null ? undefined : json['minAge'],
@@ -329,11 +349,11 @@ export function DomainTourFullFromJSONTyped(json: any, ignoreDiscriminator: bool
         'popUp2Description': json['popUp2Description'] == null ? undefined : json['popUp2Description'],
         'popUp2ImageUrl': json['popUp2ImageUrl'] == null ? undefined : json['popUp2ImageUrl'],
         'popUp2Title': json['popUp2Title'] == null ? undefined : json['popUp2Title'],
-        'price': json['price'] == null ? undefined : json['price'],
         'program': json['program'] == null ? undefined : json['program'],
         'reviewAmount': json['reviewAmount'] == null ? undefined : json['reviewAmount'],
         'reviews': json['reviews'] == null ? undefined : ((json['reviews'] as Array<any>).map(DomainReviewFromJSON)),
         'reviewsSectionName': json['reviewsSectionName'] == null ? undefined : json['reviewsSectionName'],
+        'roomPrice': json['roomPrice'] == null ? undefined : json['roomPrice'],
         'slug': json['slug'] == null ? undefined : json['slug'],
         'spotsLeft': json['spotsLeft'] == null ? undefined : json['spotsLeft'],
         'starAmount': json['starAmount'] == null ? undefined : json['starAmount'],
@@ -342,6 +362,7 @@ export function DomainTourFullFromJSONTyped(json: any, ignoreDiscriminator: bool
         'summary': json['summary'] == null ? undefined : json['summary'],
         'title': json['title'] == null ? undefined : json['title'],
         'updatedAt': json['updatedAt'] == null ? undefined : json['updatedAt'],
+        'vipPrice': json['vipPrice'] == null ? undefined : json['vipPrice'],
     };
 }
 
@@ -371,6 +392,8 @@ export function DomainTourFullToJSONTyped(value?: DomainTourFull | null, ignoreD
         'groupSize': value['groupSize'],
         'id': value['id'],
         'included': value['included'],
+        'isShowRooms': value['isShowRooms'],
+        'isShowVip': value['isShowVip'],
         'languages': value['languages'],
         'location': value['location'],
         'minAge': value['minAge'],
@@ -381,11 +404,11 @@ export function DomainTourFullToJSONTyped(value?: DomainTourFull | null, ignoreD
         'popUp2Description': value['popUp2Description'],
         'popUp2ImageUrl': value['popUp2ImageUrl'],
         'popUp2Title': value['popUp2Title'],
-        'price': value['price'],
         'program': value['program'],
         'reviewAmount': value['reviewAmount'],
         'reviews': value['reviews'] == null ? undefined : ((value['reviews'] as Array<any>).map(DomainReviewToJSON)),
         'reviewsSectionName': value['reviewsSectionName'],
+        'roomPrice': value['roomPrice'],
         'slug': value['slug'],
         'spotsLeft': value['spotsLeft'],
         'starAmount': value['starAmount'],
@@ -394,6 +417,7 @@ export function DomainTourFullToJSONTyped(value?: DomainTourFull | null, ignoreD
         'summary': value['summary'],
         'title': value['title'],
         'updatedAt': value['updatedAt'],
+        'vipPrice': value['vipPrice'],
     };
 }
 

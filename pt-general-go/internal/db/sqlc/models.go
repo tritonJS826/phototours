@@ -312,7 +312,10 @@ type Tour struct {
 	Title              string
 	Description        string
 	Difficulty         DifficultyLevel
-	Price              pgtype.Float8
+	IsShowVip          bool
+	IsShowRooms        bool
+	VipPrice           int32
+	RoomPrice          int32
 	Program            []byte
 	Faq                []byte
 	ReviewsSectionName string
@@ -354,8 +357,10 @@ type TourDate struct {
 	DateTo      pgtype.Timestamp
 	GroupSize   int32
 	IsAvailable bool
+	Price       pgtype.Float8
 	CreatedAt   pgtype.Timestamp
 	UpdatedAt   pgtype.Timestamp
+	Description string
 }
 
 type TourIncluded struct {

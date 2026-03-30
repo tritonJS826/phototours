@@ -12,7 +12,7 @@ export const QUERY_PARAMS = {
 } as const;
 
 type UrlObj = { url: string };
-type DatesObj = { dateFrom: string; dateTo: string };
+type DatesObj = { dateFrom: string; dateTo: string; price: number; description: string };
 
 type TourDTO = {
   reviewAmount: number;
@@ -21,7 +21,6 @@ type TourDTO = {
   slug: string;
   title: string;
   description: string;
-  price: number;
   startLocation: string;
   endLocation: string;
   durationDays: number;
@@ -49,6 +48,11 @@ type TourDTO = {
   spotsLeft: number;
   subtitle: string;
   reviewsSectionName: string;
+
+  isShowVip: boolean;
+  isShowRooms: boolean;
+  vipPrice: number;
+  roomPrice: number;
 
   popUp1Description: string;
   popUp1ImageUrl: string;
@@ -78,23 +82,26 @@ function toShortDate(value: string): string {
 
 function mapTourToView(dto: TourDTO): TourView {
   const photoUrls = (dto.photos ?? []).map(x => fileUrl(toUrl(x)));
-  const dates = (dto.dates ?? [])
+  const dates: TourView["dates"] = (dto.dates ?? [])
     .map((d) => {
       const from = d.dateFrom;
       const to = d.dateTo;
+      let dateStr = "";
       if (from && to) {
-        return `${toShortDate(from)} — ${toShortDate(to)}`;
+        dateStr = `${toShortDate(from)} — ${toShortDate(to)}`;
+      } else if (from) {
+        dateStr = toShortDate(from);
+      } else if (to) {
+        dateStr = toShortDate(to);
       }
-      if (from) {
-        return toShortDate(from);
-      }
-      if (to) {
-        return toShortDate(to);
-      }
-
-      return undefined;
+      return {
+        dateFrom: dateStr,
+        dateTo: "",
+        price: d.price,
+        description: d.description ?? "",
+      };
     })
-    .filter(Boolean) as string[];
+    .filter((d) => d.dateFrom !== "");
   const dailyItinerary =
     dto.program?.days?.map(d => ({
       day: d.day,
@@ -116,7 +123,6 @@ function mapTourToView(dto: TourDTO): TourView {
     slug: dto.slug,
     title: dto.title,
     description: dto.description,
-    price: dto.price,
     startLocation: dto.startLocation,
     endLocation: dto.endLocation,
     durationDays: dto.durationDays,
@@ -130,6 +136,10 @@ function mapTourToView(dto: TourDTO): TourView {
     dailyItinerary,
     reviewsSectionName: dto.reviewsSectionName,
     faq,
+    isShowVip: dto.isShowVip ?? false,
+    isShowRooms: dto.isShowRooms ?? false,
+    vipPrice: dto.vipPrice ?? 0,
+    roomPrice: dto.roomPrice ?? 0,
     activities: (dto.activities ?? []).map(a => ({
       activity: typeof a === "string" ? a : a.activity,
       iconName: typeof a === "string" ? "" : a.iconName,

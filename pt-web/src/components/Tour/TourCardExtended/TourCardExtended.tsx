@@ -189,7 +189,7 @@ export function TourCardExtended(props: Props) {
               From
               {" "}
               <b>
-                {props.tour.price * props.travelers}
+                {(props.tour.dates?.[0]?.price ?? 0) * props.travelers}
               </b>
               {" "}
               USD

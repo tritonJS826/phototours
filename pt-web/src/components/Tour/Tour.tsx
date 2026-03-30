@@ -13,7 +13,7 @@ type Props = {
 const STARS_FRACTIONAL_DIGITS = 1;
 
 export function TourCard({tour}: Props) {
-  const price = Number(tour.price ?? 0).toLocaleString();
+  const price = Number(tour.dates?.[0]?.price ?? 0).toLocaleString();
   const cover = tour.coverUrl || tour.photos?.[0] || "";
   const tourUrl = `/tours/${tour.slug ?? tour.id}`;
 

@@ -138,7 +138,8 @@ VALUES
 INSERT INTO tours (
   id, slug, title,
   description,
-  difficulty, price,
+  difficulty,
+  is_show_vip, is_show_rooms, vip_price, room_price,
   program,
   faq,
   cover_url, duration_days, end_location, start_location,
@@ -154,9 +155,9 @@ INSERT INTO tours (
   cta_description
 )
 VALUES
-    (tour1_id, 'tuscany-spring-photo-tour', 'Spring Tuscany',
+(tour1_id, 'tuscany-spring-photo-tour', 'Spring Tuscany',
      'Capture the essence of Italy on our Spring Tuscany Photo Tour. Experience the iconic emerald hills of the Val d’Orcia, misty sunrises at Podere Belvedere, and the medieval charm of Pienza. This immersive landscape photography workshop features expert-led shoots, cypress alleys, and the hidden gems of the region. Limited to a small group for a 10-day tour. Book your photography adventure today!',
-      'EASY', 5320.00,
+      'EASY', FALSE, TRUE, 300, 100,
       '{"days": [
         {
           "day": 1,
@@ -257,9 +258,9 @@ VALUES
       'Reserve Your Spot for the Tuscany Photo Tour',
       'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
-   (tour2_id, 'morocco-photo-tour', 'Morocco',
-    'Experience the magic of Morocco on a visual journey from the blue-washed streets of Chefchaouen to the golden dunes of the Sahara Desert. Capture the vibrant souks of Marrakech, the ancient kasbahs of Ait Ben Haddou, and the majestic Atlas Mountains. This immersive photography workshop offers expert-led sunrise and sunset sessions in Morocco’s most iconic locations. Join our exclusive small group for an unforgettable adventure!',
-    'EASY', 4480.00,
+(tour2_id, 'morocco-photo-tour', 'Morocco',
+     'Experience the magic of Morocco on a visual journey from the blue-washed streets of Chefchaouen to the golden dunes of the Sahara Desert. Capture the vibrant souks of Marrakech, the ancient kasbahs of Ait Ben Haddou, and the majestic Atlas Mountains. This immersive photography workshop offers expert-led sunrise and sunset sessions in Morocco’s most iconic locations. Join our exclusive small group for an unforgettable adventure!',
+     'EASY', FALSE, TRUE, 300, 100,
     '{"days":[
       {
         "day": 1,
@@ -372,9 +373,9 @@ VALUES
     'Reserve Your Spot for the Morocco Photo Tour',
     'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
-   (tour3_id, 'venice-carnival-photo-tour', 'Venice Carnival',
-     'Join our Venice Carnival Photo Tour for an unforgettable creative experience. Capture the elegance of Venetian masks and elaborate costumes against the backdrop of St. Mark’s Square. This photography workshop includes private shoots in historic places, gondola sessions, and hidden gems of Venice. Master your skills at sunrise and sunset. Limited small group tour. Book your photography adventure!',
-     'EASY', 3500.00,
+(tour3_id, 'venice-carnival-photo-tour', 'Venice Carnival',
+      'Join our Venice Carnival Photo Tour for an unforgettable creative experience. Capture the elegance of Venetian masks and elaborate costumes against the backdrop of St. Mark’s Square. This photography workshop includes private shoots in historic places, gondola sessions, and hidden gems of Venice. Master your skills at sunrise and sunset. Limited small group tour. Book your photography adventure!',
+      'EASY', FALSE, TRUE, 300, 100,
     '{"days": [
       {
         "day": 1,
@@ -447,7 +448,7 @@ VALUES
 
    (tour4_id, 'new-zealand-photo-tour', 'New Zealand',
       'Embark on the ultimate New Zealand Photo Tour. This comprehensive workshop covers the most iconic landscapes of both the North and South Islands. From the emerald lakes of Tongariro to the majestic peaks of Mount Cook and the mystical Milford Sound, capture the breathtaking diversity of the ''Land of the Long White Cloud.'' Join our photography expedition!',
-     'EASY', 5740.00,
+     'EASY', FALSE, TRUE, 300, 100,
      '{"days":[
       {
         "day": "1–2",
@@ -578,9 +579,9 @@ VALUES
     'Reserve Your Spot for the New Zealand Photo Tour',
     'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
-   (tour5_id, 'cyclades-sailing-tour', 'Cyclades Sailing',
-     'Experience our Cyclades Photo Tour aboard a private sailing catamaran. Capture the iconic white-washed beauty of Santorini and the surreal moonscapes of Milos. This photography workshop offers unique sea-access viewpoints, sunrise sessions at Sarakiniko, and golden hour shoots from the water. Master your skills while sailing the Aegean Sea in style. Book your photography adventure!',
-     'EASY', 4480.00,
+(tour5_id, 'cyclades-sailing-tour', 'Cyclades Sailing',
+      'Experience our Cyclades Photo Tour aboard a private sailing catamaran. Capture the iconic white-washed beauty of Santorini and the surreal moonscapes of Milos. This photography workshop offers unique sea-access viewpoints, sunrise sessions at Sarakiniko, and golden hour shoots from the water. Master your skills while sailing the Aegean Sea in style. Book your photography adventure!',
+      'EASY', FALSE, TRUE, 300, 100,
      '{"days": [
       {
         "day": "1",
@@ -663,9 +664,9 @@ VALUES
     'Reserve Your Spot for the Cyclades Photo Tour',
     'Portfolio-ready shots • Expert light & composition coaching • Live-aboard sailing expedition • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
-   (tour6_id, 'cinque-terre-umbria-tour', 'Cinque-Terre & Umbria',
-     'Capture Italy’s soul on our Cinque Terre & Umbria Photo Tour. From the vibrant cliffside villages of the Italian Riviera to the misty medieval towns of Umbria. This photography workshop features sunrise in Manarola, sunset in Orvieto, and the iconic ''dying city'' of Civita di Bagnoregio. Master landscape and street photography in a small group. Book your adventure!',
-     'EASY', 4900.00,
+(tour6_id, 'cinque-terre-umbria-tour', 'Cinque-Terre & Umbria',
+      'Capture Italy’s soul on our Cinque Terre & Umbria Photo Tour. From the vibrant cliffside villages of the Italian Riviera to the misty medieval towns of Umbria. This photography workshop features sunrise in Manarola, sunset in Orvieto, and the iconic ''dying city'' of Civita di Bagnoregio. Master landscape and street photography in a small group. Book your adventure!',
+      'EASY', FALSE, TRUE, 300, 100,
      '{"days": [
       {
         "day": "1",
@@ -766,9 +767,9 @@ VALUES
     'Reserve Your Spot for the Cinque Terre & Umbria Photo Tour',
     'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
-   (tour7_id, 'provence-photography-tour', 'Provence',
-     'Capture the magic of Southern France on our Provence & Camargue Photo Tour. From the endless lavender fields of Valensole to the iconic wild white horses running through the marshes of Camargue. This photography workshop offers expert guidance on landscape, action, and travel photography. Join us for an unforgettable journey through purple blooms and wild nature!',
-     'EASY', 5460.00,
+(tour7_id, 'provence-photography-tour', 'Provence',
+      'Capture the magic of Southern France on our Provence & Camargue Photo Tour. From the endless lavender fields of Valensole to the iconic wild white horses running through the marshes of Camargue. This photography workshop offers expert guidance on landscape, action, and travel photography. Join us for an unforgettable journey through purple blooms and wild nature!',
+      'EASY', FALSE, TRUE, 300, 100,
      '{"days": [
       {
         "day": "1",
@@ -851,9 +852,9 @@ VALUES
     'Reserve Your Spot for the Provence Photo Tour',
     'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
-   (tour8_id, 'sicily-aeolian-tour', 'Sicily & Aeolian Islands',
-     'Embark on a luxury Sicily & Aeolian Islands Yacht Photo Tour. Capture the dramatic eruptions of Stromboli, the turquoise bays of Panarea, and the historic streets of Lipari. This sailing photography workshop offers a unique perspective of the volcanic archipelago from the water. Master landscape and night photography. Join our private adventure!',
-     'EASY', 5460.00,
+(tour8_id, 'sicily-aeolian-tour', 'Sicily & Aeolian Islands',
+      'Embark on a luxury Sicily & Aeolian Islands Yacht Photo Tour. Capture the dramatic eruptions of Stromboli, the turquoise bays of Panarea, and the historic streets of Lipari. This sailing photography workshop offers a unique perspective of the volcanic archipelago from the water. Master landscape and night photography. Join our private adventure!',
+      'EASY', FALSE, TRUE, 300, 100,
      '{"days": [
       {
         "day": "1",
@@ -955,9 +956,9 @@ VALUES
     'Reserve Your Spot for the Sicily & Aeolian Islands Photo Tour',
     'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
-   (tour9_id, 'czechia-autumn-tour', 'Czechia Autumn',
-     'Discover the magic of Autumn in Czechia on our exclusive photography tour. From the misty, cobblestone streets of Prague and historic castles to the rolling ''Moravian Tuscany'' vineyards. This photography workshop offers expert guidance on landscape and architectural photography in the heart of Europe. Capture the golden light and moody landscapes with us. Book your adventure today!',
-     'EASY', 4060.00,
+(tour9_id, 'czechia-autumn-tour', 'Czechia Autumn',
+      'Discover the magic of Autumn in Czechia on our exclusive photography tour. From the misty, cobblestone streets of Prague and historic castles to the rolling ''Moravian Tuscany'' vineyards. This photography workshop offers expert guidance on landscape and architectural photography in the heart of Europe. Capture the golden light and moody landscapes with us. Book your adventure today!',
+      'EASY', FALSE, TRUE, 300, 100,
      '{"days":[
       {
         "day": "1",
@@ -1046,9 +1047,9 @@ VALUES
     'Reserve Your Spot for the Czechia Photo Tour',
     'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
-  (tour10_id, 'scotland-photography-tour', 'Scotland',
-   'Join our Scotland Photo Tour and document the untamed beauty of the Highlands. From the dramatic peaks of Quiraing and the Old Man of Storr on the Isle of Skye to historic castles and misty glens. This landscape photography workshop offers expert guidance on capturing mood and light in the heart of Scotland. Book your adventure today!',
-     'EASY', 5040.00,
+(tour10_id, 'scotland-photography-tour', 'Scotland',
+    'Join our Scotland Photo Tour and document the untamed beauty of the Highlands. From the dramatic peaks of Quiraing and the Old Man of Storr on the Isle of Skye to historic castles and misty glens. This landscape photography workshop offers expert guidance on capturing mood and light in the heart of Scotland. Book your adventure today!',
+      'EASY', FALSE, TRUE, 300, 100,
      '{"days": [
       {
         "day": "1",
@@ -1137,9 +1138,9 @@ VALUES
     'Reserve Your Spot for the Scotland Photo Tour',
     'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
-  (tour11_id, 'tuscany-autumn-tour', 'Tuscany Autumn',
-     'Join our Autumn photo tour in Tuscany to capture the world’s most iconic landscapes. From the misty rolling hills of Val d’Orcia and historic cypress alleys to the medieval charm of Pienza and Siena, this landscape photography workshop offers expert guidance on mastering the light in the heart of Italy. Experience the ultimate Tuscan creative escape. Book your photo adventure now!',
-     'EASY', 5320.00,
+(tour11_id, 'tuscany-autumn-tour', 'Tuscany Autumn',
+     'Join our Autumn photo tour in Tuscany to capture the world''s most iconic landscapes. From the misty rolling hills of Val d''Orcia and historic cypress alleys to the medieval charm of Pienza and Siena, this landscape photography workshop offers expert guidance on mastering the light in the heart of Italy. Experience the ultimate Tuscan creative escape. Book your photo adventure now!',
+     'EASY', FALSE, TRUE, 300, 100,
      '{"days": [
       {
         "day": "1",
@@ -1240,9 +1241,9 @@ VALUES
     'Reserve Your Spot for the Tuscany Autumn Photo Tour',
     'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
-  (tour12_id, 'japan-atumn-tour', 'Japan Autumn',
-    'Embark on our Japan Autumn Photo Tour to document the breathtaking Momiji season. From the neon streets of Tokyo and the iconic reflection of Mount Fuji to the serene zen gardens and hidden temples of Kyoto. This landscape photography workshop offers expert guidance in capturing the vibrant red maples and timeless spirit of Japan. Limited spots available — join us now!',
-    'EASY', 6300.00,
+(tour12_id, 'japan-atumn-tour', 'Japan Autumn',
+      'Embark on our Japan Autumn Photo Tour to document the breathtaking Momiji season. From the neon streets of Tokyo and the iconic reflection of Mount Fuji to the serene zen gardens and hidden temples of Kyoto. This landscape photography workshop offers expert guidance in capturing the vibrant red maples and timeless spirit of Japan. Limited spots available — join us now!',
+      'EASY', FALSE, TRUE, 300, 100,
     '{"days": [
       {
         "day": "1",
@@ -1337,9 +1338,9 @@ VALUES
     'Reserve Your Spot for the Japan Autumn Photo Tour',
     'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
-  (tour13_id, 'iceland-tour', 'Iceland',
-     'Join our exclusive Iceland Off-Road Photo Expedition for the ultimate wilderness experience. Venture deep into the rugged interior and the heart of the Highlands, accessible only by specialized 4x4 vehicles. From the volcanic landscapes to hidden glaciers and obsidian deserts, master your landscape photography in Europe’s last great wilderness. Start your adventure with us!',
-     'EASY', 6230.00,
+(tour13_id, 'iceland-tour', 'Iceland',
+      'Join our exclusive Iceland Off-Road Photo Expedition for the ultimate wilderness experience. Venture deep into the rugged interior and the heart of the Highlands, accessible only by specialized 4x4 vehicles. From the volcanic landscapes to hidden glaciers and obsidian deserts, master your landscape photography in Europe’s last great wilderness. Start your adventure with us!',
+      'EASY', TRUE, FALSE, 300, 100,
      '{"days": [
         {
           "day": "1",
@@ -1440,9 +1441,9 @@ VALUES
       'Reserve Your Spot for the Iceland Photo Tour',
       'Portfolio-ready shots • Expert light & composition coaching • Cinematic routes • Hidden gems & off-path spots • Total immersion • Small group exclusivity'),
 
-  (tour14_id, 'japan-spring-tour', 'Japan Spring',
-     'Embark on our Japan Spring Photo Tour to document the breathtaking Momiji season. From the neon streets of Tokyo and the iconic reflection of Mount Fuji to the serene zen gardens and hidden temples of Kyoto. This landscape photography workshop offers expert guidance in capturing the vibrant red maples and timeless spirit of Japan. Limited spots available — join us now!',
-     'EASY', 6300.00,
+(tour14_id, 'japan-spring-tour', 'Japan Spring',
+      'Embark on our Japan Spring Photo Tour to document the breathtaking Momiji season. From the neon streets of Tokyo and the iconic reflection of Mount Fuji to the serene zen gardens and hidden temples of Kyoto. This landscape photography workshop offers expert guidance in capturing the vibrant red maples and timeless spirit of Japan. Limited spots available — join us now!',
+      'EASY', FALSE, TRUE, 300, 100,
      '{"days": [
       {
         "day": "1",
@@ -1884,93 +1885,100 @@ VALUES
   (tour14_id, 'Expert photo guide');
 
 -- TOUR DATES
-INSERT INTO tour_dates (id, tour_id, date_from, date_to, group_size, is_available)
+INSERT INTO tour_dates (tour_id, date_from, date_to, group_size, is_available, price, description)
 VALUES
   -- Tour 1: Tuscany Spring
-  (tour_date1_id, tour1_id, '2026-03-09', '2026-03-18', 2, TRUE),
-  (tour_date2_id, tour1_id, '2026-03-20', '2026-03-29', 6, TRUE),
-  (tour_date3_id, tour1_id, '2027-03-05', '2027-03-14', 6, TRUE),
+  (tour1_id, '2026-03-09', '2026-03-18', 2, TRUE, 5320.00, ''),
+  (tour1_id, '2026-03-20', '2026-03-29', 6, TRUE, 5320.00, ''),
+  (tour1_id, '2027-03-05', '2027-03-14', 6, TRUE, 5320.00, ''),
   
   -- Tour 2: Morocco
-  (tour_date4_id, tour2_id, '2026-01-30', '2026-02-10', 0, TRUE),
-  (tour_date5_id, tour2_id, '2027-02-12', '2027-02-21', 7, TRUE),
+  (tour2_id, '2026-01-30', '2026-02-10', 0, TRUE, 5460.00, ''),
+  (tour2_id, '2027-02-12', '2027-02-21', 7, TRUE, 5460.00, ''),
   
   -- Tour 3: Venice Carnival
-  (tour_date6_id, tour3_id, '2026-02-13', '2026-02-17', 0, TRUE),
-  (tour_date7_id, tour3_id, '2027-02-05', '2027-02-09', 7, TRUE),
+  (tour3_id, '2026-02-13', '2026-02-17', 0, TRUE, 3500.00, ''),
+  (tour3_id, '2027-02-05', '2027-02-09', 7, TRUE, 3500.00, ''),
   
   -- Tour 4: New Zealand North Island (10-day tour)
-  (tour_date8_id, tour4_id, '2026-04-06', '2026-04-15', 6, TRUE),
-  (tour_date9_id, tour4_id, '2026-12-25', '2027-01-03', 0, TRUE),
-  (tour_date10_id, tour4_id, '2027-01-25', '2027-02-03', 8, TRUE),
-  (tour_date11_id, tour4_id, '2027-04-08', '2027-04-17', 8, TRUE),
-  (tour_date12_id, tour4_id, '2027-12-03', '2027-12-12', 11, TRUE),
-  (tour_date13_id, tour4_id, '2028-01-04', '2028-01-14', 11, TRUE),
+  (tour4_id, '2026-04-06', '2026-04-15', 6, TRUE, 5880.00, 'North Island'),
+  (tour4_id, '2026-12-25', '2027-01-03', 0, TRUE, 5880.00, 'North Island'),
+  (tour4_id, '2027-01-25', '2027-02-03', 8, TRUE, 5880.00, 'North Island'),
+  (tour4_id, '2027-04-08', '2027-04-17', 8, TRUE, 5880.00, 'North Island'),
+  (tour4_id, '2027-12-03', '2027-12-12', 11, TRUE, 5880.00, 'North Island'),
+  (tour4_id, '2028-01-04', '2028-01-14', 11, TRUE, 5880.00, 'North Island'),
   -- Tour 4: New Zealand South Island (11-day tour)
-  (tour_date14_id, tour4_id, '2026-04-16', '2026-04-26', 6, TRUE),
-  (tour_date15_id, tour4_id, '2027-01-04', '2027-01-14', 0, TRUE),
-  (tour_date16_id, tour4_id, '2027-01-14', '2027-01-24', 8, TRUE),
-  (tour_date17_id, tour4_id, '2027-04-18', '2027-04-28', 8, TRUE),
-  (tour_date18_id, tour4_id, '2027-12-13', '2027-12-23', 11, TRUE),
-  (tour_date19_id, tour4_id, '2027-12-24', '2028-01-03', 11, TRUE),
+  (tour4_id, '2026-04-16', '2026-04-26', 6, TRUE, 5880.00, 'South Island'),
+  (tour4_id, '2027-01-04', '2027-01-14', 0, TRUE, 5880.00, 'South Island'),
+  (tour4_id, '2027-01-14', '2027-01-24', 8, TRUE, 5880.00, 'South Island'),
+  (tour4_id, '2027-04-18', '2027-04-28', 8, TRUE, 5880.00, 'South Island'),
+  (tour4_id, '2027-12-13', '2027-12-23', 11, TRUE, 5880.00, 'South Island'),
+  (tour4_id, '2027-12-24', '2028-01-03', 11, TRUE, 5880.00, 'South Island'),
+  -- Tour 4: New Zealand North Island + South Island  = Grand Tour (11-day tour)
+  (tour4_id, '2026-04-16', '2026-04-26', 6, TRUE, 5880.00, 'Grand Tour'),
+  (tour4_id, '2027-01-04', '2027-01-14', 0, TRUE, 5880.00, 'Grand Tour'),
+  (tour4_id, '2027-01-14', '2027-01-24', 8, TRUE, 5880.00, 'Grand Tour'),
+  (tour4_id, '2027-04-18', '2027-04-28', 8, TRUE, 5880.00, 'Grand Tour'),
+  (tour4_id, '2027-12-13', '2027-12-23', 11, TRUE, 5880.00, 'Grand Tour'),
+  (tour4_id, '2027-12-24', '2028-01-03', 11, TRUE, 5880.00, 'Grand Tour'),
   
   -- Tour 5: Cyclades by Catamaran (8-day tour)
-  (tour_date20_id, tour5_id, '2026-05-02', '2026-05-09', 8, TRUE),
-  (tour_date21_id, tour5_id, '2027-05-01', '2027-05-08', 19, TRUE),
+  (tour5_id, '2026-05-02', '2026-05-09', 8, TRUE, 4480.00, ''),
+  (tour5_id, '2027-05-01', '2027-05-08', 19, TRUE, 4480.00, ''),
 
   -- Tour 6: Cinque Terre & Umbria (10-day tour)
-  (tour_date22_id, tour6_id, '2026-06-05', '2026-06-14', 3, TRUE),
-  (tour_date23_id, tour6_id, '2027-06-04', '2027-06-13', 7, TRUE),
+  (tour6_id, '2026-06-05', '2026-06-14', 3, TRUE, 4900.00, ''),
+  (tour6_id, '2027-06-04', '2027-06-13', 7, TRUE, 4900.00, ''),
   
   -- Tour 7: Provence (7-day tour)
-  (tour_date24_id, tour7_id, '2026-06-22', '2026-06-28', 3, TRUE),
-  (tour_date25_id, tour7_id, '2027-06-28', '2027-07-04', 6, TRUE),
+  (tour7_id, '2026-06-22', '2026-06-28', 3, TRUE, 5460.00, ''),
+  (tour7_id, '2027-06-28', '2027-07-04', 6, TRUE, 5460.00, ''),
   
   -- Tour 8: Sicily & Aeolian Islands (11-day tour)
-  (tour_date26_id, tour8_id, '2026-07-08', '2026-07-18', 3, TRUE),
-  (tour_date27_id, tour8_id, '2027-06-16', '2027-06-26', 7, TRUE),
+  (tour8_id, '2026-07-08', '2026-07-18', 3, TRUE, 5460.00, ''),
+  (tour8_id, '2027-06-16', '2027-06-26', 7, TRUE, 5460.00, ''),
 
   -- Tour 9: Czechia Autumn (10-day tour)
-  (tour_date28_id, tour9_id, '2026-10-09', '2026-10-18', 7, TRUE),
-  (tour_date29_id, tour9_id, '2027-10-15', '2027-10-24', 7, TRUE),
+  (tour9_id, '2026-10-09', '2026-10-18', 7, TRUE, 4060.00, ''),
+  (tour9_id, '2027-10-15', '2027-10-24', 7, TRUE, 4060.00, ''),
   
   -- Tour 10: Scotland (8-day tour)
-  (tour_date30_id, tour10_id, '2026-10-17', '2026-10-24', 7, TRUE),
-  (tour_date31_id, tour10_id, '2027-10-17', '2027-10-24', 7, TRUE),
+  (tour10_id, '2026-10-17', '2026-10-24', 7, TRUE, 5040.00, ''),
+  (tour10_id, '2027-10-17', '2027-10-24', 7, TRUE, 5040.00, ''),
   
   -- Tour 11: Tuscany Autumn (10-day tour)
-  (tour_date32_id, tour11_id, '2026-10-30', '2026-11-08', 7, TRUE),
-  (tour_date33_id, tour11_id, '2026-11-08', '2026-11-17', 7, TRUE),
-  (tour_date34_id, tour11_id, '2027-10-22', '2027-10-31', 7, TRUE),
-  (tour_date35_id, tour11_id, '2027-10-31', '2027-11-09', 7, TRUE),
-  (tour_date36_id, tour11_id, '2027-11-09', '2027-11-18', 7, TRUE),
-  (tour_date37_id, tour11_id, '2027-11-19', '2027-11-28', 7, TRUE),
+  (tour11_id, '2026-10-30', '2026-11-08', 7, TRUE, 5320.00, ''),
+  (tour11_id, '2026-11-08', '2026-11-17', 7, TRUE, 5320.00, ''),
+  (tour11_id, '2027-10-22', '2027-10-31', 7, TRUE, 5320.00, ''),
+  (tour11_id, '2027-10-31', '2027-11-09', 7, TRUE, 5320.00, ''),
+  (tour11_id, '2027-11-09', '2027-11-18', 7, TRUE, 5320.00, ''),
+  (tour11_id, '2027-11-19', '2027-11-28', 7, TRUE, 5320.00, ''),
   
   -- Tour 12: Japan Autumn (10-day tour)
-  (tour_date38_id, tour12_id, '2026-11-20', '2026-11-29', 6, TRUE),
-  (tour_date39_id, tour12_id, '2026-11-22', '2026-12-01', 6, TRUE),
-  (tour_date40_id, tour12_id, '2027-11-20', '2027-11-29', 9, TRUE),
-  (tour_date41_id, tour12_id, '2027-11-22', '2027-12-01', 9, TRUE),
+  (tour12_id, '2026-11-20', '2026-11-29', 6, TRUE, 6300.00, ''),
+  (tour12_id, '2026-11-22', '2026-12-01', 6, TRUE, 6300.00, ''),
+  (tour12_id, '2027-11-20', '2027-11-29', 9, TRUE, 6300.00, ''),
+  (tour12_id, '2027-11-22', '2027-12-01', 9, TRUE, 6300.00, ''),
 
   -- Tour 13: Iceland Offroad Caravan (10-day tour)
-  (tour_date42_id, tour13_id, '2026-08-07', '2026-08-16', 3, TRUE),
-  (tour_date43_id, tour13_id, '2026-08-18', '2026-08-27', 5, TRUE),
-  (tour_date44_id, tour13_id, '2026-08-29', '2026-09-07', 5, TRUE),
-  (tour_date45_id, tour13_id, '2026-09-09', '2026-09-18', 5, TRUE),
-  (tour_date46_id, tour13_id, '2026-09-20', '2026-09-29', 5, TRUE),
-  (tour_date47_id, tour13_id, '2027-07-09', '2027-07-18', 5, TRUE),
-  (tour_date48_id, tour13_id, '2027-07-20', '2027-07-29', 5, TRUE),
-  (tour_date49_id, tour13_id, '2027-07-30', '2027-08-08', 5, TRUE),
-  (tour_date50_id, tour13_id, '2027-08-10', '2027-08-19', 5, TRUE),
-  (tour_date51_id, tour13_id, '2027-08-20', '2027-08-29', 5, TRUE),
-  (tour_date52_id, tour13_id, '2027-08-31', '2027-09-09', 5, TRUE),
-  (tour_date53_id, tour13_id, '2027-09-10', '2027-09-19', 5, TRUE),
-  (tour_date54_id, tour13_id, '2027-09-21', '2027-09-30', 5, TRUE),
+  (tour13_id, '2026-08-07', '2026-08-16', 3, TRUE, 6230.00, ''),
+  (tour13_id, '2026-08-18', '2026-08-27', 5, TRUE, 6230.00, ''),
+  (tour13_id, '2026-08-29', '2026-09-07', 5, TRUE, 6230.00, ''),
+  (tour13_id, '2026-09-09', '2026-09-18', 5, TRUE, 6230.00, ''),
+  (tour13_id, '2026-09-20', '2026-09-29', 5, TRUE, 6230.00, ''),
+  (tour13_id, '2027-07-09', '2027-07-18', 5, TRUE, 6230.00, ''),
+  (tour13_id, '2027-07-20', '2027-07-29', 5, TRUE, 6230.00, ''),
+  (tour13_id, '2027-07-30', '2027-08-08', 5, TRUE, 6230.00, ''),
+  (tour13_id, '2027-08-10', '2027-08-19', 5, TRUE, 6230.00, ''),
+  (tour13_id, '2027-08-20', '2027-08-29', 5, TRUE, 6230.00, ''),
+  (tour13_id, '2027-08-31', '2027-09-09', 5, TRUE, 6230.00, ''),
+  (tour13_id, '2027-09-10', '2027-09-19', 5, TRUE, 6230.00, ''),
+  (tour13_id, '2027-09-21', '2027-09-30', 5, TRUE, 6230.00, ''),
   
   -- Tour 14: Japan Spring (10-day tour)
-  (tour_date55_id, tour14_id, '2026-03-25', '2026-04-03', 0, TRUE),
-  (tour_date56_id, tour14_id, '2027-03-26', '2027-04-04', 10, TRUE),
-  (tour_date57_id, tour14_id, '2027-03-28', '2027-04-06', 10, TRUE);
+  (tour14_id, '2026-03-25', '2026-04-03', 0, TRUE, 6300.00, ''),
+  (tour14_id, '2027-03-26', '2027-04-04', 10, TRUE, 6300.00, ''),
+  (tour14_id, '2027-03-28', '2027-04-06', 10, TRUE, 6300.00, '');
   
 
 -- PHOTOS
@@ -2370,22 +2378,22 @@ VALUES
 
 
 -- BOOKINGS
-INSERT INTO bookings (id, tour_date_id, user_id, status, participants, total_price)
-VALUES
-  -- (booking1_id, tour_date1_id, user3_id, 'CONFIRMED', 2, 3500.00),
-  -- (booking2_id, tour_date3_id, user4_id, 'PENDING', 1, 252.00),
-  -- (booking3_id, tour_date4_id, user7_id, 'CONFIRMED', 3, 2730.00),
-  -- (booking4_id, tour_date5_id, user8_id, 'CANCELLED', 2, 5040.00),
-  (booking5_id, tour_date5_id, user10_id, 'CONFIRMED', 1, 1330.00);
+-- INSERT INTO bookings (id, tour_date_id, user_id, status, participants, total_price)
+-- VALUES 
+--   (booking1_id, tour_date1_id, user3_id, 'CONFIRMED', 2, 3500.00),
+--   (booking2_id, tour_date3_id, user4_id, 'PENDING', 1, 252.00),
+--   (booking3_id, tour_date4_id, user7_id, 'CONFIRMED', 3, 2730.00),
+--   (booking4_id, tour_date5_id, user8_id, 'CANCELLED', 2, 5040.00),
+--   (booking5_id, tour_date5_id, user10_id, 'CONFIRMED', 1, 1330.00);
 
 -- PAYMENTS
-INSERT INTO payments (booking_id, amount, payment_method, status, transaction_id)
-VALUES
+-- INSERT INTO payments (booking_id, amount, payment_method, status, transaction_id)
+-- VALUES
   -- (booking1_id, 3500.00, 'CARD', 'COMPLETED', 'TXN123ABC'),
   -- (booking2_id, 252.00, 'PAYPAL', 'PENDING', 'TXN987XYZ'),
   -- (booking3_id, 2730.00, 'BANK_TRANSFER', 'COMPLETED', 'TXN654QWE'),
   -- (booking4_id, 5040.00, 'CARD', 'REFUNDED', 'TXN444RTY'),
-  (booking5_id, 1330.00, 'CARD', 'COMPLETED', 'TXN999BNM');
+  -- (booking5_id, 1330.00, 'CARD', 'COMPLETED', 'TXN999BNM');
 
 -- REVIEWS
 INSERT INTO reviews (tour_id, user_id, rating, comment, user_name, link, image)

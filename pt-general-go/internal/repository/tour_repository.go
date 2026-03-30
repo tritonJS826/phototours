@@ -24,6 +24,10 @@ func (r *TourRepository) CreateTour(ctx context.Context, createTour *domain.Crea
 		Title:             createTour.Title,
 		Description:       createTour.Description,
 		Difficulty:        db.DifficultyLevel(createTour.Difficulty),
+		IsShowVip:         createTour.IsShowVip,
+		IsShowRooms:       createTour.IsShowRooms,
+		VipPrice:          createTour.VipPrice,
+		RoomPrice:         createTour.RoomPrice,
 		Program:           createTour.Program,
 		Faq:               createTour.FAQ,
 		Languages:         createTour.Languages,
@@ -38,7 +42,6 @@ func (r *TourRepository) CreateTour(ctx context.Context, createTour *domain.Crea
 		CtaDescription:    createTour.CtaDescription,
 	}
 
-	params.Price = pgtype.Float8{Float64: createTour.Price, Valid: true}
 	params.StartLocation = pgtype.Text{String: createTour.StartLocation, Valid: true}
 	params.EndLocation = pgtype.Text{String: createTour.EndLocation, Valid: true}
 	params.DurationDays = pgtype.Text{String: createTour.DurationDays, Valid: true}
@@ -146,8 +149,17 @@ func (r *TourRepository) UpdateTourByID(ctx context.Context, id uuid.UUID, req *
 	if req.FAQ != nil {
 		params.Faq = *req.FAQ
 	}
-	if req.Price != nil {
-		params.Price = pgtype.Float8{Float64: *req.Price, Valid: true}
+	if req.IsShowVip != nil {
+		params.IsShowVip = pgtype.Bool{Bool: *req.IsShowVip, Valid: true}
+	}
+	if req.IsShowRooms != nil {
+		params.IsShowRooms = pgtype.Bool{Bool: *req.IsShowRooms, Valid: true}
+	}
+	if req.VipPrice != nil {
+		params.VipPrice = pgtype.Int4{Int32: *req.VipPrice, Valid: true}
+	}
+	if req.RoomPrice != nil {
+		params.RoomPrice = pgtype.Int4{Int32: *req.RoomPrice, Valid: true}
 	}
 	if req.StartLocation != nil {
 		params.StartLocation = pgtype.Text{String: *req.StartLocation, Valid: true}
@@ -204,4 +216,12 @@ func (r *TourRepository) GetSimilarToursByTourID(ctx context.Context, tourID uui
 		return nil, handleDBError(err)
 	}
 	return mapper.MapToDomainSimilarTours(rows), nil
+}
+
+func (r *TourRepository) GetTourDatesByTourID(ctx context.Context, tourID uuid.UUID) ([]domain.TourDate, error) {
+	rows, err := r.db.GetTourDatesByTourID(ctx, mapper.UUIDToPgUUID(tourID))
+	if err != nil {
+		return nil, handleDBError(err)
+	}
+	return mapper.MapToDomainTourDates(rows), nil
 }

@@ -22,7 +22,6 @@ type CreateTourParams struct {
 	MinAge             int32           `json:"minAge"`
 	EndLocation        string          `json:"endLocation"`
 	StartLocation      string          `json:"startLocation"`
-	Price              float64         `json:"price"`
 	DurationDays       string          `json:"durationDays"`
 	Slug               string          `json:"slug"`
 	CoverURL           string          `json:"coverUrl"`
@@ -45,6 +44,10 @@ type CreateTourParams struct {
 	CtaTitle           string          `json:"ctaTitle"`
 	CtaDescription     string          `json:"ctaDescription"`
 	ReviewsSectionName string          `json:"reviewsSectionName"`
+	IsShowVip          bool            `json:"isShowVip"`
+	IsShowRooms        bool            `json:"isShowRooms"`
+	VipPrice           int32           `json:"vipPrice"`
+	RoomPrice          int32           `json:"roomPrice"`
 }
 
 func (t *CreateTourParams) Validate() error {
@@ -75,7 +78,6 @@ type UpdateTourParams struct {
 	DurationDays       *string          `json:"durationDays"`
 	MinAge             *int32           `json:"minAge"`
 	EndLocation        *string          `json:"endLocation"`
-	Price              *float64         `json:"price"`
 	StartLocation      *string          `json:"startLocation"`
 	CoverURL           *string          `json:"coverUrl"`
 	Difficulty         *DifficultyLevel `json:"difficulty"`
@@ -96,13 +98,16 @@ type UpdateTourParams struct {
 	PopUp1ImageUrl     *string          `json:"popUp1ImageUrl"`
 	PopUp2ImageUrl     *string          `json:"popUp2ImageUrl"`
 	ReviewsSectionName *string          `json:"reviewsSectionName"`
+	IsShowVip          *bool            `json:"isShowVip"`
+	IsShowRooms        *bool            `json:"isShowRooms"`
+	VipPrice           *int32           `json:"vipPrice"`
+	RoomPrice          *int32           `json:"roomPrice"`
 }
 
 func (r *UpdateTourParams) Validate() error {
 	if r.DurationDays == nil &&
 		r.MinAge == nil &&
 		r.EndLocation == nil &&
-		r.Price == nil &&
 		r.StartLocation == nil &&
 		r.CoverURL == nil &&
 		r.Difficulty == nil &&
@@ -122,14 +127,14 @@ func (r *UpdateTourParams) Validate() error {
 		r.PopUp2Description == nil &&
 		r.PopUp1ImageUrl == nil &&
 		r.PopUp2ImageUrl == nil &&
-		r.ReviewsSectionName == nil {
+		r.ReviewsSectionName == nil &&
+		r.IsShowVip == nil &&
+		r.IsShowRooms == nil &&
+		r.VipPrice == nil &&
+		r.RoomPrice == nil {
 		return errors.New("at least one field must be provided")
 	}
 
-	// Валидация конкретных полей, если они переданы
-	if r.Price != nil && *r.Price < 0 {
-		return errors.New("price cannot be negative")
-	}
 	if r.MinAge != nil && *r.MinAge < 0 {
 		return errors.New("minAge cannot be negative")
 	}
@@ -158,7 +163,6 @@ type Tour struct {
 	DurationDays       *string         `json:"durationDays"`
 	MinAge             *int32          `json:"minAge"`
 	EndLocation        *string         `json:"endLocation"`
-	Price              *float64        `json:"price"`
 	StartLocation      *string         `json:"startLocation"`
 	Location           *string         `json:"location"`
 	CoverURL           *string         `json:"coverUrl"`
@@ -182,6 +186,10 @@ type Tour struct {
 	CtaTitle           string          `json:"ctaTitle"`
 	CtaDescription     string          `json:"ctaDescription"`
 	ReviewsSectionName string          `json:"reviewsSectionName"`
+	IsShowVip          bool            `json:"isShowVip"`
+	IsShowRooms        bool            `json:"isShowRooms"`
+	VipPrice           int32           `json:"vipPrice"`
+	RoomPrice          int32           `json:"roomPrice"`
 	ID                 uuid.UUID       `json:"id"`
 }
 
@@ -279,6 +287,8 @@ type TourDate struct {
 	GroupSize   int32     `json:"groupSize"`
 	TourID      uuid.UUID `json:"tourId"`
 	IsAvailable bool      `json:"isAvailable"`
+	Price       *float64  `json:"price"`
+	Description string    `json:"description"`
 }
 
 type TourFilter struct {

@@ -45,6 +45,12 @@ export interface DomainBookingRequest {
     id?: string;
     /**
      * 
+     * @type {boolean}
+     * @memberof DomainBookingRequest
+     */
+    isVip?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof DomainBookingRequest
      */
@@ -132,6 +138,7 @@ export function DomainBookingRequestFromJSONTyped(json: any, ignoreDiscriminator
         'country': json['country'] == null ? undefined : json['country'],
         'email': json['email'] == null ? undefined : json['email'],
         'id': json['id'] == null ? undefined : json['id'],
+        'isVip': json['isVip'] == null ? undefined : json['isVip'],
         'language': json['language'] == null ? undefined : json['language'],
         'lastContactPage': json['lastContactPage'] == null ? undefined : json['lastContactPage'],
         'name': json['name'] == null ? undefined : json['name'],
@@ -161,6 +168,7 @@ export function DomainBookingRequestToJSONTyped(value?: DomainBookingRequest | n
         'country': value['country'],
         'email': value['email'],
         'id': value['id'],
+        'isVip': value['isVip'],
         'language': value['language'],
         'lastContactPage': value['lastContactPage'],
         'name': value['name'],

@@ -45,16 +45,28 @@ export interface DtoCreateTourRequest {
     difficulty: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof DtoCreateTourRequest
      */
-    durationDays?: number;
+    durationDays?: string;
     /**
      * 
      * @type {string}
      * @memberof DtoCreateTourRequest
      */
     endLocation?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DtoCreateTourRequest
+     */
+    isShowRooms?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DtoCreateTourRequest
+     */
+    isShowVip?: boolean;
     /**
      * 
      * @type {Array<string>}
@@ -69,12 +81,6 @@ export interface DtoCreateTourRequest {
     minAge?: number;
     /**
      * 
-     * @type {number}
-     * @memberof DtoCreateTourRequest
-     */
-    price?: number;
-    /**
-     * 
      * @type {object}
      * @memberof DtoCreateTourRequest
      */
@@ -85,6 +91,12 @@ export interface DtoCreateTourRequest {
      * @memberof DtoCreateTourRequest
      */
     reviewsSectionName?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DtoCreateTourRequest
+     */
+    roomPrice?: number;
     /**
      * 
      * @type {string}
@@ -103,6 +115,12 @@ export interface DtoCreateTourRequest {
      * @memberof DtoCreateTourRequest
      */
     title: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DtoCreateTourRequest
+     */
+    vipPrice?: number;
 }
 
 /**
@@ -131,14 +149,17 @@ export function DtoCreateTourRequestFromJSONTyped(json: any, ignoreDiscriminator
         'difficulty': json['difficulty'],
         'durationDays': json['durationDays'] == null ? undefined : json['durationDays'],
         'endLocation': json['endLocation'] == null ? undefined : json['endLocation'],
+        'isShowRooms': json['isShowRooms'] == null ? undefined : json['isShowRooms'],
+        'isShowVip': json['isShowVip'] == null ? undefined : json['isShowVip'],
         'languages': json['languages'] == null ? undefined : json['languages'],
         'minAge': json['minAge'] == null ? undefined : json['minAge'],
-        'price': json['price'] == null ? undefined : json['price'],
         'program': json['program'] == null ? undefined : json['program'],
         'reviewsSectionName': json['reviewsSectionName'] == null ? undefined : json['reviewsSectionName'],
+        'roomPrice': json['roomPrice'] == null ? undefined : json['roomPrice'],
         'slug': json['slug'] == null ? undefined : json['slug'],
         'startLocation': json['startLocation'] == null ? undefined : json['startLocation'],
         'title': json['title'],
+        'vipPrice': json['vipPrice'] == null ? undefined : json['vipPrice'],
     };
 }
 
@@ -159,14 +180,17 @@ export function DtoCreateTourRequestToJSONTyped(value?: DtoCreateTourRequest | n
         'difficulty': value['difficulty'],
         'durationDays': value['durationDays'],
         'endLocation': value['endLocation'],
+        'isShowRooms': value['isShowRooms'],
+        'isShowVip': value['isShowVip'],
         'languages': value['languages'],
         'minAge': value['minAge'],
-        'price': value['price'],
         'program': value['program'],
         'reviewsSectionName': value['reviewsSectionName'],
+        'roomPrice': value['roomPrice'],
         'slug': value['slug'],
         'startLocation': value['startLocation'],
         'title': value['title'],
+        'vipPrice': value['vipPrice'],
     };
 }
 

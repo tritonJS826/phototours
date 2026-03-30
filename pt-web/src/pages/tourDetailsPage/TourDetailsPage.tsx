@@ -147,6 +147,7 @@ export function TourDetailsPage() {
     date: "",
     travelers: 1,
     rooms: 0,
+    isVip: false,
   });
   const [searchParams] = useSearchParams();
   const [isErrorNotificationOpen, setIsErrorNotificationOpen] = useState(false);
@@ -158,11 +159,15 @@ export function TourDetailsPage() {
   const [agreedToMarketing, setAgreedToMarketing] = useState(false);
 
   const [isFirstPopUpVisible, setIsFirstPopUpVisible] = useState(false);
+  const [isVip, setIsVip] = useState(false);
 
-  const singleRoomSupplementPrice = tour?.singleRoomSupplement ?? ONE_ROOM_PRICE;
+  const tourPrice = tour?.dates?.[0]?.price ?? 0;
+  const singleRoomSupplementPrice = tour?.roomPrice ?? ONE_ROOM_PRICE;
+  const vipPrice = tour?.vipPrice ?? 0;
   const totalPrice = tour
-    ? (tour.price * formData.travelers) +
-      (singleRoomSupplementPrice * formData.rooms)
+    ? (tourPrice * formData.travelers) +
+      (singleRoomSupplementPrice * formData.rooms) +
+      (isVip ? vipPrice : 0)
     : 0;
 
   const isActionBuyFormOpenEnabled = () => {
@@ -212,6 +217,7 @@ export function TourDetailsPage() {
         travelDate: formData.date,
         travelers: formData.travelers,
         rooms: formData.rooms,
+        isVip: isVip,
         language: userInfo.language,
         timezone: userInfo.timezone,
         city: userInfo.location?.city,
@@ -296,17 +302,20 @@ export function TourDetailsPage() {
           </div>
         }
         dropdownMenuItems={
-          tour?.dates?.map((date, i) => ({
+          tour?.dates?.map((dateObj, i) => ({
             dropdownSubMenuItems: [
               {
                 id: `date-${i}`,
                 isPreventDefaultUsed: false,
                 value: <div className={styles.dropdownItem}>
-                  {date}
+                  {dateObj.dateFrom}
+                  {dateObj.dateTo}
+                  {dateObj.description && ` ${dateObj.description}`}
+                  {` (${dateObj.price}$)`}
                 </div>,
                 isVisible: true,
                 onClick: () => {
-                  setFormData((prev) => ({...prev, date}));
+                  setFormData((prev) => ({...prev, date: `${dateObj.dateFrom} - ${dateObj.dateTo}`}));
                 },
               },
             ],
@@ -372,6 +381,35 @@ export function TourDetailsPage() {
         icon={people}
       />
 
+      {tour?.isShowVip && (
+        <div className={styles.personalizationBlock}>
+          <span>
+            VIP room
+          </span>
+          <span>
+            From
+            {" "}
+            <span className={styles.blueText}>
+              {vipPrice}
+              $
+            </span>
+          </span>
+        </div>
+      )}
+
+      {tour?.isShowVip && (
+        <label className={styles.checkboxLabel}>
+          <input
+            type="checkbox"
+            checked={isVip}
+            onChange={(e) => setIsVip(e.target.checked)}
+          />
+          <span>
+            Add VIP room
+          </span>
+        </label>
+      )}
+
       <div className={styles.checkboxGroup}>
         <label className={styles.checkboxLabel}>
           <input
@@ -430,6 +468,9 @@ export function TourDetailsPage() {
             {formData.rooms > 0
               ? ` + ${formData.rooms} room${formData.rooms > ONE_ROOM ? "s" : ""}`
               : ""}
+            {isVip
+              ? " + VIP room"
+              : ""}
           </span>
         </div>
         <Button
@@ -453,6 +494,7 @@ export function TourDetailsPage() {
       date: "",
       travelers: 1,
       rooms: 0,
+      isVip: false,
     });
     setFormValidError(false);
     setNameError(false);
@@ -460,6 +502,7 @@ export function TourDetailsPage() {
     setPhoneError(false);
     setAgreedToTerms(false);
     setAgreedToMarketing(false);
+    setIsVip(false);
   };
 
   useEffect(() => {
@@ -877,7 +920,7 @@ export function TourDetailsPage() {
                     </span>
                     <span className={styles.summaryTagRightPartDescription}>
                       {formatMonthsToDateRange(
-                        tour.availableMonths ?? tour.dates ?? [],
+                        tour.availableMonths ?? [],
                       )}
                     </span>
                   </div>
@@ -1003,6 +1046,9 @@ export function TourDetailsPage() {
               {formData.travelers > ONE_TRAVELER ? "s" : ""}
               {formData.rooms > 0
                 ? ` + ${formData.rooms} room${formData.rooms > ONE_ROOM ? "s" : ""}`
+                : ""}
+              {isVip
+                ? " + VIP room"
                 : ""}
             </span>
           </div>

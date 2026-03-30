@@ -10,16 +10,19 @@ Name | Type
 `coverUrl` | string
 `description` | string
 `difficulty` | string
-`durationDays` | number
+`durationDays` | string
 `endLocation` | string
+`isShowRooms` | boolean
+`isShowVip` | boolean
 `languages` | Array&lt;string&gt;
 `minAge` | number
-`price` | number
 `program` | object
 `reviewsSectionName` | string
+`roomPrice` | number
 `slug` | string
 `startLocation` | string
 `title` | string
+`vipPrice` | number
 
 ## Example
 
@@ -34,14 +37,17 @@ const example = {
   "difficulty": MEDIUM,
   "durationDays": 7,
   "endLocation": Astana,
+  "isShowRooms": true,
+  "isShowVip": true,
   "languages": [English, Russian],
   "minAge": 18,
-  "price": 1500.0,
   "program": null,
   "reviewsSectionName": Why travelers love this,
+  "roomPrice": 200,
   "slug": mountain-adventure,
   "startLocation": Almaty,
   "title": Mountain Adventure,
+  "vipPrice": 500,
 } satisfies DtoCreateTourRequest
 
 console.log(example)

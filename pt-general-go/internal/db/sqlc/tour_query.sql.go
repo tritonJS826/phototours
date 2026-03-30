@@ -18,7 +18,10 @@ INSERT INTO tours (
     difficulty,
     program,
     faq,
-    price,
+    is_show_vip,
+    is_show_rooms,
+    vip_price,
+    room_price,
     start_location,
     end_location,
     duration_days,
@@ -63,14 +66,20 @@ INSERT INTO tours (
     $22,
     $23,
     $24,
-    $25
+    $25,
+    $26,
+    $27,
+    $28
 ) RETURNING
     id,
     slug,
     title,
     description,
     difficulty,
-    price,
+    is_show_vip,
+    is_show_rooms,
+    vip_price,
+    room_price,
     program,
     faq,
     cover_url,
@@ -103,7 +112,10 @@ type CreateTourParams struct {
 	Difficulty         DifficultyLevel
 	Program            []byte
 	Faq                []byte
-	Price              pgtype.Float8
+	IsShowVip          bool
+	IsShowRooms        bool
+	VipPrice           int32
+	RoomPrice          int32
 	StartLocation      pgtype.Text
 	EndLocation        pgtype.Text
 	DurationDays       pgtype.Text
@@ -131,7 +143,10 @@ type CreateTourRow struct {
 	Title              string
 	Description        string
 	Difficulty         DifficultyLevel
-	Price              pgtype.Float8
+	IsShowVip          bool
+	IsShowRooms        bool
+	VipPrice           int32
+	RoomPrice          int32
 	Program            []byte
 	Faq                []byte
 	CoverUrl           pgtype.Text
@@ -165,7 +180,10 @@ func (q *Queries) CreateTour(ctx context.Context, arg CreateTourParams) (CreateT
 		arg.Difficulty,
 		arg.Program,
 		arg.Faq,
-		arg.Price,
+		arg.IsShowVip,
+		arg.IsShowRooms,
+		arg.VipPrice,
+		arg.RoomPrice,
 		arg.StartLocation,
 		arg.EndLocation,
 		arg.DurationDays,
@@ -193,7 +211,10 @@ func (q *Queries) CreateTour(ctx context.Context, arg CreateTourParams) (CreateT
 		&i.Title,
 		&i.Description,
 		&i.Difficulty,
-		&i.Price,
+		&i.IsShowVip,
+		&i.IsShowRooms,
+		&i.VipPrice,
+		&i.RoomPrice,
 		&i.Program,
 		&i.Faq,
 		&i.CoverUrl,
@@ -242,7 +263,10 @@ SELECT
     title,
     description,
     difficulty,
-    price,
+    is_show_vip,
+    is_show_rooms,
+    vip_price,
+    room_price,
     program,
     faq,
     cover_url,
@@ -277,7 +301,10 @@ type GetTourByIDRow struct {
 	Title              string
 	Description        string
 	Difficulty         DifficultyLevel
-	Price              pgtype.Float8
+	IsShowVip          bool
+	IsShowRooms        bool
+	VipPrice           int32
+	RoomPrice          int32
 	Program            []byte
 	Faq                []byte
 	CoverUrl           pgtype.Text
@@ -313,7 +340,10 @@ func (q *Queries) GetTourByID(ctx context.Context, id pgtype.UUID) (GetTourByIDR
 		&i.Title,
 		&i.Description,
 		&i.Difficulty,
-		&i.Price,
+		&i.IsShowVip,
+		&i.IsShowRooms,
+		&i.VipPrice,
+		&i.RoomPrice,
 		&i.Program,
 		&i.Faq,
 		&i.CoverUrl,
@@ -349,7 +379,10 @@ SELECT
     title,
     description,
     difficulty,
-    price,
+    is_show_vip,
+    is_show_rooms,
+    vip_price,
+    room_price,
     program,
     faq,
     cover_url,
@@ -384,7 +417,10 @@ type GetTourBySlugRow struct {
 	Title              string
 	Description        string
 	Difficulty         DifficultyLevel
-	Price              pgtype.Float8
+	IsShowVip          bool
+	IsShowRooms        bool
+	VipPrice           int32
+	RoomPrice          int32
 	Program            []byte
 	Faq                []byte
 	CoverUrl           pgtype.Text
@@ -420,7 +456,10 @@ func (q *Queries) GetTourBySlug(ctx context.Context, slug string) (GetTourBySlug
 		&i.Title,
 		&i.Description,
 		&i.Difficulty,
-		&i.Price,
+		&i.IsShowVip,
+		&i.IsShowRooms,
+		&i.VipPrice,
+		&i.RoomPrice,
 		&i.Program,
 		&i.Faq,
 		&i.CoverUrl,
@@ -456,7 +495,10 @@ SELECT DISTINCT
     tours.title,
     tours.description,
     tours.difficulty,
-    tours.price,
+    tours.is_show_vip,
+    tours.is_show_rooms,
+    tours.vip_price,
+    tours.room_price,
     tours.program,
     tours.faq,
     tours.cover_url,
@@ -490,8 +532,8 @@ WHERE
     AND ($2::timestamp IS NULL OR tour_dates.date_to >= $2::timestamp)
     AND ($3::timestamp IS NULL OR tour_dates.date_from <= $3::timestamp)
     AND ($4::int IS NULL OR tour_dates.group_size >= $4::int)
-    AND ($5::float IS NULL OR tours.price >= $5::float)
-    AND ($6::float IS NULL OR tours.price <= $6::float)
+    AND ($5::float IS NULL OR tour_dates.price >= $5::float)
+    AND ($6::float IS NULL OR tour_dates.price <= $6::float)
     AND ($7::int[] IS NULL OR EXTRACT(MONTH FROM tour_dates.date_from)::int = ANY($7::int[]))
 ORDER BY tours.created_at DESC
 LIMIT $9 OFFSET $8
@@ -515,7 +557,10 @@ type GetToursRow struct {
 	Title              string
 	Description        string
 	Difficulty         DifficultyLevel
-	Price              pgtype.Float8
+	IsShowVip          bool
+	IsShowRooms        bool
+	VipPrice           int32
+	RoomPrice          int32
 	Program            []byte
 	Faq                []byte
 	CoverUrl           pgtype.Text
@@ -567,7 +612,10 @@ func (q *Queries) GetTours(ctx context.Context, arg GetToursParams) ([]GetToursR
 			&i.Title,
 			&i.Description,
 			&i.Difficulty,
-			&i.Price,
+			&i.IsShowVip,
+			&i.IsShowRooms,
+			&i.VipPrice,
+			&i.RoomPrice,
 			&i.Program,
 			&i.Faq,
 			&i.CoverUrl,
@@ -610,37 +658,43 @@ SET
     slug = COALESCE($2, slug),
     description = COALESCE($3, description),
     difficulty = COALESCE($4::difficulty_level, difficulty),
-    program = COALESCE($5, program),
-    faq = COALESCE($6, faq),
-    price = COALESCE($7, price),
-    start_location = COALESCE($8, start_location),
-    end_location = COALESCE($9, end_location),
-    duration_days = COALESCE($10, duration_days),
-    min_age = COALESCE($11, min_age),
-    cover_url = COALESCE($12, cover_url),
-    languages = COALESCE($13, languages),
-    available_months = COALESCE($14, available_months),
-    group_size = COALESCE($15, group_size),
-    spots_left = COALESCE($16, spots_left),
-    subtitle = COALESCE($17, subtitle),
-    pop_up1_title = COALESCE($18, pop_up1_title),
-    pop_up1_description = COALESCE($19, pop_up1_description),
-    pop_up2_title = COALESCE($20, pop_up2_title),
-    pop_up2_description = COALESCE($21, pop_up2_description),
-    pop_up1_image_url = COALESCE($22, pop_up1_image_url),
-    pop_up2_image_url = COALESCE($23, pop_up2_image_url),
-    cta_title = COALESCE($24, cta_title),
-    cta_description = COALESCE($25, cta_description),
-    reviews_section_name = COALESCE($26, reviews_section_name),
+    is_show_vip = COALESCE($5, is_show_vip),
+    is_show_rooms = COALESCE($6, is_show_rooms),
+    vip_price = COALESCE($7, vip_price),
+    room_price = COALESCE($8, room_price),
+    program = COALESCE($9, program),
+    faq = COALESCE($10, faq),
+    start_location = COALESCE($11, start_location),
+    end_location = COALESCE($12, end_location),
+    duration_days = COALESCE($13, duration_days),
+    min_age = COALESCE($14, min_age),
+    cover_url = COALESCE($15, cover_url),
+    languages = COALESCE($16, languages),
+    available_months = COALESCE($17, available_months),
+    group_size = COALESCE($18, group_size),
+    spots_left = COALESCE($19, spots_left),
+    subtitle = COALESCE($20, subtitle),
+    pop_up1_title = COALESCE($21, pop_up1_title),
+    pop_up1_description = COALESCE($22, pop_up1_description),
+    pop_up2_title = COALESCE($23, pop_up2_title),
+    pop_up2_description = COALESCE($24, pop_up2_description),
+    pop_up1_image_url = COALESCE($25, pop_up1_image_url),
+    pop_up2_image_url = COALESCE($26, pop_up2_image_url),
+    cta_title = COALESCE($27, cta_title),
+    cta_description = COALESCE($28, cta_description),
+    reviews_section_name = COALESCE($29, reviews_section_name),
     updated_at = NOW()
-WHERE id = $27
+WHERE id = $30
 RETURNING
     id,
     slug,
     title,
     description,
     difficulty,
-    price,
+    is_show_vip,
+    is_show_rooms,
+    vip_price,
+    room_price,
     program,
     faq,
     cover_url,
@@ -672,9 +726,12 @@ type UpdateTourByIDParams struct {
 	Slug               pgtype.Text
 	Description        pgtype.Text
 	Difficulty         NullDifficultyLevel
+	IsShowVip          pgtype.Bool
+	IsShowRooms        pgtype.Bool
+	VipPrice           pgtype.Int4
+	RoomPrice          pgtype.Int4
 	Program            []byte
 	Faq                []byte
-	Price              pgtype.Float8
 	StartLocation      pgtype.Text
 	EndLocation        pgtype.Text
 	DurationDays       pgtype.Text
@@ -703,7 +760,10 @@ type UpdateTourByIDRow struct {
 	Title              string
 	Description        string
 	Difficulty         DifficultyLevel
-	Price              pgtype.Float8
+	IsShowVip          bool
+	IsShowRooms        bool
+	VipPrice           int32
+	RoomPrice          int32
 	Program            []byte
 	Faq                []byte
 	CoverUrl           pgtype.Text
@@ -736,9 +796,12 @@ func (q *Queries) UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) 
 		arg.Slug,
 		arg.Description,
 		arg.Difficulty,
+		arg.IsShowVip,
+		arg.IsShowRooms,
+		arg.VipPrice,
+		arg.RoomPrice,
 		arg.Program,
 		arg.Faq,
-		arg.Price,
 		arg.StartLocation,
 		arg.EndLocation,
 		arg.DurationDays,
@@ -767,7 +830,10 @@ func (q *Queries) UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) 
 		&i.Title,
 		&i.Description,
 		&i.Difficulty,
-		&i.Price,
+		&i.IsShowVip,
+		&i.IsShowRooms,
+		&i.VipPrice,
+		&i.RoomPrice,
 		&i.Program,
 		&i.Faq,
 		&i.CoverUrl,

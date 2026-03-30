@@ -19,21 +19,36 @@ SELECT
     date_to,
     group_size,
     is_available,
+    price,
+    description,
     created_at,
     updated_at
 FROM tour_dates
 WHERE tour_id = $1
 `
 
-func (q *Queries) GetTourDatesByTourID(ctx context.Context, tourID pgtype.UUID) ([]TourDate, error) {
+type GetTourDatesByTourIDRow struct {
+	ID          pgtype.UUID
+	TourID      pgtype.UUID
+	DateFrom    pgtype.Timestamp
+	DateTo      pgtype.Timestamp
+	GroupSize   int32
+	IsAvailable bool
+	Price       pgtype.Float8
+	Description string
+	CreatedAt   pgtype.Timestamp
+	UpdatedAt   pgtype.Timestamp
+}
+
+func (q *Queries) GetTourDatesByTourID(ctx context.Context, tourID pgtype.UUID) ([]GetTourDatesByTourIDRow, error) {
 	rows, err := q.db.Query(ctx, getTourDatesByTourID, tourID)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	items := []TourDate{}
+	items := []GetTourDatesByTourIDRow{}
 	for rows.Next() {
-		var i TourDate
+		var i GetTourDatesByTourIDRow
 		if err := rows.Scan(
 			&i.ID,
 			&i.TourID,
@@ -41,6 +56,8 @@ func (q *Queries) GetTourDatesByTourID(ctx context.Context, tourID pgtype.UUID) 
 			&i.DateTo,
 			&i.GroupSize,
 			&i.IsAvailable,
+			&i.Price,
+			&i.Description,
 			&i.CreatedAt,
 			&i.UpdatedAt,
 		); err != nil {
@@ -62,21 +79,36 @@ SELECT
     date_to,
     group_size,
     is_available,
+    price,
+    description,
     created_at,
     updated_at
 FROM tour_dates
 WHERE tour_id = ANY($1::uuid[])
 `
 
-func (q *Queries) GetTourDatesByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]TourDate, error) {
+type GetTourDatesByTourIDsRow struct {
+	ID          pgtype.UUID
+	TourID      pgtype.UUID
+	DateFrom    pgtype.Timestamp
+	DateTo      pgtype.Timestamp
+	GroupSize   int32
+	IsAvailable bool
+	Price       pgtype.Float8
+	Description string
+	CreatedAt   pgtype.Timestamp
+	UpdatedAt   pgtype.Timestamp
+}
+
+func (q *Queries) GetTourDatesByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]GetTourDatesByTourIDsRow, error) {
 	rows, err := q.db.Query(ctx, getTourDatesByTourIDs, tourIds)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	items := []TourDate{}
+	items := []GetTourDatesByTourIDsRow{}
 	for rows.Next() {
-		var i TourDate
+		var i GetTourDatesByTourIDsRow
 		if err := rows.Scan(
 			&i.ID,
 			&i.TourID,
@@ -84,6 +116,8 @@ func (q *Queries) GetTourDatesByTourIDs(ctx context.Context, tourIds []pgtype.UU
 			&i.DateTo,
 			&i.GroupSize,
 			&i.IsAvailable,
+			&i.Price,
+			&i.Description,
 			&i.CreatedAt,
 			&i.UpdatedAt,
 		); err != nil {
