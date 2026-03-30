@@ -2585,7 +2585,7 @@ He didn’t just tell me about the most beautiful places to shoot; he also share
   'Stockness Iceland',
   'A place beyond time — where black dunes rise like silent waves and Vestrahorn stands reflected in the shifting tides beneath Arctic skies.',
   'A place beyond time — where black dunes rise like silent waves and Vestrahorn stands reflected in the shifting tides beneath Arctic skies.',
-  'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635307/stockssnesIceland-1_rc0ymq.avif',
+  'https://res.cloudinary.com/dxqcrv4gf/image/upload/v1774866664/stockssnesIceland-1_IMG2085-Pano-2-232x109_PRINT_Dehancer-Edit_amq41f.avif',
   'Stockness Iceland',
   'PhotoTours Team',
   true,
@@ -2601,7 +2601,7 @@ He didn’t just tell me about the most beautiful places to shoot; he also share
     {"type": "text", "content": "Beyond the dunes, the mirror of the shoreline stretches wide, where sky and earth dissolve into a single reflection. The dark sands shimmer beneath fleeting clouds, their silver trails mirrored in the ebbing tide.\n\nIn moments of perfect stillness, the mighty Vestrahorn stands doubled in the water — a mountain gazing upon its own ghost."},
 
     {"type": "separator"},
-    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635306/stockssnesIceland-3_mfsrey.avif", "alt": ""},
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1774866665/stockssnesIceland-3_IMG2517-Pano-Edit-Edit_lpl7rt.avif", "alt": ""},
 
     {"type": "title", "content": "Nightfall and Northern Lights"},
     {"type": "text", "content": "And when the night unfolds its velvet cloak, the heavens awaken in a silent symphony of light. The Aurora Borealis dances upon the firmament, veils of emerald and violet swirling in celestial rhythm.\n\nTheir reflection trembles upon the wet sands, as if the stars themselves have fallen to earth."},
@@ -2613,7 +2613,7 @@ He didn’t just tell me about the most beautiful places to shoot; he also share
     {"type": "text", "content": "Capturing the magic of Stockness requires patience and deep respect for the landscape.\n\nThe best compositions often emerge from areas untouched by footprints — a rare sight, but more likely during low tide, when the receding water smooths the sand. To preserve the pristine beauty of this place, step carefully and avoid disturbing the fragile dunes.\n\nA wide-angle lens is essential for emphasizing the vastness of the scene. Shooting panoramas with a nodal rail helps ensure perfect alignment, especially when capturing the grandeur of Vestrahorn against the sky.\n\nSince reflection shots often require standing in shallow water, waterproof overboots are highly recommended to keep your feet dry while composing the perfect frame."},
 
     {"type": "separator"},
-    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635309/stockssnesIceland-5_nrh9gj.avif", "alt": ""},
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1774866667/stockssnesIceland-5_IMG3261-Pano-183x110_PRINT_topaz_Dehancer_opkw7c.avif", "alt": ""},
 
     {"type": "title", "content": "Respect for Nature and Landowners"},
     {"type": "text", "content": "The road and tidal flats belong to local farmers, and access to Stockness is privately managed. A fee of approximately 10 euros is required to enter, payable at the nearby Viking Café. This fee helps maintain the area and manage the impact of visitors.\n\nWhen visiting, treat both nature and private property with respect. Stockness is more than a destination — it is a fragile dreamscape, where every gust of wind, ripple of water, and shifting shadow tells a story.\n\nHonor its beauty, and it will reward you with images that feel timeless."}
@@ -2729,7 +2729,7 @@ He didn’t just tell me about the most beautiful places to shoot; he also share
     {"type": "text", "content": "Walk behind the cascading water curtain for a unique perspective. Sunset creates a golden glow through the waterfall, offering intimate yet grand compositions."},
 
     {"type": "separator"},
-    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635331/top10PlacesInIcelandForPhotography-8_nrl5ty.avif", "alt": ""},
+    {"type": "image", "src": "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1774866963/top10PlacesInIcelandForPhotography-8_vyf7sk.avif", "alt": ""},
 
     {"type": "title", "content": "Stokksnes and Vestrahorn"},
     {"type": "text", "content": "Black sand dunes and golden grass lead toward the dramatic silhouette of Vestrahorn. Reflections in tidal pools create layered depth. Sunrise and sunset bring warm tones to this textured landscape."},
