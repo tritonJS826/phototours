@@ -357,35 +357,44 @@ export function TourDetailsPage() {
         />
       </div>
 
-      <div className={styles.personalizationBlock}>
-        <span>
-          Single room supplement
-        </span>
-        <span>
-          From
-          {" "}
-          <span className={styles.blueText}>
-            {singleRoomSupplementPrice}
-            $
-          </span>
-        </span>
-      </div>
-
-      <NumberInput
-        className={styles.roomsSupplement}
-        value={formData.rooms}
-        onChange={(value) => setFormData((prev) => ({...prev, rooms: value}))}
-        min={0}
-        max={formData.travelers}
-        description="Single room supplement"
-        icon={people}
-      />
-
-      {tour?.isShowVip && (
+      {tour?.isShowRooms && (<>
         <div className={styles.personalizationBlock}>
           <span>
-            VIP room
+            Single room supplement
           </span>
+          <span>
+            From
+            {" "}
+            <span className={styles.blueText}>
+              {singleRoomSupplementPrice}
+              $
+            </span>
+          </span>
+        </div>
+
+        <NumberInput
+          className={styles.roomsSupplement}
+          value={formData.rooms}
+          onChange={(value) => setFormData((prev) => ({...prev, rooms: value}))}
+          min={0}
+          max={formData.travelers}
+          description="Single room supplement"
+          icon={people}
+        />
+      </>)}
+
+      {tour?.isShowVip && (
+        <div className={styles.vipPersonalizationBlock}>
+          <label className={clsx(styles.vipCheckboxLabel, styles.checkboxLabel)}>
+            <input
+              type="checkbox"
+              checked={isVip}
+              onChange={(e) => setIsVip(e.target.checked)}
+            />
+            <span>
+              VIP place
+            </span>
+          </label>
           <span>
             From
             {" "}
@@ -397,18 +406,7 @@ export function TourDetailsPage() {
         </div>
       )}
 
-      {tour?.isShowVip && (
-        <label className={styles.checkboxLabel}>
-          <input
-            type="checkbox"
-            checked={isVip}
-            onChange={(e) => setIsVip(e.target.checked)}
-          />
-          <span>
-            Add VIP room
-          </span>
-        </label>
-      )}
+      {tour?.isShowVip && <hr />}
 
       <div className={styles.checkboxGroup}>
         <label className={styles.checkboxLabel}>
@@ -467,9 +465,6 @@ export function TourDetailsPage() {
             {formData.travelers > ONE_TRAVELER ? "s" : ""}
             {formData.rooms > 0
               ? ` + ${formData.rooms} room${formData.rooms > ONE_ROOM ? "s" : ""}`
-              : ""}
-            {isVip
-              ? " + VIP room"
               : ""}
           </span>
         </div>

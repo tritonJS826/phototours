@@ -832,6 +832,15 @@
   font-size: 14px;
 }
 
+.vipPersonalizationBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  font-size: 14px;
+}
+
+
 .blueText {
   color: #2f53de;
 }
@@ -1015,6 +1024,10 @@
 
 .feedBackDescriptionLong {
   max-width: 740px;
+}
+
+.vipCheckboxLabel {
+  margin: 16px 0;
 }
 
 .checkboxGroup {
