@@ -31,27 +31,33 @@ export const ContactUs = () => {
             <span className={styles.infoRightMiniBlockTitle}>
               general enquiries
             </span>
-            <span className={styles.infoRightMiniBlockDescription}>
+            <a
+              href="mailto:info@tuscanyphototours.com"
+              className={styles.infoRightMiniBlockDescription}
+            >
               info@tuscanyphototours.com
-            </span>
+            </a>
           </div>
           <div className={styles.infoRightMiniBlock}>
             <span className={styles.infoRightMiniBlockTitle}>
               collaborations
             </span>
-            <span className={styles.infoRightMiniBlockDescription}>
+            <a
+              href="mailto:marketing@tuscanyphototours.com"
+              className={styles.infoRightMiniBlockDescription}
+            >
               marketing@tuscanyphototours.com
-            </span>
+            </a>
           </div>
           <div className={styles.infoRightMiniBlock}>
             <span className={styles.infoRightMiniBlockTitle}>
               address
             </span>
             <span className={styles.infoRightMiniBlockDescription}>
-              Via della Toscana 12,
+              Harju maakond, Tallinn, Kesklinna linnaosa
               <br />
               {" "}
-              53100 Siena, Italy
+              10152, Vesivärava tn 50-212
             </span>
           </div>
           <div className={styles.infoRightMiniBlock}>
