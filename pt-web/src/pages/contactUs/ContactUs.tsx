@@ -32,10 +32,10 @@ export const ContactUs = () => {
               general enquiries
             </span>
             <a
-              href="mailto:info@tuscanyphototours.com"
+              href="mailto:info@tuscany-photo-tours.com"
               className={styles.infoRightMiniBlockDescription}
             >
-              info@tuscanyphototours.com
+              info@tuscany-photo-tours.com
             </a>
           </div>
           <div className={styles.infoRightMiniBlock}>
@@ -88,7 +88,7 @@ export const ContactUs = () => {
                 />
               </a>
               <a
-                href="https://wa.me/1234567890"
+                href="https://wa.me/13322487707"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialMediaImage}
@@ -112,7 +112,7 @@ export const ContactUs = () => {
                 />
               </a>
               <a
-                href="https://facebook.com/tuscanyphototours"
+                href="https://facebook.com/tuscanyphototoursofficial"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialMediaImage}

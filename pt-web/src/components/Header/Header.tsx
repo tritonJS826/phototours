@@ -251,7 +251,7 @@ export function Header() {
                         isPreventDefaultUsed: false,
                         value: (
                           <a
-                            href="tel:+1234567890"
+                            href="tel:+13322487707"
                             className={styles.contactUsItem}
                           >
                             <img
@@ -287,7 +287,7 @@ export function Header() {
                         isPreventDefaultUsed: false,
                         value: (
                           <a
-                            href="https://wa.me/1234567890"
+                            href="https://wa.me/13322487707"
                             target="_blank"
                             rel="noopener noreferrer"
                             className={styles.contactUsItem}

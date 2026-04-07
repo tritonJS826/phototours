@@ -13,6 +13,7 @@ import {AdminUserGallery} from "src/pages/adminUserGallery/AdminUserGallery";
 import {AdminUsersPage} from "src/pages/adminUsers/AdminUsersPage";
 import {Cart} from "src/pages/cart/Cart";
 import {ContactUs} from "src/pages/contactUs/ContactUs";
+import {CookiesPolicy} from "src/pages/cookiesPolicy/CookiesPolicyPage";
 import {Dashboard} from "src/pages/dashboard/Dashboard";
 import {ArticlePage} from "src/pages/exploreArticles/ArticlePage/ArticlePage";
 import {ArticlesPage} from "src/pages/exploreArticles/ArticlesPage/ArticlesPage";
@@ -20,6 +21,7 @@ import {HomePage} from "src/pages/homePage/HomePage";
 import {NotFoundPage} from "src/pages/notFound/notFoundPage";
 import {Notifications} from "src/pages/notifications/Notifications";
 import {MyPhotosPage} from "src/pages/photos/MyPhotosPage";
+import {PrivacyPolicy} from "src/pages/privacyPolicy/PrivacyPolicyPage";
 import {EditProfile} from "src/pages/profile/EditProfile";
 import {Profile} from "src/pages/profile/Profile";
 import {ThankYouPage} from "src/pages/thankYouPage/ThankYouPage";
@@ -166,6 +168,14 @@ export function App() {
             <Route
               path={PATHS.THANK_YOU}
               element={<ThankYouPage />}
+            />
+            <Route
+              path={PATHS.PRIVACY}
+              element={<PrivacyPolicy />}
+            />
+            <Route
+              path={PATHS.COOKIES}
+              element={<CookiesPolicy />}
             />
           </Route>
 

@@ -41,9 +41,9 @@ const FOOTER_COLUMNS: FooterColumn[] = [
     id: "contacts",
     title: "Contacts",
     links: [
-      {id: "email-us", text: "Email us", href: "mailto:info@tuscanyphototours.com"},
+      {id: "email-us", text: "Email us", href: "mailto:info@tuscany-photo-tours.com"},
       // eslint-disable-next-line max-len
-      {id: "workWithUs", text: "Work with us", href: "mailto:info@tuscanyphototours.com?subject=Job%20Inquiry%20%E2%80%93%20%5BPosition%20Name%5D%20%E2%80%93%20%5BApplicant%20Name%5D"},
+      {id: "workWithUs", text: "Work with us", href: "mailto:info@tuscany-photo-tours.com?subject=Job%20Inquiry%20%E2%80%93%20%5BPosition%20Name%5D%20%E2%80%93%20%5BApplicant%20Name%5D"},
       {id: "getInTouch", text: "Get in touch", href: "/contact"},
     ],
   },
@@ -51,10 +51,10 @@ const FOOTER_COLUMNS: FooterColumn[] = [
     id: "legal",
     title: "Legal",
     links: [
-      {id: "privacy", text: "Privacy Policy", href: "/privacy"},
+      {id: "privacy", text: "Privacy Policy", href: PATHS.PRIVACY},
       {id: "terms", text: "Terms & Conditions", href: "/terms"},
-      {id: "refund", text: "Refund Policy", href: "/privacy"},
-      {id: "cookies", text: "Cookies Policy", href: "/privacy"},
+      {id: "refund", text: "Refund Policy", href: PATHS.PRIVACY},
+      {id: "cookies", text: "Cookies Policy", href: PATHS.COOKIES},
     ],
   },
 ];
@@ -131,7 +131,7 @@ export const Footer = function Footer() {
             <div className={styles.socialMedias}>
               <span className={styles.infoRightMiniBlockDescription}>
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+13322487707"
                   className={styles.socialMediaImage}
                 >
                   <img
@@ -163,7 +163,7 @@ export const Footer = function Footer() {
                   />
                 </a>
                 <a
-                  href="https://wa.me/1234567890"
+                  href="https://wa.me/13322487707"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.socialMediaImage}
@@ -175,7 +175,7 @@ export const Footer = function Footer() {
                   />
                 </a>
                 <a
-                  href="https://instagram.com/tuscany.phototours"
+                  href="https://instagram.com/tuscany.phototours/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.socialMediaImage}
@@ -187,7 +187,7 @@ export const Footer = function Footer() {
                   />
                 </a>
                 <a
-                  href="https://facebook.com/tuscanyphototours"
+                  href="https://facebook.com/tuscanyphototoursofficial"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.socialMediaImage}

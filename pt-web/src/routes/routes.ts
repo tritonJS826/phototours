@@ -10,6 +10,9 @@ export const PATHS = {
   THANK_YOU: "/thank-you",
   CONTACT: "/contact",
 
+  PRIVACY: "/privacy-policy",
+  COOKIES: "/cookies-policy",
+
   ARTICLES: "/articles",
   ARTICLES_SLUG: "/articles/:slug",
   getArticle: (slug: string) => `/articles/${slug}`,
