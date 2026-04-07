@@ -6,7 +6,6 @@ import {PATHS} from "src/routes/routes";
 import type {Swiper as SwiperType} from "swiper";
 import {A11y, Autoplay, Keyboard, Pagination} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
-import "swiper/css";
 import styles from "src/components/PopularWorkshops/PopularWorkshops.module.scss";
 
 type PopularWorkshopsProps = {
@@ -17,7 +16,7 @@ const slides = [
   {
     id: "1",
     image:
-          "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772633959/articleIclandicRivers_1_mln3cq.avif",
+          "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1775555900/mainPage_Blog_icelandic_rivers_eilzzi.avif",
     link: PATHS.getArticle("icelandic-rivers"),
     title: "Icelandic rivers",
     subtitle: "These images were taken about 12 years ago by a remarkable photographer, Andrey Ermolayev, who, unfortunately...",
@@ -25,7 +24,7 @@ const slides = [
   {
     id: "2",
     image:
-           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635334/valDorcia-1_bpku0z.avif",
+           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1775555901/mainPage_Blog_moravian_z2wgwo.avif",
     link: PATHS.getArticle("val-dorcia"),
     title: "Val d’Orcia",
     subtitle: "Over the past 16 years, I have visited Tuscany nearly 50 times, experiencing its beauty in every season. However...",
@@ -33,7 +32,7 @@ const slides = [
   {
     id: "3",
     image:
-           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635307/stockssnesIceland-1_rc0ymq.avif",
+           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1775555901/mainPage_Blog_stockness_adrrox.avif",
     link: PATHS.getArticle("stockness-iceland"),
     title: "Stockness Iceland",
     subtitle: "A place beyond time — where black dunes rise like silent waves and Vestrahorn stands reflected in the shifting...",
@@ -41,7 +40,7 @@ const slides = [
   {
     id: "4",
     image:
-           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635280/snowInVenice-1_b3qtup.avif",
+           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1775555901/mainPage_Blog_snow_in_venice_usrnj4.avif",
     link: PATHS.getArticle("snow-in-venice-a-dream-come-true"),
     title: "Snow In Venice. A Dream Come True",
     subtitle: "Snow in Venice… a waking dream. A promise made years ago, fulfilled in a fleeting, once-in-a-lifetime moment during...",
@@ -49,7 +48,7 @@ const slides = [
   {
     id: "5",
     image:
-           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635324/top10PlacesInIcelandForPhotography-1_zs5vnf.avif",
+           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1775555901/mainPage_Blog_top10_places_vemffw.avif",
     link: PATHS.getArticle("top-10-places-in-iceland-for-photography-tours-and-workshops"),
     title: "Top 10 Places in Iceland",
     subtitle: "Iceland is a dreamland for photographers, offering a surreal mix of fiery volcanoes, glacial landscapes...",
@@ -57,7 +56,7 @@ const slides = [
   {
     id: "6",
     image:
-           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1772635251/Moravia-1_oclegj.avif",
+           "https://res.cloudinary.com/dxqcrv4gf/image/upload/v1775555901/mainPage_Blog_moravian_z2wgwo.avif",
     link: PATHS.getArticle("moravian-waves-framing-the-poetry-of-the-land"),
     title: "Moravian",
     subtitle: "Moravia, with its undulating fields, velvety hills, and ever-changing textures, is a paradise for...",

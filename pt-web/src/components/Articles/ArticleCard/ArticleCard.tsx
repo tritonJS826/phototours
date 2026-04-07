@@ -17,6 +17,7 @@ export function ArticleCard({item, className}: Props) {
         <img
           src={item.coverUrl}
           alt={item.alt ?? item.title}
+          className={styles.img}
           loading="lazy"
         />
       </div>
