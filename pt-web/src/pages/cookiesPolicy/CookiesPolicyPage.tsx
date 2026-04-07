@@ -11,12 +11,24 @@ export function CookiesPolicy() {
         Cookies Policy for Tuscany Photo Tours
       </h1>
       <p className={styles.lastUpdated}>
-        Last Updated: April 2, 2026
+        <strong>
+          Last Updated:
+        </strong>
+        {" "}
+        April 2, 2026
       </p>
       <p>
         Tuscany Photo Tours (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) uses
-        cookies on the https://tuscany-photo-tours.com/ website. By using our
-        service, you consent to the use of cookies.
+        cookies on the
+        {" "}
+        <a
+          href="https://tuscany-photo-tours.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          https://tuscany-photo-tours.com/
+        </a>
+        . By using our service, you consent to the use of cookies.
       </p>
 
       <section>
@@ -45,19 +57,35 @@ export function CookiesPolicy() {
               Strictly Necessary Cookies:
             </strong>
             {" "}
-            These are essential for
-            the operation of our website. They include, for example, cookies
-            that enable you to log into secure areas or make payments via Stripe.
-            Stripe uses these cookies to prevent fraud and ensure transaction
-            security.
+            These are essential for the operation of our website. They include,
+            for example, cookies that enable you to log into secure areas or make
+            payments via
+            {" "}
+            <strong>
+              Stripe
+            </strong>
+            .
+            {" "}
+            Stripe uses these cookies to prevent fraud and ensure transaction security.
           </li>
           <li>
             <strong>
               Analytical/Performance Cookies:
             </strong>
             {" "}
-            We use Google
-            Analytics and Zoho Analytics to recognize and count the number of
+            We use
+            {" "}
+            <strong>
+              Google Analytics
+            </strong>
+            {" "}
+            and
+            {" "}
+            <strong>
+              Zoho Analytics
+            </strong>
+            {" "}
+            to recognize and count the number of
             visitors and to see how visitors move around our website when they are
             using it. This helps us to improve the way our website works.
           </li>
@@ -66,19 +94,35 @@ export function CookiesPolicy() {
               Functionality Cookies:
             </strong>
             {" "}
-            These are used to recognize
-            you when you return to our website (e.g., through Zoho CRM
-            integration), allowing us to personalize our content for you.
+            These are used to recognize you when you return to our website
+            (e.g., through
+            {" "}
+            <strong>
+              Zoho CRM
+            </strong>
+            {" "}
+            integration), allowing us to
+            personalize our content for you.
           </li>
           <li>
             <strong>
               Targeting/Marketing Cookies:
             </strong>
             {" "}
-            These cookies record
-            your visit to our website, the pages you have visited, and the links
-            you have followed. We use this information, including data from Meta
-            Pixel and CAPI, to make our advertising more relevant to your
+            These cookies record your visit to our website, the pages you have
+            visited, and the links you have followed. We use this information,
+            including data from
+            {" "}
+            <strong>
+              Meta Pixel
+            </strong>
+            {" "}
+            and
+            {" "}
+            <strong>
+              CAPI
+            </strong>
+            , to make our advertising more relevant to your
             interests.
           </li>
         </ul>
@@ -95,16 +139,39 @@ export function CookiesPolicy() {
         </p>
         <ul>
           <li>
-            Google (Analytics &amp; Search Console)
+            <strong>
+              Google
+            </strong>
+            (Analytics
+            {" "}
+            &amp;
+            {" "}
+            Search Console)
           </li>
           <li>
-            Meta (Advertising &amp; Tracking)
+            <strong>
+              Meta
+            </strong>
+            {" "}
+            (Advertising
+            {" "}
+            &amp;
+            {" "}
+            Tracking)
           </li>
           <li>
-            Stripe (Payment Security)
+            <strong>
+              Stripe
+            </strong>
+            {" "}
+            (Payment Security)
           </li>
           <li>
-            Zoho (CRM &amp; Analytics)
+            <strong>
+              Zoho
+            </strong>
+            {" "}
+            (CRM & Analytics)
           </li>
         </ul>
       </section>
