@@ -80,7 +80,6 @@
   font-family: Onest;
   font-weight: 600;
   margin-top: auto;
-
   cursor: pointer;
   transition: background 0.2s ease;
 }
@@ -89,7 +88,7 @@
   background: #333;
 }
 
-@media (max-width: 640px) {
+@media (width <= 640px) {
   .modal {
     width: 100%;
     height: auto;

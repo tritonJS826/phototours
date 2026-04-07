@@ -41,6 +41,7 @@
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
+
     // border-radius: 0;
   }
 }
@@ -133,6 +134,7 @@
     width: 90%;
     max-width: 1100px;
     aspect-ratio: 16/9;
+
     // background-color: red;
   }
 
@@ -267,8 +269,7 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  column-gap: 20px;
-  row-gap: 12px;
+  gap: 12px 20px;
   margin: 20px 0;
 }
 
@@ -311,7 +312,6 @@
   // color
   border: 0;
   border-top: 1px solid #e0e0e0;
-
   position: relative;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
@@ -336,8 +336,7 @@
   display: flex;
   flex-wrap: wrap-reverse;
   justify-content: start;
-  column-gap: 60px;
-  row-gap: 40px;
+  gap: 40px 60px;
   margin-bottom: 30px;
   margin-top: 20px;
 }
@@ -475,7 +474,7 @@
 
 .faq {
   max-width: 1530px;
-  margin: 40px auto 80px auto;
+  margin: 40px auto 80px;
   padding: 0 20px;
 }
 
@@ -549,7 +548,7 @@
 .toursSlider {
   max-width: 1530px;
   margin: auto;
-  padding: 17px 20px 20px 20px;
+  padding: 17px 20px 20px;
   display: flex;
   gap: 20px;
   justify-content: center;
@@ -642,7 +641,7 @@
   min-width: 480px;
   margin-bottom: 40px;
 
-  @media (max-width: 1100px) {
+  @media (width <= 1100px) {
     display: none;
   }
 }
@@ -692,6 +691,7 @@
     display: none;
   }
 }
+
 .buyTravelBlockContent {
   // in the modal we have fixed footer with 120px width
   @media (width <= 1100px) {
@@ -730,7 +730,7 @@
 }
 
 .buyTravelInput {
-  margin: 8px 24px 8px 24px;
+  margin: 8px 24px;
   padding: 16px 20px;
   width: 430px;
   border-radius: 10px;
@@ -748,6 +748,7 @@
   input {
     border: none !important;
   }
+
   button {
     border-top: none !important;
     border-left: none !important;
@@ -765,6 +766,7 @@
   padding: 16px 10px;
   border-radius: 10px;
   margin: 8px 24px;
+
   // workaround to fix width
   width: calc(100% - 46px);
 }
@@ -775,6 +777,7 @@
 
 .travelersAmountInput {
   margin: 8px 24px;
+
   // workaround to fix width
   width: calc(100% - 46px);
 }

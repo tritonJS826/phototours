@@ -290,6 +290,7 @@ a.primaryHeaderLink {
     left: 0;
     right: 0;
     width: 100%;
+
     // max-height: calc(100vh - 60px);
     height: 100dvh;
     overflow-y: auto;
@@ -303,12 +304,12 @@ a.primaryHeaderLink {
   .headerContainer {
     margin-top: 20px;
     margin-bottom: 20px;
-
     max-width: 100%;
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
     gap: 16px;
+
     // height: 60px;
   }
 

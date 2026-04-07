@@ -41,7 +41,7 @@ export function TourSearchForm() {
               className={styles.currentValue}
               onClick={() => {}}
             >
-              {searchData.location || "Choose location"}
+              {searchData.location || "All locations"}
             </span>
           </div>
 
@@ -116,7 +116,7 @@ export function TourSearchForm() {
               className={styles.currentValue}
               onClick={() => {}}
             >
-              {searchData.season || "Choose season"}
+              {searchData.season || "All seasons"}
             </span>
           </div>
 

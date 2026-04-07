@@ -45,6 +45,7 @@ export interface TourView {
   description: string;
   singleRoomSupplement?: number;
 
+  location: string;
   startLocation: string;
   endLocation: string;
   durationDays: number;

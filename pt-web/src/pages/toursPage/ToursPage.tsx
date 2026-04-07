@@ -97,6 +97,12 @@ export function ToursPage() {
     // Const DEFAULT_TRAVELERS = 1;
 
     return allTours.filter(tour => {
+      // Location filtering
+      let locationMatch = true;
+      if (filters.location) {
+        locationMatch = tour.location?.toLowerCase().includes(filters.location.toLowerCase()) ?? false;
+      }
+
       // Price filtering with travelers multiplier
       const tourPrice = tour.dates?.[0]?.price;
       if (!tourPrice) {
@@ -112,9 +118,9 @@ export function ToursPage() {
         seasonMatch = isTourAvailableInSeason(tour, filters.season);
       }
 
-      return priceMatch && seasonMatch;
+      return locationMatch && priceMatch && seasonMatch;
     });
-  }, [allTours, priceRange, filters.travelers, filters.season]);
+  }, [allTours, priceRange, filters.travelers, filters.season, filters.location]);
 
   const handlePriceRangeChange = (type: "min" | "max", value: number) => {
     setPriceRange(prev => ({
@@ -146,7 +152,7 @@ export function ToursPage() {
             <input
               type="text"
               id="filters-location"
-              placeholder="Location"
+              placeholder="All"
               className={styles.locationInput}
               autoComplete="off"
               value={filters.location || ""}
@@ -223,7 +229,7 @@ export function ToursPage() {
             <input
               type="text"
               id="filters-season"
-              placeholder="Choose season"
+              placeholder="All"
               className={styles.locationInput}
               autoComplete="off"
               value={filters.season || ""}
@@ -398,6 +404,13 @@ export function ToursPage() {
           <div className={styles.modalFiltersWrapper}>
             {filtersContent}
           </div>
+          <button
+            type="button"
+            className={styles.applyButton}
+            onClick={() => setIsFilterModalOpen(false)}
+          >
+            Apply Filters
+          </button>
         </FilterModal>
 
         <div className={styles.horizontal}>

@@ -116,6 +116,7 @@
         @media (width < 500px) {
           min-width: auto;
         }
+
         .subscribeForm {
           .newsletterForm {
             padding: 0;
@@ -162,6 +163,7 @@
       .socialIcons {
         display: flex;
         gap: 10px;
+
         @media (width <= 800px) {
           align-self: start;
         }
@@ -192,8 +194,7 @@
 .navigationLists {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  row-gap: 40px;
-  column-gap: 60px;
+  gap: 40px 60px;
 
   @media (width <= 550px) {
     grid-template-columns: 1fr 1fr;

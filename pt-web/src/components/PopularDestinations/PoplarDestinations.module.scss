@@ -159,11 +159,12 @@
 
 .paginationContainer {
   display: none;
+
   // display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  padding: 20px 0 0 0;
+  padding: 20px 0 0;
   margin-top: 10px;
   position: relative;
   z-index: 1;

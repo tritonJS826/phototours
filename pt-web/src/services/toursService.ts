@@ -21,6 +21,7 @@ type TourDTO = {
   slug: string;
   title: string;
   description: string;
+  location: string;
   startLocation: string;
   endLocation: string;
   durationDays: number;
@@ -94,11 +95,13 @@ function mapTourToView(dto: TourDTO): TourView {
       } else if (to) {
         dateStr = toShortDate(to);
       }
+
       return {
         dateFrom: dateStr,
         dateTo: "",
         price: d.price,
         description: d.description ?? "",
+
       };
     })
     .filter((d) => d.dateFrom !== "");
@@ -123,6 +126,7 @@ function mapTourToView(dto: TourDTO): TourView {
     slug: dto.slug,
     title: dto.title,
     description: dto.description,
+    location: dto.location,
     startLocation: dto.startLocation,
     endLocation: dto.endLocation,
     durationDays: dto.durationDays,
@@ -171,9 +175,6 @@ export type ToursFilter = {
 
 export async function listTours(filter?: ToursFilter): Promise<TourView[]> {
   const params = new URLSearchParams();
-  if (filter?.location) {
-    params.set(QUERY_PARAMS.LOCATION, filter.location);
-  }
   if (filter?.startDate) {
     params.set(QUERY_PARAMS.START_DATE, filter.startDate);
   }

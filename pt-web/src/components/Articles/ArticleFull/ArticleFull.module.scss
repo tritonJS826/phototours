@@ -43,19 +43,18 @@
 
 .createdAt {
   font-weight: 500;
-  font-style: Medium;
+  font-style: medium;
   font-size: 17px;
   line-height: 135%;
   color: #686868;
   display: flex;
   gap: 10px;
-  margin: 40px 0 20px 0;
+  margin: 40px 0 20px;
 }
 
 .createdAtIcon {
   width: 20px;
   height: 20px;
-
   background-color: #686868;
   mask-image: url('/images/calendar.svg');
   mask-repeat: no-repeat;

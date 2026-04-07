@@ -16,6 +16,7 @@
     right: 0;
     bottom: 0;
     width: 40px;
+
     // without this scale we will see 1px vertical artifact sometimes at the right side of slider
     transform: scale(1.1);
     background: linear-gradient(to right, transparent, white);
