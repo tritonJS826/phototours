@@ -127,7 +127,7 @@ export function AdminArticles() {
                   </div>
 
                   <div className={styles.info}>
-                    <h3>
+                    <h3 className={styles.title}>
                       {article.title}
                     </h3>
                     <div className={styles.meta}>
