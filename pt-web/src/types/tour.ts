@@ -112,4 +112,16 @@ export interface TourData {
   dates: string;
   photos: File[];
   videos: File[];
+  coverUrl: string;
+  durationDays: string;
+  startLocation: string;
+  endLocation: string;
+  minAge: number;
+  languages: string[];
+  availableMonths: string[];
+  reviewsSectionName: string;
+  isShowVip: boolean;
+  isShowRooms: boolean;
+  vipPrice: number;
+  roomPrice: number;
 }

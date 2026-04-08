@@ -41,7 +41,6 @@ func (s *APITestSuite) createTour() (*domain.CreateTourParams, uuid.UUID) {
 		Description:     "Amazing tour",
 		Difficulty:      "EASY",
 		Program:         json.RawMessage(`{"days":[{"day":1,"title":"Intro"}]}`),
-		Price:           199.99,
 		StartLocation:   "City A",
 		EndLocation:     "City B",
 		DurationDays:    "3",
@@ -49,6 +48,8 @@ func (s *APITestSuite) createTour() (*domain.CreateTourParams, uuid.UUID) {
 		CoverURL:        "http://img",
 		Languages:       []string{"en", "ru"},
 		AvailableMonths: []string{"June", "July"},
+		VipPrice:        199,
+		RoomPrice:       150,
 	}
 
 	body, err := json.Marshal(t)
@@ -178,7 +179,6 @@ func (s *APITestSuite) TestUpdateTourByID_AllFields() {
 		Description:     strPtr("New description"),
 		Difficulty:      &newDifficulty,
 		Program:         &newProgram,
-		Price:           floatPtr(499.99),
 		StartLocation:   strPtr("New Start"),
 		EndLocation:     strPtr("New End"),
 		DurationDays:    strPtr("7"),
@@ -203,7 +203,6 @@ func (s *APITestSuite) TestUpdateTourByID_AllFields() {
 	s.Equal("fully-updated-tour", tour.Slug)
 	s.Equal("New description", tour.Description)
 	s.Equal(domain.DifficultyLevelHARD, tour.Difficulty)
-	s.Equal(499.99, *tour.Price)
 	s.Equal("New Start", *tour.StartLocation)
 	s.Equal("New End", *tour.EndLocation)
 	s.Equal("7", *tour.DurationDays)
@@ -260,11 +259,10 @@ func (s *APITestSuite) TestUpdateTourByID_DescriptionAndDifficulty() {
 	s.Equal(domain.DifficultyLevelHARD, tour.Difficulty)
 }
 
-func (s *APITestSuite) TestUpdateTourByID_PriceAndDurationDays() {
+func (s *APITestSuite) TestUpdateTourByID_DurationDays() {
 	_, tourID := s.createTour()
 
 	update := domain.UpdateTourParams{
-		Price:        floatPtr(599.99),
 		DurationDays: strPtr("14"),
 	}
 
@@ -278,7 +276,7 @@ func (s *APITestSuite) TestUpdateTourByID_PriceAndDurationDays() {
 
 	var tour domain.TourFull
 	s.Require().NoError(json.Unmarshal(resp, &tour))
-	s.Equal(599.99, *tour.Price)
+
 	s.Equal(int32(14), *tour.DurationDays)
 }
 
@@ -301,34 +299,11 @@ func (s *APITestSuite) TestUpdateTourByID_LocationsAndMinAge() {
 
 	var tour domain.TourFull
 	s.Require().NoError(json.Unmarshal(resp, &tour))
+
 	s.Equal("Moscow", *tour.StartLocation)
 	s.Equal("Saint Petersburg", *tour.EndLocation)
 	s.Equal(int32(21), *tour.MinAge)
 }
-
-func (s *APITestSuite) TestUpdateTourByID_CoverURLAndProgram() {
-	_, tourID := s.createTour()
-
-	newProgram := json.RawMessage(`{"days":[{"day":1,"title":"New Day"}]}`)
-	update := domain.UpdateTourParams{
-		CoverURL: strPtr("http://newcover.png"),
-		Program:  &newProgram,
-	}
-
-	body, err := json.Marshal(update)
-	s.Require().NoError(err)
-	req, err := http.NewRequest(http.MethodPatch, s.basePath+updateTourByIDEndpoint(tourID), bytes.NewBuffer(body))
-	s.Require().NoError(err)
-	req.Header.Set("Content-Type", "application/json")
-
-	resp := s.doRequest(req, http.StatusOK)
-
-	var tour domain.TourFull
-	s.Require().NoError(json.Unmarshal(resp, &tour))
-	s.Equal("http://newcover.png", *tour.CoverURL)
-	s.NotNil(tour.Program)
-}
-
 func (s *APITestSuite) TestUpdateTourByID_ArrayFields() {
 	_, tourID := s.createTour()
 

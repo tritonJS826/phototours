@@ -358,9 +358,9 @@ type TourDate struct {
 	GroupSize   int32
 	IsAvailable bool
 	Price       pgtype.Float8
+	Description string
 	CreatedAt   pgtype.Timestamp
 	UpdatedAt   pgtype.Timestamp
-	Description string
 }
 
 type TourIncluded struct {

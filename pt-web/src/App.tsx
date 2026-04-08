@@ -1,11 +1,15 @@
 import {useEffect, useState} from "react";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import {Route, Routes, useLocation} from "react-router-dom";
+import {AdminArticles} from "./pages/adminArticles/AdminArticles";
+import {CreateArticle} from "./pages/adminArticles/CreateArticle";
+import {EditArticle} from "./pages/adminArticles/EditArticle";
 import {AppLayout} from "src/layouts/AppLayout";
 import {PageLayout} from "src/layouts/PageLayout";
 import {ProtectedPageLayout} from "src/layouts/ProtectedPageLayout";
 import {AboutUs} from "src/pages/aboutUs/AboutUsPage";
 import {AdminCreateTourForm} from "src/pages/adminCreateTourForm/AdminCreateTourForm";
+import {AdminLoginPage} from "src/pages/adminLogin/AdminLoginPage";
 import {AdminPage} from "src/pages/adminPage/AdminPage";
 import {AdminTourContinueForm} from "src/pages/adminTourContinueForm/AdminTourContinueForm";
 import {AdminTourEdit} from "src/pages/adminTourEditForm/AdminTourEditForm";
@@ -177,6 +181,14 @@ export function App() {
               path={PATHS.COOKIES}
               element={<CookiesPolicy />}
             />
+            <Route
+              path={PATHS.NOT_FOUND}
+              element={<NotFoundPage />}
+            />
+            <Route
+              path={PATHS.ADMIN_LOGIN}
+              element={<AdminLoginPage />}
+            />
           </Route>
 
           <Route element={<ProtectedPageLayout />}>
@@ -227,6 +239,18 @@ export function App() {
             <Route
               path={PATHS.ADMIN_TOUR_CONTINUE}
               element={<AdminTourContinueForm />}
+            />
+            <Route
+              path={PATHS.ADMIN_ARTICLES}
+              element={<AdminArticles />}
+            />
+            <Route
+              path={PATHS.ADMIN_CREATE_ARTICLE}
+              element={<CreateArticle />}
+            />
+            <Route
+              path={PATHS.ADMIN_EDIT_ARTICLE}
+              element={<EditArticle />}
             />
           </Route>
 

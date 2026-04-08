@@ -11,6 +11,156 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+const createArticle = `-- name: CreateArticle :one
+INSERT INTO articles (
+    slug,
+    title,
+    excerpt,
+    content,
+    cover_url,
+    alt,
+    author,
+    featured,
+    blocks
+) VALUES (
+    $1,
+    $2,
+    $3,
+    $4,
+    $5,
+    $6,
+    $7,
+    $8,
+    $9
+)
+RETURNING
+    id,
+    slug,
+    title,
+    excerpt,
+    content,
+    cover_url,
+    alt,
+    author,
+    featured,
+    created_at,
+    blocks
+`
+
+type CreateArticleParams struct {
+	Slug     string
+	Title    string
+	Excerpt  string
+	Content  string
+	CoverUrl string
+	Alt      pgtype.Text
+	Author   pgtype.Text
+	Featured bool
+	Blocks   []byte
+}
+
+type CreateArticleRow struct {
+	ID        pgtype.UUID
+	Slug      string
+	Title     string
+	Excerpt   string
+	Content   string
+	CoverUrl  string
+	Alt       pgtype.Text
+	Author    pgtype.Text
+	Featured  bool
+	CreatedAt pgtype.Timestamp
+	Blocks    []byte
+}
+
+func (q *Queries) CreateArticle(ctx context.Context, arg CreateArticleParams) (CreateArticleRow, error) {
+	row := q.db.QueryRow(ctx, createArticle,
+		arg.Slug,
+		arg.Title,
+		arg.Excerpt,
+		arg.Content,
+		arg.CoverUrl,
+		arg.Alt,
+		arg.Author,
+		arg.Featured,
+		arg.Blocks,
+	)
+	var i CreateArticleRow
+	err := row.Scan(
+		&i.ID,
+		&i.Slug,
+		&i.Title,
+		&i.Excerpt,
+		&i.Content,
+		&i.CoverUrl,
+		&i.Alt,
+		&i.Author,
+		&i.Featured,
+		&i.CreatedAt,
+		&i.Blocks,
+	)
+	return i, err
+}
+
+const deleteArticle = `-- name: DeleteArticle :exec
+DELETE FROM articles WHERE id = $1
+`
+
+func (q *Queries) DeleteArticle(ctx context.Context, id pgtype.UUID) error {
+	_, err := q.db.Exec(ctx, deleteArticle, id)
+	return err
+}
+
+const getArticleByID = `-- name: GetArticleByID :one
+SELECT
+    id,
+    slug,
+    title,
+    excerpt,
+    content,
+    cover_url,
+    alt,
+    author,
+    featured,
+    created_at,
+    blocks
+FROM articles
+WHERE id = $1
+`
+
+type GetArticleByIDRow struct {
+	ID        pgtype.UUID
+	Slug      string
+	Title     string
+	Excerpt   string
+	Content   string
+	CoverUrl  string
+	Alt       pgtype.Text
+	Author    pgtype.Text
+	Featured  bool
+	CreatedAt pgtype.Timestamp
+	Blocks    []byte
+}
+
+func (q *Queries) GetArticleByID(ctx context.Context, id pgtype.UUID) (GetArticleByIDRow, error) {
+	row := q.db.QueryRow(ctx, getArticleByID, id)
+	var i GetArticleByIDRow
+	err := row.Scan(
+		&i.ID,
+		&i.Slug,
+		&i.Title,
+		&i.Excerpt,
+		&i.Content,
+		&i.CoverUrl,
+		&i.Alt,
+		&i.Author,
+		&i.Featured,
+		&i.CreatedAt,
+		&i.Blocks,
+	)
+	return i, err
+}
+
 const getArticleBySlug = `-- name: GetArticleBySlug :one
 SELECT
     id,
@@ -128,4 +278,77 @@ func (q *Queries) GetArticles(ctx context.Context, arg GetArticlesParams) ([]Get
 		return nil, err
 	}
 	return items, nil
+}
+
+const updateArticle = `-- name: UpdateArticle :one
+UPDATE articles
+SET
+    slug = COALESCE($1, slug),
+    title = COALESCE($2, title),
+    excerpt = COALESCE($3, excerpt),
+    content = COALESCE($4, content),
+    cover_url = COALESCE($5, cover_url),
+    alt = COALESCE($6, alt),
+    author = COALESCE($7, author),
+    featured = COALESCE($8, featured),
+    blocks = COALESCE($9, blocks),
+    updated_at = CURRENT_TIMESTAMP
+WHERE id = $10
+RETURNING
+    id,
+    slug,
+    title,
+    excerpt,
+    content,
+    cover_url,
+    alt,
+    author,
+    featured,
+    created_at,
+    updated_at,
+    blocks
+`
+
+type UpdateArticleParams struct {
+	Slug     string
+	Title    string
+	Excerpt  string
+	Content  string
+	CoverUrl string
+	Alt      pgtype.Text
+	Author   pgtype.Text
+	Featured bool
+	Blocks   []byte
+	ID       pgtype.UUID
+}
+
+func (q *Queries) UpdateArticle(ctx context.Context, arg UpdateArticleParams) (Article, error) {
+	row := q.db.QueryRow(ctx, updateArticle,
+		arg.Slug,
+		arg.Title,
+		arg.Excerpt,
+		arg.Content,
+		arg.CoverUrl,
+		arg.Alt,
+		arg.Author,
+		arg.Featured,
+		arg.Blocks,
+		arg.ID,
+	)
+	var i Article
+	err := row.Scan(
+		&i.ID,
+		&i.Slug,
+		&i.Title,
+		&i.Excerpt,
+		&i.Content,
+		&i.CoverUrl,
+		&i.Alt,
+		&i.Author,
+		&i.Featured,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+		&i.Blocks,
+	)
+	return i, err
 }

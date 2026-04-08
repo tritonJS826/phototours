@@ -65,7 +65,7 @@ func main() {
 		return
 	}
 
-	repositories := repository.NewRepository(cfg, dbPool, cld)
+	repositories := repository.NewRepository(cfg, dbPool, cld, zapLogger)
 	services := service.NewService(repositories, cfg, zapLogger)
 	handlers := handler.NewHandler(cfg, services, zapLogger)
 

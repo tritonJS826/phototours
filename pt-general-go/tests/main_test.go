@@ -99,7 +99,7 @@ func (s *APITestSuite) TearDownTest() {
 }
 
 func (s *APITestSuite) startTestServer(ready chan<- bool) {
-	repositories := repository.NewRepository(s.config, s.pgPool, nil)
+	repositories := repository.NewRepository(s.config, s.pgPool, nil, s.logger)
 	s.repo = repositories
 	services := service.NewService(repositories, s.config, s.logger)
 	handlers := handler.NewHandler(s.config, services, s.logger)

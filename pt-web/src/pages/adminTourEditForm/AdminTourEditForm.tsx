@@ -1,8 +1,8 @@
 import {useEffect, useRef, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {Button} from "src/components/Button/Button";
-import {fetchData} from "src/services/httpHelper";
-import {DifficultyLevel, TourData, TourDataFromApi} from "src/types/tour";
+import {getTourById, addTourPhoto, addTourVideo, updateTour} from "src/services/toursService";
+import {DifficultyLevel, TourData, TourView} from "src/types/tour";
 import styles from "src/pages/adminTourEditForm/AdminTourEditForm.module.scss";
 
 export const AdminTourEdit = () => {
@@ -20,6 +20,18 @@ export const AdminTourEdit = () => {
     dates: "",
     photos: [],
     videos: [],
+    coverUrl: "",
+    durationDays: "",
+    startLocation: "",
+    endLocation: "",
+    minAge: 0,
+    languages: [],
+    availableMonths: [],
+    reviewsSectionName: "",
+    isShowVip: false,
+    isShowRooms: false,
+    vipPrice: 0,
+    roomPrice: 0,
   });
 
   const [error, setError] = useState("");
@@ -34,30 +46,46 @@ export const AdminTourEdit = () => {
     }
     const fetchTour = async () => {
       try {
-        const data = await fetchData<TourDataFromApi>(`/tours/${id}`);
+        const data = await getTourById(id);
 
-        const normalizedDates = Array.isArray(data.dates)
-          ? data.dates.map((d: string | { date?: string }) =>
-            typeof d === "string" ? d : d.date?.split("T")[0] || "",
-          ).join(", ")
-          : data.dates || "";
+        const normalizedDates = data.dates && data.dates.length > 0
+          ? data.dates.map((d) => d.dateFrom).join(", ")
+          : "";
 
-        const normalizedProgram = typeof data.program === "string"
-          ? data.program
-          : "text" in data.program
-            ? data.program.text
-            : "";
+        const normalizedProgram = data.dailyItinerary
+          ? data.dailyItinerary.map(d => d.plan).join("\n")
+          : "";
+
+        const normalizedDifficulty = (): DifficultyLevel => {
+          const d = data.difficulty;
+          if (d === "EASY" || d === "BEGINNER") return DifficultyLevel.BEGINNER;
+          if (d === "EXPERIENCED") return DifficultyLevel.EXPERIENCED;
+          if (d === "PRO") return DifficultyLevel.PRO;
+          return DifficultyLevel.BEGINNER;
+        };
 
         setFormData({
           title: data.title || "",
           description: data.description || "",
-          region: data.region || "",
-          difficulty: data.difficulty || "BEGINNER",
-          price: data.price || "",
+          region: data.location || "",
+          difficulty: normalizedDifficulty(),
+          price: "",
           program: normalizedProgram,
           dates: normalizedDates,
           photos: [],
           videos: [],
+          coverUrl: data.coverUrl || "",
+          durationDays: String(data.durationDays || ""),
+          startLocation: data.startLocation || "",
+          endLocation: data.endLocation || "",
+          minAge: data.minAge || 0,
+          languages: data.languages || [],
+          availableMonths: data.availableMonths || [],
+          reviewsSectionName: data.reviewsSectionName || "",
+          isShowVip: data.isShowVip || false,
+          isShowRooms: data.isShowRooms || false,
+          vipPrice: data.vipPrice || 0,
+          roomPrice: data.roomPrice || 0,
         });
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to fetch tour");
@@ -72,12 +100,29 @@ export const AdminTourEdit = () => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
-    const {name, value} = e.target;
+    const {name, value, type} = e.target;
+    const target = e.target as HTMLInputElement;
     setFormData(prev => ({
       ...prev,
-      [name]: name === "price"
-        ? (value === "" ? "" : Number(value))
-        : value,
+      [name]: type === "checkbox" 
+        ? target.checked 
+        : name === "price" || name === "minAge" || name === "vipPrice" || name === "roomPrice"
+          ? (value === "" ? 0 : Number(value))
+          : value,
+    }));
+  };
+
+  const handleLanguagesChange = (value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      languages: value ? value.split(",").map(s => s.trim()).filter(Boolean) : [],
+    }));
+  };
+
+  const handleMonthsChange = (value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      availableMonths: value ? value.split(",").map(s => s.trim()).filter(Boolean) : [],
     }));
   };
 
@@ -115,49 +160,31 @@ export const AdminTourEdit = () => {
     setSubmitting(true);
 
     try {
-
-      await fetchData(`/tours/${id}`, {
-        method: "PUT",
-        body: JSON.stringify({
-          title: formData.title,
-          description: formData.description,
-          region: formData.region,
-          difficulty: formData.difficulty,
-          price: Number(formData.price),
-          program: {text: formData.program},
-        }),
+      await updateTour(id!, {
+        title: formData.title,
+        description: formData.description,
+        startLocation: formData.startLocation,
+        endLocation: formData.endLocation,
+        difficulty: formData.difficulty,
+        coverUrl: formData.coverUrl,
+        durationDays: formData.durationDays,
+        minAge: formData.minAge,
+        languages: formData.languages,
+        availableMonths: formData.availableMonths,
+        reviewsSectionName: formData.reviewsSectionName,
+        isShowVip: formData.isShowVip,
+        isShowRooms: formData.isShowRooms,
+        vipPrice: formData.vipPrice,
+        roomPrice: formData.roomPrice,
+        program: {text: formData.program},
       });
 
-      const dates = formData.dates.split(",").map(d => d.trim()).filter(Boolean);
-      if (dates.length) {
-        await fetchData(`/tours/${id}/dates`, {
-          method: "PATCH",
-          body: JSON.stringify({dates}),
-        });
-      }
-
       await Promise.all(
-        formData.photos.map(file => {
-          const form = new FormData();
-          form.append("file", file);
-
-          return fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/photos`, {
-            method: "PATCH",
-            body: form,
-          });
-        }),
+        formData.photos.map(file => addTourPhoto(id!, file)),
       );
 
       await Promise.all(
-        formData.videos.map(file => {
-          const form = new FormData();
-          form.append("file", file);
-
-          return fetch(`${import.meta.env.VITE_API_BASE_URL}/tours/${id}/videos`, {
-            method: "PATCH",
-            body: form,
-          });
-        }),
+        formData.videos.map(file => addTourVideo(id!, file)),
       );
 
       navigate("/admin");
@@ -217,6 +244,136 @@ export const AdminTourEdit = () => {
         value={formData.region}
         onChange={handleChange}
         required
+      />
+
+      <label className={styles.label}>
+        Cover URL
+      </label>
+      <input
+        className={styles.inputSelectText}
+        name="coverUrl"
+        value={formData.coverUrl || ""}
+        onChange={handleChange}
+      />
+
+      <label className={styles.label}>
+        Duration (days)
+      </label>
+      <input
+        className={styles.inputSelectText}
+        name="durationDays"
+        value={formData.durationDays || ""}
+        onChange={handleChange}
+      />
+
+      <label className={styles.label}>
+        Start Location
+      </label>
+      <input
+        className={styles.inputSelectText}
+        name="startLocation"
+        value={formData.startLocation || ""}
+        onChange={handleChange}
+      />
+
+      <label className={styles.label}>
+        End Location
+      </label>
+      <input
+        className={styles.inputSelectText}
+        name="endLocation"
+        value={formData.endLocation || ""}
+        onChange={handleChange}
+      />
+
+      <label className={styles.label}>
+        Min Age
+      </label>
+      <input
+        className={styles.inputSelectText}
+        type="number"
+        name="minAge"
+        value={formData.minAge || ""}
+        onChange={handleChange}
+        min={0}
+      />
+
+      <label className={styles.label}>
+        Languages (comma-separated)
+      </label>
+      <input
+        className={styles.inputSelectText}
+        name="languages"
+        value={formData.languages.join(", ")}
+        onChange={e => handleLanguagesChange(e.target.value)}
+      />
+
+      <label className={styles.label}>
+        Available Months (comma-separated)
+      </label>
+      <input
+        className={styles.inputSelectText}
+        name="availableMonths"
+        value={formData.availableMonths.join(", ")}
+        onChange={e => handleMonthsChange(e.target.value)}
+      />
+
+      <label className={styles.label}>
+        Reviews Section Name
+      </label>
+      <input
+        className={styles.inputSelectText}
+        name="reviewsSectionName"
+        value={formData.reviewsSectionName || ""}
+        onChange={handleChange}
+      />
+
+      <label className={styles.label}>
+        Show VIP
+      </label>
+      <input
+        type="checkbox"
+        name="isShowVip"
+        checked={formData.isShowVip || false}
+        onChange={e => {
+          setFormData(prev => ({...prev, isShowVip: e.target.checked}));
+        }}
+      />
+
+      <label className={styles.label}>
+        VIP Price
+      </label>
+      <input
+        className={styles.inputSelectText}
+        type="number"
+        name="vipPrice"
+        value={formData.vipPrice || ""}
+        onChange={handleChange}
+        min={0}
+      />
+
+      <label className={styles.label}>
+        Show Rooms
+      </label>
+      <input
+        type="checkbox"
+        name="isShowRooms"
+        checked={formData.isShowRooms || false}
+        onChange={e => {
+          setFormData(prev => ({...prev, isShowRooms: e.target.checked}));
+        }}
+      />
+
+      <label className={styles.label}>
+        Room Price
+      </label>
+      <input
+        className={styles.inputSelectText}
+        type="number"
+        name="roomPrice"
+        value={formData.roomPrice || ""}
+        onChange={handleChange}
+        min={0}
       />
 
       <label className={styles.label}>

@@ -11,6 +11,7 @@ import (
 )
 
 type Querier interface {
+	CreateArticle(ctx context.Context, arg CreateArticleParams) (CreateArticleRow, error)
 	CreateBookingRequest(ctx context.Context, arg CreateBookingRequestParams) (BookingRequest, error)
 	CreatePageMetadata(ctx context.Context, arg CreatePageMetadataParams) (CreatePageMetadataRow, error)
 	CreateTour(ctx context.Context, arg CreateTourParams) (CreateTourRow, error)
@@ -18,6 +19,7 @@ type Querier interface {
 	CreateTourIncluded(ctx context.Context, arg CreateTourIncludedParams) (TourIncluded, error)
 	CreateTourSummary(ctx context.Context, arg CreateTourSummaryParams) (TourSummary, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
+	DeleteArticle(ctx context.Context, id pgtype.UUID) error
 	DeletePageMetadata(ctx context.Context, url string) (int64, error)
 	DeleteTourActivitiesByTourID(ctx context.Context, tourID pgtype.UUID) error
 	DeleteTourActivity(ctx context.Context, id pgtype.UUID) error
@@ -26,6 +28,7 @@ type Querier interface {
 	DeleteTourIncludedByTourID(ctx context.Context, tourID pgtype.UUID) error
 	DeleteTourSummary(ctx context.Context, id pgtype.UUID) error
 	DeleteTourSummaryByTourID(ctx context.Context, tourID pgtype.UUID) error
+	GetArticleByID(ctx context.Context, id pgtype.UUID) (GetArticleByIDRow, error)
 	GetArticleBySlug(ctx context.Context, slug string) (GetArticleBySlugRow, error)
 	GetArticles(ctx context.Context, arg GetArticlesParams) ([]GetArticlesRow, error)
 	GetPageMetadata(ctx context.Context, url string) (GetPageMetadataRow, error)
@@ -42,8 +45,8 @@ type Querier interface {
 	GetTourActivitiesByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]TourActivity, error)
 	GetTourByID(ctx context.Context, id pgtype.UUID) (GetTourByIDRow, error)
 	GetTourBySlug(ctx context.Context, slug string) (GetTourBySlugRow, error)
-	GetTourDatesByTourID(ctx context.Context, tourID pgtype.UUID) ([]GetTourDatesByTourIDRow, error)
-	GetTourDatesByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]GetTourDatesByTourIDsRow, error)
+	GetTourDatesByTourID(ctx context.Context, tourID pgtype.UUID) ([]TourDate, error)
+	GetTourDatesByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]TourDate, error)
 	GetTourIncludedByTourID(ctx context.Context, tourID pgtype.UUID) ([]TourIncluded, error)
 	GetTourIncludedByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]TourIncluded, error)
 	GetTourSummaryByTourID(ctx context.Context, tourID pgtype.UUID) ([]TourSummary, error)
@@ -53,6 +56,7 @@ type Querier interface {
 	GetUserByID(ctx context.Context, id pgtype.UUID) (User, error)
 	GetUsers(ctx context.Context, arg GetUsersParams) ([]User, error)
 	ResetSchema(ctx context.Context) error
+	UpdateArticle(ctx context.Context, arg UpdateArticleParams) (Article, error)
 	UpdatePageMetadata(ctx context.Context, arg UpdatePageMetadataParams) (UpdatePageMetadataRow, error)
 	UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) (UpdateTourByIDRow, error)
 	UpdateUser(ctx context.Context, arg UpdateUserParams) (User, error)

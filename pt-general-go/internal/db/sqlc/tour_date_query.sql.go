@@ -27,28 +27,15 @@ FROM tour_dates
 WHERE tour_id = $1
 `
 
-type GetTourDatesByTourIDRow struct {
-	ID          pgtype.UUID
-	TourID      pgtype.UUID
-	DateFrom    pgtype.Timestamp
-	DateTo      pgtype.Timestamp
-	GroupSize   int32
-	IsAvailable bool
-	Price       pgtype.Float8
-	Description string
-	CreatedAt   pgtype.Timestamp
-	UpdatedAt   pgtype.Timestamp
-}
-
-func (q *Queries) GetTourDatesByTourID(ctx context.Context, tourID pgtype.UUID) ([]GetTourDatesByTourIDRow, error) {
+func (q *Queries) GetTourDatesByTourID(ctx context.Context, tourID pgtype.UUID) ([]TourDate, error) {
 	rows, err := q.db.Query(ctx, getTourDatesByTourID, tourID)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	items := []GetTourDatesByTourIDRow{}
+	items := []TourDate{}
 	for rows.Next() {
-		var i GetTourDatesByTourIDRow
+		var i TourDate
 		if err := rows.Scan(
 			&i.ID,
 			&i.TourID,
@@ -87,28 +74,15 @@ FROM tour_dates
 WHERE tour_id = ANY($1::uuid[])
 `
 
-type GetTourDatesByTourIDsRow struct {
-	ID          pgtype.UUID
-	TourID      pgtype.UUID
-	DateFrom    pgtype.Timestamp
-	DateTo      pgtype.Timestamp
-	GroupSize   int32
-	IsAvailable bool
-	Price       pgtype.Float8
-	Description string
-	CreatedAt   pgtype.Timestamp
-	UpdatedAt   pgtype.Timestamp
-}
-
-func (q *Queries) GetTourDatesByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]GetTourDatesByTourIDsRow, error) {
+func (q *Queries) GetTourDatesByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]TourDate, error) {
 	rows, err := q.db.Query(ctx, getTourDatesByTourIDs, tourIds)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	items := []GetTourDatesByTourIDsRow{}
+	items := []TourDate{}
 	for rows.Next() {
-		var i GetTourDatesByTourIDsRow
+		var i TourDate
 		if err := rows.Scan(
 			&i.ID,
 			&i.TourID,

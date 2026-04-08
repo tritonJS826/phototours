@@ -27,12 +27,16 @@ export const PATHS = {
   MY_PHOTOS: "/my-photos",
 
   ADMIN: "/admin",
+  ADMIN_LOGIN: "/admin/login",
   ADMIN_CREATE_TOUR: "/admin/tours",
   ADMIN_EDIT_TOUR: "/admin/tours/:id",
   ADMIN_TOUR_CONTINUE: "/admin/tour/:id/continue",
 
   ADMIN_USERS: "/admin/users",
   ADMIN_USER_GALLERY: "/admin/users/:id/photos",
+  ADMIN_ARTICLES: "/admin/articles",
+  ADMIN_CREATE_ARTICLE: "/admin/articles/create",
+  ADMIN_EDIT_ARTICLE: "/admin/articles/:id/edit",
 
   NOT_FOUND: "*",
 } as const;
@@ -44,5 +48,7 @@ export const buildPath = {
   adminContinueTour: (id: string | number) => `/admin/tour/${id}/continue`,
   adminUserGallery: (id: string | number) => `/admin/users/${id}/photos`,
   adminUsers: () => PATHS.ADMIN_USERS,
+  adminCreateArticle: () => PATHS.ADMIN_CREATE_ARTICLE,
+  adminEditArticle: (id: string | number) => `/admin/articles/${id}/edit`,
   publicProfile: (id: string | number) => `/profile/${id}`,
 } as const;

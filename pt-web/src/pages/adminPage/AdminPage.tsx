@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Button} from "src/components/Button/Button";
 import {Container} from "src/components/Container/Container";
+import {useAuth} from "src/hooks/useAuth";
 import {buildPath, PATHS} from "src/routes/routes";
 import {fetchData} from "src/services/httpHelper";
 import styles from "src/pages/adminPage/AdminPage.module.scss";
@@ -18,6 +19,12 @@ export function AdminPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [, setError] = useState("");
   const navigate = useNavigate();
+  const {user, logout} = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    navigate(PATHS.ADMIN_LOGIN);
+  };
 
   useEffect(() => {
     fetchData<Tour[]>("general/tours")
@@ -71,10 +78,18 @@ export function AdminPage() {
 
             <Button
               variant="outline"
-              onClick={() => navigate(PATHS.ADMIN)}
+              onClick={() => navigate(PATHS.ADMIN_ARTICLES)}
               type="button"
             >
-              All Tours
+              Articles
+            </Button>
+
+            <Button
+              variant="outline"
+              onClick={handleLogout}
+              type="button"
+            >
+              Logout
             </Button>
           </div>
 

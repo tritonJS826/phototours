@@ -206,3 +206,58 @@ export async function getSimilarToursByTourId(tourId: string): Promise<TourView[
 
   return similarTours;
 }
+
+export async function getTourById(id: string): Promise<TourView> {
+  const raw = await fetchData<TourDTO>(`${TOURS_PATH}/${id}`);
+
+  return mapTourToView(raw);
+}
+
+export interface UpdateTourData {
+  title?: string;
+  slug?: string;
+  description?: string;
+  difficulty?: string;
+  coverUrl?: string;
+  durationDays?: string;
+  startLocation?: string;
+  endLocation?: string;
+  minAge?: number;
+  program?: { text: string };
+  languages?: string[];
+  availableMonths?: string[];
+  reviewsSectionName?: string;
+  isShowVip?: boolean;
+  isShowRooms?: boolean;
+  vipPrice?: number;
+  roomPrice?: number;
+}
+
+export async function updateTour(id: string, data: UpdateTourData): Promise<TourView> {
+  const raw = await fetchData<TourDTO>(`${TOURS_PATH}/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(data),
+  });
+
+  return mapTourToView(raw);
+}
+
+export async function addTourPhoto(id: string, file: File): Promise<void> {
+  const form = new FormData();
+  form.append("file", file);
+
+  await fetch(`${import.meta.env.VITE_API_BASE_URL}${TOURS_PATH}/${id}/photos`, {
+    method: "PATCH",
+    body: form,
+  });
+}
+
+export async function addTourVideo(id: string, file: File): Promise<void> {
+  const form = new FormData();
+  form.append("file", file);
+
+  await fetch(`${import.meta.env.VITE_API_BASE_URL}${TOURS_PATH}/${id}/videos`, {
+    method: "PATCH",
+    body: form,
+  });
+}

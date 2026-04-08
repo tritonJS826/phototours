@@ -55,6 +55,11 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 			auth.GET("/profile", h.GetProfile)
 			auth.PUT("/profile", h.UpdateProfile)
 		}
+
+		authAdmin := auth.Group("", h.AuthMiddleware(), RequireRole(domain.RoleAdmin))
+		{
+			authAdmin.POST("/create-user", h.CreateUser)
+		}
 	}
 
 	pageMetadata := general.Group("/page-metadata")
@@ -78,6 +83,15 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 	{
 		articles.GET("", h.GetArticles)
 		articles.GET("/:slug", h.GetArticleBySlug)
+
+		articlesAdmin := articles.Group("/admin", h.AuthMiddleware(), RequireRole(domain.RoleAdmin))
+		{
+			articlesAdmin.GET("", h.GetArticles)
+			articlesAdmin.GET("/:id", h.GetArticleByID)
+			articlesAdmin.POST("", h.CreateArticle)
+			articlesAdmin.PUT("/:id", h.UpdateArticle)
+			articlesAdmin.DELETE("/:id", h.DeleteArticle)
+		}
 	}
 
 	// Guides
@@ -86,14 +100,15 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 
 	tours := general.Group("/tours")
 	{
-		tours.GET("", h.GetAllTours)
-		tours.GET("/:id", h.GetTourByID)
 		tours.GET("/slug/:slug", h.GetTourBySlug)
 		tours.GET("/:id/similar", h.GetSimilarToursByTourID)
-		toursAdmin := tours.Group("", h.AuthMiddleware(), RequireRole(domain.RoleGuide, domain.RoleAdmin))
+		tours.GET("/:id", h.GetTourByID)
+		tours.GET("", h.GetAllTours)
+		toursAdmin := tours.Group("/admin", h.AuthMiddleware(), RequireRole(domain.RoleAdmin))
 		{
+			toursAdmin.GET("", h.GetAllTours)
 			toursAdmin.POST("", h.CreateTour)
-			toursAdmin.PATCH("/:id", h.UpdateTourByID)
+			toursAdmin.PUT("/:id", h.UpdateTourByID)
 			toursAdmin.DELETE("/:id", h.DeleteTourByID)
 		}
 	}

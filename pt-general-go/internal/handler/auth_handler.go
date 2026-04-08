@@ -95,6 +95,47 @@ func (h *Handler) Login(ctx *gin.Context) {
 	})
 }
 
+// CreateUser godoc
+// @Summary Create a new user with CLIENT role (admin only)
+// @Description Create a new user account with CLIENT role - for admin use only
+// @Tags auth
+// @Accept json
+// @Produce json
+// @Security BearerAuth
+// @Param request body dto.CreateUserRequest true "User creation data"
+// @Success 201 {object} dto.AuthResponse
+// @Failure 400 {object} map[string]string
+// @Failure 401 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /auth/create-user [post]
+func (h *Handler) CreateUser(ctx *gin.Context) {
+	var createReq dto.CreateUserRequest
+	if err := ctx.ShouldBindJSON(&createReq); err != nil {
+		h.logger.Error("failed to bind create user data", zap.Error(err))
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request data"})
+		return
+	}
+
+	register := createReq.ToDomain()
+	if err := register.Validate(); err != nil {
+		h.logger.Error("validation error", zap.Error(err))
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request data"})
+		return
+	}
+
+	result, err := h.services.AuthService.Register(ctx, register)
+	if err != nil {
+		h.logger.Error("create user error", zap.String("email", createReq.Email), zap.Error(err))
+		h.handleError(ctx, err)
+		return
+	}
+
+	ctx.JSON(http.StatusCreated, dto.AuthResponse{
+		User:  dto.MapToUserDTO(result.User),
+		Token: result.Token,
+	})
+}
+
 // GetProfile godoc
 // @Summary Get user profile
 // @Description Get the authenticated user's profile

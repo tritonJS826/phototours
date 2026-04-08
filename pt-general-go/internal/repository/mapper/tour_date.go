@@ -7,7 +7,7 @@ import (
 	"github.com/google/uuid"
 )
 
-func MapToDomainTourDates(dbTourDates []db.GetTourDatesByTourIDRow) []domain.TourDate {
+func MapToDomainTourDates(dbTourDates []db.TourDate) []domain.TourDate {
 	tourDates := make([]domain.TourDate, 0, len(dbTourDates))
 	for _, dbTourDate := range dbTourDates {
 		tourDate := domain.TourDate{
@@ -29,7 +29,7 @@ func MapToDomainTourDates(dbTourDates []db.GetTourDatesByTourIDRow) []domain.Tou
 	return tourDates
 }
 
-func MapToDomainTourDatesByTourIDs(dbTourDates []db.GetTourDatesByTourIDsRow) map[uuid.UUID][]domain.TourDate {
+func MapToDomainTourDatesByTourIDs(dbTourDates []db.TourDate) map[uuid.UUID][]domain.TourDate {
 	result := make(map[uuid.UUID][]domain.TourDate)
 	for _, dbTourDate := range dbTourDates {
 		tourID := PgUUIDToUUID(dbTourDate.TourID)

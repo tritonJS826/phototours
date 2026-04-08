@@ -12,6 +12,7 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/jackc/pgx/v5/pgxpool"
+	"go.uber.org/zap"
 )
 
 type Repository struct {
@@ -31,10 +32,10 @@ type Repository struct {
 	ZohoRepository           *ZohoRepository
 }
 
-func NewRepository(cfg *config.Config, dbPool *pgxpool.Pool, cld *cloudinary.Cloudinary) *Repository {
+func NewRepository(cfg *config.Config, dbPool *pgxpool.Pool, cld *cloudinary.Cloudinary, logger *zap.Logger) *Repository {
 	queries := db.New(dbPool)
 	return &Repository{
-		ArticleRepository:        NewArticleRepository(queries),
+		ArticleRepository:        NewArticleRepository(queries, logger),
 		BookingRequestRepository: NewBookingRequestRepository(queries),
 		PageMetadataRepository:   NewPageMetadataRepository(queries),
 		PhotoRepository:          NewPhotoRepository(queries),
