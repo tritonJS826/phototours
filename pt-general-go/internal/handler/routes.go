@@ -86,7 +86,7 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 
 		articlesAdmin := articles.Group("/admin", h.AuthMiddleware(), RequireRole(domain.RoleAdmin))
 		{
-			articlesAdmin.GET("", h.GetArticles)
+			articlesAdmin.GET("", h.GetArticlesAdmin)
 			articlesAdmin.GET("/:id", h.GetArticleByID)
 			articlesAdmin.POST("", h.CreateArticle)
 			articlesAdmin.PUT("/:id", h.UpdateArticle)

@@ -280,6 +280,76 @@ func (q *Queries) GetArticles(ctx context.Context, arg GetArticlesParams) ([]Get
 	return items, nil
 }
 
+const getFeaturedArticles = `-- name: GetFeaturedArticles :many
+SELECT
+    id,
+    slug,
+    title,
+    excerpt,
+    content,
+    cover_url,
+    alt,
+    author,
+    featured,
+    created_at,
+    blocks
+FROM articles
+WHERE featured = true
+ORDER BY created_at DESC
+LIMIT $2 OFFSET $1
+`
+
+type GetFeaturedArticlesParams struct {
+	OffsetCount int32
+	LimitCount  int32
+}
+
+type GetFeaturedArticlesRow struct {
+	ID        pgtype.UUID
+	Slug      string
+	Title     string
+	Excerpt   string
+	Content   string
+	CoverUrl  string
+	Alt       pgtype.Text
+	Author    pgtype.Text
+	Featured  bool
+	CreatedAt pgtype.Timestamp
+	Blocks    []byte
+}
+
+func (q *Queries) GetFeaturedArticles(ctx context.Context, arg GetFeaturedArticlesParams) ([]GetFeaturedArticlesRow, error) {
+	rows, err := q.db.Query(ctx, getFeaturedArticles, arg.OffsetCount, arg.LimitCount)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []GetFeaturedArticlesRow{}
+	for rows.Next() {
+		var i GetFeaturedArticlesRow
+		if err := rows.Scan(
+			&i.ID,
+			&i.Slug,
+			&i.Title,
+			&i.Excerpt,
+			&i.Content,
+			&i.CoverUrl,
+			&i.Alt,
+			&i.Author,
+			&i.Featured,
+			&i.CreatedAt,
+			&i.Blocks,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const updateArticle = `-- name: UpdateArticle :one
 UPDATE articles
 SET

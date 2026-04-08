@@ -31,6 +31,17 @@ func (r *ArticleRepository) GetArticles(ctx context.Context, limit, offset int32
 	return mapper.MapToDomainArticles(dbArticles), nil
 }
 
+func (r *ArticleRepository) GetFeaturedArticles(ctx context.Context, limit, offset int32) ([]domain.Article, error) {
+	dbArticles, err := r.db.GetFeaturedArticles(ctx, db.GetFeaturedArticlesParams{
+		OffsetCount: offset,
+		LimitCount:  limit,
+	})
+	if err != nil {
+		return nil, handleDBError(err)
+	}
+	return mapper.MapToDomainFeaturedArticles(dbArticles), nil
+}
+
 func (r *ArticleRepository) GetArticlesBySlug(ctx context.Context, slug string) (*domain.Article, error) {
 	r.logger.Debug("GetArticlesBySlug repository", zap.String("slug", slug))
 	dbArticle, err := r.db.GetArticleBySlug(ctx, slug)

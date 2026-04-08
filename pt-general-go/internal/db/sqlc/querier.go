@@ -31,6 +31,7 @@ type Querier interface {
 	GetArticleByID(ctx context.Context, id pgtype.UUID) (GetArticleByIDRow, error)
 	GetArticleBySlug(ctx context.Context, slug string) (GetArticleBySlugRow, error)
 	GetArticles(ctx context.Context, arg GetArticlesParams) ([]GetArticlesRow, error)
+	GetFeaturedArticles(ctx context.Context, arg GetFeaturedArticlesParams) ([]GetFeaturedArticlesRow, error)
 	GetPageMetadata(ctx context.Context, url string) (GetPageMetadataRow, error)
 	GetPhotosByTourID(ctx context.Context, tourID pgtype.UUID) ([]Photo, error)
 	GetPhotosByTourIDs(ctx context.Context, tourIds []pgtype.UUID) ([]Photo, error)

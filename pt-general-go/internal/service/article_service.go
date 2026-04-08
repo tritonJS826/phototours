@@ -27,6 +27,10 @@ func (s *ArticleService) GetArticles(ctx context.Context, limit, offset int32) (
 	return s.articleRepository.GetArticles(ctx, limit, offset)
 }
 
+func (s *ArticleService) GetFeaturedArticles(ctx context.Context, limit, offset int32) ([]domain.Article, error) {
+	return s.articleRepository.GetFeaturedArticles(ctx, limit, offset)
+}
+
 func (s *ArticleService) GetArticleBySlug(ctx context.Context, slug string) (*domain.Article, error) {
 	s.logger.Debug("GetArticleBySlug called", zap.String("slug", slug))
 	article, err := s.articleRepository.GetArticlesBySlug(ctx, slug)
