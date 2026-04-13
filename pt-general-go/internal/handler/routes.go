@@ -107,6 +107,7 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 		toursAdmin := tours.Group("/admin", h.AuthMiddleware(), RequireRole(domain.RoleAdmin))
 		{
 			toursAdmin.GET("", h.GetAllTours)
+			toursAdmin.GET("/:id", h.GetTourByIDAdmin)
 			toursAdmin.POST("", h.CreateTour)
 			toursAdmin.PUT("/:id", h.UpdateTourByID)
 			toursAdmin.DELETE("/:id", h.DeleteTourByID)

@@ -50,19 +50,22 @@ func (h *Handler) CreateTour(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, tour)
 }
 
-// GetTourByID godoc
-// @Summary Get tour by ID
-// @Description Get full tour information by ID including guide, dates, photos, videos, materials, tags, and categories
+// GetTourByIDAdmin godoc
+// @Summary Get tour by ID for admin
+// @Description Get full tour information by ID for admin panel (same as public but uses admin endpoint)
 // @Tags tours
 // @Accept json
 // @Produce json
+// @Security BearerAuth
 // @Param id path string true "Tour ID (UUID)"
 // @Success 200 {object} domain.TourFull
 // @Failure 400 {object} map[string]string
+// @Failure 401 {object} map[string]string
+// @Failure 403 {object} map[string]string
 // @Failure 404 {object} map[string]string
 // @Failure 500 {object} map[string]string
-// @Router /tours/{id} [get]
-func (h *Handler) GetTourByID(ctx *gin.Context) {
+// @Router /tours/admin/{id} [get]
+func (h *Handler) GetTourByIDAdmin(ctx *gin.Context) {
 	tourID, err := uuid.Parse(ctx.Param("id"))
 	if err != nil {
 		h.logger.Error("failed to parse tour ID", zap.String("id", ctx.Param("id")), zap.Error(err))
@@ -70,9 +73,9 @@ func (h *Handler) GetTourByID(ctx *gin.Context) {
 		return
 	}
 
-	tour, err := h.services.TourService.GetTourFullByID(ctx, tourID)
+	tour, err := h.services.TourService.GetTourFullByID(ctx.Request.Context(), tourID)
 	if err != nil {
-		h.logger.Error("failed to get tour by ID", zap.String("tour_id", tourID.String()), zap.Error(err))
+		h.logger.Error("failed to get tour by ID for admin", zap.String("tour_id", tourID.String()), zap.Error(err))
 		h.handleError(ctx, err)
 		return
 	}

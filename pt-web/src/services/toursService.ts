@@ -1,5 +1,5 @@
 import {fetchData, fileUrl} from "src/services/httpHelper";
-import type {TourView} from "src/types/tour";
+import type {TourView, AdminTour, UpdateTourAdminData, TourDay, FaqItem, TourActivity} from "src/types/tour";
 
 export const TOURS_PATH = "/general/tours";
 
@@ -260,4 +260,84 @@ export async function addTourVideo(id: string, file: File): Promise<void> {
     method: "PATCH",
     body: form,
   });
+}
+
+function mapAdminTourToView(raw: any): AdminTour {
+  const photoUrls = (raw.photos ?? []).map((p: any) => ({
+    id: p.id,
+    url: p.url,
+  }));
+
+  const dates = (raw.dates ?? []).map((d: any) => ({
+    id: d.id,
+    dateFrom: d.dateFrom,
+    dateTo: d.dateTo,
+    groupSize: d.groupSize ?? 10,
+    isAvailable: d.isAvailable ?? true,
+    price: d.price ?? 0,
+    description: d.description ?? "",
+  }));
+
+  const program = typeof raw.program === 'object' && raw.program !== null 
+    ? raw.program 
+    : { days: [] };
+
+  const faq = typeof raw.faq === 'object' && raw.faq !== null 
+    ? raw.faq 
+    : { questions: [] };
+
+  return {
+    id: raw.id,
+    slug: raw.slug ?? "",
+    title: raw.title ?? "",
+    description: raw.description ?? "",
+    difficulty: raw.difficulty ?? "EASY",
+    coverUrl: raw.coverUrl ?? "",
+    durationDays: raw.durationDays ?? "",
+    startLocation: raw.startLocation ?? "",
+    endLocation: raw.endLocation ?? "",
+    location: raw.location ?? "",
+    minAge: raw.minAge ?? 0,
+    languages: raw.languages ?? [],
+    availableMonths: raw.availableMonths ?? [],
+    program,
+    faq,
+    activities: (raw.activities ?? []).map((a: any) => ({
+      activity: a.activity ?? "",
+      iconName: a.iconName ?? "",
+    })),
+    included: raw.included ?? [],
+    summary: raw.summary ?? [],
+    groupSize: raw.groupSize ?? 10,
+    spotsLeft: raw.spotsLeft ?? 1,
+    subtitle: raw.subtitle ?? "About",
+    popUp1Title: raw.popUp1Title ?? "",
+    popUp1Description: raw.popUp1Description ?? "",
+    popUp1ImageUrl: raw.popUp1ImageUrl ?? "",
+    popUp2Title: raw.popUp2Title ?? "",
+    popUp2Description: raw.popUp2Description ?? "",
+    popUp2ImageUrl: raw.popUp2ImageUrl ?? "",
+    ctaTitle: raw.ctaTitle ?? "",
+    ctaDescription: raw.ctaDescription ?? "",
+    reviewsSectionName: raw.reviewsSectionName ?? "",
+    isShowVip: raw.isShowVip ?? false,
+    isShowRooms: raw.isShowRooms ?? false,
+    vipPrice: raw.vipPrice ?? 0,
+    roomPrice: raw.roomPrice ?? 0,
+    dates,
+    photos: photoUrls,
+  };
+}
+
+export async function getAdminTour(id: string): Promise<AdminTour> {
+  const raw = await fetchData<any>(`${TOURS_PATH}/admin/${id}`);
+  return mapAdminTourToView(raw);
+}
+
+export async function updateTourAdmin(id: string, data: UpdateTourAdminData): Promise<AdminTour> {
+  const raw = await fetchData<any>(`${TOURS_PATH}/admin/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(data),
+  });
+  return mapAdminTourToView(raw);
 }

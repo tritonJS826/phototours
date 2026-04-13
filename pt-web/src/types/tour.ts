@@ -6,9 +6,9 @@ export enum Difficulty {
 }
 
 export enum DifficultyLevel {
-  BEGINNER = "BEGINNER",
-  EXPERIENCED = "EXPERIENCED",
-  PRO = "PRO",
+  EASY = "EASY",
+  MEDIUM = "MEDIUM",
+  HARD = "HARD",
 }
 
 export interface TourDay {
@@ -124,4 +124,89 @@ export interface TourData {
   isShowRooms: boolean;
   vipPrice: number;
   roomPrice: number;
+}
+
+export interface AdminTourDate {
+  id: string;
+  dateFrom: string;
+  dateTo: string;
+  groupSize: number;
+  isAvailable: boolean;
+  price: number;
+  description: string;
+}
+
+export interface AdminTour {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  difficulty: Difficulty;
+  coverUrl: string;
+  durationDays: string;
+  startLocation: string;
+  endLocation: string;
+  location: string;
+  minAge: number;
+  languages: string[];
+  availableMonths: string[];
+  program: { days: TourDay[] };
+  faq: { questions: FaqItem[] };
+  activities: TourActivity[];
+  included: string[];
+  summary: string[];
+  groupSize: number;
+  spotsLeft: number;
+  subtitle: string;
+  popUp1Title: string;
+  popUp1Description: string;
+  popUp1ImageUrl: string;
+  popUp2Title: string;
+  popUp2Description: string;
+  popUp2ImageUrl: string;
+  ctaTitle: string;
+  ctaDescription: string;
+  reviewsSectionName: string;
+  isShowVip: boolean;
+  isShowRooms: boolean;
+  vipPrice: number;
+  roomPrice: number;
+  dates: AdminTourDate[];
+  photos: Array<{ id: string; url: string }>;
+}
+
+export interface UpdateTourAdminData {
+  title?: string;
+  slug?: string;
+  description?: string;
+  difficulty?: string;
+  coverUrl?: string;
+  durationDays?: string;
+  startLocation?: string;
+  endLocation?: string;
+  location?: string;
+  minAge?: number;
+  program?: { days: TourDay[] };
+  faq?: { questions: FaqItem[] };
+  languages?: string[];
+  availableMonths?: string[];
+  activities?: TourActivity[];
+  included?: string[];
+  summary?: string[];
+  groupSize?: number;
+  spotsLeft?: number;
+  subtitle?: string;
+  popUp1Title?: string;
+  popUp1Description?: string;
+  popUp1ImageUrl?: string;
+  popUp2Title?: string;
+  popUp2Description?: string;
+  popUp2ImageUrl?: string;
+  ctaTitle?: string;
+  ctaDescription?: string;
+  reviewsSectionName?: string;
+  isShowVip?: boolean;
+  isShowRooms?: boolean;
+  vipPrice?: number;
+  roomPrice?: number;
 }

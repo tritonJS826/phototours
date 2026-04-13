@@ -1,8 +1,8 @@
 import {useEffect, useRef, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {Button} from "src/components/Button/Button";
-import {getTourById, addTourPhoto, addTourVideo, updateTour} from "src/services/toursService";
-import {DifficultyLevel, TourData, TourView} from "src/types/tour";
+import {getAdminTour, updateTourAdmin} from "src/services/toursService";
+import {DifficultyLevel, AdminTour, TourDay, FaqItem, TourActivity} from "src/types/tour";
 import styles from "src/pages/adminTourEditForm/AdminTourEditForm.module.scss";
 
 export const AdminTourEdit = () => {
@@ -10,28 +10,43 @@ export const AdminTourEdit = () => {
   const navigate = useNavigate();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const [formData, setFormData] = useState<TourData>({
+  const [formData, setFormData] = useState<AdminTour>({
+    id: "",
+    slug: "",
     title: "",
     description: "",
-    region: "",
-    difficulty: DifficultyLevel.BEGINNER,
-    price: "",
-    program: "",
-    dates: "",
-    photos: [],
-    videos: [],
+    difficulty: DifficultyLevel.EASY,
     coverUrl: "",
     durationDays: "",
     startLocation: "",
     endLocation: "",
+    location: "",
     minAge: 0,
     languages: [],
     availableMonths: [],
+    program: { days: [] },
+    faq: { questions: [] },
+    activities: [],
+    included: [],
+    summary: [],
+    groupSize: 10,
+    spotsLeft: 1,
+    subtitle: "About",
+    popUp1Title: "",
+    popUp1Description: "",
+    popUp1ImageUrl: "",
+    popUp2Title: "",
+    popUp2Description: "",
+    popUp2ImageUrl: "",
+    ctaTitle: "",
+    ctaDescription: "",
     reviewsSectionName: "",
     isShowVip: false,
     isShowRooms: false,
     vipPrice: 0,
     roomPrice: 0,
+    dates: [],
+    photos: [],
   });
 
   const [error, setError] = useState("");
@@ -46,47 +61,8 @@ export const AdminTourEdit = () => {
     }
     const fetchTour = async () => {
       try {
-        const data = await getTourById(id);
-
-        const normalizedDates = data.dates && data.dates.length > 0
-          ? data.dates.map((d) => d.dateFrom).join(", ")
-          : "";
-
-        const normalizedProgram = data.dailyItinerary
-          ? data.dailyItinerary.map(d => d.plan).join("\n")
-          : "";
-
-        const normalizedDifficulty = (): DifficultyLevel => {
-          const d = data.difficulty;
-          if (d === "EASY" || d === "BEGINNER") return DifficultyLevel.BEGINNER;
-          if (d === "EXPERIENCED") return DifficultyLevel.EXPERIENCED;
-          if (d === "PRO") return DifficultyLevel.PRO;
-          return DifficultyLevel.BEGINNER;
-        };
-
-        setFormData({
-          title: data.title || "",
-          description: data.description || "",
-          region: data.location || "",
-          difficulty: normalizedDifficulty(),
-          price: "",
-          program: normalizedProgram,
-          dates: normalizedDates,
-          photos: [],
-          videos: [],
-          coverUrl: data.coverUrl || "",
-          durationDays: String(data.durationDays || ""),
-          startLocation: data.startLocation || "",
-          endLocation: data.endLocation || "",
-          minAge: data.minAge || 0,
-          languages: data.languages || [],
-          availableMonths: data.availableMonths || [],
-          reviewsSectionName: data.reviewsSectionName || "",
-          isShowVip: data.isShowVip || false,
-          isShowRooms: data.isShowRooms || false,
-          vipPrice: data.vipPrice || 0,
-          roomPrice: data.roomPrice || 0,
-        });
+        const data = await getAdminTour(id);
+        setFormData(data);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to fetch tour");
       } finally {
@@ -106,7 +82,7 @@ export const AdminTourEdit = () => {
       ...prev,
       [name]: type === "checkbox" 
         ? target.checked 
-        : name === "price" || name === "minAge" || name === "vipPrice" || name === "roomPrice"
+        : name === "minAge" || name === "vipPrice" || name === "roomPrice" || name === "groupSize" || name === "spotsLeft"
           ? (value === "" ? 0 : Number(value))
           : value,
     }));
@@ -131,11 +107,11 @@ export const AdminTourEdit = () => {
       return;
     }
     const files = Array.from(e.target.files);
-    const {name} = e.target;
 
     setFormData(prev => ({
       ...prev,
-      [name]: [...prev[name as "photos" | "videos"], ...files],
+      photos: [...prev.photos, ...files.filter(f => f.type.startsWith("image/")).map(f => ({ id: "", url: "" }))] as any,
+      videos: [...(prev as any).videos, ...files.filter(f => f.type.startsWith("video/"))] as any,
     }));
   };
 
@@ -145,13 +121,123 @@ export const AdminTourEdit = () => {
 
     setFormData(prev => ({
       ...prev,
-      photos: [...prev.photos, ...files.filter(f => f.type.startsWith("image/"))],
-      videos: [...prev.videos, ...files.filter(f => f.type.startsWith("video/"))],
+      photos: [...prev.photos, ...files.filter(f => f.type.startsWith("image/")).map(f => ({ id: "", url: "" }))] as any,
+      videos: [...(prev as any).videos, ...files.filter(f => f.type.startsWith("video/"))] as any,
     }));
   };
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
+  };
+
+  const handleDayChange = (index: number, field: keyof TourDay, value: string) => {
+    setFormData(prev => {
+      const days = [...(prev.program?.days || [])];
+      days[index] = { ...days[index], [field]: value };
+      return {...prev, program: { days }};
+    });
+  };
+
+  const addDay = () => {
+    setFormData(prev => ({
+      ...prev,
+      program: { days: [...(prev.program?.days || []), { day: (prev.program?.days?.length || 0) + 1, plan: "", description: "" }] },
+    }));
+  };
+
+  const removeDay = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      program: { days: (prev.program?.days || []).filter((_, i) => i !== index) },
+    }));
+  };
+
+  const handleFaqChange = (index: number, field: keyof FaqItem, value: string) => {
+    setFormData(prev => {
+      const questions = [...(prev.faq?.questions || [])];
+      questions[index] = { ...questions[index], [field]: value };
+      return {...prev, faq: { questions }};
+    });
+  };
+
+  const addFaq = () => {
+    setFormData(prev => ({
+      ...prev,
+      faq: { questions: [...(prev.faq?.questions || []), { question: "", answer: "" }] },
+    }));
+  };
+
+  const removeFaq = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      faq: { questions: (prev.faq?.questions || []).filter((_, i) => i !== index) },
+    }));
+  };
+
+  const handleActivityChange = (index: number, field: keyof TourActivity, value: string) => {
+    setFormData(prev => {
+      const activities = [...(prev.activities || [])];
+      activities[index] = { ...activities[index], [field]: value };
+      return {...prev, activities};
+    });
+  };
+
+  const addActivity = () => {
+    setFormData(prev => ({
+      ...prev,
+      activities: [...(prev.activities || []), { activity: "", iconName: "" }],
+    }));
+  };
+
+  const removeActivity = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      activities: (prev.activities || []).filter((_, i) => i !== index),
+    }));
+  };
+
+  const handleIncludedChange = (index: number, value: string) => {
+    setFormData(prev => {
+      const included = [...(prev.included || [])];
+      included[index] = value;
+      return {...prev, included};
+    });
+  };
+
+  const addIncluded = () => {
+    setFormData(prev => ({
+      ...prev,
+      included: [...(prev.included || []), ""],
+    }));
+  };
+
+  const removeIncluded = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      included: (prev.included || []).filter((_, i) => i !== index),
+    }));
+  };
+
+  const handleSummaryChange = (index: number, value: string) => {
+    setFormData(prev => {
+      const summary = [...(prev.summary || [])];
+      summary[index] = value;
+      return {...prev, summary};
+    });
+  };
+
+  const addSummary = () => {
+    setFormData(prev => ({
+      ...prev,
+      summary: [...(prev.summary || []), ""],
+    }));
+  };
+
+  const removeSummary = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      summary: (prev.summary || []).filter((_, i) => i !== index),
+    }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -160,32 +246,40 @@ export const AdminTourEdit = () => {
     setSubmitting(true);
 
     try {
-      await updateTour(id!, {
+      await updateTourAdmin(id!, {
         title: formData.title,
         description: formData.description,
         startLocation: formData.startLocation,
         endLocation: formData.endLocation,
+        location: formData.location,
         difficulty: formData.difficulty,
         coverUrl: formData.coverUrl,
         durationDays: formData.durationDays,
         minAge: formData.minAge,
         languages: formData.languages,
         availableMonths: formData.availableMonths,
+        program: formData.program,
+        faq: formData.faq,
+        activities: formData.activities,
+        included: formData.included,
+        summary: formData.summary,
+        groupSize: formData.groupSize,
+        spotsLeft: formData.spotsLeft,
+        subtitle: formData.subtitle,
+        popUp1Title: formData.popUp1Title,
+        popUp1Description: formData.popUp1Description,
+        popUp1ImageUrl: formData.popUp1ImageUrl,
+        popUp2Title: formData.popUp2Title,
+        popUp2Description: formData.popUp2Description,
+        popUp2ImageUrl: formData.popUp2ImageUrl,
+        ctaTitle: formData.ctaTitle,
+        ctaDescription: formData.ctaDescription,
         reviewsSectionName: formData.reviewsSectionName,
         isShowVip: formData.isShowVip,
         isShowRooms: formData.isShowRooms,
         vipPrice: formData.vipPrice,
         roomPrice: formData.roomPrice,
-        program: {text: formData.program},
       });
-
-      await Promise.all(
-        formData.photos.map(file => addTourPhoto(id!, file)),
-      );
-
-      await Promise.all(
-        formData.videos.map(file => addTourVideo(id!, file)),
-      );
 
       navigate("/admin");
     } catch (err) {
@@ -240,8 +334,8 @@ export const AdminTourEdit = () => {
       </label>
       <input
         className={styles.inputSelectText}
-        name="region"
-        value={formData.region}
+        name="location"
+        value={formData.location || ""}
         onChange={handleChange}
         required
       />
@@ -385,50 +479,222 @@ export const AdminTourEdit = () => {
         value={formData.difficulty}
         onChange={handleChange}
       >
-        <option value="BEGINNER">
-          Beginner
+        <option value="EASY">
+          Easy
         </option>
-        <option value="EXPERIENCED">
-          Experienced
+        <option value="MEDIUM">
+          Medium
         </option>
-        <option value="PRO">
-          Pro
+        <option value="HARD">
+          Hard
         </option>
       </select>
 
       <label className={styles.label}>
-        Price
+        Subtitle
+      </label>
+      <input
+        className={styles.inputSelectText}
+        name="subtitle"
+        value={formData.subtitle || ""}
+        onChange={handleChange}
+      />
+
+      <label className={styles.label}>
+        Group Size
       </label>
       <input
         className={styles.inputSelectText}
         type="number"
-        name="price"
-        value={formData.price}
+        name="groupSize"
+        value={formData.groupSize || ""}
         onChange={handleChange}
-        required
-        min={0}
-        step={0.01}
+        min={1}
       />
 
       <label className={styles.label}>
-        Program
-      </label>
-      <textarea
-        className={styles.inputSelectText}
-        name="program"
-        value={formData.program}
-        onChange={handleChange}
-        rows={6}
-      />
-
-      <label className={styles.label}>
-        Dates (comma-separated, e.g. "2025-10-01, 2025-10-15")
+        Spots Left
       </label>
       <input
         className={styles.inputSelectText}
-        name="dates"
-        value={formData.dates}
+        type="number"
+        name="spotsLeft"
+        value={formData.spotsLeft || ""}
         onChange={handleChange}
+        min={1}
+      />
+
+      <h3>Daily Itinerary</h3>
+      {(formData.program?.days || []).map((day, index) => (
+        <div key={index} className={styles.sectionItem}>
+          <label className={styles.label}>Day {index + 1}</label>
+          <input
+            className={styles.inputSelectText}
+            value={day.day}
+            onChange={e => handleDayChange(index, "day", e.target.value)}
+            type="number"
+            min={1}
+            placeholder="Day number"
+          />
+          <textarea
+            className={styles.inputSelectText}
+            value={day.plan}
+            onChange={e => handleDayChange(index, "plan", e.target.value)}
+            placeholder="Plan"
+            rows={2}
+          />
+          <textarea
+            className={styles.inputSelectText}
+            value={day.description || ""}
+            onChange={e => handleDayChange(index, "description", e.target.value)}
+            placeholder="Description"
+            rows={2}
+          />
+          <input
+            className={styles.inputSelectText}
+            value={day.imgUrl || ""}
+            onChange={e => handleDayChange(index, "imgUrl", e.target.value)}
+            placeholder="Image URL"
+          />
+          <button type="button" onClick={() => removeDay(index)}>Remove Day</button>
+        </div>
+      ))}
+      <button type="button" onClick={addDay}>Add Day</button>
+
+      <h3>FAQ</h3>
+      {(formData.faq?.questions || []).map((faq, index) => (
+        <div key={index} className={styles.sectionItem}>
+          <label className={styles.label}>Question {index + 1}</label>
+          <input
+            className={styles.inputSelectText}
+            value={faq.question}
+            onChange={e => handleFaqChange(index, "question", e.target.value)}
+            placeholder="Question"
+          />
+          <textarea
+            className={styles.inputSelectText}
+            value={faq.answer}
+            onChange={e => handleFaqChange(index, "answer", e.target.value)}
+            placeholder="Answer"
+            rows={3}
+          />
+          <button type="button" onClick={() => removeFaq(index)}>Remove</button>
+        </div>
+      ))}
+      <button type="button" onClick={addFaq}>Add FAQ</button>
+
+      <h3>Activities</h3>
+      {(formData.activities || []).map((activity, index) => (
+        <div key={index} className={styles.sectionItem}>
+          <label className={styles.label}>Activity {index + 1}</label>
+          <input
+            className={styles.inputSelectText}
+            value={activity.activity}
+            onChange={e => handleActivityChange(index, "activity", e.target.value)}
+            placeholder="Activity name"
+          />
+          <input
+            className={styles.inputSelectText}
+            value={activity.iconName}
+            onChange={e => handleActivityChange(index, "iconName", e.target.value)}
+            placeholder="Icon name"
+          />
+          <button type="button" onClick={() => removeActivity(index)}>Remove</button>
+        </div>
+      ))}
+      <button type="button" onClick={addActivity}>Add Activity</button>
+
+      <h3>Included</h3>
+      {(formData.included || []).map((item, index) => (
+        <div key={index} className={styles.sectionItem}>
+          <input
+            className={styles.inputSelectText}
+            value={item}
+            onChange={e => handleIncludedChange(index, e.target.value)}
+            placeholder="Included item"
+          />
+          <button type="button" onClick={() => removeIncluded(index)}>Remove</button>
+        </div>
+      ))}
+      <button type="button" onClick={addIncluded}>Add Included Item</button>
+
+      <h3>Summary (Highlights)</h3>
+      {(formData.summary || []).map((item, index) => (
+        <div key={index} className={styles.sectionItem}>
+          <input
+            className={styles.inputSelectText}
+            value={item}
+            onChange={e => handleSummaryChange(index, e.target.value)}
+            placeholder="Highlight"
+          />
+          <button type="button" onClick={() => removeSummary(index)}>Remove</button>
+        </div>
+      ))}
+      <button type="button" onClick={addSummary}>Add Summary Item</button>
+
+      <h3>Popup 1</h3>
+      <label className={styles.label}>Title</label>
+      <input
+        className={styles.inputSelectText}
+        name="popUp1Title"
+        value={formData.popUp1Title || ""}
+        onChange={handleChange}
+      />
+      <label className={styles.label}>Description</label>
+      <textarea
+        className={styles.inputSelectText}
+        name="popUp1Description"
+        value={formData.popUp1Description || ""}
+        onChange={handleChange}
+        rows={3}
+      />
+      <label className={styles.label}>Image URL</label>
+      <input
+        className={styles.inputSelectText}
+        name="popUp1ImageUrl"
+        value={formData.popUp1ImageUrl || ""}
+        onChange={handleChange}
+      />
+
+      <h3>Popup 2</h3>
+      <label className={styles.label}>Title</label>
+      <input
+        className={styles.inputSelectText}
+        name="popUp2Title"
+        value={formData.popUp2Title || ""}
+        onChange={handleChange}
+      />
+      <label className={styles.label}>Description</label>
+      <textarea
+        className={styles.inputSelectText}
+        name="popUp2Description"
+        value={formData.popUp2Description || ""}
+        onChange={handleChange}
+        rows={3}
+      />
+      <label className={styles.label}>Image URL</label>
+      <input
+        className={styles.inputSelectText}
+        name="popUp2ImageUrl"
+        value={formData.popUp2ImageUrl || ""}
+        onChange={handleChange}
+      />
+
+      <h3>CTA Section</h3>
+      <label className={styles.label}>Title</label>
+      <input
+        className={styles.inputSelectText}
+        name="ctaTitle"
+        value={formData.ctaTitle || ""}
+        onChange={handleChange}
+      />
+      <label className={styles.label}>Description</label>
+      <textarea
+        className={styles.inputSelectText}
+        name="ctaDescription"
+        value={formData.ctaDescription || ""}
+        onChange={handleChange}
+        rows={3}
       />
 
       <label className={styles.label}>
@@ -454,14 +720,14 @@ export const AdminTourEdit = () => {
         />
       </div>
       <div className={styles.fileUploadPreview}>
-        {formData.photos.map((file, index) => (
+        {formData.photos.map((photo, index) => (
           <div
             key={index}
             className={styles.fileUploadItem}
           >
             <img
-              src={URL.createObjectURL(file)}
-              alt={file.name}
+              src={photo.url}
+              alt={`Photo ${index + 1}`}
               className={styles.fileUploadItemImage}
             />
             <button
@@ -471,54 +737,7 @@ export const AdminTourEdit = () => {
                 setFormData(prev => {
                   const newPhotos = [...prev.photos];
                   newPhotos.splice(index, REMOVE_COUNT);
-
                   return {...prev, photos: newPhotos};
-                });
-              }}
-            >
-              ×
-            </button>
-          </div>
-        ))}
-      </div>
-
-      <label className={styles.label}>
-        Videos
-      </label>
-      <div
-        className={styles.dropZone}
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        onClick={() => fileInputRef.current?.click()}
-      >
-        <p className={styles.dropZoneText}>
-          Drag & drop videos here, or click to select
-        </p>
-        <input
-          type="file"
-          name="videos"
-          accept="video/*"
-          multiple
-          onChange={handleFileChange}
-          className={styles.hiddenFileInput}
-        />
-      </div>
-      <div className={styles.fileList}>
-        {formData.videos.map((file, index) => (
-          <div
-            key={index}
-            className={styles.fileListItem}
-          >
-            {file.name}
-            <button
-              type="button"
-              className={styles.fileListItemRemove}
-              onClick={() => {
-                setFormData(prev => {
-                  const newVideos = [...prev.videos];
-                  newVideos.splice(index);
-
-                  return {...prev, videos: newVideos};
                 });
               }}
             >
