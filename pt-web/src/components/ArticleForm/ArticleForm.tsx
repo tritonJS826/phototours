@@ -147,8 +147,8 @@ export function ArticleForm({
         featured: initialData.featured ?? false,
         blocks: initialData.blocks ?? [{type: "text", content: ""}],
       });
-      setBlocks(initialData.blocks && initialData.blocks.length > 0 
-        ? initialData.blocks 
+      setBlocks(initialData.blocks && initialData.blocks.length > 0
+        ? initialData.blocks
         : [{type: "text", content: ""}]);
     }
   }, [initialData]);
@@ -614,7 +614,7 @@ export function ArticleForm({
                             src={block.src}
                             alt={block.alt || "Preview"}
                             onError={(e) => {
-                              (e.target as HTMLImageElement).style.display = 'none';
+                              (e.target as HTMLImageElement).style.display = "none";
                             }}
                           />
                         </div>

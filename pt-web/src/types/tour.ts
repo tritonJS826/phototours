@@ -136,6 +136,13 @@ export interface AdminTourDate {
   description: string;
 }
 
+export interface AdminTourPhoto {
+  id: string;
+  url: string;
+  alt?: string;
+  description?: string;
+}
+
 export interface AdminTour {
   id: string;
   slug: string;
@@ -172,7 +179,7 @@ export interface AdminTour {
   vipPrice: number;
   roomPrice: number;
   dates: AdminTourDate[];
-  photos: Array<{ id: string; url: string }>;
+  photos: AdminTourPhoto[];
 }
 
 export interface UpdateTourAdminData {
@@ -209,4 +216,5 @@ export interface UpdateTourAdminData {
   isShowRooms?: boolean;
   vipPrice?: number;
   roomPrice?: number;
+  photos?: AdminTourPhoto[];
 }

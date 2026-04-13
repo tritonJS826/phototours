@@ -11,24 +11,46 @@ export function PrivacyPolicy() {
         Privacy Policy for Tuscany Photo Tours
       </h1>
       <p className={styles.effectiveDate}>
-        <strong>Effective Date:</strong> April 2, 2026
+        <strong>
+          Effective Date:
+        </strong>
+        {" "}
+        April 2, 2026
       </p>
       <p>
-        The administration of the{" "}
+        The administration of the
+        {" "}
         <a
           href="https://tuscany-photo-tours.com/"
           target="_blank"
           rel="noopener noreferrer"
         >
           https://tuscany-photo-tours.com/
-        </a>{" "}
-        website, operated by <strong>Kythira Corporation OÜ</strong> (registry
+        </a>
+        {" "}
+        website, operated by
+        {" "}
+        <strong>
+          Kythira Corporation OÜ
+        </strong>
+        {" "}
+        (registry
         code 16684153, Tallinn, Estonia), is committed to protecting your
         privacy online. We place great importance on the security of the data
         you provide to us. Our privacy policy is based on the requirements of
-        the <strong>General Data Protection Regulation (GDPR)</strong> of the
-        European Union and applicable consumer privacy laws in the{" "}
-        <strong>United States</strong>.
+        the
+        {" "}
+        <strong>
+          General Data Protection Regulation (GDPR)
+        </strong>
+        {" "}
+        of the
+        European Union and applicable consumer privacy laws in the
+        {" "}
+        <strong>
+          United States
+        </strong>
+        .
       </p>
 
       <section>
@@ -105,17 +127,41 @@ export function PrivacyPolicy() {
           <li>
             <strong>
               Google Services:
-            </strong>{" "}
-            We use <strong>Google Analytics</strong> and{" "}
-            <strong>Google Search Console</strong> to monitor traffic and website
+            </strong>
+            {" "}
+            We use
+            {" "}
+            <strong>
+              Google Analytics
+            </strong>
+            {" "}
+            and
+            {" "}
+            <strong>
+              Google Search Console
+            </strong>
+            {" "}
+            to monitor traffic and website
             performance.
           </li>
           <li>
             <strong>
               Meta (Facebook):
-            </strong>{" "}
-            We use <strong>Meta Pixel</strong> and{" "}
-            <strong>Conversions API (CAPI)</strong> for advertising optimization
+            </strong>
+            {" "}
+            We use
+            {" "}
+            <strong>
+              Meta Pixel
+            </strong>
+            {" "}
+            and
+            {" "}
+            <strong>
+              Conversions API (CAPI)
+            </strong>
+            {" "}
+            for advertising optimization
             and tracking user interactions.
           </li>
           <li>
@@ -193,7 +239,9 @@ export function PrivacyPolicy() {
               href="mailto:info@tuscany-photo-tours.com"
               className={styles.link}
             >
-              <strong>info@tuscany-photo-tours.com</strong>
+              <strong>
+                info@tuscany-photo-tours.com
+              </strong>
             </a>
           </li>
           <li>
@@ -226,12 +274,15 @@ export function PrivacyPolicy() {
           We do not knowingly collect personal data from minors under the age of
           18 without parental consent. If you are a parent or guardian and
           believe your child has provided us with data, please contact us
-          immediately at{" "}
+          immediately at
+          {" "}
           <a
             href="mailto:info@tuscany-photo-tours.com"
             className={styles.link}
           >
-            <strong>info@tuscany-photo-tours.com</strong>
+            <strong>
+              info@tuscany-photo-tours.com
+            </strong>
           </a>
           .
         </p>
@@ -265,12 +316,15 @@ export function PrivacyPolicy() {
           10. Feedback and Final Provisions
         </h2>
         <p>
-          If you have any questions regarding this policy, please contact us at{" "}
+          If you have any questions regarding this policy, please contact us at
+          {" "}
           <a
             href="mailto:info@tuscany-photo-tours.com"
             className={styles.link}
           >
-            <strong>info@tuscany-photo-tours.com</strong>
+            <strong>
+              info@tuscany-photo-tours.com
+            </strong>
           </a>
           . If you do not agree with this privacy policy, you should refrain from
           using the services of Tuscany Photo Tours and visiting our website.

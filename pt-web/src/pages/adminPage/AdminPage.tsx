@@ -5,17 +5,12 @@ import {Container} from "src/components/Container/Container";
 import {useAuth} from "src/hooks/useAuth";
 import {buildPath, PATHS} from "src/routes/routes";
 import {fetchData} from "src/services/httpHelper";
+import {TourView} from "src/types/tour";
 import styles from "src/pages/adminPage/AdminPage.module.scss";
 
-type Tour = {
-  id: number;
-  title: string;
-  photos?: { id: number; url: string }[];
-};
-
 export function AdminPage() {
-  const [tours, setTours] = useState<Tour[]>([]);
-  const [selectedTour, setSelectedTour] = useState<Tour | null>(null);
+  const [tours, setTours] = useState<TourView[]>([]);
+  const [selectedTour, setSelectedTour] = useState<TourView | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [, setError] = useState("");
   const navigate = useNavigate();
@@ -27,7 +22,7 @@ export function AdminPage() {
   };
 
   useEffect(() => {
-    fetchData<Tour[]>("general/tours")
+    fetchData<TourView[]>("general/tours")
       .then((data) => setTours(data))
       .catch((err) => setError("Failed to load tours: " + err.message));
   }, []);
@@ -138,11 +133,11 @@ export function AdminPage() {
                   }
                 >
                   <div className={styles.photoWrapper}>
-                    {tour.photos?.[0]?.url
+                    {tour.coverUrl
                       ? (
                         <img
                           className={styles.photo}
-                          src={tour.photos[0].url}
+                          src={tour.coverUrl}
                           alt={tour.title}
                         />
                       )

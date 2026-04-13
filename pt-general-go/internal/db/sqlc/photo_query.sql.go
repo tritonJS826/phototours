@@ -11,6 +11,55 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+const createPhoto = `-- name: CreatePhoto :one
+INSERT INTO photos (id, tour_id, url, description)
+VALUES ($1, $2, $3, $4)
+RETURNING id, tour_id, url, description, created_at
+`
+
+type CreatePhotoParams struct {
+	ID          pgtype.UUID
+	TourID      pgtype.UUID
+	Url         string
+	Description pgtype.Text
+}
+
+func (q *Queries) CreatePhoto(ctx context.Context, arg CreatePhotoParams) (Photo, error) {
+	row := q.db.QueryRow(ctx, createPhoto,
+		arg.ID,
+		arg.TourID,
+		arg.Url,
+		arg.Description,
+	)
+	var i Photo
+	err := row.Scan(
+		&i.ID,
+		&i.TourID,
+		&i.Url,
+		&i.Description,
+		&i.CreatedAt,
+	)
+	return i, err
+}
+
+const deletePhoto = `-- name: DeletePhoto :exec
+DELETE FROM photos WHERE id = $1
+`
+
+func (q *Queries) DeletePhoto(ctx context.Context, id pgtype.UUID) error {
+	_, err := q.db.Exec(ctx, deletePhoto, id)
+	return err
+}
+
+const deletePhotosByTourID = `-- name: DeletePhotosByTourID :exec
+DELETE FROM photos WHERE tour_id = $1
+`
+
+func (q *Queries) DeletePhotosByTourID(ctx context.Context, tourID pgtype.UUID) error {
+	_, err := q.db.Exec(ctx, deletePhotosByTourID, tourID)
+	return err
+}
+
 const getPhotosByTourID = `-- name: GetPhotosByTourID :many
 SELECT
 	id,
@@ -83,4 +132,30 @@ func (q *Queries) GetPhotosByTourIDs(ctx context.Context, tourIds []pgtype.UUID)
 		return nil, err
 	}
 	return items, nil
+}
+
+const updatePhoto = `-- name: UpdatePhoto :one
+UPDATE photos
+SET url = $1, description = $2
+WHERE id = $3
+RETURNING id, tour_id, url, description, created_at
+`
+
+type UpdatePhotoParams struct {
+	Url         string
+	Description pgtype.Text
+	ID          pgtype.UUID
+}
+
+func (q *Queries) UpdatePhoto(ctx context.Context, arg UpdatePhotoParams) (Photo, error) {
+	row := q.db.QueryRow(ctx, updatePhoto, arg.Url, arg.Description, arg.ID)
+	var i Photo
+	err := row.Scan(
+		&i.ID,
+		&i.TourID,
+		&i.Url,
+		&i.Description,
+		&i.CreatedAt,
+	)
+	return i, err
 }

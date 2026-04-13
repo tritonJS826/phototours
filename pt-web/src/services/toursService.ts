@@ -1,5 +1,5 @@
 import {fetchData, fileUrl} from "src/services/httpHelper";
-import type {TourView, AdminTour, UpdateTourAdminData, TourDay, FaqItem, TourActivity} from "src/types/tour";
+import type {AdminTour, TourView, UpdateTourAdminData} from "src/types/tour";
 
 export const TOURS_PATH = "/general/tours";
 
@@ -266,6 +266,8 @@ function mapAdminTourToView(raw: any): AdminTour {
   const photoUrls = (raw.photos ?? []).map((p: any) => ({
     id: p.id,
     url: p.url,
+    alt: p.alt ?? "",
+    description: p.description ?? "",
   }));
 
   const dates = (raw.dates ?? []).map((d: any) => ({
@@ -278,13 +280,13 @@ function mapAdminTourToView(raw: any): AdminTour {
     description: d.description ?? "",
   }));
 
-  const program = typeof raw.program === 'object' && raw.program !== null 
-    ? raw.program 
-    : { days: [] };
+  const program = typeof raw.program === "object" && raw.program !== null
+    ? raw.program
+    : {days: []};
 
-  const faq = typeof raw.faq === 'object' && raw.faq !== null 
-    ? raw.faq 
-    : { questions: [] };
+  const faq = typeof raw.faq === "object" && raw.faq !== null
+    ? raw.faq
+    : {questions: []};
 
   return {
     id: raw.id,
@@ -331,6 +333,7 @@ function mapAdminTourToView(raw: any): AdminTour {
 
 export async function getAdminTour(id: string): Promise<AdminTour> {
   const raw = await fetchData<any>(`${TOURS_PATH}/admin/${id}`);
+
   return mapAdminTourToView(raw);
 }
 
@@ -339,5 +342,6 @@ export async function updateTourAdmin(id: string, data: UpdateTourAdminData): Pr
     method: "PUT",
     body: JSON.stringify(data),
   });
+
   return mapAdminTourToView(raw);
 }

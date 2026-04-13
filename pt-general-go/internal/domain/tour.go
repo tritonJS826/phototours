@@ -79,6 +79,7 @@ type UpdateTourParams struct {
 	MinAge             *int32           `json:"minAge"`
 	EndLocation        *string          `json:"endLocation"`
 	StartLocation      *string          `json:"startLocation"`
+	Location           *string          `json:"location"`
 	CoverURL           *string          `json:"coverUrl"`
 	Difficulty         *DifficultyLevel `json:"difficulty"`
 	Description        *string          `json:"description"`
@@ -102,6 +103,13 @@ type UpdateTourParams struct {
 	IsShowRooms        *bool            `json:"isShowRooms"`
 	VipPrice           *int32           `json:"vipPrice"`
 	RoomPrice          *int32           `json:"roomPrice"`
+	Photos             *[]PhotoUpdate   `json:"photos"`
+}
+
+type PhotoUpdate struct {
+	ID          *uuid.UUID `json:"id"`
+	URL         string     `json:"url"`
+	Description *string    `json:"description"`
 }
 
 func (r *UpdateTourParams) Validate() error {
@@ -109,6 +117,7 @@ func (r *UpdateTourParams) Validate() error {
 		r.MinAge == nil &&
 		r.EndLocation == nil &&
 		r.StartLocation == nil &&
+		r.Location == nil &&
 		r.CoverURL == nil &&
 		r.Difficulty == nil &&
 		r.Description == nil &&
@@ -131,7 +140,8 @@ func (r *UpdateTourParams) Validate() error {
 		r.IsShowVip == nil &&
 		r.IsShowRooms == nil &&
 		r.VipPrice == nil &&
-		r.RoomPrice == nil {
+		r.RoomPrice == nil &&
+		r.Photos == nil {
 		return errors.New("at least one field must be provided")
 	}
 

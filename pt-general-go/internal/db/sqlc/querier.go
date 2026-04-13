@@ -14,6 +14,7 @@ type Querier interface {
 	CreateArticle(ctx context.Context, arg CreateArticleParams) (CreateArticleRow, error)
 	CreateBookingRequest(ctx context.Context, arg CreateBookingRequestParams) (BookingRequest, error)
 	CreatePageMetadata(ctx context.Context, arg CreatePageMetadataParams) (CreatePageMetadataRow, error)
+	CreatePhoto(ctx context.Context, arg CreatePhotoParams) (Photo, error)
 	CreateTour(ctx context.Context, arg CreateTourParams) (CreateTourRow, error)
 	CreateTourActivity(ctx context.Context, arg CreateTourActivityParams) (TourActivity, error)
 	CreateTourIncluded(ctx context.Context, arg CreateTourIncludedParams) (TourIncluded, error)
@@ -21,6 +22,8 @@ type Querier interface {
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
 	DeleteArticle(ctx context.Context, id pgtype.UUID) error
 	DeletePageMetadata(ctx context.Context, url string) (int64, error)
+	DeletePhoto(ctx context.Context, id pgtype.UUID) error
+	DeletePhotosByTourID(ctx context.Context, tourID pgtype.UUID) error
 	DeleteTourActivitiesByTourID(ctx context.Context, tourID pgtype.UUID) error
 	DeleteTourActivity(ctx context.Context, id pgtype.UUID) error
 	DeleteTourByID(ctx context.Context, id pgtype.UUID) (int64, error)
@@ -59,6 +62,7 @@ type Querier interface {
 	ResetSchema(ctx context.Context) error
 	UpdateArticle(ctx context.Context, arg UpdateArticleParams) (Article, error)
 	UpdatePageMetadata(ctx context.Context, arg UpdatePageMetadataParams) (UpdatePageMetadataRow, error)
+	UpdatePhoto(ctx context.Context, arg UpdatePhotoParams) (Photo, error)
 	UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) (UpdateTourByIDRow, error)
 	UpdateUser(ctx context.Context, arg UpdateUserParams) (User, error)
 	UpdateUserPassword(ctx context.Context, arg UpdateUserPasswordParams) (User, error)

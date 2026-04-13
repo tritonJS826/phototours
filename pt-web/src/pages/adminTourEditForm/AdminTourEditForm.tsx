@@ -1,14 +1,13 @@
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {Button} from "src/components/Button/Button";
 import {getAdminTour, updateTourAdmin} from "src/services/toursService";
-import {DifficultyLevel, AdminTour, TourDay, FaqItem, TourActivity} from "src/types/tour";
+import {AdminTour, DifficultyLevel, FaqItem, TourActivity, TourDay} from "src/types/tour";
 import styles from "src/pages/adminTourEditForm/AdminTourEditForm.module.scss";
 
 export const AdminTourEdit = () => {
   const {id} = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [formData, setFormData] = useState<AdminTour>({
     id: "",
@@ -24,8 +23,8 @@ export const AdminTourEdit = () => {
     minAge: 0,
     languages: [],
     availableMonths: [],
-    program: { days: [] },
-    faq: { questions: [] },
+    program: {days: []},
+    faq: {questions: []},
     activities: [],
     included: [],
     summary: [],
@@ -53,8 +52,6 @@ export const AdminTourEdit = () => {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
 
-  const REMOVE_COUNT = 1;
-
   useEffect(() => {
     if (!id) {
       return;
@@ -80,8 +77,8 @@ export const AdminTourEdit = () => {
     const target = e.target as HTMLInputElement;
     setFormData(prev => ({
       ...prev,
-      [name]: type === "checkbox" 
-        ? target.checked 
+      [name]: type === "checkbox"
+        ? target.checked
         : name === "minAge" || name === "vipPrice" || name === "roomPrice" || name === "groupSize" || name === "spotsLeft"
           ? (value === "" ? 0 : Number(value))
           : value,
@@ -102,82 +99,61 @@ export const AdminTourEdit = () => {
     }));
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) {
-      return;
-    }
-    const files = Array.from(e.target.files);
-
-    setFormData(prev => ({
-      ...prev,
-      photos: [...prev.photos, ...files.filter(f => f.type.startsWith("image/")).map(f => ({ id: "", url: "" }))] as any,
-      videos: [...(prev as any).videos, ...files.filter(f => f.type.startsWith("video/"))] as any,
-    }));
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    const files = Array.from(e.dataTransfer.files);
-
-    setFormData(prev => ({
-      ...prev,
-      photos: [...prev.photos, ...files.filter(f => f.type.startsWith("image/")).map(f => ({ id: "", url: "" }))] as any,
-      videos: [...(prev as any).videos, ...files.filter(f => f.type.startsWith("video/"))] as any,
-    }));
-  };
-
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-  };
-
   const handleDayChange = (index: number, field: keyof TourDay, value: string) => {
     setFormData(prev => {
       const days = [...(prev.program?.days || [])];
-      days[index] = { ...days[index], [field]: value };
-      return {...prev, program: { days }};
+      days[index] = {...days[index], [field]: value};
+
+      return {...prev, program: {days}};
     });
   };
 
   const addDay = () => {
-    setFormData(prev => ({
-      ...prev,
-      program: { days: [...(prev.program?.days || []), { day: (prev.program?.days?.length || 0) + 1, plan: "", description: "" }] },
-    }));
+    setFormData(prev => {
+      const currentDays = prev.program?.days || [];
+
+      return {
+        ...prev,
+        program: {days: [...currentDays, {day: currentDays.length + 1, plan: "", description: ""}]},
+      };
+    });
   };
 
   const removeDay = (index: number) => {
     setFormData(prev => ({
       ...prev,
-      program: { days: (prev.program?.days || []).filter((_, i) => i !== index) },
+      program: {days: (prev.program?.days || []).filter((_, i) => i !== index)},
     }));
   };
 
   const handleFaqChange = (index: number, field: keyof FaqItem, value: string) => {
     setFormData(prev => {
       const questions = [...(prev.faq?.questions || [])];
-      questions[index] = { ...questions[index], [field]: value };
-      return {...prev, faq: { questions }};
+      questions[index] = {...questions[index], [field]: value};
+
+      return {...prev, faq: {questions}};
     });
   };
 
   const addFaq = () => {
     setFormData(prev => ({
       ...prev,
-      faq: { questions: [...(prev.faq?.questions || []), { question: "", answer: "" }] },
+      faq: {questions: [...(prev.faq?.questions || []), {question: "", answer: ""}]},
     }));
   };
 
   const removeFaq = (index: number) => {
     setFormData(prev => ({
       ...prev,
-      faq: { questions: (prev.faq?.questions || []).filter((_, i) => i !== index) },
+      faq: {questions: (prev.faq?.questions || []).filter((_, i) => i !== index)},
     }));
   };
 
   const handleActivityChange = (index: number, field: keyof TourActivity, value: string) => {
     setFormData(prev => {
       const activities = [...(prev.activities || [])];
-      activities[index] = { ...activities[index], [field]: value };
+      activities[index] = {...activities[index], [field]: value};
+
       return {...prev, activities};
     });
   };
@@ -185,7 +161,7 @@ export const AdminTourEdit = () => {
   const addActivity = () => {
     setFormData(prev => ({
       ...prev,
-      activities: [...(prev.activities || []), { activity: "", iconName: "" }],
+      activities: [...(prev.activities || []), {activity: "", iconName: ""}],
     }));
   };
 
@@ -200,6 +176,7 @@ export const AdminTourEdit = () => {
     setFormData(prev => {
       const included = [...(prev.included || [])];
       included[index] = value;
+
       return {...prev, included};
     });
   };
@@ -222,6 +199,7 @@ export const AdminTourEdit = () => {
     setFormData(prev => {
       const summary = [...(prev.summary || [])];
       summary[index] = value;
+
       return {...prev, summary};
     });
   };
@@ -245,8 +223,15 @@ export const AdminTourEdit = () => {
     setError("");
     setSubmitting(true);
 
+    if (!id) {
+      setError("Tour ID is missing");
+      setSubmitting(false);
+
+      return;
+    }
+
     try {
-      await updateTourAdmin(id!, {
+      await updateTourAdmin(id, {
         title: formData.title,
         description: formData.description,
         startLocation: formData.startLocation,
@@ -279,6 +264,7 @@ export const AdminTourEdit = () => {
         isShowRooms: formData.isShowRooms,
         vipPrice: formData.vipPrice,
         roomPrice: formData.roomPrice,
+        photos: formData.photos,
       });
 
       navigate("/admin");
@@ -349,6 +335,13 @@ export const AdminTourEdit = () => {
         value={formData.coverUrl || ""}
         onChange={handleChange}
       />
+      {formData.coverUrl && (
+        <img
+          src={formData.coverUrl}
+          alt="Cover preview"
+          className={styles.imagePreview}
+        />
+      )}
 
       <label className={styles.label}>
         Duration (days)
@@ -524,10 +517,17 @@ export const AdminTourEdit = () => {
         min={1}
       />
 
-      <h3>Daily Itinerary</h3>
+      <h3>
+        Daily Itinerary
+      </h3>
       {(formData.program?.days || []).map((day, index) => (
-        <div key={index} className={styles.sectionItem}>
-          <label className={styles.label}>Day {index + 1}</label>
+        <div
+          key={index}
+          className={styles.sectionItem}
+        >
+          <label className={styles.label}>
+            {`Day ${index + 1}`}
+          </label>
           <input
             className={styles.inputSelectText}
             value={day.day}
@@ -556,15 +556,39 @@ export const AdminTourEdit = () => {
             onChange={e => handleDayChange(index, "imgUrl", e.target.value)}
             placeholder="Image URL"
           />
-          <button type="button" onClick={() => removeDay(index)}>Remove Day</button>
+          {day.imgUrl && (
+            <img
+              src={day.imgUrl}
+              alt={`Day ${index + 1} preview`}
+              className={styles.imagePreview}
+            />
+          )}
+          <button
+            type="button"
+            onClick={() => removeDay(index)}
+          >
+            Remove Day
+          </button>
         </div>
       ))}
-      <button type="button" onClick={addDay}>Add Day</button>
+      <button
+        type="button"
+        onClick={addDay}
+      >
+        Add Day
+      </button>
 
-      <h3>FAQ</h3>
+      <h3>
+        FAQ
+      </h3>
       {(formData.faq?.questions || []).map((faq, index) => (
-        <div key={index} className={styles.sectionItem}>
-          <label className={styles.label}>Question {index + 1}</label>
+        <div
+          key={index}
+          className={styles.sectionItem}
+        >
+          <label className={styles.label}>
+            {`Question ${index + 1}`}
+          </label>
           <input
             className={styles.inputSelectText}
             value={faq.question}
@@ -578,15 +602,32 @@ export const AdminTourEdit = () => {
             placeholder="Answer"
             rows={3}
           />
-          <button type="button" onClick={() => removeFaq(index)}>Remove</button>
+          <button
+            type="button"
+            onClick={() => removeFaq(index)}
+          >
+            Remove
+          </button>
         </div>
       ))}
-      <button type="button" onClick={addFaq}>Add FAQ</button>
+      <button
+        type="button"
+        onClick={addFaq}
+      >
+        Add FAQ
+      </button>
 
-      <h3>Activities</h3>
+      <h3>
+        Activities
+      </h3>
       {(formData.activities || []).map((activity, index) => (
-        <div key={index} className={styles.sectionItem}>
-          <label className={styles.label}>Activity {index + 1}</label>
+        <div
+          key={index}
+          className={styles.sectionItem}
+        >
+          <label className={styles.label}>
+            {`Activity ${index + 1}`}
+          </label>
           <input
             className={styles.inputSelectText}
             value={activity.activity}
@@ -599,48 +640,94 @@ export const AdminTourEdit = () => {
             onChange={e => handleActivityChange(index, "iconName", e.target.value)}
             placeholder="Icon name"
           />
-          <button type="button" onClick={() => removeActivity(index)}>Remove</button>
+          <button
+            type="button"
+            onClick={() => removeActivity(index)}
+          >
+            Remove
+          </button>
         </div>
       ))}
-      <button type="button" onClick={addActivity}>Add Activity</button>
+      <button
+        type="button"
+        onClick={addActivity}
+      >
+        Add Activity
+      </button>
 
-      <h3>Included</h3>
+      <h3>
+        Included
+      </h3>
       {(formData.included || []).map((item, index) => (
-        <div key={index} className={styles.sectionItem}>
+        <div
+          key={index}
+          className={styles.sectionItem}
+        >
           <input
             className={styles.inputSelectText}
             value={item}
             onChange={e => handleIncludedChange(index, e.target.value)}
             placeholder="Included item"
           />
-          <button type="button" onClick={() => removeIncluded(index)}>Remove</button>
+          <button
+            type="button"
+            onClick={() => removeIncluded(index)}
+          >
+            Remove
+          </button>
         </div>
       ))}
-      <button type="button" onClick={addIncluded}>Add Included Item</button>
+      <button
+        type="button"
+        onClick={addIncluded}
+      >
+        Add Included Item
+      </button>
 
-      <h3>Summary (Highlights)</h3>
+      <h3>
+        Summary (Highlights)
+      </h3>
       {(formData.summary || []).map((item, index) => (
-        <div key={index} className={styles.sectionItem}>
+        <div
+          key={index}
+          className={styles.sectionItem}
+        >
           <input
             className={styles.inputSelectText}
             value={item}
             onChange={e => handleSummaryChange(index, e.target.value)}
             placeholder="Highlight"
           />
-          <button type="button" onClick={() => removeSummary(index)}>Remove</button>
+          <button
+            type="button"
+            onClick={() => removeSummary(index)}
+          >
+            Remove
+          </button>
         </div>
       ))}
-      <button type="button" onClick={addSummary}>Add Summary Item</button>
+      <button
+        type="button"
+        onClick={addSummary}
+      >
+        Add Summary Item
+      </button>
 
-      <h3>Popup 1</h3>
-      <label className={styles.label}>Title</label>
+      <h3>
+        Popup 1
+      </h3>
+      <label className={styles.label}>
+        Title
+      </label>
       <input
         className={styles.inputSelectText}
         name="popUp1Title"
         value={formData.popUp1Title || ""}
         onChange={handleChange}
       />
-      <label className={styles.label}>Description</label>
+      <label className={styles.label}>
+        Description
+      </label>
       <textarea
         className={styles.inputSelectText}
         name="popUp1Description"
@@ -648,23 +735,38 @@ export const AdminTourEdit = () => {
         onChange={handleChange}
         rows={3}
       />
-      <label className={styles.label}>Image URL</label>
+      <label className={styles.label}>
+        Image URL
+      </label>
       <input
         className={styles.inputSelectText}
         name="popUp1ImageUrl"
         value={formData.popUp1ImageUrl || ""}
         onChange={handleChange}
       />
+      {formData.popUp1ImageUrl && (
+        <img
+          src={formData.popUp1ImageUrl}
+          alt="Popup 1 preview"
+          className={styles.imagePreview}
+        />
+      )}
 
-      <h3>Popup 2</h3>
-      <label className={styles.label}>Title</label>
+      <h3>
+        Popup 2
+      </h3>
+      <label className={styles.label}>
+        Title
+      </label>
       <input
         className={styles.inputSelectText}
         name="popUp2Title"
         value={formData.popUp2Title || ""}
         onChange={handleChange}
       />
-      <label className={styles.label}>Description</label>
+      <label className={styles.label}>
+        Description
+      </label>
       <textarea
         className={styles.inputSelectText}
         name="popUp2Description"
@@ -672,23 +774,38 @@ export const AdminTourEdit = () => {
         onChange={handleChange}
         rows={3}
       />
-      <label className={styles.label}>Image URL</label>
+      <label className={styles.label}>
+        Image URL
+      </label>
       <input
         className={styles.inputSelectText}
         name="popUp2ImageUrl"
         value={formData.popUp2ImageUrl || ""}
         onChange={handleChange}
       />
+      {formData.popUp2ImageUrl && (
+        <img
+          src={formData.popUp2ImageUrl}
+          alt="Popup 2 preview"
+          className={styles.imagePreview}
+        />
+      )}
 
-      <h3>CTA Section</h3>
-      <label className={styles.label}>Title</label>
+      <h3>
+        CTA Section
+      </h3>
+      <label className={styles.label}>
+        Title
+      </label>
       <input
         className={styles.inputSelectText}
         name="ctaTitle"
         value={formData.ctaTitle || ""}
         onChange={handleChange}
       />
-      <label className={styles.label}>Description</label>
+      <label className={styles.label}>
+        Description
+      </label>
       <textarea
         className={styles.inputSelectText}
         name="ctaDescription"
@@ -700,51 +817,58 @@ export const AdminTourEdit = () => {
       <label className={styles.label}>
         Photos
       </label>
-      <div
-        className={styles.dropZone}
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        onClick={() => fileInputRef.current?.click()}
-      >
-        <p className={styles.dropZoneText}>
-          Drag & drop images here, or click to select
-        </p>
-        <input
-          type="file"
-          ref={fileInputRef}
-          name="photos"
-          accept="image/*"
-          multiple
-          onChange={handleFileChange}
-          className={styles.hiddenFileInput}
-        />
-      </div>
-      <div className={styles.fileUploadPreview}>
+      <div className={styles.photosSection}>
         {formData.photos.map((photo, index) => (
-          <div
-            key={index}
-            className={styles.fileUploadItem}
-          >
-            <img
-              src={photo.url}
-              alt={`Photo ${index + 1}`}
-              className={styles.fileUploadItemImage}
+          <div key={index} className={styles.photoItem}>
+            <input
+              type="text"
+              placeholder="Image URL"
+              value={photo.url}
+              onChange={(e) => {
+                const newPhotos = [...formData.photos];
+                newPhotos[index] = { ...newPhotos[index], url: e.target.value };
+                setFormData(prev => ({ ...prev, photos: newPhotos }));
+              }}
+              className={styles.inputSelectText}
             />
+            <input
+              type="text"
+              placeholder="Alt text"
+              value={photo.alt || ""}
+              onChange={(e) => {
+                const newPhotos = [...formData.photos];
+                newPhotos[index] = { ...newPhotos[index], alt: e.target.value };
+                setFormData(prev => ({ ...prev, photos: newPhotos }));
+              }}
+              className={styles.inputSelectText}
+            />
+            {photo.url && (
+              <img
+                src={photo.url}
+                alt={photo.alt || `Photo ${index + 1}`}
+                className={styles.photoPreview}
+              />
+            )}
             <button
               type="button"
-              className={styles.fileUploadItemRemove}
               onClick={() => {
-                setFormData(prev => {
-                  const newPhotos = [...prev.photos];
-                  newPhotos.splice(index, REMOVE_COUNT);
-                  return {...prev, photos: newPhotos};
-                });
+                const newPhotos = formData.photos.filter((_, i) => i !== index);
+                setFormData(prev => ({ ...prev, photos: newPhotos }));
               }}
             >
-              ×
+              Remove
             </button>
           </div>
         ))}
+        <button
+          type="button"
+          onClick={() => {
+            const newPhotos = [...formData.photos, { id: "", url: "", alt: "" }];
+            setFormData(prev => ({ ...prev, photos: newPhotos }));
+          }}
+        >
+          Add Photo
+        </button>
       </div>
 
       {error && <p className={styles.error}>

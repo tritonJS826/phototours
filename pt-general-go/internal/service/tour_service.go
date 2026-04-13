@@ -300,6 +300,55 @@ func (s *TourService) UpdateTourByID(ctx context.Context, id uuid.UUID, updateTo
 	if err != nil {
 		return nil, err
 	}
+
+	if updateTourRequest.Photos != nil {
+		existingPhotos, err := s.photoRepository.GetPhotosByTourID(ctx, id)
+		if err != nil {
+			return nil, err
+		}
+
+		existingPhotoIDs := make(map[uuid.UUID]bool)
+		for _, p := range existingPhotos {
+			existingPhotoIDs[p.ID] = true
+		}
+
+		processedPhotoIDs := make(map[uuid.UUID]bool)
+
+		for _, photoUpdate := range *updateTourRequest.Photos {
+			if photoUpdate.ID != nil && *photoUpdate.ID != uuid.Nil {
+				processedPhotoIDs[*photoUpdate.ID] = true
+
+				if existingPhotoIDs[*photoUpdate.ID] {
+					_, err := s.photoRepository.UpdatePhoto(ctx, *photoUpdate.ID, photoUpdate.URL, photoUpdate.Description)
+					if err != nil {
+						return nil, err
+					}
+				} else {
+					newID := uuid.New()
+					_, err := s.photoRepository.CreatePhoto(ctx, newID, id, photoUpdate.URL, photoUpdate.Description)
+					if err != nil {
+						return nil, err
+					}
+				}
+			} else {
+				newID := uuid.New()
+				_, err := s.photoRepository.CreatePhoto(ctx, newID, id, photoUpdate.URL, photoUpdate.Description)
+				if err != nil {
+					return nil, err
+				}
+			}
+		}
+
+		for _, existingPhoto := range existingPhotos {
+			if !processedPhotoIDs[existingPhoto.ID] {
+				err := s.photoRepository.DeletePhoto(ctx, existingPhoto.ID)
+				if err != nil {
+					return nil, err
+				}
+			}
+		}
+	}
+
 	return s.buildTourFull(ctx, tour)
 }
 

@@ -202,3 +202,28 @@
   font-size: vars.$font-size-sm;
   color: vars.$color-medium;
 }
+
+.imagePreview {
+  max-width: 200px;
+  max-height: 150px;
+  margin-top: vars.$spacing-sm;
+  border-radius: vars.$radius-small;
+  border: vars.$border-width-thin solid vars.$color-border;
+}
+
+.photoItem {
+  display: flex;
+  flex-direction: column;
+  gap: vars.$spacing-sm;
+  padding: vars.$spacing-md;
+  margin-bottom: vars.$spacing-md;
+  border: vars.$border-width-thin solid vars.$color-border;
+  border-radius: vars.$radius-small;
+  background: vars.$color-bg-light;
+}
+
+.photoPreview {
+  max-width: 200px;
+  max-height: 150px;
+  border-radius: vars.$radius-small;
+}
