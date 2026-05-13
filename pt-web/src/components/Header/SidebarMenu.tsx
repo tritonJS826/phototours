@@ -60,10 +60,7 @@ export function SidebarMenu({isOpen, onClose}: SidebarMenuProps) {
             Explore Tours
           </Link>
           <div className={styles.socialContacts}>
-            <a
-              href="tel:+1234567890"
-              className={styles.socialContactItem}
-            >
+            <span className={styles.socialContactItem}>
               <img
                 src={phone}
                 alt="Phone"
@@ -71,7 +68,7 @@ export function SidebarMenu({isOpen, onClose}: SidebarMenuProps) {
               <span>
                 Phone
               </span>
-            </a>
+            </span>
             <a
               href="https://t.me/tuscanyphototours_bot"
               target="_blank"
@@ -87,7 +84,7 @@ export function SidebarMenu({isOpen, onClose}: SidebarMenuProps) {
               </span>
             </a>
             <a
-              href="https://wa.me/1234567890"
+              href="https://wa.me/13322487707"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.socialContactItem}

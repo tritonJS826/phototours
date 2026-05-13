@@ -1206,7 +1206,7 @@ export function TourDetailsPage() {
         rightBtnCallback={() => {}}
         rightBtn={
           <a
-            href="https://wa.me/1234567890"
+            href="https://wa.me/13322487707"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.pupUpButton}
@@ -1245,7 +1245,7 @@ export function TourDetailsPage() {
         rightBtnCallback={() => {}}
         rightBtn={
           <a
-            href="https://wa.me/1234567890"
+            href="https://wa.me/13322487707"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.pupUpButton}

@@ -250,16 +250,13 @@ export function Header() {
                         id: "Phone",
                         isPreventDefaultUsed: false,
                         value: (
-                          <a
-                            href="tel:+13322487707"
-                            className={styles.contactUsItem}
-                          >
+                          <span className={styles.contactUsItem}>
                             <img
                               src={phone}
                               alt="user link"
                             />
                             Phone
-                          </a>
+                          </span>
                         ),
                         isVisible: true,
                       },
