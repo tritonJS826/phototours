@@ -94,10 +94,6 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 		}
 	}
 
-	// Guides
-	// Material
-	// Categories
-
 	tours := general.Group("/tours")
 	{
 		tours.GET("/slug/:slug", h.GetTourBySlug)

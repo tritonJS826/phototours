@@ -158,9 +158,10 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 		LineItems: []*stripe.CheckoutSessionLineItemParams{
 			{
 				// Price for Deposit for the photo tour
-				// 1000$ price_1SpEugCEK28BRQMezxR9aJgn
-				// 1$ price_1T9S15CEK28BRQMevzw2UwWQ
-				Price:    stripe.String("price_1T9S15CEK28BRQMevzw2UwWQ"),
+				// 1000$ price_1TXgnYHMgOsGZkCBTGzw2YgS
+				// 1$ price_1TXm0yHMgOsGZkCBJcmZaV5V
+				// test price_1TXm8jHMgOsGZkCBUMHL8RFB
+				Price:    stripe.String("price_1TXm8jHMgOsGZkCBUMHL8RFB"),
 				Quantity: stripe.Int64(1),
 			},
 		},
