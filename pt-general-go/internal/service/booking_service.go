@@ -9,9 +9,9 @@ import (
 	"pt-general-go/internal/repository"
 	"time"
 
-	"github.com/stripe/stripe-go/v84"
-	"github.com/stripe/stripe-go/v84/checkout/session"
-	stripeWebhook "github.com/stripe/stripe-go/v84/webhook"
+	"github.com/stripe/stripe-go/v85"
+	"github.com/stripe/stripe-go/v85/checkout/session"
+	stripeWebhook "github.com/stripe/stripe-go/v85/webhook"
 	"go.uber.org/zap"
 )
 
