@@ -83,27 +83,16 @@ function toShortDate(value: string): string {
 
 function mapTourToView(dto: TourDTO): TourView {
   const photoUrls = (dto.photos ?? []).map(x => fileUrl(toUrl(x)));
-  const dates: TourView["dates"] = (dto.dates ?? [])
-    .map((d) => {
-      const from = d.dateFrom;
-      const to = d.dateTo;
-      let dateStr = "";
-      if (from && to) {
-        dateStr = `${toShortDate(from)} — ${toShortDate(to)}`;
-      } else if (from) {
-        dateStr = toShortDate(from);
-      } else if (to) {
-        dateStr = toShortDate(to);
-      }
+  const dates: TourView["dates"] = (dto.dates ?? []).map((d) => {
 
-      return {
-        dateFrom: dateStr,
-        dateTo: "",
-        price: d.price,
-        description: d.description ?? "",
+    return {
+      dateFrom: toShortDate(d.dateFrom),
+      dateTo: toShortDate(d.dateTo),
+      price: d.price,
+      description: d.description ?? "",
 
-      };
-    })
+    };
+  })
     .filter((d) => d.dateFrom !== "");
   const dailyItinerary =
     dto.program?.days?.map(d => ({
