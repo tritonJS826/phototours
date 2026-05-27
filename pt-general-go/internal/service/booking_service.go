@@ -162,7 +162,7 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 				// 1$ price_1TXm0yHMgOsGZkCBJcmZaV5V
 				// test price_1TXm8jHMgOsGZkCBUMHL8RFB
 				Price:    stripe.String("price_1TXgnYHMgOsGZkCBTGzw2YgS"),
-				Quantity: stripe.Int64(1),
+				Quantity: stripe.Int64(int64(bookingRequest.Travelers)),
 			},
 		},
 
