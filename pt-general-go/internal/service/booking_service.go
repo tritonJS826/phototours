@@ -65,8 +65,8 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 	}
 
 	// for now it is just deposit: 1000$ instead of tour price
-	// 1$ is a test price
-	totalAmount := 1 * float64(bookingRequest.Travelers)
+	// 0.5$ is a test price
+	totalAmount := 0.5 * float64(bookingRequest.Travelers)
 	approvalURL, err := s.createPayPalOrder(ctx, dealID, totalAmount, tourTitle, bookingRequest.Name)
 	if err != nil {
 		return "", err
