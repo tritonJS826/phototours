@@ -1,7 +1,7 @@
 package dto
 
 type CreateBookingResponse struct {
-	RedirectUrl string `json:"redirectUrl" example:"https://stripe.com"`
+	RedirectUrl string `json:"redirectUrl" example:"https://www.paypal.com/checkoutnow"`
 }
 
 type CreateBookingRequest struct {

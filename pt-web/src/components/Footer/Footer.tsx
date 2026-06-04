@@ -4,8 +4,8 @@ import facebook from "/images/facebook.svg";
 import instagram from "/images/instagram.svg";
 import logoBlack from "/images/logoBlack.svg";
 import mastercardLogo from "/images/mastercardLogo.svg";
+import paypalLogo from "/images/paypalLogo.svg";
 import phone from "/images/phone.svg";
-import stripeLogo from "/images/stripeLogo.svg";
 import telegram from "/images/telegram.svg";
 import visaLogo from "/images/visaLogo.svg";
 import whatsapp from "/images/whatsapp.svg";
@@ -71,9 +71,9 @@ const SOCIAL_LINKS: SocialLink[] = [
     title: "Mastercard",
   },
   {
-    id: "stripeLogo",
-    img: stripeLogo,
-    title: "Stripe",
+    id: "paypalLogo",
+    img: paypalLogo,
+    title: "PayPal",
   },
   {
     id: "visaLogo",

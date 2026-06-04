@@ -166,12 +166,12 @@ export function PrivacyPolicy() {
           </li>
           <li>
             <strong>
-              Stripe:
+              PayPal:
             </strong>
             {" "}
-            We use Stripe for secure payment
-            processing. We do not store your credit card details on our servers;
-            all payment data is handled directly by Stripe in compliance with
+            We use PayPal for secure payment
+            processing. We do not store your financial details on our servers;
+            all payment data is handled directly by PayPal in compliance with
             PCI-DSS standards.
           </li>
         </ul>
@@ -184,7 +184,7 @@ export function PrivacyPolicy() {
         <p>
           Your information, including Personal Data, may be transferred to — and
           maintained on — computers located outside of your state, province, or
-          country (including the United States and India where Zoho, Stripe, and
+          country (including the United States and India where Zoho, PayPal, and
           Meta servers may be located). We ensure that such transfers comply with
           GDPR through Standard Contractual Clauses (SCCs) and other recognized
           legal frameworks to ensure your data receives an equivalent level of

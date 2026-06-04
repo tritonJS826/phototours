@@ -21,8 +21,8 @@ import * as runtime from '../runtime';
 export class WebhooksApi extends runtime.BaseAPI {
 
     /**
-     * Webhook endpoint for Stripe deposit succeeded events
-     * Handle Stripe deposit succeeded webhook
+     * Webhook endpoint for PayPal deposit succeeded events
+     * Handle PayPal deposit succeeded webhook
      */
     async generalBookingsDepositSucceededPostRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: string; }>> {
         const queryParameters: any = {};
@@ -43,8 +43,8 @@ export class WebhooksApi extends runtime.BaseAPI {
     }
 
     /**
-     * Webhook endpoint for Stripe deposit succeeded events
-     * Handle Stripe deposit succeeded webhook
+     * Webhook endpoint for PayPal deposit succeeded events
+     * Handle PayPal deposit succeeded webhook
      */
     async generalBookingsDepositSucceededPost(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: string; }> {
         const response = await this.generalBookingsDepositSucceededPostRaw(initOverrides);

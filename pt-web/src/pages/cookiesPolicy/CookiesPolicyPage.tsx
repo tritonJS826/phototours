@@ -62,11 +62,11 @@ export function CookiesPolicy() {
             payments via
             {" "}
             <strong>
-              Stripe
+              PayPal
             </strong>
             .
             {" "}
-            Stripe uses these cookies to prevent fraud and ensure transaction security.
+            PayPal uses these cookies to prevent fraud and ensure transaction security.
           </li>
           <li>
             <strong>
@@ -161,7 +161,7 @@ export function CookiesPolicy() {
           </li>
           <li>
             <strong>
-              Stripe
+              PayPal
             </strong>
             {" "}
             (Payment Security)

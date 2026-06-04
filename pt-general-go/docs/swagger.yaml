@@ -429,7 +429,7 @@ definitions:
   dto.CreateBookingResponse:
     properties:
       redirectUrl:
-        example: https://stripe.com
+        example: https://www.paypal.com/checkoutnow
         type: string
     type: object
   dto.CreateTourRequest:
@@ -994,7 +994,7 @@ paths:
     post:
       consumes:
       - application/json
-      description: Webhook endpoint for Stripe deposit succeeded events
+      description: Webhook endpoint for PayPal deposit succeeded events
       produces:
       - application/json
       responses:
@@ -1016,7 +1016,7 @@ paths:
             additionalProperties:
               type: string
             type: object
-      summary: Handle Stripe deposit succeeded webhook
+      summary: Handle PayPal deposit succeeded webhook
       tags:
       - webhooks
   /page-metadata:

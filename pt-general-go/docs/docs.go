@@ -550,7 +550,7 @@ const docTemplate = `{
         },
         "/general/bookings/deposit-succeeded": {
             "post": {
-                "description": "Webhook endpoint for Stripe deposit succeeded events",
+                "description": "Webhook endpoint for PayPal deposit succeeded events",
                 "consumes": [
                     "application/json"
                 ],
@@ -560,7 +560,7 @@ const docTemplate = `{
                 "tags": [
                     "webhooks"
                 ],
-                "summary": "Handle Stripe deposit succeeded webhook",
+                "summary": "Handle PayPal deposit succeeded webhook",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -2267,7 +2267,7 @@ const docTemplate = `{
             "properties": {
                 "redirectUrl": {
                     "type": "string",
-                    "example": "https://stripe.com"
+                    "example": "https://www.paypal.com/checkoutnow"
                 }
             }
         },

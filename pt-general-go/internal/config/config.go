@@ -26,9 +26,11 @@ type CloudinaryConfig struct {
 	UploadFolder string `env:"CLOUDINARY_UPLOAD_FOLDER,required"`
 }
 
-type StripeConfig struct {
-	SecretKey     string `env:"STRIPE_SECRET_KEY,required"`
-	WebhookSecret string `env:"STRIPE_WEBHOOK_SECRET,required"`
+type PayPalConfig struct {
+	ClientID     string `env:"PAYPAL_CLIENT_ID,required"`
+	ClientSecret string `env:"PAYPAL_CLIENT_SECRET,required"`
+	WebhookID    string `env:"PAYPAL_WEBHOOK_ID,required"`
+	Sandbox      bool   `env:"PAYPAL_SANDBOX,required"`
 }
 
 const EnvTypeProd = "prod"
@@ -44,7 +46,7 @@ type Config struct {
 	ZohoConfig       ZohoConfig
 	JWTConfig        JWTConfig
 	CloudinaryConfig CloudinaryConfig
-	StripeConfig     StripeConfig
+	PayPalConfig     PayPalConfig
 }
 
 func NewConfig(path string) (*Config, error) {

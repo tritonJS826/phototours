@@ -6,8 +6,6 @@ import (
 	"pt-general-go/internal/domain"
 	"pt-general-go/internal/handler/dto"
 
-	// "pt-general-go/internal/handler/dto"
-
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 )
@@ -40,9 +38,9 @@ func (h *Handler) CreateBookingRequest(ctx *gin.Context) {
 	ctx.JSON(200, dto.CreateBookingResponse{RedirectUrl: redirectUrl})
 }
 
-// StripeDepositSucceededWebhook godoc
-// @Summary Handle Stripe deposit succeeded webhook
-// @Description Webhook endpoint for Stripe deposit succeeded events
+// PayPalDepositSucceededWebhook godoc
+// @Summary Handle PayPal deposit succeeded webhook
+// @Description Webhook endpoint for PayPal deposit succeeded events
 // @Tags webhooks
 // @Accept json
 // @Produce json
@@ -50,7 +48,7 @@ func (h *Handler) CreateBookingRequest(ctx *gin.Context) {
 // @Failure 400 {object} map[string]string
 // @Failure 500 {object} map[string]string
 // @Router /general/bookings/deposit-succeeded [post]
-func (h *Handler) StripeDepositSucceededWebhook(ctx *gin.Context) {
+func (h *Handler) PayPalDepositSucceededWebhook(ctx *gin.Context) {
 	body, err := io.ReadAll(ctx.Request.Body)
 	if err != nil {
 		h.logger.Error("failed to read webhook body", zap.Error(err))
@@ -58,14 +56,21 @@ func (h *Handler) StripeDepositSucceededWebhook(ctx *gin.Context) {
 		return
 	}
 
-	signature := ctx.GetHeader("Stripe-Signature")
-	if signature == "" {
-		h.logger.Error("missing Stripe signature")
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Missing signature"})
+	headers := map[string]string{
+		"Paypal-Auth-Algo":         ctx.GetHeader("Paypal-Auth-Algo"),
+		"Paypal-Cert-Url":          ctx.GetHeader("Paypal-Cert-Url"),
+		"Paypal-Transmission-Id":   ctx.GetHeader("Paypal-Transmission-Id"),
+		"Paypal-Transmission-Sig":  ctx.GetHeader("Paypal-Transmission-Sig"),
+		"Paypal-Transmission-Time": ctx.GetHeader("Paypal-Transmission-Time"),
+	}
+
+	if headers["Paypal-Transmission-Id"] == "" {
+		h.logger.Error("missing PayPal webhook headers")
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Missing PayPal signature headers"})
 		return
 	}
 
-	err = h.services.BookingService.HandleDepositSucceededWebhook(ctx, body, signature)
+	err = h.services.BookingService.HandleDepositSucceededWebhook(ctx, body, headers)
 	if err != nil {
 		h.logger.Error("failed to handle deposit succeeded webhook", zap.Error(err))
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to process webhook"})
