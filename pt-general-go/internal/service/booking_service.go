@@ -222,7 +222,7 @@ func (s *BookingService) createPayPalOrder(ctx context.Context, dealID string, a
 			"paypal": map[string]interface{}{
 				"experience_context": map[string]interface{}{
 					"payment_method_preference": "IMMEDIATE_PAYMENT_REQUIRED",
-					"landing_page":              "LOGIN",
+					"landing_page":              "BILLING",
 					"user_action":               "PAY_NOW",
 					"return_url":                "https://tuscany-photo-tours.com/thank-you",
 					"cancel_url":                "https://tuscany-photo-tours.com/tours",
