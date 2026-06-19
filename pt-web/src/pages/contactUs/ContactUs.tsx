@@ -88,7 +88,7 @@ export const ContactUs = () => {
                 />
               </a>
               <a
-                href="https://wa.me/13322487707"
+                href="https://wa.me/12183079666"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialMediaImage}

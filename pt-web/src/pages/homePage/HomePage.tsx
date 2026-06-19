@@ -158,13 +158,16 @@ const RightBlockDark = () => {
                   id: "Phone",
                   isPreventDefaultUsed: false,
                   value: (
-                    <span className={styles.contactUsItem}>
+                    <a
+                      href="tel:+12183079666"
+                      className={styles.contactUsItem}
+                    >
                       <img
                         src={phone}
                         alt="user link"
                       />
                       Phone
-                    </span>
+                    </a>
                   ),
                   isVisible: true,
                 },
@@ -192,7 +195,7 @@ const RightBlockDark = () => {
                   isPreventDefaultUsed: false,
                   value: (
                     <a
-                      href="https://wa.me/13322487707"
+                      href="https://wa.me/1234567890"
                       target="_blank"
                       rel="noopener noreferrer"
                       className={styles.contactUsItem}
@@ -433,7 +436,7 @@ export function HomePage() {
         rightBtnCallback={() => {}}
         rightBtn={
           <a
-            href="https://wa.me/13322487707"
+            href="https://wa.me/1234567890"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.pupUpButton}
@@ -475,7 +478,7 @@ export function HomePage() {
         rightBtnCallback={() => {}}
         rightBtn={
           <a
-            href="https://wa.me/13322487707"
+            href="https://wa.me/1234567890"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.pupUpButton}

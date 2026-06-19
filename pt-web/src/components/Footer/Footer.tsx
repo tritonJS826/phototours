@@ -130,13 +130,16 @@ export const Footer = function Footer() {
 
             <div className={styles.socialMedias}>
               <span className={styles.infoRightMiniBlockDescription}>
-                <span className={styles.socialMediaImage}>
+                <a
+                  href="tel:+12183079666"
+                  className={styles.socialMediaImage}
+                >
                   <img
                     className={styles.socialMediIcon}
                     src={phone}
                     alt="user link"
                   />
-                </span>
+                </a>
                 <a
                   href="mailto:info@tuscany-photo-tours.com"
                   className={styles.socialMediaImage}
@@ -160,7 +163,7 @@ export const Footer = function Footer() {
                   />
                 </a>
                 <a
-                  href="https://wa.me/13322487707"
+                  href="https://wa.me/12183079666"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.socialMediaImage}
