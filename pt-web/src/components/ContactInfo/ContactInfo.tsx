@@ -32,8 +32,8 @@ const CONTACT_ITEMS: ContactItem[] = [
   {
     id: "phone",
     icon: Phone,
-    text: "+354 123 4567",
-    href: "tel:+3541234567",
+    text: "+1 2183079666",
+    href: "tel:+12183079666",
     type: "phone",
     title: "Call us",
   },

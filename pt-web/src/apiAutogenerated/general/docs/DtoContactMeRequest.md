@@ -26,7 +26,7 @@ const example = {
   "language": null,
   "lastContactPage": null,
   "name": John Doe,
-  "phone": +1234567890,
+  "phone": +12183079666,
   "timezone": null,
 } satisfies DtoContactMeRequest
 

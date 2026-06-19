@@ -195,7 +195,7 @@ const RightBlockDark = () => {
                   isPreventDefaultUsed: false,
                   value: (
                     <a
-                      href="https://wa.me/1234567890"
+                      href="https://wa.me/12183079666"
                       target="_blank"
                       rel="noopener noreferrer"
                       className={styles.contactUsItem}
@@ -436,7 +436,7 @@ export function HomePage() {
         rightBtnCallback={() => {}}
         rightBtn={
           <a
-            href="https://wa.me/1234567890"
+            href="https://wa.me/12183079666"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.pupUpButton}
@@ -478,7 +478,7 @@ export function HomePage() {
         rightBtnCallback={() => {}}
         rightBtn={
           <a
-            href="https://wa.me/1234567890"
+            href="https://wa.me/12183079666"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.pupUpButton}

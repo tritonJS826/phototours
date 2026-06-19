@@ -87,7 +87,7 @@ export function SidebarMenu({isOpen, onClose}: SidebarMenuProps) {
               </span>
             </a>
             <a
-              href="https://wa.me/1234567890"
+              href="https://wa.me/12183079666"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.socialContactItem}
