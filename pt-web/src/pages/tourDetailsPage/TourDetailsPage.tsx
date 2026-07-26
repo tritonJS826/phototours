@@ -224,6 +224,7 @@ export function TourDetailsPage() {
         country: userInfo.location?.country_name,
         lastContactPage: window.location.href,
         subscriptionType: agreedToMarketing ? "Marketing" : "None",
+        provider: "revolut",
       };
       await createBooking(request);
     } catch (err) {

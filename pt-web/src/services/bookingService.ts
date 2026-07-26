@@ -1,5 +1,7 @@
 import {buildApiUrl} from "src/utils/apiBase";
 
+export type PaymentProvider = "paypal" | "revolut";
+
 export interface BookingRequest {
   tourId: number;
   name: string;
@@ -15,6 +17,7 @@ export interface BookingRequest {
   country?: string;
   lastContactPage?: string;
   subscriptionType?: string;
+  provider: PaymentProvider;
 }
 
 export async function createBooking(data: BookingRequest): Promise<void> {

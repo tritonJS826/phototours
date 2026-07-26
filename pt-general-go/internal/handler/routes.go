@@ -118,7 +118,7 @@ func (h *Handler) SetupRoutes() *gin.Engine {
 	bookings := general.Group("/bookings")
 	{
 		bookings.POST("", h.CreateBookingRequest)
-		bookings.POST("/deposit-succeeded", h.PayPalDepositSucceededWebhook)
+		bookings.POST("/deposit-succeeded", h.PaymentWebhook)
 	}
 
 	contact := general.Group("/contact")

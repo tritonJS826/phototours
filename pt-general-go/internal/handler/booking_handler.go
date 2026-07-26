@@ -28,6 +28,13 @@ func (h *Handler) CreateBookingRequest(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request data"})
 		return
 	}
+
+	if bookingRequest.Provider == "" {
+		h.logger.Error("payment provider is required")
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Payment provider is required"})
+		return
+	}
+
 	redirectUrl, err := h.services.BookingService.CreateBookingRequest(ctx, &bookingRequest)
 	if err != nil {
 		h.logger.Error("create booking error", zap.Error(err))
@@ -38,17 +45,25 @@ func (h *Handler) CreateBookingRequest(ctx *gin.Context) {
 	ctx.JSON(200, dto.CreateBookingResponse{RedirectUrl: redirectUrl})
 }
 
-// PayPalDepositSucceededWebhook godoc
-// @Summary Handle PayPal deposit succeeded webhook
-// @Description Webhook endpoint for PayPal deposit succeeded events
+// PaymentWebhook godoc
+// @Summary Handle payment provider webhook
+// @Description Webhook endpoint for payment provider events (paypal, revolut, etc.)
 // @Tags webhooks
 // @Accept json
 // @Produce json
+// @Param provider query string true "Payment provider (paypal, revolut)"
 // @Success 200 {object} map[string]string
 // @Failure 400 {object} map[string]string
 // @Failure 500 {object} map[string]string
 // @Router /general/bookings/deposit-succeeded [post]
-func (h *Handler) PayPalDepositSucceededWebhook(ctx *gin.Context) {
+func (h *Handler) PaymentWebhook(ctx *gin.Context) {
+	provider := ctx.Query("provider")
+	if provider == "" {
+		h.logger.Error("missing provider query parameter")
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Missing provider query parameter"})
+		return
+	}
+
 	body, err := io.ReadAll(ctx.Request.Body)
 	if err != nil {
 		h.logger.Error("failed to read webhook body", zap.Error(err))
@@ -56,23 +71,16 @@ func (h *Handler) PayPalDepositSucceededWebhook(ctx *gin.Context) {
 		return
 	}
 
-	headers := map[string]string{
-		"Paypal-Auth-Algo":         ctx.GetHeader("Paypal-Auth-Algo"),
-		"Paypal-Cert-Url":          ctx.GetHeader("Paypal-Cert-Url"),
-		"Paypal-Transmission-Id":   ctx.GetHeader("Paypal-Transmission-Id"),
-		"Paypal-Transmission-Sig":  ctx.GetHeader("Paypal-Transmission-Sig"),
-		"Paypal-Transmission-Time": ctx.GetHeader("Paypal-Transmission-Time"),
+	headers := make(map[string]string)
+	for k, v := range ctx.Request.Header {
+		if len(v) > 0 {
+			headers[k] = v[0]
+		}
 	}
 
-	if headers["Paypal-Transmission-Id"] == "" {
-		h.logger.Error("missing PayPal webhook headers")
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Missing PayPal signature headers"})
-		return
-	}
-
-	err = h.services.BookingService.HandleDepositSucceededWebhook(ctx, body, headers)
+	err = h.services.BookingService.HandleDepositSucceededWebhook(ctx, body, headers, provider)
 	if err != nil {
-		h.logger.Error("failed to handle deposit succeeded webhook", zap.Error(err))
+		h.logger.Error("failed to handle deposit succeeded webhook", zap.Error(err), zap.String("provider", provider))
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to process webhook"})
 		return
 	}

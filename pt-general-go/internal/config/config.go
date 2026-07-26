@@ -33,6 +33,11 @@ type PayPalConfig struct {
 	Sandbox      bool   `env:"PAYPAL_SANDBOX,required"`
 }
 
+type RevolutConfig struct {
+	APISecret string `env:"REVOLUT_API_SECRET,required"`
+	PublicKey string `env:"REVOLUT_PUBLIC_KEY,required"`
+}
+
 const EnvTypeProd = "prod"
 
 type Config struct {
@@ -47,6 +52,7 @@ type Config struct {
 	JWTConfig        JWTConfig
 	CloudinaryConfig CloudinaryConfig
 	PayPalConfig     PayPalConfig
+	RevolutConfig    RevolutConfig
 }
 
 func NewConfig(path string) (*Config, error) {

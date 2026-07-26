@@ -19,10 +19,14 @@ type Service struct {
 }
 
 func NewService(repo *repository.Repository, cfg *config.Config, logger *zap.Logger) *Service {
+	bookingService := NewBookingService(repo.BookingRequestRepository, repo.TourRepository, repo.ZohoRepository, cfg, logger)
+	bookingService.RegisterProvider("paypal", NewPayPalProvider(cfg, logger))
+	bookingService.RegisterProvider("revolut", NewRevolutProvider(cfg, logger))
+
 	return &Service{
 		ArticleService:      NewArticleService(repo.ArticleRepository, logger),
 		AuthService:         NewAuthService(repo.UserRepository, repo.UploadRepository, repo.ZohoRepository, cfg, logger),
-		BookingService:      NewBookingService(repo.BookingRequestRepository, repo.TourRepository, repo.ZohoRepository, cfg, logger),
+		BookingService:      bookingService,
 		DevService:          NewDevService(repo.ResetRepository),
 		PageMetadataService: NewPageMetadataService(repo.PageMetadataRepository),
 		ReviewService:       NewReviewService(repo.ReviewRepository, logger),

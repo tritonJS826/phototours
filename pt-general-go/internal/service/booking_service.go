@@ -1,12 +1,8 @@
 package service
 
 import (
-	"bytes"
 	"context"
-	"encoding/json"
 	"fmt"
-	"io"
-	"net/http"
 	"pt-general-go/internal/config"
 	"pt-general-go/internal/domain"
 	"pt-general-go/internal/repository"
@@ -22,7 +18,7 @@ type BookingService struct {
 	zohoRepository           *repository.ZohoRepository
 	config                   *config.Config
 	logger                   *zap.Logger
-	httpClient               *http.Client
+	providers                map[string]PaymentProvider
 }
 
 func NewBookingService(
@@ -38,14 +34,17 @@ func NewBookingService(
 		zohoRepository:           zohoRepository,
 		config:                   config,
 		logger:                   logger,
-		httpClient:               &http.Client{Timeout: 30 * time.Second},
+		providers:                make(map[string]PaymentProvider),
 	}
+}
+
+func (s *BookingService) RegisterProvider(name string, provider PaymentProvider) {
+	s.providers[name] = provider
 }
 
 func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingRequest *domain.BookingRequest) (string, error) {
 	_, err := s.saveBookingRequest(ctx, bookingRequest)
 	if err != nil {
-
 		return "", err
 	}
 
@@ -67,7 +66,14 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 	// for now it is just deposit: 1000$ instead of tour price
 	// 0.5$ is a test price
 	totalAmount := 0.5 * float64(bookingRequest.Travelers)
-	approvalURL, err := s.createPayPalOrder(ctx, dealID, totalAmount, tourTitle, bookingRequest.Name)
+
+	provider, ok := s.providers[string(bookingRequest.Provider)]
+	if !ok {
+		s.logger.Error("Unknown payment provider", zap.String("provider", string(bookingRequest.Provider)))
+		return "", fmt.Errorf("unknown payment provider: %s", bookingRequest.Provider)
+	}
+
+	approvalURL, err := provider.CreateOrder(ctx, dealID, totalAmount, tourTitle, bookingRequest.Name)
 	if err != nil {
 		return "", err
 	}
@@ -196,111 +202,6 @@ func (s *BookingService) createZohoDeal(ctx context.Context, bookingRequest *dom
 	return dealResp.Data[0].Details.ID, nil
 }
 
-func (s *BookingService) createPayPalOrder(ctx context.Context, dealID string, amount float64, tourTitle string, customerName string) (string, error) {
-	paypalBaseURL := s.getPayPalAPIBase()
-	accessToken, err := s.getPayPalAccessToken()
-	if err != nil {
-		s.logger.Error("Failed to get PayPal access token", zap.Error(err))
-		return "", err
-	}
-
-	amountValue := fmt.Sprintf("%.2f", amount)
-
-	orderReq := map[string]interface{}{
-		"intent": "CAPTURE",
-		"purchase_units": []map[string]interface{}{
-			{
-				"reference_id": dealID,
-				"custom_id":    dealID,
-				"amount": map[string]string{
-					"currency_code": "USD",
-					"value":         amountValue,
-				},
-				"description": fmt.Sprintf("Deposit for %s - %s", tourTitle, customerName),
-			},
-		},
-		"payment_source": map[string]interface{}{
-			"paypal": map[string]interface{}{
-				"experience_context": map[string]interface{}{
-					"payment_method_preference": "IMMEDIATE_PAYMENT_REQUIRED",
-					"landing_page":              "BILLING",
-					"user_action":               "PAY_NOW",
-					"return_url":                "https://tuscany-photo-tours.com/thank-you",
-					"cancel_url":                "https://tuscany-photo-tours.com/tours",
-				},
-			},
-		},
-	}
-
-	body, err := json.Marshal(orderReq)
-	if err != nil {
-		s.logger.Error("Failed to marshal PayPal order request", zap.Error(err))
-		return "", err
-	}
-
-	req, err := http.NewRequest("POST", paypalBaseURL+"/v2/checkout/orders", bytes.NewReader(body))
-	if err != nil {
-		s.logger.Error("Failed to create PayPal order request", zap.Error(err))
-		return "", err
-	}
-
-	req.Header.Set("Authorization", "Bearer "+accessToken)
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("PayPal-Request-Id", fmt.Sprintf("deal-%s-%d", dealID, time.Now().UnixNano()))
-
-	resp, err := s.httpClient.Do(req)
-	if err != nil {
-		s.logger.Error("Failed to create PayPal order", zap.Error(err))
-		return "", err
-	}
-	defer resp.Body.Close()
-
-	respBody, err := io.ReadAll(resp.Body)
-	if err != nil {
-		s.logger.Error("Failed to read PayPal order response", zap.Error(err))
-		return "", err
-	}
-
-	if resp.StatusCode != http.StatusCreated && resp.StatusCode != http.StatusOK {
-		s.logger.Error("PayPal order creation failed",
-			zap.Int("statusCode", resp.StatusCode),
-			zap.String("response", string(respBody)),
-		)
-		return "", fmt.Errorf("paypal order creation failed: %s", string(respBody))
-	}
-
-	var orderResponse struct {
-		ID     string `json:"id"`
-		Status string `json:"status"`
-		Links  []struct {
-			Href   string `json:"href"`
-			Rel    string `json:"rel"`
-			Method string `json:"method"`
-		} `json:"links"`
-	}
-
-	if err := json.Unmarshal(respBody, &orderResponse); err != nil {
-		s.logger.Error("Failed to parse PayPal order response", zap.Error(err))
-		return "", err
-	}
-
-	var approvalURL string
-	for _, link := range orderResponse.Links {
-		if link.Rel == "payer-action" || link.Rel == "approve" {
-			approvalURL = link.Href
-			break
-		}
-	}
-
-	if approvalURL == "" {
-		s.logger.Error("No approval URL in PayPal order response", zap.String("response", string(respBody)))
-		return "", fmt.Errorf("no approval URL in PayPal order response")
-	}
-
-	s.logger.Info("PayPal order created", zap.String("orderID", orderResponse.ID), zap.String("approvalURL", approvalURL))
-	return approvalURL, nil
-}
-
 func (s *BookingService) CreateDeal(ctx context.Context, lead *domain.DealZoho) error {
 	_, err := s.zohoRepository.CreateDeal(ctx, lead)
 	if err != nil {
@@ -335,145 +236,30 @@ func (s *BookingService) GetContactByEmail(ctx context.Context, email string) (*
 	return resp, nil
 }
 
-func (s *BookingService) HandleDepositSucceededWebhook(ctx context.Context, body []byte, headers map[string]string) error {
-	paypalBaseURL := s.getPayPalAPIBase()
-
-	verifyPayload := map[string]interface{}{
-		"auth_algo":         headers["Paypal-Auth-Algo"],
-		"cert_url":          headers["Paypal-Cert-Url"],
-		"transmission_id":   headers["Paypal-Transmission-Id"],
-		"transmission_sig":  headers["Paypal-Transmission-Sig"],
-		"transmission_time": headers["Paypal-Transmission-Time"],
-		"webhook_id":        s.config.PayPalConfig.WebhookID,
-		"webhook_event":     json.RawMessage(body),
+func (s *BookingService) HandleDepositSucceededWebhook(ctx context.Context, body []byte, headers map[string]string, provider string) error {
+	prov, ok := s.providers[provider]
+	if !ok {
+		s.logger.Error("Unknown payment provider for webhook", zap.String("provider", provider))
+		return fmt.Errorf("unknown payment provider: %s", provider)
 	}
 
-	verifyBody, err := json.Marshal(verifyPayload)
+	dealID, err := prov.VerifyWebhook(ctx, body, headers)
 	if err != nil {
-		s.logger.Error("Failed to marshal webhook verification payload", zap.Error(err))
+		s.logger.Error("Webhook verification failed", zap.String("provider", provider), zap.Error(err))
 		return err
 	}
 
-	req, err := http.NewRequest("POST", paypalBaseURL+"/v1/notifications/verify-webhook-signature", bytes.NewReader(verifyBody))
-	if err != nil {
-		s.logger.Error("Failed to create webhook verification request", zap.Error(err))
-		return err
-	}
-
-	accessToken, err := s.getPayPalAccessToken()
-	if err != nil {
-		s.logger.Error("Failed to get PayPal access token for webhook verification", zap.Error(err))
-		return err
-	}
-
-	req.Header.Set("Authorization", "Bearer "+accessToken)
-	req.Header.Set("Content-Type", "application/json")
-
-	resp, err := s.httpClient.Do(req)
-	if err != nil {
-		s.logger.Error("Failed to verify PayPal webhook signature", zap.Error(err))
-		return err
-	}
-	defer resp.Body.Close()
-
-	respBody, err := io.ReadAll(resp.Body)
-	if err != nil {
-		s.logger.Error("Failed to read webhook verification response", zap.Error(err))
-		return err
-	}
-
-	var verificationResponse struct {
-		VerificationStatus string `json:"verification_status"`
-	}
-
-	if err := json.Unmarshal(respBody, &verificationResponse); err != nil {
-		s.logger.Error("Failed to parse webhook verification response", zap.Error(err))
-		return err
-	}
-
-	if verificationResponse.VerificationStatus != "SUCCESS" {
-		s.logger.Error("PayPal webhook verification failed", zap.String("status", verificationResponse.VerificationStatus))
-		return fmt.Errorf("paypal webhook verification failed: %s", verificationResponse.VerificationStatus)
-	}
-
-	var event struct {
-		EventType string `json:"event_type"`
-		Resource  struct {
-			CustomID string `json:"custom_id"`
-		} `json:"resource"`
-	}
-
-	if err := json.Unmarshal(body, &event); err != nil {
-		s.logger.Error("Failed to parse PayPal webhook event", zap.Error(err))
-		return err
-	}
-
-	switch event.EventType {
-	case "PAYMENT.CAPTURE.COMPLETED":
-		if event.Resource.CustomID == "" {
-			s.logger.Error("No custom_id found in PayPal webhook resource")
-			return fmt.Errorf("no custom_id in webhook resource")
-		}
-
-		dealID := event.Resource.CustomID
-
-		err = s.zohoRepository.UpdateDealStage(ctx, dealID, "Deposit Paid")
-		if err != nil {
-			s.logger.Error("Failed to update deal stage in Zoho", zap.Error(err), zap.String("dealID", dealID))
-			return err
-		}
-
-		s.logger.Info("Successfully updated deal stage to Deposit Paid", zap.String("dealID", dealID))
-		return nil
-
-	default:
-		s.logger.Info("Unhandled PayPal webhook event type", zap.String("type", event.EventType))
+	if dealID == "" {
+		s.logger.Info("Webhook verified but no action needed", zap.String("provider", provider))
 		return nil
 	}
-}
 
-func (s *BookingService) getPayPalAPIBase() string {
-	if s.config.PayPalConfig.Sandbox {
-		return "https://api-m.sandbox.paypal.com"
-	}
-	return "https://api-m.paypal.com"
-}
-
-func (s *BookingService) getPayPalAccessToken() (string, error) {
-	paypalBaseURL := s.getPayPalAPIBase()
-	payload := "grant_type=client_credentials"
-
-	req, err := http.NewRequest("POST", paypalBaseURL+"/v1/oauth2/token", bytes.NewReader([]byte(payload)))
+	err = s.zohoRepository.UpdateDealStage(ctx, dealID, "Deposit Paid")
 	if err != nil {
-		return "", err
+		s.logger.Error("Failed to update deal stage in Zoho", zap.Error(err), zap.String("dealID", dealID))
+		return err
 	}
 
-	req.SetBasicAuth(s.config.PayPalConfig.ClientID, s.config.PayPalConfig.ClientSecret)
-	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	req.Header.Set("Accept", "application/json")
-
-	resp, err := s.httpClient.Do(req)
-	if err != nil {
-		return "", err
-	}
-	defer resp.Body.Close()
-
-	respBody, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return "", err
-	}
-
-	if resp.StatusCode != http.StatusOK {
-		return "", fmt.Errorf("paypal auth failed: %s", string(respBody))
-	}
-
-	var tokenResponse struct {
-		AccessToken string `json:"access_token"`
-	}
-
-	if err := json.Unmarshal(respBody, &tokenResponse); err != nil {
-		return "", err
-	}
-
-	return tokenResponse.AccessToken, nil
+	s.logger.Info("Successfully updated deal stage to Deposit Paid", zap.String("dealID", dealID), zap.String("provider", provider))
+	return nil
 }

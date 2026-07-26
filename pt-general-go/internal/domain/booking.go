@@ -14,6 +14,13 @@ const (
 	BookingStatusCancelled BookingStatus = "CANCELLED"
 )
 
+type PaymentProvider string
+
+const (
+	PaymentProviderPayPal  PaymentProvider = "paypal"
+	PaymentProviderRevolut PaymentProvider = "revolut"
+)
+
 type Booking struct {
 	CreatedAt    time.Time     `json:"createdAt"`
 	UpdatedAt    time.Time     `json:"updatedAt"`
@@ -41,5 +48,6 @@ type BookingRequest struct {
 	City             string    `json:"city,omitempty"`
 	Country          string    `json:"country,omitempty"`
 	LastContactPage  string    `json:"lastContactPage,omitempty"`
-	SubscriptionType string    `json:"subscriptionType,omitempty"`
+SubscriptionType string `json:"subscriptionType,omitempty"`
+	Provider         PaymentProvider `json:"provider,omitempty"`
 }
