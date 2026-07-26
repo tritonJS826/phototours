@@ -35,13 +35,16 @@ func (p *RevolutProvider) apiBase() string {
 }
 
 type revolutOrderRequest struct {
-	Amount               int    `json:"amount"`
-	Currency             string `json:"currency"`
-	CaptureMode          string `json:"capture_mode"`
-	MerchantOrderExtRef  string `json:"merchant_order_ext_ref"`
-	Description          string `json:"description"`
-	ReturnURL            string `json:"return_url"`
-	CancelURL            string `json:"cancel_url"`
+	Amount            int    `json:"amount"`
+	Currency          string `json:"currency"`
+	CaptureMode       string `json:"capture_mode"`
+	Description       string `json:"description"`
+	MerchantOrderData *merchantOrderData `json:"merchant_order_data,omitempty"`
+	RedirectURL       string `json:"redirect_url"`
+}
+
+type merchantOrderData struct {
+	Reference string `json:"reference,omitempty"`
 }
 
 type revolutOrderResponse struct {
@@ -59,13 +62,14 @@ func (p *RevolutProvider) CreateOrder(ctx context.Context, dealID string, amount
 	}
 
 	orderReq := revolutOrderRequest{
-		Amount:              amountMinor,
-		Currency:            "USD",
-		CaptureMode:         "AUTOMATIC",
-		MerchantOrderExtRef: dealID,
-		Description:         fmt.Sprintf("Deposit for %s - %s", tourTitle, customerName),
-		ReturnURL:           "https://tuscany-photo-tours.com/thank-you",
-		CancelURL:           "https://tuscany-photo-tours.com/tours",
+		Amount:      amountMinor,
+		Currency:    "USD",
+		CaptureMode: "automatic",
+		Description: fmt.Sprintf("Deposit for %s - %s", tourTitle, customerName),
+		MerchantOrderData: &merchantOrderData{
+			Reference: dealID,
+		},
+		RedirectURL: "https://tuscany-photo-tours.com/thank-you",
 	}
 
 	body, err := json.Marshal(orderReq)
