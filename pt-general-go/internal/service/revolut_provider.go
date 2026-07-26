@@ -83,6 +83,7 @@ func (p *RevolutProvider) CreateOrder(ctx context.Context, dealID string, amount
 	req.Header.Set("Authorization", "Bearer "+p.config.APISecret)
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Revolut-Request-Id", fmt.Sprintf("deal-%s-%d", dealID, time.Now().UnixNano()))
+	req.Header.Set("Revolut-Api-Version", "2024-09-01")
 
 	resp, err := p.httpClient.Do(req)
 	if err != nil {
