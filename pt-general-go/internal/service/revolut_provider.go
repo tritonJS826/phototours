@@ -131,8 +131,8 @@ func (p *RevolutProvider) VerifyWebhook(ctx context.Context, body []byte, header
 		return "", fmt.Errorf("missing Revolut-Signature header")
 	}
 
-	// Verify HMAC-SHA256 signature
-	mac := hmac.New(sha256.New, []byte(p.config.PublicKey))
+	// Verify HMAC-SHA256 signature using webhook signing secret
+	mac := hmac.New(sha256.New, []byte(p.config.WebhookSigningSecret))
 	mac.Write(body)
 	expectedSig := hex.EncodeToString(mac.Sum(nil))
 

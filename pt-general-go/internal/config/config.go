@@ -34,8 +34,9 @@ type PayPalConfig struct {
 }
 
 type RevolutConfig struct {
-	APISecret string `env:"REVOLUT_API_SECRET,required"`
-	PublicKey string `env:"REVOLUT_PUBLIC_KEY,required"`
+	APISecret          string `env:"REVOLUT_API_SECRET,required"`
+	PublicKey          string `env:"REVOLUT_PUBLIC_KEY,required"`
+	WebhookSigningSecret string `env:"REVOLUT_WEBHOOK_SIGNING_SECRET,required"`
 }
 
 const EnvTypeProd = "prod"
