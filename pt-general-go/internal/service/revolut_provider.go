@@ -11,6 +11,8 @@ import (
 	"io"
 	"net/http"
 	"pt-general-go/internal/config"
+	"strconv"
+	"strings"
 	"time"
 
 	"go.uber.org/zap"
@@ -125,18 +127,49 @@ func (p *RevolutProvider) CreateOrder(ctx context.Context, dealID string, amount
 }
 
 func (p *RevolutProvider) VerifyWebhook(ctx context.Context, body []byte, headers map[string]string) (string, error) {
-	signature := headers["Revolut-Signature"]
-	if signature == "" {
+	signatureHeader := headers["Revolut-Signature"]
+	if signatureHeader == "" {
 		p.logger.Error("Missing Revolut-Signature header")
 		return "", fmt.Errorf("missing Revolut-Signature header")
 	}
 
-	// Verify HMAC-SHA256 signature using webhook signing secret
-	mac := hmac.New(sha256.New, []byte(p.config.WebhookSigningSecret))
-	mac.Write(body)
-	expectedSig := hex.EncodeToString(mac.Sum(nil))
+	timestamp := headers["Revolut-Request-Timestamp"]
+	if timestamp == "" {
+		p.logger.Error("Missing Revolut-Request-Timestamp header")
+		return "", fmt.Errorf("missing Revolut-Request-Timestamp header")
+	}
 
-	if !hmac.Equal([]byte(signature), []byte(expectedSig)) {
+	// Replay protection: check timestamp is within 5 minutes
+	tsMs, err := strconv.ParseInt(timestamp, 10, 64)
+	if err != nil {
+		p.logger.Error("Invalid Revolut-Request-Timestamp", zap.String("timestamp", timestamp))
+		return "", fmt.Errorf("invalid Revolut-Request-Timestamp")
+	}
+	if time.Since(time.UnixMilli(tsMs)) > 5*time.Minute {
+		p.logger.Error("Revolut webhook timestamp expired", zap.String("timestamp", timestamp))
+		return "", fmt.Errorf("revolut webhook timestamp expired")
+	}
+
+	// Revolut signs: v1.{timestamp}.{raw_body}
+	payloadToSign := "v1." + timestamp + "." + string(body)
+
+	// Compute expected signature
+	mac := hmac.New(sha256.New, []byte(p.config.WebhookSigningSecret))
+	mac.Write([]byte(payloadToSign))
+	expectedSig := "v1=" + hex.EncodeToString(mac.Sum(nil))
+
+	// Support multiple comma-separated signatures during key rotation
+	sigs := strings.Split(signatureHeader, ",")
+	matched := false
+	for _, sig := range sigs {
+		sig = strings.TrimSpace(sig)
+		if hmac.Equal([]byte(sig), []byte(expectedSig)) {
+			matched = true
+			break
+		}
+	}
+
+	if !matched {
 		p.logger.Error("Revolut webhook signature mismatch")
 		return "", fmt.Errorf("revolut webhook signature verification failed")
 	}
