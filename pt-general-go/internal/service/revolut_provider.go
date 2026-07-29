@@ -175,11 +175,9 @@ func (p *RevolutProvider) VerifyWebhook(ctx context.Context, body []byte, header
 	}
 
 	var event struct {
-		EventType string `json:"event_type"`
-		OrderID   string `json:"order_id"`
-		Order     *struct {
-			MerchantOrderExtRef string `json:"merchant_order_ext_ref"`
-		} `json:"order"`
+		Event               string `json:"event"`
+		OrderID             string `json:"order_id"`
+		MerchantOrderExtRef string `json:"merchant_order_ext_ref"`
 	}
 
 	if err := json.Unmarshal(body, &event); err != nil {
@@ -187,33 +185,18 @@ func (p *RevolutProvider) VerifyWebhook(ctx context.Context, body []byte, header
 		return "", err
 	}
 
-	switch event.EventType {
+	switch event.Event {
 	case "ORDER_COMPLETED", "ORDER_AUTHORISED":
-		var dealID string
-		if event.Order != nil && event.Order.MerchantOrderExtRef != "" {
-			dealID = event.Order.MerchantOrderExtRef
-		} else {
-			// Fallback: try to extract from custom top-level field
-			var raw map[string]interface{}
-			if err := json.Unmarshal(body, &raw); err == nil {
-				if order, ok := raw["order"].(map[string]interface{}); ok {
-					if ref, ok := order["merchant_order_ext_ref"].(string); ok {
-						dealID = ref
-					}
-				}
-			}
-		}
-
-		if dealID == "" {
+		if event.MerchantOrderExtRef == "" {
 			p.logger.Error("No merchant_order_ext_ref found in Revolut webhook")
 			return "", fmt.Errorf("no merchant_order_ext_ref in webhook")
 		}
 
-		p.logger.Info("Revolut webhook verified", zap.String("eventType", event.EventType), zap.String("dealID", dealID))
-		return dealID, nil
+		p.logger.Info("Revolut webhook verified", zap.String("event", event.Event), zap.String("dealID", event.MerchantOrderExtRef))
+		return event.MerchantOrderExtRef, nil
 
 	default:
-		p.logger.Info("Unhandled Revolut webhook event type", zap.String("type", event.EventType))
+		p.logger.Info("Unhandled Revolut webhook event type", zap.String("type", event.Event))
 		return "", nil
 	}
 }
