@@ -64,8 +64,7 @@ func (s *BookingService) CreateBookingRequest(ctx context.Context, bookingReques
 	}
 
 	// for now it is just deposit: 1000$ instead of tour price
-	// 0.5$ is a test price
-	totalAmount := 0.1 * float64(bookingRequest.Travelers)
+	totalAmount := 1000 * float64(bookingRequest.Travelers)
 
 	provider, ok := s.providers[string(bookingRequest.Provider)]
 	if !ok {
