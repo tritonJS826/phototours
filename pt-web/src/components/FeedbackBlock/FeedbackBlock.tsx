@@ -20,14 +20,21 @@ interface FeedbackBlockProps {
 export function FeedbackBlock(props: FeedbackBlockProps) {
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [name, setName] = useState<string>("");
+  const [nameError, setNameError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isNotificationOpen, setIsContactMeSucceededNotificationOpen] =
     useState(false);
   const [isErrorNotificationOpen, setIsErrorNotificationOpen] = useState(false);
 
   const handleSubmit = async () => {
-    if (!name.trim() || !phoneNumber.trim()) {
-      setIsErrorNotificationOpen(true);
+    const MIN_PHONE_NUMBER_LENGTH = 7;
+    const isNameInvalid = !name.trim();
+    const isPhoneInvalid = !phoneNumber.trim() || phoneNumber.trim().length < MIN_PHONE_NUMBER_LENGTH;
+
+    if (isNameInvalid || isPhoneInvalid) {
+      setNameError(isNameInvalid);
+      setPhoneError(isPhoneInvalid);
 
       return;
     }
@@ -47,6 +54,8 @@ export function FeedbackBlock(props: FeedbackBlockProps) {
       setIsContactMeSucceededNotificationOpen(true);
       setName("");
       setPhoneNumber("");
+      setNameError(false);
+      setPhoneError(false);
     } catch (error) {
       setIsErrorNotificationOpen(true);
       // eslint-disable-next-line no-console
@@ -72,20 +81,40 @@ export function FeedbackBlock(props: FeedbackBlockProps) {
           </p>
           <div className={styles.feedbackFormContainer}>
             <div className={styles.feedBackForm}>
-              <input
-                type="text"
-                className={styles.feedBackInput}
-                placeholder="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                autoComplete="name"
-              />
-              <InputPhone
-                defaultCountry="us"
-                value={phoneNumber}
-                className={styles.feedBackPhoneInput}
-                onChange={setPhoneNumber}
-              />
+              <div>
+                <input
+                  type="text"
+                  className={clsx(styles.feedBackInput, nameError && styles.inputError)}
+                  placeholder="Name *"
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                    setNameError(false);
+                  }}
+                  autoComplete="name"
+                />
+                {nameError && (
+                  <span className={styles.feedbackFieldError}>
+                    Please enter your name
+                  </span>
+                )}
+              </div>
+              <div>
+                <InputPhone
+                  defaultCountry="us"
+                  value={phoneNumber}
+                  className={clsx(styles.feedBackPhoneInput, phoneError && styles.inputError)}
+                  onChange={(val) => {
+                    setPhoneNumber(val);
+                    setPhoneError(false);
+                  }}
+                />
+                {phoneError && (
+                  <span className={styles.feedbackFieldError}>
+                    Please enter a valid phone number
+                  </span>
+                )}
+              </div>
               <button
                 className={styles.feedBackButton}
                 onClick={handleSubmit}
@@ -98,11 +127,15 @@ export function FeedbackBlock(props: FeedbackBlockProps) {
               By submitting, you agree to our
               {" "}
               <Link
-                to="#"
+                to="/privacy-policy"
                 className={styles.privacyLink}
               >
-                Privacy Policy.
+                Privacy Policy
               </Link>
+              <span className={styles.requiredAsterisk}>
+                *
+              </span>
+              .
             </span>
           </div>
         </div>

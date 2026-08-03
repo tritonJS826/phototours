@@ -108,11 +108,15 @@ export const NewsletterForm = memo(function NewsletterForm() {
           By submitting, you agree to our
           {" "}
           <Link
-            to="#"
+            to="/privacy-policy"
             className={styles.privacyLink}
           >
-            Privacy Policy.
+            Privacy Policy
           </Link>
+          <span className={styles.requiredAsterisk}>
+            *
+          </span>
+          .
         </span>
       </form>
 

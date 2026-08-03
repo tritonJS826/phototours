@@ -746,18 +746,52 @@
 
   // get rid of nested orders in input
   input {
-    border: none !important;
+    border: none;
   }
 
   button {
-    border-top: none !important;
-    border-left: none !important;
-    border-bottom: none !important;
+    border-top: none;
+    border-left: none;
+    border-bottom: none;
   }
 }
 
-.inputError {
-  border: 1px solid #E53537;
+.requiredAsterisk {
+  color: #e53537;
+  margin-left: 2px;
+  font-weight: bold;
+}
+
+.fieldError {
+  color: #e53537;
+  font-size: 12px;
+  margin: 4px 24px 8px;
+  display: block;
+
+  @media (width <= 1100px) {
+    margin: 4px 16px 8px;
+  }
+}
+
+.checkboxError {
+  color: #e53537;
+}
+
+.formErrorBanner {
+  // hide for desktop
+  display: none;
+  background-color: #fde8e8;
+  color: #e53537;
+  border: 1px solid #e53537;
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+
+  @media (width <= 1100px) {
+    display: block;
+  }
 }
 
 .locationInputBlock {
@@ -769,6 +803,10 @@
 
   // workaround to fix width
   width: calc(100% - 46px);
+}
+
+.inputError {
+  border: 1px solid #E53537;
 }
 
 .buyTravelDropdownContent {

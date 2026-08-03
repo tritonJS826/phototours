@@ -87,6 +87,12 @@
     text-decoration: underline;
   }
 
+  .requiredAsterisk {
+    color: #e53537;
+    margin-left: 2px;
+    font-weight: bold;
+  }
+
   .message {
     font-size: vars.$font-size-sm;
     margin: 0;

@@ -86,6 +86,12 @@
   margin: vars.$spacing-sm 0;
 }
 
+.requiredAsterisk {
+  color: #e53537;
+  margin-left: 2px;
+  font-weight: bold;
+}
+
 .paymentMethods {
   display: flex;
   gap: vars.$gap-md;

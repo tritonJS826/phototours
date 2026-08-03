@@ -154,6 +154,19 @@ export function Cart() {
             <label className={styles.checkbox}>
               <input type="checkbox" />
               I agree to the
+              {" "}
+              <a
+                href="/privacy-policy"
+                target="_blank"
+              >
+                Privacy Policy
+              </a>
+              <span className={styles.requiredAsterisk}>
+                *
+              </span>
+              {" "}
+              and
+              {" "}
               <a href="#">
                 terms of service
               </a>

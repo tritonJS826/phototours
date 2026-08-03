@@ -63,10 +63,12 @@ interface ScheduleAccordionItemProps {
 const ScheduleAccordionItem = (props: ScheduleAccordionItemProps) => {
   return (
     <div className={props.className}>
-      {props.image && <img
-        src={props.image}
-        alt="dayImage"
-      />}
+      {props.image && (
+        <img
+          src={props.image}
+          alt="dayImage"
+        />
+      )}
       <br />
       <p>
         {props.description}
@@ -155,6 +157,8 @@ export function TourDetailsPage() {
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [phoneError, setPhoneError] = useState(false);
+  const [dateError, setDateError] = useState(false);
+  const [termsError, setTermsError] = useState(false);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [agreedToMarketing, setAgreedToMarketing] = useState(false);
 
@@ -181,40 +185,50 @@ export function TourDetailsPage() {
     }
   }, [searchParams]);
 
+  const validateEmail = (emailStr: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    return emailRegex.test(emailStr.trim());
+  };
+
   const handleBookNow = async () => {
     if (!tour) {
       return;
     }
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const phone = formData.phone.trim();
+    const date = formData.date.trim();
+
+    const MIN_PHONE_NUMBER_LENGTH = 7;
+
+    const isNameInvalid = !name;
+    const isEmailInvalid = !email || !validateEmail(email);
+    const isPhoneInvalid = !phone || phone.length < MIN_PHONE_NUMBER_LENGTH;
+    const isDateInvalid = !date;
+    const isTermsInvalid = !agreedToTerms;
+
+    if (isNameInvalid || isEmailInvalid || isPhoneInvalid || isDateInvalid || isTermsInvalid) {
+      setFormValidError(true);
+      setNameError(isNameInvalid);
+      setEmailError(isEmailInvalid);
+      setPhoneError(isPhoneInvalid);
+      setDateError(isDateInvalid);
+      setTermsError(isTermsInvalid);
+
+      return;
+    }
+
     setBookingLoading(true);
     try {
-      const name = formData.name.trim();
-      const phone = formData.phone.trim();
-
-      if (!name || !phone) {
-        setFormValidError(true);
-        if (!name) {
-          setNameError(true);
-        }
-        if (!formData.email.trim()) {
-          setEmailError(true);
-        }
-        const MIN_PHONE_NUMBER_LENGTH = 7;
-        if (phone.length < MIN_PHONE_NUMBER_LENGTH) {
-          setPhoneError(true);
-        }
-        setBookingLoading(false);
-
-        return;
-      }
-
       const userInfo = await getUserInfo();
 
       const request: BookingRequest = {
         tourId: tour.id,
         name: name,
-        email: formData.email,
+        email: email,
         phone: phone,
-        travelDate: formData.date,
+        travelDate: date,
         travelers: formData.travelers,
         rooms: formData.rooms,
         isVip: isVip,
@@ -242,8 +256,17 @@ export function TourDetailsPage() {
         Travel details
       </div>
 
+      {formValidError && (
+        <div className={styles.formErrorBanner}>
+          Please fill in all required fields highlighted below.
+        </div>
+      )}
+
       <p className={styles.buyTravelLabel}>
         Your Name
+        <span className={styles.requiredAsterisk}>
+          *
+        </span>
       </p>
       <input
         type="text"
@@ -252,11 +275,21 @@ export function TourDetailsPage() {
         onChange={(e) => {
           setFormData((prev) => ({...prev, name: e.target.value}));
           setNameError(false);
+          setFormValidError(false);
         }}
         autoComplete="on"
       />
+      {nameError && (
+        <span className={styles.fieldError}>
+          Please enter your name
+        </span>
+      )}
+
       <p className={styles.buyTravelLabel}>
         Your Email
+        <span className={styles.requiredAsterisk}>
+          *
+        </span>
       </p>
       <input
         type="text"
@@ -265,11 +298,21 @@ export function TourDetailsPage() {
         onChange={(e) => {
           setFormData((prev) => ({...prev, email: e.target.value}));
           setEmailError(false);
+          setFormValidError(false);
         }}
         autoComplete="on"
       />
+      {emailError && (
+        <span className={styles.fieldError}>
+          Please enter a valid email address
+        </span>
+      )}
+
       <p className={styles.buyTravelLabel}>
         Your Phone
+        <span className={styles.requiredAsterisk}>
+          *
+        </span>
       </p>
       <InputPhone
         defaultCountry="us"
@@ -278,15 +321,25 @@ export function TourDetailsPage() {
         onChange={(phone) => {
           setFormData((prev) => ({...prev, phone}));
           setPhoneError(false);
+          setFormValidError(false);
         }}
       />
+      {phoneError && (
+        <span className={styles.fieldError}>
+          Please enter a valid phone number
+        </span>
+      )}
+
       <p className={styles.buyTravelLabel}>
         Travel dates
+        <span className={styles.requiredAsterisk}>
+          *
+        </span>
       </p>
       <Dropdown
         contentClassName={styles.buyTravelDropdownContent}
         trigger={
-          <div className={styles.locationInputBlock}>
+          <div className={clsx(styles.locationInputBlock, dateError && styles.inputError)}>
             <img
               className={styles.locationInputImg}
               src={calendar}
@@ -317,12 +370,19 @@ export function TourDetailsPage() {
                 isVisible: true,
                 onClick: () => {
                   setFormData((prev) => ({...prev, date: `${dateObj.dateFrom} - ${dateObj.dateTo}`}));
+                  setDateError(false);
+                  setFormValidError(false);
                 },
               },
             ],
           })) ?? []
         }
       />
+      {dateError && (
+        <span className={styles.fieldError}>
+          Please select travel dates
+        </span>
+      )}
 
       <p className={styles.buyTravelLabel}>
         Travelers
@@ -410,11 +470,15 @@ export function TourDetailsPage() {
       {tour?.isShowVip && <hr />}
 
       <div className={styles.checkboxGroup}>
-        <label className={styles.checkboxLabel}>
+        <label className={clsx(styles.checkboxLabel, termsError && styles.checkboxError)}>
           <input
             type="checkbox"
             checked={agreedToTerms}
-            onChange={(e) => setAgreedToTerms(e.target.checked)}
+            onChange={(e) => {
+              setAgreedToTerms(e.target.checked);
+              setTermsError(false);
+              setFormValidError(false);
+            }}
           />
           <span>
             I agree to the
@@ -425,6 +489,9 @@ export function TourDetailsPage() {
             >
               Privacy Policy
             </a>
+            <span className={styles.requiredAsterisk}>
+              *
+            </span>
             {" "}
             and
             {" "}
@@ -436,6 +503,11 @@ export function TourDetailsPage() {
             </a>
           </span>
         </label>
+        {termsError && (
+          <span className={styles.fieldError}>
+            You must agree to the Privacy Policy
+          </span>
+        )}
         <label className={styles.checkboxLabel}>
           <input
             type="checkbox"
@@ -474,7 +546,7 @@ export function TourDetailsPage() {
           size="md"
           variant="primary"
           onClick={handleBookNow}
-          disabled={bookingLoading || !agreedToTerms}
+          disabled={bookingLoading}
         >
           {bookingLoading ? "Processing..." : "Book now"}
         </Button>
@@ -496,6 +568,8 @@ export function TourDetailsPage() {
     setNameError(false);
     setEmailError(false);
     setPhoneError(false);
+    setDateError(false);
+    setTermsError(false);
     setAgreedToTerms(false);
     setAgreedToMarketing(false);
     setIsVip(false);
