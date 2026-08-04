@@ -75,35 +75,51 @@ func (t *CreateTourParams) Validate() error {
 }
 
 type UpdateTourParams struct {
-	DurationDays       *string          `json:"durationDays"`
-	MinAge             *int32           `json:"minAge"`
-	EndLocation        *string          `json:"endLocation"`
-	StartLocation      *string          `json:"startLocation"`
-	Location           *string          `json:"location"`
-	CoverURL           *string          `json:"coverUrl"`
-	Difficulty         *DifficultyLevel `json:"difficulty"`
-	Description        *string          `json:"description"`
-	Title              *string          `json:"title"`
-	Slug               *string          `json:"slug"`
-	Program            *json.RawMessage `json:"program" swaggertype:"object"`
-	FAQ                *json.RawMessage `json:"faq" swaggertype:"object"`
-	Languages          *[]string        `json:"languages"`
-	AvailableMonths    *[]string        `json:"availableMonths"`
-	GroupSize          *int32           `json:"groupSize"`
-	SpotsLeft          *int32           `json:"spotsLeft"`
-	Subtitle           *string          `json:"subtitle"`
-	PopUp1Title        *string          `json:"popUp1Title"`
-	PopUp1Description  *string          `json:"popUp1Description"`
-	PopUp2Title        *string          `json:"popUp2Title"`
-	PopUp2Description  *string          `json:"popUp2Description"`
-	PopUp1ImageUrl     *string          `json:"popUp1ImageUrl"`
-	PopUp2ImageUrl     *string          `json:"popUp2ImageUrl"`
-	ReviewsSectionName *string          `json:"reviewsSectionName"`
-	IsShowVip          *bool            `json:"isShowVip"`
-	IsShowRooms        *bool            `json:"isShowRooms"`
-	VipPrice           *int32           `json:"vipPrice"`
-	RoomPrice          *int32           `json:"roomPrice"`
-	Photos             *[]PhotoUpdate   `json:"photos"`
+	DurationDays       *string           `json:"durationDays"`
+	MinAge             *int32            `json:"minAge"`
+	EndLocation        *string           `json:"endLocation"`
+	StartLocation      *string           `json:"startLocation"`
+	Location           *string           `json:"location"`
+	CoverURL           *string           `json:"coverUrl"`
+	Difficulty         *DifficultyLevel  `json:"difficulty"`
+	Description        *string           `json:"description"`
+	Title              *string           `json:"title"`
+	Slug               *string           `json:"slug"`
+	Program            *json.RawMessage  `json:"program" swaggertype:"object"`
+	FAQ                *json.RawMessage  `json:"faq" swaggertype:"object"`
+	Languages          *[]string         `json:"languages"`
+	AvailableMonths    *[]string         `json:"availableMonths"`
+	GroupSize          *int32            `json:"groupSize"`
+	SpotsLeft          *int32            `json:"spotsLeft"`
+	Subtitle           *string           `json:"subtitle"`
+	PopUp1Title        *string           `json:"popUp1Title"`
+	PopUp1Description  *string           `json:"popUp1Description"`
+	PopUp2Title        *string           `json:"popUp2Title"`
+	PopUp2Description  *string           `json:"popUp2Description"`
+	PopUp1ImageUrl     *string           `json:"popUp1ImageUrl"`
+	PopUp2ImageUrl     *string           `json:"popUp2ImageUrl"`
+	CtaTitle           *string           `json:"ctaTitle"`
+	CtaDescription     *string           `json:"ctaDescription"`
+	ReviewsSectionName *string           `json:"reviewsSectionName"`
+	IsShowVip          *bool             `json:"isShowVip"`
+	IsShowRooms        *bool             `json:"isShowRooms"`
+	VipPrice           *int32            `json:"vipPrice"`
+	RoomPrice          *int32            `json:"roomPrice"`
+	Photos             *[]PhotoUpdate    `json:"photos"`
+	Activities         *[]Activity       `json:"activities"`
+	Included           *[]string         `json:"included"`
+	Summary            *[]string         `json:"summary"`
+	Dates              *[]TourDateUpdate `json:"dates"`
+}
+
+type TourDateUpdate struct {
+	ID          *uuid.UUID `json:"id"`
+	DateFrom    string     `json:"dateFrom"`
+	DateTo      string     `json:"dateTo"`
+	GroupSize   int32      `json:"groupSize"`
+	IsAvailable bool       `json:"isAvailable"`
+	Price       *float64   `json:"price"`
+	Description string     `json:"description"`
 }
 
 type PhotoUpdate struct {
@@ -136,12 +152,18 @@ func (r *UpdateTourParams) Validate() error {
 		r.PopUp2Description == nil &&
 		r.PopUp1ImageUrl == nil &&
 		r.PopUp2ImageUrl == nil &&
+		r.CtaTitle == nil &&
+		r.CtaDescription == nil &&
 		r.ReviewsSectionName == nil &&
 		r.IsShowVip == nil &&
 		r.IsShowRooms == nil &&
 		r.VipPrice == nil &&
 		r.RoomPrice == nil &&
-		r.Photos == nil {
+		r.Photos == nil &&
+		r.Activities == nil &&
+		r.Included == nil &&
+		r.Summary == nil &&
+		r.Dates == nil {
 		return errors.New("at least one field must be provided")
 	}
 

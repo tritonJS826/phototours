@@ -167,6 +167,9 @@ func (r *TourRepository) UpdateTourByID(ctx context.Context, id uuid.UUID, req *
 	if req.EndLocation != nil {
 		params.EndLocation = pgtype.Text{String: *req.EndLocation, Valid: true}
 	}
+	if req.Location != nil {
+		params.Location = pgtype.Text{String: *req.Location, Valid: true}
+	}
 	if req.DurationDays != nil {
 		params.DurationDays = pgtype.Text{String: *req.DurationDays, Valid: true}
 	}
@@ -190,6 +193,33 @@ func (r *TourRepository) UpdateTourByID(ctx context.Context, id uuid.UUID, req *
 	}
 	if req.Subtitle != nil {
 		params.Subtitle = pgtype.Text{String: *req.Subtitle, Valid: true}
+	}
+	if req.PopUp1Title != nil {
+		params.PopUp1Title = pgtype.Text{String: *req.PopUp1Title, Valid: true}
+	}
+	if req.PopUp1Description != nil {
+		params.PopUp1Description = pgtype.Text{String: *req.PopUp1Description, Valid: true}
+	}
+	if req.PopUp2Title != nil {
+		params.PopUp2Title = pgtype.Text{String: *req.PopUp2Title, Valid: true}
+	}
+	if req.PopUp2Description != nil {
+		params.PopUp2Description = pgtype.Text{String: *req.PopUp2Description, Valid: true}
+	}
+	if req.PopUp1ImageUrl != nil {
+		params.PopUp1ImageUrl = pgtype.Text{String: *req.PopUp1ImageUrl, Valid: true}
+	}
+	if req.PopUp2ImageUrl != nil {
+		params.PopUp2ImageUrl = pgtype.Text{String: *req.PopUp2ImageUrl, Valid: true}
+	}
+	if req.CtaTitle != nil {
+		params.CtaTitle = pgtype.Text{String: *req.CtaTitle, Valid: true}
+	}
+	if req.CtaDescription != nil {
+		params.CtaDescription = pgtype.Text{String: *req.CtaDescription, Valid: true}
+	}
+	if req.ReviewsSectionName != nil {
+		params.ReviewsSectionName = pgtype.Text{String: *req.ReviewsSectionName, Valid: true}
 	}
 
 	tour, err := r.db.UpdateTourByID(ctx, params)

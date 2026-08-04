@@ -11,6 +11,15 @@
   box-shadow: vars.$shadow-light;
   background-color: vars.$color-bg-light;
 
+  .errorBanner {
+    margin-top: vars.$spacing-md;
+    padding: vars.$spacing-md;
+    border-radius: vars.$radius-small;
+    background-color: vars.$color-danger;
+    color: vars.$color-bg-white;
+    font-size: vars.$font-size-card-text;
+  }
+
   .label {
     margin-top: vars.$spacing-lg;
     font-weight: vars.$font-weight-light;

@@ -12,7 +12,7 @@ export enum DifficultyLevel {
 }
 
 export interface TourDay {
-  day: number;
+  day: string;
   plan: string;
   description: string;
   imgUrl?: string;
@@ -127,7 +127,7 @@ export interface TourData {
 }
 
 export interface AdminTourDate {
-  id: string;
+  id: string | null;
   dateFrom: string;
   dateTo: string;
   groupSize: number;
@@ -137,7 +137,7 @@ export interface AdminTourDate {
 }
 
 export interface AdminTourPhoto {
-  id: string;
+  id: string | null;
   url: string;
   alt?: string;
   description?: string;
@@ -148,7 +148,7 @@ export interface AdminTour {
   slug: string;
   title: string;
   description: string;
-  difficulty: Difficulty;
+  difficulty: DifficultyLevel;
   coverUrl: string;
   durationDays: string;
   startLocation: string;
@@ -217,4 +217,5 @@ export interface UpdateTourAdminData {
   vipPrice?: number;
   roomPrice?: number;
   photos?: AdminTourPhoto[];
+  dates?: AdminTourDate[];
 }

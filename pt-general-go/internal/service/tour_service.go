@@ -2,10 +2,12 @@ package service
 
 import (
 	"context"
+	"fmt"
 	"pt-general-go/internal/domain"
 	"pt-general-go/internal/repository"
 	"pt-general-go/internal/repository/mapper"
 	"strings"
+	"time"
 
 	"github.com/google/uuid"
 	"go.uber.org/zap"
@@ -302,54 +304,209 @@ func (s *TourService) UpdateTourByID(ctx context.Context, id uuid.UUID, updateTo
 	}
 
 	if updateTourRequest.Photos != nil {
-		existingPhotos, err := s.photoRepository.GetPhotosByTourID(ctx, id)
-		if err != nil {
+		if err := s.updateTourPhotos(ctx, id, updateTourRequest.Photos); err != nil {
 			return nil, err
 		}
+	}
 
-		existingPhotoIDs := make(map[uuid.UUID]bool)
-		for _, p := range existingPhotos {
-			existingPhotoIDs[p.ID] = true
+	if updateTourRequest.Activities != nil {
+		if err := s.updateTourActivities(ctx, id, updateTourRequest.Activities); err != nil {
+			return nil, err
 		}
+	}
 
-		processedPhotoIDs := make(map[uuid.UUID]bool)
-
-		for _, photoUpdate := range *updateTourRequest.Photos {
-			if photoUpdate.ID != nil && *photoUpdate.ID != uuid.Nil {
-				processedPhotoIDs[*photoUpdate.ID] = true
-
-				if existingPhotoIDs[*photoUpdate.ID] {
-					_, err := s.photoRepository.UpdatePhoto(ctx, *photoUpdate.ID, photoUpdate.URL, photoUpdate.Description)
-					if err != nil {
-						return nil, err
-					}
-				} else {
-					newID := uuid.New()
-					_, err := s.photoRepository.CreatePhoto(ctx, newID, id, photoUpdate.URL, photoUpdate.Description)
-					if err != nil {
-						return nil, err
-					}
-				}
-			} else {
-				newID := uuid.New()
-				_, err := s.photoRepository.CreatePhoto(ctx, newID, id, photoUpdate.URL, photoUpdate.Description)
-				if err != nil {
-					return nil, err
-				}
-			}
+	if updateTourRequest.Included != nil {
+		if err := s.updateTourIncluded(ctx, id, updateTourRequest.Included); err != nil {
+			return nil, err
 		}
+	}
 
-		for _, existingPhoto := range existingPhotos {
-			if !processedPhotoIDs[existingPhoto.ID] {
-				err := s.photoRepository.DeletePhoto(ctx, existingPhoto.ID)
-				if err != nil {
-					return nil, err
-				}
-			}
+	if updateTourRequest.Summary != nil {
+		if err := s.updateTourSummary(ctx, id, updateTourRequest.Summary); err != nil {
+			return nil, err
+		}
+	}
+
+	if updateTourRequest.Dates != nil {
+		if err := s.updateTourDates(ctx, id, updateTourRequest.Dates); err != nil {
+			return nil, err
 		}
 	}
 
 	return s.buildTourFull(ctx, tour)
+}
+
+func (s *TourService) updateTourPhotos(ctx context.Context, tourID uuid.UUID, photos *[]domain.PhotoUpdate) error {
+	existingPhotos, err := s.photoRepository.GetPhotosByTourID(ctx, tourID)
+	if err != nil {
+		return err
+	}
+
+	existingPhotoIDs := make(map[uuid.UUID]bool)
+	for _, p := range existingPhotos {
+		existingPhotoIDs[p.ID] = true
+	}
+
+	processedPhotoIDs := make(map[uuid.UUID]bool)
+
+	for _, photoUpdate := range *photos {
+		if photoUpdate.ID != nil && *photoUpdate.ID != uuid.Nil {
+			processedPhotoIDs[*photoUpdate.ID] = true
+
+			if existingPhotoIDs[*photoUpdate.ID] {
+				_, err := s.photoRepository.UpdatePhoto(ctx, *photoUpdate.ID, photoUpdate.URL, photoUpdate.Description)
+				if err != nil {
+					return err
+				}
+			} else {
+				newID := uuid.New()
+				_, err := s.photoRepository.CreatePhoto(ctx, newID, tourID, photoUpdate.URL, photoUpdate.Description)
+				if err != nil {
+					return err
+				}
+			}
+		} else {
+			newID := uuid.New()
+			_, err := s.photoRepository.CreatePhoto(ctx, newID, tourID, photoUpdate.URL, photoUpdate.Description)
+			if err != nil {
+				return err
+			}
+		}
+	}
+
+	for _, existingPhoto := range existingPhotos {
+		if !processedPhotoIDs[existingPhoto.ID] {
+			err := s.photoRepository.DeletePhoto(ctx, existingPhoto.ID)
+			if err != nil {
+				return err
+			}
+		}
+	}
+
+	return nil
+}
+
+func (s *TourService) updateTourActivities(ctx context.Context, tourID uuid.UUID, activities *[]domain.Activity) error {
+	if err := s.tourActivityRepository.DeleteTourActivitiesByTourID(ctx, tourID); err != nil {
+		return err
+	}
+
+	for _, activity := range *activities {
+		if _, err := s.tourActivityRepository.CreateTourActivity(ctx, tourID, activity.Activity, activity.IconName); err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (s *TourService) updateTourIncluded(ctx context.Context, tourID uuid.UUID, included *[]string) error {
+	if err := s.tourIncludedRepository.DeleteTourIncludedByTourID(ctx, tourID); err != nil {
+		return err
+	}
+
+	for _, item := range *included {
+		if _, err := s.tourIncludedRepository.CreateTourIncluded(ctx, tourID, item); err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (s *TourService) updateTourSummary(ctx context.Context, tourID uuid.UUID, summary *[]string) error {
+	if err := s.tourSummaryRepository.DeleteTourSummaryByTourID(ctx, tourID); err != nil {
+		return err
+	}
+
+	for _, item := range *summary {
+		if _, err := s.tourSummaryRepository.CreateTourSummary(ctx, tourID, "", item); err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (s *TourService) updateTourDates(ctx context.Context, tourID uuid.UUID, dates *[]domain.TourDateUpdate) error {
+	existingDates, err := s.tourDateRepository.GetTourDatesByTourID(ctx, tourID)
+	if err != nil {
+		return err
+	}
+
+	existingDateIDs := make(map[uuid.UUID]bool)
+	for _, d := range existingDates {
+		existingDateIDs[d.ID] = true
+	}
+
+	processedDateIDs := make(map[uuid.UUID]bool)
+
+	for _, dateUpdate := range *dates {
+		dateFrom, err := parseTourDateString(dateUpdate.DateFrom)
+		if err != nil {
+			return err
+		}
+		dateTo, err := parseTourDateString(dateUpdate.DateTo)
+		if err != nil {
+			return err
+		}
+
+		if dateUpdate.ID != nil && *dateUpdate.ID != uuid.Nil {
+			processedDateIDs[*dateUpdate.ID] = true
+
+			if existingDateIDs[*dateUpdate.ID] {
+				_, err := s.tourDateRepository.UpdateTourDate(ctx, *dateUpdate.ID, dateFrom, dateTo, dateUpdate.GroupSize, dateUpdate.IsAvailable, dateUpdate.Price, dateUpdate.Description)
+				if err != nil {
+					return err
+				}
+			} else {
+				newID := uuid.New()
+				_, err := s.tourDateRepository.CreateTourDate(ctx, newID, tourID, dateFrom, dateTo, dateUpdate.GroupSize, dateUpdate.IsAvailable, dateUpdate.Price, dateUpdate.Description)
+				if err != nil {
+					return err
+				}
+			}
+		} else {
+			newID := uuid.New()
+			_, err := s.tourDateRepository.CreateTourDate(ctx, newID, tourID, dateFrom, dateTo, dateUpdate.GroupSize, dateUpdate.IsAvailable, dateUpdate.Price, dateUpdate.Description)
+			if err != nil {
+				return err
+			}
+		}
+	}
+
+	for _, existingDate := range existingDates {
+		if !processedDateIDs[existingDate.ID] {
+			err := s.tourDateRepository.DeleteTourDate(ctx, existingDate.ID)
+			if err != nil {
+				return err
+			}
+		}
+	}
+
+	return nil
+}
+
+func parseTourDateString(value string) (time.Time, error) {
+	value = strings.TrimSpace(value)
+	if value == "" {
+		return time.Time{}, fmt.Errorf("empty date value")
+	}
+
+	layouts := []string{
+		time.RFC3339Nano,
+		time.RFC3339,
+		"2006-01-02T15:04:05",
+		"2006-01-02T15:04",
+		"2006-01-02",
+	}
+	for _, layout := range layouts {
+		if parsed, err := time.Parse(layout, value); err == nil {
+			return parsed, nil
+		}
+	}
+
+	return time.Time{}, fmt.Errorf("invalid date format: %s", value)
 }
 
 func (s *TourService) DeleteTourByID(ctx context.Context, id uuid.UUID) error {

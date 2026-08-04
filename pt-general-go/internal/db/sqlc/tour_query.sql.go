@@ -666,25 +666,26 @@ SET
     faq = COALESCE($10, faq),
     start_location = COALESCE($11, start_location),
     end_location = COALESCE($12, end_location),
-    duration_days = COALESCE($13, duration_days),
-    min_age = COALESCE($14, min_age),
-    cover_url = COALESCE($15, cover_url),
-    languages = COALESCE($16, languages),
-    available_months = COALESCE($17, available_months),
-    group_size = COALESCE($18, group_size),
-    spots_left = COALESCE($19, spots_left),
-    subtitle = COALESCE($20, subtitle),
-    pop_up1_title = COALESCE($21, pop_up1_title),
-    pop_up1_description = COALESCE($22, pop_up1_description),
-    pop_up2_title = COALESCE($23, pop_up2_title),
-    pop_up2_description = COALESCE($24, pop_up2_description),
-    pop_up1_image_url = COALESCE($25, pop_up1_image_url),
-    pop_up2_image_url = COALESCE($26, pop_up2_image_url),
-    cta_title = COALESCE($27, cta_title),
-    cta_description = COALESCE($28, cta_description),
-    reviews_section_name = COALESCE($29, reviews_section_name),
+    location = COALESCE($13, location),
+    duration_days = COALESCE($14, duration_days),
+    min_age = COALESCE($15, min_age),
+    cover_url = COALESCE($16, cover_url),
+    languages = COALESCE($17, languages),
+    available_months = COALESCE($18, available_months),
+    group_size = COALESCE($19, group_size),
+    spots_left = COALESCE($20, spots_left),
+    subtitle = COALESCE($21, subtitle),
+    pop_up1_title = COALESCE($22, pop_up1_title),
+    pop_up1_description = COALESCE($23, pop_up1_description),
+    pop_up2_title = COALESCE($24, pop_up2_title),
+    pop_up2_description = COALESCE($25, pop_up2_description),
+    pop_up1_image_url = COALESCE($26, pop_up1_image_url),
+    pop_up2_image_url = COALESCE($27, pop_up2_image_url),
+    cta_title = COALESCE($28, cta_title),
+    cta_description = COALESCE($29, cta_description),
+    reviews_section_name = COALESCE($30, reviews_section_name),
     updated_at = NOW()
-WHERE id = $30
+WHERE id = $31
 RETURNING
     id,
     slug,
@@ -734,6 +735,7 @@ type UpdateTourByIDParams struct {
 	Faq                []byte
 	StartLocation      pgtype.Text
 	EndLocation        pgtype.Text
+	Location           pgtype.Text
 	DurationDays       pgtype.Text
 	MinAge             pgtype.Int4
 	CoverUrl           pgtype.Text
@@ -804,6 +806,7 @@ func (q *Queries) UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) 
 		arg.Faq,
 		arg.StartLocation,
 		arg.EndLocation,
+		arg.Location,
 		arg.DurationDays,
 		arg.MinAge,
 		arg.CoverUrl,

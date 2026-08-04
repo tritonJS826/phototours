@@ -233,6 +233,7 @@ SET
     faq = COALESCE(sqlc.narg(faq), faq),
     start_location = COALESCE(sqlc.narg(start_location), start_location),
     end_location = COALESCE(sqlc.narg(end_location), end_location),
+    location = COALESCE(sqlc.narg(location), location),
     duration_days = COALESCE(sqlc.narg(duration_days), duration_days),
     min_age = COALESCE(sqlc.narg(min_age), min_age),
     cover_url = COALESCE(sqlc.narg(cover_url), cover_url),

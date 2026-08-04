@@ -11,6 +11,78 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+const createTourDate = `-- name: CreateTourDate :one
+INSERT INTO tour_dates (id, tour_id, date_from, date_to, group_size, is_available, price, description)
+VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+RETURNING
+    id,
+    tour_id,
+    date_from,
+    date_to,
+    group_size,
+    is_available,
+    price,
+    description,
+    created_at,
+    updated_at
+`
+
+type CreateTourDateParams struct {
+	ID          pgtype.UUID
+	TourID      pgtype.UUID
+	DateFrom    pgtype.Timestamp
+	DateTo      pgtype.Timestamp
+	GroupSize   int32
+	IsAvailable bool
+	Price       pgtype.Float8
+	Description string
+}
+
+func (q *Queries) CreateTourDate(ctx context.Context, arg CreateTourDateParams) (TourDate, error) {
+	row := q.db.QueryRow(ctx, createTourDate,
+		arg.ID,
+		arg.TourID,
+		arg.DateFrom,
+		arg.DateTo,
+		arg.GroupSize,
+		arg.IsAvailable,
+		arg.Price,
+		arg.Description,
+	)
+	var i TourDate
+	err := row.Scan(
+		&i.ID,
+		&i.TourID,
+		&i.DateFrom,
+		&i.DateTo,
+		&i.GroupSize,
+		&i.IsAvailable,
+		&i.Price,
+		&i.Description,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
+const deleteTourDate = `-- name: DeleteTourDate :exec
+DELETE FROM tour_dates WHERE id = $1
+`
+
+func (q *Queries) DeleteTourDate(ctx context.Context, id pgtype.UUID) error {
+	_, err := q.db.Exec(ctx, deleteTourDate, id)
+	return err
+}
+
+const deleteTourDatesByTourID = `-- name: DeleteTourDatesByTourID :exec
+DELETE FROM tour_dates WHERE tour_id = $1
+`
+
+func (q *Queries) DeleteTourDatesByTourID(ctx context.Context, tourID pgtype.UUID) error {
+	_, err := q.db.Exec(ctx, deleteTourDatesByTourID, tourID)
+	return err
+}
+
 const getTourDatesByTourID = `-- name: GetTourDatesByTourID :many
 SELECT
     id,
@@ -103,4 +175,63 @@ func (q *Queries) GetTourDatesByTourIDs(ctx context.Context, tourIds []pgtype.UU
 		return nil, err
 	}
 	return items, nil
+}
+
+const updateTourDate = `-- name: UpdateTourDate :one
+UPDATE tour_dates
+SET
+    date_from = $1,
+    date_to = $2,
+    group_size = $3,
+    is_available = $4,
+    price = $5,
+    description = $6
+WHERE id = $7
+RETURNING
+    id,
+    tour_id,
+    date_from,
+    date_to,
+    group_size,
+    is_available,
+    price,
+    description,
+    created_at,
+    updated_at
+`
+
+type UpdateTourDateParams struct {
+	DateFrom    pgtype.Timestamp
+	DateTo      pgtype.Timestamp
+	GroupSize   int32
+	IsAvailable bool
+	Price       pgtype.Float8
+	Description string
+	ID          pgtype.UUID
+}
+
+func (q *Queries) UpdateTourDate(ctx context.Context, arg UpdateTourDateParams) (TourDate, error) {
+	row := q.db.QueryRow(ctx, updateTourDate,
+		arg.DateFrom,
+		arg.DateTo,
+		arg.GroupSize,
+		arg.IsAvailable,
+		arg.Price,
+		arg.Description,
+		arg.ID,
+	)
+	var i TourDate
+	err := row.Scan(
+		&i.ID,
+		&i.TourID,
+		&i.DateFrom,
+		&i.DateTo,
+		&i.GroupSize,
+		&i.IsAvailable,
+		&i.Price,
+		&i.Description,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
 }

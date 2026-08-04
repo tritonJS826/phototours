@@ -17,6 +17,7 @@ type Querier interface {
 	CreatePhoto(ctx context.Context, arg CreatePhotoParams) (Photo, error)
 	CreateTour(ctx context.Context, arg CreateTourParams) (CreateTourRow, error)
 	CreateTourActivity(ctx context.Context, arg CreateTourActivityParams) (TourActivity, error)
+	CreateTourDate(ctx context.Context, arg CreateTourDateParams) (TourDate, error)
 	CreateTourIncluded(ctx context.Context, arg CreateTourIncludedParams) (TourIncluded, error)
 	CreateTourSummary(ctx context.Context, arg CreateTourSummaryParams) (TourSummary, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
@@ -27,6 +28,8 @@ type Querier interface {
 	DeleteTourActivitiesByTourID(ctx context.Context, tourID pgtype.UUID) error
 	DeleteTourActivity(ctx context.Context, id pgtype.UUID) error
 	DeleteTourByID(ctx context.Context, id pgtype.UUID) (int64, error)
+	DeleteTourDate(ctx context.Context, id pgtype.UUID) error
+	DeleteTourDatesByTourID(ctx context.Context, tourID pgtype.UUID) error
 	DeleteTourIncluded(ctx context.Context, id pgtype.UUID) error
 	DeleteTourIncludedByTourID(ctx context.Context, tourID pgtype.UUID) error
 	DeleteTourSummary(ctx context.Context, id pgtype.UUID) error
@@ -64,6 +67,7 @@ type Querier interface {
 	UpdatePageMetadata(ctx context.Context, arg UpdatePageMetadataParams) (UpdatePageMetadataRow, error)
 	UpdatePhoto(ctx context.Context, arg UpdatePhotoParams) (Photo, error)
 	UpdateTourByID(ctx context.Context, arg UpdateTourByIDParams) (UpdateTourByIDRow, error)
+	UpdateTourDate(ctx context.Context, arg UpdateTourDateParams) (TourDate, error)
 	UpdateUser(ctx context.Context, arg UpdateUserParams) (User, error)
 	UpdateUserPassword(ctx context.Context, arg UpdateUserPasswordParams) (User, error)
 }

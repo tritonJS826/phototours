@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {Button} from "src/components/Button/Button";
+import {PATHS} from "src/routes/routes";
 import {getAdminTour, updateTourAdmin} from "src/services/toursService";
 import {AdminTour, DifficultyLevel, FaqItem, TourActivity, TourDay} from "src/types/tour";
 import styles from "src/pages/adminTourEditForm/AdminTourEditForm.module.scss";
@@ -61,7 +62,13 @@ export const AdminTourEdit = () => {
         const data = await getAdminTour(id);
         setFormData(data);
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to fetch tour");
+        const message = err instanceof Error ? err.message : "Failed to fetch tour";
+        if (message === "Unauthorized") {
+          navigate(PATHS.ADMIN_LOGIN);
+
+          return;
+        }
+        setError(message);
       } finally {
         setLoading(false);
       }
@@ -114,7 +121,7 @@ export const AdminTourEdit = () => {
 
       return {
         ...prev,
-        program: {days: [...currentDays, {day: currentDays.length + 1, plan: "", description: ""}]},
+        program: {days: [...currentDays, {day: String(currentDays.length + 1), plan: "", description: ""}]},
       };
     });
   };
@@ -218,6 +225,41 @@ export const AdminTourEdit = () => {
     }));
   };
 
+  const handleDateChange = (index: number, field: string, value: string | boolean | number) => {
+    setFormData(prev => {
+      const dates = [...(prev.dates || [])];
+      const current = dates[index] || {id: null, dateFrom: "", dateTo: "", groupSize: 10, isAvailable: true, price: 0, description: ""};
+      dates[index] = {...current, [field]: value} as AdminTour["dates"][number];
+
+      return {...prev, dates};
+    });
+  };
+
+  const addDate = () => {
+    setFormData(prev => ({
+      ...prev,
+      dates: [
+        ...(prev.dates || []),
+        {
+          id: null,
+          dateFrom: "",
+          dateTo: "",
+          groupSize: prev.groupSize,
+          isAvailable: true,
+          price: 0,
+          description: "",
+        },
+      ],
+    }));
+  };
+
+  const removeDate = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      dates: (prev.dates || []).filter((_, i) => i !== index),
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
@@ -265,6 +307,7 @@ export const AdminTourEdit = () => {
         vipPrice: formData.vipPrice,
         roomPrice: formData.roomPrice,
         photos: formData.photos,
+        dates: formData.dates,
       });
 
       navigate("/admin");
@@ -292,6 +335,15 @@ export const AdminTourEdit = () => {
         Edit tour #
         {id}
       </h2>
+
+      {error && (
+        <div
+          role="alert"
+          className={styles.errorBanner}
+        >
+          {error}
+        </div>
+      )}
 
       <label className={styles.label}>
         Title
@@ -532,8 +584,7 @@ export const AdminTourEdit = () => {
             className={styles.inputSelectText}
             value={day.day}
             onChange={e => handleDayChange(index, "day", e.target.value)}
-            type="number"
-            min={1}
+            type="text"
             placeholder="Day number"
           />
           <textarea
@@ -814,20 +865,105 @@ export const AdminTourEdit = () => {
         rows={3}
       />
 
+      <h3>
+        Dates
+      </h3>
+      {(formData.dates || []).map((date, index) => (
+        <div
+          key={index}
+          className={styles.sectionItem}
+        >
+          <label className={styles.label}>
+            {`Date ${index + 1}`}
+          </label>
+          <label className={styles.label}>
+            From
+          </label>
+          <input
+            className={styles.inputSelectText}
+            type="datetime-local"
+            value={date.dateFrom}
+            onChange={e => handleDateChange(index, "dateFrom", e.target.value)}
+          />
+          <label className={styles.label}>
+            To
+          </label>
+          <input
+            className={styles.inputSelectText}
+            type="datetime-local"
+            value={date.dateTo}
+            onChange={e => handleDateChange(index, "dateTo", e.target.value)}
+          />
+          <label className={styles.label}>
+            Price
+          </label>
+          <input
+            className={styles.inputSelectText}
+            type="number"
+            value={date.price ?? ""}
+            onChange={e => handleDateChange(index, "price", e.target.value === "" ? 0 : Number(e.target.value))}
+            min={0}
+          />
+          <label className={styles.label}>
+            Group Size
+          </label>
+          <input
+            className={styles.inputSelectText}
+            type="number"
+            value={date.groupSize ?? ""}
+            onChange={e => handleDateChange(index, "groupSize", e.target.value === "" ? 0 : Number(e.target.value))}
+            min={1}
+          />
+          <label className={styles.label}>
+            Available
+          </label>
+          <input
+            type="checkbox"
+            checked={date.isAvailable ?? true}
+            onChange={e => handleDateChange(index, "isAvailable", e.target.checked)}
+          />
+          <label className={styles.label}>
+            Description
+          </label>
+          <textarea
+            className={styles.inputSelectText}
+            value={date.description || ""}
+            onChange={e => handleDateChange(index, "description", e.target.value)}
+            placeholder="Date description"
+            rows={2}
+          />
+          <button
+            type="button"
+            onClick={() => removeDate(index)}
+          >
+            Remove Date
+          </button>
+        </div>
+      ))}
+      <button
+        type="button"
+        onClick={addDate}
+      >
+        Add Date
+      </button>
+
       <label className={styles.label}>
         Photos
       </label>
       <div className={styles.photosSection}>
         {formData.photos.map((photo, index) => (
-          <div key={index} className={styles.photoItem}>
+          <div
+            key={index}
+            className={styles.photoItem}
+          >
             <input
               type="text"
               placeholder="Image URL"
               value={photo.url}
               onChange={(e) => {
                 const newPhotos = [...formData.photos];
-                newPhotos[index] = { ...newPhotos[index], url: e.target.value };
-                setFormData(prev => ({ ...prev, photos: newPhotos }));
+                newPhotos[index] = {...newPhotos[index], url: e.target.value};
+                setFormData(prev => ({...prev, photos: newPhotos}));
               }}
               className={styles.inputSelectText}
             />
@@ -837,8 +973,8 @@ export const AdminTourEdit = () => {
               value={photo.alt || ""}
               onChange={(e) => {
                 const newPhotos = [...formData.photos];
-                newPhotos[index] = { ...newPhotos[index], alt: e.target.value };
-                setFormData(prev => ({ ...prev, photos: newPhotos }));
+                newPhotos[index] = {...newPhotos[index], alt: e.target.value};
+                setFormData(prev => ({...prev, photos: newPhotos}));
               }}
               className={styles.inputSelectText}
             />
@@ -853,7 +989,7 @@ export const AdminTourEdit = () => {
               type="button"
               onClick={() => {
                 const newPhotos = formData.photos.filter((_, i) => i !== index);
-                setFormData(prev => ({ ...prev, photos: newPhotos }));
+                setFormData(prev => ({...prev, photos: newPhotos}));
               }}
             >
               Remove
@@ -863,17 +999,13 @@ export const AdminTourEdit = () => {
         <button
           type="button"
           onClick={() => {
-            const newPhotos = [...formData.photos, { id: "", url: "", alt: "" }];
-            setFormData(prev => ({ ...prev, photos: newPhotos }));
+            const newPhotos = [...formData.photos, {id: null, url: "", alt: ""}];
+            setFormData(prev => ({...prev, photos: newPhotos}));
           }}
         >
           Add Photo
         </button>
       </div>
-
-      {error && <p className={styles.error}>
-        {error}
-      </p>}
 
       <div className={styles.buttonContainer}>
         <Button

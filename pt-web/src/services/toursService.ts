@@ -36,7 +36,7 @@ type TourDTO = {
   summary: string[];
   dates: Array<DatesObj>;
   program: {
-    days: Array<{ day: number; plan: string; description: string; imgUrl: string }>;
+    days: Array<{ day: string; plan: string; description: string; imgUrl: string }>;
   };
   faq: {
     questions: Array<{
