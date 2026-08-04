@@ -113,10 +113,10 @@ export const NewsletterForm = memo(function NewsletterForm() {
           >
             Privacy Policy
           </Link>
+          .
           <span className={styles.requiredAsterisk}>
             *
           </span>
-          .
         </span>
       </form>
 

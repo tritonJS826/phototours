@@ -161,15 +161,15 @@ export function Cart() {
               >
                 Privacy Policy
               </a>
-              <span className={styles.requiredAsterisk}>
-                *
-              </span>
               {" "}
               and
               {" "}
               <a href="#">
                 terms of service
               </a>
+              <span className={styles.requiredAsterisk}>
+                *
+              </span>
             </label>
           </div>
 

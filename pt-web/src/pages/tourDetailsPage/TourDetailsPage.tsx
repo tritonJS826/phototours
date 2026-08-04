@@ -492,9 +492,6 @@ export function TourDetailsPage() {
             >
               Privacy Policy
             </a>
-            <span className={styles.requiredAsterisk}>
-              *
-            </span>
             {" "}
             and
             {" "}
@@ -504,6 +501,9 @@ export function TourDetailsPage() {
             >
               Terms of Service
             </a>
+            <span className={styles.requiredAsterisk}>
+              *
+            </span>
           </span>
         </label>
         {termsError && (
@@ -597,16 +597,18 @@ export function TourDetailsPage() {
   const swiperGalleryRef = useRef<SwiperType | null>(null);
   const swiperFullscreenRef = useRef<SwiperType | null>(null);
   const swiperMainRef = useRef<SwiperType | null>(null);
+  const activeSwiperRef = useRef<SwiperType | null>(null);
 
   useEffect(() => {
-    if (swiperGalleryRef.current && tour?.photos) {
-      swiperGalleryRef.current.slideTo(selectedPhotoIndex);
+    const activeSwiper = activeSwiperRef.current;
+    if (swiperGalleryRef.current && tour?.photos && activeSwiper !== swiperGalleryRef.current) {
+      swiperGalleryRef.current.slideToLoop(selectedPhotoIndex);
     }
-    if (swiperFullscreenRef.current && tour?.photos) {
-      swiperFullscreenRef.current.slideTo(selectedPhotoIndex);
+    if (swiperFullscreenRef.current && tour?.photos && activeSwiper !== swiperFullscreenRef.current) {
+      swiperFullscreenRef.current.slideToLoop(selectedPhotoIndex);
     }
-    if (swiperMainRef.current && tour?.photos) {
-      swiperMainRef.current.slideTo(selectedPhotoIndex);
+    if (swiperMainRef.current && tour?.photos && activeSwiper !== swiperMainRef.current) {
+      swiperMainRef.current.slideToLoop(selectedPhotoIndex);
     }
   }, [selectedPhotoIndex, tour?.photos]);
 
@@ -650,7 +652,7 @@ export function TourDetailsPage() {
               modules={[Keyboard, A11y]}
               onSwiper={(s) => {
                 swiperMainRef.current = s;
-                s.slideTo(selectedPhotoIndex, 0);
+                s.slideToLoop(selectedPhotoIndex, 0);
               }}
               loop={photos.length > SWIPER_LOOP_MIN_SLIDES}
               slidesPerView={1}
@@ -659,9 +661,10 @@ export function TourDetailsPage() {
               allowTouchMove
               keyboard={{enabled: true}}
               className={styles.mainGallerySwiper}
-              onSlideChange={(swiper) =>
-                setSelectedPhotoIndex(swiper.activeIndex)
-              }
+              onSlideChange={(swiper) => {
+                activeSwiperRef.current = swiper;
+                setSelectedPhotoIndex(swiper.realIndex);
+              }}
             >
               {photos.map((photo, i) => (
                 <SwiperSlide key={i}>
@@ -683,9 +686,7 @@ export function TourDetailsPage() {
                 if (photos.length === 0) {
                   return;
                 }
-                setSelectedPhotoIndex((prev) =>
-                  prev === 0 ? photos.length - INCREMENT_1 : prev - INCREMENT_1,
-                );
+                swiperMainRef.current?.slidePrev();
               }}
             >
               <img
@@ -702,9 +703,7 @@ export function TourDetailsPage() {
                 if (photos.length === 0) {
                   return;
                 }
-                setSelectedPhotoIndex((prev) =>
-                  prev === photos.length - INCREMENT_1 ? 0 : prev + INCREMENT_1,
-                );
+                swiperMainRef.current?.slideNext();
               }}
             >
               <img
@@ -741,6 +740,10 @@ export function TourDetailsPage() {
                 allowTouchMove
                 keyboard={{enabled: true}}
                 className={styles.swiper}
+                onSlideChange={(swiper) => {
+                  activeSwiperRef.current = swiper;
+                  setSelectedPhotoIndex(swiper.realIndex);
+                }}
                 breakpoints={{
                   [MOBILE_BREAKPOINT_GALLERY_SLIDER]: {
                     slidesPerView: TABLET_SLIDES_PER_VIEW_GALLERY_SLIDER,
@@ -769,7 +772,7 @@ export function TourDetailsPage() {
                   >
                     <button
                       className={clsx(styles.gallerySlideButton, {[styles.active]: i === selectedPhotoIndex})}
-                      onClick={() => setSelectedPhotoIndex(i)}
+                      onClick={() => swiperMainRef.current?.slideToLoop(i)}
                     >
                       <img
                         src={photo}
@@ -800,7 +803,7 @@ export function TourDetailsPage() {
                 modules={[Keyboard, A11y]}
                 onSwiper={(s) => {
                   swiperFullscreenRef.current = s;
-                  s.slideTo(selectedPhotoIndex, 0);
+                  s.slideToLoop(selectedPhotoIndex, 0);
                 }}
                 loop={photos.length > INCREMENT_1}
                 slidesPerView={1}
@@ -809,9 +812,10 @@ export function TourDetailsPage() {
                 allowTouchMove
                 keyboard={{enabled: true}}
                 className={styles.swiper}
-                onSlideChange={(swiper) =>
-                  setSelectedPhotoIndex(swiper.activeIndex)
-                }
+                onSlideChange={(swiper) => {
+                  activeSwiperRef.current = swiper;
+                  setSelectedPhotoIndex(swiper.realIndex);
+                }}
               >
                 {photos.map((photo, i) => (
                   <SwiperSlide

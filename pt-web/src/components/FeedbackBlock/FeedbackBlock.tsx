@@ -132,10 +132,10 @@ export function FeedbackBlock(props: FeedbackBlockProps) {
               >
                 Privacy Policy
               </Link>
+              .
               <span className={styles.requiredAsterisk}>
                 *
               </span>
-              .
             </span>
           </div>
         </div>
