@@ -69,6 +69,20 @@ function toUrl(v: string | UrlObj): string {
   return typeof v === "string" ? v : v.url;
 }
 
+function toDateTimeLocal(value: string): string {
+  const ts = Date.parse(value);
+  if (!Number.isNaN(ts)) {
+    const d = new Date(ts);
+    // eslint-disable-next-line no-magic-numbers
+    const pad = (n: number) => String(n).padStart(2, "0");
+
+    // eslint-disable-next-line no-magic-numbers
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  }
+
+  return value;
+}
+
 function toShortDate(value: string): string {
   const ts = Date.parse(value);
   if (!Number.isNaN(ts)) {
@@ -261,8 +275,8 @@ function mapAdminTourToView(raw: any): AdminTour {
 
   const dates = (raw.dates ?? []).map((d: any) => ({
     id: d.id,
-    dateFrom: d.dateFrom,
-    dateTo: d.dateTo,
+    dateFrom: toDateTimeLocal(d.dateFrom),
+    dateTo: toDateTimeLocal(d.dateTo),
     groupSize: d.groupSize ?? 10,
     isAvailable: d.isAvailable ?? true,
     price: d.price ?? 0,
