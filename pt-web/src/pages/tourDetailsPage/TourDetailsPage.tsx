@@ -52,7 +52,8 @@ const ANCHOR_REVIEWS = "reviews";
 
 const ONE_TRAVELER = 1;
 const ONE_ROOM = 1;
-const ONE_ROOM_PRICE = 100;
+const SINGLE_ROOM_PRICE_PER_DAY = 120;
+const LAST_DAY_NIGHTS_OFFSET = 1;
 
 interface ScheduleAccordionItemProps {
   description: string;
@@ -166,7 +167,9 @@ export function TourDetailsPage() {
   const [isVip, setIsVip] = useState(false);
 
   const tourPrice = tour?.dates?.[0]?.price ?? 0;
-  const singleRoomSupplementPrice = tour?.roomPrice ?? ONE_ROOM_PRICE;
+  const singleRoomSupplementPrice = tour
+    ? (tour.durationDays - LAST_DAY_NIGHTS_OFFSET) * SINGLE_ROOM_PRICE_PER_DAY
+    : 0;
   const vipPrice = tour?.vipPrice ?? 0;
   const totalPrice = tour
     ? (tourPrice * formData.travelers) +
