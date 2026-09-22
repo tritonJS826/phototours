@@ -34,6 +34,7 @@ export interface TourDateView {
   dateTo: string;
   price: number;
   description: string;
+  nights: number;
 }
 
 export interface TourView {

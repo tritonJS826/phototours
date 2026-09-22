@@ -1,6 +1,67 @@
 import {fetchData, fileUrl} from "src/services/httpHelper";
 import type {AdminTour, TourView, UpdateTourAdminData} from "src/types/tour";
 
+type AdminDateDTO = {
+  id: string;
+  dateFrom: string;
+  dateTo: string;
+  groupSize: number;
+  isAvailable: boolean;
+  price?: number;
+  description: string;
+};
+
+type AdminPhotoDTO = {
+  id: string;
+  url: string;
+  alt?: string;
+  description: string;
+};
+
+type AdminActivityDTO = {
+  activity: string;
+  iconName: string;
+};
+
+type AdminTourFullDTO = {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  difficulty: string;
+  vipPrice: number;
+  roomPrice: number;
+  program: AdminTour["program"] | object;
+  faq: AdminTour["faq"] | object;
+  reviewsSectionName: string;
+  availableMonths: string[];
+  languages: string[];
+  isShowVip: boolean;
+  isShowRooms: boolean;
+  activities: AdminActivityDTO[];
+  included: string[];
+  summary: string[];
+  popUp1Title: string;
+  popUp1Description: string;
+  popUp1ImageUrl: string;
+  popUp2Title: string;
+  popUp2Description: string;
+  popUp2ImageUrl: string;
+  ctaTitle: string;
+  ctaDescription: string;
+  durationDays?: string;
+  coverUrl?: string;
+  location?: string;
+  startLocation?: string;
+  endLocation?: string;
+  minAge?: number;
+  groupSize?: number;
+  spotsLeft?: number;
+  subtitle?: string;
+  dates?: AdminDateDTO[];
+  photos?: AdminPhotoDTO[];
+};
+
 export const TOURS_PATH = "/general/tours";
 
 export const QUERY_PARAMS = {
@@ -98,13 +159,15 @@ function toShortDate(value: string): string {
 function mapTourToView(dto: TourDTO): TourView {
   const photoUrls = (dto.photos ?? []).map(x => fileUrl(toUrl(x)));
   const dates: TourView["dates"] = (dto.dates ?? []).map((d) => {
+    const MS_PER_DAY = 1000 * 60 * 60 * 24;
+    const nights = Math.round((new Date(d.dateTo).getTime() - new Date(d.dateFrom).getTime()) / MS_PER_DAY);
 
     return {
       dateFrom: toShortDate(d.dateFrom),
       dateTo: toShortDate(d.dateTo),
       price: d.price,
       description: d.description ?? "",
-
+      nights,
     };
   })
     .filter((d) => d.dateFrom !== "");
@@ -265,83 +328,78 @@ export async function addTourVideo(id: string, file: File): Promise<void> {
   });
 }
 
-function mapAdminTourToView(raw: any): AdminTour {
-  const photoUrls = (raw.photos ?? []).map((p: any) => ({
+function mapAdminTourToView(raw: AdminTourFullDTO): AdminTour {
+  const photoUrls: AdminTour["photos"] = (raw.photos ?? []).map((p) => ({
     id: p.id,
     url: p.url,
     alt: p.alt ?? "",
-    description: p.description ?? "",
+    description: p.description,
   }));
 
-  const dates = (raw.dates ?? []).map((d: any) => ({
+  const dates: AdminTour["dates"] = (raw.dates ?? []).map((d) => ({
     id: d.id,
     dateFrom: toDateTimeLocal(d.dateFrom),
     dateTo: toDateTimeLocal(d.dateTo),
-    groupSize: d.groupSize ?? 10,
-    isAvailable: d.isAvailable ?? true,
+    groupSize: d.groupSize,
+    isAvailable: d.isAvailable,
     price: d.price ?? 0,
-    description: d.description ?? "",
+    description: d.description,
   }));
 
-  const program = typeof raw.program === "object" && raw.program !== null
-    ? raw.program
-    : {days: []};
-
-  const faq = typeof raw.faq === "object" && raw.faq !== null
-    ? raw.faq
-    : {questions: []};
+  const program = "days" in raw.program ? raw.program : { days: [] };
+  const faq = "questions" in raw.faq ? raw.faq : { questions: [] };
 
   return {
     id: raw.id,
-    slug: raw.slug ?? "",
-    title: raw.title ?? "",
-    description: raw.description ?? "",
-    difficulty: raw.difficulty ?? "EASY",
+    slug: raw.slug,
+    title: raw.title,
+    description: raw.description,
+    difficulty: raw.difficulty as AdminTour["difficulty"],
     coverUrl: raw.coverUrl ?? "",
     durationDays: raw.durationDays ?? "",
     startLocation: raw.startLocation ?? "",
     endLocation: raw.endLocation ?? "",
     location: raw.location ?? "",
     minAge: raw.minAge ?? 0,
-    languages: raw.languages ?? [],
-    availableMonths: raw.availableMonths ?? [],
+    languages: raw.languages,
+    availableMonths: raw.availableMonths,
     program,
     faq,
-    activities: (raw.activities ?? []).map((a: any) => ({
-      activity: a.activity ?? "",
-      iconName: a.iconName ?? "",
+    activities: raw.activities.map((a) => ({
+      activity: a.activity,
+      iconName: a.iconName,
     })),
-    included: raw.included ?? [],
-    summary: raw.summary ?? [],
+    included: raw.included,
+    summary: raw.summary,
     groupSize: raw.groupSize ?? 10,
     spotsLeft: raw.spotsLeft ?? 1,
     subtitle: raw.subtitle ?? "About",
-    popUp1Title: raw.popUp1Title ?? "",
-    popUp1Description: raw.popUp1Description ?? "",
-    popUp1ImageUrl: raw.popUp1ImageUrl ?? "",
-    popUp2Title: raw.popUp2Title ?? "",
-    popUp2Description: raw.popUp2Description ?? "",
-    popUp2ImageUrl: raw.popUp2ImageUrl ?? "",
-    ctaTitle: raw.ctaTitle ?? "",
-    ctaDescription: raw.ctaDescription ?? "",
-    reviewsSectionName: raw.reviewsSectionName ?? "",
-    isShowVip: raw.isShowVip ?? false,
-    isShowRooms: raw.isShowRooms ?? false,
-    vipPrice: raw.vipPrice ?? 0,
-    roomPrice: raw.roomPrice ?? 0,
+    popUp1Title: raw.popUp1Title,
+    popUp1Description: raw.popUp1Description,
+    popUp1ImageUrl: raw.popUp1ImageUrl,
+    popUp2Title: raw.popUp2Title,
+    popUp2Description: raw.popUp2Description,
+    popUp2ImageUrl: raw.popUp2ImageUrl,
+    ctaTitle: raw.ctaTitle,
+    ctaDescription: raw.ctaDescription,
+    reviewsSectionName: raw.reviewsSectionName,
+    isShowVip: raw.isShowVip,
+    isShowRooms: raw.isShowRooms,
+    vipPrice: raw.vipPrice,
+    roomPrice: raw.roomPrice,
     dates,
     photos: photoUrls,
   };
 }
 
 export async function getAdminTour(id: string): Promise<AdminTour> {
-  const raw = await fetchData<any>(`${TOURS_PATH}/admin/${id}`);
+  const raw = await fetchData<AdminTourFullDTO>(`${TOURS_PATH}/admin/${id}`);
 
   return mapAdminTourToView(raw);
 }
 
 export async function updateTourAdmin(id: string, data: UpdateTourAdminData): Promise<AdminTour> {
-  const raw = await fetchData<any>(`${TOURS_PATH}/admin/${id}`, {
+  const raw = await fetchData<AdminTourFullDTO>(`${TOURS_PATH}/admin/${id}`, {
     method: "PUT",
     body: JSON.stringify(data),
   });
