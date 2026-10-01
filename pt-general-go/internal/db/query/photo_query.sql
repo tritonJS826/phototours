@@ -6,7 +6,8 @@ SELECT
 	description,
 	created_at
 FROM photos
-WHERE tour_id = @tour_id;
+WHERE tour_id = @tour_id
+ORDER BY created_at ASC;
 
 -- name: GetPhotosByTourIDs :many
 SELECT
@@ -16,7 +17,8 @@ SELECT
 	description,
 	created_at
 FROM photos
-WHERE tour_id = ANY(@tour_ids::uuid[]);
+WHERE tour_id = ANY(@tour_ids::uuid[])
+ORDER BY created_at ASC;
 
 -- name: UpdatePhoto :one
 UPDATE photos

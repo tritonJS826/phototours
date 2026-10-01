@@ -51,10 +51,10 @@ const FOOTER_COLUMNS: FooterColumn[] = [
     id: "legal",
     title: "Legal",
     links: [
-      {id: "privacy", text: "Privacy Policy", href: PATHS.PRIVACY},
+      {id: "privacy", text: "Privacy Policy", href: PATHS.PRIVACY_POLICY_URL},
       {id: "terms", text: "Terms & Conditions", href: "/terms"},
-      {id: "refund", text: "Refund Policy", href: PATHS.PRIVACY},
-      {id: "cookies", text: "Cookies Policy", href: PATHS.COOKIES},
+      {id: "refund", text: "Refund Policy", href: PATHS.PRIVACY_POLICY_URL},
+      {id: "cookies", text: "Cookies Policy", href: PATHS.PRIVACY_POLICY_URL},
     ],
   },
 ];
@@ -83,17 +83,33 @@ const SOCIAL_LINKS: SocialLink[] = [
 ];
 
 export const Footer = function Footer() {
-  const renderFooterLink = (link: FooterLink) => (
-    <li key={link.id}>
-      <Link
-        to={link.href}
-        className={styles.footerLink}
-        aria-label={link.text}
-      >
-        {link.text}
-      </Link>
-    </li>
-  );
+  const renderFooterLink = (link: FooterLink) => {
+    const isExternal = link.href.startsWith("http");
+
+    return (
+      <li key={link.id}>
+        {isExternal ? (
+          <a
+            href={link.href}
+            className={styles.footerLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={link.text}
+          >
+            {link.text}
+          </a>
+        ) : (
+          <Link
+            to={link.href}
+            className={styles.footerLink}
+            aria-label={link.text}
+          >
+            {link.text}
+          </Link>
+        )}
+      </li>
+    );
+  };
 
   const renderSocialIcon = (social: SocialLink) => {
     return (

@@ -1,10 +1,10 @@
 import {memo, useState} from "react";
-import {Link} from "react-router-dom";
 import notificationCheckMark from "/images/notificationCheckMark.svg";
 import notificationError from "/images/notificationError.svg";
 import {CentralNotification} from "src/components/CentralNotification/CentralNotification";
 import {subscribe} from "src/services/sailsService";
 import {getUserInfo} from "src/utils/userInfo";
+import {PATHS} from "src/routes/routes";
 import styles from "src/components/NewsletterForm/NewsletterForm.module.scss";
 
 const BUTTON_TEXT = {
@@ -107,12 +107,14 @@ export const NewsletterForm = memo(function NewsletterForm() {
         <span className={styles.privacyPolicyText}>
           By submitting, you agree to our
           {" "}
-          <Link
-            to="/privacy-policy"
+          <a
+            href={PATHS.PRIVACY_POLICY_URL}
             className={styles.privacyLink}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Privacy Policy
-          </Link>
+          </a>
           .
           <span className={styles.requiredAsterisk}>
             *

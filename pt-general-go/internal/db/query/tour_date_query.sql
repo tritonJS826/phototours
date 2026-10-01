@@ -11,7 +11,8 @@ SELECT
     created_at,
     updated_at
 FROM tour_dates
-WHERE tour_id = @tour_id;
+WHERE tour_id = @tour_id
+ORDER BY date_from ASC;
 
 -- name: GetTourDatesByTourIDs :many
 SELECT
@@ -26,7 +27,8 @@ SELECT
     created_at,
     updated_at
 FROM tour_dates
-WHERE tour_id = ANY(@tour_ids::uuid[]);
+WHERE tour_id = ANY(@tour_ids::uuid[])
+ORDER BY date_from ASC;
 
 -- name: CreateTourDate :one
 INSERT INTO tour_dates (id, tour_id, date_from, date_to, group_size, is_available, price, description)

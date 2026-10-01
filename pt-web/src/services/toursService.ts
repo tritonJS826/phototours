@@ -138,7 +138,7 @@ function toDateTimeLocal(value: string): string {
     const pad = (n: number) => String(n).padStart(2, "0");
 
     // eslint-disable-next-line no-magic-numbers
-    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    return `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())}T${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}`;
   }
 
   return value;
@@ -149,7 +149,7 @@ function toShortDate(value: string): string {
   if (!Number.isNaN(ts)) {
     const d = new Date(ts);
 
-    return d.toLocaleDateString(undefined, {day: "2-digit", month: "short", year: "numeric"});
+    return d.toLocaleDateString(undefined, {day: "2-digit", month: "short", year: "numeric", timeZone: "UTC"});
   }
   const i = value.indexOf("T");
 
@@ -346,8 +346,8 @@ function mapAdminTourToView(raw: AdminTourFullDTO): AdminTour {
     description: d.description,
   }));
 
-  const program = "days" in raw.program ? raw.program : { days: [] };
-  const faq = "questions" in raw.faq ? raw.faq : { questions: [] };
+  const program = "days" in raw.program ? raw.program : {days: []};
+  const faq = "questions" in raw.faq ? raw.faq : {questions: []};
 
   return {
     id: raw.id,

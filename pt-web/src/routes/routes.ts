@@ -13,6 +13,8 @@ export const PATHS = {
   PRIVACY: "/privacy-policy",
   COOKIES: "/cookies-policy",
 
+  PRIVACY_POLICY_URL: "https://e.pcloud.link/publink/show?code=XZTp4k7ZB3rSfzO2AeQFMFhuQarWUXtUgFgV",
+
   ARTICLES: "/articles",
   ARTICLES_SLUG: "/articles/:slug",
   getArticle: (slug: string) => `/articles/${slug}`,

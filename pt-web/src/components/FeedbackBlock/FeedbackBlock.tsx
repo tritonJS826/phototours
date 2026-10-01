@@ -1,8 +1,8 @@
 import {useState} from "react";
-import {Link} from "react-router-dom";
 import notificationCheckMark from "/images/notificationCheckMark.svg";
 import notificationError from "/images/notificationError.svg";
 import clsx from "clsx";
+import {PATHS} from "src/routes/routes";
 import {CentralNotification} from "src/components/CentralNotification/CentralNotification";
 import {InputPhone} from "src/components/InputPhone/InputPhone";
 import {submitContactMe} from "src/services/sailsService";
@@ -126,12 +126,14 @@ export function FeedbackBlock(props: FeedbackBlockProps) {
             <span className={styles.privacyPolicyText}>
               By submitting, you agree to our
               {" "}
-              <Link
-                to="/privacy-policy"
+              <a
+                href={PATHS.PRIVACY_POLICY_URL}
                 className={styles.privacyLink}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 Privacy Policy
-              </Link>
+              </a>
               .
               <span className={styles.requiredAsterisk}>
                 *

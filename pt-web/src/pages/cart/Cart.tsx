@@ -4,6 +4,7 @@ import {Container} from "src/components/Container/Container";
 import amex from "src/pages/cart/icons/amex.svg";
 import mastercard from "src/pages/cart/icons/mastercard.svg";
 import visa from "src/pages/cart/icons/visa.svg";
+import {PATHS} from "src/routes/routes";
 import styles from "src/pages/cart/Cart.module.scss";
 
 export function Cart() {
@@ -156,8 +157,9 @@ export function Cart() {
               I agree to the
               {" "}
               <a
-                href="/privacy-policy"
+                href={PATHS.PRIVACY_POLICY_URL}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Privacy Policy
               </a>

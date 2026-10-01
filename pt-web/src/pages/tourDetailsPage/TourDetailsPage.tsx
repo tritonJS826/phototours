@@ -148,6 +148,8 @@ export function TourDetailsPage() {
     email: "",
     phone: "",
     date: "",
+    datePrice: 0,
+    dateNights: 0,
     travelers: 1,
     rooms: 0,
     isVip: false,
@@ -166,10 +168,10 @@ export function TourDetailsPage() {
   const [isFirstPopUpVisible, setIsFirstPopUpVisible] = useState(false);
   const [isVip, setIsVip] = useState(false);
 
-  const tourPrice = tour?.dates?.[0]?.price ?? 0;
-  const singleRoomSupplementPrice = tour
-    ? (tour.dates?.[0]?.nights ?? 0) * SINGLE_ROOM_PRICE_PER_DAY
-    : 0;
+  const tourPrice = formData.dateNights > 0 ? formData.datePrice : (tour?.dates?.[0]?.price ?? 0);
+  const singleRoomSupplementPrice = formData.dateNights > 0
+    ? (formData.dateNights - 1) * SINGLE_ROOM_PRICE_PER_DAY
+    : ((tour?.dates?.[0]?.nights ?? 0) - 1) * SINGLE_ROOM_PRICE_PER_DAY;
   const vipPrice = tour?.vipPrice ?? 0;
   const totalPrice = tour
     ? (tourPrice * formData.travelers) +
@@ -372,10 +374,15 @@ export function TourDetailsPage() {
                 </div>,
                 isVisible: true,
                 onClick: () => {
-                  setFormData((prev) => ({...prev, date: `${dateObj.dateFrom} - ${dateObj.dateTo}`}));
-                  setDateError(false);
-                  setFormValidError(false);
-                },
+                    setFormData((prev) => ({
+                      ...prev,
+                      date: `${dateObj.dateFrom} - ${dateObj.dateTo}`,
+                      datePrice: dateObj.price,
+                      dateNights: dateObj.nights,
+                    }));
+                    setDateError(false);
+                    setFormValidError(false);
+                  },
               },
             ],
           })) ?? []
@@ -487,8 +494,9 @@ export function TourDetailsPage() {
             I agree to the
             {" "}
             <a
-              href="/privacy-policy"
+              href={PATHS.PRIVACY_POLICY_URL}
               target="_blank"
+              rel="noopener noreferrer"
             >
               Privacy Policy
             </a>
@@ -563,6 +571,8 @@ export function TourDetailsPage() {
       email: "",
       phone: "",
       date: "",
+      datePrice: 0,
+      dateNights: 0,
       travelers: 1,
       rooms: 0,
       isVip: false,

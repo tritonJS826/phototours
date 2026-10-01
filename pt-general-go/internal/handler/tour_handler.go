@@ -348,7 +348,7 @@ func (h *Handler) DeleteTourByID(ctx *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param id path string true "Tour ID (UUID)"
-// @Success 200 {array} domain.Tour
+// @Success 200 {array} domain.TourFull
 // @Failure 400 {object} map[string]string
 // @Failure 500 {object} map[string]string
 // @Router /tours/{id}/similar [get]

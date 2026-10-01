@@ -513,6 +513,33 @@ func (s *TourService) DeleteTourByID(ctx context.Context, id uuid.UUID) error {
 	return s.tourRepository.DeleteTourByID(ctx, id)
 }
 
-func (s *TourService) GetSimilarToursByTourID(ctx context.Context, tourID uuid.UUID) ([]domain.Tour, error) {
-	return s.tourRepository.GetSimilarToursByTourID(ctx, tourID)
+func (s *TourService) GetSimilarToursByTourID(ctx context.Context, tourID uuid.UUID) ([]domain.TourFull, error) {
+	tours, err := s.tourRepository.GetSimilarToursByTourID(ctx, tourID)
+	if err != nil {
+		return nil, err
+	}
+
+	if len(tours) == 0 {
+		return []domain.TourFull{}, nil
+	}
+
+	tourIDs := make([]uuid.UUID, len(tours))
+	for i, tour := range tours {
+		tourIDs[i] = tour.ID
+	}
+
+	tourDatesMap, err := s.tourDateRepository.GetTourDatesByTourIDs(ctx, tourIDs)
+	if err != nil {
+		return nil, err
+	}
+
+	result := make([]domain.TourFull, len(tours))
+	for i, tour := range tours {
+		result[i] = domain.TourFull{
+			Tour:  tour,
+			Dates: tourDatesMap[tour.ID],
+		}
+	}
+
+	return result, nil
 }
