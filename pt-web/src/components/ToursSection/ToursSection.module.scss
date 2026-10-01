@@ -1,3 +1,14 @@
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -31,11 +42,16 @@
   border-radius: 999px;
   transition:
     opacity 0.2s ease,
-    transform 0.06s ease;
+    transform 0.06s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .link:hover {
-  opacity: 0.85;
+  opacity: 1;
+  background-color: #2b7a2b;
+  color: #fff;
+  border-style: solid;
 }
 
 .link:active {
@@ -46,6 +62,13 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+
+  > *:nth-child(1) { animation: cardFadeIn 0.5s ease-out 0s both; }
+  > *:nth-child(2) { animation: cardFadeIn 0.5s ease-out 0.08s both; }
+  > *:nth-child(3) { animation: cardFadeIn 0.5s ease-out 0.16s both; }
+  > *:nth-child(4) { animation: cardFadeIn 0.5s ease-out 0.12s both; }
+  > *:nth-child(5) { animation: cardFadeIn 0.5s ease-out 0.2s both; }
+  > *:nth-child(6) { animation: cardFadeIn 0.5s ease-out 0.24s both; }
 }
 
 .state {

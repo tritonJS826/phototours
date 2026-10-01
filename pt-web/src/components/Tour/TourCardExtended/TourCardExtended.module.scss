@@ -9,6 +9,12 @@
   overflow: hidden;
   gap: 10px;
   font-family: Onest, sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgb(0 0 0 / 10%);
+  }
 
   @media (width <= 900px) {
     padding: 17px;
@@ -35,6 +41,11 @@
   object-fit: cover;
   display: block;
   border-radius: 25px;
+  transition: transform 0.4s ease;
+
+  .card:hover & {
+    transform: scale(1.04);
+  }
 }
 
 .stars {
@@ -242,6 +253,8 @@
   border: none;
   font-weight: 700;
   font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 
   @media (width <= 900px) {
     width: 130px;
@@ -250,9 +263,11 @@
   &:hover {
     background-color: #0e2ead;
     color: #fff;
+    transform: translateY(-2px);
   }
 
   &:active {
     background-color: #092388;
+    transform: translateY(0);
   }
 }

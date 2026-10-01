@@ -1,3 +1,14 @@
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .heroSection {
   color: #fff;
   display: flex;
@@ -6,6 +17,7 @@
   margin: 80px auto;
   text-align: center;
   font-size: 16px;
+  animation: fadeInUp 0.8s ease-out;
 
   @media (width <=830px) {
     margin-bottom: auto;
@@ -15,15 +27,14 @@
 .heroTitle {
   max-width: 884px;
   margin: auto;
-  letter-spacing: -3%;
-
   font-family: Onest;
   font-weight: 700;
   font-size: 37px;
   line-height: 1;
   letter-spacing: 0.97;
   text-align: center;
-  
+  animation: fadeInUp 0.8s ease-out 0.15s both;
+
   @media (width <=1200px) {
     font-size: 34px;
   }
@@ -44,4 +55,5 @@
   font-size: 20px;
   max-width: 760px;
   align-self: center;
+  animation: fadeInUp 0.8s ease-out 0.3s both;
 }

@@ -1,5 +1,4 @@
-// Import {useEffect, useState} from "react";
-import {useState} from "react";
+import {useState, useEffect, useRef} from "react";
 import {Link, useNavigate} from "react-router-dom";
 // Import cart from "/images/cart.svg";
 import email from "/images/email.svg";
@@ -259,6 +258,30 @@ export function HomePage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isFirstPopUpVisible, setIsFirstPopUpVisible] = useState(false);
 
+  function useReveal() {
+    const ref = useRef<HTMLDivElement>(null);
+    const [revealed, setRevealed] = useState(false);
+    useEffect(() => {
+      const el = ref.current;
+      if (!el) return;
+      const obs = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          setRevealed(true);
+          obs.disconnect();
+        }
+      }, {threshold: 0.15});
+      obs.observe(el);
+      return () => obs.disconnect();
+    }, []);
+    return {ref, revealed};
+  }
+
+  const popularTitle = useReveal();
+  const toursTitle = useReveal();
+  const blogTitle = useReveal();
+  const reviewsTitle = useReveal();
+  const faqTitle = useReveal();
+
   return (
     <div>
       <div className={styles.heroSectionBg}>
@@ -301,19 +324,23 @@ export function HomePage() {
       <PartnersSlider partners={partners} />
 
       <div className={styles.blockWrapper}>
-        <h2 className={styles.popularDestinationsTitle}>
-          {COPY.topPopularDestinations.title}
-        </h2>
+        <div ref={popularTitle.ref} className={`${styles.revealUp} ${popularTitle.revealed ? styles.revealed : ""}`}>
+          <h2 className={styles.popularDestinationsTitle}>
+            {COPY.topPopularDestinations.title}
+          </h2>
+        </div>
         <PopularDestinations />
       </div>
 
       <div className={styles.blockWrapper}>
-        <h2 className={styles.topDestinationsSelectionTitle}>
-          {COPY.topSelections.title}
-        </h2>
-        <p className={styles.topDestinationsSelectionSubTitle}>
-          {COPY.topSelections.subtitle}
-        </p>
+        <div ref={toursTitle.ref} className={`${styles.revealUp} ${toursTitle.revealed ? styles.revealed : ""}`}>
+          <h2 className={styles.topDestinationsSelectionTitle}>
+            {COPY.topSelections.title}
+          </h2>
+          <p className={styles.topDestinationsSelectionSubTitle}>
+            {COPY.topSelections.subtitle}
+          </p>
+        </div>
         <ToursSection />
       </div>
 
@@ -330,9 +357,10 @@ export function HomePage() {
       </div>
 
       <div className={styles.blockWrapper}>
-        <div className={styles.blogAndPhotographyGuides}>
-          <div className={styles.blogAndPhotographyFirstContainer}>
-            <h3 className={styles.blogAndPhotographyTitle}>
+        <div ref={blogTitle.ref} className={`${styles.revealUp} ${blogTitle.revealed ? styles.revealed : ""}`}>
+          <div className={styles.blogAndPhotographyGuides}>
+            <div className={styles.blogAndPhotographyFirstContainer}>
+              <h3 className={styles.blogAndPhotographyTitle}>
               <b>
                 Blog &
               </b>
@@ -356,28 +384,28 @@ export function HomePage() {
             <PopularWorkshops />
           </div>
         </div>
-        <div
-          className={popularWorkshopsStyles.paginationContainer}
-          id="pagination-container"
-        />
+        </div>
       </div>
 
       <div className={styles.blockWrapper}>
-        <h2
-          className={styles.reviewsTitle}
-          id="reviews-block"
-        >
-          {COPY.reviews.title}
-        </h2>
-        <p className={styles.reviewsSubTitle}>
-          {COPY.reviews.subtitle}
-        </p>
+        <div ref={reviewsTitle.ref} className={`${styles.revealUp} ${reviewsTitle.revealed ? styles.revealed : ""}`}>
+          <h2
+            className={styles.reviewsTitle}
+            id="reviews-block"
+          >
+            {COPY.reviews.title}
+          </h2>
+          <p className={styles.reviewsSubTitle}>
+            {COPY.reviews.subtitle}
+          </p>
+        </div>
         <ReviewsSection />
       </div>
 
       <div className={styles.faqBlock}>
         <h3
-          className={styles.faqTitle}
+          ref={faqTitle.ref}
+          className={`${styles.faqTitle} ${styles.revealUp} ${faqTitle.revealed ? styles.revealed : ""}`}
           id="faq-block"
         >
           FAQ

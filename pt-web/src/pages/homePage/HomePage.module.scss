@@ -1,6 +1,39 @@
 @use "../../styles/variables" as vars;
 @use "../../styles/mixins" as mixin;
 
+@keyframes sectionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.revealUp {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .heroSectionBg {
   background-image: url("https://res.cloudinary.com/dxqcrv4gf/image/upload/v1771824381/mainPageHeroBackground_u7o3y9.avif");
   background-size: cover;
@@ -9,6 +42,20 @@
   margin: 30px 20px 15px;
   border-radius: 20px;
   padding: 20px;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgb(0 0 0 / 45%) 0%, rgb(0 0 0 / 20%) 50%, rgb(0 0 0 / 45%) 100%);
+    pointer-events: none;
+  }
+
+  & > * {
+    position: relative;
+  }
 }
 
 .heroHeader {
@@ -34,6 +81,11 @@
   background-color: #5555558C;
   border-radius: 9px;
   padding: 10px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgb(255 255 255 / 25%);
+  }
 }
 
 .rightHeaderBlock {
@@ -87,10 +139,12 @@
   justify-content: center;
   align-items: center;
   font-weight: 500;
+  transition: background 0.3s ease, transform 0.2s ease;
 
   &:hover {
     color: white;
     background: #0E2EAD;
+    transform: scale(1.04);
   }
 }
 
@@ -135,6 +189,7 @@
   gap: 8px;
   padding: 12px 10px;
   border-bottom: 1px solid #d9d9d9;
+  transition: background-color 0.2s ease;
 
   &:hover {
     background-color: #e9eeff;
@@ -154,6 +209,15 @@
   padding: 36px 8px;
   margin: 15px 20px 0;
   border-radius: 20px;
+
+  img {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  a:hover img {
+    transform: scale(1.08);
+    opacity: 0.85;
+  }
 }
 
 .blockWrapper {
@@ -167,9 +231,28 @@
   text-align: center;
   font-weight: 700;
   font-size: 25px;
+  position: relative;
+  padding-bottom: 16px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(101.01deg, #3e61ed, #233787);
+    border-radius: 2px;
+  }
   
   @media (width <= 900px) {
     text-align: left;
+
+    &::after {
+      left: 0;
+      transform: none;
+    }
   }
 }
 
@@ -198,6 +281,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: background 0.4s ease;
 }
 
 .wantMoreHeader {
@@ -214,14 +298,18 @@
   color: #2f53de;
   font-weight: 700;
   letter-spacing: -3%;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
 
   &:hover {
     background-color: #0e2ead;
     color: #fff;
+    transform: translateY(-2px);
   }
 
   &:active {
     background-color: #092388;
+    transform: translateY(0);
   }
 }
 
@@ -243,6 +331,11 @@
   background-color: #f8f8f8;
   padding: 30px;
   border-radius: 20px;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 20px rgb(0 0 0 / 8%);
+  }
 
   @media (width <= 550px) {
     padding: 20px;
@@ -281,15 +374,19 @@
   max-width: 160px;
   font-weight: 700;
   letter-spacing: -3%;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
 
   &:hover {
     background-color: #212121;
     color: #fff;
+    transform: translateY(-2px);
   }
 
   &:active {
     background-color: #fff;
     color: #000;
+    transform: translateY(0);
   }
 }
 
@@ -457,6 +554,13 @@
   width: 360px;
   height: 54px;
   border: 1px solid transparent;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: #2f53de;
+    box-shadow: 0 0 0 3px rgb(47 83 222 / 20%);
+  }
 
   @media (width <= 575px) {
     width: 100%;
@@ -500,15 +604,17 @@
   height: 54px;
   letter-spacing: -3%;
   font-weight: 500;
-
-  // transition: all 0.3s ease;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 
   &:hover {
     background-color: #0e2ead;
+    transform: scale(1.03);
   }
 
   &:active {
     background-color: #092388;
+    transform: scale(0.98);
   }
 
   @media (width <= 965px) {
