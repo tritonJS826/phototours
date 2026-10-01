@@ -4,6 +4,7 @@ import location_blue from "/images/location_blue.svg";
 import people from "/images/people.svg";
 import price from "/images/price.svg";
 import sun from "/images/sun-solid.svg";
+import * as Slider from "@radix-ui/react-slider";
 import {Filter} from "lucide-react";
 import {AsyncSection} from "src/components/AsyncSection/AsyncSection";
 import {Dropdown} from "src/components/Dropdown/Dropdown";
@@ -122,17 +123,10 @@ export function ToursPage() {
     });
   }, [allTours, priceRange, filters.travelers, filters.season, filters.location]);
 
-  const handlePriceRangeChange = (type: "min" | "max", value: number) => {
-    setPriceRange(prev => ({
-      ...prev,
-      [type]: value,
-    }));
-  };
-
   const handleResetAll = () => {
     setFilters({});
     setPriceRange({min: 2500, max: 9900});
-    setSearchParams(new URLSearchParams()); // Clear URL params
+    setSearchParams(new URLSearchParams());
   };
 
   const filtersContent = (
@@ -329,29 +323,27 @@ export function ToursPage() {
       </div>
 
       <div className={styles.priceRange}>
-
-        <div className={styles.rangeWrapper}>
-          <input
-            type="range"
-            min="2500"
-            max="9900"
-            step="100"
-            value={priceRange.min}
-            className={styles.range}
-            id="min"
-            onChange={(e) => handlePriceRangeChange("min", parseInt(e.target.value))}
+        <Slider.Root
+          min={2500}
+          max={9900}
+          step={100}
+          value={[priceRange.min, priceRange.max]}
+          minStepsBetweenThumbs={1}
+          onValueChange={([min, max]) => setPriceRange({min, max})}
+          className={styles.sliderRoot}
+        >
+          <Slider.Track className={styles.sliderTrack}>
+            <Slider.Range className={styles.sliderRange} />
+          </Slider.Track>
+          <Slider.Thumb
+            className={styles.sliderThumb}
+            aria-label="Min price"
           />
-          <input
-            type="range"
-            min="2500"
-            max="9900"
-            step="100"
-            value={priceRange.max}
-            className={styles.range}
-            id="max"
-            onChange={(e) => handlePriceRangeChange("max", parseInt(e.target.value))}
+          <Slider.Thumb
+            className={styles.sliderThumb}
+            aria-label="Max price"
           />
-        </div>
+        </Slider.Root>
 
         <div className={styles.labels}>
           <span>
