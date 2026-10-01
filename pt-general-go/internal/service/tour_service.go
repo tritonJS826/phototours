@@ -169,7 +169,7 @@ func (s *TourService) GetAllTours(ctx context.Context, limit, offset int32, filt
 		if reviewInfo == nil {
 			reviewInfo = &domain.ReviewInfo{
 				ReviewAmount: 0,
-				StarAmount:   5,
+				StarAmount:   0,
 			}
 		}
 
@@ -533,11 +533,26 @@ func (s *TourService) GetSimilarToursByTourID(ctx context.Context, tourID uuid.U
 		return nil, err
 	}
 
+	reviewInfoMap, err := s.reviewRepository.GetReviewInfoByTourIDs(ctx, tourIDs)
+	if err != nil {
+		return nil, err
+	}
+
 	result := make([]domain.TourFull, len(tours))
 	for i, tour := range tours {
+		reviewInfo := reviewInfoMap[tour.ID]
+		if reviewInfo == nil {
+			reviewInfo = &domain.ReviewInfo{
+				ReviewAmount: 0,
+				StarAmount:   0,
+			}
+		}
+
 		result[i] = domain.TourFull{
-			Tour:  tour,
-			Dates: tourDatesMap[tour.ID],
+			Tour:         tour,
+			Dates:        tourDatesMap[tour.ID],
+			StarAmount:   reviewInfo.StarAmount,
+			ReviewAmount: reviewInfo.ReviewAmount,
 		}
 	}
 
