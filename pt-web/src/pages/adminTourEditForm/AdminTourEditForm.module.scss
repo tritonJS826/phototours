@@ -1,238 +1,257 @@
 @use "../../styles/variables" as vars;
-@use "../../styles/mixins" as mixin;
 
 .form {
-  max-width: 700px;
-  margin: vars.$spacing-xl auto;
-  padding: vars.$spacing-xl;
-  border-radius: vars.$radius-medium;
-  display: flex;
-  flex-direction: column;
-  box-shadow: vars.$shadow-light;
-  background-color: vars.$color-bg-light;
+  max-width: 100%;
+  margin: 0;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  background-color: #f5f6fa;
+  min-height: 100vh;
 
-  .errorBanner {
-    margin-top: vars.$spacing-md;
-    padding: vars.$spacing-md;
-    border-radius: vars.$radius-small;
-    background-color: vars.$color-danger;
-    color: vars.$color-bg-white;
-    font-size: vars.$font-size-card-text;
+  @media (width <= 1300px) {
+    grid-template-columns: 1fr 1fr;
   }
 
-  .label {
-    margin-top: vars.$spacing-lg;
-    font-weight: vars.$font-weight-light;
-    font-size: vars.$font-size-card-text;
-    color: vars.$color-medium;
-  }
-
-  .buttonContainer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: vars.$spacing-xl;
-    gap: vars.$gap-xl;
-  }
-
-  .inputSelectText {
-    margin-top: vars.$spacing-sm;
-    padding: vars.$padding-input;
-    font-size: vars.$font-size-md;
-    border-radius: vars.$radius-small;
-    border: vars.$border-width-thin solid vars.$color-border;
-    width: 100%;
-    box-sizing: border-box;
-    resize: vertical;
-
-    &:focus {
-      outline: none;
-      border-color: vars.$color-primary;
-      box-shadow: vars.$shadow-input-focus;
-    }
+  @media (width <= 900px) {
+    grid-template-columns: 1fr;
+    padding: 16px;
   }
 }
 
-.inputText,
-.inputSelect {
-  padding: vars.$padding-input;
+.errorBanner {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: vars.$spacing-md;
   border-radius: vars.$radius-small;
-  border: vars.$border-width-thin solid vars.$color-border;
+  background-color: vars.$color-danger;
+  color: vars.$color-bg-white;
   font-size: vars.$font-size-card-text;
+}
+
+.formTitle {
+  grid-column: 1 / -1;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  color: #1a1a2e;
+}
+
+.section {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 5%);
+
+  &.fullWidth {
+    grid-column: 1 / -1;
+  }
+}
+
+.sectionTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 12px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eef0f7;
+}
+
+.toggleBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #889;
+  padding: 0 4px;
+  line-height: 1;
+  transition: color 0.2s ease, transform 0.25s ease;
+
+  &:hover {
+    color: #2f53de;
+  }
+}
+
+.collapsed {
+  transform: rotate(-90deg);
+}
+
+.sectionContent {
+  overflow: hidden;
+}
+
+.field {
+  margin-bottom: 12px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.label {
+  display: block;
+  font-weight: 500;
+  font-size: 13px;
+  color: #566;
+  margin-bottom: 4px;
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #dde;
+  box-sizing: border-box;
+  background: #fafbfd;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
   &:focus {
     outline: none;
-    border-color: vars.$color-primary;
-    box-shadow: vars.$shadow-input-focus;
+    border-color: #2f53de;
+    box-shadow: 0 0 0 3px rgb(47 83 222 / 12%);
+    background: #fff;
   }
 }
 
-.fileUpload {
-  display: inline-block;
-  padding: vars.$spacing-md;
-  border: vars.$dashed-border;
-  border-radius: vars.$radius-small;
-  cursor: pointer;
-  text-align: center;
-  font-size: vars.$font-size-sm;
-  color: vars.$color-light;
-  position: relative;
-  background: vars.$color-bg-white;
+.textarea {
+  resize: vertical;
+  min-height: 70px;
 }
 
-.fileUpload input {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  left: 0;
-  top: 0;
-  cursor: pointer;
-}
-
-.removeButton,
-.addButton {
-  background-color: vars.$btn-secondary-bg;
-  color: vars.$color-bg-white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: vars.$radius-small;
-  cursor: pointer;
-  font-size: vars.$font-size-sm;
-  align-self: flex-start;
-  transition:
-    background-color vars.$transition-normal,
-    opacity vars.$transition-fast;
-}
-
-.removeButton:hover,
-.addButton:hover {
-  opacity: 0.9;
-}
-
-.addButton {
-  background-color: vars.$color-primary;
-  margin-top: vars.$spacing-sm;
-}
-
-.dropZone {
-  border: vars.$dashed-border;
-  padding: vars.$spacing-xl;
-  text-align: center;
-  cursor: pointer;
-  margin-bottom: vars.$spacing-md;
-  border-radius: vars.$radius-small;
-  transition:
-    border-color vars.$transition-normal,
-    background-color vars.$transition-normal;
-
-  &:hover {
-    background-color: vars.$btn-primary-hover-bg;
-    border-color: vars.$color-medium;
-  }
-}
-
-.dropZoneText {
-  color: vars.$color-light;
-  font-weight: vars.$font-weight-light;
-  font-size: vars.$font-size-card-text;
-}
-
-.hiddenFileInput {
-  display: none;
-}
-
-.fileList {
-  list-style: none;
-  padding-left: 0;
-
-  li {
-    margin-bottom: vars.$spacing-sm;
-  }
-}
-
-.fileUploadPreview {
+.checkboxRow {
   display: flex;
-  flex-wrap: wrap;
-  gap: vars.$gap-md;
-}
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
 
-.fileUploadItem {
-  position: relative;
-  max-width: 100px;
-  max-height: 100px;
-  border-radius: vars.$radius-medium;
-  overflow: hidden;
-  border: vars.$dashed-border;
-  background: vars.$color-bg-white;
-}
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #2f53de;
+  }
 
-.fileUploadItemImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.fileUploadItemRemove {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  background: vars.$color-dark;
-  color: vars.$color-bg-white;
-  border: none;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-
-.btn {
-  width: 100%;
-  border: none;
-  cursor: pointer;
-}
-
-.previewCard {
-  @include mixin.flex-center;
-
-  gap: vars.$gap-sm;
-  margin-top: vars.$spacing-sm;
-  padding: 4px 6px;
-  border: vars.$border-width-thin solid vars.$color-border;
-  border-radius: vars.$radius-small;
-  background: vars.$color-bg-light;
-}
-
-.previewIcon {
-  width: 24px;
-  height: 24px;
-}
-
-.previewTitle {
-  font-size: vars.$font-size-sm;
-  color: vars.$color-medium;
+  .label {
+    margin-bottom: 0;
+  }
 }
 
 .imagePreview {
-  max-width: 200px;
-  max-height: 150px;
-  margin-top: vars.$spacing-sm;
-  border-radius: vars.$radius-small;
-  border: vars.$border-width-thin solid vars.$color-border;
+  max-width: 100%;
+  max-height: 140px;
+  margin-top: 6px;
+  border-radius: 6px;
+  border: 1px solid #dde;
+}
+
+.sectionItem {
+  background: #f8f9fd;
+  border: 1px solid #eef0f7;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.sectionItemTitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: #889;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 10px;
+}
+
+.btnAdd {
+  background: #2f53de;
+  color: #fff;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #0e2ead;
+  }
+}
+
+.btnRemove {
+  background: none;
+  color: #c44;
+  border: 1px solid #ecc;
+  padding: 5px 12px;
+  border-radius: 5px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background: #c44;
+    color: #fff;
+    border-color: #c44;
+  }
+}
+
+.photosSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
 }
 
 .photoItem {
   display: flex;
   flex-direction: column;
-  gap: vars.$spacing-sm;
-  padding: vars.$spacing-md;
-  margin-bottom: vars.$spacing-md;
-  border: vars.$border-width-thin solid vars.$color-border;
-  border-radius: vars.$radius-small;
-  background: vars.$color-bg-light;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #eef0f7;
+  border-radius: 6px;
+  background: #f8f9fd;
 }
 
 .photoPreview {
-  max-width: 200px;
-  max-height: 150px;
-  border-radius: vars.$radius-small;
+  max-width: 100%;
+  max-height: 120px;
+  border-radius: 6px;
+  border: 1px solid #dde;
+}
+
+.buttonContainer {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.col {
+  flex: 1;
+  min-width: 0;
+}
+
+.colNarrow {
+  max-width: 130px;
+  min-width: 100px;
+}
+
+.colImg {
+  flex: 0 0 auto;
+  max-height: 100px;
+  align-self: center;
+  margin-top: 20px;
 }
