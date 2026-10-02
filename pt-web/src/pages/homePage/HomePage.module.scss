@@ -231,28 +231,9 @@
   text-align: center;
   font-weight: 700;
   font-size: 25px;
-  position: relative;
-  padding-bottom: 16px;
-
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(101.01deg, #3e61ed, #233787);
-    border-radius: 2px;
-  }
   
   @media (width <= 900px) {
     text-align: left;
-
-    &::after {
-      left: 0;
-      transform: none;
-    }
   }
 }
 
